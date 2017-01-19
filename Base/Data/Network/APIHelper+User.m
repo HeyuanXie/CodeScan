@@ -10,7 +10,7 @@
 
 @implementation APIHelper (User)
 
--(void)login:(NSString *)account password:(NSString *)pw complete:(ApiRequestCompleteBlock)complete {
+-(void)loginAccount:(NSString *)account password:(NSString *)pw complete:(ApiRequestCompleteBlock)complete {
     
     NSMutableDictionary* mDict = [NSMutableDictionary dictionary];
     [mDict safe_setValue:account forKey:@"account"];

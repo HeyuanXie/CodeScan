@@ -9,19 +9,6 @@
 #import "HomeViewController.h"
 #import <UIView+BlocksKit.h>
 
-@interface Temp : NSObject
-
-@property(nonatomic,assign) NSInteger value;
-@property(nonatomic,copy) NSString* string;
-
-@end
-
-@implementation Temp
-
-
-
-@end
-
 @interface HomeViewController ()
 
 @end
@@ -51,11 +38,8 @@
     [v1 autoSetDimensionsToSize:CGSizeMake(80, 80)];
     [v1 bk_whenTapped:^{
         NSLog(@"bk_tapped");
-        Temp* temp = [[Temp alloc] init];
-        temp.value = 2;
-        temp.string = @"saveObject";
+        APPROUTE(kTestViewController)
     }];
-    
     
     UIView *v2 = [UIView newAutoLayoutView];
     v2.backgroundColor = [UIColor greenColor];
@@ -64,6 +48,9 @@
     [v2 autoMatchDimension:ALDimensionHeight toDimension:ALDimensionHeight ofView:v1];
     [v2 autoAlignAxis:ALAxisHorizontal toSameAxisOfView:v1];
     [v2 autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:v1];
+    [v2 bk_whenTapped:^{
+
+    }];
 
     
     UIView* v3 = [UIView newAutoLayoutView];
@@ -77,6 +64,11 @@
         DLog(@"bk_tapped");
         APPROUTE(kLoginViewController);
     }];
+
+}
+
+-(void)testUIViewLayout {
+    
 }
 
 

@@ -34,6 +34,15 @@
     return floorf([self returnImageSizeForHeight_Width_Proportion] * needWidth);
 }
 
+/// 图片压缩
+- (UIImage*)compressImageWithScaledSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 #pragma mark - private method
 
 /**

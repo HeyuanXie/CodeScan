@@ -16,6 +16,4 @@
 
 - (void)verifyLogin;
 
-- (void)configNotification:(NSDictionary*)launchOptions;
-
 @end

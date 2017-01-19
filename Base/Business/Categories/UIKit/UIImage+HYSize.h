@@ -18,4 +18,7 @@
 
 - (CGFloat)returnHeightWithNeedWidth:(CGFloat) needWidth;
 
+    // 压缩图片
+- (UIImage*)compressImageWithScaledSize:(CGSize)size;
+
 @end

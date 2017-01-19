@@ -47,29 +47,43 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUf-ya-EUT">
+                                <rect key="frame" x="112" y="333" width="94" height="30"/>
+                                <color key="backgroundColor" red="0.98431372549999996" green="0.49019607840000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7Ch-Yw-6EG"/>
+                                </constraints>
+                                <state key="normal" title="清除">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="RUf-ya-EUT" firstAttribute="leading" secondItem="ANc-iQ-wIa" secondAttribute="leading" constant="112" id="ERb-DT-JWl"/>
                             <constraint firstItem="1cl-Of-6EO" firstAttribute="leading" secondItem="ANc-iQ-wIa" secondAttribute="leadingMargin" constant="96" id="JIp-me-r77"/>
                             <constraint firstAttribute="trailing" secondItem="4Cv-uz-tei" secondAttribute="trailing" constant="59" id="LRf-AG-5U7"/>
                             <constraint firstItem="4Cv-uz-tei" firstAttribute="top" secondItem="gkw-t7-MkN" secondAttribute="bottom" constant="34" id="NbW-GI-OaV"/>
                             <constraint firstItem="4Cv-uz-tei" firstAttribute="leading" secondItem="ANc-iQ-wIa" secondAttribute="leading" constant="60" id="Rg8-D2-rXW"/>
                             <constraint firstItem="gkw-t7-MkN" firstAttribute="top" secondItem="l4D-Xu-azk" secondAttribute="bottom" constant="60" id="XNH-eI-FhB"/>
                             <constraint firstItem="gkw-t7-MkN" firstAttribute="leading" secondItem="ANc-iQ-wIa" secondAttribute="leading" constant="59" id="ZaM-Bu-veL"/>
+                            <constraint firstAttribute="trailing" secondItem="RUf-ya-EUT" secondAttribute="trailing" constant="114" id="cLt-YI-oLU"/>
                             <constraint firstItem="1cl-Of-6EO" firstAttribute="centerX" secondItem="gkw-t7-MkN" secondAttribute="centerX" id="fVb-rP-h2E"/>
                             <constraint firstItem="eeX-Qx-3E2" firstAttribute="top" secondItem="1cl-Of-6EO" secondAttribute="bottom" constant="254" id="lge-hY-svs"/>
                             <constraint firstAttribute="trailing" secondItem="gkw-t7-MkN" secondAttribute="trailing" constant="60" id="nVj-OL-9XE"/>
+                            <constraint firstItem="RUf-ya-EUT" firstAttribute="top" secondItem="1cl-Of-6EO" secondAttribute="bottom" constant="19" id="piV-3E-7C3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="accountTf" destination="gkw-t7-MkN" id="TC0-Y9-fCi"/>
+                        <outlet property="cleanBtn" destination="RUf-ya-EUT" id="GCc-cE-vVQ"/>
                         <outlet property="loginBtn" destination="1cl-Of-6EO" id="b87-zP-F6f"/>
                         <outlet property="passwordTf" destination="4Cv-uz-tei" id="YJd-t2-sUf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8od-71-oAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="88" y="-646"/>
+            <point key="canvasLocation" x="86.25" y="-646.47887323943667"/>
         </scene>
     </scenes>
 </document>

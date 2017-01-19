@@ -28,4 +28,21 @@
 
 + (UIImage *)hyLightImageWithCornerRadius:(CGFloat)cornerRadius;
 
+
+/**
+ 创建一个颜色图片
+ 
+ :param: color 颜色
+ :param: size  如果不设置，则为  ｛2， 2｝
+ :returns: 返回图片，图片的scale为当前屏幕的scale
+ */
++(UIImage*)hyColorImage:(UIColor*)color;
+
++(UIImage*)hyColorImage:(UIColor*)color size:(CGSize)size;
+
++(UIImage*)hyImageWithColor:(UIColor*)color size:(CGSize)size;
+
++(UIImage*)screenShotOnView:(UIView*)view;
+
++(UIImage*)screenShot;
 @end

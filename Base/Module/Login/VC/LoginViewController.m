@@ -12,10 +12,10 @@
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *accountTf;
-
 @property (weak, nonatomic) IBOutlet UITextField *passwordTf;
-
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cleanBtn;
+
 
 @end
 
@@ -34,14 +34,19 @@
 
 -(void)subviewBind {
     self.loginBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        [APIHELPER login:self.accountTf.text password:self.passwordTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [APIHELPER loginAccount:self.accountTf.text password:self.passwordTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             if (isSuccess) {
                 NSLog(@"登陆成功,user=%@",responseObject);
+                kSaveAccountAndPassword(self.accountTf.text, self.passwordTf.text);
             }else{
                 NSLog(@"登陆失败");
                 NSLog(@"%@",responseObject);
             }
         }];
+        return [RACSignal empty];
+    }];
+    self.cleanBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        kCleanPassword;
         return [RACSignal empty];
     }];
 }

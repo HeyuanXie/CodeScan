@@ -12,6 +12,7 @@ NSString* const kHomeViewController = @"HomeViewController";
 NSString* const kSortViewController = @"SortViewController";
 NSString* const kCartViewController = @"ShoppingCartViewController";
 NSString* const kMineHomeViewController = @"MineHomeViewController";
+NSString* const kTestViewController = @"TestViewController";
 
 NSString* const kRegistViewController = @"RegistViewController";
 NSString* const kFinishRegisterController = @"FinishRegisterController";
@@ -70,6 +71,7 @@ NSString* const kFilterController = @"FilterController";
                         @{@"cls":kModifyPWController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kAddressController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kFilterController,@"sb":@"Policy",@"method":@"push"},
+                        @{@"cls":kTestViewController,@"sb":@"Main",@"method":@"push"},
                         ];
     return routes;
 }

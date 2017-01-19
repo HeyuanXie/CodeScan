@@ -10,6 +10,7 @@
 #import "UIStoryboard+HYStoryboard.h"
 #import "BaseNavigationController.h"
 #import "BaseViewController.h"
+#import "APIHelper+User.h"
 
 NS_ENUM(NSUInteger, TabType) {
     TabTypeHome = 0,
@@ -22,7 +23,13 @@ NS_ENUM(NSUInteger, TabType) {
 
 -(void)verifyLogin {
     //...
-    
+    if (kAccount != nil && kPassword != nil) {
+        [APIHELPER loginAccount:kAccount password:kPassword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            if (isSuccess) {
+                NSLog(@"autoLoginSuccess");
+            }
+        }];
+    }
     [self configTabbar];
     
     [self.window makeKeyAndVisible];

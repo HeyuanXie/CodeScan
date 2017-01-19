@@ -9,7 +9,7 @@
 #import "APIHelper.h"
 
 @interface APIHelper (User)
-
--(void)login:(NSString*) account password:(NSString*) pw complete:(ApiRequestCompleteBlock)complete;
+///登陆
+-(void)loginAccount:(NSString*) account password:(NSString*) pw complete:(ApiRequestCompleteBlock)complete;
 
 @end
