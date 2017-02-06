@@ -6,6 +6,8 @@
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
+//AFNetworking的第二层封装
+
 #import <Foundation/Foundation.h>
 #import "NSDictionary+Safety.h"
 #import "HttpHelper.h"

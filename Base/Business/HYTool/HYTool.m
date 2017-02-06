@@ -31,7 +31,7 @@
     return tool;
 }
 
-//MARK:CreateUI
+#pragma mark - CreateUI
 +(UITextField *)getTextFieldWithFrame:(CGRect)frame placeHolder:(NSString *)holder fontSize:(CGFloat)size textColor:(UIColor *)color {
     
     UITextField* field = [[UITextField alloc] initWithFrame:frame];
@@ -98,7 +98,20 @@
     return btn;
 }
 
-//MARK:ConfigUI
+/// 搜索框
++(UITextField*)getSearchBarWithFrame:(CGRect)frame placeholder:(NSString *)placeholder {
+    UITextField* textField = [[UITextField alloc] initWithFrame:frame];
+    textField.placeholder = placeholder;
+    [self configViewLayer:textField size:frame.size.height/2];
+    
+    UIImageView* imgView = [[UIImageView alloc] init];
+    textField.leftView = imgView;
+    
+    return textField;
+}
+
+
+#pragma mark - ConfigUI
 + (void)configTableViewCellDefault:(UITableViewCell*)cell {
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -137,5 +150,33 @@
     [self configViewLayerFrame:view WithColor:color];
 }
 
+
+
+#pragma mark - Convenient
+/// 得到指定date的dateString(formatter格式)
++(NSString*)dateStringWithDate:(NSDate*)date andFormatter:(NSString*)formatter {
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:formatter];
+    NSString* dateStr = [dateFormatter stringFromDate:date];
+    return dateStr;
+}
+/// 得到今天的dateString(formatter格式)
++(NSString*)dateStringWithFormatter:(NSString*)formatter {
+    NSDate* currentDate = [NSDate date];
+    return [self dateStringWithDate:currentDate andFormatter:formatter];
+}
+/// 指定date是周几
++(NSString*)weekStirngWithDate:(NSDate*)date {
+    NSCalendar* gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents* weekdayComponents = [gregorian components:NSCalendarUnitWeekday fromDate:date];
+    NSInteger weekday = [weekdayComponents weekday];
+    NSArray* weeks = @[@"周日",@"周一",@"周二",@"周三",@"周四",@"周五",@"周六"];
+    return weeks[weekday-1];
+}
+/// 今天是周几
++(NSString*)weekString {
+    NSDate* currentDate = [NSDate date];
+    return [self weekStirngWithDate:currentDate];
+}
 
 @end

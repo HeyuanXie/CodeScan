@@ -11,22 +11,12 @@
 
 ////////////////////////////////////////////////////////////////
 //服务器地址配置
-
-#define API_VERSION @"1.0"  //接口版本
-
-#ifdef HY_PRODUCT        //线上环境
-
-#define DEFAULT_SERVER @"https://talent.ssl.gov.cn/api"
+#define DEFAULT_SERVER @"https://talent.ssl.gov.cn"
 #define DEFAULT_END_POINT @"/"
 #define DEFAULT_PATH @"api"
 
-#else                   //线下环境
+#define API_VERSION @"1.0"  //接口版本
 
-#define DEFAULT_SERVER @"https://talent.ssl.gov.cn"
-#define DEFAULT_END_POINT @"/"
-#define DEFAULT_PATH @""
-
-#endif
 
 
 ////////////////////////////////////////////////////////////////

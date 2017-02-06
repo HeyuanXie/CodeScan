@@ -12,7 +12,7 @@
 
 +(instancetype)shareHYTool;
 
-#pragma mark createUI
+#pragma mark - CreateUI
 +(UITextField*)getTextFieldWithFrame:(CGRect)frame placeHolder:(NSString*)holder fontSize:(CGFloat)size textColor:(UIColor*)color;
 
 +(UITextView*)getTextViewWithFrame:(CGRect)frame placeHolder:(NSString*)holder fontSize:(CGFloat)size textColor:(UIColor*)color;
@@ -25,7 +25,10 @@
 
 +(UIButton*)getButtonWithFrame:(CGRect)frame title:(NSString*)title titleSize:(CGFloat)size titleColorForNormal:(UIColor*)titleColor titleColorForSelect:(UIColor*)selectColor backgroundColor:(UIColor*)backgroundColor blockForClick:(void(^)())block;
 
-//MARK:configUI
++(UITextField*)getSearchBarWithFrame:(CGRect)frame laceholder:(NSString *)placeholder;
+
+
+#pragma mark - ConfigUI
 +(void)configTableViewCellDefault:(UITableViewCell*)cell;
 
 +(void)configViewLayer:(UIView*)view;
@@ -39,5 +42,13 @@
 +(void)configViewLayerRound:(UIView*)view;
 
 +(void)configViewLayer:(UIView *)view withColor:(UIColor*)color;
+
+
+#pragma mark - convenient
+//MARK:-NSDate
++(NSString*)dateStringWithDate:(NSDate*)date andFormatter:(NSString*)formatter;
++(NSString*)dateStringWithFormatter:(NSString*)formatter;
++(NSString*)weekStirngWithDate:(NSDate*)date;
++(NSString*)weekString;
 
 @end

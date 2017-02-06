@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+//获取验证码时倒计时
 @interface HYCountDown : NSObject
 
 + (instancetype)countDownWithWholeSecond:(NSInteger)times

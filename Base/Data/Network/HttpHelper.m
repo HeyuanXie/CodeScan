@@ -113,8 +113,8 @@
     [self.requestSerializer setValue:@"1" forHTTPHeaderField:@"App-id"];
     [self.requestSerializer setValue:API_VERSION forHTTPHeaderField:@"Version"];
     [self.requestSerializer setValue:[Global IDFV] forHTTPHeaderField:@"Client-id"];
-    if ([Global userauth]) {
-        [self.requestSerializer setValue:[Global userauth] forHTTPHeaderField:@"auth"];
+    if ([Global userAuth]) {
+        [self.requestSerializer setValue:[Global userAuth] forHTTPHeaderField:@"auth"];
     }
     return [self POST:relativeurl parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 #ifdef SHOWNETDEBUG

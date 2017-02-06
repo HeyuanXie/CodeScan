@@ -15,9 +15,7 @@
 - (NSURL*)APIEndpoint {
     NSURL* url = [self.baseURL URLByAppendingPathComponent:self.endPointPathComponent];
     return url;
-//    return [self.baseURL URLByAppendingPathComponent:self.endPointPathComponent];
 }
-
 
 #pragma mark - LifeCircle
 
@@ -31,9 +29,9 @@
     return self;
 }
 
-+ (instancetype)defaultHttpsServer {
-    return nil;
-}
+//+ (instancetype)defaultHttpsServer {
+//    return nil;
+//}
 
 + (instancetype)defaultServer {
     return [HYServer serverWithBaseURL:[NSURL URLWithString:DEFAULT_SERVER] pathComponent:DEFAULT_PATH];

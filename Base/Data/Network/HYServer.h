@@ -18,7 +18,7 @@
 
 + (instancetype)defaultServer;
 
-+ (instancetype)defaultHttpsServer;
+//+ (instancetype)defaultHttpsServer;
 
 + (instancetype)serverWithBaseURL:(NSURL *)baseURL;
 

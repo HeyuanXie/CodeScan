@@ -10,7 +10,7 @@
 
 @interface ZMDCustomer : BaseModel
 
-PA(Id)  
-PC(name)
+PI(Id);
+PN(name);
 
 @end

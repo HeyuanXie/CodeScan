@@ -16,7 +16,7 @@
 
 + (NSString*)IDFV;
 
-+ (NSString*)userauth;
-- (void)setUserauth:(NSString *)userauth;
++ (NSString*)userAuth;
+- (void)setUserAuth:(NSString *)userAuth;
 
 @end

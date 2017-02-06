@@ -66,8 +66,9 @@
 #define tableViewCellDefaultDetailTextColor [UIColor colorWithWhite:136/255.0 alpha:1.0]
 
 //MARK:缩写
-#define PA(obj) @property(nonatomic,assign) NSInteger obj;
-#define PC(obj) @property(nonatomic,copy) NSString* obj;
+#define PI(obj) @property(nonatomic,assign) NSInteger obj
+#define PB(obj) @property(nonatomic,assign) BOOL obj
+#define PN(obj) @property(nonatomic,copy) NSString* obj
 
 //MARK:-判断机型和系统
 #define isiOS7Later (floor(NSFoundationVersionNumber) >= floor(NSFoundationVersionNumber_iOS_7_0))

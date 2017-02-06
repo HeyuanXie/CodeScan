@@ -14,6 +14,7 @@ extern NSString* const kSortViewController;
 extern NSString* const kCartViewController;
 extern NSString* const kMineHomeViewController;
 extern NSString* const kTestViewController;
+extern NSString* const kTestTableViewController;
 
 extern NSString* const kRegistViewController;
 extern NSString* const kFinishRegisterController;

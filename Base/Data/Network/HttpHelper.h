@@ -6,6 +6,7 @@
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
+//AFNetworking的第一层封装
 #import <AFNetworking/AFNetworking.h>
 
 typedef void(^ApiRequestCompleteBlock)(BOOL isSuccess,NSDictionary* responseObject, NSError* error);

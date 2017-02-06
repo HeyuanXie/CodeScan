@@ -9,33 +9,6 @@
 #import "Global.h"
 #import "LTKeyChain.h"
 
-#define kUserDefaults [NSUserDefaults standardUserDefaults]
-// 从 [NSUserDefaults standardUserDefaults] 中获取数据
-#define kGetObjectFromUserDefaults(key) [kUserDefaults objectForKey:key]
-// 保存 obj 到 [NSUserDefaults standardUserDefaults] 中
-#define kSaveObjectToUserDefaults(key, object) {\
-NSData *myEncodedObject = [NSKeyedArchiver archivedDataWithRootObject:object];\
-[kUserDefaults setObject:myEncodedObject forKey:key]; \
-[kUserDefaults synchronize]; }
-
-#define kGetCustomObject(key, value) \
-NSData *serialized = [[NSUserDefaults standardUserDefaults] objectForKey:key]; \
-if(serialized){ \
-value = [NSKeyedUnarchiver unarchiveObjectWithData:serialized];\
-}\
-else{ \
-value = nil; \
-}
-
-// 保存 obj 到 [NSUserDefaults standardUserDefaults] 中
-#define HSaveObjectToUserDefaults(key,object){\
-[kUserDefaults setObject:object forKey:key]; \
-[kUserDefaults synchronize]; }
-
-// 从 [NSUserDefaults standardUserDefaults] 中获取数据
-#define kGetObjectFromUserDefaults(key) [kUserDefaults objectForKey:key]
-
-
 @implementation Global
 
 +(long long)cacheSize {
@@ -74,12 +47,12 @@ value = nil; \
     }
 }
 
-+(NSString *)userauth {
-    return kGetObjectFromUserDefaults(@"userauth");
++(NSString *)userAuth {
+    return kGetObjectFromUserDefaults(@"userAuth");
 }
--(void)setUserauth:(NSString *)userauth {
+-(void)setUserAuth:(NSString *)userAuth {
     [kNotificationCenter postNotificationName:kUserLogoutNotification object:nil];
-    HSaveObjectToUserDefaults(@"userauth", userauth);
+    kSaveObjectToUserDefaults(@"userAuth", userAuth);
 }
 
 @end
