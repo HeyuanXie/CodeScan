@@ -68,8 +68,12 @@
 }
 
 -(NSURLSessionDataTask *)getWithURL:(NSString *)relativeurl param:(NSDictionary *)parameters complete:(ApiRequestCompleteBlock)complete {
-    [self.requestSerializer setValue:@"" forHTTPHeaderField:@""];
-    //    [self.requestSerializer setQueryStringSerializationWithBlock:^NSString * _Nonnull(NSURLRequest * _Nonnull request, id  _Nonnull parameters, NSError * _Nullable __autoreleasing * _Nullable error) {
+    [self.requestSerializer setValue:@"1" forHTTPHeaderField:@"App-id"];
+    [self.requestSerializer setValue:API_VERSION forHTTPHeaderField:@"Version"];
+    [self.requestSerializer setValue:[Global IDFV] forHTTPHeaderField:@"Client-id"];
+    if ([Global userAuth]) {
+        [self.requestSerializer setValue:[Global userAuth] forHTTPHeaderField:@"auth"];
+    }    //    [self.requestSerializer setQueryStringSerializationWithBlock:^NSString * _Nonnull(NSURLRequest * _Nonnull request, id  _Nonnull parameters, NSError * _Nullable __autoreleasing * _Nullable error) {
     //        return parameters;
     //    }];
     
@@ -116,6 +120,12 @@
     if ([Global userAuth]) {
         [self.requestSerializer setValue:[Global userAuth] forHTTPHeaderField:@"auth"];
     }
+    
+    //打印POST的JSON数据
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
+    NSString* jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",jsonStr);
+    
     return [self POST:relativeurl parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 #ifdef SHOWNETDEBUG
 #if 1

@@ -50,6 +50,7 @@
 		845BDF9A1E28D2C00064ACAE /* BaseUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BDF991E28D2C00064ACAE /* BaseUITests.m */; };
 		845BDFAA1E28D8920064ACAE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BDFA91E28D8920064ACAE /* AppDelegate.m */; };
 		845BDFB21E28D8D30064ACAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 845BDFAD1E28D8D30064ACAE /* Assets.xcassets */; };
+		848152921E485FF300EEC4EA /* PolicyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848152911E485FF300EEC4EA /* PolicyListViewController.m */; };
 		84924E6A1E2C756A005F05C3 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84924E691E2C756A005F05C3 /* Login.storyboard */; };
 		84924E6C1E2C7572005F05C3 /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84924E6B1E2C7572005F05C3 /* Mine.storyboard */; };
 		84924E6E1E2C76D9005F05C3 /* Sort.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84924E6D1E2C76D9005F05C3 /* Sort.storyboard */; };
@@ -91,6 +92,11 @@
 		84924F1D1E2CCD62005F05C3 /* HYPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */; };
 		84924F201E2CCD98005F05C3 /* HYCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F1F1E2CCD98005F05C3 /* HYCountDown.m */; };
 		84A2E36C1E3487EB00411078 /* HYSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A2E36B1E3487EB00411078 /* HYSearchBar.m */; };
+		84DDFD381E496A2E0082FABF /* GuideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DDFD361E496A2E0082FABF /* GuideTableViewCell.m */; };
+		84DDFD391E496A2E0082FABF /* GuideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DDFD371E496A2E0082FABF /* GuideTableViewCell.xib */; };
+		84DDFD3D1E496A3D0082FABF /* DemandTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DDFD3B1E496A3D0082FABF /* DemandTableViewCell.m */; };
+		84DDFD3E1E496A3D0082FABF /* DemandTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DDFD3C1E496A3D0082FABF /* DemandTableViewCell.xib */; };
+		84DDFD411E4971000082FABF /* ZMDDemand.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DDFD401E4971000082FABF /* ZMDDemand.m */; };
 		84E5EDBD1E2DC93E0062A2BE /* HYPayEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5EDBC1E2DC93E0062A2BE /* HYPayEngine.m */; };
 		84E5EE641E2DCADA0062A2BE /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5EDC01E2DCADA0062A2BE /* NSData+AES.m */; };
 		84E5EE651E2DCADA0062A2BE /* NSString+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5EDC21E2DCADA0062A2BE /* NSString+AES.m */; };
@@ -553,6 +559,8 @@
 		845BDFA91E28D8920064ACAE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		845BDFAD1E28D8D30064ACAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		845BDFB31E28DA470064ACAE /* MyPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPCH.pch; sourceTree = "<group>"; };
+		848152901E485FF300EEC4EA /* PolicyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyListViewController.h; sourceTree = "<group>"; };
+		848152911E485FF300EEC4EA /* PolicyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyListViewController.m; sourceTree = "<group>"; };
 		84924E691E2C756A005F05C3 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		84924E6B1E2C7572005F05C3 /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
 		84924E6D1E2C76D9005F05C3 /* Sort.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sort.storyboard; sourceTree = "<group>"; };
@@ -629,6 +637,14 @@
 		84924F1F1E2CCD98005F05C3 /* HYCountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCountDown.m; sourceTree = "<group>"; };
 		84A2E36A1E3487EB00411078 /* HYSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYSearchBar.h; sourceTree = "<group>"; };
 		84A2E36B1E3487EB00411078 /* HYSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYSearchBar.m; sourceTree = "<group>"; };
+		84DDFD351E496A2E0082FABF /* GuideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideTableViewCell.h; sourceTree = "<group>"; };
+		84DDFD361E496A2E0082FABF /* GuideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideTableViewCell.m; sourceTree = "<group>"; };
+		84DDFD371E496A2E0082FABF /* GuideTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideTableViewCell.xib; sourceTree = "<group>"; };
+		84DDFD3A1E496A3D0082FABF /* DemandTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemandTableViewCell.h; sourceTree = "<group>"; };
+		84DDFD3B1E496A3D0082FABF /* DemandTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemandTableViewCell.m; sourceTree = "<group>"; };
+		84DDFD3C1E496A3D0082FABF /* DemandTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemandTableViewCell.xib; sourceTree = "<group>"; };
+		84DDFD3F1E4971000082FABF /* ZMDDemand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMDDemand.h; sourceTree = "<group>"; };
+		84DDFD401E4971000082FABF /* ZMDDemand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMDDemand.m; sourceTree = "<group>"; };
 		84E5EDBB1E2DC93E0062A2BE /* HYPayEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPayEngine.h; sourceTree = "<group>"; };
 		84E5EDBC1E2DC93E0062A2BE /* HYPayEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPayEngine.m; sourceTree = "<group>"; };
 		84E5EDBF1E2DCADA0062A2BE /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
@@ -1235,6 +1251,12 @@
 				84F1BD891E343F980031823C /* HomeNewsCell.h */,
 				84F1BD8A1E343F980031823C /* HomeNewsCell.m */,
 				84F1BD8B1E343F980031823C /* HomeNewsCell.xib */,
+				84DDFD351E496A2E0082FABF /* GuideTableViewCell.h */,
+				84DDFD361E496A2E0082FABF /* GuideTableViewCell.m */,
+				84DDFD371E496A2E0082FABF /* GuideTableViewCell.xib */,
+				84DDFD3A1E496A3D0082FABF /* DemandTableViewCell.h */,
+				84DDFD3B1E496A3D0082FABF /* DemandTableViewCell.m */,
+				84DDFD3C1E496A3D0082FABF /* DemandTableViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1244,6 +1266,8 @@
 			children = (
 				84554D941E2F3A04007EE209 /* HomeViewController.h */,
 				84554D951E2F3A04007EE209 /* HomeViewController.m */,
+				848152901E485FF300EEC4EA /* PolicyListViewController.h */,
+				848152911E485FF300EEC4EA /* PolicyListViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1689,6 +1713,8 @@
 				842E4C531E33029800888B18 /* ZMDArticle.m */,
 				84E6D42E1E481ED10056A702 /* ZMDHomeData.h */,
 				84E6D42F1E481ED10056A702 /* ZMDHomeData.m */,
+				84DDFD3F1E4971000082FABF /* ZMDDemand.h */,
+				84DDFD401E4971000082FABF /* ZMDDemand.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2630,6 +2656,7 @@
 				84F1BD691E343BD40031823C /* phone@3x.png in Resources */,
 				84F1BCBA1E343BD40031823C /* zhicheng02@2x.png in Resources */,
 				84F1BCED1E343BD40031823C /* out@2x.png in Resources */,
+				84DDFD391E496A2E0082FABF /* GuideTableViewCell.xib in Resources */,
 				84F1BCF31E343BD40031823C /* iknow@2x.png in Resources */,
 				84F1BCFC1E343BD40031823C /* 1.png in Resources */,
 				84F1BD131E343BD40031823C /* woman02@3x.png in Resources */,
@@ -2679,6 +2706,7 @@
 				84F1BC981E343BD40031823C /* qiye@2x.png in Resources */,
 				84F1BCF91E343BD40031823C /* xuqiu@2x.png in Resources */,
 				84F1BD471E343BD40031823C /* 574987@3x.png in Resources */,
+				84DDFD3E1E496A3D0082FABF /* DemandTableViewCell.xib in Resources */,
 				84F1BCB11E343BD40031823C /* hangyeleibie02@2x.png in Resources */,
 				84F1BD2E1E343BD40031823C /* shujutongji@3x.png in Resources */,
 				84F1BCC71E343BD40031823C /* tianjiafujian@2x.png in Resources */,
@@ -2847,6 +2875,7 @@
 				84924F191E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m in Sources */,
 				84525A231E2E019D0054C6A1 /* DataVerifier.m in Sources */,
 				84554D961E2F3A04007EE209 /* HomeViewController.m in Sources */,
+				848152921E485FF300EEC4EA /* PolicyListViewController.m in Sources */,
 				84F6911A1E2C56090048B6DF /* NSObject+Global.m in Sources */,
 				84E6D42A1E4817CD0056A702 /* APIHelper+Home.m in Sources */,
 				843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */,
@@ -2874,6 +2903,7 @@
 				84525A251E2E019D0054C6A1 /* NSDataEx.m in Sources */,
 				84924EC91E2C9A10005F05C3 /* UINavigationController+HYNavigationHiddenShowBug.m in Sources */,
 				84924EC31E2C9970005F05C3 /* UITextView+MaxLimit.m in Sources */,
+				84DDFD411E4971000082FABF /* ZMDDemand.m in Sources */,
 				845BDF761E28D2C00064ACAE /* main.m in Sources */,
 				84924E8D1E2C79B0005F05C3 /* MBProgressHUD+hyHUD.m in Sources */,
 				84F6911D1E2C56220048B6DF /* NSString+ContainsEmoji.m in Sources */,
@@ -2916,6 +2946,7 @@
 				84924ECF1E2C9A3C005F05C3 /* UIStoryboard+HYStoryboards.m in Sources */,
 				84924EC61E2C997A005F05C3 /* UITextView+Placeholder.m in Sources */,
 				84924F1A1E2CC926005F05C3 /* UITableView+Sure_Placeholder.m in Sources */,
+				84DDFD381E496A2E0082FABF /* GuideTableViewCell.m in Sources */,
 				84E5EE8E1E2DCDC70062A2BE /* HYServer.m in Sources */,
 				84ECF01F1E2F595B00F5DA7E /* HYTool.m in Sources */,
 				84E5EE641E2DCADA0062A2BE /* NSData+AES.m in Sources */,
@@ -2929,6 +2960,7 @@
 				84924E8A1E2C78CD005F05C3 /* BaseTableViewController.m in Sources */,
 				84924F151E2CC926005F05C3 /* NSObject+Swizzling.m in Sources */,
 				84525A221E2E019D0054C6A1 /* DataSigner.m in Sources */,
+				84DDFD3D1E496A3D0082FABF /* DemandTableViewCell.m in Sources */,
 				842E4C541E33029800888B18 /* ZMDArticle.m in Sources */,
 				842E4C571E3304E600888B18 /* APIHelper+Policy.m in Sources */,
 				84F1BD901E344B240031823C /* HomeDeclareView.m in Sources */,

@@ -26,7 +26,7 @@ NSString* const kShareController = @"ShareController";
 NSString* const kSettingController = @"SettingController";
 NSString* const kSearchViewController = @"SearchViewController";
 NSString* const kSearchGuideController = @"SearchGuideController";
-NSString* const kPolicyListController = @"PolicyListController";
+NSString* const kPolicyListController = @"PolicyListViewController";
 NSString* const kFilterClassTableViewController = @"FilterClassTableViewController";
 NSString* const kModifyPWController = @"ModifyPWController";
 NSString* const kAddressController = @"AddressController";
@@ -67,7 +67,7 @@ NSString* const kFilterController = @"FilterController";
                         @{@"cls":kUserInfoController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kSearchViewController,@"sb":@"Home",@"method":@"push"},
                         @{@"cls":kSearchGuideController,@"sb":@"Home",@"method":@"push"},
-                        @{@"cls":kPolicyListController,@"sb":@"Policy",@"method":@"push"},
+                        @{@"cls":kPolicyListController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kFilterClassTableViewController,@"sb":@"Policy",@"method":@"push"},
                         @{@"cls":kModifyPWController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kAddressController,@"sb":@"Login",@"method":@"push"},

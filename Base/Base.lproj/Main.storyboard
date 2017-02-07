@@ -45,10 +45,10 @@
             </objects>
             <point key="canvasLocation" x="662" y="-358"/>
         </scene>
-        <!--Guide Work View Controller-->
+        <!--Policy List View Controller-->
         <scene sceneID="L1K-8h-7kK">
             <objects>
-                <viewController id="2bS-ga-h95" customClass="GuideWorkViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PolicyListViewController" id="2bS-ga-h95" customClass="PolicyListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WdJ-vh-xqN"/>
                         <viewControllerLayoutGuide type="bottom" id="8wZ-dP-t0U"/>
@@ -62,24 +62,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PDg-hS-dnc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1356" y="-371"/>
-        </scene>
-        <!--Talent Demand View Controller-->
-        <scene sceneID="42W-HH-Par">
-            <objects>
-                <viewController id="vNP-1P-7tT" customClass="TalentDemandViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="e67-cG-Z1e"/>
-                        <viewControllerLayoutGuide type="bottom" id="1Tw-oP-4iS"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lue-sT-2Y9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xRm-dt-g5r" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2024" y="-377"/>
         </scene>
     </scenes>
 </document>

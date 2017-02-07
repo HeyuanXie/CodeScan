@@ -10,6 +10,11 @@
 
 @interface APIHelper (Policy)
 
--(void)fetchPolicyListWithCateId:(NSInteger)cateId word:(NSString*)word start:(NSInteger)start limit:(NSInteger)limit completeBlock:(ApiRequestCompleteBlock)complete;
+-(void)fetchNewsListWithCateId:(NSInteger)cateId word:(NSString*)word start:(NSInteger)start limit:(NSInteger)limit completeBlock:(ApiRequestCompleteBlock)complete;
+
+-(void)fetchPolicyCateWithCompleteBlock:(ApiRequestCompleteBlock)complete;
+-(void)fetchPolicyListWithCateId:(NSInteger)cateId start:(NSInteger)start limit:(NSInteger)limit completeBlock:(ApiRequestCompleteBlock)complete;
+
+-(void)fetchDemandListWithStart:(NSInteger)start limit:(NSInteger)limit completeBlock:(ApiRequestCompleteBlock)complete;
 
 @end

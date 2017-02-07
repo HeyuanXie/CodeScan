@@ -12,7 +12,7 @@
 @implementation HomeNewsCell
 
 +(NSString*)identify {
-    return NSStringFromClass([self class]);
+    return NSStringFromClass([HomeNewsCell class]);
 }
 
 -(void)configCellWithModel:(id)model {

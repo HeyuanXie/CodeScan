@@ -14,13 +14,13 @@
     return NSStringFromClass([ThreeImgCell class]);
 }
 - (IBAction)policyAction:(id)sender {
-    self.policy();
+    self.clickBlock(0);
 }
 - (IBAction)guideAction:(id)sender {
-    self.guide();
+    self.clickBlock(1);
 }
 - (IBAction)demandAction:(id)sender {
-    self.demand();
+    self.clickBlock(2);
 }
 
 - (void)awakeFromNib {

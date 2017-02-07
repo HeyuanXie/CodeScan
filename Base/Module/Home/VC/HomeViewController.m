@@ -14,6 +14,7 @@
 #import "HYSearchBar.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "APIHelper+Home.h"
+#import "APIHelper+User.h"
 #import "ZMDHomeData.h"
 
 @interface HomeViewController ()<UITextFieldDelegate>
@@ -66,7 +67,7 @@
             self.data = [ZMDHomeData yy_modelWithDictionary:responseObject[@"data"]];
             [self.tableView reloadData];
         }else{
-             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+             [self showMessage:responseObject[@"msg"]];
         }
     }];
 }
@@ -122,7 +123,6 @@
         case 2:
             return [self tableView:tableView declareCellForIndexPath:indexPath];
         default:
-            self.tableView.fd_debugLogEnabled = YES;
             return [self tableView:tableView newsCellForIndexPath:indexPath];
             break;
     }
@@ -154,15 +154,8 @@
             
 -(UITableViewCell*)tableView:(UITableView *)tableView menuCellForIndexPath:(NSIndexPath*)indexPath {
     ThreeImgCell* menuCell = [tableView dequeueReusableCellWithIdentifier:[ThreeImgCell identify]];
-    [menuCell setPolicy:^{
-        APPROUTE(kPolicyListController);
-    }];
-    [menuCell setGuide:^{
-
-    }];
-    [menuCell setDemand:^{
-
-        
+    [menuCell setClickBlock:^(int index) {
+        APPROUTE(([NSString stringWithFormat:@"%@?type=%d",kPolicyListController,index]))
     }];
     return menuCell;
 }

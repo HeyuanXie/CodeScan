@@ -10,9 +10,7 @@
 
 @interface ThreeImgCell : UITableViewCell
 
-@property(nonatomic,copy)void(^policy)();
-@property(nonatomic,copy)void(^guide)();
-@property(nonatomic,copy)void(^demand)();
+@property(nonatomic,copy)void(^clickBlock)(int);
 
 +(NSString*)identify;
 
