@@ -1,24 +1,22 @@
 //
-//  SortViewController.m
+//  PolicyDetialViewController.m
 //  Base
 //
-//  Created by admin on 17/1/16.
+//  Created by admin on 2017/2/8.
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "SortViewController.h"
+#import "PolicyDetialViewController.h"
 
-@interface SortViewController ()
+@interface PolicyDetialViewController ()
 
 @end
 
-@implementation SortViewController
+@implementation PolicyDetialViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.backItemHidden = YES;
-    self.view.backgroundColor = [UIColor hyViewBackgroundColor];
 }
 
 - (void)didReceiveMemoryWarning {

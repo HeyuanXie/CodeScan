@@ -37,6 +37,7 @@
     if (self.schemaArgu[@"type"]) {
         self.type = [[self.schemaArgu objectForKey:@"type"] integerValue];
     }
+
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self subviewInit];
@@ -59,12 +60,15 @@
             break;
     }
     
+    [self appendHeaderRefresh];
+    if (self.type == TYPEGuide) {
+        self.tableView.scrollEnabled = NO;
+        self.tableView.backgroundColor = [UIColor whiteColor];
+    }
+    
     [self.tableView registerNib:[UINib nibWithNibName:[HomeNewsCell identify] bundle:nil] forCellReuseIdentifier:[HomeNewsCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[GuideTableViewCell identify] bundle:nil] forCellReuseIdentifier:[GuideTableViewCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[DemandTableViewCell identify] bundle:nil] forCellReuseIdentifier:[DemandTableViewCell identify]];
-    if (self.type != TYPEGuide) {
-        [self appendHeaderRefresh];
-    }
 }
 
 -(void)fetchData {
@@ -89,6 +93,9 @@
             break;
         }
         case TYPEGuide:
+            //模拟TYPEGuide时数据源，仅仅用来判断cell个数，
+            [self.dataArray addObject:@(1)];
+            [self.tableView reloadData];
             break;
         case TYPEDemand:
         {
@@ -163,26 +170,24 @@
 
 #pragma mark - TableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.type == TYPEGuide) {
-        return 1;
-    }
+    //TYPEGuide时模拟加入一个数据,显示一个cell
     return self.dataArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (self.type) {
         case TYPEPolicy: {
-            HomeNewsCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeNewsCell identify]];
+            HomeNewsCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeNewsCell identify] forIndexPath:indexPath];
             ZMDArticle* policy = self.dataArray[indexPath.row];
             [cell configCellWithModel:policy];
             return cell;
         }
         case TYPEGuide: {
-            GuideTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[GuideTableViewCell identify]];
+            GuideTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[GuideTableViewCell identify] forIndexPath:indexPath];
             [cell configCell];
             return cell;
         }
         case TYPEDemand: {
-            DemandTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[DemandTableViewCell identify]];
+            DemandTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:[DemandTableViewCell identify] forIndexPath:indexPath];
             ZMDDemand* model = self.dataArray[indexPath.row];
             [cell config:model];
             return cell;
@@ -199,9 +204,8 @@
                 [cell configCellWithModel:policy];
             }];
         case TYPEGuide:
-//            return 250;
-            return [tableView fd_heightForCellWithIdentifier:[GuideTableViewCell identify] cacheByIndexPath:indexPath configuration:^(GuideTableViewCell* cell) {
-                [cell configCell];
+            return [tableView fd_heightForCellWithIdentifier:[GuideTableViewCell identify] cacheByIndexPath:indexPath configuration:^(id cell) {
+                [(GuideTableViewCell*)cell configCell];
             }];
         case TYPEDemand:
             return [tableView fd_heightForCellWithIdentifier:[DemandTableViewCell identify] cacheByIndexPath:indexPath configuration:^(DemandTableViewCell* cell) {

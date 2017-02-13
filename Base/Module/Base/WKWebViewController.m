@@ -8,6 +8,7 @@
 
 #import "WKWebViewController.h"
 #import <WebKit/WebKit.h>
+#import "HYCacheURLProtocol.h"
 
 @interface WKWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 
@@ -26,9 +27,15 @@
     [self loadWebView];
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+    
+    [HYCacheURLProtocol cancelListeningNetworking];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    [HYCacheURLProtocol clearUrlDic];
 }
 
 #pragma mark - PrivateMethod
@@ -41,14 +48,19 @@
     config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
     config.userContentController = _userCC;
     
+
+    
     self.webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
+    [self.view addSubview:self.webView];
     [self.webView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.webView.scrollView.zoomScale = 0;
     self.webView.navigationDelegate = self;
     self.webView.UIDelegate = self;
     self.webView.scrollView.showsHorizontalScrollIndicator = NO;
     self.webView.scrollView.showsVerticalScrollIndicator = NO;
-    [self.view addSubview:self.webView];
+    
+    [HYCacheURLProtocol startListeningNetworking];
+    [HYCacheURLProtocol setUpdateInterval:60];
 }
 
 -(void)loadWebView {
@@ -75,6 +87,7 @@
 
 
 #pragma mark - WKNavigationDelegate
+
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [self hideLoadingAnimation];
     NSString* webTitle = webView.title;

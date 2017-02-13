@@ -7,6 +7,11 @@
 //
 
 #import "HomeViewController.h"
+#import "WKWebViewController.h"
+#import "WebViewController.h"
+#import "HYAddressController.h"
+
+#import <LocalAuthentication/LocalAuthentication.h>
 #import <UIView+BlocksKit.h>
 #import "ThreeImgCell.h"
 #import "HomeDeclareView.h"
@@ -16,8 +21,14 @@
 #import "APIHelper+Home.h"
 #import "APIHelper+User.h"
 #import "ZMDHomeData.h"
+#import "HYScrollView.h"
 
 @interface HomeViewController ()<UITextFieldDelegate>
+
+@property(nonatomic,strong)HYScrollView* scrollView;
+
+@property(nonatomic,strong)UIScrollView* decleraScrollV;
+@property(nonatomic,strong)UIPageControl* pageControl;
 
 @property(nonatomic,strong)NSArray* info;
 @property(nonatomic,strong)NSMutableArray* newsArray;
@@ -26,6 +37,25 @@
 @end
 
 @implementation HomeViewController
+
+-(UIPageControl *)pageControl {
+    if (_pageControl == nil) {
+        _pageControl = [[UIPageControl alloc] init];
+        _pageControl.currentPageIndicatorTintColor = appThemeColor;
+        _pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    }
+    return _pageControl;
+}
+
+-(UIScrollView *)decleraScrollV {
+    if (_decleraScrollV == nil) {
+        _decleraScrollV = [[UIScrollView alloc] init];
+        _decleraScrollV.delegate = self;
+        _decleraScrollV.showsVerticalScrollIndicator = NO;
+        _decleraScrollV .showsHorizontalScrollIndicator = NO;
+    }
+    return _decleraScrollV;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,7 +83,7 @@
 -(void)effectInit {
     [self.tableView registerNib:[UINib nibWithNibName:[ThreeImgCell identify] bundle:nil] forCellReuseIdentifier:[ThreeImgCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[HomeNewsCell identify] bundle:nil] forCellReuseIdentifier:[HomeNewsCell identify]];
-    
+    [self.tableView registerNib:[UINib nibWithNibName:[HomeDeclareView identify] bundle:nil] forCellReuseIdentifier:[HomeDeclareView identify]];
     [self addSearchBar];
 }
 
@@ -146,12 +176,51 @@
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 2) {
+        [self touchIDAuth];
+        HYAddressController* addressVC = [[HYAddressController alloc] init];
+        APPROUTE(kAddressController);
+    }
+}
+
+-(void)touchIDAuth {
+    
+
+}
+
 #pragma mark- private Method
 -(UITableViewCell*)tableView:(UITableView *)tableView bannerCellForIndexPath:(NSIndexPath*)indexPath {
     
-    return [[UITableViewCell alloc] init];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"bannerCell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] init];
+        if (self.scrollView == nil) {
+            self.scrollView = [[HYScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 186)];
+            self.scrollView.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+            self.scrollView.pageControl.currentPageIndicatorTintColor = appThemeColor;
+        }
+        [cell.contentView addSubview:self.scrollView.rollView];
+    }
+    NSMutableArray* arr = [NSMutableArray array];
+    for (ZMDArticle* item in self.data.slide) {
+        [arr addObject:item.thumb];
+    }
+    self.scrollView.dataArray = arr;
+    @weakify(self);
+    self.scrollView.clickAction = ^(NSInteger index,NSArray* arr) {
+        @strongify(self);
+        ZMDArticle* article = self.data.slide[index];
+        WKWebViewController* web = [[WKWebViewController alloc] init];
+//        WebViewController* web = [[WebViewController alloc] init];
+        web.url = article.detailUrl;
+        web.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:web animated:YES];
+        NSLog(@"%@",article.detailUrl);
+    };
+    return cell;
 }
-            
+
 -(UITableViewCell*)tableView:(UITableView *)tableView menuCellForIndexPath:(NSIndexPath*)indexPath {
     ThreeImgCell* menuCell = [tableView dequeueReusableCellWithIdentifier:[ThreeImgCell identify]];
     [menuCell setClickBlock:^(int index) {
@@ -160,9 +229,78 @@
     return menuCell;
 }
 -(UITableViewCell*)tableView:(UITableView *)tableView declareCellForIndexPath:(NSIndexPath*)indexPath {
+    static NSString* cellId = @"HomeDecleraCell";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        self.decleraScrollV.delegate = self;
+        self.decleraScrollV.frame = CGRectMake(0, 0, kScreen_Width, 164);
+        self.pageControl.frame = CGRectMake(0, 144, kScreen_Width, 20);
+        [cell.contentView addSubview:_decleraScrollV];
+        [cell.contentView addSubview:_pageControl];
+    }
     
-    return [[UITableViewCell alloc] init];
+    NSArray* policys = self.data.policy;
+    self.decleraScrollV.contentSize = CGSizeMake(policys.count*kScreen_Width, 0);
+    self.pageControl.numberOfPages = policys.count;
+    int pages = (int)policys.count/4+policys.count%4;
+    for (int i=0; i<pages; i++) {
+        UIView* view = [[NSBundle mainBundle] loadNibNamed:@"HomeDeclareView" owner:nil options:nil][0];
+        HomeDeclareView* decleraView = (HomeDeclareView*)view;
+        decleraView.frame = CGRectMake(i*kScreen_Width, 0, kScreen_Width, cell.frame.size.height);
+        [self.decleraScrollV addSubview:decleraView];
+        [self configDecleraView:decleraView WithArray:policys andIndex:i];
+    }
+    return cell;
 }
+
+-(void)configDecleraView:(HomeDeclareView*)view WithArray:(NSArray*)array andIndex:(int)index {
+    int pages = (int)array.count/4;
+    int remainder = (int)array.count%4;
+    int arc = arc4random();
+    if (index < pages) {
+        //config满载declareView
+        for (int j=0; j<4; j++) {
+            int imgIndex = (arc+j)%9;
+            ZMDArticle* policy = array[index*4+j];
+            UIView* miniView = [view viewWithTag:10000+j];
+            UILabel* titleLbl = [miniView viewWithTag:100];
+            UIImageView* imgV = [miniView viewWithTag:101];
+            UIButton* btn = [miniView viewWithTag:102];
+            
+            titleLbl.text = policy.title;
+            imgV.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d",imgIndex]];
+            btn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                NSLog(@"%ld",btn.tag-100);
+                return [RACSignal empty];
+            }];
+        }
+    }else{
+        //config非满载declareView
+        int arc = arc4random();
+        for (int j=0; j<remainder; j++) {
+            ZMDArticle* policy = array[j];
+            int imgIndex = (arc+j)%9;
+            UIView* miniView = [view viewWithTag:10000+j];
+            UILabel* titleLbl = [miniView viewWithTag:100];
+            UIImageView* imgV = [ miniView viewWithTag:101];
+            UIButton* btn = [miniView viewWithTag:102];
+            
+            titleLbl.text = policy.title;
+            imgV.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d",imgIndex]];
+            imgV.image = [UIImage imageNamed:@"8"];
+            btn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                NSLog(@"%ld",btn.tag-100);
+                return [RACSignal empty];
+            }];
+        }
+        for (int j=remainder; j<4; j++) {
+            UIView* miniView = [view viewWithTag:10000+j];
+            miniView.hidden = YES;
+        }
+    }
+}
+
 -(UITableViewCell*)tableView:(UITableView *)tableView newsCellForIndexPath:(NSIndexPath*)indexPath {
     
     HomeNewsCell* newsCell = [tableView dequeueReusableCellWithIdentifier:[HomeNewsCell identify]];

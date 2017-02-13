@@ -29,7 +29,7 @@ NSString* const kSearchGuideController = @"SearchGuideController";
 NSString* const kPolicyListController = @"PolicyListViewController";
 NSString* const kFilterClassTableViewController = @"FilterClassTableViewController";
 NSString* const kModifyPWController = @"ModifyPWController";
-NSString* const kAddressController = @"AddressController";
+NSString* const kAddressController = @"HYAddressController";
 NSString* const kFilterController = @"FilterController";
 
 @implementation OpenRoutesManager

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840C480E1E4DB82000F4C80A /* HYAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C480D1E4DB82000F4C80A /* HYAddressController.m */; };
+		840C48101E4DC0B600F4C80A /* area.json in Resources */ = {isa = PBXBuildFile; fileRef = 840C480F1E4DC0B600F4C80A /* area.json */; };
 		842E4C541E33029800888B18 /* ZMDArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 842E4C531E33029800888B18 /* ZMDArticle.m */; };
 		842E4C571E3304E600888B18 /* APIHelper+Policy.m in Sources */ = {isa = PBXBuildFile; fileRef = 842E4C561E3304E600888B18 /* APIHelper+Policy.m */; };
 		843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA2221E30B14100DAE1FF /* UIViewExtension.swift */; };
@@ -131,6 +133,10 @@
 		84E6D4301E481ED10056A702 /* ZMDHomeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E6D42F1E481ED10056A702 /* ZMDHomeData.m */; };
 		84ECF01B1E2F57DD00F5DA7E /* UITableViewCell+HYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ECF01A1E2F57DD00F5DA7E /* UITableViewCell+HYCell.m */; };
 		84ECF01F1E2F595B00F5DA7E /* HYTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ECF01E1E2F595B00F5DA7E /* HYTool.m */; };
+		84EF70771E4AC18D0098A606 /* HYScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EF70761E4AC18D0098A606 /* HYScrollView.m */; };
+		84EF707A1E4ACBEA0098A606 /* PolicyDetialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EF70791E4ACBEA0098A606 /* PolicyDetialViewController.m */; };
+		84EF707E1E4AEB3F0098A606 /* HYCacheURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EF707D1E4AEB3F0098A606 /* HYCacheURLProtocol.m */; };
+		84EF70831E4AFEA10098A606 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84EF70821E4AFEA10098A606 /* LocalAuthentication.framework */; };
 		84F1BC921E343BD40031823C /* rencaixinxiguanli@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F1BB851E343BD40031823C /* rencaixinxiguanli@2x.png */; };
 		84F1BC931E343BD40031823C /* renzhen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F1BB861E343BD40031823C /* renzhen@2x.png */; };
 		84F1BC941E343BD40031823C /* shenbaoguanli@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F1BB871E343BD40031823C /* shenbaoguanli@2x.png */; };
@@ -414,6 +420,9 @@
 
 /* Begin PBXFileReference section */
 		53AC6045FA5F2F0CF0780A57 /* Pods-Base.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Base/Pods-Base.debug.xcconfig"; sourceTree = "<group>"; };
+		840C480C1E4DB82000F4C80A /* HYAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYAddressController.h; sourceTree = "<group>"; };
+		840C480D1E4DB82000F4C80A /* HYAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAddressController.m; sourceTree = "<group>"; };
+		840C480F1E4DC0B600F4C80A /* area.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = area.json; sourceTree = "<group>"; };
 		842E4C521E33029800888B18 /* ZMDArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMDArticle.h; sourceTree = "<group>"; };
 		842E4C531E33029800888B18 /* ZMDArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMDArticle.m; sourceTree = "<group>"; };
 		842E4C551E3304E600888B18 /* APIHelper+Policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Policy.h"; sourceTree = "<group>"; };
@@ -714,6 +723,13 @@
 		84ECF01A1E2F57DD00F5DA7E /* UITableViewCell+HYCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+HYCell.m"; sourceTree = "<group>"; };
 		84ECF01D1E2F595B00F5DA7E /* HYTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYTool.h; sourceTree = "<group>"; };
 		84ECF01E1E2F595B00F5DA7E /* HYTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYTool.m; sourceTree = "<group>"; };
+		84EF70751E4AC18D0098A606 /* HYScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYScrollView.h; sourceTree = "<group>"; };
+		84EF70761E4AC18D0098A606 /* HYScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYScrollView.m; sourceTree = "<group>"; };
+		84EF70781E4ACBEA0098A606 /* PolicyDetialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolicyDetialViewController.h; sourceTree = "<group>"; };
+		84EF70791E4ACBEA0098A606 /* PolicyDetialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PolicyDetialViewController.m; sourceTree = "<group>"; };
+		84EF707C1E4AEB3F0098A606 /* HYCacheURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCacheURLProtocol.h; sourceTree = "<group>"; };
+		84EF707D1E4AEB3F0098A606 /* HYCacheURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCacheURLProtocol.m; sourceTree = "<group>"; };
+		84EF70821E4AFEA10098A606 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		84F1BB851E343BD40031823C /* rencaixinxiguanli@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rencaixinxiguanli@2x.png"; sourceTree = "<group>"; };
 		84F1BB861E343BD40031823C /* renzhen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "renzhen@2x.png"; sourceTree = "<group>"; };
 		84F1BB871E343BD40031823C /* shenbaoguanli@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shenbaoguanli@2x.png"; sourceTree = "<group>"; };
@@ -1008,6 +1024,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84EF70831E4AFEA10098A606 /* LocalAuthentication.framework in Frameworks */,
 				84525A331E2E02B10054C6A1 /* CoreMotion.framework in Frameworks */,
 				84525A321E2E02980054C6A1 /* CoreMedia.framework in Frameworks */,
 				84525A301E2E028C0054C6A1 /* libstdc++.6.0.9.tbd in Frameworks */,
@@ -1067,6 +1084,7 @@
 		7DA34C4DE1F4492B5C5C6C6B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84EF70821E4AFEA10098A606 /* LocalAuthentication.framework */,
 				84525A311E2E02980054C6A1 /* CoreMedia.framework */,
 				84525A2F1E2E028C0054C6A1 /* libstdc++.6.0.9.tbd */,
 				84525A2D1E2E027F0054C6A1 /* libc++.tbd */,
@@ -1268,6 +1286,8 @@
 				84554D951E2F3A04007EE209 /* HomeViewController.m */,
 				848152901E485FF300EEC4EA /* PolicyListViewController.h */,
 				848152911E485FF300EEC4EA /* PolicyListViewController.m */,
+				84EF70781E4ACBEA0098A606 /* PolicyDetialViewController.h */,
+				84EF70791E4ACBEA0098A606 /* PolicyDetialViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1417,6 +1437,7 @@
 				84924E6F1E2C76FA005F05C3 /* Cart.storyboard */,
 				84924E6B1E2C7572005F05C3 /* Mine.storyboard */,
 				84924E691E2C756A005F05C3 /* Login.storyboard */,
+				840C480F1E4DC0B600F4C80A /* area.json */,
 				845BDFAD1E28D8D30064ACAE /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -1741,10 +1762,20 @@
 		84ECF01C1E2F593200F5DA7E /* HYTool */ = {
 			isa = PBXGroup;
 			children = (
+				84EF707B1E4AEB120098A606 /* HYWebViewCache */,
 				84ECF01D1E2F595B00F5DA7E /* HYTool.h */,
 				84ECF01E1E2F595B00F5DA7E /* HYTool.m */,
 			);
 			path = HYTool;
+			sourceTree = "<group>";
+		};
+		84EF707B1E4AEB120098A606 /* HYWebViewCache */ = {
+			isa = PBXGroup;
+			children = (
+				84EF707C1E4AEB3F0098A606 /* HYCacheURLProtocol.h */,
+				84EF707D1E4AEB3F0098A606 /* HYCacheURLProtocol.m */,
+			);
+			path = HYWebViewCache;
 			sourceTree = "<group>";
 		};
 		84F1BB811E343BD40031823C /* 切图 */ = {
@@ -2304,6 +2335,10 @@
 			children = (
 				84924F1B1E2CCD62005F05C3 /* HYPaddingLabel.h */,
 				84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */,
+				84EF70751E4AC18D0098A606 /* HYScrollView.h */,
+				84EF70761E4AC18D0098A606 /* HYScrollView.m */,
+				840C480C1E4DB82000F4C80A /* HYAddressController.h */,
+				840C480D1E4DB82000F4C80A /* HYAddressController.m */,
 			);
 			path = CustomeView;
 			sourceTree = "<group>";
@@ -2564,6 +2599,7 @@
 				84F1BD1D1E343BD40031823C /* xingbie@3x.png in Resources */,
 				84F1BCE61E343BD40031823C /* logo@2x.png in Resources */,
 				84F1BD011E343BD40031823C /* 6.png in Resources */,
+				840C48101E4DC0B600F4C80A /* area.json in Resources */,
 				84F1BD0D1E343BD40031823C /* rencaiguanli@3x.png in Resources */,
 				84F1BCFD1E343BD40031823C /* 2.png in Resources */,
 				84F1BD601E343BD40031823C /* logo@3x.png in Resources */,
@@ -2900,6 +2936,7 @@
 				84924F201E2CCD98005F05C3 /* HYCountDown.m in Sources */,
 				84554DA51E2F3A28007EE209 /* MineHomeViewController.m in Sources */,
 				84F691171E2C55FC0048B6DF /* NSNumber+HYFormatter.m in Sources */,
+				84EF707A1E4ACBEA0098A606 /* PolicyDetialViewController.m in Sources */,
 				84525A251E2E019D0054C6A1 /* NSDataEx.m in Sources */,
 				84924EC91E2C9A10005F05C3 /* UINavigationController+HYNavigationHiddenShowBug.m in Sources */,
 				84924EC31E2C9970005F05C3 /* UITextView+MaxLimit.m in Sources */,
@@ -2924,6 +2961,7 @@
 				84E6D4301E481ED10056A702 /* ZMDHomeData.m in Sources */,
 				84F1BD821E343F700031823C /* ThreeImgCell.m in Sources */,
 				84924EF81E2CC245005F05C3 /* WKWebViewController.m in Sources */,
+				84EF70771E4AC18D0098A606 /* HYScrollView.m in Sources */,
 				84924E931E2C7CA6005F05C3 /* UIView+Layout.m in Sources */,
 				84924EBA1E2C9935005F05C3 /* UITextField+HYMaxLimit.m in Sources */,
 				84E5EE751E2DCADB0062A2BE /* HTImageBrowserView.m in Sources */,
@@ -2944,6 +2982,7 @@
 				84525A271E2E019D0054C6A1 /* RSADataSigner.m in Sources */,
 				84924EAE1E2C7D91005F05C3 /* UIImageView+HYImageView.m in Sources */,
 				84924ECF1E2C9A3C005F05C3 /* UIStoryboard+HYStoryboards.m in Sources */,
+				84EF707E1E4AEB3F0098A606 /* HYCacheURLProtocol.m in Sources */,
 				84924EC61E2C997A005F05C3 /* UITextView+Placeholder.m in Sources */,
 				84924F1A1E2CC926005F05C3 /* UITableView+Sure_Placeholder.m in Sources */,
 				84DDFD381E496A2E0082FABF /* GuideTableViewCell.m in Sources */,
@@ -2961,6 +3000,7 @@
 				84924F151E2CC926005F05C3 /* NSObject+Swizzling.m in Sources */,
 				84525A221E2E019D0054C6A1 /* DataSigner.m in Sources */,
 				84DDFD3D1E496A3D0082FABF /* DemandTableViewCell.m in Sources */,
+				840C480E1E4DB82000F4C80A /* HYAddressController.m in Sources */,
 				842E4C541E33029800888B18 /* ZMDArticle.m in Sources */,
 				842E4C571E3304E600888B18 /* APIHelper+Policy.m in Sources */,
 				84F1BD901E344B240031823C /* HomeDeclareView.m in Sources */,

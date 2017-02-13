@@ -10,6 +10,7 @@
 #import "HYServer.h"
 #import "NSError+HYError.h"
 #import "NSDictionary+Safety.h"
+#import "NSString+json.h"
 
 #define SHOWNETDEBUG 0
 @interface HttpHelper ()
@@ -122,8 +123,7 @@
     }
     
     //打印POST的JSON数据
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
-    NSString* jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString* jsonStr = [NSString jsonStringWithDictionary:parameters];
     NSLog(@"%@",jsonStr);
     
     return [self POST:relativeurl parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

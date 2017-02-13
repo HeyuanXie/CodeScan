@@ -11,7 +11,7 @@
 @implementation ZMDArticle
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper {
     
-    return @{@"articleId":@"article_id",@"publishDate":@"publish_date",@"detailUrl":@"detailUrl",@"canShare":@"can_share"};
+    return @{@"articleId":@"article_id",@"publishDate":@"publish_date",@"detailUrl":@"detail_url",@"canShare":@"can_share"};
 }
 
 @end

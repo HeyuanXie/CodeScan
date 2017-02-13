@@ -7,6 +7,7 @@
 //
 
 #import "BaseModel.h"
+#import "ZMDArticle.h"
 
 @interface ZMDHomeData : BaseModel
 

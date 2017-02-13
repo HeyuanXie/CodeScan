@@ -10,6 +10,9 @@
 
 @interface HomeDeclareView : UIView
 
+
 +(NSString*)identify;
+
+-(void)configWithArray:(NSArray*)array andIndex:(int)index;
 
 @end

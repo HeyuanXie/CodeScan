@@ -10,4 +10,6 @@
 
 @interface WebViewController : BaseViewController
 
+@property(nonatomic,copy)NSString* url;
+
 @end

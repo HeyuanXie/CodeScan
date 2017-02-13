@@ -72,15 +72,15 @@
 }
 
 - (void)showLoadingAnimation {
-    //    [MBProgressHUD hy_showLoadingHUDAddedTo:self.view animated:YES];
+        [MBProgressHUD hy_showLoadingHUDAddedTo:self.view animated:YES];
 }
 
 - (void)hideLoadingAnimation {
-    //    [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)showMessage:(NSString *)message {
-    //    [MBProgressHUD hy_showMessage:message inView:self.view];
+        [MBProgressHUD hy_showMessage:message inView:self.view];
 }
 
 - (void)showMessage:(NSString *)message complete:(void(^)())complate {
