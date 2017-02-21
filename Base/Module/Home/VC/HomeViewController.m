@@ -22,6 +22,7 @@
 #import "APIHelper+User.h"
 #import "ZMDHomeData.h"
 #import "HYScrollView.h"
+#import "ZMDArticle.h"
 
 @interface HomeViewController ()<UITextFieldDelegate>
 
@@ -168,11 +169,16 @@
             return 103;
         case 2:
             return 164;
-        default:
+        default: {
+            ZMDArticle* article = self.data.news[indexPath.row];
+            if (![article.thumb isEqualToString:@""]) {
+                return 106;
+            }
             return [tableView fd_heightForCellWithIdentifier:[HomeNewsCell identify] cacheByIndexPath:indexPath configuration:^(HomeNewsCell* cell) {
                 [cell configCellWithModel:self.data.news[indexPath.row]];
             }];
             break;
+        }
     }
 }
 
