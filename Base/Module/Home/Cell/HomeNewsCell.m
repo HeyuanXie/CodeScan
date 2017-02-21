@@ -17,6 +17,7 @@
 
 -(void)configCellWithModel:(id)model {
     ZMDArticle* news = (ZMDArticle*)model;
+    news.thumb = @"https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=4069188095,2178579623&fm=170&s=95022FFB7CBBF4948018103603008066&w=218&h=146&img.JPEG";
     self.titleLbl.text = news.title;
     self.timeLbl.text = news.publishDate;
     if (![news.thumb isEqualToString:@""]) {
