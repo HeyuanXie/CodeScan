@@ -6,23 +6,23 @@
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "HomeViewController.h"
-#import "WKWebViewController.h"
-#import "WebViewController.h"
-#import "HYAddressController.h"
 
-#import <LocalAuthentication/LocalAuthentication.h>
-#import <UIView+BlocksKit.h>
-#import "ThreeImgCell.h"
-#import "HomeDeclareView.h"
-#import "HomeNewsCell.h"
-#import "HYSearchBar.h"
-#import <UITableView+FDTemplateLayoutCell.h>
 #import "APIHelper+Home.h"
 #import "APIHelper+User.h"
-#import "ZMDHomeData.h"
+#import "HYAddressController.h"
 #import "HYScrollView.h"
+#import "HYSearchBar.h"
+#import "HomeDeclareView.h"
+#import "HomeNewsCell.h"
+#import "HomeViewController.h"
+#import "ThreeImgCell.h"
+#import "WKWebViewController.h"
+#import "WebViewController.h"
 #import "ZMDArticle.h"
+#import "ZMDHomeData.h"
+#import <LocalAuthentication/LocalAuthentication.h>
+#import <UITableView+FDTemplateLayoutCell.h>
+#import <UIView+BlocksKit.h>
 
 @interface HomeViewController ()<UITextFieldDelegate>
 

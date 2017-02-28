@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		840C480E1E4DB82000F4C80A /* HYAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C480D1E4DB82000F4C80A /* HYAddressController.m */; };
 		840C48101E4DC0B600F4C80A /* area.json in Resources */ = {isa = PBXBuildFile; fileRef = 840C480F1E4DC0B600F4C80A /* area.json */; };
+		842A198C1E5FE6B900E0C0E9 /* CustomCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A198B1E5FE6B900E0C0E9 /* CustomCircleView.m */; };
+		842A198F1E601C4900E0C0E9 /* BlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A198E1E601C4900E0C0E9 /* BlockView.m */; };
 		842E4C541E33029800888B18 /* ZMDArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 842E4C531E33029800888B18 /* ZMDArticle.m */; };
 		842E4C571E3304E600888B18 /* APIHelper+Policy.m in Sources */ = {isa = PBXBuildFile; fileRef = 842E4C561E3304E600888B18 /* APIHelper+Policy.m */; };
 		843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA2221E30B14100DAE1FF /* UIViewExtension.swift */; };
@@ -92,8 +94,6 @@
 		84924F191E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F121E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m */; };
 		84924F1A1E2CC926005F05C3 /* UITableView+Sure_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F141E2CC926005F05C3 /* UITableView+Sure_Placeholder.m */; };
 		84924F1D1E2CCD62005F05C3 /* HYPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */; };
-		84924F201E2CCD98005F05C3 /* HYCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F1F1E2CCD98005F05C3 /* HYCountDown.m */; };
-		84A2E36C1E3487EB00411078 /* HYSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A2E36B1E3487EB00411078 /* HYSearchBar.m */; };
 		84DDFD381E496A2E0082FABF /* GuideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DDFD361E496A2E0082FABF /* GuideTableViewCell.m */; };
 		84DDFD391E496A2E0082FABF /* GuideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DDFD371E496A2E0082FABF /* GuideTableViewCell.xib */; };
 		84DDFD3D1E496A3D0082FABF /* DemandTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DDFD3B1E496A3D0082FABF /* DemandTableViewCell.m */; };
@@ -379,6 +379,9 @@
 		84F1BD8D1E343F980031823C /* HomeNewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F1BD8B1E343F980031823C /* HomeNewsCell.xib */; };
 		84F1BD901E344B240031823C /* HomeDeclareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F1BD8F1E344B240031823C /* HomeDeclareView.m */; };
 		84F1BD921E344B330031823C /* HomeDeclareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F1BD911E344B330031823C /* HomeDeclareView.xib */; };
+		84F25F431E65814D00FC9E31 /* HYCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F25F401E65814D00FC9E31 /* HYCountDown.m */; };
+		84F25F441E65814D00FC9E31 /* HYSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F25F421E65814D00FC9E31 /* HYSearchBar.m */; };
+		84F25F471E6581B500FC9E31 /* HYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F25F461E6581B500FC9E31 /* HYAlertView.m */; };
 		84F691031E2C53600048B6DF /* AppDelegate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F691021E2C53600048B6DF /* AppDelegate+Extension.m */; };
 		84F6910E1E2C55B90048B6DF /* NSDictionary+Safety.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F6910D1E2C55B90048B6DF /* NSDictionary+Safety.m */; };
 		84F691111E2C55CC0048B6DF /* NSError+HYError.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F691101E2C55CC0048B6DF /* NSError+HYError.m */; };
@@ -423,6 +426,10 @@
 		840C480C1E4DB82000F4C80A /* HYAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYAddressController.h; sourceTree = "<group>"; };
 		840C480D1E4DB82000F4C80A /* HYAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAddressController.m; sourceTree = "<group>"; };
 		840C480F1E4DC0B600F4C80A /* area.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = area.json; sourceTree = "<group>"; };
+		842A198A1E5FE6B900E0C0E9 /* CustomCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCircleView.h; sourceTree = "<group>"; };
+		842A198B1E5FE6B900E0C0E9 /* CustomCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCircleView.m; sourceTree = "<group>"; };
+		842A198D1E601C4900E0C0E9 /* BlockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockView.h; sourceTree = "<group>"; };
+		842A198E1E601C4900E0C0E9 /* BlockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockView.m; sourceTree = "<group>"; };
 		842E4C521E33029800888B18 /* ZMDArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZMDArticle.h; sourceTree = "<group>"; };
 		842E4C531E33029800888B18 /* ZMDArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZMDArticle.m; sourceTree = "<group>"; };
 		842E4C551E3304E600888B18 /* APIHelper+Policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Policy.h"; sourceTree = "<group>"; };
@@ -642,10 +649,6 @@
 		84924F141E2CC926005F05C3 /* UITableView+Sure_Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Sure_Placeholder.m"; sourceTree = "<group>"; };
 		84924F1B1E2CCD62005F05C3 /* HYPaddingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPaddingLabel.h; sourceTree = "<group>"; };
 		84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPaddingLabel.m; sourceTree = "<group>"; };
-		84924F1E1E2CCD98005F05C3 /* HYCountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCountDown.h; sourceTree = "<group>"; };
-		84924F1F1E2CCD98005F05C3 /* HYCountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCountDown.m; sourceTree = "<group>"; };
-		84A2E36A1E3487EB00411078 /* HYSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYSearchBar.h; sourceTree = "<group>"; };
-		84A2E36B1E3487EB00411078 /* HYSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYSearchBar.m; sourceTree = "<group>"; };
 		84DDFD351E496A2E0082FABF /* GuideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideTableViewCell.h; sourceTree = "<group>"; };
 		84DDFD361E496A2E0082FABF /* GuideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideTableViewCell.m; sourceTree = "<group>"; };
 		84DDFD371E496A2E0082FABF /* GuideTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideTableViewCell.xib; sourceTree = "<group>"; };
@@ -975,6 +978,12 @@
 		84F1BD8E1E344B240031823C /* HomeDeclareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeDeclareView.h; sourceTree = "<group>"; };
 		84F1BD8F1E344B240031823C /* HomeDeclareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeDeclareView.m; sourceTree = "<group>"; };
 		84F1BD911E344B330031823C /* HomeDeclareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDeclareView.xib; sourceTree = "<group>"; };
+		84F25F3F1E65814D00FC9E31 /* HYCountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYCountDown.h; sourceTree = "<group>"; };
+		84F25F401E65814D00FC9E31 /* HYCountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYCountDown.m; sourceTree = "<group>"; };
+		84F25F411E65814D00FC9E31 /* HYSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYSearchBar.h; sourceTree = "<group>"; };
+		84F25F421E65814D00FC9E31 /* HYSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYSearchBar.m; sourceTree = "<group>"; };
+		84F25F451E6581B500FC9E31 /* HYAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYAlertView.h; sourceTree = "<group>"; };
+		84F25F461E6581B500FC9E31 /* HYAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAlertView.m; sourceTree = "<group>"; };
 		84F691011E2C53600048B6DF /* AppDelegate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+Extension.h"; sourceTree = "<group>"; };
 		84F691021E2C53600048B6DF /* AppDelegate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Extension.m"; sourceTree = "<group>"; };
 		84F6910C1E2C55B90048B6DF /* NSDictionary+Safety.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Safety.h"; sourceTree = "<group>"; };
@@ -1295,6 +1304,8 @@
 		84554D971E2F3A14007EE209 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				842A198A1E5FE6B900E0C0E9 /* CustomCircleView.h */,
+				842A198B1E5FE6B900E0C0E9 /* CustomCircleView.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1311,6 +1322,8 @@
 		84554D9C1E2F3A1D007EE209 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				842A198D1E601C4900E0C0E9 /* BlockView.h */,
+				842A198E1E601C4900E0C0E9 /* BlockView.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1451,7 +1464,6 @@
 				84F691051E2C54FA0048B6DF /* Categories */,
 				84F691061E2C54FA0048B6DF /* CustomeView */,
 				84F691071E2C54FA0048B6DF /* PayEngine */,
-				84F691081E2C54FA0048B6DF /* Utils */,
 				84ECF01C1E2F593200F5DA7E /* HYTool */,
 			);
 			path = Business;
@@ -2339,6 +2351,12 @@
 				84EF70761E4AC18D0098A606 /* HYScrollView.m */,
 				840C480C1E4DB82000F4C80A /* HYAddressController.h */,
 				840C480D1E4DB82000F4C80A /* HYAddressController.m */,
+				84F25F3F1E65814D00FC9E31 /* HYCountDown.h */,
+				84F25F401E65814D00FC9E31 /* HYCountDown.m */,
+				84F25F411E65814D00FC9E31 /* HYSearchBar.h */,
+				84F25F421E65814D00FC9E31 /* HYSearchBar.m */,
+				84F25F451E6581B500FC9E31 /* HYAlertView.h */,
+				84F25F461E6581B500FC9E31 /* HYAlertView.m */,
 			);
 			path = CustomeView;
 			sourceTree = "<group>";
@@ -2350,17 +2368,6 @@
 				84E5EDBC1E2DC93E0062A2BE /* HYPayEngine.m */,
 			);
 			path = PayEngine;
-			sourceTree = "<group>";
-		};
-		84F691081E2C54FA0048B6DF /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				84924F1E1E2CCD98005F05C3 /* HYCountDown.h */,
-				84924F1F1E2CCD98005F05C3 /* HYCountDown.m */,
-				84A2E36A1E3487EB00411078 /* HYSearchBar.h */,
-				84A2E36B1E3487EB00411078 /* HYSearchBar.m */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		84F691091E2C55900048B6DF /* Foundation */ = {
@@ -2911,6 +2918,7 @@
 				84924F191E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m in Sources */,
 				84525A231E2E019D0054C6A1 /* DataVerifier.m in Sources */,
 				84554D961E2F3A04007EE209 /* HomeViewController.m in Sources */,
+				842A198C1E5FE6B900E0C0E9 /* CustomCircleView.m in Sources */,
 				848152921E485FF300EEC4EA /* PolicyListViewController.m in Sources */,
 				84F6911A1E2C56090048B6DF /* NSObject+Global.m in Sources */,
 				84E6D42A1E4817CD0056A702 /* APIHelper+Home.m in Sources */,
@@ -2933,13 +2941,13 @@
 				84924EA51E2C7D45005F05C3 /* UIColor+HYColors.m in Sources */,
 				84F691381E2C68700048B6DF /* OpenRoutesManager.m in Sources */,
 				84F691141E2C55E00048B6DF /* NSMutableArray+Safety.m in Sources */,
-				84924F201E2CCD98005F05C3 /* HYCountDown.m in Sources */,
 				84554DA51E2F3A28007EE209 /* MineHomeViewController.m in Sources */,
 				84F691171E2C55FC0048B6DF /* NSNumber+HYFormatter.m in Sources */,
 				84EF707A1E4ACBEA0098A606 /* PolicyDetialViewController.m in Sources */,
 				84525A251E2E019D0054C6A1 /* NSDataEx.m in Sources */,
 				84924EC91E2C9A10005F05C3 /* UINavigationController+HYNavigationHiddenShowBug.m in Sources */,
 				84924EC31E2C9970005F05C3 /* UITextView+MaxLimit.m in Sources */,
+				842A198F1E601C4900E0C0E9 /* BlockView.m in Sources */,
 				84DDFD411E4971000082FABF /* ZMDDemand.m in Sources */,
 				845BDF761E28D2C00064ACAE /* main.m in Sources */,
 				84924E8D1E2C79B0005F05C3 /* MBProgressHUD+hyHUD.m in Sources */,
@@ -2955,7 +2963,6 @@
 				84F6912F1E2C567C0048B6DF /* NSURL+HYURL.m in Sources */,
 				84F6910E1E2C55B90048B6DF /* NSDictionary+Safety.m in Sources */,
 				84924EB41E2C7DA8005F05C3 /* UILabel+HYLabels.m in Sources */,
-				84A2E36C1E3487EB00411078 /* HYSearchBar.m in Sources */,
 				84E5EE941E2DCDEC0062A2BE /* APIHelper.m in Sources */,
 				84554D9B1E2F3A14007EE209 /* SortViewController.m in Sources */,
 				84E6D4301E481ED10056A702 /* ZMDHomeData.m in Sources */,
@@ -2968,6 +2975,7 @@
 				84E5EE651E2DCADA0062A2BE /* NSString+AES.m in Sources */,
 				84525A401E2E23E60054C6A1 /* BaseModel.m in Sources */,
 				84924ED21E2C9A66005F05C3 /* UITabBar+Badge.m in Sources */,
+				84F25F471E6581B500FC9E31 /* HYAlertView.m in Sources */,
 				84924E841E2C788B005F05C3 /* WebViewController.m in Sources */,
 				84924EAB1E2C7D7C005F05C3 /* UIImage+HYSize.m in Sources */,
 				84E5EE731E2DCADB0062A2BE /* UIScrollView+EffectHeaderView.m in Sources */,
@@ -2975,6 +2983,7 @@
 				84924F1D1E2CCD62005F05C3 /* HYPaddingLabel.m in Sources */,
 				84F6912C1E2C566E0048B6DF /* NSString+TSRegularExpressionUtil.m in Sources */,
 				84ECF01B1E2F57DD00F5DA7E /* UITableViewCell+HYCell.m in Sources */,
+				84F25F441E65814D00FC9E31 /* HYSearchBar.m in Sources */,
 				84924E961E2C7CBB005F05C3 /* UIView+Frame.m in Sources */,
 				84F1BD8C1E343F980031823C /* HomeNewsCell.m in Sources */,
 				84F691231E2C56480048B6DF /* NSString+HYUtilities.m in Sources */,
@@ -3000,6 +3009,7 @@
 				84924F151E2CC926005F05C3 /* NSObject+Swizzling.m in Sources */,
 				84525A221E2E019D0054C6A1 /* DataSigner.m in Sources */,
 				84DDFD3D1E496A3D0082FABF /* DemandTableViewCell.m in Sources */,
+				84F25F431E65814D00FC9E31 /* HYCountDown.m in Sources */,
 				840C480E1E4DB82000F4C80A /* HYAddressController.m in Sources */,
 				842E4C541E33029800888B18 /* ZMDArticle.m in Sources */,
 				842E4C571E3304E600888B18 /* APIHelper+Policy.m in Sources */,
