@@ -78,12 +78,14 @@
     
     if (_level != 0) {
         UIButton* backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        backButton.frame = CGRectMake(0, 0, 44, 44);
         backButton.titleLabel.font = defaultSysFontWithSize(14);
         [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
         [backButton setTitle:@"返回" forState:UIControlStateNormal];
         [backButton setTitleColor:[UIColor hyBarTintColor] forState:UIControlStateNormal];
         [backButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
     }
 }
 

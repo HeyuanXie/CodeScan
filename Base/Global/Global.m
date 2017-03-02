@@ -50,7 +50,8 @@
 +(NSString *)userAuth {
     return kGetObjectFromUserDefaults(@"userAuth");
 }
--(void)setUserAuth:(NSString *)userAuth {
+
++(void)setUserAuth:(NSString *)userAuth {
     [kNotificationCenter postNotificationName:kUserLogoutNotification object:nil];
     kSaveObjectToUserDefaults(@"userAuth", userAuth);
 }

@@ -20,43 +20,8 @@
                     <view key="view" contentMode="scaleToFill" id="zdJ-JR-VBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U84-NL-ywV">
-                                <rect key="frame" x="139" y="539" width="97" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="1eC-Hq-rIu"/>
-                                    <constraint firstAttribute="height" constant="30" id="feD-x1-95U"/>
-                                </constraints>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCd-R7-e67">
-                                <rect key="frame" x="164" y="577" width="46" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="G3w-0o-T1h"/>
-                                    <constraint firstAttribute="width" constant="46" id="yg1-lu-KKs"/>
-                                </constraints>
-                                <state key="normal" title="开始">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="start:" destination="kD3-tf-OnE" eventType="touchUpInside" id="F7z-dz-Nt9"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="lOZ-QM-Hna" firstAttribute="top" secondItem="cCd-R7-e67" secondAttribute="bottom" constant="60" id="9Px-ig-9V8"/>
-                            <constraint firstItem="cCd-R7-e67" firstAttribute="top" secondItem="U84-NL-ywV" secondAttribute="bottom" constant="8" id="OGo-f5-5hN"/>
-                            <constraint firstItem="U84-NL-ywV" firstAttribute="centerX" secondItem="zdJ-JR-VBi" secondAttribute="centerX" id="TOc-Nk-mxz"/>
-                            <constraint firstItem="cCd-R7-e67" firstAttribute="centerX" secondItem="zdJ-JR-VBi" secondAttribute="centerX" id="ghL-iY-YdL"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="rateTf" destination="U84-NL-ywV" id="6nb-1v-Xnk"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZ9-dC-frX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -57,7 +57,7 @@ NSString* const kFilterController = @"FilterController";
 -(NSArray*)routeConfigs {
     NSArray *routes = @[
                         @{@"cls":kRegistViewController,@"sb":@"Login",@"method":@"push"},
-                        @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"present"},
+                        @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kFinishRegisterController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kCollectionController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMessageController,@"sb":@"Mine",@"method":@"push"},

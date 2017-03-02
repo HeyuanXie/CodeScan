@@ -78,12 +78,12 @@
 }
 
 /// 不设置选中颜色
-+(UIButton*)getButtonWithFrame:(CGRect)frame title:(NSString*)title titleSize:(CGFloat)size titleColor:(UIColor*)titleColor backgroundColor:(UIColor*)backgroundColor blockForClick:(void (^)())block {
++(UIButton*)getButtonWithFrame:(CGRect)frame title:(NSString*)title titleSize:(CGFloat)size titleColor:(UIColor*)titleColor backgroundColor:(UIColor*)backgroundColor blockForClick:(void (^)(id sender))block {
     return [self getButtonWithFrame:frame title:title titleSize:size titleColorForNormal:titleColor titleColorForSelect:titleColor backgroundColor:backgroundColor blockForClick:block];
 }
 
 /// 设置选中文字颜色
-+(UIButton*)getButtonWithFrame:(CGRect)frame title:(NSString*)title titleSize:(CGFloat)size titleColorForNormal:(UIColor*)titleColor titleColorForSelect:(UIColor*)selectColor backgroundColor:(UIColor*)backgroundColor blockForClick:(void(^)())block {
++(UIButton*)getButtonWithFrame:(CGRect)frame title:(NSString*)title titleSize:(CGFloat)size titleColorForNormal:(UIColor*)titleColor titleColorForSelect:(UIColor*)selectColor backgroundColor:(UIColor*)backgroundColor blockForClick:(void(^)(id sender))block {
     UIButton* btn = [[UIButton alloc] initWithFrame:frame];
     btn.backgroundColor = backgroundColor;
     [btn setTitle:title forState:UIControlStateNormal];
@@ -92,7 +92,7 @@
     btn.titleLabel.font = defaultSysFontWithSize(size);
     [btn bk_addEventHandler:^(id sender) {
         if (block != nil) {
-            block();
+            block(sender);
         }
     } forControlEvents:UIControlEventTouchUpInside];
     return btn;

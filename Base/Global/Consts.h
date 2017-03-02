@@ -75,6 +75,12 @@
 #define isiOS8Later (floor(NSFoundationVersionNumber) >= floor(NSFoundationVersionNumber_iOS_8_0))
 #define IS_IPHONE_4s ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 #define IS_IPHONE_5s ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+/// 系统名称
+#define SYSTEM_NAME [[UIDevice currentDevice] systemName]
+/// 系统版本号 （字符串）
+#define SYSTEM_VERSION [[UIDevice currentDevice] systemVersion]
+/// 系统版本号 （浮点数）
+#define SYSTEM_VERSION_FLOAT [SYSTEM_VERSION floatValue]
 
 
 //MARK:-自定义打印(文件、方法、行数)

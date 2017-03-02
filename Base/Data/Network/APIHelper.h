@@ -11,10 +11,13 @@
 #import <Foundation/Foundation.h>
 #import "NSDictionary+Safety.h"
 #import "HttpHelper.h"
+#import "UserInfoModel.h"
 
 #define APIHELPER ([APIHelper shareInstance])
 
 @interface APIHelper : NSObject
+
+@property(nonatomic,strong)UserInfoModel *userInfo;
 
 @property(nonatomic, copy)NSDictionary* config;
 

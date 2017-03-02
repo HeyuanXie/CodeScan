@@ -35,6 +35,17 @@
 #define kSemiModalDidHideNotification @"kSemiModalDidHideNotification"
 #define kSemiModalWasResizedNotification @"kSemiModalWasResizedNotification"
 
+/*
+ KNSemiModalOptionKeys:
+ backgroundView:背景view
+ disableCancel:点击背景是否不会dismiss,BOOL
+ parentAlpha:父视图的alpha(透明度)
+ parentScale:父视图的scale(放大系数)
+ pushParentBack:父视图是否会有后退的效果,BOOL
+ shadowOpacity:不知道
+ transitionStyle:视图弹出的效果
+ traverseParentHierarchy:是否隐藏底部Tabbar
+ */
 extern const struct KNSemiModalOptionKeys {
 	__unsafe_unretained NSString *traverseParentHierarchy; // boxed BOOL. default is YES.
 	__unsafe_unretained NSString *pushParentBack;		   // boxed BOOL. default is YES.

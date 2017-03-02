@@ -11,6 +11,7 @@
 #import "BaseNavigationController.h"
 #import "BaseViewController.h"
 #import "APIHelper+User.h"
+#import "UIImage+HYImages.h"
 
 NS_ENUM(NSUInteger, TabType) {
     TabTypeHome = 0,
@@ -65,11 +66,11 @@ NS_ENUM(NSUInteger, TabType) {
 }
 
 -(void)configUIAppearance {
-    [[UINavigationBar appearance] setBackgroundColor:[UIColor hyBarTintColor]];
-    [[UINavigationBar appearance] setTintColor:[UIColor hyBarTintColor]];
+    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],
                                                            NSFontAttributeName: [UIFont systemFontOfSize:17.0f]}];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor hyBarTintColor]];
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
                                                          forBarMetrics:UIBarMetricsDefault];
@@ -93,6 +94,14 @@ NS_ENUM(NSUInteger, TabType) {
     if ([(BaseViewController *)viewController respondsToSelector:@selector(navigationBarHidden)]) {
         [navigationController setNavigationBarHidden:[(BaseViewController *)viewController navigationBarHidden] animated:YES];
     }
+    
+// 设置蓝色渐变navigationBar
+    if ([(BaseViewController *)viewController respondsToSelector:@selector(navigationBarBlue)]) {
+        [navigationController.navigationBar setBackgroundImage:ImageNamed(@"gradualBackground") forBarMetrics:UIBarMetricsDefault];
+    }else{
+        [navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    }
 }
+
 
 @end

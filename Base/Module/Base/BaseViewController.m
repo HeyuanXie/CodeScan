@@ -11,13 +11,15 @@
 
 @interface BaseViewController ()
 
+@property(nonatomic,strong) UIView* navBackView;
+@property(nonatomic,strong) UIView* navLine;
+
 @end
 
 @implementation BaseViewController
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
-//    return UIStatusBarStyleDefault;
 }
 
 - (void)viewDidLoad {
@@ -26,6 +28,9 @@
     self.view.backgroundColor = [UIColor hyViewBackgroundColor];
     self.needLogEvent = YES;
     self.navigationBarHidden = NO;
+    self.navigationBarTransparent = NO;
+    self.navigationLineHidden = NO;
+    self.navigationBarBlue = NO;
     //在iOS 7中，苹果引入了一个新的属性，叫做[UIViewController setEdgesForExtendedLayout:]，它的默认值为UIRectEdgeAll。当你的容器是navigation controller时，默认的布局将从navigation bar的顶部开始。这就是为什么所有的UI元素都往上漂移了44pt。
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }
@@ -48,6 +53,12 @@
         [leftButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
         self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:leftButton]];
     }
+    if (self.navigationBarTransparent) {
+        [self hideBackView:self.navigationController.navigationBar];
+    }
+    if (self.navigationLineHidden) {
+        self.navLine.hidden = YES;
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -55,11 +66,28 @@
     if (self.needLogEvent) {
         //        [MobClick endLogPageView:NSStringFromClass([self class])];
     }
+    if (self.navigationBarTransparent == YES) {
+        [self showBackView:self.navigationController.navigationBar];
+    }
+    if (self.navigationLineHidden) {
+        self.navLine.hidden = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - navLine
+-(UIView *)navLine {
+    if (self.navigationController) {
+        UIView *backgroundView = [self.navigationController.navigationBar subviews].firstObject;
+        _navLine = backgroundView.subviews.lastObject;
+        return _navLine;
+    }else{
+        return nil;
+    }
 }
 
 //返回方法
@@ -98,4 +126,48 @@
 -(UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
     return UIInterfaceOrientationPortrait;
 }
+
+
+#pragma mark - 设置导航栏透明
+- (void)hideBackView:(UIView *) superView{
+    NSString* backString = SYSTEM_VERSION_FLOAT >= 10.0 ? @"_UIBarBackground" : @"_UINavigationBarBackground";
+    if ([superView isKindOfClass:NSClassFromString(backString)]) {
+        for (UIView* view in superView.subviews) {
+            //影藏分割线
+            if ([view isKindOfClass:[UIImageView class]]) {
+                self.navLine = view;
+                self.navLine.hidden = YES;
+            }
+        }
+        self.navBackView = superView;
+        self.navBackView.alpha = 0;
+    }else if ([superView isKindOfClass:NSClassFromString(@"_UIBackdropView")]) {
+        superView.hidden = YES;
+    }
+    for (UIView* view in superView.subviews) {
+        [self hideBackView:view];
+    }
+}
+
+- (void)showBackView:(UIView*)superView {
+    NSString* backString = SYSTEM_VERSION_FLOAT >= 10.0 ? @"_UIBarBackground" : @"_UINavigationBarBackground";
+    if ([superView isKindOfClass:NSClassFromString(backString)]) {
+        for (UIView* view in superView.subviews) {
+            //显示分割线
+            if ([view isKindOfClass:[UIImageView class]]) {
+                self.navLine = view;
+                self.navLine.hidden = NO;
+            }
+        }
+        self.navBackView = superView;
+        self.navBackView.alpha = 1.0;
+    }else if ([superView isKindOfClass:NSClassFromString(@"_UIBackdropView")]) {
+        superView.hidden = NO;
+    }
+    for (UIView* view in superView.subviews) {
+        [self showBackView:view];
+    }
+}
+
+
 @end

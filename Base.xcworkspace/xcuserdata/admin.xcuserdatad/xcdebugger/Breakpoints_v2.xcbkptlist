@@ -19,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Base/Module/Cart/Cell/BlockView.m"
-            timestampString = "509616902.380012"
+            filePath = "Base/Module/Base/BaseViewController.m"
+            timestampString = "510141792.767498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "-initWithFrame:"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-hideBackView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

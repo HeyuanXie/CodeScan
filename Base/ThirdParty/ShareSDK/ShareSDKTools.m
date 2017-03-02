@@ -20,7 +20,6 @@
 
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
-
 @implementation ShareSDKTools
 
 
@@ -73,6 +72,7 @@
 
 
 }
+
 
 /*
 + (void)shareShowActionSheet:(ArticleListModel *)model view:(UIView *)view{
@@ -149,8 +149,7 @@
         [sheet.directSharePlatforms addObject:@(SSDKPlatformTypeSinaWeibo)];
     }];
     
-}
- */
+}*/
 
 + (BOOL)isWXAppInstalled{
     return [WXApi isWXAppInstalled];

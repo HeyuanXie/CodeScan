@@ -18,7 +18,6 @@
 }
 
 -(UIView *)obtainTopLine {
-    
     return [self viewWithTag:0xff0a];
 }
 

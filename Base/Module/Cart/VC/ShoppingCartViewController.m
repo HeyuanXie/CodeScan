@@ -7,26 +7,12 @@
 //
 
 #import "ShoppingCartViewController.h"
-#import "BlockView.h"
 
 @interface ShoppingCartViewController ()
-
-@property(nonatomic,weak)IBOutlet BlockView* blockView;
 
 @end
 
 @implementation ShoppingCartViewController
-
-- (IBAction)startAction:(id)sender {
-    
-    CGFloat to = 64;
-    [self.blockView startAnimation];
-    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.85 initialSpringVelocity:0 options:0 animations:^{
-        self.blockView.center = CGPointMake(self.blockView.center.x, to);
-    } completion:^(BOOL finished) {
-        [self.blockView completeAnimation];
-    }];
-}
 
 
 - (void)viewDidLoad {

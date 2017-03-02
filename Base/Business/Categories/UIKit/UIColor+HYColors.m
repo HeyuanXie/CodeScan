@@ -11,12 +11,11 @@
 @implementation UIColor (HYColors)
 
 + (UIColor *)hyBarTintColor {
-    return [UIColor colorWithString:@"#ee3b3b"];
-//    return RGB(230, 63, 66, 1.0);
+    return [UIColor colorWithString:@"#66aff6"];
 }
 
 + (UIColor *)hyRedColor {
-    return [UIColor colorWithString:@"#ef5341"];
+    return [UIColor colorWithString:@"#F46582"];
 }
 
 + (UIColor *)hyBlackTextColor {
@@ -31,12 +30,20 @@
     return [UIColor colorWithString:@"#d1d1d1"];
 }
 
++ (UIColor*)hyBlueTextColor {
+    return [UIColor colorWithString:@"70BDFA"];
+}
+
++ (UIColor*)hyLightBlueTextColor {
+    return [UIColor colorWithString:@"7baffb"];
+}
+
 + (UIColor *)hySeparatorColor {
     return [UIColor colorWithString:@"#ebebeb"];
 }
 
 + (UIColor *)hyViewBackgroundColor {
-    return [UIColor colorWithString:@"#f1f1f1"];
+    return [UIColor colorWithString:@"#E7F0FE"];
 }
 
 + (UIColor *)hyCellBackgroundColor {

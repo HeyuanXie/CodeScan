@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,38 +20,8 @@
                     <view key="view" contentMode="scaleToFill" id="Ou2-CE-qTS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXE-au-GuX">
-                                <rect key="frame" x="16" y="617" width="68" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="68" id="JpO-qY-YBI"/>
-                                    <constraint firstAttribute="height" constant="30" id="gFC-1g-6SC"/>
-                                </constraints>
-                                <state key="normal" title="start"/>
-                                <connections>
-                                    <action selector="startAction:" destination="tPE-AB-DoF" eventType="touchUpInside" id="kHw-wl-ijG"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o0A-7D-439" customClass="BlockView">
-                                <rect key="frame" x="137" y="567" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="HX3-tD-kX8"/>
-                                    <constraint firstAttribute="height" constant="100" id="UhQ-uZ-NSV"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="rUz-un-2g6" firstAttribute="top" secondItem="tXE-au-GuX" secondAttribute="bottom" constant="20" id="3hG-oX-SwG"/>
-                            <constraint firstItem="rUz-un-2g6" firstAttribute="top" secondItem="o0A-7D-439" secondAttribute="bottom" id="93q-gD-nV4"/>
-                            <constraint firstItem="tXE-au-GuX" firstAttribute="leading" secondItem="Ou2-CE-qTS" secondAttribute="leadingMargin" id="PDH-fs-MVX"/>
-                            <constraint firstItem="o0A-7D-439" firstAttribute="centerX" secondItem="Ou2-CE-qTS" secondAttribute="centerX" id="ptj-TF-Bf9"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="blockView" destination="o0A-7D-439" id="X3n-ew-3Xp"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PDM-Kw-3k6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

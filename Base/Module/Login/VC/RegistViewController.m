@@ -1,33 +1,31 @@
 //
-//  MineHomeViewController.m
+//  RegistViewController.m
 //  Base
 //
-//  Created by admin on 17/1/16.
+//  Created by admin on 2017/3/2.
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "MineHomeViewController.h"
+#import "RegistViewController.h"
 
-@interface MineHomeViewController ()
-
+@interface RegistViewController ()
 
 @end
 
-@implementation MineHomeViewController
+@implementation RegistViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    APPROUTE(kLoginViewController);
 }
+
+//-(void)viewWillLayoutSubviews {
+//    self.view.frame = CGRectMake(0, 0, kScreen_Width, kScreen_Height);
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    APPROUTE(kRegistViewController);
 }
 
 /*
