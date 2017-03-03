@@ -14,8 +14,23 @@
 		841961301E67C73500A78877 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8419612F1E67C73500A78877 /* UserInfoModel.m */; };
 		841961331E67C9CF00A78877 /* CustomCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841961321E67C9CF00A78877 /* CustomCircleView.m */; };
 		841961391E67EA3100A78877 /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 841961381E67EA3100A78877 /* UIViewController+Extension.m */; };
-		8419613B1E67EBFD00A78877 /* gradualBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8419613A1E67EBFD00A78877 /* gradualBackground.png */; };
 		842E4C571E3304E600888B18 /* APIHelper+Policy.m in Sources */ = {isa = PBXBuildFile; fileRef = 842E4C561E3304E600888B18 /* APIHelper+Policy.m */; };
+		843142DD1E68FC9C0007740A /* HeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843142DB1E68FC9C0007740A /* HeadCell.m */; };
+		843142DE1E68FC9C0007740A /* HeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843142DC1E68FC9C0007740A /* HeadCell.xib */; };
+		843142E11E68FED50007740A /* gradualBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 843142E01E68FED50007740A /* gradualBackground.png */; };
+		843142E51E69166C0007740A /* FunctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843142E31E69166C0007740A /* FunctionCell.m */; };
+		843142E61E69166C0007740A /* FunctionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843142E41E69166C0007740A /* FunctionCell.xib */; };
+		843142EA1E691D9C0007740A /* HomeImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843142E81E691D9C0007740A /* HomeImageCell.m */; };
+		843142EB1E691D9C0007740A /* HomeImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843142E91E691D9C0007740A /* HomeImageCell.xib */; };
+		843142F01E694C640007740A /* HomeUseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843142EF1E694C640007740A /* HomeUseView.xib */; };
+		843142F31E694DE70007740A /* RecentHotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 843142F21E694DE70007740A /* RecentHotView.m */; };
+		843142F71E6953140007740A /* ThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843142F51E6953140007740A /* ThemeCell.m */; };
+		843142F81E6953140007740A /* ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843142F61E6953140007740A /* ThemeCell.xib */; };
+		843142FC1E695BC30007740A /* HomeVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843142FA1E695BC30007740A /* HomeVideoCell.m */; };
+		843142FD1E695BC30007740A /* HomeVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843142FB1E695BC30007740A /* HomeVideoCell.xib */; };
+		843143011E695BD70007740A /* HomeHotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843142FF1E695BD70007740A /* HomeHotCell.m */; };
+		843143021E695BD70007740A /* HomeHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843143001E695BD70007740A /* HomeHotCell.xib */; };
+		843143051E6965770007740A /* HomeVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 843143041E6965770007740A /* HomeVideoView.m */; };
 		843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA2221E30B14100DAE1FF /* UIViewExtension.swift */; };
 		845259A91E2DFDAF0054C6A1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845259A81E2DFDAF0054C6A1 /* SystemConfiguration.framework */; };
 		845259AB1E2DFE170054C6A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845259AA1E2DFE170054C6A1 /* Foundation.framework */; };
@@ -189,9 +204,32 @@
 		841961321E67C9CF00A78877 /* CustomCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCircleView.m; sourceTree = "<group>"; };
 		841961371E67EA3100A78877 /* UIViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
 		841961381E67EA3100A78877 /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
-		8419613A1E67EBFD00A78877 /* gradualBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradualBackground.png; sourceTree = "<group>"; };
 		842E4C551E3304E600888B18 /* APIHelper+Policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Policy.h"; sourceTree = "<group>"; };
 		842E4C561E3304E600888B18 /* APIHelper+Policy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Policy.m"; sourceTree = "<group>"; };
+		843142DA1E68FC9C0007740A /* HeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadCell.h; sourceTree = "<group>"; };
+		843142DB1E68FC9C0007740A /* HeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadCell.m; sourceTree = "<group>"; };
+		843142DC1E68FC9C0007740A /* HeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadCell.xib; sourceTree = "<group>"; };
+		843142E01E68FED50007740A /* gradualBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradualBackground.png; sourceTree = "<group>"; };
+		843142E21E69166C0007740A /* FunctionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionCell.h; sourceTree = "<group>"; };
+		843142E31E69166C0007740A /* FunctionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionCell.m; sourceTree = "<group>"; };
+		843142E41E69166C0007740A /* FunctionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FunctionCell.xib; sourceTree = "<group>"; };
+		843142E71E691D9C0007740A /* HomeImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeImageCell.h; sourceTree = "<group>"; };
+		843142E81E691D9C0007740A /* HomeImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeImageCell.m; sourceTree = "<group>"; };
+		843142E91E691D9C0007740A /* HomeImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeImageCell.xib; sourceTree = "<group>"; };
+		843142EF1E694C640007740A /* HomeUseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeUseView.xib; sourceTree = "<group>"; };
+		843142F11E694DE70007740A /* RecentHotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentHotView.h; sourceTree = "<group>"; };
+		843142F21E694DE70007740A /* RecentHotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentHotView.m; sourceTree = "<group>"; };
+		843142F41E6953140007740A /* ThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeCell.h; sourceTree = "<group>"; };
+		843142F51E6953140007740A /* ThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeCell.m; sourceTree = "<group>"; };
+		843142F61E6953140007740A /* ThemeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemeCell.xib; sourceTree = "<group>"; };
+		843142F91E695BC30007740A /* HomeVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVideoCell.h; sourceTree = "<group>"; };
+		843142FA1E695BC30007740A /* HomeVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVideoCell.m; sourceTree = "<group>"; };
+		843142FB1E695BC30007740A /* HomeVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVideoCell.xib; sourceTree = "<group>"; };
+		843142FE1E695BD70007740A /* HomeHotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeHotCell.h; sourceTree = "<group>"; };
+		843142FF1E695BD70007740A /* HomeHotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeHotCell.m; sourceTree = "<group>"; };
+		843143001E695BD70007740A /* HomeHotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeHotCell.xib; sourceTree = "<group>"; };
+		843143031E6965770007740A /* HomeVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVideoView.h; sourceTree = "<group>"; };
+		843143041E6965770007740A /* HomeVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVideoView.m; sourceTree = "<group>"; };
 		843AA21D1E30B12D00DAE1FF /* Base-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Base-Bridging-Header.h"; sourceTree = "<group>"; };
 		843AA2221E30B14100DAE1FF /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		845259A81E2DFDAF0054C6A1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -779,6 +817,23 @@
 		84554D921E2F3A04007EE209 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				843142E71E691D9C0007740A /* HomeImageCell.h */,
+				843142E81E691D9C0007740A /* HomeImageCell.m */,
+				843142E91E691D9C0007740A /* HomeImageCell.xib */,
+				843142F41E6953140007740A /* ThemeCell.h */,
+				843142F51E6953140007740A /* ThemeCell.m */,
+				843142F61E6953140007740A /* ThemeCell.xib */,
+				843142F91E695BC30007740A /* HomeVideoCell.h */,
+				843142FA1E695BC30007740A /* HomeVideoCell.m */,
+				843143031E6965770007740A /* HomeVideoView.h */,
+				843143041E6965770007740A /* HomeVideoView.m */,
+				843142FB1E695BC30007740A /* HomeVideoCell.xib */,
+				843142FE1E695BD70007740A /* HomeHotCell.h */,
+				843142FF1E695BD70007740A /* HomeHotCell.m */,
+				843143001E695BD70007740A /* HomeHotCell.xib */,
+				843142EF1E694C640007740A /* HomeUseView.xib */,
+				843142F11E694DE70007740A /* RecentHotView.h */,
+				843142F21E694DE70007740A /* RecentHotView.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -827,6 +882,12 @@
 		84554DA11E2F3A28007EE209 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				843142DA1E68FC9C0007740A /* HeadCell.h */,
+				843142DB1E68FC9C0007740A /* HeadCell.m */,
+				843142DC1E68FC9C0007740A /* HeadCell.xib */,
+				843142E21E69166C0007740A /* FunctionCell.h */,
+				843142E31E69166C0007740A /* FunctionCell.m */,
+				843142E41E69166C0007740A /* FunctionCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -930,7 +991,7 @@
 		845BDFAC1E28D8D30064ACAE /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				8419613A1E67EBFD00A78877 /* gradualBackground.png */,
+				843142E01E68FED50007740A /* gradualBackground.png */,
 				845BDF821E28D2C00064ACAE /* LaunchScreen.storyboard */,
 				845BDF7D1E28D2C00064ACAE /* Main.storyboard */,
 				84924E6D1E2C76D9005F05C3 /* Sort.storyboard */,
@@ -1535,23 +1596,30 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				843142EB1E691D9C0007740A /* HomeImageCell.xib in Resources */,
 				84E5EE801E2DCADB0062A2BE /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				84924E6E1E2C76D9005F05C3 /* Sort.storyboard in Resources */,
 				840C48101E4DC0B600F4C80A /* area.json in Resources */,
+				843142E61E69166C0007740A /* FunctionCell.xib in Resources */,
+				843143021E695BD70007740A /* HomeHotCell.xib in Resources */,
 				84924E6A1E2C756A005F05C3 /* Login.storyboard in Resources */,
 				84E5EE851E2DCADB0062A2BE /* README.txt in Resources */,
 				845BDF841E28D2C00064ACAE /* LaunchScreen.storyboard in Resources */,
-				8419613B1E67EBFD00A78877 /* gradualBackground.png in Resources */,
 				84924E6C1E2C7572005F05C3 /* Mine.storyboard in Resources */,
 				84E5EE841E2DCADB0062A2BE /* read_me.txt in Resources */,
+				843142E11E68FED50007740A /* gradualBackground.png in Resources */,
 				84924F161E2CC926005F05C3 /* sure_placeholder_error@2x.png in Resources */,
 				845BDFB21E28D8D30064ACAE /* Assets.xcassets in Resources */,
+				843142F01E694C640007740A /* HomeUseView.xib in Resources */,
 				845BDF7F1E28D2C00064ACAE /* Main.storyboard in Resources */,
 				84525A1D1E2E019D0054C6A1 /* AlipaySDK.bundle in Resources */,
 				84E5EE821E2DCADB0062A2BE /* WeiboSDK.bundle in Resources */,
+				843142DE1E68FC9C0007740A /* HeadCell.xib in Resources */,
+				843142FD1E695BC30007740A /* HomeVideoCell.xib in Resources */,
 				84E5EE871E2DCADB0062A2BE /* ShareSDK.bundle in Resources */,
 				84E5EE7D1E2DCADB0062A2BE /* ShareSDKUI.bundle in Resources */,
 				84924F171E2CC926005F05C3 /* sure_placeholder_error@3x.png in Resources */,
+				843142F81E6953140007740A /* ThemeCell.xib in Resources */,
 				84924E701E2C76FA005F05C3 /* Cart.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1629,11 +1697,15 @@
 				84924EBD1E2C9946005F05C3 /* UITextField+HYTextField.m in Sources */,
 				84F691261E2C56530048B6DF /* NSString+HYFilter.m in Sources */,
 				84E5EE7B1E2DCADB0062A2BE /* ShareSDKTools.m in Sources */,
+				843142FC1E695BC30007740A /* HomeVideoCell.m in Sources */,
+				843143011E695BD70007740A /* HomeHotCell.m in Sources */,
 				84E5EE721E2DCADB0062A2BE /* HTEffectHeaderView.m in Sources */,
 				84924E9F1E2C7CD8005F05C3 /* UIView+Common.m in Sources */,
 				841961301E67C73500A78877 /* UserInfoModel.m in Sources */,
 				84924F191E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m in Sources */,
 				84525A231E2E019D0054C6A1 /* DataVerifier.m in Sources */,
+				843142F71E6953140007740A /* ThemeCell.m in Sources */,
+				843142F31E694DE70007740A /* RecentHotView.m in Sources */,
 				84554D961E2F3A04007EE209 /* HomeViewController.m in Sources */,
 				84F6911A1E2C56090048B6DF /* NSObject+Global.m in Sources */,
 				8413CECB1E669DF200436B2F /* CustomJumpBtns.m in Sources */,
@@ -1642,6 +1714,7 @@
 				84525A391E2E08D20054C6A1 /* APIHelper+User.m in Sources */,
 				84E5EDBD1E2DC93E0062A2BE /* HYPayEngine.m in Sources */,
 				84E5EE9A1E2DED5F0062A2BE /* HttpHelper.m in Sources */,
+				843142E51E69166C0007740A /* FunctionCell.m in Sources */,
 				84E5EE771E2DCADB0062A2BE /* HTProductDetailImageBrowserView.m in Sources */,
 				84F691321E2C568B0048B6DF /* UIStoryboard+HYStoryboard.m in Sources */,
 				84924EA21E2C7D37005F05C3 /* UIButton+HYButtons.m in Sources */,
@@ -1649,6 +1722,7 @@
 				84924ECC1E2C9A25005F05C3 /* UINavigationItem+HYNavigationItems.m in Sources */,
 				84F6913E1E2C6B7E0048B6DF /* NSObject+Routes.m in Sources */,
 				84525A261E2E019D0054C6A1 /* openssl_wrapper.m in Sources */,
+				843143051E6965770007740A /* HomeVideoView.m in Sources */,
 				84525A241E2E019D0054C6A1 /* MD5DataSigner.m in Sources */,
 				84E5EE761E2DCADB0062A2BE /* HTImageBrowserZoomableView.m in Sources */,
 				84924EA81E2C7D6B005F05C3 /* UIImage+HYImages.m in Sources */,
@@ -1657,6 +1731,7 @@
 				84554D911E2F39A6007EE209 /* LoginViewController.m in Sources */,
 				84924EA51E2C7D45005F05C3 /* UIColor+HYColors.m in Sources */,
 				84F691381E2C68700048B6DF /* OpenRoutesManager.m in Sources */,
+				843142EA1E691D9C0007740A /* HomeImageCell.m in Sources */,
 				84F691141E2C55E00048B6DF /* NSMutableArray+Safety.m in Sources */,
 				84554DA51E2F3A28007EE209 /* MineHomeViewController.m in Sources */,
 				84F691171E2C55FC0048B6DF /* NSNumber+HYFormatter.m in Sources */,
@@ -1721,6 +1796,7 @@
 				84924F151E2CC926005F05C3 /* NSObject+Swizzling.m in Sources */,
 				84525A221E2E019D0054C6A1 /* DataSigner.m in Sources */,
 				841961331E67C9CF00A78877 /* CustomCircleView.m in Sources */,
+				843142DD1E68FC9C0007740A /* HeadCell.m in Sources */,
 				84F25F431E65814D00FC9E31 /* HYCountDown.m in Sources */,
 				840C480E1E4DB82000F4C80A /* HYAddressController.m in Sources */,
 				842E4C571E3304E600888B18 /* APIHelper+Policy.m in Sources */,

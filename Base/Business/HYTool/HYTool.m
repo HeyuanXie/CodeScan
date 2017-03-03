@@ -135,6 +135,11 @@
     [self configViewLayerFrame:view WithColor:defaultLineColor];
 }
 
++(void)configViewLayerFrame:(UIView *)view WithColor:(UIColor*)color borderWidth:(CGFloat)width {
+    view.layer.borderWidth = width;
+    view.layer.borderColor = color.CGColor;
+}
+
 +(void)configViewLayerFrame:(UIView*)view WithColor:(UIColor*)color {
     view.layer.borderWidth = 0.5;
     view.layer.borderColor = color.CGColor;

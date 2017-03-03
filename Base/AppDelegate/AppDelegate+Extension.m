@@ -79,7 +79,7 @@ NS_ENUM(NSUInteger, TabType) {
     [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10.0F], NSForegroundColorAttributeName : [UIColor hyBarTintColor]} forState:UIControlStateSelected];
     
     // 字体颜色 未选中
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10.0F],  NSForegroundColorAttributeName:[UIColor hyBlackTextColor]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10.0F],  NSForegroundColorAttributeName:[UIColor hyBarUnselectedColor]} forState:UIControlStateNormal];
     
     [[UITabBar appearance] setTranslucent:NO];
     [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];

@@ -36,6 +36,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <BlocksKit/BlocksKit.h>
+#import <UIView+BlocksKit.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #ifdef DEBUG 

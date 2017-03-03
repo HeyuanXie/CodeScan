@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RecentHotView">
+            <rect key="frame" x="0.0" y="0.0" width="147" height="230"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FmK-gK-iOC">
+                    <rect key="frame" x="0.0" y="0.0" width="147" height="187"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7月25日 大型儿童音乐剧——人猿泰山" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9P-zf-F7v">
+                    <rect key="frame" x="5" y="187" width="137" height="43"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="Cra-r3-1m9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="n9P-zf-F7v" secondAttribute="bottom" id="J1V-yI-CVf"/>
+                <constraint firstAttribute="trailing" secondItem="FmK-gK-iOC" secondAttribute="trailing" id="c0b-bT-hqY"/>
+                <constraint firstItem="FmK-gK-iOC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hEa-nC-owG"/>
+                <constraint firstItem="FmK-gK-iOC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tRP-tM-DvE"/>
+                <constraint firstItem="n9P-zf-F7v" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="5" id="vzP-67-wm1"/>
+                <constraint firstAttribute="trailing" secondItem="n9P-zf-F7v" secondAttribute="trailing" constant="5" id="xfk-zK-Bo2"/>
+                <constraint firstItem="n9P-zf-F7v" firstAttribute="top" secondItem="FmK-gK-iOC" secondAttribute="bottom" id="z6S-qD-b9Z"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="desLbl" destination="n9P-zf-F7v" id="7Nu-Va-uRg"/>
+                <outlet property="imgV" destination="FmK-gK-iOC" id="Wxo-32-nBu"/>
+            </connections>
+            <point key="canvasLocation" x="-717" y="-213"/>
+        </view>
+        <view contentMode="scaleToFill" id="CS7-1q-Ak8">
+            <rect key="frame" x="0.0" y="0.0" width="188" height="124"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X4a-cD-nkw">
+                    <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="X4a-cD-nkw" secondAttribute="height" multiplier="1:1" id="ihf-4V-Kpl"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="X4a-cD-nkw" firstAttribute="width" secondItem="CS7-1q-Ak8" secondAttribute="width" multiplier="0.191" id="G21-Xf-0dU"/>
+                <constraint firstItem="X4a-cD-nkw" firstAttribute="top" secondItem="CS7-1q-Ak8" secondAttribute="top" id="Qnq-br-6QQ"/>
+                <constraint firstItem="X4a-cD-nkw" firstAttribute="leading" secondItem="CS7-1q-Ak8" secondAttribute="leading" id="bcf-BP-rjO"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-460" y="-260"/>
+        </view>
+    </objects>
+</document>

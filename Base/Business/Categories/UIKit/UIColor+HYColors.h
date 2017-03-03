@@ -12,6 +12,8 @@
 
 +(UIColor*)hyBarTintColor;
 
++(UIColor*)hyBarUnselectedColor;
+
 +(UIColor*)hyRedColor;
 
 +(UIColor*)hyBlackTextColor;

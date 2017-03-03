@@ -14,6 +14,10 @@
     return [UIColor colorWithString:@"#66aff6"];
 }
 
++(UIColor *)hyBarUnselectedColor {
+    return [UIColor colorWithString:@"d1e6fe"];
+}
+
 + (UIColor *)hyRedColor {
     return [UIColor colorWithString:@"#F46582"];
 }

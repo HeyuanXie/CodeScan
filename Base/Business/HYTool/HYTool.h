@@ -37,6 +37,8 @@
 
 +(void)configViewLayerFrame:(UIView*)view;
 
++(void)configViewLayerFrame:(UIView *)view WithColor:(UIColor*)color borderWidth:(CGFloat)width;
+
 +(void)configViewLayerFrame:(UIView*)view WithColor:(UIColor*)color;
 
 +(void)configViewLayerRound:(UIView*)view;

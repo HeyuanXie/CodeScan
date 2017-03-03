@@ -12,11 +12,11 @@
 
 //MARK:App风格风格属性
 /// App主色
-#define appThemeColor RGB(224,75,78,1.0)
+#define appThemeColor RGB(106,176,243,1.0)
 /// 导航栏文本颜色
 #define navigationTextColor [UIColor whiteColor]
 /// 导航栏背景颜色
-#define navigationBackgroundColor [UIColor whiteColor]
+#define navigationBackgroundColor appThemeColor //[UIColor whiteColor]
 /// 导航栏字体（titleView不允许被修改）
 #define navigationTextFont  [UIFont systemFontOfSize:18]
 
