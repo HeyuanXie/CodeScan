@@ -45,7 +45,8 @@
 - (void)subviewStyle {
     self.backItemHidden = YES;
     self.navigationBarTransparent = YES;
-    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(-64, 0, 0, 0)];
+//    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(-64, 0, 0, 0)];
+    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(-64, 0, 64, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor hyViewBackgroundColor];
     self.tableView.scrollEnabled = NO;

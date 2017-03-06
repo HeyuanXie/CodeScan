@@ -9,23 +9,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--分类-->
-        <scene sceneID="Bcn-if-YZy">
+        <!--Order View Controller-->
+        <scene sceneID="NUO-Jy-HgA">
             <objects>
-                <viewController storyboardIdentifier="SortViewController" id="kD3-tf-OnE" userLabel="分类" customClass="SortViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderViewController" id="y2s-CC-brC" customClass="OrderViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KJ4-rU-veU"/>
-                        <viewControllerLayoutGuide type="bottom" id="lOZ-QM-Hna"/>
+                        <viewControllerLayoutGuide type="top" id="H9Z-Uz-yrl"/>
+                        <viewControllerLayoutGuide type="bottom" id="mpL-3j-RHI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zdJ-JR-VBi">
+                    <view key="view" contentMode="scaleToFill" id="sRU-9o-y6b">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MZ9-dC-frX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q9m-9A-OkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-228" y="-251"/>
+            <point key="canvasLocation" x="153" y="167"/>
         </scene>
     </scenes>
 </document>

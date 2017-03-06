@@ -22,6 +22,10 @@
 
 +(UIColor*)hyGrayTextColor;
 
++ (UIColor*)hyBlueTextColor;
+
++ (UIColor*)hyLightBlueTextColor;
+
 +(UIColor*)hySeparatorColor;
 
 +(UIColor*)hyViewBackgroundColor;

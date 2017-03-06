@@ -28,13 +28,16 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:style];
     [self.view addSubview:self.tableView];
     [self.tableView autoPinEdgesToSuperviewEdgesWithInsets:edge];
-    self.tableView.backgroundColor = [UIColor hySeparatorColor];
+    self.tableView.backgroundColor = [UIColor hyViewBackgroundColor];
     self.tableView.backgroundView = nil;
     self.tableView.showsHorizontalScrollIndicator = NO;
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.tableFooterView = [[UIView alloc] init];
+    
+//    UIView* tableFooterView = [[NSBundle mainBundle] loadNibNamed:@"HomeUseView" owner:self options:nil][2];
+//    self.tableView.tableFooterView = tableFooterView;
 }
 
 -(void)addHeaderRefresh:(void(^)())block {

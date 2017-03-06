@@ -1,25 +1,24 @@
 //
-//  ShoppingCartViewController.m
+//  OrderViewController.m
 //  Base
 //
-//  Created by admin on 17/1/16.
+//  Created by admin on 2017/3/6.
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "ShoppingCartViewController.h"
+#import "OrderViewController.h"
 
-@interface ShoppingCartViewController ()
+@interface OrderViewController ()
 
 @end
 
-@implementation ShoppingCartViewController
-
+@implementation OrderViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.backItemHidden = YES;
-    // Do any additional setup after loading the view.
+    [self effectInit];
+    [self fetchData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,6 +26,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
+#pragma mark - Private methods
+- (void)effectInit {
+    self.backItemHidden = YES;
+}
+
+- (void)fetchData {
+    
+}
 /*
 #pragma mark - Navigation
 

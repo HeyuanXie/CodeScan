@@ -10,8 +10,8 @@
 
 @interface UIStoryboard (HYStoryboard)
 + (UIStoryboard *)mainStoryboard;
-+ (UIStoryboard *)sortStoryboard;
-+ (UIStoryboard *)cartStoryboard;
++ (UIStoryboard *)collectStoryboard;
++ (UIStoryboard *)orderStoryboard;
 + (UIStoryboard *)mineStoryboard;
 + (UIStoryboard *)loginStoryboard;
 @end

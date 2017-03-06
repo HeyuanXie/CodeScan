@@ -135,6 +135,14 @@
     [self configViewLayerFrame:view WithColor:defaultLineColor];
 }
 
+
+/**
+ 设置UIView的borderColor、borderWidth
+ 
+ @param view 设置的对象
+ @param color borderColor
+ @param width borderWidth
+ */
 +(void)configViewLayerFrame:(UIView *)view WithColor:(UIColor*)color borderWidth:(CGFloat)width {
     view.layer.borderWidth = width;
     view.layer.borderColor = color.CGColor;
@@ -150,6 +158,13 @@
     view.layer.masksToBounds = YES;
 }
 
+
+/**
+ 设置UIView的圆角、borderColor(borderWidth默认为0.5)
+
+ @param view 设置的对象
+ @param color borderColor
+ */
 +(void)configViewLayer:(UIView *)view withColor:(UIColor*)color {
     [self configViewLayer:view];
     [self configViewLayerFrame:view WithColor:color];

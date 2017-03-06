@@ -13,12 +13,12 @@
     return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 }
 
-+ (UIStoryboard *)sortStoryboard{
-    return [UIStoryboard storyboardWithName:@"Sort" bundle:nil];
++ (UIStoryboard *)collectStoryboard{
+    return [UIStoryboard storyboardWithName:@"Collect" bundle:nil];
 }
 
-+ (UIStoryboard *)cartStoryboard{
-    return [UIStoryboard storyboardWithName:@"Cart" bundle:nil];
++ (UIStoryboard *)orderStoryboard{
+    return [UIStoryboard storyboardWithName:@"Order" bundle:nil];
 }
 
 + (UIStoryboard *)mineStoryboard{

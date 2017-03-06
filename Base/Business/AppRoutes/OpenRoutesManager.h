@@ -10,11 +10,14 @@
 #import <UIKit/UIKit.h>
 // vc标识
 extern NSString* const kHomeViewController;
-extern NSString* const kSortViewController;
-extern NSString* const kCartViewController;
+extern NSString* const kCollectViewController;
+extern NSString* const kOrderViewController;
 extern NSString* const kMineHomeViewController;
-extern NSString* const kTestViewController;
-extern NSString* const kTestTableViewController;
+
+extern NSString* const kTheaterListViewController;
+extern NSString* const kTheaterDetailViewController;
+extern NSString* const kTheaterTicketViewController;
+
 
 extern NSString* const kRegistViewController;
 extern NSString* const kFinishRegisterController;
@@ -22,16 +25,12 @@ extern NSString* const kLoginViewController;
 extern NSString* const kUserInfoController;
 extern NSString* const kSearchViewController;
 extern NSString* const kSearchGuideController;
-extern NSString* const kPolicyListController;
 extern NSString* const kFilterClassTableViewController;
 extern NSString* const kModifyPWController;
 extern NSString* const kAddressController;
 extern NSString* const kFilterController;
 
 // Mine
-extern NSString* const kMineHomeController;
-
-extern NSString* const kCollectionController;
 extern NSString* const kMessageController;
 extern NSString* const kFeedbackController;
 extern NSString* const kShareController;

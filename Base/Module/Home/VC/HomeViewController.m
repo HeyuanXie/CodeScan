@@ -19,8 +19,7 @@
 #import "HomeVideoCell.h"
 #import "HomeHotCell.h"
 
-#import <LocalAuthentication/LocalAuthentication.h>
-#import <UITableView+FDTemplateLayoutCell.h>
+#import "UITableViewCell+HYCell.h"
 
 @interface HomeViewController ()<UITextFieldDelegate>
 
@@ -51,6 +50,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.backItemHidden = YES;
+    self.navigationBarBlue = NO;
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
@@ -85,16 +85,19 @@
     self.leftBtn.frame = CGRectMake(0, 0, 60, 32);
     [_leftBtn setImage:[UIImage imageNamed:@"dinwei01"] forState:UIControlStateNormal];
     [_leftBtn setTitle:@"未定位" forState:UIControlStateNormal];
-    [_leftBtn setTitleColor:[UIColor hyBlackTextColor] forState:UIControlStateNormal];
+    [_leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    _leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
-    _leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
+    _leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    _leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     [_leftBtn addTarget:self action:@selector(filterAddress:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* leftItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftBtn];
     self.navigationItem.leftBarButtonItem = leftItem;
     
     UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"message"] style:UIBarButtonItemStylePlain target:self action:@selector(message)];
     self.navigationItem.rightBarButtonItem = rightItem;
+    
+    UIView* footerView = [[NSBundle mainBundle] loadNibNamed:@"HomeUseView" owner:self options:nil][2];
+    self.tableView.tableFooterView = footerView;
 }
 
 -(void)fetchData {
@@ -117,6 +120,19 @@
     searchBar.delegate = self;
     [HYTool configViewLayer:searchBar size:15];
     self.navigationItem.titleView = searchBar;
+}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView == self.tableView)
+    {
+        CGFloat sectionHeaderHeight = 44;
+        if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+        } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+        }
+    }
 }
 
 #pragma mark- UITextFieldDelegate
@@ -166,13 +182,27 @@
             return [[UITableViewCell alloc] init];
     }
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return section == 0 ? 0 : 44;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView* headerView = [[NSBundle mainBundle] loadNibNamed:@"HomeUseView" owner:self options:nil][1];
+    UILabel* line = [headerView viewWithTag:1000];
+    [HYTool configViewLayer:line size:1];
+    UILabel* lbl = [headerView viewWithTag:1001];
+    lbl.text = self.info[section][@"title"];
+    return section == 0 ? nil : headerView;
+}
+
+
 -(HomeImageCell*)imageCellForTableView:(UITableView *)tableView RowAtIndexPath:(NSIndexPath *)indexPath {
     HomeImageCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeImageCell identify]];
     [cell setBotSubviewClick:^(NSInteger index) {
         switch (index) {
                 //TODO:
             case 0:
-                
+                APPROUTE(kTheaterListViewController);
                 break;
                 
             default:
@@ -229,12 +259,14 @@
     HomeVideoCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeVideoCell identify]];
     //TODO:configCell
     [cell configVideoCell:nil];
+    [cell addLine:NO leftOffSet:0 rightOffSet:0];
     return cell;
 }
 
 -(HomeHotCell*)hotCellForTableView:(UITableView *)tableView RowAtIndexPath:(NSIndexPath *)indexPath {
     HomeHotCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeHotCell identify]];
     //TODO:configCell
+    [cell configHotCell:nil];
     return cell;
 }
 

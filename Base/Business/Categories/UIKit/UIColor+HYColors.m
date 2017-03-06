@@ -35,7 +35,7 @@
 }
 
 + (UIColor*)hyBlueTextColor {
-    return [UIColor colorWithString:@"70BDFA"];
+    return [UIColor colorWithString:@"64ADF3"];
 }
 
 + (UIColor*)hyLightBlueTextColor {

@@ -41,11 +41,11 @@ NS_ENUM(NSUInteger, TabType) {
     UIViewController* main = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"HomeViewController"];
     main.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[ImageNamed(@"home") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"home01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
-    UIViewController* sort = [[UIStoryboard sortStoryboard] instantiateViewControllerWithIdentifier:@"SortViewController"];
-    sort.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"分类" image:[ImageNamed(@"sort") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"sort01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    UIViewController* sort = [[UIStoryboard collectStoryboard] instantiateViewControllerWithIdentifier:@"CollectViewController"];
+    sort.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"收藏" image:[ImageNamed(@"sort") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"sort01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
-    UIViewController* cart = [[UIStoryboard cartStoryboard] instantiateViewControllerWithIdentifier:@"ShoppingCartViewController"];
-    cart.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"购物车" image:[ImageNamed(@"cart") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"cart01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    UIViewController* cart = [[UIStoryboard orderStoryboard] instantiateViewControllerWithIdentifier:@"OrderViewController"];
+    cart.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"订单" image:[ImageNamed(@"cart") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"cart01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     UIViewController* mine = [[UIStoryboard mineStoryboard] instantiateViewControllerWithIdentifier:@"MineHomeViewController"];
     mine.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[ImageNamed(@"mine") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"mine01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -95,7 +95,7 @@ NS_ENUM(NSUInteger, TabType) {
         [navigationController setNavigationBarHidden:[(BaseViewController *)viewController navigationBarHidden] animated:YES];
     }
     
-// 设置蓝色渐变navigationBar
+// 设置蓝色背景navigationBar
     if ([(BaseViewController *)viewController respondsToSelector:@selector(navigationBarBlue)]) {
         [navigationController.navigationBar setBackgroundImage:ImageNamed(@"gradualBackground") forBarMetrics:UIBarMetricsDefault];
     }else{

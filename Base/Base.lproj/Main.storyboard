@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,7 +26,96 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1" y="-394"/>
+            <point key="canvasLocation" x="-1209" y="-945"/>
+        </scene>
+        <!--亲子剧场List-->
+        <scene sceneID="HUh-KP-dJO">
+            <objects>
+                <viewController storyboardIdentifier="TheaterListViewController" title="亲子剧场" id="LMA-Bl-fSP" userLabel="亲子剧场List" customClass="TheaterListViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6J4-aJ-LZ0"/>
+                        <viewControllerLayoutGuide type="bottom" id="lGq-Xg-aZY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KGS-sh-UTY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JI5-5f-SwZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1209" y="-183"/>
+        </scene>
+        <!--亲子剧场Detail-->
+        <scene sceneID="7jk-DJ-L40">
+            <objects>
+                <viewController storyboardIdentifier="TheaterDetailViewController" id="Vf7-nx-o1D" userLabel="亲子剧场Detail" customClass="TheaterDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="e9B-vM-BdG"/>
+                        <viewControllerLayoutGuide type="bottom" id="C2N-kE-f6X"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dd3-zQ-tH5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5r2-IR-gON">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpo-ZK-slL">
+                                        <rect key="frame" x="17" y="11" width="341" height="38"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.31372549019607843" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="选座购票">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="buyTicket:" destination="Vf7-nx-o1D" eventType="touchUpInside" id="7Tk-yw-Klg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Hpo-ZK-slL" firstAttribute="height" secondItem="5r2-IR-gON" secondAttribute="height" multiplier="38:60" id="ET8-1L-5Id"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hpo-ZK-slL" secondAttribute="trailing" constant="17" id="Ils-zw-Qsj"/>
+                                    <constraint firstItem="Hpo-ZK-slL" firstAttribute="centerY" secondItem="5r2-IR-gON" secondAttribute="centerY" id="X8O-Mh-Agq"/>
+                                    <constraint firstItem="Hpo-ZK-slL" firstAttribute="leading" secondItem="5r2-IR-gON" secondAttribute="leading" constant="17" id="x3h-in-3yw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="C2N-kE-f6X" firstAttribute="top" secondItem="5r2-IR-gON" secondAttribute="bottom" id="XXP-40-q1e"/>
+                            <constraint firstItem="5r2-IR-gON" firstAttribute="height" secondItem="dd3-zQ-tH5" secondAttribute="height" multiplier="60:667" id="ZOs-km-0gy"/>
+                            <constraint firstItem="5r2-IR-gON" firstAttribute="leading" secondItem="dd3-zQ-tH5" secondAttribute="leading" id="coa-Ph-fo3"/>
+                            <constraint firstAttribute="trailing" secondItem="5r2-IR-gON" secondAttribute="trailing" id="zfL-Jz-mvO"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aL6-56-gmA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-577" y="-185"/>
+        </scene>
+        <!--亲子剧场Ticke-->
+        <scene sceneID="r95-4r-ZPG">
+            <objects>
+                <viewController storyboardIdentifier="TheaterTicketViewController" id="Msq-6Q-ouy" userLabel="亲子剧场Ticke" customClass="TheaterTicketViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Ku-hy-ko4"/>
+                        <viewControllerLayoutGuide type="bottom" id="H4K-Vr-9uq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bEy-gx-jGO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PxK-OT-Gzw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="83" y="-182"/>
         </scene>
     </scenes>
 </document>

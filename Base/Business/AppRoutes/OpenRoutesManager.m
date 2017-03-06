@@ -9,24 +9,24 @@
 #import "OpenRoutesManager.h"
 
 NSString* const kHomeViewController = @"HomeViewController";
-NSString* const kSortViewController = @"SortViewController";
-NSString* const kCartViewController = @"ShoppingCartViewController";
+NSString* const kCollectViewController = @"SortViewController";
+NSString* const kOrderViewController = @"ShoppingCartViewController";
 NSString* const kMineHomeViewController = @"MineHomeViewController";
-NSString* const kTestViewController = @"TestViewController";
-NSString* const kTestTableViewController = @"TestTableViewController";
+
+NSString* const kTheaterListViewController = @"TheaterListViewController";
+NSString* const kTheaterDetailViewController = @"TheaterDetailViewController";
+NSString* const kTheaterTicketViewController = @"TheaterTicketViewController";
 
 NSString* const kRegistViewController = @"RegistViewController";
 NSString* const kFinishRegisterController = @"FinishRegisterController";
 NSString* const kLoginViewController = @"LoginViewController";
 NSString* const kUserInfoController = @"UserInfoController";
-NSString* const kCollectionController = @"CollectionController";
 NSString* const kMessageController = @"MessageController";
 NSString* const kFeedbackController = @"FeedbackController";
 NSString* const kShareController = @"ShareController";
 NSString* const kSettingController = @"SettingController";
 NSString* const kSearchViewController = @"SearchViewController";
 NSString* const kSearchGuideController = @"SearchGuideController";
-NSString* const kPolicyListController = @"PolicyListViewController";
 NSString* const kFilterClassTableViewController = @"FilterClassTableViewController";
 NSString* const kModifyPWController = @"ModifyPWController";
 NSString* const kAddressController = @"HYAddressController";
@@ -56,10 +56,13 @@ NSString* const kFilterController = @"FilterController";
 
 -(NSArray*)routeConfigs {
     NSArray *routes = @[
+                        @{@"cls":kTheaterListViewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kTheaterDetailViewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kTheaterTicketViewController,@"sb":@"Main",@"method":@"push"},
+                        
                         @{@"cls":kRegistViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kFinishRegisterController,@"sb":@"Login",@"method":@"push"},
-                        @{@"cls":kCollectionController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMessageController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kFeedbackController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kShareController,@"sb":@"Mine",@"method":@"push"},
@@ -67,14 +70,10 @@ NSString* const kFilterController = @"FilterController";
                         @{@"cls":kUserInfoController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kSearchViewController,@"sb":@"Home",@"method":@"push"},
                         @{@"cls":kSearchGuideController,@"sb":@"Home",@"method":@"push"},
-                        @{@"cls":kPolicyListController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kFilterClassTableViewController,@"sb":@"Policy",@"method":@"push"},
                         @{@"cls":kModifyPWController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kAddressController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kFilterController,@"sb":@"Policy",@"method":@"push"},
-                        @{@"cls":kTestViewController,@"sb":@"Main",@"method":@"push"},
-                        @{@"cls":kTestTableViewController,@"sb":@"Main",@"method":@"push"}
-
                         ];
     return routes;
 }

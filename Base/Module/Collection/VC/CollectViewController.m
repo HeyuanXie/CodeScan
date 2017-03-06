@@ -1,39 +1,39 @@
 //
-//  SortViewController.m
+//  CollectViewController.m
 //  Base
 //
-//  Created by admin on 17/1/16.
+//  Created by admin on 2017/3/6.
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "SortViewController.h"
+#import "CollectViewController.h"
 
-@interface SortViewController ()
+@interface CollectViewController ()
 
 @end
 
-@implementation SortViewController
-
+@implementation CollectViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    }
-
-#pragma mark - event 
-
-
-#pragma mark - private methods
-
-
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    APPROUTE(kRegistViewController);
+    
+    [self effectInit];
+    [self fetchData];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark - Private methods
+- (void)effectInit {
+    self.backItemHidden = YES;
+}
+
+- (void)fetchData {
+    
 }
 
 /*

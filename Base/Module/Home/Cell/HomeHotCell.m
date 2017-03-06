@@ -7,6 +7,7 @@
 //
 
 #import "HomeHotCell.h"
+#import "NSString+json.h"
 
 @implementation HomeHotCell
 //TODO:设置积分字体、
@@ -15,7 +16,17 @@
 }
 
 -(void)configHotCell:(id)model {
-    
+    for (UIView* subview in self.hotSubviews) {
+        UIImageView* imgView = [subview viewWithTag:1000];
+        UILabel* titleLbl = [subview viewWithTag:1001];
+        UILabel* jifenLbl = [subview viewWithTag:1002];
+        
+        NSString* text = jifenLbl.text;
+        NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc] initWithString:text];
+        [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:[text rangeOfString:@"积分"]];
+        [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor hyRedColor] range:[text rangeOfString:@"积分"]];
+        jifenLbl.attributedText = attrStr;
+    }
 }
 
 - (void)awakeFromNib {

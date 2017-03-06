@@ -55,7 +55,7 @@
 /// 默念header高度
 #define tableViewCellHeadDefaultHeight 10.0
 /// 默认cell背景色
-#define tableViewCellDefaultBackgroundColor [UIColor whiteColor]
+#define tableViewCellDefaultBackgroundColor [UIColor hyViewBackgroundColor]
 /// 默认内容字体
 #define tableViewCellDefaultTextFont [UIFont systemFontOfSize:17]
 /// 默认内容颜色
