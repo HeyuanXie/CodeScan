@@ -9,6 +9,7 @@
 #import "MineHomeViewController.h"
 #import "UITableViewCell+HYCell.h"
 #import "HeadCell.h"
+#import "MineHeadCell.h"
 #import "FunctionCell.h"
 
 @interface MineHomeViewController ()
@@ -33,11 +34,13 @@
 
 -(NSArray *)infos {
     if (!_infos) {
-        _infos = @[@{@"image":@"",@"title":@"剧院年卡",@"router":@"",@"needLogin":@(YES)},
-                   @{@"image":@"",@"title":@"报名信息",@"router":@"",@"needLogin":@(YES)},
-                   @{@"image":@"",@"title":@"积分管理",@"router":@"",@"needLogin":@(YES)},
-                   @{@"image":@"",@"title":@"优惠券",@"router":@"",@"needLogin":@(YES)},
-                   ];
+        _infos = @[@[@{}],
+                   @[@{@"image":@"",@"title":@"剧院年卡",@"router":@"",@"needLogin":@(YES)},
+                     @{@"image":@"",@"title":@"报名信息",@"router":@"",@"needLogin":@(YES)},
+                     @{@"image":@"",@"title":@"积分管理",@"router":@"",@"needLogin":@(YES)},
+                     @{@"image":@"",@"title":@"优惠券",@"router":@"",@"needLogin":@(YES)},
+                    ],
+                   @[@{@"image":@"",@"title":@"设置",@"router":@"",@"needLogin":@(YES)}]];
     }
     return _infos;
 }
@@ -51,6 +54,7 @@
     self.tableView.backgroundColor = [UIColor hyViewBackgroundColor];
     self.tableView.scrollEnabled = NO;
     [self.tableView registerNib:[UINib nibWithNibName:[HeadCell identify] bundle:nil] forCellReuseIdentifier:[HeadCell identify]];
+    [self.tableView registerNib:[UINib nibWithNibName:[MineHeadCell identify] bundle:nil] forCellReuseIdentifier:[MineHeadCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[FunctionCell identify] bundle:nil] forCellReuseIdentifier:[FunctionCell identify]];
     [self.tableView reloadData];
     
@@ -65,15 +69,16 @@
 
 #pragma mark - tableView delegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return self.infos.count;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return section == 0 ? 1 : self.infos.count;
+    NSArray* arr = self.infos[section];
+    return arr.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return section == 0 ? 0 : zoom(12);
+    return section == 2 ? zoom(12) : 0;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -83,32 +88,22 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return indexPath.section == 0 ? zoom(243) : zoom(48);
+    return indexPath.section == 0 ? zoom(185) : zoom(48);
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        HeadCell* cell = [tableView dequeueReusableCellWithIdentifier:[HeadCell identify]];
+        MineHeadCell* cell = [tableView dequeueReusableCellWithIdentifier:[MineHeadCell identify]];
         [HYTool configTableViewCellDefault:cell];
-        cell.contentView.backgroundColor = [UIColor hyViewBackgroundColor];
         //configcell
         [cell configHeadCell:nil];
-        [cell setWaitUseBlock:^{
-            
-        }];
-        [cell setWaitEvaluateBlock:^{
-            
-        }];
-        [cell setAfterBlock:^{
-            
-        }];
         return cell;
     }
     FunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:[FunctionCell identify]];
     [HYTool configTableViewCellDefault:cell];
     cell.contentView.backgroundColor = [UIColor hyViewBackgroundColor];
 
-    if (indexPath.row != self.infos.count-1) {
+    if (indexPath.row != ((NSArray*)self.infos[indexPath.section]).count-1) {
         [cell addLine:NO leftOffSet:42+zoom(30) rightOffSet:-12];
     }
     //设置圆角
@@ -120,7 +115,7 @@
         maskLayer.path = maskPath.CGPath;
         view.layer.mask = maskLayer;
     }
-    if (indexPath.row == self.infos.count-1) {
+    if (indexPath.row == ((NSArray*)self.infos[indexPath.section]).count-1) {
         UIView* view = cell.backView;
         UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
         CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
@@ -128,7 +123,13 @@
         maskLayer.path = maskPath.CGPath;
         view.layer.mask = maskLayer;
     }
-    NSDictionary *model = self.infos[indexPath.row];
+    if (indexPath.section == 2) {
+        [HYTool configViewLayer:cell.backView size:5];
+    }
+    if (!(indexPath.row == 0 && indexPath.section == 1)) {
+        cell.blueView.hidden = YES;
+    }
+    NSDictionary *model = self.infos[indexPath.section][indexPath.row];
     [cell configFunctionCell:model];
     return cell;
 }

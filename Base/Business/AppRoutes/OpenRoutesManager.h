@@ -28,7 +28,7 @@ extern NSString* const kSearchGuideController;
 extern NSString* const kFilterClassTableViewController;
 extern NSString* const kModifyPWController;
 extern NSString* const kAddressController;
-extern NSString* const kFilterController;
+extern NSString* const kFilterTableViewController;
 
 // Mine
 extern NSString* const kMessageController;

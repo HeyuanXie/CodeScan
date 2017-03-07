@@ -57,6 +57,8 @@
         [line autoSetDimension:ALDimensionHeight toSize:0.5];
     }
     
+    self.accountTf.keyboardType = UIKeyboardTypeNumberPad;
+    
     [HYTool configViewLayer:self.loginBtn size:20];
     [HYTool configViewLayer:self.registBtn withColor:[UIColor whiteColor]];
     [HYTool configViewLayer:self.registBtn size:20];
@@ -76,22 +78,26 @@
         [MBProgressHUD hy_showMessage:@"请输入手机号" inView:self.view];
         return;
     }
+    if (![self.accountTf.text validateWithValidateType:ValidateTypeForMobile]) {
+        [MBProgressHUD hy_showMessage:@"请输入正确的手机号" inView:self.view];
+        return;
+    }
     if ([self.passwordTf.text isEmpty]) {
         [MBProgressHUD hy_showMessage:@"请输入密码" inView:self.view];
         return;
     }
     [MBProgressHUD hy_showLoadingHUDAddedTo:self.view animated:YES];
-    [APIHELPER loginAccount:self.accountTf.text password:self.passwordTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+    [APIHELPER login:self.accountTf.text password:self.passwordTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (isSuccess) {
             [Global setUserAuth:responseObject[@"data"][@"auth"]];
             APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
             [self dismissViewControllerAnimated:YES completion:nil];
-
         }else{
             [MBProgressHUD hy_showMessage:error.userInfo[NSLocalizedDescriptionKey] inView:self.view];
         }
     }];
+
 }
 
 - (void)regist{
@@ -101,14 +107,5 @@
 - (void)forgot{
     
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

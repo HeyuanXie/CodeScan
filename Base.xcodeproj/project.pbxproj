@@ -14,6 +14,12 @@
 		841961301E67C73500A78877 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8419612F1E67C73500A78877 /* UserInfoModel.m */; };
 		841961331E67C9CF00A78877 /* CustomCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841961321E67C9CF00A78877 /* CustomCircleView.m */; };
 		841961391E67EA3100A78877 /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 841961381E67EA3100A78877 /* UIViewController+Extension.m */; };
+		84235B6A1E6E5AE900A81A6B /* MineHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B681E6E5AE900A81A6B /* MineHeadCell.m */; };
+		84235B6B1E6E5AE900A81A6B /* MineHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84235B691E6E5AE900A81A6B /* MineHeadCell.xib */; };
+		84235B6E1E6E8E7500A81A6B /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B6D1E6E8E7500A81A6B /* NSString+Extension.m */; };
+		84235B741E6EA18100A81A6B /* FilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B731E6EA18100A81A6B /* FilterTableViewController.m */; };
+		84235B791E6EBB7400A81A6B /* TheaterUseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84235B781E6EBB7400A81A6B /* TheaterUseView.xib */; };
+		84235B7C1E6EBBE500A81A6B /* DetailDervieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B7B1E6EBBE500A81A6B /* DetailDervieView.m */; };
 		842E4C571E3304E600888B18 /* APIHelper+Policy.m in Sources */ = {isa = PBXBuildFile; fileRef = 842E4C561E3304E600888B18 /* APIHelper+Policy.m */; };
 		843142DD1E68FC9C0007740A /* HeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843142DB1E68FC9C0007740A /* HeadCell.m */; };
 		843142DE1E68FC9C0007740A /* HeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843142DC1E68FC9C0007740A /* HeadCell.xib */; };
@@ -212,6 +218,16 @@
 		841961321E67C9CF00A78877 /* CustomCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCircleView.m; sourceTree = "<group>"; };
 		841961371E67EA3100A78877 /* UIViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
 		841961381E67EA3100A78877 /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
+		84235B671E6E5AE900A81A6B /* MineHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeadCell.h; sourceTree = "<group>"; };
+		84235B681E6E5AE900A81A6B /* MineHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeadCell.m; sourceTree = "<group>"; };
+		84235B691E6E5AE900A81A6B /* MineHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineHeadCell.xib; sourceTree = "<group>"; };
+		84235B6C1E6E8E7500A81A6B /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
+		84235B6D1E6E8E7500A81A6B /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
+		84235B721E6EA18100A81A6B /* FilterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterTableViewController.h; sourceTree = "<group>"; };
+		84235B731E6EA18100A81A6B /* FilterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterTableViewController.m; sourceTree = "<group>"; };
+		84235B781E6EBB7400A81A6B /* TheaterUseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TheaterUseView.xib; sourceTree = "<group>"; };
+		84235B7A1E6EBBE500A81A6B /* DetailDervieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDervieView.h; sourceTree = "<group>"; };
+		84235B7B1E6EBBE500A81A6B /* DetailDervieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDervieView.m; sourceTree = "<group>"; };
 		842E4C551E3304E600888B18 /* APIHelper+Policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Policy.h"; sourceTree = "<group>"; };
 		842E4C561E3304E600888B18 /* APIHelper+Policy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Policy.m"; sourceTree = "<group>"; };
 		843142DA1E68FC9C0007740A /* HeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadCell.h; sourceTree = "<group>"; };
@@ -466,7 +482,7 @@
 		84924F1B1E2CCD62005F05C3 /* HYPaddingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPaddingLabel.h; sourceTree = "<group>"; };
 		84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPaddingLabel.m; sourceTree = "<group>"; };
 		84DE2CA41E6815B5008BD672 /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
-		84DE2CA51E6815B5008BD672 /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
+		84DE2CA51E6815B5008BD672 /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
 		84E5EDBB1E2DC93E0062A2BE /* HYPayEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPayEngine.h; sourceTree = "<group>"; };
 		84E5EDBC1E2DC93E0062A2BE /* HYPayEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPayEngine.m; sourceTree = "<group>"; };
 		84E5EDBF1E2DCADA0062A2BE /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
@@ -875,6 +891,9 @@
 				843142DA1E68FC9C0007740A /* HeadCell.h */,
 				843142DB1E68FC9C0007740A /* HeadCell.m */,
 				843142DC1E68FC9C0007740A /* HeadCell.xib */,
+				84235B671E6E5AE900A81A6B /* MineHeadCell.h */,
+				84235B681E6E5AE900A81A6B /* MineHeadCell.m */,
+				84235B691E6E5AE900A81A6B /* MineHeadCell.xib */,
 				843142E21E69166C0007740A /* FunctionCell.h */,
 				843142E31E69166C0007740A /* FunctionCell.m */,
 				843142E41E69166C0007740A /* FunctionCell.xib */,
@@ -1125,6 +1144,9 @@
 				8472F7401E6D585E000AE550 /* TheaterDetailCell.h */,
 				8472F7411E6D585E000AE550 /* TheaterDetailCell.m */,
 				8472F7421E6D585E000AE550 /* TheaterDetailCell.xib */,
+				84235B781E6EBB7400A81A6B /* TheaterUseView.xib */,
+				84235B7A1E6EBBE500A81A6B /* DetailDervieView.h */,
+				84235B7B1E6EBBE500A81A6B /* DetailDervieView.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1138,6 +1160,8 @@
 				8472F7351E6D410C000AE550 /* TheaterDetailViewController.m */,
 				8472F7371E6D4119000AE550 /* TheaterTicketViewController.h */,
 				8472F7381E6D4119000AE550 /* TheaterTicketViewController.m */,
+				84235B721E6EA18100A81A6B /* FilterTableViewController.h */,
+				84235B731E6EA18100A81A6B /* FilterTableViewController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1493,6 +1517,8 @@
 				84F691281E2C565B0048B6DF /* NSString+json.m */,
 				84F6912A1E2C566E0048B6DF /* NSString+TSRegularExpressionUtil.h */,
 				84F6912B1E2C566E0048B6DF /* NSString+TSRegularExpressionUtil.m */,
+				84235B6C1E6E8E7500A81A6B /* NSString+Extension.h */,
+				84235B6D1E6E8E7500A81A6B /* NSString+Extension.m */,
 				84F6912D1E2C567C0048B6DF /* NSURL+HYURL.h */,
 				84F6912E1E2C567C0048B6DF /* NSURL+HYURL.m */,
 				84F691301E2C568B0048B6DF /* UIStoryboard+HYStoryboard.h */,
@@ -1703,7 +1729,9 @@
 				84E5EE871E2DCADB0062A2BE /* ShareSDK.bundle in Resources */,
 				8472F7291E6D3892000AE550 /* Order.storyboard in Resources */,
 				84E5EE7D1E2DCADB0062A2BE /* ShareSDKUI.bundle in Resources */,
+				84235B791E6EBB7400A81A6B /* TheaterUseView.xib in Resources */,
 				84924F171E2CC926005F05C3 /* sure_placeholder_error@3x.png in Resources */,
+				84235B6B1E6E5AE900A81A6B /* MineHeadCell.xib in Resources */,
 				8472F73F1E6D4684000AE550 /* TheaterListCell.xib in Resources */,
 				843142F81E6953140007740A /* ThemeCell.xib in Resources */,
 				8472F7271E6D388A000AE550 /* Collect.storyboard in Resources */,
@@ -1788,6 +1816,7 @@
 				84E5EE721E2DCADB0062A2BE /* HTEffectHeaderView.m in Sources */,
 				8472F7221E6D383A000AE550 /* CollectViewController.m in Sources */,
 				84924E9F1E2C7CD8005F05C3 /* UIView+Common.m in Sources */,
+				84235B741E6EA18100A81A6B /* FilterTableViewController.m in Sources */,
 				841961301E67C73500A78877 /* UserInfoModel.m in Sources */,
 				84924F191E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m in Sources */,
 				84525A231E2E019D0054C6A1 /* DataVerifier.m in Sources */,
@@ -1800,6 +1829,7 @@
 				8413CECB1E669DF200436B2F /* CustomJumpBtns.m in Sources */,
 				84E6D42A1E4817CD0056A702 /* APIHelper+Home.m in Sources */,
 				843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */,
+				84235B6A1E6E5AE900A81A6B /* MineHeadCell.m in Sources */,
 				84525A391E2E08D20054C6A1 /* APIHelper+User.m in Sources */,
 				84E5EDBD1E2DC93E0062A2BE /* HYPayEngine.m in Sources */,
 				84E5EE9A1E2DED5F0062A2BE /* HttpHelper.m in Sources */,
@@ -1817,6 +1847,7 @@
 				84924EA81E2C7D6B005F05C3 /* UIImage+HYImages.m in Sources */,
 				84F691291E2C565B0048B6DF /* NSString+json.m in Sources */,
 				841961391E67EA3100A78877 /* UIViewController+Extension.m in Sources */,
+				84235B6E1E6E8E7500A81A6B /* NSString+Extension.m in Sources */,
 				84554D911E2F39A6007EE209 /* LoginViewController.m in Sources */,
 				84924EA51E2C7D45005F05C3 /* UIColor+HYColors.m in Sources */,
 				84F691381E2C68700048B6DF /* OpenRoutesManager.m in Sources */,
@@ -1856,6 +1887,7 @@
 				84924E841E2C788B005F05C3 /* WebViewController.m in Sources */,
 				84924EAB1E2C7D7C005F05C3 /* UIImage+HYSize.m in Sources */,
 				84E5EE731E2DCADB0062A2BE /* UIScrollView+EffectHeaderView.m in Sources */,
+				84235B7C1E6EBBE500A81A6B /* DetailDervieView.m in Sources */,
 				84924F181E2CC926005F05C3 /* SurePlaceholderView.m in Sources */,
 				84924F1D1E2CCD62005F05C3 /* HYPaddingLabel.m in Sources */,
 				84F6912C1E2C566E0048B6DF /* NSString+TSRegularExpressionUtil.m in Sources */,
@@ -2085,7 +2117,7 @@
 					"$(PROJECT_DIR)/Base/ThirdParty/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/Base/ThirdParty/XGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xhy.Base;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vipxfx.ios.dumbo;
 				PRODUCT_MODULE_NAME = Base;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2148,7 +2180,7 @@
 					"$(PROJECT_DIR)/Base/ThirdParty/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/Base/ThirdParty/XGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = xhy.Base;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vipxfx.ios.dumbo;
 				PRODUCT_MODULE_NAME = Base;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/admin/Desktop/LittleElephant/Base/Business/SwiftExtension/Base-Bridging-Header.h";

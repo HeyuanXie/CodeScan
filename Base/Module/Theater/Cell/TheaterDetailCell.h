@@ -10,6 +10,13 @@
 
 @interface TheaterDetailCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *unfoldBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *unfoldBtnHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *botViewHeight;
+@property(nonatomic,copy)void (^unfoldBtnClick)();
+
+
+
 +(NSString*)identify;
 -(void)configTopCell:(id)model;
 

@@ -20,6 +20,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uwO-Lh-TvO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
+                        <color key="backgroundColor" red="0.41960784313725491" green="0.70196078431372544" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="saq-hP-5ng">
                         <rect key="frame" x="12" y="0.0" width="351" height="48"/>
                         <subviews>
@@ -65,13 +69,18 @@
                 <color key="backgroundColor" red="0.74509803919999995" green="0.87058823529999996" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="saq-hP-5ng" secondAttribute="bottom" id="4Cc-sf-JA0"/>
+                    <constraint firstItem="uwO-Lh-TvO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="4uZ-sm-QIX"/>
                     <constraint firstAttribute="trailing" secondItem="saq-hP-5ng" secondAttribute="trailing" constant="12" id="DWG-Ux-6QC"/>
+                    <constraint firstItem="uwO-Lh-TvO" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.5" id="Gks-Aj-fuN"/>
+                    <constraint firstItem="uwO-Lh-TvO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="LXT-ps-yaY"/>
                     <constraint firstItem="saq-hP-5ng" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="OmH-eA-4xf"/>
                     <constraint firstItem="saq-hP-5ng" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aqb-zn-9wP"/>
+                    <constraint firstAttribute="trailing" secondItem="uwO-Lh-TvO" secondAttribute="trailing" id="fzm-aC-oYL"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="backView" destination="saq-hP-5ng" id="zlu-cm-uY8"/>
+                <outlet property="blueView" destination="uwO-Lh-TvO" id="NG0-hN-qvO"/>
                 <outlet property="imgV" destination="gCl-eR-ueo" id="5lV-ys-Cvw"/>
                 <outlet property="titleLbl" destination="K5n-23-yCc" id="HIE-jr-utv"/>
             </connections>

@@ -16,5 +16,7 @@ pod 'SMPageControl'
 pod 'UITableView+FDTemplateLayoutCell', '~> 1.4'
 pod 'UMengAnalytics-NO-IDFA'
 pod 'YYModel'
+pod 'IQKeyboardManager'
+
 
 end

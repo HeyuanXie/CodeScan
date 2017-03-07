@@ -27,7 +27,7 @@
     //UI init
     [self verifyLogin];
     [self configUIAppearance];
-    
+    [self configIQKeyBoardManager];
     
     return YES;
 }

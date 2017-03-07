@@ -12,6 +12,7 @@
 #import "BaseViewController.h"
 #import "APIHelper+User.h"
 #import "UIImage+HYImages.h"
+#import <IQKeyboardManager.h>
 
 NS_ENUM(NSUInteger, TabType) {
     TabTypeHome = 0,
@@ -25,10 +26,8 @@ NS_ENUM(NSUInteger, TabType) {
 -(void)verifyLogin {
     //...
     if (kAccount != nil && kPassword != nil) {
-        [APIHELPER loginAccount:kAccount password:kPassword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-            if (isSuccess) {
-                NSLog(@"autoLoginSuccess");
-            }
+        [APIHELPER login:kAccount password:kPassword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            
         }];
     }
     [self configTabbar];
@@ -103,5 +102,11 @@ NS_ENUM(NSUInteger, TabType) {
     }
 }
 
+
+-(void)configIQKeyBoardManager  {
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
+}
 
 @end

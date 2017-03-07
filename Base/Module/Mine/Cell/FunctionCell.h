@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgV;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UIView *backView;
+@property (weak, nonatomic) IBOutlet UIView *blueView;
 
 +(NSString*)identify;
 -(void)configFunctionCell:(id)model;

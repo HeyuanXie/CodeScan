@@ -9,15 +9,18 @@
 #import "TheaterListViewController.h"
 #import "HYAddressController.h"
 #import "BaseNavigationController.h"
-
+#import "FilterTableViewController.h"
 #import "TheaterListCell.h"
 
 @interface TheaterListViewController ()
 
 @property(nonatomic,strong)UIButton *addressBtn;
 @property(nonatomic,strong)UIButton *filterBtn;
+@property(nonatomic,strong)UIView *backGrayView;
 @property(nonatomic,strong)BaseNavigationController* addressNVC;
+@property(nonatomic,strong)FilterTableViewController* filterVC;
 
+@property(nonatomic,assign)NSInteger currentIndex;
 @property(nonatomic,strong)NSMutableArray* dataArray;
 
 @end
@@ -120,6 +123,25 @@
     }
 }
 
+- (UIView *)backGrayView {
+    if (_backGrayView == nil) {
+        _backGrayView = [[UIView alloc] initWithFrame:CGRectMake(0, zoom(45), kScreen_Width, kScreen_Height-zoom(45))];
+        _backGrayView.backgroundColor = [UIColor hyBlackTextColor];
+        _backGrayView.alpha = 0.4;
+        [_backGrayView bk_whenTapped:^{
+            [self hideFilterView:self.filterBtn];
+        }];
+    }
+    return _backGrayView;
+}
+
+- (FilterTableViewController *)filterVC {
+    if (!_filterVC) {
+        _filterVC = (FilterTableViewController*)VIEWCONTROLLER(kFilterTableViewController);
+    }
+    return _filterVC;
+}
+
 -(BaseNavigationController *)addressNVC {
     if (!_addressNVC) {
         HYAddressController *addressC = (HYAddressController *)VIEWCONTROLLER(kAddressController);
@@ -129,6 +151,7 @@
             @strongify(self);
             [self.addressBtn setTitle:areaName forState:UIControlStateNormal];
             [self hiddenFilterAddress];
+            //TODO:fetchData
         }];
         [addressC setFilterDismiss:^{
             @strongify(self);
@@ -146,6 +169,7 @@
 }
 
 - (void)filterAddress:(UIButton *)button{
+    [self hideFilterView:self.filterBtn];
     if (self.addressNVC.view.superview) {
         //如果self.addressNVC已经加载，点击后移除self.addressNVC
         [self hiddenFilterAddress];
@@ -156,8 +180,7 @@
     [self.view addSubview:self.addressNVC.view];
     [self.view bringSubviewToFront:self.addressNVC.view];
     [self.addressNVC popToRootViewControllerAnimated:NO];
-    self.addressNVC.view.frame = CGRectMake(0, 0, kScreen_Width, kScreen_Height-44);
-    [self.addressNVC.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [self.addressNVC.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(zoom(45), 0, -44, 0)];
     [UIView animateWithDuration:0.3 animations:^{
         self.addressNVC.view.alpha = 1.0;
     } completion:^(BOOL finished) {
@@ -176,7 +199,47 @@
 }
 
 - (void)showFilterView:(UIButton *)btn {
+    [self hiddenFilterAddress];
+    if (self.filterVC.view.superview) {
+        [self hideFilterView:self.filterBtn];
+        return;
+    }
+    [self.filterBtn setImage:ImageNamed(@"up") forState:UIControlStateNormal];
+    self.filterBtn.enabled = NO;
+    [self.view addSubview:self.backGrayView];
+    [self addChildViewController:self.filterVC];
+    [self.view addSubview:self.filterVC.view];
+    [self.view bringSubviewToFront:self.filterVC.view];
+    self.filterVC.view.frame = CGRectMake(0, zoom(44)-240, kScreen_Width, 240);
+    self.filterVC.view.hidden = YES;
+    self.filterVC.currentIndex = self.currentIndex;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.filterVC.view.frame = CGRectMake(0, zoom(45), kScreen_Width, 240);
+        self.filterVC.view.hidden = NO;
+    } completion:^(BOOL finished) {
+        self.filterBtn.enabled = YES;
+    }];
     
+    @weakify(self);
+    [self.filterVC setSelectIndex:^(NSInteger index) {
+        @strongify(self);
+        [self hideFilterView:self.filterBtn];
+        self.currentIndex = index;
+        //TODO:fetchData
+    }];
+}
+
+- (void)hideFilterView:(UIButton *)btn {
+    [self.backGrayView removeFromSuperview];
+    self.filterBtn.enabled = NO;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.filterVC.view.frame = CGRectMake(0, zoom(44)-240, kScreen_Width, 240);
+        self.filterVC.view.hidden = YES;
+    } completion:^(BOOL finished) {
+        self.filterBtn.enabled = YES;
+    }];
+    [self.filterVC.view removeFromSuperview];
+    [self.filterVC removeFromParentViewController];
 }
 
 @end

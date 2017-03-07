@@ -16,4 +16,6 @@
 
 - (void)verifyLogin;
 
+- (void)configIQKeyBoardManager;
+
 @end

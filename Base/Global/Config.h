@@ -11,7 +11,7 @@
 
 ////////////////////////////////////////////////////////////////
 //服务器地址配置
-#define DEFAULT_SERVER @"https://talent.ssl.gov.cn"
+#define DEFAULT_SERVER @"http://api.xfx.zhimadi.cn"
 #define DEFAULT_END_POINT @"/"
 #define DEFAULT_PATH @"api"
 

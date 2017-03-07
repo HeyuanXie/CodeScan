@@ -127,6 +127,7 @@
                 <outlet property="waitEvaluateLbl" destination="Jzv-ML-ZiE" id="0Ol-CF-hsZ"/>
                 <outlet property="waitUseLbl" destination="Bfw-n0-0iK" id="EzC-PQ-gTe"/>
             </connections>
+            <point key="canvasLocation" x="-257" y="19"/>
         </tableViewCell>
     </objects>
     <resources>

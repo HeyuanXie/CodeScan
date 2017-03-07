@@ -16,6 +16,7 @@ NSString* const kMineHomeViewController = @"MineHomeViewController";
 NSString* const kTheaterListViewController = @"TheaterListViewController";
 NSString* const kTheaterDetailViewController = @"TheaterDetailViewController";
 NSString* const kTheaterTicketViewController = @"TheaterTicketViewController";
+NSString* const kFilterViewController = @"FilterViewController";
 
 NSString* const kRegistViewController = @"RegistViewController";
 NSString* const kFinishRegisterController = @"FinishRegisterController";
@@ -30,7 +31,7 @@ NSString* const kSearchGuideController = @"SearchGuideController";
 NSString* const kFilterClassTableViewController = @"FilterClassTableViewController";
 NSString* const kModifyPWController = @"ModifyPWController";
 NSString* const kAddressController = @"HYAddressController";
-NSString* const kFilterController = @"FilterController";
+NSString* const kFilterTableViewController = @"FilterTableViewController";
 
 @implementation OpenRoutesManager
 
@@ -59,7 +60,8 @@ NSString* const kFilterController = @"FilterController";
                         @{@"cls":kTheaterListViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterDetailViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterTicketViewController,@"sb":@"Main",@"method":@"push"},
-                        
+                        @{@"cls":kFilterTableViewController,@"sb":@"Main",@"method":@"push"},
+
                         @{@"cls":kRegistViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kFinishRegisterController,@"sb":@"Login",@"method":@"push"},
@@ -73,7 +75,6 @@ NSString* const kFilterController = @"FilterController";
                         @{@"cls":kFilterClassTableViewController,@"sb":@"Policy",@"method":@"push"},
                         @{@"cls":kModifyPWController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kAddressController,@"sb":@"Login",@"method":@"push"},
-                        @{@"cls":kFilterController,@"sb":@"Policy",@"method":@"push"},
                         ];
     return routes;
 }
