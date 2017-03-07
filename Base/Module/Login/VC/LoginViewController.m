@@ -44,9 +44,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (void)viewWillLayoutSubviews {
-//    self.view.frame = CGRectMake(0, 0, kScreen_Width, kScreen_Height);
-//}
 
 - (void)subviewStyle {
     self.title = @"登陆";

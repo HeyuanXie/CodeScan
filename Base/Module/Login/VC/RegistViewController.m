@@ -10,6 +10,22 @@
 
 @interface RegistViewController ()
 
+@property (weak, nonatomic) IBOutlet UIView *phoneView;
+@property (weak, nonatomic) IBOutlet UIView *codeView;
+@property (weak, nonatomic) IBOutlet UIView *passwordView;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTf;
+@property (weak, nonatomic) IBOutlet UITextField *codeTf;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTf;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *getCodeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *eyeBtn;
+
+@property (weak, nonatomic) IBOutlet UIView *otherLoginView;
+@property (weak, nonatomic) IBOutlet UIView *weixinView;
+@property (weak, nonatomic) IBOutlet UIImageView *qqView;
+@property (weak, nonatomic) IBOutlet UIImageView *weiboView;
+
 @end
 
 @implementation RegistViewController
@@ -19,13 +35,19 @@
     // Do any additional setup after loading the view.
 }
 
-//-(void)viewWillLayoutSubviews {
-//    self.view.frame = CGRectMake(0, 0, kScreen_Width, kScreen_Height);
-//}
+-(void)awakeFromNib {
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)regiest:(id)sender {
+    
+}
+- (IBAction)login:(id)sender {
+    
 }
 
 /*
