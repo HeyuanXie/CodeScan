@@ -7,6 +7,7 @@
 //
 
 #import "RegistViewController.h"
+#import "APIHelper+User.h"
 
 @interface RegistViewController ()
 
@@ -36,7 +37,15 @@
 }
 
 -(void)awakeFromNib {
+    [super awakeFromNib];
+    for (UIView* view in @[self.phoneView,self.codeView,self.passwordView]) {
+        UIView* line = [HYTool getLineWithFrame:CGRectZero lineColor:[UIColor whiteColor]];
+        [view addSubview:line];
+        [line autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 35, 0, 0) excludingEdge:ALEdgeTop];
+        [line autoSetDimension:ALDimensionHeight toSize:0.5];
+    }
     
+    self.otherLoginView.hidden = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,10 +53,24 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)regiest:(id)sender {
-    
+    if ([self.phoneTf.text isEqualToString:@""]) {
+        [MBProgressHUD hy_showMessage:@"请输入手机号" inView:self.view];
+        return;
+    }
+    if ([self.codeTf.text isEqualToString:@""]) {
+        [MBProgressHUD hy_showMessage:@"请输入验证码" inView:self.view];
+        return;
+    }
+    if ([self.passwordTf.text isEqualToString:@""]) {
+        [MBProgressHUD hy_showMessage:@"请输入密码" inView:self.view];
+        return;
+    }
+    [MBProgressHUD hy_showLoadingHUDAddedTo:self.view animated:YES];
+    //TODO:注册
+//    [APIHELPER ]
 }
 - (IBAction)login:(id)sender {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /*
