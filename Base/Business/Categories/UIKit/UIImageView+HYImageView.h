@@ -12,4 +12,6 @@
 
 - (void)setBorderedStyle;
 
+- (void)setBlurEffectStyle:(UIBlurEffectStyle)style;
+
 @end

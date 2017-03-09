@@ -18,6 +18,14 @@ NSString* const kTheaterDetailViewController = @"TheaterDetailViewController";
 NSString* const kTheaterTicketViewController = @"TheaterTicketViewController";
 NSString* const kFilterViewController = @"FilterViewController";
 
+NSString* const kLectureListController = @"LectureListController";
+NSString* const kLectureDetailController = @"LectureDetailController";
+NSString* const kLectureApplyController = @"LectureApplyController";
+
+NSString* const kYearCardHomeController = @"YearCardHomeController";
+NSString* const kYearCardBindSuccessController = @"YearCardBindSuccessController";
+
+
 NSString* const kRegistViewController = @"RegistViewController";
 NSString* const kFinishRegisterController = @"FinishRegisterController";
 NSString* const kLoginViewController = @"LoginViewController";
@@ -61,6 +69,13 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
                         @{@"cls":kTheaterDetailViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterTicketViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kFilterTableViewController,@"sb":@"Main",@"method":@"push"},
+                        
+                        @{@"cls":kLectureListController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kLectureDetailController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kLectureApplyController,@"sb":@"Main",@"method":@"push"},
+
+                        @{@"cls":kYearCardHomeController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kYearCardBindSuccessController,@"sb":@"Main",@"method":@"push"},
 
                         @{@"cls":kRegistViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"push"},

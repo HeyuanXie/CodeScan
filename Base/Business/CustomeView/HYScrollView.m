@@ -35,13 +35,13 @@
         self.carousel.scrollSpeed = 6;
         self.carousel.pagingEnabled = YES;
         
-        self.imageViewSize = CGSizeMake(kScreen_Width, 200);
+        self.imageViewSize = CGSizeMake(kScreen_Width, _rollView.frame.size.height);
         
         [_rollView addSubview:self.carousel];
         
         self.pageControl = [[UIPageControl alloc] init];
         self.pageControl.numberOfPages = _dataArray.count;
-        self.pageControl.center = CGPointMake(_rollView.center.x, _rollView.frame.size.height - 10);
+        self.pageControl.center = CGPointMake(_rollView.center.x, _rollView.frame.size.height - 20);
         
         [_rollView addSubview:self.pageControl];
         

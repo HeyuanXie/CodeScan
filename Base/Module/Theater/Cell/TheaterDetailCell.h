@@ -12,8 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *unfoldBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *unfoldBtnHeight;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *botViewHeight;
-@property(nonatomic,copy)void (^unfoldBtnClick)();
+@property (nonatomic,copy)void (^unfoldBtnClick)();
+@property (nonatomic,assign)BOOL isFold;
 
 
 

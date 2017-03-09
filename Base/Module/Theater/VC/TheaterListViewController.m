@@ -53,7 +53,7 @@
     [HYTool configTableViewCellDefault:cell];
     //TODO:
     [cell setTicketBtnClick:^(id model) {
-        
+        APPROUTE(kTheaterTicketViewController);
     }];
     [cell configTheaterListCell:nil];
     return cell;

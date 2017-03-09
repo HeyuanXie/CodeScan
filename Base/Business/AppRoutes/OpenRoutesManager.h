@@ -18,6 +18,18 @@ extern NSString* const kTheaterListViewController;
 extern NSString* const kTheaterDetailViewController;
 extern NSString* const kTheaterTicketViewController;
 
+extern NSString* const kLectureListController;
+extern NSString* const kLectureDetailController;
+extern NSString* const kLectureApplyController;
+
+extern NSString* const kYearCardHomeController;
+extern NSString* const kYearCardBindSuccessController;
+
+
+
+
+
+
 
 extern NSString* const kRegistViewController;
 extern NSString* const kFinishRegisterController;

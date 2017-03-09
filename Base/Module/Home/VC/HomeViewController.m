@@ -18,6 +18,7 @@
 #import "ThemeCell.h"
 #import "HomeVideoCell.h"
 #import "HomeHotCell.h"
+#import "RecentHotView.h"
 
 #import "UITableViewCell+HYCell.h"
 
@@ -64,7 +65,6 @@
     
     self.info = @[@{@"section":@(0),@"title":@"轮播"},
                   @{@"section":@(1),@"title":@"近期上演"},
-                  @{@"section":@(2),@"title":@"亲自年卡"},
                   @{@"section":@(3),@"title":@"主题活动"},
                   @{@"section":@(4),@"title":@"精选视频"},
                   @{@"section":@(5),@"title":@"热门衍生品"}];
@@ -76,42 +76,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)effectInit {
-    [self addSearchBar];
-    
-    self.leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.leftBtn.frame = CGRectMake(0, 0, 60, 32);
-    [_leftBtn setImage:[UIImage imageNamed:@"dinwei01"] forState:UIControlStateNormal];
-    [_leftBtn setTitle:@"未定位" forState:UIControlStateNormal];
-    [_leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    _leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-    _leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
-    [_leftBtn addTarget:self action:@selector(filterAddress:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* leftItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftBtn];
-    self.navigationItem.leftBarButtonItem = leftItem;
-    
-    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"message"] style:UIBarButtonItemStylePlain target:self action:@selector(message)];
-    self.navigationItem.rightBarButtonItem = rightItem;
-    
-    UIView* footerView = [[NSBundle mainBundle] loadNibNamed:@"HomeUseView" owner:self options:nil][2];
-    self.tableView.tableFooterView = footerView;
-}
-
--(void)fetchData {
-    [self showLoadingAnimation];
-    @weakify(self);
-    [APIHELPER fetchHomePageData:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-        @strongify(self);
-        [self hideLoadingAnimation];
-        if (isSuccess) {
-            [self.tableView reloadData];
-        }else{
-             [self showMessage:responseObject[@"msg"]];
-        }
-    }];
 }
 
 #pragma mark- event function
@@ -204,13 +168,16 @@
             case 0:
                 APPROUTE(kTheaterListViewController);
                 break;
-                
+            case 1:
+                APPROUTE(kLectureListController);
+            case 2:
+                APPROUTE(kYearCardHomeController);
             default:
                 break;
         }
     }];
     if (!_banner) {
-        _banner = [[HYScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 128)];
+        _banner = [[HYScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 120)];
         _banner.pageControl.pageIndicatorTintColor = [UIColor hyViewBackgroundColor];
         _banner.pageControl.currentPageIndicatorTintColor = [UIColor hyBarTintColor];
     }
@@ -219,6 +186,7 @@
         [images addObject:slide[@"img"]];
     }
     _banner.dataArray = images;
+    _banner.dataArray = @[@"http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg",@"http://pic55.nipic.com/file/20141208/19462408_171130083000_2.jpg",@"http://pic48.nipic.com/file/20140916/2531170_224158439000_2.jpg"];
     @weakify(self);
     _banner.clickAction = ^(NSInteger index,NSArray* dataArray){
         @strongify(self);
@@ -234,7 +202,22 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         [HYTool configTableViewCellDefault:cell];
+        
+        UIScrollView* scroll = [[UIScrollView alloc] init];
+        scroll.tag = 1000;
+        [cell.contentView addSubview:scroll];
+        scroll.showsHorizontalScrollIndicator = NO;
+        [scroll autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     }
+    UIScrollView* scroll = (UIScrollView*)[cell.contentView viewWithTag:1000];
+    for (int i=0; i<5; i++) {
+        RecentHotView* hotView = LOADNIB(@"HomeUseView", 0);
+        [scroll addSubview:hotView];
+        [hotView autoSetDimensionsToSize:[RecentHotView homeSize]];
+        [hotView autoPinEdgeToSuperviewEdge:ALEdgeTop];
+        [hotView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10+(147+10)*i];
+    }
+    scroll.contentSize = CGSizeMake(5*(10+147)+10, 0);
     return cell;
     
 }
@@ -277,7 +260,7 @@
         case 0:
             return 210;
         case 1:
-            return 257;
+            return 240;//257;
         case 2:
             return 125;
         case 3:
@@ -297,6 +280,42 @@
 
 
 #pragma mark- private Method
+-(void)effectInit {
+    [self addSearchBar];
+    
+    self.leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.leftBtn.frame = CGRectMake(0, 0, 60, 32);
+    [_leftBtn setImage:[UIImage imageNamed:@"dinwei01"] forState:UIControlStateNormal];
+    [_leftBtn setTitle:@"未定位" forState:UIControlStateNormal];
+    [_leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    _leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+    _leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+    [_leftBtn addTarget:self action:@selector(filterAddress:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* leftItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftBtn];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"message"] style:UIBarButtonItemStylePlain target:self action:@selector(message)];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+    UIView* footerView = [[NSBundle mainBundle] loadNibNamed:@"HomeUseView" owner:self options:nil][2];
+    self.tableView.tableFooterView = footerView;
+}
+
+-(void)fetchData {
+//    [self showLoadingAnimation];
+//    @weakify(self);
+//    [APIHELPER fetchHomePageData:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+//        @strongify(self);
+//        [self hideLoadingAnimation];
+//        if (isSuccess) {
+//            [self.tableView reloadData];
+//        }else{
+//            [self showMessage:responseObject[@"msg"]];
+//        }
+//    }];
+}
+
 -(BaseNavigationController *)addressNVC {
     if (!_addressNVC) {
         HYAddressController *addressC = (HYAddressController *)VIEWCONTROLLER(kAddressController);

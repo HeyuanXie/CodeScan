@@ -70,6 +70,8 @@
 #define PB(obj) @property(nonatomic,assign) BOOL obj
 #define PN(obj) @property(nonatomic,copy) NSString* obj
 
+#define LOADNIB(nibName,index) [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil][index]
+
 //MARK:-判断机型和系统
 #define isiOS7Later (floor(NSFoundationVersionNumber) >= floor(NSFoundationVersionNumber_iOS_7_0))
 #define isiOS8Later (floor(NSFoundationVersionNumber) >= floor(NSFoundationVersionNumber_iOS_8_0))

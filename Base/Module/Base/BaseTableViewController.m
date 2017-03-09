@@ -31,7 +31,7 @@
     self.tableView.backgroundColor = [UIColor hyViewBackgroundColor];
     self.tableView.backgroundView = nil;
     self.tableView.showsHorizontalScrollIndicator = NO;
-    self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.tableFooterView = [[UIView alloc] init];

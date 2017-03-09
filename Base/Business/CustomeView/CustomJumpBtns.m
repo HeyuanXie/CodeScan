@@ -7,6 +7,7 @@
 //
 
 #import "CustomJumpBtns.h"
+#import "NSString+Extension.h"
 
 @implementation CustomJumpBtns
 
@@ -52,11 +53,10 @@
         [UIView animateWithDuration:0.2 animations:^{
             CGRect selectBtnFrame = self.selectBtn.frame;
             if (self.isLineAdaptText) {
-                //TODO:这里sizeWithFont替换成NSString+extension里方法
-                CGSize size = [self.selectBtn.titleLabel.text sizeWithFont:([UIFont systemFontOfSize:self.btnTextSize])];
+                CGSize size = [self.selectBtn.titleLabel.text sizeWithFont:[UIFont systemFontOfSize:self.btnTextSize] maxWidth:MAXFLOAT];
                 self.botLine.frame = CGRectMake(CGRectGetMinX(selectBtnFrame) + (CGRectGetWidth(selectBtnFrame)-size.width)/2, CGRectGetHeight(self.frame)-3.5, size.width, 3.5);
             }else{
-                self.botLine.frame = CGRectMake(CGRectGetMinX(selectBtnFrame), CGRectGetHeight(self.frame)-3.5, kScreen_Width/menuTitles.count, 3.5);
+                self.botLine.frame = CGRectMake(CGRectGetMinX(selectBtnFrame), CGRectGetHeight(self.frame)-3.5, self.frame.size.width/menuTitles.count, 3.5);
             }
         }];
         if (self.finished) {
@@ -65,7 +65,7 @@
     };
 
     int i = 0;
-    CGFloat width = kScreen_Width/menuTitles.count,height = CGRectGetHeight(self.frame) - 3.5;
+    CGFloat width = self.frame.size.width/menuTitles.count,height = CGRectGetHeight(self.frame) - 3.5;
     for (NSString* title in menuTitles) {
         CGFloat x = i * width;
         UIButton* btn = [HYTool getButtonWithFrame:CGRectMake(x, 0, width, height) title:title titleSize:self.btnTextSize titleColor:self.textColorForNormal backgroundColor:[UIColor clearColor] blockForClick:^(id sender) {

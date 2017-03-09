@@ -7,10 +7,12 @@
 //
 
 #import "TheaterDetailCell.h"
+#import "UIImageView+HYImageView.h"
 
 @interface TheaterDetailCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgV;
+@property (weak, nonatomic) IBOutlet UIImageView *backImgV;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UIView *scoreView;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLbl;
@@ -44,12 +46,15 @@
     [mAttStr addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, self.descriptionLbl.text.length)];
     self.descriptionLbl.attributedText = mAttStr;
     self.descriptionLbl.lineBreakMode = NSLineBreakByTruncatingTail;
+    
+    self.descriptionLbl.numberOfLines = self.isFold ? 4 : 0;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.statuLbl.backgroundColor = [self.statuLbl.backgroundColor colorWithAlphaComponent:0.4];
+    self.statuLbl.backgroundColor = [self.statuLbl.backgroundColor colorWithAlphaComponent:0.5];
+//    [self.backImgV setBlurEffectStyle:UIBlurEffectStyleRegular];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

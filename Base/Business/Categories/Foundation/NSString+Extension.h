@@ -19,4 +19,7 @@
 //属性字符串
 -(NSAttributedString*)attributedStringWithString:(NSString*)string andWithColor:(UIColor*)color;
 -(NSAttributedString*)attributedStringWithStrings:(NSArray*) strings andWithColors:(NSArray*)colors;
+
+-(NSMutableAttributedString*)addAttribute:(NSArray *)attributes values:(NSArray *)values subStrings:(NSArray *)subStrings;
+
 @end

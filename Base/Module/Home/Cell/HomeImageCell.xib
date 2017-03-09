@@ -204,6 +204,10 @@
                 <outlet property="botView" destination="GAk-gO-veF" id="v4h-qy-3Dy"/>
                 <outlet property="topView" destination="xd7-zW-vVK" id="CU7-cP-jz8"/>
                 <outletCollection property="botSubViews" destination="KTa-kn-nw8" id="Cof-If-BJH"/>
+                <outletCollection property="botSubViews" destination="tv7-Mf-iqt" id="QnP-fD-Qr3"/>
+                <outletCollection property="botSubViews" destination="hOl-1i-KEX" id="emy-o3-RUt"/>
+                <outletCollection property="botSubViews" destination="Qq7-V3-KDZ" id="glM-uz-DSD"/>
+                <outletCollection property="botSubViews" destination="0X9-ye-BFE" id="mjO-MR-kNq"/>
             </connections>
             <point key="canvasLocation" x="-72.5" y="-44"/>
         </tableViewCell>

@@ -38,6 +38,12 @@
 		843143021E695BD70007740A /* HomeHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843143001E695BD70007740A /* HomeHotCell.xib */; };
 		843143051E6965770007740A /* HomeVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 843143041E6965770007740A /* HomeVideoView.m */; };
 		843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA2221E30B14100DAE1FF /* UIViewExtension.swift */; };
+		844343DE1E6FA02D00D9FD2F /* yazi.png in Resources */ = {isa = PBXBuildFile; fileRef = 844343DD1E6FA02D00D9FD2F /* yazi.png */; };
+		844343E21E6FD39600D9FD2F /* TheaterTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 844343E01E6FD39600D9FD2F /* TheaterTicketCell.m */; };
+		844343E31E6FD39600D9FD2F /* TheaterTicketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844343E11E6FD39600D9FD2F /* TheaterTicketCell.xib */; };
+		844343E61E70008800D9FD2F /* LectureListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844343E51E70008800D9FD2F /* LectureListController.m */; };
+		844343EA1E70018300D9FD2F /* LectureListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 844343E81E70018300D9FD2F /* LectureListCell.m */; };
+		844343EB1E70018300D9FD2F /* LectureListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844343E91E70018300D9FD2F /* LectureListCell.xib */; };
 		845259A91E2DFDAF0054C6A1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845259A81E2DFDAF0054C6A1 /* SystemConfiguration.framework */; };
 		845259AB1E2DFE170054C6A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845259AA1E2DFE170054C6A1 /* Foundation.framework */; };
 		845259AD1E2DFE230054C6A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 845259AC1E2DFE230054C6A1 /* UIKit.framework */; };
@@ -157,6 +163,22 @@
 		84E5EE941E2DCDEC0062A2BE /* APIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5EE931E2DCDEC0062A2BE /* APIHelper.m */; };
 		84E5EE9A1E2DED5F0062A2BE /* HttpHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5EE991E2DED5F0062A2BE /* HttpHelper.m */; };
 		84E6D42A1E4817CD0056A702 /* APIHelper+Home.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E6D4291E4817CD0056A702 /* APIHelper+Home.m */; };
+		84E74BC21E70E44300016A99 /* LectureApplyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74BC11E70E44300016A99 /* LectureApplyController.m */; };
+		84E74BC51E70E4C100016A99 /* LectureDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74BC41E70E4C100016A99 /* LectureDetailController.m */; };
+		84E74BC91E70E90B00016A99 /* LectureDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74BC71E70E90B00016A99 /* LectureDetailTopCell.m */; };
+		84E74BCA1E70E90B00016A99 /* LectureDetailTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E74BC81E70E90B00016A99 /* LectureDetailTopCell.xib */; };
+		84E74BCE1E70F0B200016A99 /* LectureDescCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74BCC1E70F0B200016A99 /* LectureDescCell.m */; };
+		84E74BCF1E70F0B200016A99 /* LectureDescCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E74BCD1E70F0B200016A99 /* LectureDescCell.xib */; };
+		84E74BD31E70F0E600016A99 /* LectureApplyerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74BD11E70F0E600016A99 /* LectureApplyerCell.m */; };
+		84E74BD41E70F0E600016A99 /* LectureApplyerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E74BD21E70F0E600016A99 /* LectureApplyerCell.xib */; };
+		84E74BDD1E71305400016A99 /* ApplyTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74BDB1E71305400016A99 /* ApplyTitleCell.m */; };
+		84E74BDE1E71305400016A99 /* ApplyTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E74BDC1E71305400016A99 /* ApplyTitleCell.xib */; };
+		84E74BE21E7132F500016A99 /* ApplyCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74BE01E7132F500016A99 /* ApplyCommonCell.m */; };
+		84E74BE31E7132F500016A99 /* ApplyCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84E74BE11E7132F500016A99 /* ApplyCommonCell.xib */; };
+		84E74BF81E71567100016A99 /* YearCardHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74BF71E71567100016A99 /* YearCardHomeController.m */; };
+		84E74C011E71574400016A99 /* YearCardOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74C001E71574400016A99 /* YearCardOrderController.m */; };
+		84E74C071E71595700016A99 /* YearCardBindSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74C061E71595700016A99 /* YearCardBindSuccessController.m */; };
+		84E74C0A1E715DC800016A99 /* YearCardBindController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74C091E715DC800016A99 /* YearCardBindController.m */; };
 		84ECF01B1E2F57DD00F5DA7E /* UITableViewCell+HYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ECF01A1E2F57DD00F5DA7E /* UITableViewCell+HYCell.m */; };
 		84ECF01F1E2F595B00F5DA7E /* HYTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ECF01E1E2F595B00F5DA7E /* HYTool.m */; };
 		84EF70771E4AC18D0098A606 /* HYScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EF70761E4AC18D0098A606 /* HYScrollView.m */; };
@@ -256,6 +278,15 @@
 		843143041E6965770007740A /* HomeVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVideoView.m; sourceTree = "<group>"; };
 		843AA21D1E30B12D00DAE1FF /* Base-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Base-Bridging-Header.h"; sourceTree = "<group>"; };
 		843AA2221E30B14100DAE1FF /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		844343DD1E6FA02D00D9FD2F /* yazi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yazi.png; sourceTree = "<group>"; };
+		844343DF1E6FD39600D9FD2F /* TheaterTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterTicketCell.h; sourceTree = "<group>"; };
+		844343E01E6FD39600D9FD2F /* TheaterTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterTicketCell.m; sourceTree = "<group>"; };
+		844343E11E6FD39600D9FD2F /* TheaterTicketCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TheaterTicketCell.xib; sourceTree = "<group>"; };
+		844343E41E70008800D9FD2F /* LectureListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureListController.h; sourceTree = "<group>"; };
+		844343E51E70008800D9FD2F /* LectureListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureListController.m; sourceTree = "<group>"; };
+		844343E71E70018300D9FD2F /* LectureListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureListCell.h; sourceTree = "<group>"; };
+		844343E81E70018300D9FD2F /* LectureListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureListCell.m; sourceTree = "<group>"; };
+		844343E91E70018300D9FD2F /* LectureListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureListCell.xib; sourceTree = "<group>"; };
 		845259A81E2DFDAF0054C6A1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		845259AA1E2DFE170054C6A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		845259AC1E2DFE230054C6A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -546,6 +577,33 @@
 		84E5EE991E2DED5F0062A2BE /* HttpHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpHelper.m; sourceTree = "<group>"; };
 		84E6D4281E4817CD0056A702 /* APIHelper+Home.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Home.h"; sourceTree = "<group>"; };
 		84E6D4291E4817CD0056A702 /* APIHelper+Home.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Home.m"; sourceTree = "<group>"; };
+		84E74BC01E70E44300016A99 /* LectureApplyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureApplyController.h; sourceTree = "<group>"; };
+		84E74BC11E70E44300016A99 /* LectureApplyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureApplyController.m; sourceTree = "<group>"; };
+		84E74BC31E70E4C100016A99 /* LectureDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureDetailController.h; sourceTree = "<group>"; };
+		84E74BC41E70E4C100016A99 /* LectureDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureDetailController.m; sourceTree = "<group>"; };
+		84E74BC61E70E90B00016A99 /* LectureDetailTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureDetailTopCell.h; sourceTree = "<group>"; };
+		84E74BC71E70E90B00016A99 /* LectureDetailTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureDetailTopCell.m; sourceTree = "<group>"; };
+		84E74BC81E70E90B00016A99 /* LectureDetailTopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureDetailTopCell.xib; sourceTree = "<group>"; };
+		84E74BCB1E70F0B200016A99 /* LectureDescCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureDescCell.h; sourceTree = "<group>"; };
+		84E74BCC1E70F0B200016A99 /* LectureDescCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureDescCell.m; sourceTree = "<group>"; };
+		84E74BCD1E70F0B200016A99 /* LectureDescCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureDescCell.xib; sourceTree = "<group>"; };
+		84E74BD01E70F0E600016A99 /* LectureApplyerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LectureApplyerCell.h; sourceTree = "<group>"; };
+		84E74BD11E70F0E600016A99 /* LectureApplyerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LectureApplyerCell.m; sourceTree = "<group>"; };
+		84E74BD21E70F0E600016A99 /* LectureApplyerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LectureApplyerCell.xib; sourceTree = "<group>"; };
+		84E74BDA1E71305400016A99 /* ApplyTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyTitleCell.h; sourceTree = "<group>"; };
+		84E74BDB1E71305400016A99 /* ApplyTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyTitleCell.m; sourceTree = "<group>"; };
+		84E74BDC1E71305400016A99 /* ApplyTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplyTitleCell.xib; sourceTree = "<group>"; };
+		84E74BDF1E7132F500016A99 /* ApplyCommonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyCommonCell.h; sourceTree = "<group>"; };
+		84E74BE01E7132F500016A99 /* ApplyCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyCommonCell.m; sourceTree = "<group>"; };
+		84E74BE11E7132F500016A99 /* ApplyCommonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplyCommonCell.xib; sourceTree = "<group>"; };
+		84E74BF61E71567100016A99 /* YearCardHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearCardHomeController.h; sourceTree = "<group>"; };
+		84E74BF71E71567100016A99 /* YearCardHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearCardHomeController.m; sourceTree = "<group>"; };
+		84E74BFF1E71574400016A99 /* YearCardOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearCardOrderController.h; sourceTree = "<group>"; };
+		84E74C001E71574400016A99 /* YearCardOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearCardOrderController.m; sourceTree = "<group>"; };
+		84E74C051E71595700016A99 /* YearCardBindSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearCardBindSuccessController.h; sourceTree = "<group>"; };
+		84E74C061E71595700016A99 /* YearCardBindSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearCardBindSuccessController.m; sourceTree = "<group>"; };
+		84E74C081E715DC800016A99 /* YearCardBindController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearCardBindController.h; sourceTree = "<group>"; };
+		84E74C091E715DC800016A99 /* YearCardBindController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearCardBindController.m; sourceTree = "<group>"; };
 		84ECF0191E2F57DD00F5DA7E /* UITableViewCell+HYCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+HYCell.h"; sourceTree = "<group>"; };
 		84ECF01A1E2F57DD00F5DA7E /* UITableViewCell+HYCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+HYCell.m"; sourceTree = "<group>"; };
 		84ECF01D1E2F595B00F5DA7E /* HYTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYTool.h; sourceTree = "<group>"; };
@@ -1001,6 +1059,7 @@
 			isa = PBXGroup;
 			children = (
 				843142E01E68FED50007740A /* gradualBackground.png */,
+				844343DD1E6FA02D00D9FD2F /* yazi.png */,
 				845BDF821E28D2C00064ACAE /* LaunchScreen.storyboard */,
 				845BDF7D1E28D2C00064ACAE /* Main.storyboard */,
 				8472F7261E6D388A000AE550 /* Collect.storyboard */,
@@ -1043,6 +1102,9 @@
 				84924E771E2C7806005F05C3 /* Home */,
 				8472F7191E6D37D8000AE550 /* Theater */,
 				8472F7181E6D37D8000AE550 /* Lecture */,
+				84E74BEE1E71551C00016A99 /* YearCard */,
+				84E74BE41E71551C00016A99 /* Derive */,
+				84E74BE91E71551C00016A99 /* Skill */,
 				8472F71D1E6D37D8000AE550 /* Collection */,
 				8472F71A1E6D37D8000AE550 /* Order */,
 				84924E791E2C7806005F05C3 /* Mine */,
@@ -1147,6 +1209,9 @@
 				84235B781E6EBB7400A81A6B /* TheaterUseView.xib */,
 				84235B7A1E6EBBE500A81A6B /* DetailDervieView.h */,
 				84235B7B1E6EBBE500A81A6B /* DetailDervieView.m */,
+				844343DF1E6FD39600D9FD2F /* TheaterTicketCell.h */,
+				844343E01E6FD39600D9FD2F /* TheaterTicketCell.m */,
+				844343E11E6FD39600D9FD2F /* TheaterTicketCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1169,6 +1234,24 @@
 		8472F72C1E6D3D77000AE550 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				844343E71E70018300D9FD2F /* LectureListCell.h */,
+				844343E81E70018300D9FD2F /* LectureListCell.m */,
+				844343E91E70018300D9FD2F /* LectureListCell.xib */,
+				84E74BC61E70E90B00016A99 /* LectureDetailTopCell.h */,
+				84E74BC71E70E90B00016A99 /* LectureDetailTopCell.m */,
+				84E74BC81E70E90B00016A99 /* LectureDetailTopCell.xib */,
+				84E74BCB1E70F0B200016A99 /* LectureDescCell.h */,
+				84E74BCC1E70F0B200016A99 /* LectureDescCell.m */,
+				84E74BCD1E70F0B200016A99 /* LectureDescCell.xib */,
+				84E74BD01E70F0E600016A99 /* LectureApplyerCell.h */,
+				84E74BD11E70F0E600016A99 /* LectureApplyerCell.m */,
+				84E74BD21E70F0E600016A99 /* LectureApplyerCell.xib */,
+				84E74BDA1E71305400016A99 /* ApplyTitleCell.h */,
+				84E74BDB1E71305400016A99 /* ApplyTitleCell.m */,
+				84E74BDC1E71305400016A99 /* ApplyTitleCell.xib */,
+				84E74BDF1E7132F500016A99 /* ApplyCommonCell.h */,
+				84E74BE01E7132F500016A99 /* ApplyCommonCell.m */,
+				84E74BE11E7132F500016A99 /* ApplyCommonCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1176,6 +1259,12 @@
 		8472F72D1E6D3D77000AE550 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				844343E41E70008800D9FD2F /* LectureListController.h */,
+				844343E51E70008800D9FD2F /* LectureListController.m */,
+				84E74BC31E70E4C100016A99 /* LectureDetailController.h */,
+				84E74BC41E70E4C100016A99 /* LectureDetailController.m */,
+				84E74BC01E70E44300016A99 /* LectureApplyController.h */,
+				84E74BC11E70E44300016A99 /* LectureApplyController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1418,6 +1507,83 @@
 				842E4C561E3304E600888B18 /* APIHelper+Policy.m */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		84E74BE41E71551C00016A99 /* Derive */ = {
+			isa = PBXGroup;
+			children = (
+				84E74BE51E71551C00016A99 /* Cell */,
+				84E74BE61E71551C00016A99 /* VC */,
+			);
+			path = Derive;
+			sourceTree = "<group>";
+		};
+		84E74BE51E71551C00016A99 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		84E74BE61E71551C00016A99 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		84E74BE91E71551C00016A99 /* Skill */ = {
+			isa = PBXGroup;
+			children = (
+				84E74BEA1E71551C00016A99 /* Cell */,
+				84E74BEB1E71551C00016A99 /* VC */,
+			);
+			path = Skill;
+			sourceTree = "<group>";
+		};
+		84E74BEA1E71551C00016A99 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		84E74BEB1E71551C00016A99 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		84E74BEE1E71551C00016A99 /* YearCard */ = {
+			isa = PBXGroup;
+			children = (
+				84E74BEF1E71551C00016A99 /* Cell */,
+				84E74BF01E71551C00016A99 /* VC */,
+			);
+			path = YearCard;
+			sourceTree = "<group>";
+		};
+		84E74BEF1E71551C00016A99 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		84E74BF01E71551C00016A99 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				84E74BF61E71567100016A99 /* YearCardHomeController.h */,
+				84E74BF71E71567100016A99 /* YearCardHomeController.m */,
+				84E74C081E715DC800016A99 /* YearCardBindController.h */,
+				84E74C091E715DC800016A99 /* YearCardBindController.m */,
+				84E74C051E71595700016A99 /* YearCardBindSuccessController.h */,
+				84E74C061E71595700016A99 /* YearCardBindSuccessController.m */,
+				84E74BFF1E71574400016A99 /* YearCardOrderController.h */,
+				84E74C001E71574400016A99 /* YearCardOrderController.m */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		84ECF01C1E2F593200F5DA7E /* HYTool */ = {
@@ -1706,13 +1872,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E74BCA1E70E90B00016A99 /* LectureDetailTopCell.xib in Resources */,
 				843142EB1E691D9C0007740A /* HomeImageCell.xib in Resources */,
 				84E5EE801E2DCADB0062A2BE /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				840C48101E4DC0B600F4C80A /* area.json in Resources */,
 				843142E61E69166C0007740A /* FunctionCell.xib in Resources */,
 				843143021E695BD70007740A /* HomeHotCell.xib in Resources */,
+				84E74BD41E70F0E600016A99 /* LectureApplyerCell.xib in Resources */,
 				84924E6A1E2C756A005F05C3 /* Login.storyboard in Resources */,
 				84E5EE851E2DCADB0062A2BE /* README.txt in Resources */,
+				844343E31E6FD39600D9FD2F /* TheaterTicketCell.xib in Resources */,
 				845BDF841E28D2C00064ACAE /* LaunchScreen.storyboard in Resources */,
 				84924E6C1E2C7572005F05C3 /* Mine.storyboard in Resources */,
 				84E5EE841E2DCADB0062A2BE /* read_me.txt in Resources */,
@@ -1725,13 +1894,18 @@
 				84525A1D1E2E019D0054C6A1 /* AlipaySDK.bundle in Resources */,
 				84E5EE821E2DCADB0062A2BE /* WeiboSDK.bundle in Resources */,
 				843142DE1E68FC9C0007740A /* HeadCell.xib in Resources */,
+				844343EB1E70018300D9FD2F /* LectureListCell.xib in Resources */,
 				843142FD1E695BC30007740A /* HomeVideoCell.xib in Resources */,
 				84E5EE871E2DCADB0062A2BE /* ShareSDK.bundle in Resources */,
 				8472F7291E6D3892000AE550 /* Order.storyboard in Resources */,
 				84E5EE7D1E2DCADB0062A2BE /* ShareSDKUI.bundle in Resources */,
+				84E74BDE1E71305400016A99 /* ApplyTitleCell.xib in Resources */,
+				84E74BE31E7132F500016A99 /* ApplyCommonCell.xib in Resources */,
 				84235B791E6EBB7400A81A6B /* TheaterUseView.xib in Resources */,
+				84E74BCF1E70F0B200016A99 /* LectureDescCell.xib in Resources */,
 				84924F171E2CC926005F05C3 /* sure_placeholder_error@3x.png in Resources */,
 				84235B6B1E6E5AE900A81A6B /* MineHeadCell.xib in Resources */,
+				844343DE1E6FA02D00D9FD2F /* yazi.png in Resources */,
 				8472F73F1E6D4684000AE550 /* TheaterListCell.xib in Resources */,
 				843142F81E6953140007740A /* ThemeCell.xib in Resources */,
 				8472F7271E6D388A000AE550 /* Collect.storyboard in Resources */,
@@ -1811,12 +1985,14 @@
 				84924EBD1E2C9946005F05C3 /* UITextField+HYTextField.m in Sources */,
 				84F691261E2C56530048B6DF /* NSString+HYFilter.m in Sources */,
 				84E5EE7B1E2DCADB0062A2BE /* ShareSDKTools.m in Sources */,
+				84E74BC51E70E4C100016A99 /* LectureDetailController.m in Sources */,
 				843142FC1E695BC30007740A /* HomeVideoCell.m in Sources */,
 				843143011E695BD70007740A /* HomeHotCell.m in Sources */,
 				84E5EE721E2DCADB0062A2BE /* HTEffectHeaderView.m in Sources */,
 				8472F7221E6D383A000AE550 /* CollectViewController.m in Sources */,
 				84924E9F1E2C7CD8005F05C3 /* UIView+Common.m in Sources */,
 				84235B741E6EA18100A81A6B /* FilterTableViewController.m in Sources */,
+				844343EA1E70018300D9FD2F /* LectureListCell.m in Sources */,
 				841961301E67C73500A78877 /* UserInfoModel.m in Sources */,
 				84924F191E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m in Sources */,
 				84525A231E2E019D0054C6A1 /* DataVerifier.m in Sources */,
@@ -1825,18 +2001,23 @@
 				8472F7331E6D40F8000AE550 /* TheaterListViewController.m in Sources */,
 				84554D961E2F3A04007EE209 /* HomeViewController.m in Sources */,
 				8472F73E1E6D4684000AE550 /* TheaterListCell.m in Sources */,
+				84E74BD31E70F0E600016A99 /* LectureApplyerCell.m in Sources */,
 				84F6911A1E2C56090048B6DF /* NSObject+Global.m in Sources */,
 				8413CECB1E669DF200436B2F /* CustomJumpBtns.m in Sources */,
 				84E6D42A1E4817CD0056A702 /* APIHelper+Home.m in Sources */,
 				843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */,
 				84235B6A1E6E5AE900A81A6B /* MineHeadCell.m in Sources */,
 				84525A391E2E08D20054C6A1 /* APIHelper+User.m in Sources */,
+				84E74C0A1E715DC800016A99 /* YearCardBindController.m in Sources */,
+				84E74C071E71595700016A99 /* YearCardBindSuccessController.m in Sources */,
+				84E74BE21E7132F500016A99 /* ApplyCommonCell.m in Sources */,
 				84E5EDBD1E2DC93E0062A2BE /* HYPayEngine.m in Sources */,
 				84E5EE9A1E2DED5F0062A2BE /* HttpHelper.m in Sources */,
 				843142E51E69166C0007740A /* FunctionCell.m in Sources */,
 				84E5EE771E2DCADB0062A2BE /* HTProductDetailImageBrowserView.m in Sources */,
 				84F691321E2C568B0048B6DF /* UIStoryboard+HYStoryboard.m in Sources */,
 				84924EA21E2C7D37005F05C3 /* UIButton+HYButtons.m in Sources */,
+				844343E21E6FD39600D9FD2F /* TheaterTicketCell.m in Sources */,
 				84F691111E2C55CC0048B6DF /* NSError+HYError.m in Sources */,
 				84924ECC1E2C9A25005F05C3 /* UINavigationItem+HYNavigationItems.m in Sources */,
 				84F6913E1E2C6B7E0048B6DF /* NSObject+Routes.m in Sources */,
@@ -1847,6 +2028,7 @@
 				84924EA81E2C7D6B005F05C3 /* UIImage+HYImages.m in Sources */,
 				84F691291E2C565B0048B6DF /* NSString+json.m in Sources */,
 				841961391E67EA3100A78877 /* UIViewController+Extension.m in Sources */,
+				84E74BF81E71567100016A99 /* YearCardHomeController.m in Sources */,
 				84235B6E1E6E8E7500A81A6B /* NSString+Extension.m in Sources */,
 				84554D911E2F39A6007EE209 /* LoginViewController.m in Sources */,
 				84924EA51E2C7D45005F05C3 /* UIColor+HYColors.m in Sources */,
@@ -1865,6 +2047,7 @@
 				84525A211E2E019D0054C6A1 /* base64.m in Sources */,
 				84F691431E2C6C160048B6DF /* Global.m in Sources */,
 				84924E991E2C7CCA005F05C3 /* UIView+FrameExpand.m in Sources */,
+				84E74BDD1E71305400016A99 /* ApplyTitleCell.m in Sources */,
 				84F691201E2C56370048B6DF /* NSString+HYMobileInsertInterval.m in Sources */,
 				84924EB11E2C7D99005F05C3 /* UIImageView+HYWebImage.m in Sources */,
 				8472F7391E6D4119000AE550 /* TheaterTicketViewController.m in Sources */,
@@ -1875,10 +2058,12 @@
 				84E5EE941E2DCDEC0062A2BE /* APIHelper.m in Sources */,
 				84DE2CA61E6815B5008BD672 /* RegistViewController.m in Sources */,
 				84924EF81E2CC245005F05C3 /* WKWebViewController.m in Sources */,
+				84E74C011E71574400016A99 /* YearCardOrderController.m in Sources */,
 				84EF70771E4AC18D0098A606 /* HYScrollView.m in Sources */,
 				84924E931E2C7CA6005F05C3 /* UIView+Layout.m in Sources */,
 				84924EBA1E2C9935005F05C3 /* UITextField+HYMaxLimit.m in Sources */,
 				84E5EE751E2DCADB0062A2BE /* HTImageBrowserView.m in Sources */,
+				84E74BCE1E70F0B200016A99 /* LectureDescCell.m in Sources */,
 				84E5EE651E2DCADA0062A2BE /* NSString+AES.m in Sources */,
 				84525A401E2E23E60054C6A1 /* BaseModel.m in Sources */,
 				84924ED21E2C9A66005F05C3 /* UITabBar+Badge.m in Sources */,
@@ -1890,6 +2075,7 @@
 				84235B7C1E6EBBE500A81A6B /* DetailDervieView.m in Sources */,
 				84924F181E2CC926005F05C3 /* SurePlaceholderView.m in Sources */,
 				84924F1D1E2CCD62005F05C3 /* HYPaddingLabel.m in Sources */,
+				84E74BC21E70E44300016A99 /* LectureApplyController.m in Sources */,
 				84F6912C1E2C566E0048B6DF /* NSString+TSRegularExpressionUtil.m in Sources */,
 				84ECF01B1E2F57DD00F5DA7E /* UITableViewCell+HYCell.m in Sources */,
 				84F25F441E65814D00FC9E31 /* HYSearchBar.m in Sources */,
@@ -1908,11 +2094,13 @@
 				84ECF01F1E2F595B00F5DA7E /* HYTool.m in Sources */,
 				84E5EE641E2DCADA0062A2BE /* NSData+AES.m in Sources */,
 				84924EC01E2C9968005F05C3 /* UITextView+HYTextView.m in Sources */,
+				844343E61E70008800D9FD2F /* LectureListController.m in Sources */,
 				84924E7B1E2C7806005F05C3 /* BaseViewController.m in Sources */,
 				8472F7361E6D410C000AE550 /* TheaterDetailViewController.m in Sources */,
 				84924EB71E2C7DB9005F05C3 /* UILabel+autoSize.m in Sources */,
 				84E5EE741E2DCADB0062A2BE /* HTImageBrowserItemView.m in Sources */,
 				84E5EE791E2DCADB0062A2BE /* UIViewController+KNSemiModal.m in Sources */,
+				84E74BC91E70E90B00016A99 /* LectureDetailTopCell.m in Sources */,
 				84924E871E2C78C1005F05C3 /* BaseNavigationController.m in Sources */,
 				84E5EE781E2DCADB0062A2BE /* LTKeyChain.m in Sources */,
 				84924E8A1E2C78CD005F05C3 /* BaseTableViewController.m in Sources */,

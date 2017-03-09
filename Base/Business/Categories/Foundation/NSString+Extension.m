@@ -51,5 +51,13 @@
 }
 
 
+-(NSMutableAttributedString*)addAttribute:(NSArray *)attributes values:(NSArray *)values subStrings:(NSArray *)subStrings {
+    NSMutableAttributedString* mAttrStr = [[NSMutableAttributedString alloc] initWithString:self];
+    for (int i=0; i<attributes.count; i++) {
+        NSRange range = [self rangeOfString:subStrings[i]];
+        [mAttrStr addAttribute:attributes[i] value:values[i] range:range];
+    }
+    return mAttrStr;
+}
 
 @end
