@@ -170,8 +170,10 @@
                 break;
             case 1:
                 APPROUTE(kLectureListController);
+                break;
             case 2:
                 APPROUTE(kYearCardHomeController);
+                break;
             default:
                 break;
         }
