@@ -174,6 +174,10 @@
             case 2:
                 APPROUTE(kYearCardHomeController);
                 break;
+            case 3:
+                break;
+            case 4:
+                break;
             default:
                 break;
         }

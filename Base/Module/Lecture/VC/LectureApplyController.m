@@ -84,6 +84,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - textfield delegate
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    switch (textField.tag) {
+        case 1003:
+            textField.keyboardType = UIKeyboardTypeNumberPad;
+            break;
+        default:
+            textField.keyboardType = UIKeyboardTypeDefault;
+            break;
+    }
+}
+-(void)textFieldDidEndEditing:(UITextField *)textField {
+    switch (textField.tag) {
+        case 1001:
+            break;
+        default:
+            break;
+    }
+}
+
 #pragma mark - tableView dataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.infos.count;
@@ -176,10 +196,12 @@
         if (indexPath.row == 0) {
             selectBtn.hidden = YES;
             cell.textLabel.text = @"支付方式";
+            cell.textLabel.textColor = [UIColor blackColor];
         }else{
             selectBtn.hidden = NO;
             cell.imageView.image = ImageNamed(@"cart");
             cell.textLabel.text = self.payways[indexPath.row];
+            cell.textLabel.textColor = [UIColor hyBlackTextColor];
         }
         return cell;
     }
@@ -188,26 +210,6 @@
     UIView* headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 15)];
     headView.backgroundColor = [UIColor hyViewBackgroundColor];
     return section == 0 ? nil : headView;
-}
-
-#pragma mark - textfield delegate
--(void)textFieldDidBeginEditing:(UITextField *)textField {
-    switch (textField.tag) {
-        case 1003:
-            textField.keyboardType = UIKeyboardTypeNumberPad;
-            break;
-        default:
-            textField.keyboardType = UIKeyboardTypeDefault;
-            break;
-    }
-}
--(void)textFieldDidEndEditing:(UITextField *)textField {
-    switch (textField.tag) {
-        case 1001:
-            break;
-        default:
-            break;
-    }
 }
 
 #pragma mark - tableView delegate

@@ -14,6 +14,8 @@
 		841961301E67C73500A78877 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8419612F1E67C73500A78877 /* UserInfoModel.m */; };
 		841961331E67C9CF00A78877 /* CustomCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 841961321E67C9CF00A78877 /* CustomCircleView.m */; };
 		841961391E67EA3100A78877 /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 841961381E67EA3100A78877 /* UIViewController+Extension.m */; };
+		841C00E21E723D460082ECDA /* OrderTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C00E01E723D460082ECDA /* OrderTopCell.m */; };
+		841C00E31E723D460082ECDA /* OrderTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841C00E11E723D460082ECDA /* OrderTopCell.xib */; };
 		84235B6A1E6E5AE900A81A6B /* MineHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B681E6E5AE900A81A6B /* MineHeadCell.m */; };
 		84235B6B1E6E5AE900A81A6B /* MineHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84235B691E6E5AE900A81A6B /* MineHeadCell.xib */; };
 		84235B6E1E6E8E7500A81A6B /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B6D1E6E8E7500A81A6B /* NSString+Extension.m */; };
@@ -240,6 +242,9 @@
 		841961321E67C9CF00A78877 /* CustomCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCircleView.m; sourceTree = "<group>"; };
 		841961371E67EA3100A78877 /* UIViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Extension.h"; sourceTree = "<group>"; };
 		841961381E67EA3100A78877 /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
+		841C00DF1E723D460082ECDA /* OrderTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderTopCell.h; sourceTree = "<group>"; };
+		841C00E01E723D460082ECDA /* OrderTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTopCell.m; sourceTree = "<group>"; };
+		841C00E11E723D460082ECDA /* OrderTopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTopCell.xib; sourceTree = "<group>"; };
 		84235B671E6E5AE900A81A6B /* MineHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeadCell.h; sourceTree = "<group>"; };
 		84235B681E6E5AE900A81A6B /* MineHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeadCell.m; sourceTree = "<group>"; };
 		84235B691E6E5AE900A81A6B /* MineHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineHeadCell.xib; sourceTree = "<group>"; };
@@ -1567,6 +1572,9 @@
 		84E74BEF1E71551C00016A99 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				841C00DF1E723D460082ECDA /* OrderTopCell.h */,
+				841C00E01E723D460082ECDA /* OrderTopCell.m */,
+				841C00E11E723D460082ECDA /* OrderTopCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1900,6 +1908,7 @@
 				8472F7291E6D3892000AE550 /* Order.storyboard in Resources */,
 				84E5EE7D1E2DCADB0062A2BE /* ShareSDKUI.bundle in Resources */,
 				84E74BDE1E71305400016A99 /* ApplyTitleCell.xib in Resources */,
+				841C00E31E723D460082ECDA /* OrderTopCell.xib in Resources */,
 				84E74BE31E7132F500016A99 /* ApplyCommonCell.xib in Resources */,
 				84235B791E6EBB7400A81A6B /* TheaterUseView.xib in Resources */,
 				84E74BCF1E70F0B200016A99 /* LectureDescCell.xib in Resources */,
@@ -2083,6 +2092,7 @@
 				84F691231E2C56480048B6DF /* NSString+HYUtilities.m in Sources */,
 				84924E9C1E2C7CD2005F05C3 /* UIView+Badge.m in Sources */,
 				84525A271E2E019D0054C6A1 /* RSADataSigner.m in Sources */,
+				841C00E21E723D460082ECDA /* OrderTopCell.m in Sources */,
 				84924EAE1E2C7D91005F05C3 /* UIImageView+HYImageView.m in Sources */,
 				84924ECF1E2C9A3C005F05C3 /* UIStoryboard+HYStoryboards.m in Sources */,
 				84EF707E1E4AEB3F0098A606 /* HYCacheURLProtocol.m in Sources */,
