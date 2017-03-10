@@ -1,24 +1,22 @@
 //
-//  OrderViewController.m
+//  OrderHomeController.m
 //  Base
 //
-//  Created by admin on 2017/3/6.
+//  Created by admin on 2017/3/10.
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "OrderViewController.h"
+#import "OrderHomeController.h"
 
-@interface OrderViewController ()
+@interface OrderHomeController ()
 
 @end
 
-@implementation OrderViewController
+@implementation OrderHomeController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self effectInit];
-    [self fetchData];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,16 +24,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-#pragma mark - Private methods
-- (void)effectInit {
-    self.backItemHidden = YES;
-}
-
-- (void)fetchData {
-    
-}
 /*
 #pragma mark - Navigation
 

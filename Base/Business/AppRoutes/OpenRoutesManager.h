@@ -11,7 +11,7 @@
 // vc标识
 extern NSString* const kHomeViewController;
 extern NSString* const kCollectViewController;
-extern NSString* const kOrderViewController;
+extern NSString* const kOrderHomeController;
 extern NSString* const kMineHomeViewController;
 
 extern NSString* const kTheaterListViewController;
@@ -24,6 +24,18 @@ extern NSString* const kLectureApplyController;
 
 extern NSString* const kYearCardHomeController;
 extern NSString* const kYearCardBindSuccessController;
+
+extern NSString* const kDeriveListController;
+extern NSString* const kDeriveDetailController;
+extern NSString* const kDeriveOrderController;
+
+extern NSString* const kOrderListController;
+extern NSString* const kOrderDetailController;
+extern NSString* const kOrderCodeController;
+
+
+
+
 
 
 

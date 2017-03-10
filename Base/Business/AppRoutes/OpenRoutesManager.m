@@ -9,8 +9,8 @@
 #import "OpenRoutesManager.h"
 
 NSString* const kHomeViewController = @"HomeViewController";
-NSString* const kCollectViewController = @"SortViewController";
-NSString* const kOrderViewController = @"ShoppingCartViewController";
+NSString* const kCollectViewController = @"CollectViewController";
+NSString* const kOrderHomeController = @"OrderHomeController";
 NSString* const kMineHomeViewController = @"MineHomeViewController";
 
 NSString* const kTheaterListViewController = @"TheaterListViewController";
@@ -24,6 +24,14 @@ NSString* const kLectureApplyController = @"LectureApplyController";
 
 NSString* const kYearCardHomeController = @"YearCardHomeController";
 NSString* const kYearCardBindSuccessController = @"YearCardBindSuccessController";
+
+NSString* const kDeriveListController = @"DeriveListController";
+NSString* const kDeriveDetailController = @"DeriveDetailController";
+NSString* const kDeriveOrderController = @"DeriveOrderController";
+
+NSString* const kOrderListController = @"OrderListController";
+NSString* const kOrderDetailController = @"OrderDetailController";
+NSString* const kOrderCodeController = @"OrderCodeController";
 
 
 NSString* const kRegistViewController = @"RegistViewController";
@@ -76,7 +84,15 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
 
                         @{@"cls":kYearCardHomeController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kYearCardBindSuccessController,@"sb":@"Main",@"method":@"push"},
-
+                        
+                        @{@"cls":kDeriveListController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kDeriveDetailController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kDeriveOrderController,@"sb":@"Main",@"method":@"push"},
+                        
+                        @{@"cls":kOrderListController,@"sb":@"Order",@"method":@"push"},
+                        @{@"cls":kOrderDetailController,@"sb":@"Order",@"method":@"push"},
+                        @{@"cls":kOrderCodeController,@"sb":@"Order",@"method":@"push"},
+                        
                         @{@"cls":kRegistViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kFinishRegisterController,@"sb":@"Login",@"method":@"push"},

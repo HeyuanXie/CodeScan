@@ -6,10 +6,11 @@
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "YearCardOrderController.h"
+#import "YearCardCommitOrderController.h"
+#import "OrderTopCell.h"
 #import "NSString+Extension.h"
 
-@interface YearCardOrderController ()
+@interface YearCardCommitOrderController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *totalLbl;
 
@@ -18,7 +19,7 @@
 
 @end
 
-@implementation YearCardOrderController
+@implementation YearCardCommitOrderController
 
 
 - (void)viewDidLoad {
@@ -27,6 +28,8 @@
 
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 60, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    [self.tableView registerNib:[UINib nibWithNibName:[OrderTopCell identify] bundle:nil] forCellReuseIdentifier:[OrderTopCell identify]];
+
     [self subviewInit];
 }
 
@@ -57,22 +60,10 @@
     switch (indexPath.section) {
         case 0:
             if (indexPath.row == 0) {
-                static NSString* cellId = @"topCell";
-                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-                if (cell == nil) {
-                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-                    [HYTool configTableViewCellDefault:cell];
-                    cell.contentView.backgroundColor = [UIColor whiteColor];
-                    
-                    cell.imageView.image = ImageNamed(@"yazi");
-                    cell.textLabel.text = @"飞翔卡1+1家庭年卡";
-                    UILabel* lbl = [HYTool getLabelWithFrame:CGRectZero text:@"一年12次,每次限2人" fontSize:15 textColor:[UIColor hyGrayTextColor] textAlignment:NSTextAlignmentLeft];
-                    [cell.contentView addSubview:lbl];
-                    [lbl autoPinEdge:ALEdgeLeft toEdge:ALEdgeRight ofView:cell.imageView];
-                    [lbl autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:cell.textLabel];
-                    [lbl autoPinEdgeToSuperviewEdge:ALEdgeRight];
-                    [lbl autoSetDimension:ALDimensionHeight toSize:20];
-                }
+                OrderTopCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderTopCell identify]];
+                [HYTool configTableViewCellDefault:cell];
+                cell.contentView.backgroundColor = [UIColor whiteColor];
+                [cell configTopCell:nil];
                 return cell;
             }else{
                 static NSString* cellId = @"commonCell";
@@ -81,17 +72,19 @@
                     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
                     [HYTool configTableViewCellDefault:cell];
                     cell.contentView.backgroundColor = [UIColor whiteColor];
-                    
-                    cell.textLabel.text = @"数量: 1张";
-                    cell.textLabel.textColor = [UIColor hyBlackTextColor];
-                    cell.textLabel.font = [UIFont systemFontOfSize:15];
-                    NSString* str = @"合计: ¥99";
-                    cell.detailTextLabel.text = @"合计: ¥99";
-                    
-                    cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
-                    cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 }
+                
+                cell.textLabel.text = @"数量: 1张";
+                cell.textLabel.textColor = [UIColor hyBlackTextColor];
+                cell.textLabel.font = [UIFont systemFontOfSize:15];
+                
+                cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
+                cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
+                NSString* str = @"合计: ¥99";
+                NSAttributedString* attStr = [str addAttribute:@[NSForegroundColorAttributeName,NSForegroundColorAttributeName,NSFontAttributeName] values:@[[UIColor hyRedColor],[UIColor hyRedColor],[UIFont systemFontOfSize:19]] subStrings:@[@"¥",@"99",@"99"]];
+                cell.detailTextLabel.attributedText = attStr;
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                return cell;
             }
         case 1:
         {
@@ -101,15 +94,15 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
                 [HYTool configTableViewCellDefault:cell];
                 cell.contentView.backgroundColor = [UIColor whiteColor];
-                
-                cell.textLabel.text = @"优惠券";
-                cell.textLabel.textColor = [UIColor hyBlackTextColor];
-                cell.textLabel.font = [UIFont systemFontOfSize:15];
-                cell.detailTextLabel.text = @"没有可用优惠券";
-                cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
-                cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
+            
+            cell.textLabel.text = @"优惠券";
+            cell.textLabel.textColor = [UIColor hyBlackTextColor];
+            cell.textLabel.font = [UIFont systemFontOfSize:15];
+            cell.detailTextLabel.text = @"没有可用优惠券";
+            cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             return cell;
         }
         default:
@@ -120,6 +113,7 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
                 [HYTool configTableViewCellDefault:cell];
                 cell.contentView.backgroundColor = [UIColor whiteColor];
+                cell.textLabel.font = [UIFont systemFontOfSize:15];
                 
                 UIButton* selectBtn = [HYTool getButtonWithFrame:CGRectZero title:nil titleSize:0 titleColor:nil backgroundColor:[UIColor clearColor] blockForClick:nil];
                 [selectBtn setImage:ImageNamed(@"on") forState:UIControlStateSelected];
@@ -151,16 +145,31 @@
     }
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, zoom(15))];
+    footerView.backgroundColor = [UIColor hyViewBackgroundColor];
+    return footerView;
+}
+
 #pragma mark - tableView delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0:
-            return indexPath.row == 0 ? 128 : 50;
+            return indexPath.row == 0 ? zoom(128) : 50;
         case 1:
             return 50;
         default:
             return indexPath.row == 0 ? 50 : 68;
     }
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return zoom(15);
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section != 1) {
+        return;
+    }
+    //TODO:进入优惠券列表
 }
 
 

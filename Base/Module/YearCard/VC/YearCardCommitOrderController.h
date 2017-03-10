@@ -8,6 +8,6 @@
 
 #import "BaseTableViewController.h"
 
-@interface YearCardOrderController : BaseTableViewController
+@interface YearCardCommitOrderController : BaseTableViewController
 
 @end

@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Order View Controller-->
+        <!--Order Home Controller-->
         <scene sceneID="NUO-Jy-HgA">
             <objects>
-                <viewController storyboardIdentifier="OrderViewController" id="y2s-CC-brC" customClass="OrderViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderHomeController" id="y2s-CC-brC" customClass="OrderHomeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H9Z-Uz-yrl"/>
                         <viewControllerLayoutGuide type="bottom" id="mpL-3j-RHI"/>
@@ -25,7 +25,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q9m-9A-OkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153" y="167"/>
+            <point key="canvasLocation" x="183" y="167"/>
+        </scene>
+        <!--Order List Controller-->
+        <scene sceneID="VH6-yV-sjd">
+            <objects>
+                <viewController storyboardIdentifier="OrderListController" id="CTP-lv-dTr" customClass="OrderListController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GFV-vn-VDP"/>
+                        <viewControllerLayoutGuide type="bottom" id="uhB-5F-Lkl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ag6-tm-abC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BsV-ql-J2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="892" y="167"/>
+        </scene>
+        <!--Common Order Detail Controller-->
+        <scene sceneID="mPA-lj-qgN">
+            <objects>
+                <viewController storyboardIdentifier="CommonOrderDetailController" id="EKw-yb-fxM" customClass="CommonOrderDetailController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vaq-Wu-cBv"/>
+                        <viewControllerLayoutGuide type="bottom" id="6os-RC-4DN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dbL-T4-H16">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3iW-sX-yTT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1590" y="167"/>
+        </scene>
+        <!--Order Code Controller-->
+        <scene sceneID="Sin-ez-idb">
+            <objects>
+                <viewController storyboardIdentifier="OrderCodeController" id="Vu0-u1-1dK" customClass="OrderCodeController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="o4u-iE-JXm"/>
+                        <viewControllerLayoutGuide type="bottom" id="VHu-b2-P6z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uWd-Dk-OYJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i9U-mx-QZN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2270" y="167"/>
         </scene>
     </scenes>
 </document>

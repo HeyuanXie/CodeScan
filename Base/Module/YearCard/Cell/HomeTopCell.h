@@ -1,5 +1,5 @@
 //
-//  OrderTopCell.h
+//  HomeTopCell.h
 //  Base
 //
 //  Created by admin on 2017/3/10.
@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OrderTopCell : UITableViewCell
+@interface HomeTopCell : UITableViewCell
 
 +(NSString*)identify;
 -(void)configTopCell:(id)model;
-
 
 @end

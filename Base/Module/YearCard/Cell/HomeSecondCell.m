@@ -1,32 +1,21 @@
 //
-//  OrderTopCell.m
+//  HomeSecondCell.m
 //  Base
 //
 //  Created by admin on 2017/3/10.
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "OrderTopCell.h"
+#import "HomeSecondCell.h"
 
-@interface OrderTopCell ()
-
-@property (weak, nonatomic) IBOutlet UIImageView *imgV;
-@property (weak, nonatomic) IBOutlet UILabel *titleLbl;
-@property (weak, nonatomic) IBOutlet UILabel *descLbl;
-
-
-@end
-
-@implementation OrderTopCell
-
+@implementation HomeSecondCell
 
 +(NSString *)identify {
     return NSStringFromClass([self class]);
 }
 
--(void)configTopCell:(id)model {
+-(void)configSecondCell:(id)model {
     
-    self.imgV.image = ImageNamed(@"yazi");
 }
 
 - (void)awakeFromNib {

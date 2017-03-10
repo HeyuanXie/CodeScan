@@ -1,24 +1,14 @@
 //
-//  OrderTopCell.m
+//  HomeTopCell.m
 //  Base
 //
 //  Created by admin on 2017/3/10.
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "OrderTopCell.h"
+#import "HomeTopCell.h"
 
-@interface OrderTopCell ()
-
-@property (weak, nonatomic) IBOutlet UIImageView *imgV;
-@property (weak, nonatomic) IBOutlet UILabel *titleLbl;
-@property (weak, nonatomic) IBOutlet UILabel *descLbl;
-
-
-@end
-
-@implementation OrderTopCell
-
+@implementation HomeTopCell
 
 +(NSString *)identify {
     return NSStringFromClass([self class]);
@@ -26,7 +16,6 @@
 
 -(void)configTopCell:(id)model {
     
-    self.imgV.image = ImageNamed(@"yazi");
 }
 
 - (void)awakeFromNib {

@@ -80,7 +80,7 @@
 -(void)fetchData {
     //TODO:请求数据成功后再在self.scroll上添加customJumpBtns
     NSArray* titles = @[@"3月23日周五",@"3月24日周一",@"3月25日周二",@"3月25日周三",@"3月26日周四"];
-    CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, 115*titles.count, 45) menuTitles:titles textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBlueTextColor] isLineAdaptText:NO];
+    CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, MAX(115*titles.count, kScreen_Width), 45) menuTitles:titles textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBlueTextColor] isLineAdaptText:NO];
     [btns setFinished:^(NSInteger index) {
         //TODO:
         NSLog(@"%@",titles[index]);
