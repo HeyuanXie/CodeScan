@@ -54,7 +54,7 @@
     [super awakeFromNib];
     // Initialization code
     self.statuLbl.backgroundColor = [self.statuLbl.backgroundColor colorWithAlphaComponent:0.5];
-//    [self.backImgV setBlurEffectStyle:UIBlurEffectStyleRegular];
+    [self.backImgV setBlurEffectStyle:UIBlurEffectStyleLight];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

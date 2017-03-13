@@ -60,4 +60,17 @@
     return mAttrStr;
 }
 
+
+-(NSAttributedString *)attributeStringWithAttachment:(CGRect)frame index:(NSInteger)index imageName:(NSString *)imageName {
+    
+    NSMutableAttributedString* mAttributed = [[NSMutableAttributedString alloc] initWithString:self attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor hyBlackTextColor]}];
+    
+    NSTextAttachment* attachment = [[NSTextAttachment alloc] init];
+    [attachment setImage:[UIImage imageNamed:imageName]];
+    [attachment setBounds:frame];
+    NSAttributedString* headAttribute = [NSAttributedString attributedStringWithAttachment:attachment];
+    [mAttributed insertAttributedString:headAttribute atIndex:index];
+    return mAttributed;
+}
+
 @end

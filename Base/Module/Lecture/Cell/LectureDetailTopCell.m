@@ -7,6 +7,7 @@
 //
 
 #import "LectureDetailTopCell.h"
+#import "UIImageView+HYImageView.h"
 
 @interface LectureDetailTopCell ()
 
@@ -38,6 +39,8 @@
     [super awakeFromNib];
     // Initialization code
     self.statuLbl.backgroundColor = [self.statuLbl.backgroundColor colorWithAlphaComponent:0.5];
+    [self.backImgV setBlurEffectStyle:UIBlurEffectStyleLight];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

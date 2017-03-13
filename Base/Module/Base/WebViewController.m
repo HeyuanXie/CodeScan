@@ -12,7 +12,6 @@
 
 @interface WebViewController () <UIWebViewDelegate>
 
-@property(nonatomic,strong)UIWebView* webView;
 
 @end
 
@@ -22,7 +21,9 @@
     [super viewDidLoad];
     
     [self webViewStyle];
-    [self loadWebView];
+    /**在子控制器中调用父控制器WebViewController中的这个方法
+     [self loadWebView];
+     */
     // Do any additional setup after loading the view.
 }
 

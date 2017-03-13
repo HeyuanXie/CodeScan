@@ -178,7 +178,7 @@
                 APPROUTE(kDeriveListController);
                 break;
             case 4:
-//                APPROUTE(<#storyboardID#>)
+                APPROUTE(kSkillListViewController);
                 break;
             default:
                 break;

@@ -33,6 +33,14 @@ extern NSString* const kOrderListController;
 extern NSString* const kOrderDetailController;
 extern NSString* const kOrderCodeController;
 
+extern NSString* const kSkillListViewController;
+extern NSString* const kSkillDetailController;
+extern NSString* const kSkillSituationController;
+extern NSString* const kSkillCompetitorController;
+
+
+
+
 
 
 

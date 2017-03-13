@@ -33,6 +33,10 @@ NSString* const kOrderListController = @"OrderListController";
 NSString* const kOrderDetailController = @"OrderDetailController";
 NSString* const kOrderCodeController = @"OrderCodeController";
 
+NSString* const kSkillListViewController = @"SkillListViewController";
+NSString* const kSkillDetailController = @"SkillDetailController";
+NSString* const kSkillSituationController = @"SkillSituationController";
+NSString* const kSkillCompetitorController = @"SkillCompetitorController";
 
 NSString* const kRegistViewController = @"RegistViewController";
 NSString* const kFinishRegisterController = @"FinishRegisterController";
@@ -92,6 +96,11 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
                         @{@"cls":kOrderListController,@"sb":@"Order",@"method":@"push"},
                         @{@"cls":kOrderDetailController,@"sb":@"Order",@"method":@"push"},
                         @{@"cls":kOrderCodeController,@"sb":@"Order",@"method":@"push"},
+                        
+                        @{@"cls":kSkillListViewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kSkillDetailController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kSkillSituationController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kSkillCompetitorController,@"sb":@"Main",@"method":@"push"},
                         
                         @{@"cls":kRegistViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"push"},

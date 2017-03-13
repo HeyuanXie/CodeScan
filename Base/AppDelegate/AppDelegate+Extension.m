@@ -66,8 +66,8 @@ NS_ENUM(NSUInteger, TabType) {
 
 -(void)configUIAppearance {
     [[UINavigationBar appearance] setTranslucent:NO];
-    [[UINavigationBar appearance] setTintColor:[UIColor clearColor]];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor clearColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],
                                                            NSFontAttributeName: [UIFont systemFontOfSize:17.0f]}];
     

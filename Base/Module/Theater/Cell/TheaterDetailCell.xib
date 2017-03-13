@@ -26,7 +26,7 @@
                             <constraint firstAttribute="height" constant="263" id="GnP-71-9EC"/>
                         </constraints>
                     </imageView>
-                    <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xmS-hw-TXQ">
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xmS-hw-TXQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="263"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

@@ -22,4 +22,14 @@
 
 -(NSMutableAttributedString*)addAttribute:(NSArray *)attributes values:(NSArray *)values subStrings:(NSArray *)subStrings;
 
+/**
+ 创建插入图片的属性字符串
+ 
+ @param frame 插入图片的frame
+ @param index 插入图片的index
+ @param imageName 插入图片的名称
+ @return 返回的属性字符串
+ */
+-(NSAttributedString*)attributeStringWithAttachment:(CGRect)frame index:(NSInteger)index imageName:(NSString*)imageName;
+
 @end

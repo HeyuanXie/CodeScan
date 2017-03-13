@@ -14,4 +14,19 @@
 
 - (void)addBackgroundImageWithFrame:(CGRect)frame;
 
+
+/**
+ 添加“消息” navigationItem
+ */
+- (void)configMessage;
+
+/**
+ 添加两个navigationItems
+
+ @param imageNames items‘ imageNames
+ @param block1 first Item's block
+ @param block2 second Items's block
+ */
+- (void)addDoubleNavigationItemsWithImages:(NSArray*)imageNames firstBlock:(void(^)())block1 secondBlock:(void(^)())block2;
+
 @end

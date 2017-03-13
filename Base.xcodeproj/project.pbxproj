@@ -55,6 +55,15 @@
 		843143021E695BD70007740A /* HomeHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843143001E695BD70007740A /* HomeHotCell.xib */; };
 		843143051E6965770007740A /* HomeVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 843143041E6965770007740A /* HomeVideoView.m */; };
 		843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843AA2221E30B14100DAE1FF /* UIViewExtension.swift */; };
+		84428CE31E7627FB001D1B7B /* DeriveRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CE21E7627FB001D1B7B /* DeriveRecordController.m */; };
+		84428CE61E7628E9001D1B7B /* SkillListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CE51E7628E9001D1B7B /* SkillListViewController.m */; };
+		84428CE91E7629BB001D1B7B /* SkillDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CE81E7629BB001D1B7B /* SkillDetailController.m */; };
+		84428CEC1E762A24001D1B7B /* SkillSituationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CEB1E762A24001D1B7B /* SkillSituationController.m */; };
+		84428CEF1E762A49001D1B7B /* SkillCompetitorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CEE1E762A49001D1B7B /* SkillCompetitorController.m */; };
+		84428CF31E762AC4001D1B7B /* SkillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CF11E762AC4001D1B7B /* SkillListCell.m */; };
+		84428CF41E762AC4001D1B7B /* SkillListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84428CF21E762AC4001D1B7B /* SkillListCell.xib */; };
+		84428CFD1E764432001D1B7B /* SituationDoubleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CFB1E764432001D1B7B /* SituationDoubleCell.m */; };
+		84428CFE1E764432001D1B7B /* SituationDoubleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84428CFC1E764432001D1B7B /* SituationDoubleCell.xib */; };
 		844343DE1E6FA02D00D9FD2F /* yazi.png in Resources */ = {isa = PBXBuildFile; fileRef = 844343DD1E6FA02D00D9FD2F /* yazi.png */; };
 		844343E21E6FD39600D9FD2F /* TheaterTicketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 844343E01E6FD39600D9FD2F /* TheaterTicketCell.m */; };
 		844343E31E6FD39600D9FD2F /* TheaterTicketCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844343E11E6FD39600D9FD2F /* TheaterTicketCell.xib */; };
@@ -322,6 +331,22 @@
 		843143041E6965770007740A /* HomeVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVideoView.m; sourceTree = "<group>"; };
 		843AA21D1E30B12D00DAE1FF /* Base-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Base-Bridging-Header.h"; sourceTree = "<group>"; };
 		843AA2221E30B14100DAE1FF /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		84428CE11E7627FB001D1B7B /* DeriveRecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeriveRecordController.h; sourceTree = "<group>"; };
+		84428CE21E7627FB001D1B7B /* DeriveRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeriveRecordController.m; sourceTree = "<group>"; };
+		84428CE41E7628E9001D1B7B /* SkillListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillListViewController.h; sourceTree = "<group>"; };
+		84428CE51E7628E9001D1B7B /* SkillListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillListViewController.m; sourceTree = "<group>"; };
+		84428CE71E7629BB001D1B7B /* SkillDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillDetailController.h; sourceTree = "<group>"; };
+		84428CE81E7629BB001D1B7B /* SkillDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillDetailController.m; sourceTree = "<group>"; };
+		84428CEA1E762A24001D1B7B /* SkillSituationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillSituationController.h; sourceTree = "<group>"; };
+		84428CEB1E762A24001D1B7B /* SkillSituationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillSituationController.m; sourceTree = "<group>"; };
+		84428CED1E762A49001D1B7B /* SkillCompetitorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillCompetitorController.h; sourceTree = "<group>"; };
+		84428CEE1E762A49001D1B7B /* SkillCompetitorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillCompetitorController.m; sourceTree = "<group>"; };
+		84428CF01E762AC4001D1B7B /* SkillListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillListCell.h; sourceTree = "<group>"; };
+		84428CF11E762AC4001D1B7B /* SkillListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillListCell.m; sourceTree = "<group>"; };
+		84428CF21E762AC4001D1B7B /* SkillListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkillListCell.xib; sourceTree = "<group>"; };
+		84428CFA1E764432001D1B7B /* SituationDoubleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SituationDoubleCell.h; sourceTree = "<group>"; };
+		84428CFB1E764432001D1B7B /* SituationDoubleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SituationDoubleCell.m; sourceTree = "<group>"; };
+		84428CFC1E764432001D1B7B /* SituationDoubleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SituationDoubleCell.xib; sourceTree = "<group>"; };
 		844343DD1E6FA02D00D9FD2F /* yazi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yazi.png; sourceTree = "<group>"; };
 		844343DF1E6FD39600D9FD2F /* TheaterTicketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterTicketCell.h; sourceTree = "<group>"; };
 		844343E01E6FD39600D9FD2F /* TheaterTicketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterTicketCell.m; sourceTree = "<group>"; };
@@ -1584,6 +1609,8 @@
 				841C00F41E7289B40082ECDA /* DeriveListController.m */,
 				841C00F61E7289CA0082ECDA /* DeriveDetailController.h */,
 				841C00F71E7289CA0082ECDA /* DeriveDetailController.m */,
+				84428CE11E7627FB001D1B7B /* DeriveRecordController.h */,
+				84428CE21E7627FB001D1B7B /* DeriveRecordController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1600,6 +1627,12 @@
 		84E74BEA1E71551C00016A99 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				84428CF01E762AC4001D1B7B /* SkillListCell.h */,
+				84428CF11E762AC4001D1B7B /* SkillListCell.m */,
+				84428CF21E762AC4001D1B7B /* SkillListCell.xib */,
+				84428CFA1E764432001D1B7B /* SituationDoubleCell.h */,
+				84428CFB1E764432001D1B7B /* SituationDoubleCell.m */,
+				84428CFC1E764432001D1B7B /* SituationDoubleCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1607,6 +1640,14 @@
 		84E74BEB1E71551C00016A99 /* VC */ = {
 			isa = PBXGroup;
 			children = (
+				84428CE41E7628E9001D1B7B /* SkillListViewController.h */,
+				84428CE51E7628E9001D1B7B /* SkillListViewController.m */,
+				84428CE71E7629BB001D1B7B /* SkillDetailController.h */,
+				84428CE81E7629BB001D1B7B /* SkillDetailController.m */,
+				84428CEA1E762A24001D1B7B /* SkillSituationController.h */,
+				84428CEB1E762A24001D1B7B /* SkillSituationController.m */,
+				84428CED1E762A49001D1B7B /* SkillCompetitorController.h */,
+				84428CEE1E762A49001D1B7B /* SkillCompetitorController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1955,6 +1996,7 @@
 				844343E31E6FD39600D9FD2F /* TheaterTicketCell.xib in Resources */,
 				845BDF841E28D2C00064ACAE /* LaunchScreen.storyboard in Resources */,
 				84924E6C1E2C7572005F05C3 /* Mine.storyboard in Resources */,
+				84428CFE1E764432001D1B7B /* SituationDoubleCell.xib in Resources */,
 				84E5EE841E2DCADB0062A2BE /* read_me.txt in Resources */,
 				843142E11E68FED50007740A /* gradualBackground.png in Resources */,
 				84924F161E2CC926005F05C3 /* sure_placeholder_error@2x.png in Resources */,
@@ -1977,6 +2019,7 @@
 				84E74BE31E7132F500016A99 /* ApplyCommonCell.xib in Resources */,
 				84235B791E6EBB7400A81A6B /* TheaterUseView.xib in Resources */,
 				84E74BCF1E70F0B200016A99 /* LectureDescCell.xib in Resources */,
+				84428CF41E762AC4001D1B7B /* SkillListCell.xib in Resources */,
 				84924F171E2CC926005F05C3 /* sure_placeholder_error@3x.png in Resources */,
 				84235B6B1E6E5AE900A81A6B /* MineHeadCell.xib in Resources */,
 				844343DE1E6FA02D00D9FD2F /* yazi.png in Resources */,
@@ -2084,10 +2127,13 @@
 				843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */,
 				84235B6A1E6E5AE900A81A6B /* MineHeadCell.m in Sources */,
 				84525A391E2E08D20054C6A1 /* APIHelper+User.m in Sources */,
+				84428CE91E7629BB001D1B7B /* SkillDetailController.m in Sources */,
 				84E74C0A1E715DC800016A99 /* YearCardBindController.m in Sources */,
+				84428CEF1E762A49001D1B7B /* SkillCompetitorController.m in Sources */,
 				84E74C071E71595700016A99 /* YearCardBindSuccessController.m in Sources */,
 				841C00EC1E7258710082ECDA /* HomeSecondCell.m in Sources */,
 				84E74BE21E7132F500016A99 /* ApplyCommonCell.m in Sources */,
+				84428CE31E7627FB001D1B7B /* DeriveRecordController.m in Sources */,
 				841C01081E72A8A70082ECDA /* OrderHomeController.m in Sources */,
 				84E5EDBD1E2DC93E0062A2BE /* HYPayEngine.m in Sources */,
 				84E5EE9A1E2DED5F0062A2BE /* HttpHelper.m in Sources */,
@@ -2156,6 +2202,7 @@
 				84E5EE731E2DCADB0062A2BE /* UIScrollView+EffectHeaderView.m in Sources */,
 				84235B7C1E6EBBE500A81A6B /* DetailDervieView.m in Sources */,
 				84924F181E2CC926005F05C3 /* SurePlaceholderView.m in Sources */,
+				84428CFD1E764432001D1B7B /* SituationDoubleCell.m in Sources */,
 				84924F1D1E2CCD62005F05C3 /* HYPaddingLabel.m in Sources */,
 				84E74BC21E70E44300016A99 /* LectureApplyController.m in Sources */,
 				84F6912C1E2C566E0048B6DF /* NSString+TSRegularExpressionUtil.m in Sources */,
@@ -2173,6 +2220,7 @@
 				841C010E1E72A9330082ECDA /* OrderCodeController.m in Sources */,
 				8413CEC71E665E0000436B2F /* JYSlideSegmentController.m in Sources */,
 				84924EC61E2C997A005F05C3 /* UITextView+Placeholder.m in Sources */,
+				84428CF31E762AC4001D1B7B /* SkillListCell.m in Sources */,
 				84924F1A1E2CC926005F05C3 /* UITableView+Sure_Placeholder.m in Sources */,
 				84E5EE8E1E2DCDC70062A2BE /* HYServer.m in Sources */,
 				84ECF01F1E2F595B00F5DA7E /* HYTool.m in Sources */,
@@ -2180,8 +2228,10 @@
 				84924EC01E2C9968005F05C3 /* UITextView+HYTextView.m in Sources */,
 				844343E61E70008800D9FD2F /* LectureListController.m in Sources */,
 				84924E7B1E2C7806005F05C3 /* BaseViewController.m in Sources */,
+				84428CE61E7628E9001D1B7B /* SkillListViewController.m in Sources */,
 				8472F7361E6D410C000AE550 /* TheaterDetailViewController.m in Sources */,
 				84924EB71E2C7DB9005F05C3 /* UILabel+autoSize.m in Sources */,
+				84428CEC1E762A24001D1B7B /* SkillSituationController.m in Sources */,
 				84E5EE741E2DCADB0062A2BE /* HTImageBrowserItemView.m in Sources */,
 				84E5EE791E2DCADB0062A2BE /* UIViewController+KNSemiModal.m in Sources */,
 				84E74BC91E70E90B00016A99 /* LectureDetailTopCell.m in Sources */,
