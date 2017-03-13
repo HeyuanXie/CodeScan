@@ -31,6 +31,7 @@ PODS:
     - BlocksKit/DynamicDelegate
   - ColorUtils (1.1.3)
   - iCarousel (1.8.2)
+  - IQKeyboardManager (3.3.7)
   - JLRoutes (1.6.2)
   - MBProgressHUD (1.0.0)
   - MJRefresh (3.1.12)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - BlocksKit (~> 2.2.5)
   - ColorUtils (~> 1.1.3)
   - iCarousel
+  - IQKeyboardManager
   - JLRoutes (~> 1.6.2)
   - MBProgressHUD
   - MJRefresh (~> 3.1.12)
@@ -71,6 +73,7 @@ SPEC CHECKSUMS:
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   ColorUtils: f99c501f9caf5374b35480a281168565a24bdb6d
   iCarousel: 67c8a43da5a46795b56aadfc96cd36a16f6149b2
+  IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
   JLRoutes: 00671e008acb226b8b4c2385318dc1c583ef0dcf
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
@@ -82,6 +85,6 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 1064992c1b7aaa22823179c0b33a664813fd7a85
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 958758c8873172120ca9dd7678668ed6195ed6b7
+PODFILE CHECKSUM: db868b91c1c5a229d2befbb131c1026c875cf5fe
 
 COCOAPODS: 1.0.1
