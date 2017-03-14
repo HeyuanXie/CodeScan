@@ -38,8 +38,8 @@
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(287-64, 0, 0, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[SituationDoubleCell identify] bundle:nil] forCellReuseIdentifier:[SituationDoubleCell identify]];
 
-
     [self subviewStyle];
+    [self subviewBind];
     [self fetchData];
     // Do any additional setup after loading the view.
 }
@@ -118,6 +118,13 @@
         }
     }
     [_searchBar setSearchFieldBackgroundImage:[UIImage hyImageWithColor:[UIColor whiteColor] size:CGSizeMake(kScreen_Width-24, 45)] forState:UIControlStateNormal];
+}
+
+-(void)subviewBind {
+    [self.voteBtn addTarget:self action:@selector(mineVote) forControlEvents:UIControlEventTouchUpInside];
+}
+-(void)mineVote {
+    APPROUTE(kMineSupportViewController);
 }
 
 

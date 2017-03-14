@@ -61,9 +61,9 @@
 }
 
 
--(NSAttributedString *)attributeStringWithAttachment:(CGRect)frame index:(NSInteger)index imageName:(NSString *)imageName {
+-(NSAttributedString *)attributeStringWithAttachment:(CGRect)frame fontSize:(CGFloat)fontSize textColor:(UIColor*)textColor index:(NSInteger)index imageName:(NSString *)imageName {
     
-    NSMutableAttributedString* mAttributed = [[NSMutableAttributedString alloc] initWithString:self attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor hyBlackTextColor]}];
+    NSMutableAttributedString* mAttributed = [[NSMutableAttributedString alloc] initWithString:self attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:fontSize],NSForegroundColorAttributeName:textColor}];
     
     NSTextAttachment* attachment = [[NSTextAttachment alloc] init];
     [attachment setImage:[UIImage imageNamed:imageName]];

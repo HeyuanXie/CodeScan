@@ -23,10 +23,13 @@
         [videoView configVideoView:nil];
         [videoView bk_whenTapped:^{
             //TODO:点击videoView
-            
+            APPROUTE(kVideoPlayViewController);
         }];
         i++;
     }
+}
+- (IBAction)seeAll:(id)sender {
+    APPROUTE(kVideoListViewController);
 }
 
 - (void)awakeFromNib {

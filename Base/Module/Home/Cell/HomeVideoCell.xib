@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-3-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDa-33-1tA">
-                                <rect key="frame" x="2" y="141" width="163" height="14.5"/>
+                                <rect key="frame" x="2" y="141" width="163" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="cRB-n1-5h5"/>
                                 </constraints>
@@ -102,7 +102,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-3-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wV-KO-MPY">
-                                <rect key="frame" x="2" y="141" width="163" height="14.5"/>
+                                <rect key="frame" x="2" y="141" width="163" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="1Ay-RY-0wK"/>
                                     <constraint firstAttribute="height" constant="15" id="hUp-Sn-st8"/>
@@ -194,7 +194,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-3-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="735-W5-RiC">
-                                <rect key="frame" x="2" y="141" width="163" height="14.5"/>
+                                <rect key="frame" x="2" y="141" width="163" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="DaQ-Bv-wd9"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="d1l-NC-p09"/>
@@ -242,7 +242,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-3-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfM-2k-jxu">
-                                <rect key="frame" x="2" y="141" width="163" height="14.5"/>
+                                <rect key="frame" x="2" y="141" width="163" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="jr0-TZ-cuG"/>
                                     <constraint firstAttribute="height" constant="15" id="zQ6-KF-fUf"/>
@@ -302,7 +302,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z3r-rI-WOj">
-                        <rect key="frame" x="0.0" y="349.5" width="375" height="40"/>
+                        <rect key="frame" x="0.0" y="350" width="375" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="VFh-O9-X8t"/>
                         </constraints>
@@ -312,6 +312,9 @@
                         <state key="normal" title="查看全部" image="common_icon_arrow.png">
                             <color key="titleColor" red="0.68235294117647061" green="0.68235294117647061" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
+                        <connections>
+                            <action selector="seeAll:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1ZO-iy-Q4z"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

@@ -37,10 +37,12 @@
 
 #pragma mark - IBActions
 - (IBAction)skillSituation:(id)sender {
+    //TODO:传递加载h5的url
     APPROUTE(kSkillSituationController);
 }
 - (IBAction)skillApply:(id)sender {
-    
+    //TODO:是否传递价格
+    APPROUTE(kSkillApplyViewController);
 }
 
 

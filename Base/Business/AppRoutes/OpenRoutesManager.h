@@ -37,6 +37,17 @@ extern NSString* const kSkillListViewController;
 extern NSString* const kSkillDetailController;
 extern NSString* const kSkillSituationController;
 extern NSString* const kSkillCompetitorController;
+extern NSString* const kMineSupportViewController;
+extern NSString* const kSkillApplyViewController;
+extern NSString* const kSkillUploadViewController;
+extern NSString* const kSkillApplySucceedController;
+
+extern NSString* const kVideoListViewController;
+extern NSString* const kVideoPlayViewController;
+
+
+
+
 
 
 

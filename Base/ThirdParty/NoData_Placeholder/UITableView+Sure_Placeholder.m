@@ -12,16 +12,16 @@
 @implementation UITableView (Sure_Placeholder)
 
 + (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        [self methodSwizzlingWithOriginalSelector:@selector(reloadData)
-                               bySwizzledSelector:@selector(sure_reloadData)];
-    });
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        [self methodSwizzlingWithOriginalSelector:@selector(reloadData)
+//                               bySwizzledSelector:@selector(sure_reloadData)];
+//    });
 }
 
 - (void)sure_reloadData {
     if (!self.firstReload) {
-        [self checkEmpty];
+//        [self checkEmpty];
     }
     self.firstReload = NO;
     [self sure_reloadData];

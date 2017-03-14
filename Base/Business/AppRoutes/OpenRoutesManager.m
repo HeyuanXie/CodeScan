@@ -37,6 +37,15 @@ NSString* const kSkillListViewController = @"SkillListViewController";
 NSString* const kSkillDetailController = @"SkillDetailController";
 NSString* const kSkillSituationController = @"SkillSituationController";
 NSString* const kSkillCompetitorController = @"SkillCompetitorController";
+NSString* const kMineSupportViewController = @"MineSupportViewController";
+NSString* const kSkillApplyViewController = @"SkillApplyViewController";
+NSString* const kSkillUploadViewController = @"SkillUploadViewController";
+NSString* const kSkillApplySucceedController = @"SkillApplySucceedController";
+
+NSString* const kVideoListViewController = @"VideoListViewController";
+NSString* const kVideoPlayViewController = @"VideoPlayViewController";
+
+
 
 NSString* const kRegistViewController = @"RegistViewController";
 NSString* const kFinishRegisterController = @"FinishRegisterController";
@@ -101,6 +110,13 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
                         @{@"cls":kSkillDetailController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kSkillSituationController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kSkillCompetitorController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kMineSupportViewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kSkillApplyViewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kSkillUploadViewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kSkillApplySucceedController,@"sb":@"Main",@"method":@"push"},
+                        
+                        @{@"cls":kVideoListViewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kVideoPlayViewController,@"sb":@"Main",@"method":@"push"},
                         
                         @{@"cls":kRegistViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"push"},

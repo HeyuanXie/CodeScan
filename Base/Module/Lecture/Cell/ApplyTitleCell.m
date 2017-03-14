@@ -24,7 +24,13 @@
 }
 
 -(void)configTitleCell:(id)model {
+    //...
+}
+
+-(void)configSkillApplyTitleCell:(id)model {
     
+    self.timeLbl.hidden = YES;
+    //...
 }
 
 - (void)awakeFromNib {

@@ -30,6 +30,6 @@
  @param imageName 插入图片的名称
  @return 返回的属性字符串
  */
--(NSAttributedString*)attributeStringWithAttachment:(CGRect)frame index:(NSInteger)index imageName:(NSString*)imageName;
+-(NSAttributedString*)attributeStringWithAttachment:(CGRect)frame fontSize:(CGFloat)fontSize textColor:(UIColor*)textColor index:(NSInteger)index imageName:(NSString*)imageName;
 
 @end

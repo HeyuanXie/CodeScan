@@ -29,6 +29,10 @@
     }
 }
 
+- (IBAction)seeAll:(id)sender {
+    APPROUTE(kDeriveListController);
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

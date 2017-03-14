@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="kaa-Gt-Kzl">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="210"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v6u-3A-Kin">
+                    <rect key="frame" x="144" y="17" width="87" height="87"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜您, 您的报名已提交!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOc-4z-dIl">
+                    <rect key="frame" x="0.0" y="119" width="375" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="EA0-fj-rwL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="完成以下操作才能去拉票额~" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nz5-jC-OLo">
+                    <rect key="frame" x="0.0" y="143" width="375" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="aKj-pe-zcB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.55294117649999996" green="0.55294117649999996" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aai-GP-fyV">
+                    <rect key="frame" x="148" y="175" width="80" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="grw-wh-jYv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="稍后上传">
+                        <color key="titleColor" red="0.41960784309999999" green="0.70196078429999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="v6u-3A-Kin" firstAttribute="top" secondItem="kaa-Gt-Kzl" secondAttribute="top" constant="17" id="7WH-RC-4sN"/>
+                <constraint firstItem="VOc-4z-dIl" firstAttribute="leading" secondItem="kaa-Gt-Kzl" secondAttribute="leading" id="8Ep-T0-ijO"/>
+                <constraint firstAttribute="trailing" secondItem="VOc-4z-dIl" secondAttribute="trailing" id="8dy-KY-V6m"/>
+                <constraint firstAttribute="trailing" secondItem="Nz5-jC-OLo" secondAttribute="trailing" id="Cjn-zV-NNj"/>
+                <constraint firstItem="Nz5-jC-OLo" firstAttribute="top" secondItem="VOc-4z-dIl" secondAttribute="bottom" constant="3" id="IMD-Am-8HJ"/>
+                <constraint firstItem="v6u-3A-Kin" firstAttribute="width" secondItem="kaa-Gt-Kzl" secondAttribute="width" multiplier="87:375" id="U2d-KP-r5E"/>
+                <constraint firstAttribute="bottom" secondItem="aai-GP-fyV" secondAttribute="bottom" constant="5" id="dL5-XT-S70"/>
+                <constraint firstItem="aai-GP-fyV" firstAttribute="height" secondItem="kaa-Gt-Kzl" secondAttribute="height" multiplier="30:210" id="lGU-bP-j7H"/>
+                <constraint firstItem="aai-GP-fyV" firstAttribute="centerX" secondItem="kaa-Gt-Kzl" secondAttribute="centerX" id="ny9-lF-JA7"/>
+                <constraint firstItem="v6u-3A-Kin" firstAttribute="centerX" secondItem="kaa-Gt-Kzl" secondAttribute="centerX" id="rCb-38-0CE"/>
+                <constraint firstItem="Nz5-jC-OLo" firstAttribute="leading" secondItem="kaa-Gt-Kzl" secondAttribute="leading" id="trT-7h-5ae"/>
+                <constraint firstItem="v6u-3A-Kin" firstAttribute="width" secondItem="v6u-3A-Kin" secondAttribute="height" multiplier="1:1" id="uDF-PL-6vu"/>
+                <constraint firstItem="VOc-4z-dIl" firstAttribute="top" secondItem="v6u-3A-Kin" secondAttribute="bottom" constant="15" id="zik-6t-ZXG"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="9" y="8"/>
+        </view>
+    </objects>
+</document>

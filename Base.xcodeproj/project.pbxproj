@@ -156,6 +156,21 @@
 		84924F191E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F121E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m */; };
 		84924F1A1E2CC926005F05C3 /* UITableView+Sure_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F141E2CC926005F05C3 /* UITableView+Sure_Placeholder.m */; };
 		84924F1D1E2CCD62005F05C3 /* HYPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */; };
+		84DCC2631E77880A0019898E /* MineSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2621E77880A0019898E /* MineSupportViewController.m */; };
+		84DCC2691E7789610019898E /* SkillApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2681E7789610019898E /* SkillApplyViewController.m */; };
+		84DCC26C1E77896D0019898E /* SkillUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC26B1E77896D0019898E /* SkillUploadViewController.m */; };
+		84DCC26F1E77898F0019898E /* SkillApplySucceedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC26E1E77898F0019898E /* SkillApplySucceedController.m */; };
+		84DCC2731E7790400019898E /* MineSupportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2711E7790400019898E /* MineSupportCell.m */; };
+		84DCC2741E7790400019898E /* MineSupportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DCC2721E7790400019898E /* MineSupportCell.xib */; };
+		84DCC2781E77C85A0019898E /* SkillDeclarationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2761E77C85A0019898E /* SkillDeclarationCell.m */; };
+		84DCC2791E77C85A0019898E /* SkillDeclarationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DCC2771E77C85A0019898E /* SkillDeclarationCell.xib */; };
+		84DCC27B1E77E0830019898E /* SkillUseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DCC27A1E77E0830019898E /* SkillUseView.xib */; };
+		84DCC2811E77E7A60019898E /* VideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2801E77E7A60019898E /* VideoListViewController.m */; };
+		84DCC2841E77E7F70019898E /* VideoPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2831E77E7F70019898E /* VideoPlayViewController.m */; };
+		84DCC2881E77E8100019898E /* VideoListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2861E77E8100019898E /* VideoListCell.m */; };
+		84DCC2891E77E8100019898E /* VideoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DCC2871E77E8100019898E /* VideoListCell.xib */; };
+		84DCC28D1E77E83C0019898E /* VideoCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC28B1E77E83C0019898E /* VideoCommentCell.m */; };
+		84DCC28E1E77E83C0019898E /* VideoCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84DCC28C1E77E83C0019898E /* VideoCommentCell.xib */; };
 		84DE2CA61E6815B5008BD672 /* RegistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DE2CA51E6815B5008BD672 /* RegistViewController.m */; };
 		84E5EDBD1E2DC93E0062A2BE /* HYPayEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5EDBC1E2DC93E0062A2BE /* HYPayEngine.m */; };
 		84E5EE641E2DCADA0062A2BE /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5EDC01E2DCADA0062A2BE /* NSData+AES.m */; };
@@ -579,6 +594,31 @@
 		84924F141E2CC926005F05C3 /* UITableView+Sure_Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Sure_Placeholder.m"; sourceTree = "<group>"; };
 		84924F1B1E2CCD62005F05C3 /* HYPaddingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPaddingLabel.h; sourceTree = "<group>"; };
 		84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPaddingLabel.m; sourceTree = "<group>"; };
+		84DCC2611E77880A0019898E /* MineSupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineSupportViewController.h; sourceTree = "<group>"; };
+		84DCC2621E77880A0019898E /* MineSupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineSupportViewController.m; sourceTree = "<group>"; };
+		84DCC2671E7789610019898E /* SkillApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillApplyViewController.h; sourceTree = "<group>"; };
+		84DCC2681E7789610019898E /* SkillApplyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillApplyViewController.m; sourceTree = "<group>"; };
+		84DCC26A1E77896D0019898E /* SkillUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillUploadViewController.h; sourceTree = "<group>"; };
+		84DCC26B1E77896D0019898E /* SkillUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillUploadViewController.m; sourceTree = "<group>"; };
+		84DCC26D1E77898F0019898E /* SkillApplySucceedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillApplySucceedController.h; sourceTree = "<group>"; };
+		84DCC26E1E77898F0019898E /* SkillApplySucceedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillApplySucceedController.m; sourceTree = "<group>"; };
+		84DCC2701E7790400019898E /* MineSupportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineSupportCell.h; sourceTree = "<group>"; };
+		84DCC2711E7790400019898E /* MineSupportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineSupportCell.m; sourceTree = "<group>"; };
+		84DCC2721E7790400019898E /* MineSupportCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineSupportCell.xib; sourceTree = "<group>"; };
+		84DCC2751E77C85A0019898E /* SkillDeclarationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillDeclarationCell.h; sourceTree = "<group>"; };
+		84DCC2761E77C85A0019898E /* SkillDeclarationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillDeclarationCell.m; sourceTree = "<group>"; };
+		84DCC2771E77C85A0019898E /* SkillDeclarationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkillDeclarationCell.xib; sourceTree = "<group>"; };
+		84DCC27A1E77E0830019898E /* SkillUseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkillUseView.xib; sourceTree = "<group>"; };
+		84DCC27F1E77E7A60019898E /* VideoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListViewController.h; sourceTree = "<group>"; };
+		84DCC2801E77E7A60019898E /* VideoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListViewController.m; sourceTree = "<group>"; };
+		84DCC2821E77E7F70019898E /* VideoPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayViewController.h; sourceTree = "<group>"; };
+		84DCC2831E77E7F70019898E /* VideoPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayViewController.m; sourceTree = "<group>"; };
+		84DCC2851E77E8100019898E /* VideoListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoListCell.h; sourceTree = "<group>"; };
+		84DCC2861E77E8100019898E /* VideoListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListCell.m; sourceTree = "<group>"; };
+		84DCC2871E77E8100019898E /* VideoListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoListCell.xib; sourceTree = "<group>"; };
+		84DCC28A1E77E83C0019898E /* VideoCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCommentCell.h; sourceTree = "<group>"; };
+		84DCC28B1E77E83C0019898E /* VideoCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCommentCell.m; sourceTree = "<group>"; };
+		84DCC28C1E77E83C0019898E /* VideoCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoCommentCell.xib; sourceTree = "<group>"; };
 		84DE2CA41E6815B5008BD672 /* RegistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistViewController.h; sourceTree = "<group>"; };
 		84DE2CA51E6815B5008BD672 /* RegistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = RegistViewController.m; sourceTree = "<group>"; };
 		84E5EDBB1E2DC93E0062A2BE /* HYPayEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPayEngine.h; sourceTree = "<group>"; };
@@ -1168,14 +1208,15 @@
 				84924E741E2C7806005F05C3 /* Base */,
 				84525A3A1E2E0B4E0054C6A1 /* Login */,
 				84924E771E2C7806005F05C3 /* Home */,
+				8472F71D1E6D37D8000AE550 /* Collection */,
+				8472F71A1E6D37D8000AE550 /* Order */,
+				84924E791E2C7806005F05C3 /* Mine */,
 				8472F7191E6D37D8000AE550 /* Theater */,
 				8472F7181E6D37D8000AE550 /* Lecture */,
 				84E74BEE1E71551C00016A99 /* YearCard */,
 				84E74BE41E71551C00016A99 /* Derive */,
 				84E74BE91E71551C00016A99 /* Skill */,
-				8472F71D1E6D37D8000AE550 /* Collection */,
-				8472F71A1E6D37D8000AE550 /* Order */,
-				84924E791E2C7806005F05C3 /* Mine */,
+				84DCC27C1E77E7130019898E /* Video */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -1393,6 +1434,39 @@
 				84924F141E2CC926005F05C3 /* UITableView+Sure_Placeholder.m */,
 			);
 			path = NoData_Placeholder;
+			sourceTree = "<group>";
+		};
+		84DCC27C1E77E7130019898E /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				84DCC27D1E77E7130019898E /* Cell */,
+				84DCC27E1E77E7130019898E /* VC */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		84DCC27D1E77E7130019898E /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				84DCC2851E77E8100019898E /* VideoListCell.h */,
+				84DCC2861E77E8100019898E /* VideoListCell.m */,
+				84DCC2871E77E8100019898E /* VideoListCell.xib */,
+				84DCC28A1E77E83C0019898E /* VideoCommentCell.h */,
+				84DCC28B1E77E83C0019898E /* VideoCommentCell.m */,
+				84DCC28C1E77E83C0019898E /* VideoCommentCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		84DCC27E1E77E7130019898E /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				84DCC27F1E77E7A60019898E /* VideoListViewController.h */,
+				84DCC2801E77E7A60019898E /* VideoListViewController.m */,
+				84DCC2821E77E7F70019898E /* VideoPlayViewController.h */,
+				84DCC2831E77E7F70019898E /* VideoPlayViewController.m */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		84E5EDBE1E2DCADA0062A2BE /* AES */ = {
@@ -1633,6 +1707,13 @@
 				84428CFA1E764432001D1B7B /* SituationDoubleCell.h */,
 				84428CFB1E764432001D1B7B /* SituationDoubleCell.m */,
 				84428CFC1E764432001D1B7B /* SituationDoubleCell.xib */,
+				84DCC2701E7790400019898E /* MineSupportCell.h */,
+				84DCC2711E7790400019898E /* MineSupportCell.m */,
+				84DCC2721E7790400019898E /* MineSupportCell.xib */,
+				84DCC2751E77C85A0019898E /* SkillDeclarationCell.h */,
+				84DCC2761E77C85A0019898E /* SkillDeclarationCell.m */,
+				84DCC2771E77C85A0019898E /* SkillDeclarationCell.xib */,
+				84DCC27A1E77E0830019898E /* SkillUseView.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1648,6 +1729,14 @@
 				84428CEB1E762A24001D1B7B /* SkillSituationController.m */,
 				84428CED1E762A49001D1B7B /* SkillCompetitorController.h */,
 				84428CEE1E762A49001D1B7B /* SkillCompetitorController.m */,
+				84DCC2611E77880A0019898E /* MineSupportViewController.h */,
+				84DCC2621E77880A0019898E /* MineSupportViewController.m */,
+				84DCC2671E7789610019898E /* SkillApplyViewController.h */,
+				84DCC2681E7789610019898E /* SkillApplyViewController.m */,
+				84DCC26A1E77896D0019898E /* SkillUploadViewController.h */,
+				84DCC26B1E77896D0019898E /* SkillUploadViewController.m */,
+				84DCC26D1E77898F0019898E /* SkillApplySucceedController.h */,
+				84DCC26E1E77898F0019898E /* SkillApplySucceedController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1982,6 +2071,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84E74BCA1E70E90B00016A99 /* LectureDetailTopCell.xib in Resources */,
+				84DCC28E1E77E83C0019898E /* VideoCommentCell.xib in Resources */,
 				843142EB1E691D9C0007740A /* HomeImageCell.xib in Resources */,
 				84E5EE801E2DCADB0062A2BE /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				841C00F21E7258820082ECDA /* HomeDescCell.xib in Resources */,
@@ -1989,11 +2079,14 @@
 				841C00E81E72584C0082ECDA /* HomeTopCell.xib in Resources */,
 				843142E61E69166C0007740A /* FunctionCell.xib in Resources */,
 				843143021E695BD70007740A /* HomeHotCell.xib in Resources */,
+				84DCC27B1E77E0830019898E /* SkillUseView.xib in Resources */,
 				841C01021E729BFC0082ECDA /* baidi.png in Resources */,
 				84E74BD41E70F0E600016A99 /* LectureApplyerCell.xib in Resources */,
+				84DCC2741E7790400019898E /* MineSupportCell.xib in Resources */,
 				84924E6A1E2C756A005F05C3 /* Login.storyboard in Resources */,
 				84E5EE851E2DCADB0062A2BE /* README.txt in Resources */,
 				844343E31E6FD39600D9FD2F /* TheaterTicketCell.xib in Resources */,
+				84DCC2891E77E8100019898E /* VideoListCell.xib in Resources */,
 				845BDF841E28D2C00064ACAE /* LaunchScreen.storyboard in Resources */,
 				84924E6C1E2C7572005F05C3 /* Mine.storyboard in Resources */,
 				84428CFE1E764432001D1B7B /* SituationDoubleCell.xib in Resources */,
@@ -2006,6 +2099,7 @@
 				843142F01E694C640007740A /* HomeUseView.xib in Resources */,
 				845BDF7F1E28D2C00064ACAE /* Main.storyboard in Resources */,
 				84525A1D1E2E019D0054C6A1 /* AlipaySDK.bundle in Resources */,
+				84DCC2791E77C85A0019898E /* SkillDeclarationCell.xib in Resources */,
 				84E5EE821E2DCADB0062A2BE /* WeiboSDK.bundle in Resources */,
 				841C01001E7296B50082ECDA /* DeriveListCell.xib in Resources */,
 				843142DE1E68FC9C0007740A /* HeadCell.xib in Resources */,
@@ -2112,6 +2206,7 @@
 				84235B741E6EA18100A81A6B /* FilterTableViewController.m in Sources */,
 				844343EA1E70018300D9FD2F /* LectureListCell.m in Sources */,
 				841961301E67C73500A78877 /* UserInfoModel.m in Sources */,
+				84DCC28D1E77E83C0019898E /* VideoCommentCell.m in Sources */,
 				84924F191E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m in Sources */,
 				84525A231E2E019D0054C6A1 /* DataVerifier.m in Sources */,
 				843142F71E6953140007740A /* ThemeCell.m in Sources */,
@@ -2137,9 +2232,11 @@
 				841C01081E72A8A70082ECDA /* OrderHomeController.m in Sources */,
 				84E5EDBD1E2DC93E0062A2BE /* HYPayEngine.m in Sources */,
 				84E5EE9A1E2DED5F0062A2BE /* HttpHelper.m in Sources */,
+				84DCC2781E77C85A0019898E /* SkillDeclarationCell.m in Sources */,
 				843142E51E69166C0007740A /* FunctionCell.m in Sources */,
 				84E5EE771E2DCADB0062A2BE /* HTProductDetailImageBrowserView.m in Sources */,
 				84F691321E2C568B0048B6DF /* UIStoryboard+HYStoryboard.m in Sources */,
+				84DCC2731E7790400019898E /* MineSupportCell.m in Sources */,
 				84924EA21E2C7D37005F05C3 /* UIButton+HYButtons.m in Sources */,
 				844343E21E6FD39600D9FD2F /* TheaterTicketCell.m in Sources */,
 				84F691111E2C55CC0048B6DF /* NSError+HYError.m in Sources */,
@@ -2165,6 +2262,8 @@
 				84924EC91E2C9A10005F05C3 /* UINavigationController+HYNavigationHiddenShowBug.m in Sources */,
 				84924EC31E2C9970005F05C3 /* UITextView+MaxLimit.m in Sources */,
 				845BDF761E28D2C00064ACAE /* main.m in Sources */,
+				84DCC2631E77880A0019898E /* MineSupportViewController.m in Sources */,
+				84DCC2811E77E7A60019898E /* VideoListViewController.m in Sources */,
 				84924E8D1E2C79B0005F05C3 /* MBProgressHUD+hyHUD.m in Sources */,
 				84F6911D1E2C56220048B6DF /* NSString+ContainsEmoji.m in Sources */,
 				84F691351E2C569B0048B6DF /* NSDate+HYFormat.m in Sources */,
@@ -2172,6 +2271,7 @@
 				84F691431E2C6C160048B6DF /* Global.m in Sources */,
 				84924E991E2C7CCA005F05C3 /* UIView+FrameExpand.m in Sources */,
 				84E74BDD1E71305400016A99 /* ApplyTitleCell.m in Sources */,
+				84DCC26F1E77898F0019898E /* SkillApplySucceedController.m in Sources */,
 				84F691201E2C56370048B6DF /* NSString+HYMobileInsertInterval.m in Sources */,
 				84924EB11E2C7D99005F05C3 /* UIImageView+HYWebImage.m in Sources */,
 				8472F7391E6D4119000AE550 /* TheaterTicketViewController.m in Sources */,
@@ -2183,8 +2283,10 @@
 				84E5EE941E2DCDEC0062A2BE /* APIHelper.m in Sources */,
 				84DE2CA61E6815B5008BD672 /* RegistViewController.m in Sources */,
 				84924EF81E2CC245005F05C3 /* WKWebViewController.m in Sources */,
+				84DCC2691E7789610019898E /* SkillApplyViewController.m in Sources */,
 				84E74C011E71574400016A99 /* YearCardCommitOrderController.m in Sources */,
 				84EF70771E4AC18D0098A606 /* HYScrollView.m in Sources */,
+				84DCC26C1E77896D0019898E /* SkillUploadViewController.m in Sources */,
 				841C00F11E7258820082ECDA /* HomeDescCell.m in Sources */,
 				84924E931E2C7CA6005F05C3 /* UIView+Layout.m in Sources */,
 				84924EBA1E2C9935005F05C3 /* UITextField+HYMaxLimit.m in Sources */,
@@ -2200,6 +2302,7 @@
 				841C00F81E7289CA0082ECDA /* DeriveDetailController.m in Sources */,
 				84924EAB1E2C7D7C005F05C3 /* UIImage+HYSize.m in Sources */,
 				84E5EE731E2DCADB0062A2BE /* UIScrollView+EffectHeaderView.m in Sources */,
+				84DCC2881E77E8100019898E /* VideoListCell.m in Sources */,
 				84235B7C1E6EBBE500A81A6B /* DetailDervieView.m in Sources */,
 				84924F181E2CC926005F05C3 /* SurePlaceholderView.m in Sources */,
 				84428CFD1E764432001D1B7B /* SituationDoubleCell.m in Sources */,
@@ -2222,6 +2325,7 @@
 				84924EC61E2C997A005F05C3 /* UITextView+Placeholder.m in Sources */,
 				84428CF31E762AC4001D1B7B /* SkillListCell.m in Sources */,
 				84924F1A1E2CC926005F05C3 /* UITableView+Sure_Placeholder.m in Sources */,
+				84DCC2841E77E7F70019898E /* VideoPlayViewController.m in Sources */,
 				84E5EE8E1E2DCDC70062A2BE /* HYServer.m in Sources */,
 				84ECF01F1E2F595B00F5DA7E /* HYTool.m in Sources */,
 				84E5EE641E2DCADA0062A2BE /* NSData+AES.m in Sources */,

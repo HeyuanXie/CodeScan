@@ -1,82 +1,50 @@
 //
-//  LectureApplyController.m
+//  SkillApplyViewController.m
 //  Base
 //
-//  Created by admin on 2017/3/9.
+//  Created by admin on 2017/3/14.
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "LectureApplyController.h"
+#import "SkillApplyViewController.h"
 #import "BaseNavigationController.h"
 #import "HYAddressController.h"
 #import "ApplyTitleCell.h"
 #import "ApplyCommonCell.h"
+#import "SkillDeclarationCell.h"
 
-@interface LectureApplyController ()<UITextFieldDelegate>
-
-@property(assign,nonatomic)BOOL isAgree;
-@property(strong,nonatomic)NSString* type;//线上or线下
+@interface SkillApplyViewController () <UITextFieldDelegate>
 
 @property(strong,nonatomic)NSArray* infos;
-@property(strong,nonatomic)NSMutableArray* payways;
+@property(strong,nonatomic)NSMutableArray* payMethods;
 @property(assign,nonatomic)NSInteger selectIndex;   //记录选中的支付方式
 
-@property(assign,nonatomic)NSInteger count; //总票数
-@property(assign,nonatomic)NSInteger total; //总金额
-@property(strong,nonatomic)UILabel* priceLbl;
+@property(nonatomic,strong)UILabel *priceLbl;
+@property(nonatomic,assign)NSInteger total;
+
+@property(nonatomic,assign)BOOL isAgree;
 
 @property(strong,nonatomic)BaseNavigationController* addressNVC;
 @property(nonatomic,strong)NSString *address;
+@property(nonatomic,strong)NSString *gender;
 
 
 @end
 
-@implementation LectureApplyController
-
+@implementation SkillApplyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.isAgree = NO;
-    if (self.schemaArgu[@"type"]) {
-        self.type = [self.schemaArgu objectForKey:@"type"];
-    }
-    if ([self.type isEqualToString:@"onLine"]) {
-        self.infos = @[@[@{@"title":@"主题",@"necessary":@(0)},
-                         @{@"title":@"姓名:",@"necessary":@(1)},
-                         @{@"title":@"所在城市:",@"necessary":@(0)},
-                         @{@"title":@"手机号:",@"necessary":@(1)},
-                         @{@"title":@"报名费",@"necessary":@(0)}
-                         ],
-                    @[@{@"title":@"支付方式"},
-                      @{@"title":@"微信支付"},
-                      @{@"title":@"支付宝支付"}]
-                    ];
-    }else{
-        self.infos = @[@[@{@"title":@"主题",@"necessary":@(0)},
-                         @{@"title":@"姓名:",@"necessary":@(1)},
-                         @{@"title":@"所在城市:",@"necessary":@(0)},
-                         @{@"title":@"手机号:",@"necessary":@(1)},
-                         @{@"title":@"报名费",@"necessary":@(0)},
-                         @{@"title":@"报名人数:",@"necessary":@(1)}
-                         ],
-                       @[@{@"title":@"支付方式"},
-                         @{@"title":@"微信支付"},
-                         @{@"title":@"支付宝支付"}]
-                    ];
-    }
-    self.payways = [@[@"支付方式",@"微信支付",@"支付宝支付"] mutableCopy];
-    self.count = 1;
-    self.total = 15;
-    
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, zoom(120), 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    
     [self.tableView registerNib:[UINib nibWithNibName:[ApplyTitleCell identify] bundle:nil] forCellReuseIdentifier:[ApplyTitleCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[ApplyCommonCell identify] bundle:nil] forCellReuseIdentifier:[ApplyCommonCell identify]];
+    [self.tableView registerNib:[UINib nibWithNibName:[SkillDeclarationCell identify] bundle:nil] forCellReuseIdentifier:[SkillDeclarationCell identify]];
 
-    [self subviewInit];
-    // Do any additional setup after loading the view.
+
+    [self dataInit];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,6 +56,9 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
     switch (textField.tag) {
         case 1003:
+            textField.keyboardType = UIKeyboardTypeNumberPad;
+            break;
+        case 1006:
             textField.keyboardType = UIKeyboardTypeNumberPad;
             break;
         default:
@@ -104,21 +75,16 @@
     }
 }
 
-#pragma mark - tableView dataSource
+#pragma mark - talbeView dataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.infos.count;
+    return 2;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        NSArray* sectionArr = self.infos[section];
-        return sectionArr.count;
-    }else{
-        return self.payways.count;
-    }
+    return section == 0 ? self.infos.count : self.payMethods.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        NSString* title = self.infos[0][indexPath.row][@"title"];
+        NSString* title = self.infos[indexPath.row][@"title"];
         if ([title isEqualToString:@"报名费"]) {
             static NSString* cellId = @"moneyCell";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -130,46 +96,32 @@
                 [self.priceLbl autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
             }
             return cell;
+        }else if ([title isEqualToString:@"参赛宣言:"]){
+            SkillDeclarationCell* cell = [tableView dequeueReusableCellWithIdentifier:[SkillDeclarationCell identify]];
+            [HYTool configTableViewCellDefault:cell];
+            cell.contentView.backgroundColor = [UIColor whiteColor];
+            
+            return cell;
         }else if (indexPath.row == 0) {
             ApplyTitleCell* cell = [tableView dequeueReusableCellWithIdentifier:[ApplyTitleCell identify]];
             [HYTool configTableViewCellDefault:cell];
             cell.contentView.backgroundColor = [UIColor whiteColor];
             //TODO:
-            [cell configTitleCell:nil];
+            
+            [cell configSkillApplyTitleCell:nil];
             return cell;
         }else{
             ApplyCommonCell* cell = [tableView dequeueReusableCellWithIdentifier:[ApplyCommonCell identify]];
             [HYTool configTableViewCellDefault:cell];
             cell.contentView.backgroundColor = [UIColor whiteColor];
             
-            cell.countView.hidden = [title isEqualToString:@"报名人数:"] ? NO : YES;
-            cell.inputTf.userInteractionEnabled = ([title isEqualToString:@"报名人数:"] || [title isEqualToString:@"所在城市:"]) ? NO : YES;
-            cell.accessoryType = [title isEqualToString:@"所在城市:"] ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
-            cell.addressLbl.hidden = [title isEqualToString:@"所在城市:"] ? NO : YES;
-            cell.addressLbl.text = self.address;
-            
+            cell.addressLbl.text = [title isEqualToString:@"所在城市:"] ? self.address : self.gender;
+            cell.addressLbl.hidden = ([title isEqualToString:@"所在城市:"] || [title isEqualToString:@"性别:"]) ? NO : YES;
+
             cell.inputTf.tag = 1000 + indexPath.row;
             cell.inputTf.delegate = self;
             
-            @weakify(self);
-            [cell setSubClick:^{
-                @strongify(self);
-                if (self.count == 1) {
-                    return ;
-                }
-                self.count--;
-                self.total = self.count*15;
-                self.priceLbl.text = [NSString stringWithFormat:@"报名费: %ld",self.total];
-                [self.tableView reloadData];
-            }];
-            [cell setAddClick:^{
-                @strongify(self);
-                self.count++;
-                self.total = self.count*15;
-                self.priceLbl.text = [NSString stringWithFormat:@"报名费: %ld",self.total];
-                [self.tableView reloadData];
-            }];
-            [cell configCommonCell:self.infos[0][indexPath.row] count:self.count];
+            [cell configSkillApplyCommonCell:self.infos[indexPath.row]];
             return cell;
         }
     }else{
@@ -179,7 +131,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
             [HYTool configTableViewCellDefault:cell];
             cell.contentView.backgroundColor = [UIColor whiteColor];
-
+            
             UIButton* selectBtn = [HYTool getButtonWithFrame:CGRectZero title:nil titleSize:0 titleColor:nil backgroundColor:[UIColor clearColor] blockForClick:nil];
             [selectBtn setImage:ImageNamed(@"on") forState:UIControlStateSelected];
             [selectBtn setImage:ImageNamed(@"off") forState:UIControlStateNormal];
@@ -205,7 +157,7 @@
             selectBtn.hidden = NO;
             cell.imageView.image = ImageNamed(@"cart");
             cell.imageView.hidden = NO;
-            cell.textLabel.text = self.payways[indexPath.row];
+            cell.textLabel.text = self.payMethods[indexPath.row];
             cell.textLabel.textColor = [UIColor hyBlackTextColor];
         }
         return cell;
@@ -220,7 +172,8 @@
 #pragma mark - tableView delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        return indexPath.row == 0 ? 100 : 50;
+        NSString* title = self.infos[indexPath.row][@"title"];
+        return [title isEqualToString:@"参赛宣言:"] ? 118 : (indexPath.row == 0 ? 76 : 50);
     }else{
         return indexPath.row == 0 ? 50 : 68;
     }
@@ -229,8 +182,28 @@
     return section == 0 ? 0 : 15;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0 && indexPath.row == 2) {
-        [self filterAddress:nil];
+
+    switch (indexPath.section) {
+        case 0: {
+            NSString* title = self.infos[indexPath.row][@"title"];
+            if ([title isEqualToString:@"所在城市:"]) {
+                [self filterAddress:nil];
+                return;
+            }
+            if ([title isEqualToString:@"性别:"]) {
+                [self chooseGender];
+                return;
+            }
+            break;
+        }
+        default: {
+            if (indexPath.row == 0) {
+                return;
+            }
+            self.selectIndex = indexPath.row;
+            [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+            break;
+        }
     }
 }
 
@@ -245,7 +218,8 @@
         return;
     }
     //TODO:报名
-//    [APIHELPER ]
+    //    [APIHELPER ]
+    APPROUTE(kSkillUploadViewController);
 }
 
 #pragma mark - private methods
@@ -260,6 +234,30 @@
     return _priceLbl;
 }
 
+-(NSMutableArray *)payMethods {
+    if (!_payMethods) {
+        _payMethods = [NSMutableArray array];
+    }
+    return _payMethods;
+}
+
+-(void)dataInit {
+    self.infos = @[  @{@"title":@"title:",@"necessary":@(0)},
+                     @{@"title":@"家长姓名:",@"necessary":@(1)},
+                     @{@"title":@"宝宝姓名:",@"necessary":@(1)},
+                     @{@"title":@"年龄:",@"necessary":@(1)},
+                     @{@"title":@"性别:",@"necessary":@(1)},
+                     @{@"title":@"所在城市:",@"necessary":@(0)},
+                     @{@"title":@"手机号:",@"necessary":@(1)},
+                     @{@"title":@"参赛宣言:",@"necessary":@(0)},
+                     @{@"title":@"报名费",@"necessary":@(0)},
+                   ];
+    self.payMethods = [@[@"支付方式",@"微信支付",@"支付宝支付"] mutableCopy];
+    //TODO:self.total获取
+    self.total = 30;
+}
+
+
 -(BaseNavigationController *)addressNVC {
     if (!_addressNVC) {
         HYAddressController *addressC = (HYAddressController *)VIEWCONTROLLER(kAddressController);
@@ -268,7 +266,7 @@
         [addressC setSelectAddress:^(NSString *areaName, NSString *areaID) {
             @strongify(self);
             self.address = areaName;
-            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:5 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             [self hiddenFilterAddress];
         }];
         [addressC setFilterDismiss:^{
@@ -316,24 +314,21 @@
 }
 
 
--(void)fetchData {
-    
+- (void)chooseGender {
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"性别" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    @weakify(self);
+    [alertC addAction:[UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        @strongify(self);
+        self.gender = @"男";
+        [self.tableView reloadData];
+    }]];
+    [alertC addAction:[UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        @strongify(self);
+        self.gender = @"女";
+        [self.tableView reloadData];
+    }]];
+    [alertC addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alertC animated:YES completion:nil];
 }
-
--(void)subviewInit {
-    //navigationItem
-    
-    //
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

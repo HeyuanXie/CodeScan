@@ -46,6 +46,22 @@
     }];
 }
 
+- (void)configSkillApplyCommonCell:(id)model {
+    
+    BOOL necessary = [model[@"necessary"] boolValue];
+    NSString* title = model[@"title"];
+    self.inputTf.userInteractionEnabled = ([title isEqualToString:@"性别:"] || [title isEqualToString:@"所在城市:"]) ? NO : YES;
+    self.accessoryType = ([title isEqualToString:@"性别:"] || [title isEqualToString:@"所在城市:"]) ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+    self.countView.hidden = YES;
+    
+    if (necessary) {
+        NSString* text = [@"*" stringByAppendingString:title];
+        self.titleLbl.attributedText = [text attributedStringWithString:@"*" andWithColor:[UIColor hyRedColor]];
+    }else{
+        self.titleLbl.text = title;
+    }
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

@@ -25,6 +25,16 @@
 
 
 +(NSString*)identify;
+
+
+/**
+ 专家讲座CommonCell
+
+ @param model 数据源model
+ @param count 票数count
+ */
 -(void)configCommonCell:(id)model count:(NSInteger)count;
+
+-(void)configSkillApplyCommonCell:(id)model;
 
 @end

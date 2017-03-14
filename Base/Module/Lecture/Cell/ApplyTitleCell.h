@@ -11,6 +11,21 @@
 @interface ApplyTitleCell : UITableViewCell
 
 +(NSString*)identify;
+
+
+/**
+ 专家讲座报名TitleCell
+
+ @param model model
+ */
 -(void)configTitleCell:(id)model;
+
+
+/**
+ 才艺报名TitleCell
+
+ @param model model
+ */
+-(void)configSkillApplyTitleCell:(id)model;
 
 @end
