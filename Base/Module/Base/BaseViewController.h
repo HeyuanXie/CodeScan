@@ -22,4 +22,5 @@
 - (void)hideLoadingAnimation;
 - (void)showMessage:(NSString *)message;
 - (void)showMessage:(NSString *)message complete:(void(^)())complate;
+
 @end

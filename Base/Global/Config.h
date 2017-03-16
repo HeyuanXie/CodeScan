@@ -13,7 +13,7 @@
 //服务器地址配置
 #define DEFAULT_SERVER @"http://api.xfx.zhimadi.cn"
 #define DEFAULT_END_POINT @"/"
-#define DEFAULT_PATH @"api"
+#define DEFAULT_PATH @""
 
 #define API_VERSION @"1.0"  //接口版本
 

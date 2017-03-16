@@ -86,11 +86,11 @@
 
 
 #pragma mark - private methods
--(void)subviewStyle {
+- (void)subviewStyle {
     
-    self.navigationLineHidden = YES;
-    [self addBackgroundImageWithFrame:self.view.bounds];
-    
+   self.navigationLineHidden = YES;
+   [self addBackgroundImageWithFrame:self.view.bounds];
+   
     for (UIView* view in @[self.phoneView,self.codeView,self.passwordView]) {
         UIView* line = [HYTool getLineWithFrame:CGRectZero lineColor:[UIColor whiteColor]];
         [view addSubview:line];
@@ -116,6 +116,8 @@
     
     [self.eyeView bk_whenTapped:^{
         self.eyeBtn.selected = !self.eyeBtn.selected;
+       NSString* image = self.eyeBtn.selected ? @"密码可见" : @"密码不可见";
+       [self.eyeBtn setImage:ImageNamed(image) forState:UIControlStateNormal];
         self.passwordTf.secureTextEntry = !self.eyeBtn.selected;
     }];
     

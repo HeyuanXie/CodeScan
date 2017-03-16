@@ -17,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *accountTf;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTf;
 
+@property (weak, nonatomic) IBOutlet UIButton *eyeBtn;
+@property (weak, nonatomic) IBOutlet UIView *eyeView;
+
 @property (weak, nonatomic) IBOutlet UIButton *forgotBtn;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *registBtn;
@@ -67,9 +70,17 @@
 }
 
 - (void)subviewBind {
+    
     [self.loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     [self.registBtn addTarget:self action:@selector(regist) forControlEvents:UIControlEventTouchUpInside];
     [self.forgotBtn addTarget:self action:@selector(forgot) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.eyeView bk_whenTapped:^{
+        self.eyeBtn.selected = !self.eyeBtn.selected;
+        NSString* image = self.eyeBtn.selected ? @"密码可见" : @"密码不可见";
+        [self.eyeBtn setImage:ImageNamed(image) forState:UIControlStateNormal];
+        self.passwordTf.secureTextEntry = !self.eyeBtn.selected;
+    }];
 }
 
 

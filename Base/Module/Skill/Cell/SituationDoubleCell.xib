@@ -109,6 +109,10 @@
                             <constraint firstAttribute="trailing" secondItem="Wdl-co-87E" secondAttribute="trailing" constant="8" id="u6z-HK-Dgh"/>
                             <constraint firstItem="Dyl-hl-fZO" firstAttribute="leading" secondItem="aYu-4Q-7cJ" secondAttribute="leading" constant="8" id="xd7-aV-Nh9"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="niU-fK-gRQ" userLabel="centerView">
                         <rect key="frame" x="180.5" y="0.5" width="14" height="305"/>
@@ -205,6 +209,10 @@
                             <constraint firstItem="1Dl-TE-j15" firstAttribute="centerY" secondItem="TxI-oY-qqn" secondAttribute="centerY" id="wSz-QX-p3Z"/>
                             <constraint firstAttribute="trailing" secondItem="hIJ-J7-GSU" secondAttribute="trailing" constant="8" id="zGu-oI-Etl"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.90588235294117647" green="0.94117647058823528" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>

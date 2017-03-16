@@ -222,8 +222,14 @@
 }
 
 //MARK:选择图片
+- (UIImagePickerController*)createImagePicker {
+    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.navigationBar.barTintColor = [UIColor hyBarTintColor];
+    return imagePicker;
+}
+
 - (void)showCamera{
-    UIImagePickerController * imagePicker = [[UIImagePickerController alloc] init];
+    UIImagePickerController * imagePicker = [self createImagePicker];
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
     imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -232,7 +238,7 @@
 }
 
 - (void)showPhotoLibrary{
-    UIImagePickerController * imagePicker = [[UIImagePickerController alloc] init];
+    UIImagePickerController * imagePicker = [self createImagePicker];
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -243,7 +249,7 @@
 //MARK:选择视频
 - (void)chooseVideo
 {
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    UIImagePickerController *imagePicker = [self createImagePicker];
     imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;//sourcetype有三种分别是camera，photoLibrary和photoAlbum
     NSArray *availableMedia = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];//Camera所支持的Media格式都有哪些,共有两个分别是@"public.image",@"public.movie"
     imagePicker.mediaTypes = [NSArray arrayWithObject:availableMedia[1]];//设置媒体类型为public.movie
@@ -254,7 +260,8 @@
 
 - (void)recordVideo
 {
-    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    UIImagePickerController *imagePicker = [self createImagePicker];
+    imagePicker.navigationBar.backgroundColor = [UIColor hyBarTintColor];
     imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;//sourcetype有三种分别是camera，photoLibrary和photoAlbum
     NSArray *availableMedia = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];//Camera所支持的Media格式都有哪些,共有两个分别是@"public.image",@"public.movie"
     imagePicker.mediaTypes = [NSArray arrayWithObject:availableMedia[1]];//设置媒体类型为public.movie
@@ -280,6 +287,9 @@
         [self.imageArray addObject:img];
         [self.tableView reloadData];
     }];
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -13,7 +13,7 @@
 #import "ApplyCommonCell.h"
 #import "SkillDeclarationCell.h"
 
-@interface SkillApplyViewController () <UITextFieldDelegate>
+@interface SkillApplyViewController () <UITextFieldDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property(strong,nonatomic)NSArray* infos;
 @property(strong,nonatomic)NSMutableArray* payMethods;
@@ -27,6 +27,9 @@
 @property(strong,nonatomic)BaseNavigationController* addressNVC;
 @property(nonatomic,strong)NSString *address;
 @property(nonatomic,strong)NSString *gender;
+
+@property(nonatomic,strong)NSString *faceUrl;   //宝宝头像url
+
 
 
 @end
@@ -75,6 +78,20 @@
     }
 }
 
+#pragma mark - imagePickerController Delegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    UIImage * img = [info objectForKey:UIImagePickerControllerEditedImage];
+    NSData *data = UIImageJPEGRepresentation(img, 1.0);
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [self uploadImage:data];
+        [self.tableView reloadData];
+    }];
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - talbeView dataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -85,6 +102,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         NSString* title = self.infos[indexPath.row][@"title"];
+        //MARK:报名费cell
         if ([title isEqualToString:@"报名费"]) {
             static NSString* cellId = @"moneyCell";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -97,11 +115,47 @@
             }
             return cell;
         }else if ([title isEqualToString:@"参赛宣言:"]){
+            //MARK:参赛宣言cell
             SkillDeclarationCell* cell = [tableView dequeueReusableCellWithIdentifier:[SkillDeclarationCell identify]];
             [HYTool configTableViewCellDefault:cell];
             cell.contentView.backgroundColor = [UIColor whiteColor];
             
             return cell;
+            /*
+             
+             else if([title isEqualToString:@"上传宝宝头像:"]) {
+             //MARK:上传头像cell
+             ApplyCommonCell* cell = [tableView dequeueReusableCellWithIdentifier:[ApplyCommonCell identify]];
+             
+             UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectZero];
+             [cell.contentView addSubview:imgV];
+             [imgV autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:5];
+             [imgV autoSetDimensionsToSize:CGSizeMake(62, 62)];
+             [imgV autoAlignAxisToSuperviewAxis:ALAxisVertical];
+             
+             [cell configSkillApplyCommonCell:self.infos[indexPath.row]];
+             
+             //            static NSString* cellId = @"imageCell";
+             //            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+             //            if (cell == nil) {
+             //                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+             //                [HYTool configTableViewCellDefault:cell];
+             //                cell.contentView.backgroundColor = [UIColor whiteColor];
+             //                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+             //
+             //
+             //
+             //                UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectZero];
+             //                imgV.tag = 1000;
+             //                [cell.contentView addSubview:imgV];
+             //                [imgV autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:5];
+             //                [imgV autoSetDimensionsToSize:CGSizeMake(62, 62)];
+             //                [imgV autoAlignAxisToSuperviewAxis:ALAxisVertical];
+             //            }
+             //            UIImageView* imgV = [cell.contentView viewWithTag:1000];
+             //TODO:设置图片
+             return cell;
+             }*/
         }else if (indexPath.row == 0) {
             ApplyTitleCell* cell = [tableView dequeueReusableCellWithIdentifier:[ApplyTitleCell identify]];
             [HYTool configTableViewCellDefault:cell];
@@ -120,6 +174,16 @@
 
             cell.inputTf.tag = 1000 + indexPath.row;
             cell.inputTf.delegate = self;
+            
+            if ([title isEqualToString:@"上传宝宝头像:"]) {
+                UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 62, 62)];
+                [cell.contentView addSubview:imgV];
+                [imgV autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:5];
+                [imgV autoSetDimensionsToSize:CGSizeMake(62, 62)];
+                [imgV autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
+                [HYTool configViewLayerRound:imgV];
+                [imgV sd_setImageWithURL:[NSURL URLWithString:self.faceUrl] placeholderImage:ImageNamed(@"yazi")];
+            }
             
             [cell configSkillApplyCommonCell:self.infos[indexPath.row]];
             return cell;
@@ -173,7 +237,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         NSString* title = self.infos[indexPath.row][@"title"];
-        return [title isEqualToString:@"参赛宣言:"] ? 118 : (indexPath.row == 0 ? 76 : 50);
+        return [title isEqualToString:@"参赛宣言:"] ? 118 : (indexPath.row <= 1 ? 76 : 50);
     }else{
         return indexPath.row == 0 ? 50 : 68;
     }
@@ -186,6 +250,9 @@
     switch (indexPath.section) {
         case 0: {
             NSString* title = self.infos[indexPath.row][@"title"];
+            if ([title isEqualToString:@"上传宝宝头像:"]) {
+                [self selectPhoto];
+            }
             if ([title isEqualToString:@"所在城市:"]) {
                 [self filterAddress:nil];
                 return;
@@ -243,6 +310,7 @@
 
 -(void)dataInit {
     self.infos = @[  @{@"title":@"title:",@"necessary":@(0)},
+                     @{@"title":@"上传宝宝头像:",@"necessary":@(1)},
                      @{@"title":@"家长姓名:",@"necessary":@(1)},
                      @{@"title":@"宝宝姓名:",@"necessary":@(1)},
                      @{@"title":@"年龄:",@"necessary":@(1)},
@@ -329,6 +397,48 @@
     }]];
     [alertC addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     [self presentViewController:alertC animated:YES completion:nil];
+}
+
+
+//MARK:上传头像
+- (UIImagePickerController*)createImagePicker {
+    UIImagePickerController* imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.navigationBar.barTintColor = [UIColor hyBarTintColor];
+    return imagePicker;
+}
+- (void)selectPhoto {
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"上传头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    @weakify(self);
+    [alertC addAction:[UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        @strongify(self);
+        [self showCamera];
+    }]];
+    [alertC addAction:[UIAlertAction actionWithTitle:@"照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        @strongify(self);
+        [self showPhotoLibrary];
+    }]];
+    [alertC addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alertC animated:YES completion:nil];
+}
+- (void)showCamera{
+    UIImagePickerController * imagePicker = [self createImagePicker];
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
+- (void)showPhotoLibrary{
+    UIImagePickerController * imagePicker = [self createImagePicker];
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+-(void)uploadImage:(NSData*)data {
+//    self.faceUrl = @"";
 }
 
 @end

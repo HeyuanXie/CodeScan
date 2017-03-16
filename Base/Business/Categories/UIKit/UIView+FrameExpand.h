@@ -15,6 +15,8 @@
 - (void)addLeftLineWithStartY:(NSInteger)y withEnd:(bool)bEnd;   //从y位置开始添加一根左边线
 - (void)addRightLineWithStartY:(NSInteger)y withEnd:(bool)bEnd;  //从y位置开始添加一根右边线
 
+- (void)addDottedLineWithEdge:(UIEdgeInsets)edge;
+
 - (UIView *)obtainBottomLine; //获取下划线
 - (UIView *)obtainTopLine;    //获取上引线
 - (UIView *)obtainLeftLine;   //获取左边线

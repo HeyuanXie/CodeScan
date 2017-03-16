@@ -31,12 +31,41 @@
 		841C01081E72A8A70082ECDA /* OrderHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C01071E72A8A70082ECDA /* OrderHomeController.m */; };
 		841C010B1E72A8B50082ECDA /* OrderListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C010A1E72A8B50082ECDA /* OrderListController.m */; };
 		841C010E1E72A9330082ECDA /* OrderCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841C010D1E72A9330082ECDA /* OrderCodeController.m */; };
+		841D4AC81E7A1DC5002C49C0 /* MineYearCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4AC71E7A1DC5002C49C0 /* MineYearCardController.m */; };
+		841D4ACB1E7A1DDA002C49C0 /* MineApplyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4ACA1E7A1DDA002C49C0 /* MineApplyController.m */; };
+		841D4AD11E7A1E0E002C49C0 /* MineCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4AD01E7A1E0E002C49C0 /* MineCouponController.m */; };
+		841D4AD41E7A1E1A002C49C0 /* MineCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4AD31E7A1E1A002C49C0 /* MineCommentController.m */; };
+		841D4ADC1E7A25CD002C49C0 /* MineYearCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4ADA1E7A25CD002C49C0 /* MineYearCardCell.m */; };
+		841D4ADD1E7A25CD002C49C0 /* MineYearCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841D4ADB1E7A25CD002C49C0 /* MineYearCardCell.xib */; };
+		841D4AE01E7A2A93002C49C0 /* horizonDotLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 841D4ADE1E7A2A92002C49C0 /* horizonDotLine.png */; };
+		841D4AE11E7A2A93002C49C0 /* verticalDotLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 841D4ADF1E7A2A92002C49C0 /* verticalDotLine.png */; };
+		841D4AE71E7A2CE1002C49C0 /* YearCardRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4AE61E7A2CE1002C49C0 /* YearCardRecordController.m */; };
+		841D4AEA1E7A32C2002C49C0 /* YearCardDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4AE91E7A32C2002C49C0 /* YearCardDetailController.m */; };
+		841D4AF31E7A3C84002C49C0 /* OrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4AF11E7A3C84002C49C0 /* OrderListCell.m */; };
+		841D4AF41E7A3C84002C49C0 /* OrderListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841D4AF21E7A3C84002C49C0 /* OrderListCell.xib */; };
+		841D4AF81E7A618F002C49C0 /* MyApplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4AF61E7A618F002C49C0 /* MyApplyCell.m */; };
+		841D4AF91E7A618F002C49C0 /* MyApplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841D4AF71E7A618F002C49C0 /* MyApplyCell.xib */; };
+		841D4AFF1E7A72F7002C49C0 /* PointDescController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4AFE1E7A72F7002C49C0 /* PointDescController.m */; };
+		841D4B021E7A7313002C49C0 /* PointDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4B011E7A7313002C49C0 /* PointDetailController.m */; };
+		841D4B061E7A7475002C49C0 /* PointManageTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4B041E7A7475002C49C0 /* PointManageTopCell.m */; };
+		841D4B071E7A7475002C49C0 /* PointManageTopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841D4B051E7A7475002C49C0 /* PointManageTopCell.xib */; };
+		841D4B0B1E7A8409002C49C0 /* PointManageBotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4B091E7A8409002C49C0 /* PointManageBotCell.m */; };
+		841D4B0C1E7A8409002C49C0 /* PointManageBotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841D4B0A1E7A8409002C49C0 /* PointManageBotCell.xib */; };
+		841D4B111E7A970B002C49C0 /* PointManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4B101E7A970B002C49C0 /* PointManageController.m */; };
 		84235B6A1E6E5AE900A81A6B /* MineHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B681E6E5AE900A81A6B /* MineHeadCell.m */; };
 		84235B6B1E6E5AE900A81A6B /* MineHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84235B691E6E5AE900A81A6B /* MineHeadCell.xib */; };
 		84235B6E1E6E8E7500A81A6B /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B6D1E6E8E7500A81A6B /* NSString+Extension.m */; };
 		84235B741E6EA18100A81A6B /* FilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B731E6EA18100A81A6B /* FilterTableViewController.m */; };
 		84235B791E6EBB7400A81A6B /* TheaterUseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84235B781E6EBB7400A81A6B /* TheaterUseView.xib */; };
 		84235B7C1E6EBBE500A81A6B /* DetailDervieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B7B1E6EBBE500A81A6B /* DetailDervieView.m */; };
+		842A56E31E78E59900D489CA /* SkillDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56E21E78E59900D489CA /* SkillDetailHeadView.m */; };
+		842A56E61E792D9700D489CA /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56E51E792D9700D489CA /* SettingViewController.m */; };
+		842A56EC1E792DF500D489CA /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56EB1E792DF500D489CA /* UserInfoViewController.m */; };
+		842A56EF1E79318E00D489CA /* APIHelper+Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56EE1E79318E00D489CA /* APIHelper+Common.m */; };
+		842A56F31E793A6100D489CA /* InfoHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56F11E793A6100D489CA /* InfoHeaderCell.m */; };
+		842A56F41E793A6100D489CA /* InfoHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842A56F21E793A6100D489CA /* InfoHeaderCell.xib */; };
+		842A56F71E793ABD00D489CA /* DatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56F61E793ABD00D489CA /* DatePickerController.m */; };
+		842A56FA1E79404700D489CA /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56F91E79404700D489CA /* FeedbackController.m */; };
 		842E4C571E3304E600888B18 /* APIHelper+Policy.m in Sources */ = {isa = PBXBuildFile; fileRef = 842E4C561E3304E600888B18 /* APIHelper+Policy.m */; };
 		843142DD1E68FC9C0007740A /* HeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843142DB1E68FC9C0007740A /* HeadCell.m */; };
 		843142DE1E68FC9C0007740A /* HeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843142DC1E68FC9C0007740A /* HeadCell.xib */; };
@@ -58,7 +87,6 @@
 		84428CE31E7627FB001D1B7B /* DeriveRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CE21E7627FB001D1B7B /* DeriveRecordController.m */; };
 		84428CE61E7628E9001D1B7B /* SkillListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CE51E7628E9001D1B7B /* SkillListViewController.m */; };
 		84428CE91E7629BB001D1B7B /* SkillDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CE81E7629BB001D1B7B /* SkillDetailController.m */; };
-		84428CEC1E762A24001D1B7B /* SkillSituationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CEB1E762A24001D1B7B /* SkillSituationController.m */; };
 		84428CEF1E762A49001D1B7B /* SkillCompetitorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CEE1E762A49001D1B7B /* SkillCompetitorController.m */; };
 		84428CF31E762AC4001D1B7B /* SkillListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84428CF11E762AC4001D1B7B /* SkillListCell.m */; };
 		84428CF41E762AC4001D1B7B /* SkillListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84428CF21E762AC4001D1B7B /* SkillListCell.xib */; };
@@ -308,6 +336,41 @@
 		841C010A1E72A8B50082ECDA /* OrderListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListController.m; sourceTree = "<group>"; };
 		841C010C1E72A9330082ECDA /* OrderCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCodeController.h; sourceTree = "<group>"; };
 		841C010D1E72A9330082ECDA /* OrderCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCodeController.m; sourceTree = "<group>"; };
+		841D4AC61E7A1DC5002C49C0 /* MineYearCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineYearCardController.h; sourceTree = "<group>"; };
+		841D4AC71E7A1DC5002C49C0 /* MineYearCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineYearCardController.m; sourceTree = "<group>"; };
+		841D4AC91E7A1DDA002C49C0 /* MineApplyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineApplyController.h; sourceTree = "<group>"; };
+		841D4ACA1E7A1DDA002C49C0 /* MineApplyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineApplyController.m; sourceTree = "<group>"; };
+		841D4ACF1E7A1E0E002C49C0 /* MineCouponController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCouponController.h; sourceTree = "<group>"; };
+		841D4AD01E7A1E0E002C49C0 /* MineCouponController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCouponController.m; sourceTree = "<group>"; };
+		841D4AD21E7A1E1A002C49C0 /* MineCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCommentController.h; sourceTree = "<group>"; };
+		841D4AD31E7A1E1A002C49C0 /* MineCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCommentController.m; sourceTree = "<group>"; };
+		841D4AD91E7A25CD002C49C0 /* MineYearCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineYearCardCell.h; sourceTree = "<group>"; };
+		841D4ADA1E7A25CD002C49C0 /* MineYearCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineYearCardCell.m; sourceTree = "<group>"; };
+		841D4ADB1E7A25CD002C49C0 /* MineYearCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineYearCardCell.xib; sourceTree = "<group>"; };
+		841D4ADE1E7A2A92002C49C0 /* horizonDotLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = horizonDotLine.png; sourceTree = "<group>"; };
+		841D4ADF1E7A2A92002C49C0 /* verticalDotLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = verticalDotLine.png; sourceTree = "<group>"; };
+		841D4AE51E7A2CE1002C49C0 /* YearCardRecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearCardRecordController.h; sourceTree = "<group>"; };
+		841D4AE61E7A2CE1002C49C0 /* YearCardRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearCardRecordController.m; sourceTree = "<group>"; };
+		841D4AE81E7A32C2002C49C0 /* YearCardDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearCardDetailController.h; sourceTree = "<group>"; };
+		841D4AE91E7A32C2002C49C0 /* YearCardDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearCardDetailController.m; sourceTree = "<group>"; };
+		841D4AF01E7A3C84002C49C0 /* OrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderListCell.h; sourceTree = "<group>"; };
+		841D4AF11E7A3C84002C49C0 /* OrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderListCell.m; sourceTree = "<group>"; };
+		841D4AF21E7A3C84002C49C0 /* OrderListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderListCell.xib; sourceTree = "<group>"; };
+		841D4AF51E7A618F002C49C0 /* MyApplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyApplyCell.h; sourceTree = "<group>"; };
+		841D4AF61E7A618F002C49C0 /* MyApplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyApplyCell.m; sourceTree = "<group>"; };
+		841D4AF71E7A618F002C49C0 /* MyApplyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyApplyCell.xib; sourceTree = "<group>"; };
+		841D4AFD1E7A72F7002C49C0 /* PointDescController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointDescController.h; sourceTree = "<group>"; };
+		841D4AFE1E7A72F7002C49C0 /* PointDescController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointDescController.m; sourceTree = "<group>"; };
+		841D4B001E7A7313002C49C0 /* PointDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointDetailController.h; sourceTree = "<group>"; };
+		841D4B011E7A7313002C49C0 /* PointDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointDetailController.m; sourceTree = "<group>"; };
+		841D4B031E7A7475002C49C0 /* PointManageTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointManageTopCell.h; sourceTree = "<group>"; };
+		841D4B041E7A7475002C49C0 /* PointManageTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointManageTopCell.m; sourceTree = "<group>"; };
+		841D4B051E7A7475002C49C0 /* PointManageTopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PointManageTopCell.xib; sourceTree = "<group>"; };
+		841D4B081E7A8409002C49C0 /* PointManageBotCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointManageBotCell.h; sourceTree = "<group>"; };
+		841D4B091E7A8409002C49C0 /* PointManageBotCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointManageBotCell.m; sourceTree = "<group>"; };
+		841D4B0A1E7A8409002C49C0 /* PointManageBotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PointManageBotCell.xib; sourceTree = "<group>"; };
+		841D4B0F1E7A970B002C49C0 /* PointManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointManageController.h; sourceTree = "<group>"; };
+		841D4B101E7A970B002C49C0 /* PointManageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointManageController.m; sourceTree = "<group>"; };
 		84235B671E6E5AE900A81A6B /* MineHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeadCell.h; sourceTree = "<group>"; };
 		84235B681E6E5AE900A81A6B /* MineHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeadCell.m; sourceTree = "<group>"; };
 		84235B691E6E5AE900A81A6B /* MineHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineHeadCell.xib; sourceTree = "<group>"; };
@@ -318,6 +381,21 @@
 		84235B781E6EBB7400A81A6B /* TheaterUseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TheaterUseView.xib; sourceTree = "<group>"; };
 		84235B7A1E6EBBE500A81A6B /* DetailDervieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDervieView.h; sourceTree = "<group>"; };
 		84235B7B1E6EBBE500A81A6B /* DetailDervieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDervieView.m; sourceTree = "<group>"; };
+		842A56E11E78E59900D489CA /* SkillDetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillDetailHeadView.h; sourceTree = "<group>"; };
+		842A56E21E78E59900D489CA /* SkillDetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillDetailHeadView.m; sourceTree = "<group>"; };
+		842A56E41E792D9700D489CA /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		842A56E51E792D9700D489CA /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		842A56EA1E792DF500D489CA /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		842A56EB1E792DF500D489CA /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		842A56ED1E79318E00D489CA /* APIHelper+Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Common.h"; sourceTree = "<group>"; };
+		842A56EE1E79318E00D489CA /* APIHelper+Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Common.m"; sourceTree = "<group>"; };
+		842A56F01E793A6100D489CA /* InfoHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoHeaderCell.h; sourceTree = "<group>"; };
+		842A56F11E793A6100D489CA /* InfoHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoHeaderCell.m; sourceTree = "<group>"; };
+		842A56F21E793A6100D489CA /* InfoHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoHeaderCell.xib; sourceTree = "<group>"; };
+		842A56F51E793ABD00D489CA /* DatePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerController.h; sourceTree = "<group>"; };
+		842A56F61E793ABD00D489CA /* DatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerController.m; sourceTree = "<group>"; };
+		842A56F81E79404700D489CA /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
+		842A56F91E79404700D489CA /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
 		842E4C551E3304E600888B18 /* APIHelper+Policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Policy.h"; sourceTree = "<group>"; };
 		842E4C561E3304E600888B18 /* APIHelper+Policy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Policy.m"; sourceTree = "<group>"; };
 		843142DA1E68FC9C0007740A /* HeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadCell.h; sourceTree = "<group>"; };
@@ -352,8 +430,6 @@
 		84428CE51E7628E9001D1B7B /* SkillListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillListViewController.m; sourceTree = "<group>"; };
 		84428CE71E7629BB001D1B7B /* SkillDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillDetailController.h; sourceTree = "<group>"; };
 		84428CE81E7629BB001D1B7B /* SkillDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillDetailController.m; sourceTree = "<group>"; };
-		84428CEA1E762A24001D1B7B /* SkillSituationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillSituationController.h; sourceTree = "<group>"; };
-		84428CEB1E762A24001D1B7B /* SkillSituationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillSituationController.m; sourceTree = "<group>"; };
 		84428CED1E762A49001D1B7B /* SkillCompetitorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillCompetitorController.h; sourceTree = "<group>"; };
 		84428CEE1E762A49001D1B7B /* SkillCompetitorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillCompetitorController.m; sourceTree = "<group>"; };
 		84428CF01E762AC4001D1B7B /* SkillListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillListCell.h; sourceTree = "<group>"; };
@@ -1062,6 +1138,21 @@
 				843142E21E69166C0007740A /* FunctionCell.h */,
 				843142E31E69166C0007740A /* FunctionCell.m */,
 				843142E41E69166C0007740A /* FunctionCell.xib */,
+				842A56F01E793A6100D489CA /* InfoHeaderCell.h */,
+				842A56F11E793A6100D489CA /* InfoHeaderCell.m */,
+				842A56F21E793A6100D489CA /* InfoHeaderCell.xib */,
+				841D4AD91E7A25CD002C49C0 /* MineYearCardCell.h */,
+				841D4ADA1E7A25CD002C49C0 /* MineYearCardCell.m */,
+				841D4ADB1E7A25CD002C49C0 /* MineYearCardCell.xib */,
+				841D4AF51E7A618F002C49C0 /* MyApplyCell.h */,
+				841D4AF61E7A618F002C49C0 /* MyApplyCell.m */,
+				841D4AF71E7A618F002C49C0 /* MyApplyCell.xib */,
+				841D4B031E7A7475002C49C0 /* PointManageTopCell.h */,
+				841D4B041E7A7475002C49C0 /* PointManageTopCell.m */,
+				841D4B051E7A7475002C49C0 /* PointManageTopCell.xib */,
+				841D4B081E7A8409002C49C0 /* PointManageBotCell.h */,
+				841D4B091E7A8409002C49C0 /* PointManageBotCell.m */,
+				841D4B0A1E7A8409002C49C0 /* PointManageBotCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1071,6 +1162,30 @@
 			children = (
 				84554DA31E2F3A28007EE209 /* MineHomeViewController.h */,
 				84554DA41E2F3A28007EE209 /* MineHomeViewController.m */,
+				842A56E41E792D9700D489CA /* SettingViewController.h */,
+				842A56E51E792D9700D489CA /* SettingViewController.m */,
+				842A56F81E79404700D489CA /* FeedbackController.h */,
+				842A56F91E79404700D489CA /* FeedbackController.m */,
+				842A56EA1E792DF500D489CA /* UserInfoViewController.h */,
+				842A56EB1E792DF500D489CA /* UserInfoViewController.m */,
+				841D4AC61E7A1DC5002C49C0 /* MineYearCardController.h */,
+				841D4AC71E7A1DC5002C49C0 /* MineYearCardController.m */,
+				841D4AE81E7A32C2002C49C0 /* YearCardDetailController.h */,
+				841D4AE91E7A32C2002C49C0 /* YearCardDetailController.m */,
+				841D4AE51E7A2CE1002C49C0 /* YearCardRecordController.h */,
+				841D4AE61E7A2CE1002C49C0 /* YearCardRecordController.m */,
+				841D4AC91E7A1DDA002C49C0 /* MineApplyController.h */,
+				841D4ACA1E7A1DDA002C49C0 /* MineApplyController.m */,
+				841D4B0F1E7A970B002C49C0 /* PointManageController.h */,
+				841D4B101E7A970B002C49C0 /* PointManageController.m */,
+				841D4B001E7A7313002C49C0 /* PointDetailController.h */,
+				841D4B011E7A7313002C49C0 /* PointDetailController.m */,
+				841D4AFD1E7A72F7002C49C0 /* PointDescController.h */,
+				841D4AFE1E7A72F7002C49C0 /* PointDescController.m */,
+				841D4ACF1E7A1E0E002C49C0 /* MineCouponController.h */,
+				841D4AD01E7A1E0E002C49C0 /* MineCouponController.m */,
+				841D4AD21E7A1E1A002C49C0 /* MineCommentController.h */,
+				841D4AD31E7A1E1A002C49C0 /* MineCommentController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1168,6 +1283,8 @@
 				843142E01E68FED50007740A /* gradualBackground.png */,
 				844343DD1E6FA02D00D9FD2F /* yazi.png */,
 				841C01011E729BFC0082ECDA /* baidi.png */,
+				841D4ADE1E7A2A92002C49C0 /* horizonDotLine.png */,
+				841D4ADF1E7A2A92002C49C0 /* verticalDotLine.png */,
 				845BDF821E28D2C00064ACAE /* LaunchScreen.storyboard */,
 				845BDF7D1E28D2C00064ACAE /* Main.storyboard */,
 				8472F7261E6D388A000AE550 /* Collect.storyboard */,
@@ -1268,6 +1385,9 @@
 		8472F71B1E6D37D8000AE550 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				841D4AF01E7A3C84002C49C0 /* OrderListCell.h */,
+				841D4AF11E7A3C84002C49C0 /* OrderListCell.m */,
+				841D4AF21E7A3C84002C49C0 /* OrderListCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1647,6 +1767,8 @@
 				84E5EE991E2DED5F0062A2BE /* HttpHelper.m */,
 				84E5EE921E2DCDEC0062A2BE /* APIHelper.h */,
 				84E5EE931E2DCDEC0062A2BE /* APIHelper.m */,
+				842A56ED1E79318E00D489CA /* APIHelper+Common.h */,
+				842A56EE1E79318E00D489CA /* APIHelper+Common.m */,
 				84525A371E2E08D20054C6A1 /* APIHelper+User.h */,
 				84525A381E2E08D20054C6A1 /* APIHelper+User.m */,
 				84E6D4281E4817CD0056A702 /* APIHelper+Home.h */,
@@ -1714,6 +1836,8 @@
 				84DCC2761E77C85A0019898E /* SkillDeclarationCell.m */,
 				84DCC2771E77C85A0019898E /* SkillDeclarationCell.xib */,
 				84DCC27A1E77E0830019898E /* SkillUseView.xib */,
+				842A56E11E78E59900D489CA /* SkillDetailHeadView.h */,
+				842A56E21E78E59900D489CA /* SkillDetailHeadView.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1725,8 +1849,6 @@
 				84428CE51E7628E9001D1B7B /* SkillListViewController.m */,
 				84428CE71E7629BB001D1B7B /* SkillDetailController.h */,
 				84428CE81E7629BB001D1B7B /* SkillDetailController.m */,
-				84428CEA1E762A24001D1B7B /* SkillSituationController.h */,
-				84428CEB1E762A24001D1B7B /* SkillSituationController.m */,
 				84428CED1E762A49001D1B7B /* SkillCompetitorController.h */,
 				84428CEE1E762A49001D1B7B /* SkillCompetitorController.m */,
 				84DCC2611E77880A0019898E /* MineSupportViewController.h */,
@@ -1843,6 +1965,8 @@
 				841961321E67C9CF00A78877 /* CustomCircleView.m */,
 				8413CEC91E669DF200436B2F /* CustomJumpBtns.h */,
 				8413CECA1E669DF200436B2F /* CustomJumpBtns.m */,
+				842A56F51E793ABD00D489CA /* DatePickerController.h */,
+				842A56F61E793ABD00D489CA /* DatePickerController.m */,
 			);
 			path = CustomeView;
 			sourceTree = "<group>";
@@ -2082,16 +2206,19 @@
 				84DCC27B1E77E0830019898E /* SkillUseView.xib in Resources */,
 				841C01021E729BFC0082ECDA /* baidi.png in Resources */,
 				84E74BD41E70F0E600016A99 /* LectureApplyerCell.xib in Resources */,
+				841D4AF91E7A618F002C49C0 /* MyApplyCell.xib in Resources */,
 				84DCC2741E7790400019898E /* MineSupportCell.xib in Resources */,
 				84924E6A1E2C756A005F05C3 /* Login.storyboard in Resources */,
 				84E5EE851E2DCADB0062A2BE /* README.txt in Resources */,
 				844343E31E6FD39600D9FD2F /* TheaterTicketCell.xib in Resources */,
 				84DCC2891E77E8100019898E /* VideoListCell.xib in Resources */,
+				841D4B071E7A7475002C49C0 /* PointManageTopCell.xib in Resources */,
 				845BDF841E28D2C00064ACAE /* LaunchScreen.storyboard in Resources */,
 				84924E6C1E2C7572005F05C3 /* Mine.storyboard in Resources */,
 				84428CFE1E764432001D1B7B /* SituationDoubleCell.xib in Resources */,
 				84E5EE841E2DCADB0062A2BE /* read_me.txt in Resources */,
 				843142E11E68FED50007740A /* gradualBackground.png in Resources */,
+				842A56F41E793A6100D489CA /* InfoHeaderCell.xib in Resources */,
 				84924F161E2CC926005F05C3 /* sure_placeholder_error@2x.png in Resources */,
 				841C00ED1E7258710082ECDA /* HomeSecondCell.xib in Resources */,
 				8472F7441E6D585E000AE550 /* TheaterDetailCell.xib in Resources */,
@@ -2100,20 +2227,25 @@
 				845BDF7F1E28D2C00064ACAE /* Main.storyboard in Resources */,
 				84525A1D1E2E019D0054C6A1 /* AlipaySDK.bundle in Resources */,
 				84DCC2791E77C85A0019898E /* SkillDeclarationCell.xib in Resources */,
+				841D4AE11E7A2A93002C49C0 /* verticalDotLine.png in Resources */,
 				84E5EE821E2DCADB0062A2BE /* WeiboSDK.bundle in Resources */,
 				841C01001E7296B50082ECDA /* DeriveListCell.xib in Resources */,
+				841D4AF41E7A3C84002C49C0 /* OrderListCell.xib in Resources */,
 				843142DE1E68FC9C0007740A /* HeadCell.xib in Resources */,
 				844343EB1E70018300D9FD2F /* LectureListCell.xib in Resources */,
 				843142FD1E695BC30007740A /* HomeVideoCell.xib in Resources */,
 				84E5EE871E2DCADB0062A2BE /* ShareSDK.bundle in Resources */,
+				841D4ADD1E7A25CD002C49C0 /* MineYearCardCell.xib in Resources */,
 				8472F7291E6D3892000AE550 /* Order.storyboard in Resources */,
 				84E5EE7D1E2DCADB0062A2BE /* ShareSDKUI.bundle in Resources */,
 				84E74BDE1E71305400016A99 /* ApplyTitleCell.xib in Resources */,
 				841C00E31E723D460082ECDA /* OrderTopCell.xib in Resources */,
 				84E74BE31E7132F500016A99 /* ApplyCommonCell.xib in Resources */,
+				841D4AE01E7A2A93002C49C0 /* horizonDotLine.png in Resources */,
 				84235B791E6EBB7400A81A6B /* TheaterUseView.xib in Resources */,
 				84E74BCF1E70F0B200016A99 /* LectureDescCell.xib in Resources */,
 				84428CF41E762AC4001D1B7B /* SkillListCell.xib in Resources */,
+				841D4B0C1E7A8409002C49C0 /* PointManageBotCell.xib in Resources */,
 				84924F171E2CC926005F05C3 /* sure_placeholder_error@3x.png in Resources */,
 				84235B6B1E6E5AE900A81A6B /* MineHeadCell.xib in Resources */,
 				844343DE1E6FA02D00D9FD2F /* yazi.png in Resources */,
@@ -2195,6 +2327,7 @@
 				84525A281E2E019D0054C6A1 /* RSADataVerifier.m in Sources */,
 				84924EBD1E2C9946005F05C3 /* UITextField+HYTextField.m in Sources */,
 				84F691261E2C56530048B6DF /* NSString+HYFilter.m in Sources */,
+				841D4AF81E7A618F002C49C0 /* MyApplyCell.m in Sources */,
 				84E5EE7B1E2DCADB0062A2BE /* ShareSDKTools.m in Sources */,
 				84E74BC51E70E4C100016A99 /* LectureDetailController.m in Sources */,
 				843142FC1E695BC30007740A /* HomeVideoCell.m in Sources */,
@@ -2202,11 +2335,15 @@
 				843143011E695BD70007740A /* HomeHotCell.m in Sources */,
 				84E5EE721E2DCADB0062A2BE /* HTEffectHeaderView.m in Sources */,
 				8472F7221E6D383A000AE550 /* CollectViewController.m in Sources */,
+				841D4AEA1E7A32C2002C49C0 /* YearCardDetailController.m in Sources */,
 				84924E9F1E2C7CD8005F05C3 /* UIView+Common.m in Sources */,
 				84235B741E6EA18100A81A6B /* FilterTableViewController.m in Sources */,
 				844343EA1E70018300D9FD2F /* LectureListCell.m in Sources */,
+				842A56F71E793ABD00D489CA /* DatePickerController.m in Sources */,
+				842A56EF1E79318E00D489CA /* APIHelper+Common.m in Sources */,
 				841961301E67C73500A78877 /* UserInfoModel.m in Sources */,
 				84DCC28D1E77E83C0019898E /* VideoCommentCell.m in Sources */,
+				841D4AF31E7A3C84002C49C0 /* OrderListCell.m in Sources */,
 				84924F191E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m in Sources */,
 				84525A231E2E019D0054C6A1 /* DataVerifier.m in Sources */,
 				843142F71E6953140007740A /* ThemeCell.m in Sources */,
@@ -2223,15 +2360,18 @@
 				84235B6A1E6E5AE900A81A6B /* MineHeadCell.m in Sources */,
 				84525A391E2E08D20054C6A1 /* APIHelper+User.m in Sources */,
 				84428CE91E7629BB001D1B7B /* SkillDetailController.m in Sources */,
+				841D4B021E7A7313002C49C0 /* PointDetailController.m in Sources */,
 				84E74C0A1E715DC800016A99 /* YearCardBindController.m in Sources */,
 				84428CEF1E762A49001D1B7B /* SkillCompetitorController.m in Sources */,
 				84E74C071E71595700016A99 /* YearCardBindSuccessController.m in Sources */,
 				841C00EC1E7258710082ECDA /* HomeSecondCell.m in Sources */,
 				84E74BE21E7132F500016A99 /* ApplyCommonCell.m in Sources */,
 				84428CE31E7627FB001D1B7B /* DeriveRecordController.m in Sources */,
+				841D4AD41E7A1E1A002C49C0 /* MineCommentController.m in Sources */,
 				841C01081E72A8A70082ECDA /* OrderHomeController.m in Sources */,
 				84E5EDBD1E2DC93E0062A2BE /* HYPayEngine.m in Sources */,
 				84E5EE9A1E2DED5F0062A2BE /* HttpHelper.m in Sources */,
+				842A56EC1E792DF500D489CA /* UserInfoViewController.m in Sources */,
 				84DCC2781E77C85A0019898E /* SkillDeclarationCell.m in Sources */,
 				843142E51E69166C0007740A /* FunctionCell.m in Sources */,
 				84E5EE771E2DCADB0062A2BE /* HTProductDetailImageBrowserView.m in Sources */,
@@ -2253,24 +2393,29 @@
 				84235B6E1E6E8E7500A81A6B /* NSString+Extension.m in Sources */,
 				84554D911E2F39A6007EE209 /* LoginViewController.m in Sources */,
 				84924EA51E2C7D45005F05C3 /* UIColor+HYColors.m in Sources */,
+				842A56FA1E79404700D489CA /* FeedbackController.m in Sources */,
 				84F691381E2C68700048B6DF /* OpenRoutesManager.m in Sources */,
 				843142EA1E691D9C0007740A /* HomeImageCell.m in Sources */,
 				84F691141E2C55E00048B6DF /* NSMutableArray+Safety.m in Sources */,
 				84554DA51E2F3A28007EE209 /* MineHomeViewController.m in Sources */,
+				841D4AC81E7A1DC5002C49C0 /* MineYearCardController.m in Sources */,
 				84F691171E2C55FC0048B6DF /* NSNumber+HYFormatter.m in Sources */,
 				84525A251E2E019D0054C6A1 /* NSDataEx.m in Sources */,
 				84924EC91E2C9A10005F05C3 /* UINavigationController+HYNavigationHiddenShowBug.m in Sources */,
 				84924EC31E2C9970005F05C3 /* UITextView+MaxLimit.m in Sources */,
 				845BDF761E28D2C00064ACAE /* main.m in Sources */,
 				84DCC2631E77880A0019898E /* MineSupportViewController.m in Sources */,
+				841D4AFF1E7A72F7002C49C0 /* PointDescController.m in Sources */,
 				84DCC2811E77E7A60019898E /* VideoListViewController.m in Sources */,
 				84924E8D1E2C79B0005F05C3 /* MBProgressHUD+hyHUD.m in Sources */,
 				84F6911D1E2C56220048B6DF /* NSString+ContainsEmoji.m in Sources */,
+				841D4B111E7A970B002C49C0 /* PointManageController.m in Sources */,
 				84F691351E2C569B0048B6DF /* NSDate+HYFormat.m in Sources */,
 				84525A211E2E019D0054C6A1 /* base64.m in Sources */,
 				84F691431E2C6C160048B6DF /* Global.m in Sources */,
 				84924E991E2C7CCA005F05C3 /* UIView+FrameExpand.m in Sources */,
 				84E74BDD1E71305400016A99 /* ApplyTitleCell.m in Sources */,
+				842A56E61E792D9700D489CA /* SettingViewController.m in Sources */,
 				84DCC26F1E77898F0019898E /* SkillApplySucceedController.m in Sources */,
 				84F691201E2C56370048B6DF /* NSString+HYMobileInsertInterval.m in Sources */,
 				84924EB11E2C7D99005F05C3 /* UIImageView+HYWebImage.m in Sources */,
@@ -2283,8 +2428,10 @@
 				84E5EE941E2DCDEC0062A2BE /* APIHelper.m in Sources */,
 				84DE2CA61E6815B5008BD672 /* RegistViewController.m in Sources */,
 				84924EF81E2CC245005F05C3 /* WKWebViewController.m in Sources */,
+				841D4ADC1E7A25CD002C49C0 /* MineYearCardCell.m in Sources */,
 				84DCC2691E7789610019898E /* SkillApplyViewController.m in Sources */,
 				84E74C011E71574400016A99 /* YearCardCommitOrderController.m in Sources */,
+				841D4B061E7A7475002C49C0 /* PointManageTopCell.m in Sources */,
 				84EF70771E4AC18D0098A606 /* HYScrollView.m in Sources */,
 				84DCC26C1E77896D0019898E /* SkillUploadViewController.m in Sources */,
 				841C00F11E7258820082ECDA /* HomeDescCell.m in Sources */,
@@ -2303,6 +2450,7 @@
 				84924EAB1E2C7D7C005F05C3 /* UIImage+HYSize.m in Sources */,
 				84E5EE731E2DCADB0062A2BE /* UIScrollView+EffectHeaderView.m in Sources */,
 				84DCC2881E77E8100019898E /* VideoListCell.m in Sources */,
+				842A56E31E78E59900D489CA /* SkillDetailHeadView.m in Sources */,
 				84235B7C1E6EBBE500A81A6B /* DetailDervieView.m in Sources */,
 				84924F181E2CC926005F05C3 /* SurePlaceholderView.m in Sources */,
 				84428CFD1E764432001D1B7B /* SituationDoubleCell.m in Sources */,
@@ -2313,6 +2461,7 @@
 				84F25F441E65814D00FC9E31 /* HYSearchBar.m in Sources */,
 				84924E961E2C7CBB005F05C3 /* UIView+Frame.m in Sources */,
 				841C010B1E72A8B50082ECDA /* OrderListController.m in Sources */,
+				842A56F31E793A6100D489CA /* InfoHeaderCell.m in Sources */,
 				84F691231E2C56480048B6DF /* NSString+HYUtilities.m in Sources */,
 				84924E9C1E2C7CD2005F05C3 /* UIView+Badge.m in Sources */,
 				84525A271E2E019D0054C6A1 /* RSADataSigner.m in Sources */,
@@ -2324,6 +2473,7 @@
 				8413CEC71E665E0000436B2F /* JYSlideSegmentController.m in Sources */,
 				84924EC61E2C997A005F05C3 /* UITextView+Placeholder.m in Sources */,
 				84428CF31E762AC4001D1B7B /* SkillListCell.m in Sources */,
+				841D4B0B1E7A8409002C49C0 /* PointManageBotCell.m in Sources */,
 				84924F1A1E2CC926005F05C3 /* UITableView+Sure_Placeholder.m in Sources */,
 				84DCC2841E77E7F70019898E /* VideoPlayViewController.m in Sources */,
 				84E5EE8E1E2DCDC70062A2BE /* HYServer.m in Sources */,
@@ -2334,13 +2484,15 @@
 				84924E7B1E2C7806005F05C3 /* BaseViewController.m in Sources */,
 				84428CE61E7628E9001D1B7B /* SkillListViewController.m in Sources */,
 				8472F7361E6D410C000AE550 /* TheaterDetailViewController.m in Sources */,
+				841D4AE71E7A2CE1002C49C0 /* YearCardRecordController.m in Sources */,
 				84924EB71E2C7DB9005F05C3 /* UILabel+autoSize.m in Sources */,
-				84428CEC1E762A24001D1B7B /* SkillSituationController.m in Sources */,
+				841D4ACB1E7A1DDA002C49C0 /* MineApplyController.m in Sources */,
 				84E5EE741E2DCADB0062A2BE /* HTImageBrowserItemView.m in Sources */,
 				84E5EE791E2DCADB0062A2BE /* UIViewController+KNSemiModal.m in Sources */,
 				84E74BC91E70E90B00016A99 /* LectureDetailTopCell.m in Sources */,
 				84924E871E2C78C1005F05C3 /* BaseNavigationController.m in Sources */,
 				84E5EE781E2DCADB0062A2BE /* LTKeyChain.m in Sources */,
+				841D4AD11E7A1E0E002C49C0 /* MineCouponController.m in Sources */,
 				84924E8A1E2C78CD005F05C3 /* BaseTableViewController.m in Sources */,
 				84924F151E2CC926005F05C3 /* NSObject+Swizzling.m in Sources */,
 				84525A221E2E019D0054C6A1 /* DataSigner.m in Sources */,

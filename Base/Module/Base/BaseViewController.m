@@ -8,6 +8,8 @@
 
 #import "BaseViewController.h"
 #import "MBProgressHUD+hyHUD.h"
+#import "LoginViewController.h"
+#import "RegistViewController.h"
 
 @interface BaseViewController ()
 
@@ -47,10 +49,12 @@
         leftButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -5);
         leftButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [leftButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-        [leftButton setTitle:@"返回" forState:UIControlStateNormal];
         [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [leftButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         [leftButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        if ([self isKindOfClass:[LoginViewController class]] || [self isKindOfClass:[RegistViewController class]]) {
+            [leftButton setImage:ImageNamed(@"登陆页关闭") forState:UIControlStateNormal];
+        }
         self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:leftButton]];
     }
     if (self.navigationBarTransparent) {

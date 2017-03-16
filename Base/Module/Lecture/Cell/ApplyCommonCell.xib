@@ -126,6 +126,7 @@
                 <outlet property="numLbl" destination="jMA-J4-42q" id="SDR-4N-6zs"/>
                 <outlet property="subLbl" destination="BXH-aq-X4S" id="7HM-jx-rwG"/>
                 <outlet property="titleLbl" destination="AUY-Ym-EVe" id="S6k-bI-23K"/>
+                <outlet property="titleLblWidth" destination="MDa-vs-sUu" id="zBD-ir-NYZ"/>
             </connections>
             <point key="canvasLocation" x="34.5" y="54"/>
         </tableViewCell>

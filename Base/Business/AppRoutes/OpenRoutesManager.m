@@ -28,6 +28,7 @@ NSString* const kYearCardBindSuccessController = @"YearCardBindSuccessController
 NSString* const kDeriveListController = @"DeriveListController";
 NSString* const kDeriveDetailController = @"DeriveDetailController";
 NSString* const kDeriveOrderController = @"DeriveOrderController";
+NSString* const kDeriveRecordController = @"DeriveRecordController";
 
 NSString* const kOrderListController = @"OrderListController";
 NSString* const kOrderDetailController = @"OrderDetailController";
@@ -45,16 +46,25 @@ NSString* const kSkillApplySucceedController = @"SkillApplySucceedController";
 NSString* const kVideoListViewController = @"VideoListViewController";
 NSString* const kVideoPlayViewController = @"VideoPlayViewController";
 
+//Mine
+NSString* const kSettingViewController = @"SettingViewController";
+NSString* const kUserInfoViewController = @"UserInfoViewController";
+NSString* const kMessageController = @"MessageController";
+NSString* const kFeedbackController = @"FeedbackController";
+NSString* const kMineYearCardController = @"MineYearCardController";
+NSString* const kYearCardDetailController = @"YearCardDetailController";
+NSString* const kYearCardRecordController = @"YearCardRecordController";
+NSString* const kMineApplyController = @"MineApplyController";
+NSString* const kPointManageController = @"PointManageController";
+NSString* const kPointDetailController = @"PointDetailController";
+NSString* const kPointDescController = @"PointDescController";
+NSString* const kMineCouponController = @"MineCouponController";
+NSString* const kMineCommentController = @"MineCommentController";
 
 
 NSString* const kRegistViewController = @"RegistViewController";
 NSString* const kFinishRegisterController = @"FinishRegisterController";
 NSString* const kLoginViewController = @"LoginViewController";
-NSString* const kUserInfoController = @"UserInfoController";
-NSString* const kMessageController = @"MessageController";
-NSString* const kFeedbackController = @"FeedbackController";
-NSString* const kShareController = @"ShareController";
-NSString* const kSettingController = @"SettingController";
 NSString* const kSearchViewController = @"SearchViewController";
 NSString* const kSearchGuideController = @"SearchGuideController";
 NSString* const kFilterClassTableViewController = @"FilterClassTableViewController";
@@ -101,6 +111,7 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
                         @{@"cls":kDeriveListController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kDeriveDetailController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kDeriveOrderController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kDeriveRecordController,@"sb":@"Main",@"method":@"push"},
                         
                         @{@"cls":kOrderListController,@"sb":@"Order",@"method":@"push"},
                         @{@"cls":kOrderDetailController,@"sb":@"Order",@"method":@"push"},
@@ -118,14 +129,24 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
                         @{@"cls":kVideoListViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kVideoPlayViewController,@"sb":@"Main",@"method":@"push"},
                         
-                        @{@"cls":kRegistViewController,@"sb":@"Login",@"method":@"push"},
-                        @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"push"},
-                        @{@"cls":kFinishRegisterController,@"sb":@"Login",@"method":@"push"},
+                        @{@"cls":kSettingViewController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kUserInfoViewController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMessageController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kFeedbackController,@"sb":@"Mine",@"method":@"push"},
-                        @{@"cls":kShareController,@"sb":@"Mine",@"method":@"push"},
-                        @{@"cls":kSettingController,@"sb":@"Mine",@"method":@"push"},
-                        @{@"cls":kUserInfoController,@"sb":@"Login",@"method":@"push"},
+                        @{@"cls":kMineYearCardController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kYearCardDetailController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kYearCardRecordController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kMineApplyController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kPointManageController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kPointDetailController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kPointDescController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kMineCouponController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kMineCommentController,@"sb":@"Mine",@"method":@"push"},
+
+                        @{@"cls":kRegistViewController,@"sb":@"Login",@"method":@"push"},
+                        @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"push"},
+                        
+                        @{@"cls":kFinishRegisterController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kSearchViewController,@"sb":@"Home",@"method":@"push"},
                         @{@"cls":kSearchGuideController,@"sb":@"Home",@"method":@"push"},
                         @{@"cls":kFilterClassTableViewController,@"sb":@"Policy",@"method":@"push"},

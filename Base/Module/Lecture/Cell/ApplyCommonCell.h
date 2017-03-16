@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *addLbl;
 @property (weak, nonatomic) IBOutlet UILabel *numLbl;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleLblWidth;
+
 @property(nonatomic,copy)void (^subClick)();
 @property(nonatomic,copy)void (^addClick)();
 

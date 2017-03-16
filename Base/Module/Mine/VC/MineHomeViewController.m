@@ -11,6 +11,7 @@
 #import "HeadCell.h"
 #import "MineHeadCell.h"
 #import "FunctionCell.h"
+#import "UIViewController+Extension.h"
 
 @interface MineHomeViewController ()
 
@@ -34,25 +35,28 @@
 
 -(NSArray *)infos {
     if (!_infos) {
-        _infos = @[@[@{}],
-                   @[@{@"image":@"",@"title":@"剧院年卡",@"router":@"",@"needLogin":@(YES)},
-                     @{@"image":@"",@"title":@"报名信息",@"router":@"",@"needLogin":@(YES)},
-                     @{@"image":@"",@"title":@"积分管理",@"router":@"",@"needLogin":@(YES)},
-                     @{@"image":@"",@"title":@"优惠券",@"router":@"",@"needLogin":@(YES)},
+        _infos = @[@[@{@"image":@"",@"title":@"未登录",@"router":kUserInfoViewController,@"needLogin":@(YES)}],
+                   @[@{@"image":@"card",@"title":@"我的年卡",@"router":kMineYearCardController,@"needLogin":@(YES)},
+                     @{@"image":@"baoming",@"title":@"我的报名",@"router":kMineApplyController,@"needLogin":@(YES)},
+                     @{@"image":@"jifen",@"title":@"积分管理",@"router":kPointManageController,@"needLogin":@(YES)},
+                     @{@"image":@"youhuiquan",@"title":@"优惠券",@"router":kMineCouponController,@"needLogin":@(YES)},
+                     @{@"image":@"pingjia",@"title":@"我的评价",@"router":kMineCommentController,@"needLogin":@(YES)},
+                     @{@"image":@"toupiao",@"title":@"我的投票",@"router":kMineSupportViewController,@"needLogin":@(YES)}
                     ],
-                   @[@{@"image":@"",@"title":@"设置",@"router":@"",@"needLogin":@(YES)}]];
+                   @[@{@"image":@"setting",@"title":@"设置",@"router":kSettingViewController,@"needLogin":@(NO)}]];
     }
     return _infos;
 }
 
 - (void)subviewStyle {
+    
     self.backItemHidden = YES;
     self.navigationBarTransparent = YES;
-//    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(-64, 0, 0, 0)];
+    [self configMessage];
+    
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(-64, 0, 64, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor hyViewBackgroundColor];
-    self.tableView.scrollEnabled = NO;
     [self.tableView registerNib:[UINib nibWithNibName:[HeadCell identify] bundle:nil] forCellReuseIdentifier:[HeadCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[MineHeadCell identify] bundle:nil] forCellReuseIdentifier:[MineHeadCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[FunctionCell identify] bundle:nil] forCellReuseIdentifier:[FunctionCell identify]];
@@ -134,8 +138,15 @@
     return cell;
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    APPROUTE(kLoginViewController);
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *info = self.infos[indexPath.section][indexPath.row];
+    //如果需要登陆而userAuth==nil(没登录), 就进入LoginViewController
+//    if ([info[@"needLogin"] boolValue] && ![Global userAuth]) {
+//        APPROUTE(kLoginViewController);
+//        return;
+//    }
+    APPROUTE(info[@"router"]);
 }
 
 /*

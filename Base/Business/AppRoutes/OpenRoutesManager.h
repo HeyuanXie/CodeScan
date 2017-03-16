@@ -28,6 +28,8 @@ extern NSString* const kYearCardBindSuccessController;
 extern NSString* const kDeriveListController;
 extern NSString* const kDeriveDetailController;
 extern NSString* const kDeriveOrderController;
+extern NSString* const kDeriveRecordController;
+
 
 extern NSString* const kOrderListController;
 extern NSString* const kOrderDetailController;
@@ -44,6 +46,29 @@ extern NSString* const kSkillApplySucceedController;
 
 extern NSString* const kVideoListViewController;
 extern NSString* const kVideoPlayViewController;
+
+//Mine
+extern NSString* const kSettingViewController;
+extern NSString* const kUserInfoViewController;
+extern NSString* const kMessageController;
+extern NSString* const kFeedbackController;
+extern NSString* const kMineYearCardController;
+extern NSString* const kYearCardDetailController;
+extern NSString* const kYearCardRecordController;
+extern NSString* const kMineApplyController;
+extern NSString* const kPointManageController;
+extern NSString* const kPointDetailController;
+extern NSString* const kPointDescController;
+//extern NSString* const kPointRecordController;    在Derive中定义了
+extern NSString* const kMineCouponController;
+extern NSString* const kMineCommentController;
+//extern NSString* const kMineSupportController;    在Skill中定义了
+
+
+
+
+
+
 
 
 
@@ -65,7 +90,6 @@ extern NSString* const kVideoPlayViewController;
 extern NSString* const kRegistViewController;
 extern NSString* const kFinishRegisterController;
 extern NSString* const kLoginViewController;
-extern NSString* const kUserInfoController;
 extern NSString* const kSearchViewController;
 extern NSString* const kSearchGuideController;
 extern NSString* const kFilterClassTableViewController;
@@ -73,11 +97,7 @@ extern NSString* const kModifyPWController;
 extern NSString* const kAddressController;
 extern NSString* const kFilterTableViewController;
 
-// Mine
-extern NSString* const kMessageController;
-extern NSString* const kFeedbackController;
-extern NSString* const kShareController;
-extern NSString* const kSettingController;
+
 
 #define APPROUTE(storyboardID) [[OpenRoutesManager shareInstance] routeByStoryboardID:(storyboardID)];
 #define VIEWCONTROLLER(storyboardID) [[OpenRoutesManager shareInstance] viewControllerForStoryboardID:storyboardID];

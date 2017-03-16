@@ -19,7 +19,7 @@
 }
 
 + (UIColor *)hyRedColor {
-    return [UIColor colorWithString:@"#F46582"];
+    return [UIColor colorWithString:@"#F44E6E"];
 }
 
 + (UIColor *)hyBlackTextColor {

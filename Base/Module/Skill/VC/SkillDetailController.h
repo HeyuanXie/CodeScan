@@ -6,10 +6,10 @@
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-//才艺竞赛详情
-#import "WebViewController.h"
+//活动详情
+#import "BaseTableViewController.h"
 
-@interface SkillDetailController : WebViewController
+@interface SkillDetailController : BaseTableViewController
 
 
 @end

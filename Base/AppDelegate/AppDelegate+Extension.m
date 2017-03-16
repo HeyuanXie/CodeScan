@@ -38,16 +38,16 @@ NS_ENUM(NSUInteger, TabType) {
 
 -(void)configTabbar {
     UIViewController* main = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"HomeViewController"];
-    main.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[ImageNamed(@"home") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"home01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    main.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[ImageNamed(@"tab_home02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_home01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     UIViewController* collect = [[UIStoryboard collectStoryboard] instantiateViewControllerWithIdentifier:@"CollectViewController"];
-    collect.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"收藏" image:[ImageNamed(@"sort") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"sort01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    collect.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"收藏" image:[ImageNamed(@"tab_collect02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_collect01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     UIViewController* order = [[UIStoryboard orderStoryboard] instantiateViewControllerWithIdentifier:@"OrderHomeController"];
-    order.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"订单" image:[ImageNamed(@"cart") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"cart01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    order.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"订单" image:[ImageNamed(@"tab_order02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_orer01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     UIViewController* mine = [[UIStoryboard mineStoryboard] instantiateViewControllerWithIdentifier:@"MineHomeViewController"];
-    mine.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[ImageNamed(@"mine") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"mine01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    mine.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[ImageNamed(@"tab_my02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_my01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     UITabBarController* tabController = [[UITabBarController alloc] init];
     tabController.tabBar.backgroundColor = [UIColor clearColor];

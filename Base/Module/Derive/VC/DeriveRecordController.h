@@ -8,6 +8,7 @@
 
 #import "BaseTableViewController.h"
 
+//兑换记录
 @interface DeriveRecordController : BaseTableViewController
 
 @end

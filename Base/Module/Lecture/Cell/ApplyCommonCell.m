@@ -50,9 +50,15 @@
     
     BOOL necessary = [model[@"necessary"] boolValue];
     NSString* title = model[@"title"];
-    self.inputTf.userInteractionEnabled = ([title isEqualToString:@"性别:"] || [title isEqualToString:@"所在城市:"]) ? NO : YES;
-    self.accessoryType = ([title isEqualToString:@"性别:"] || [title isEqualToString:@"所在城市:"]) ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+    self.inputTf.userInteractionEnabled = ([title isEqualToString:@"上传宝宝头像:"] || [title isEqualToString:@"性别:"] || [title isEqualToString:@"所在城市:"]) ? NO : YES;
+    self.accessoryType = ([title isEqualToString:@"上传宝宝头像:"] || [title isEqualToString:@"性别:"] || [title isEqualToString:@"所在城市:"]) ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
     self.countView.hidden = YES;
+    
+    if ([title isEqualToString:@"上传宝宝头像:"]) {
+        self.titleLblWidth.constant = 100;
+    }else{
+        self.titleLblWidth.constant = 70;
+    }
     
     if (necessary) {
         NSString* text = [@"*" stringByAppendingString:title];
