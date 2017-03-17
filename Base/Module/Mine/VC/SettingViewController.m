@@ -36,7 +36,7 @@
 
 - (void)dataInit{
     self.settings = @[
-                        @[@{@"title":@"个人资料",@"router":kUserInfoViewController,@"needLogin":@(NO)},@{@"title":@"账户安全",@"router":@"",@"needLogin":@(YES)}],
+                        @[@{@"title":@"个人资料",@"router":kUserInfoViewController,@"needLogin":@(NO)},@{@"title":@"账户安全",@"router":kAccountSecurityController,@"needLogin":@(NO)}],
                         @[@{@"title":@"清理缓存"}, @{@"title":@"意见反馈",@"router":kFeedbackController},@{@"title":@"关于我们"}],
                         @[@{@"title":@"退出登陆"}]
                     ];

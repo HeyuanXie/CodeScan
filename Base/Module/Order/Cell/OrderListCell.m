@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *typeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *orderNumLbl;
+@property (weak, nonatomic) IBOutlet UIImageView *typeImgV;
 @property (weak, nonatomic) IBOutlet UIImageView *imgV;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
@@ -63,6 +64,7 @@
 
 -(void)configOrderListCell:(id)model {
     
+    //根据type设置typeImgV的图片
 }
 
 - (void)awakeFromNib {

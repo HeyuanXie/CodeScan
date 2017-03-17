@@ -85,8 +85,8 @@
     cell.textLabel.textColor = [UIColor hyBlackTextColor];
     
     cell.detailTextLabel.text = @"2017-03-02 9:40";
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-    cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+    cell.detailTextLabel.textColor = RGB(161, 161, 161, 1.0);
 }
 
 @end

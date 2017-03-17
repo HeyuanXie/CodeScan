@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JKB-7O-BaN">
                         <rect key="frame" x="11" y="11" width="353" height="122"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="年卡背景" translatesAutoresizingMaskIntoConstraints="NO" id="a1y-k6-pG2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="我的年卡背景" translatesAutoresizingMaskIntoConstraints="NO" id="a1y-k6-pG2">
                                 <rect key="frame" x="0.0" y="0.0" width="353" height="122"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Wf-Nh-OUk">
@@ -140,6 +140,6 @@
     </objects>
     <resources>
         <image name="verticalDotLine.png" width="8" height="789"/>
-        <image name="年卡背景" width="310" height="180"/>
+        <image name="我的年卡背景" width="351" height="123"/>
     </resources>
 </document>

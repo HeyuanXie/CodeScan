@@ -52,6 +52,8 @@ extern NSString* const kSettingViewController;
 extern NSString* const kUserInfoViewController;
 extern NSString* const kMessageController;
 extern NSString* const kFeedbackController;
+extern NSString* const kAccountSecurityController;
+
 extern NSString* const kMineYearCardController;
 extern NSString* const kYearCardDetailController;
 extern NSString* const kYearCardRecordController;
@@ -66,30 +68,14 @@ extern NSString* const kMineCommentController;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 extern NSString* const kRegistViewController;
 extern NSString* const kFinishRegisterController;
 extern NSString* const kLoginViewController;
+extern NSString* const kChangePasswordController;
+extern NSString* const kBindPhoneController;
+extern NSString* const kBindPhoneChangeController;
+
+
 extern NSString* const kSearchViewController;
 extern NSString* const kSearchGuideController;
 extern NSString* const kFilterClassTableViewController;

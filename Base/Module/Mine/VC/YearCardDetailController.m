@@ -45,7 +45,7 @@
 
 #pragma mark - private methods
 -(void)subviewStyle {
-    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithImage:[ImageNamed(@"年卡权益03") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(cardRecord)];
+    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithImage:[ImageNamed(@"年卡使用记录") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(cardRecord)];
     self.navigationItem.rightBarButtonItem = item;
 }
 

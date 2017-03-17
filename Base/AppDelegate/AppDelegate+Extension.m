@@ -44,7 +44,7 @@ NS_ENUM(NSUInteger, TabType) {
     collect.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"收藏" image:[ImageNamed(@"tab_collect02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_collect01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     UIViewController* order = [[UIStoryboard orderStoryboard] instantiateViewControllerWithIdentifier:@"OrderHomeController"];
-    order.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"订单" image:[ImageNamed(@"tab_order02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_orer01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    order.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"订单" image:[ImageNamed(@"tab_order02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_order01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
     UIViewController* mine = [[UIStoryboard mineStoryboard] instantiateViewControllerWithIdentifier:@"MineHomeViewController"];
     mine.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[ImageNamed(@"tab_my02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_my01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -75,10 +75,10 @@ NS_ENUM(NSUInteger, TabType) {
                                                          forBarMetrics:UIBarMetricsDefault];
     
     // 字体颜色 选中
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10.0F], NSForegroundColorAttributeName : [UIColor hyBarTintColor]} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11.0F], NSForegroundColorAttributeName : [UIColor hyBarSelectedColor]} forState:UIControlStateSelected];
     
     // 字体颜色 未选中
-    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:10.0F],  NSForegroundColorAttributeName:[UIColor hyBarUnselectedColor]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11.0F],  NSForegroundColorAttributeName:[UIColor hyBarUnselectedColor]} forState:UIControlStateNormal];
     
     [[UITabBar appearance] setTranslucent:NO];
     [[UITabBar appearance] setBackgroundColor:[UIColor whiteColor]];

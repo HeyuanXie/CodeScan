@@ -51,6 +51,8 @@ NSString* const kSettingViewController = @"SettingViewController";
 NSString* const kUserInfoViewController = @"UserInfoViewController";
 NSString* const kMessageController = @"MessageController";
 NSString* const kFeedbackController = @"FeedbackController";
+NSString* const kAccountSecurityController = @"AccountSecurityController";
+
 NSString* const kMineYearCardController = @"MineYearCardController";
 NSString* const kYearCardDetailController = @"YearCardDetailController";
 NSString* const kYearCardRecordController = @"YearCardRecordController";
@@ -65,6 +67,10 @@ NSString* const kMineCommentController = @"MineCommentController";
 NSString* const kRegistViewController = @"RegistViewController";
 NSString* const kFinishRegisterController = @"FinishRegisterController";
 NSString* const kLoginViewController = @"LoginViewController";
+NSString* const kChangePasswordController = @"ChangePasswordController";
+NSString* const kBindPhoneController = @"BindPhoneController";
+NSString* const kBindPhoneChangeController = @"BindPhoneChangeController";
+
 NSString* const kSearchViewController = @"SearchViewController";
 NSString* const kSearchGuideController = @"SearchGuideController";
 NSString* const kFilterClassTableViewController = @"FilterClassTableViewController";
@@ -133,6 +139,7 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
                         @{@"cls":kUserInfoViewController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMessageController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kFeedbackController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kAccountSecurityController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMineYearCardController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kYearCardDetailController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kYearCardRecordController,@"sb":@"Mine",@"method":@"push"},
@@ -145,8 +152,11 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
 
                         @{@"cls":kRegistViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"push"},
-                        
                         @{@"cls":kFinishRegisterController,@"sb":@"Login",@"method":@"push"},
+                        @{@"cls":kChangePasswordController,@"sb":@"Login",@"method":@"push"},
+                        @{@"cls":kBindPhoneController,@"sb":@"Login",@"method":@"push"},
+                        @{@"cls":kBindPhoneChangeController,@"sb":@"Login",@"method":@"push"},
+                        
                         @{@"cls":kSearchViewController,@"sb":@"Home",@"method":@"push"},
                         @{@"cls":kSearchGuideController,@"sb":@"Home",@"method":@"push"},
                         @{@"cls":kFilterClassTableViewController,@"sb":@"Policy",@"method":@"push"},

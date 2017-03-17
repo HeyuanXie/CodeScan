@@ -52,6 +52,14 @@
 		841D4B0B1E7A8409002C49C0 /* PointManageBotCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4B091E7A8409002C49C0 /* PointManageBotCell.m */; };
 		841D4B0C1E7A8409002C49C0 /* PointManageBotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 841D4B0A1E7A8409002C49C0 /* PointManageBotCell.xib */; };
 		841D4B111E7A970B002C49C0 /* PointManageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 841D4B101E7A970B002C49C0 /* PointManageController.m */; };
+		842020281E7B7DF000B13C5B /* MineCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842020261E7B7DF000B13C5B /* MineCouponCell.m */; };
+		842020291E7B7DF000B13C5B /* MineCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842020271E7B7DF000B13C5B /* MineCouponCell.xib */; };
+		8420202D1E7B86A900B13C5B /* MineCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8420202B1E7B86A900B13C5B /* MineCommentCell.m */; };
+		8420202E1E7B86A900B13C5B /* MineCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8420202C1E7B86A900B13C5B /* MineCommentCell.xib */; };
+		842020311E7BC1DF00B13C5B /* AccountSecurityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842020301E7BC1DF00B13C5B /* AccountSecurityController.m */; };
+		842020341E7BC22000B13C5B /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842020331E7BC22000B13C5B /* ChangePasswordController.m */; };
+		842020371E7BC24F00B13C5B /* BindPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842020361E7BC24F00B13C5B /* BindPhoneController.m */; };
+		8420203A1E7BEDFC00B13C5B /* BindPhoneChangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842020391E7BEDFC00B13C5B /* BindPhoneChangeController.m */; };
 		84235B6A1E6E5AE900A81A6B /* MineHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B681E6E5AE900A81A6B /* MineHeadCell.m */; };
 		84235B6B1E6E5AE900A81A6B /* MineHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84235B691E6E5AE900A81A6B /* MineHeadCell.xib */; };
 		84235B6E1E6E8E7500A81A6B /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B6D1E6E8E7500A81A6B /* NSString+Extension.m */; };
@@ -371,6 +379,20 @@
 		841D4B0A1E7A8409002C49C0 /* PointManageBotCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PointManageBotCell.xib; sourceTree = "<group>"; };
 		841D4B0F1E7A970B002C49C0 /* PointManageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointManageController.h; sourceTree = "<group>"; };
 		841D4B101E7A970B002C49C0 /* PointManageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointManageController.m; sourceTree = "<group>"; };
+		842020251E7B7DF000B13C5B /* MineCouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCouponCell.h; sourceTree = "<group>"; };
+		842020261E7B7DF000B13C5B /* MineCouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCouponCell.m; sourceTree = "<group>"; };
+		842020271E7B7DF000B13C5B /* MineCouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineCouponCell.xib; sourceTree = "<group>"; };
+		8420202A1E7B86A900B13C5B /* MineCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineCommentCell.h; sourceTree = "<group>"; };
+		8420202B1E7B86A900B13C5B /* MineCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineCommentCell.m; sourceTree = "<group>"; };
+		8420202C1E7B86A900B13C5B /* MineCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineCommentCell.xib; sourceTree = "<group>"; };
+		8420202F1E7BC1DF00B13C5B /* AccountSecurityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSecurityController.h; sourceTree = "<group>"; };
+		842020301E7BC1DF00B13C5B /* AccountSecurityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSecurityController.m; sourceTree = "<group>"; };
+		842020321E7BC22000B13C5B /* ChangePasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordController.h; sourceTree = "<group>"; };
+		842020331E7BC22000B13C5B /* ChangePasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordController.m; sourceTree = "<group>"; };
+		842020351E7BC24F00B13C5B /* BindPhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindPhoneController.h; sourceTree = "<group>"; };
+		842020361E7BC24F00B13C5B /* BindPhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindPhoneController.m; sourceTree = "<group>"; };
+		842020381E7BEDFC00B13C5B /* BindPhoneChangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindPhoneChangeController.h; sourceTree = "<group>"; };
+		842020391E7BEDFC00B13C5B /* BindPhoneChangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindPhoneChangeController.m; sourceTree = "<group>"; };
 		84235B671E6E5AE900A81A6B /* MineHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeadCell.h; sourceTree = "<group>"; };
 		84235B681E6E5AE900A81A6B /* MineHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeadCell.m; sourceTree = "<group>"; };
 		84235B691E6E5AE900A81A6B /* MineHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineHeadCell.xib; sourceTree = "<group>"; };
@@ -1089,6 +1111,12 @@
 				84554D901E2F39A6007EE209 /* LoginViewController.m */,
 				84DE2CA41E6815B5008BD672 /* RegistViewController.h */,
 				84DE2CA51E6815B5008BD672 /* RegistViewController.m */,
+				842020321E7BC22000B13C5B /* ChangePasswordController.h */,
+				842020331E7BC22000B13C5B /* ChangePasswordController.m */,
+				842020351E7BC24F00B13C5B /* BindPhoneController.h */,
+				842020361E7BC24F00B13C5B /* BindPhoneController.m */,
+				842020381E7BEDFC00B13C5B /* BindPhoneChangeController.h */,
+				842020391E7BEDFC00B13C5B /* BindPhoneChangeController.m */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -1153,6 +1181,12 @@
 				841D4B081E7A8409002C49C0 /* PointManageBotCell.h */,
 				841D4B091E7A8409002C49C0 /* PointManageBotCell.m */,
 				841D4B0A1E7A8409002C49C0 /* PointManageBotCell.xib */,
+				842020251E7B7DF000B13C5B /* MineCouponCell.h */,
+				842020261E7B7DF000B13C5B /* MineCouponCell.m */,
+				842020271E7B7DF000B13C5B /* MineCouponCell.xib */,
+				8420202A1E7B86A900B13C5B /* MineCommentCell.h */,
+				8420202B1E7B86A900B13C5B /* MineCommentCell.m */,
+				8420202C1E7B86A900B13C5B /* MineCommentCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1168,6 +1202,8 @@
 				842A56F91E79404700D489CA /* FeedbackController.m */,
 				842A56EA1E792DF500D489CA /* UserInfoViewController.h */,
 				842A56EB1E792DF500D489CA /* UserInfoViewController.m */,
+				8420202F1E7BC1DF00B13C5B /* AccountSecurityController.h */,
+				842020301E7BC1DF00B13C5B /* AccountSecurityController.m */,
 				841D4AC61E7A1DC5002C49C0 /* MineYearCardController.h */,
 				841D4AC71E7A1DC5002C49C0 /* MineYearCardController.m */,
 				841D4AE81E7A32C2002C49C0 /* YearCardDetailController.h */,
@@ -2225,6 +2261,8 @@
 				845BDFB21E28D8D30064ACAE /* Assets.xcassets in Resources */,
 				843142F01E694C640007740A /* HomeUseView.xib in Resources */,
 				845BDF7F1E28D2C00064ACAE /* Main.storyboard in Resources */,
+				842020291E7B7DF000B13C5B /* MineCouponCell.xib in Resources */,
+				8420202E1E7B86A900B13C5B /* MineCommentCell.xib in Resources */,
 				84525A1D1E2E019D0054C6A1 /* AlipaySDK.bundle in Resources */,
 				84DCC2791E77C85A0019898E /* SkillDeclarationCell.xib in Resources */,
 				841D4AE11E7A2A93002C49C0 /* verticalDotLine.png in Resources */,
@@ -2359,6 +2397,7 @@
 				843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */,
 				84235B6A1E6E5AE900A81A6B /* MineHeadCell.m in Sources */,
 				84525A391E2E08D20054C6A1 /* APIHelper+User.m in Sources */,
+				842020371E7BC24F00B13C5B /* BindPhoneController.m in Sources */,
 				84428CE91E7629BB001D1B7B /* SkillDetailController.m in Sources */,
 				841D4B021E7A7313002C49C0 /* PointDetailController.m in Sources */,
 				84E74C0A1E715DC800016A99 /* YearCardBindController.m in Sources */,
@@ -2424,9 +2463,11 @@
 				84F6912F1E2C567C0048B6DF /* NSURL+HYURL.m in Sources */,
 				84F6910E1E2C55B90048B6DF /* NSDictionary+Safety.m in Sources */,
 				84924EB41E2C7DA8005F05C3 /* UILabel+HYLabels.m in Sources */,
+				842020281E7B7DF000B13C5B /* MineCouponCell.m in Sources */,
 				841C00E71E72584C0082ECDA /* HomeTopCell.m in Sources */,
 				84E5EE941E2DCDEC0062A2BE /* APIHelper.m in Sources */,
 				84DE2CA61E6815B5008BD672 /* RegistViewController.m in Sources */,
+				8420202D1E7B86A900B13C5B /* MineCommentCell.m in Sources */,
 				84924EF81E2CC245005F05C3 /* WKWebViewController.m in Sources */,
 				841D4ADC1E7A25CD002C49C0 /* MineYearCardCell.m in Sources */,
 				84DCC2691E7789610019898E /* SkillApplyViewController.m in Sources */,
@@ -2442,6 +2483,7 @@
 				84E5EE651E2DCADA0062A2BE /* NSString+AES.m in Sources */,
 				84525A401E2E23E60054C6A1 /* BaseModel.m in Sources */,
 				84924ED21E2C9A66005F05C3 /* UITabBar+Badge.m in Sources */,
+				842020341E7BC22000B13C5B /* ChangePasswordController.m in Sources */,
 				8472F7431E6D585E000AE550 /* TheaterDetailCell.m in Sources */,
 				84F25F471E6581B500FC9E31 /* HYAlertView.m in Sources */,
 				841C01051E72A8330082ECDA /* CommonOrderDetailController.m in Sources */,
@@ -2465,6 +2507,7 @@
 				84F691231E2C56480048B6DF /* NSString+HYUtilities.m in Sources */,
 				84924E9C1E2C7CD2005F05C3 /* UIView+Badge.m in Sources */,
 				84525A271E2E019D0054C6A1 /* RSADataSigner.m in Sources */,
+				8420203A1E7BEDFC00B13C5B /* BindPhoneChangeController.m in Sources */,
 				841C00E21E723D460082ECDA /* OrderTopCell.m in Sources */,
 				84924EAE1E2C7D91005F05C3 /* UIImageView+HYImageView.m in Sources */,
 				84924ECF1E2C9A3C005F05C3 /* UIStoryboard+HYStoryboards.m in Sources */,
@@ -2497,6 +2540,7 @@
 				84924F151E2CC926005F05C3 /* NSObject+Swizzling.m in Sources */,
 				84525A221E2E019D0054C6A1 /* DataSigner.m in Sources */,
 				8472F7171E6CEBEF000AE550 /* UIImage+Extension.m in Sources */,
+				842020311E7BC1DF00B13C5B /* AccountSecurityController.m in Sources */,
 				841961331E67C9CF00A78877 /* CustomCircleView.m in Sources */,
 				843142DD1E68FC9C0007740A /* HeadCell.m in Sources */,
 				84F25F431E65814D00FC9E31 /* HYCountDown.m in Sources */,

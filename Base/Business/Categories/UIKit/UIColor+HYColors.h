@@ -10,7 +10,19 @@
 
 @interface UIColor (HYColors)
 
+/**
+ 导航栏颜色
+
+ @return color
+ */
 +(UIColor*)hyBarTintColor;
+
+/**
+ TabBar选中颜色
+
+ @return color
+ */
++(UIColor*)hyBarSelectedColor;
 
 +(UIColor*)hyBarUnselectedColor;
 

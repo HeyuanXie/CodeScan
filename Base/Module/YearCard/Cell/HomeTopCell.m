@@ -8,6 +8,12 @@
 
 #import "HomeTopCell.h"
 
+@interface HomeTopCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLbl;
+
+@end
+
 @implementation HomeTopCell
 
 +(NSString *)identify {
@@ -20,7 +26,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+
+    self.titleLbl.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

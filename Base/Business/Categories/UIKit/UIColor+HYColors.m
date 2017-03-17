@@ -14,8 +14,12 @@
     return [UIColor colorWithString:@"#66aff6"];
 }
 
++(UIColor *)hyBarSelectedColor {
+    return RGB(105, 176, 244, 1.0);
+}
+
 +(UIColor *)hyBarUnselectedColor {
-    return [UIColor colorWithString:@"d1e6fe"];
+    return [self hyBlackTextColor];
 }
 
 + (UIColor *)hyRedColor {
@@ -47,7 +51,7 @@
 }
 
 + (UIColor *)hyViewBackgroundColor {
-    return [UIColor colorWithString:@"#E7F0FE"];
+    return [UIColor colorWithString:@"#f0f6ff"];
 }
 
 + (UIColor *)hyCellBackgroundColor {
