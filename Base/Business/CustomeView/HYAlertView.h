@@ -86,6 +86,13 @@ typedef BOOL (^HYAlertViewBoolBlock)(UIAlertView *alertView);
 
 
 /**
+ 设置alertView按钮的圆角值
+
+ @param radius 按钮的圆角值
+ */
+-(void)setBtnCornerRadius:(CGFloat)radius;
+
+/**
  设置AlertView内容的颜色
 
  @param color 内容的颜色

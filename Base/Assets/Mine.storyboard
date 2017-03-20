@@ -641,6 +641,42 @@
             </objects>
             <point key="canvasLocation" x="2572" y="-117"/>
         </scene>
+        <!--消息-->
+        <scene sceneID="aDM-Ty-0Sg">
+            <objects>
+                <viewController storyboardIdentifier="MessageHomeController" title="消息" id="M87-Yh-oH9" customClass="MessageHomeController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rlC-zk-W6S"/>
+                        <viewControllerLayoutGuide type="bottom" id="Fqy-xN-7NQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MOR-CB-z4M">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eDG-0q-R0P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3227" y="-118"/>
+        </scene>
+        <!--Message List Controller-->
+        <scene sceneID="41N-LC-0A0">
+            <objects>
+                <viewController storyboardIdentifier="MessageListController" id="yMf-KW-t9O" customClass="MessageListController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fv3-zb-oHM"/>
+                        <viewControllerLayoutGuide type="bottom" id="crv-Ts-TCe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zEk-Aa-zcj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ojx-nM-xRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3859" y="-113"/>
+        </scene>
         <!--我的优惠券-->
         <scene sceneID="Z3m-b3-XXJ">
             <objects>

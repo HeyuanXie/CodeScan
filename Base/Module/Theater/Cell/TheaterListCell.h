@@ -20,6 +20,9 @@
 @property(nonatomic,weak)IBOutlet UILabel *priceLbl;//票价
 @property (weak, nonatomic) IBOutlet UIButton *ticketBtn;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ticketBtnWidth;
+
+
 @property(nonatomic,copy)void (^ticketBtnClick)(id model);
 
 

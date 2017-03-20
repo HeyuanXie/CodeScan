@@ -49,8 +49,9 @@ extern NSString* const kVideoPlayViewController;
 
 //Mine
 extern NSString* const kSettingViewController;
+extern NSString* const kMessageHomeController;
+extern NSString* const kMessageListController;
 extern NSString* const kUserInfoViewController;
-extern NSString* const kMessageController;
 extern NSString* const kFeedbackController;
 extern NSString* const kAccountSecurityController;
 
@@ -65,7 +66,6 @@ extern NSString* const kPointDescController;
 extern NSString* const kMineCouponController;
 extern NSString* const kMineCommentController;
 //extern NSString* const kMineSupportController;    在Skill中定义了
-
 
 
 extern NSString* const kRegistViewController;

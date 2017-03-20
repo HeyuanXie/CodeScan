@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Collect View Controller-->
+        <!--收藏-->
         <scene sceneID="lUC-OL-pXI">
             <objects>
-                <viewController storyboardIdentifier="CollectViewController" id="E9B-1e-2hz" customClass="CollectViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectViewController" title="收藏" id="E9B-1e-2hz" customClass="CollectViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1za-pe-hlQ"/>
                         <viewControllerLayoutGuide type="bottom" id="tNa-Si-saD"/>
@@ -20,8 +20,25 @@
                     <view key="view" contentMode="scaleToFill" id="jrt-Pg-sdZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2n-XA-0UZ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="42"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="g7f-50-11u"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="c2n-XA-0UZ" firstAttribute="top" secondItem="1za-pe-hlQ" secondAttribute="bottom" id="Axn-uS-Slv"/>
+                            <constraint firstItem="c2n-XA-0UZ" firstAttribute="leading" secondItem="jrt-Pg-sdZ" secondAttribute="leading" id="Hc9-k2-IFY"/>
+                            <constraint firstAttribute="trailing" secondItem="c2n-XA-0UZ" secondAttribute="trailing" id="uR2-md-A0C"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="topScroll" destination="c2n-XA-0UZ" id="d1j-VQ-EbK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JXU-Fy-4zN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

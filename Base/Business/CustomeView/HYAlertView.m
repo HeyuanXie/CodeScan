@@ -399,6 +399,7 @@ static char HYAlertViewShouldEnableFirstOtherButtonBlockKey;
     UIColor *cancelButtonTitleColor;
     UIColor *cancelButtonBackgroundColor;
     UIColor *cancelButtonBorderColor;
+    CGFloat btnRadius;
 
     UIImage *alertViewBackgroundImage; //设置AlertView的BackgroundImage
     NSAttributedString *messageAttributedText; //设置富文本
@@ -435,7 +436,7 @@ static char HYAlertViewShouldEnableFirstOtherButtonBlockKey;
 -(instancetype)init{
 
     if ([super init]) {
-
+        
     }
     return self;
 }
@@ -719,7 +720,7 @@ static char HYAlertViewShouldEnableFirstOtherButtonBlockKey;
     if (subBottonBackgroundColor) {
         subLabel.backgroundColor = subBottonBackgroundColor;
         [subLabel.layer setMasksToBounds:YES];
-        subLabel.layer.cornerRadius = KBtnHight/2;
+        subLabel.layer.cornerRadius = btnRadius == 0 ? KBtnHight/2 : btnRadius;
         subLabel.layer.borderWidth = 1/SCALE;
         subLabel.layer.borderColor = [UIColor clearColor].CGColor;
     }else{
@@ -730,7 +731,7 @@ static char HYAlertViewShouldEnableFirstOtherButtonBlockKey;
                               (__bridge id)[UIColor colorWithHex:0xfe7f65].CGColor];
         colorLayer.startPoint = CGPointMake(1, 0);
         colorLayer.endPoint   = CGPointMake(0, 1);
-        colorLayer.cornerRadius = KBtnHight/2;
+        colorLayer.cornerRadius = btnRadius == 0 ? KBtnHight/2 : btnRadius;
         [subLabel.layer addSublayer:colorLayer];
     }
 
@@ -746,7 +747,7 @@ static char HYAlertViewShouldEnableFirstOtherButtonBlockKey;
                           (__bridge id)[UIColor colorWithHex:0xfe7f65].CGColor];
     colorLayer.startPoint = CGPointMake(1, 0);
     colorLayer.endPoint   = CGPointMake(0, 1);
-    colorLayer.cornerRadius = KBtnHight/2;
+    colorLayer.cornerRadius = btnRadius == 0 ? KBtnHight/2 : btnRadius;
     [cancelLabel.layer addSublayer:colorLayer];
     
     cancelLabel.textColor = cancelButtonTitleColor?cancelButtonTitleColor:[UIColor mainColor];
@@ -754,7 +755,7 @@ static char HYAlertViewShouldEnableFirstOtherButtonBlockKey;
   }else{
     
     [cancelLabel.layer setMasksToBounds:YES];
-    cancelLabel.layer.cornerRadius = KBtnHight/2;
+    cancelLabel.layer.cornerRadius = btnRadius == 0 ? KBtnHight/2 : btnRadius;
     cancelLabel.layer.borderWidth = 1/SCALE;
     cancelLabel.layer.borderColor = [UIColor mainColor].CGColor;
     cancelLabel.backgroundColor = cancelButtonBackgroundColor?cancelButtonBackgroundColor:[UIColor clearColor];
@@ -817,6 +818,13 @@ static char HYAlertViewShouldEnableFirstOtherButtonBlockKey;
         titleLabelTextColor = color;
     }
 
+}
+
+-(void)setBtnCornerRadius:(CGFloat)radius {
+    
+    if (radius) {
+        btnRadius = radius;
+    }
 }
 
 -(void)setContentLabelTextColor:(UIColor *)color{

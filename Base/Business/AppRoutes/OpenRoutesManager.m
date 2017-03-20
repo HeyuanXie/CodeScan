@@ -48,8 +48,9 @@ NSString* const kVideoPlayViewController = @"VideoPlayViewController";
 
 //Mine
 NSString* const kSettingViewController = @"SettingViewController";
+NSString* const kMessageHomeController = @"MessageHomeController";
+NSString* const kMessageListController = @"MessageListController";
 NSString* const kUserInfoViewController = @"UserInfoViewController";
-NSString* const kMessageController = @"MessageController";
 NSString* const kFeedbackController = @"FeedbackController";
 NSString* const kAccountSecurityController = @"AccountSecurityController";
 
@@ -136,8 +137,10 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
                         @{@"cls":kVideoPlayViewController,@"sb":@"Main",@"method":@"push"},
                         
                         @{@"cls":kSettingViewController,@"sb":@"Mine",@"method":@"push"},
+                        
                         @{@"cls":kUserInfoViewController,@"sb":@"Mine",@"method":@"push"},
-                        @{@"cls":kMessageController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kMessageHomeController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kMessageListController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kFeedbackController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kAccountSecurityController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMineYearCardController,@"sb":@"Mine",@"method":@"push"},

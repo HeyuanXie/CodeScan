@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Order Home Controller-->
+        <!--订单-->
         <scene sceneID="NUO-Jy-HgA">
             <objects>
-                <viewController storyboardIdentifier="OrderHomeController" id="y2s-CC-brC" customClass="OrderHomeController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderHomeController" title="订单" id="y2s-CC-brC" customClass="OrderHomeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H9Z-Uz-yrl"/>
                         <viewControllerLayoutGuide type="bottom" id="mpL-3j-RHI"/>
@@ -27,28 +27,28 @@
             </objects>
             <point key="canvasLocation" x="183" y="167"/>
         </scene>
-        <!--Order List Controller-->
-        <scene sceneID="VH6-yV-sjd">
+        <!--Order Filter Table Controller-->
+        <scene sceneID="mPh-dS-Xoe">
             <objects>
-                <viewController storyboardIdentifier="OrderListController" id="CTP-lv-dTr" customClass="OrderListController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GFV-vn-VDP"/>
-                        <viewControllerLayoutGuide type="bottom" id="uhB-5F-Lkl"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ag6-tm-abC">
+                <tableViewController storyboardIdentifier="OrderFilterTableController" id="z1E-Xr-MwC" customClass="OrderFilterTableController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="H4o-H6-dub">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BsV-ql-J2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <connections>
+                            <outlet property="dataSource" destination="z1E-Xr-MwC" id="Tmj-Ek-RV5"/>
+                            <outlet property="delegate" destination="z1E-Xr-MwC" id="H5M-yy-233"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OH9-Ye-TdL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="892" y="167"/>
+            <point key="canvasLocation" x="182" y="867"/>
         </scene>
-        <!--Common Order Detail Controller-->
+        <!--订单详情-->
         <scene sceneID="mPA-lj-qgN">
             <objects>
-                <viewController storyboardIdentifier="CommonOrderDetailController" id="EKw-yb-fxM" customClass="CommonOrderDetailController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderDetailController" title="订单详情" id="EKw-yb-fxM" customClass="OrderDetailController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vaq-Wu-cBv"/>
                         <viewControllerLayoutGuide type="bottom" id="6os-RC-4DN"/>
@@ -61,12 +61,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3iW-sX-yTT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1590" y="167"/>
+            <point key="canvasLocation" x="929" y="167"/>
         </scene>
-        <!--Order Code Controller-->
+        <!--订单详情-->
         <scene sceneID="Sin-ez-idb">
             <objects>
-                <viewController storyboardIdentifier="OrderCodeController" id="Vu0-u1-1dK" customClass="OrderCodeController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderCodeController" title="订单详情" id="Vu0-u1-1dK" customClass="OrderCodeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="o4u-iE-JXm"/>
                         <viewControllerLayoutGuide type="bottom" id="VHu-b2-P6z"/>
@@ -79,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i9U-mx-QZN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2270" y="167"/>
+            <point key="canvasLocation" x="1609" y="167"/>
         </scene>
     </scenes>
 </document>

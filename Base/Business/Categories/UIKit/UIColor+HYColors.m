@@ -35,11 +35,15 @@
 }
 
 + (UIColor *)hyGrayTextColor {
-    return [UIColor colorWithString:@"#d1d1d1"];
+    return [UIColor colorWithString:@"#7f7f7f"];
+}
+
++ (UIColor *)hyLightGrayColor {
+    return [UIColor colorWithString:@"bfbfbf"];
 }
 
 + (UIColor*)hyBlueTextColor {
-    return [UIColor colorWithString:@"64ADF3"];
+    return [UIColor colorWithString:@"66aff6"];
 }
 
 + (UIColor*)hyLightBlueTextColor {

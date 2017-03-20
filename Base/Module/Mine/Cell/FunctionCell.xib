@@ -47,7 +47,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="fAS-8J-pD0" secondAttribute="height" multiplier="1:1" id="CNE-zE-JaY"/>
                                 </constraints>
-                                <state key="normal" image="refresh.png"/>
+                                <state key="normal" image="下个页面箭头_灰"/>
                                 <connections>
                                     <action selector="detailAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="O69-K1-y61"/>
                                 </connections>
@@ -88,6 +88,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="refresh.png" width="22" height="22"/>
+        <image name="下个页面箭头_灰" width="17" height="17"/>
     </resources>
 </document>

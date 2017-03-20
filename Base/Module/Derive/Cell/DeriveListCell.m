@@ -31,7 +31,7 @@
     ((UIImageView*)[self.leftView viewWithTag:1000]).image = ImageNamed(@"baidi");
     ((UILabel*)[self.leftView viewWithTag:1001]).text = @"白雪公主连衣裙";
     ((UILabel*)[self.leftView viewWithTag:1002]).text = @"1200积分";
-    [((UIButton*)[self.leftView viewWithTag:1001]) bk_whenTapped:^{
+    [((UIButton*)[self.leftView viewWithTag:1003]) bk_whenTapped:^{
         if (self.exchangeClick) {
             self.exchangeClick(model);
         }
@@ -51,7 +51,7 @@
     ((UIImageView*)[self.rightView viewWithTag:1000]).image = ImageNamed(@"baidi");
     ((UILabel*)[self.rightView viewWithTag:1001]).text = @"白雪公主连衣裙";
     ((UILabel*)[self.rightView viewWithTag:1002]).text = @"1200积分";
-    [((UIButton*)[self.rightView viewWithTag:1001]) bk_whenTapped:^{
+    [((UIButton*)[self.rightView viewWithTag:1003]) bk_whenTapped:^{
         if (self.exchangeClick) {
             self.exchangeClick(model);
         }

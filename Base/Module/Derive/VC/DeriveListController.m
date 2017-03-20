@@ -9,6 +9,7 @@
 #import "DeriveListController.h"
 #import "DeriveListCell.h"
 #import "CustomJumpBtns.h"
+#import "HYAlertView.h"
 
 @interface DeriveListController ()
 
@@ -69,12 +70,32 @@
         APPROUTE(([NSString stringWithFormat:@"%@?id=%d&isEnough=%d",kDeriveDetailController,0,isEnough]));
     }];
     [cell setExchangeClick:^(id model) {
-        //TODO:兑换
+        
+        HYAlertView* alert = [HYAlertView sharedInstance];
+        [alert setSubBottonBackgroundColor:[UIColor hyRedColor]];
+        [alert setSubBottonTitleColor:[UIColor whiteColor]];
+        [alert setCancelButtonBorderColor:[UIColor hyBarTintColor]];
+        [alert setCancelButtonTitleColor:[UIColor hyBarTintColor]];
+        [alert setCancelButtonBackgroundColor:[UIColor whiteColor]];
+        [alert setBtnCornerRadius:5];
+        [alert showAlertViewWithMessage:[NSString stringWithFormat:@"是否用%d积分兑换改商品?",1520] subBottonTitle:@"确定" cancelButtonTitle:@"取消" handler:^(AlertViewClickBottonType bottonType) {
+            switch (bottonType) {
+                case AlertViewClickBottonTypeSubBotton: {
+                    //TODO:兑换
+                    break;
+                }
+                default:{
+                    DLog(@"取消");
+                    break;
+                }
+            }
+        }];
     }];
+    
     [cell configListCellWithLeft:nil right:nil];
     return cell;
 }
-                 
+     
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, zoom(12))];
     view.backgroundColor = [UIColor hyViewBackgroundColor];

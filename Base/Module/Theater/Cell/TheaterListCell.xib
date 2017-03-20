@@ -34,7 +34,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="jHQ-i4-AcG"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -43,23 +43,23 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3u4-F9-0OB" secondAttribute="height" multiplier="1:1" id="Cux-YP-R8E"/>
                                 </constraints>
-                                <state key="normal" image="cart"/>
+                                <state key="normal" image="collect03"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大型儿童奇幻音乐剧" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPX-LF-2M0">
                                 <rect key="frame" x="123" y="42" width="213" height="21.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时长：90分钟" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kez-yt-WgW">
                                 <rect key="frame" x="123" y="65.5" width="213" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上映：2017-03-21" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyv-UT-ion">
                                 <rect key="frame" x="123" y="89.5" width="213" height="21.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -129,6 +129,7 @@
                 <outlet property="imgV" destination="SXn-sk-7R8" id="b2J-BY-c67"/>
                 <outlet property="priceLbl" destination="B1A-fX-Klb" id="4mL-Kx-8an"/>
                 <outlet property="ticketBtn" destination="Fln-LJ-u68" id="f1i-ZN-E2u"/>
+                <outlet property="ticketBtnWidth" destination="XlH-h4-KUG" id="dNS-mm-w7O"/>
                 <outlet property="timeLbl" destination="Kez-yt-WgW" id="o3b-9g-WEw"/>
                 <outlet property="titleLbl" destination="ExU-ov-GpK" id="4jC-N0-eSB"/>
                 <outlet property="typeLbl" destination="GPX-LF-2M0" id="NPb-C6-DmF"/>
@@ -137,6 +138,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cart" width="30" height="30"/>
+        <image name="collect03" width="22" height="22"/>
     </resources>
 </document>

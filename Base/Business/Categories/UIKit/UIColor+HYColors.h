@@ -34,6 +34,8 @@
 
 +(UIColor*)hyGrayTextColor;
 
++(UIColor*)hyLightGrayColor;
+
 + (UIColor*)hyBlueTextColor;
 
 + (UIColor*)hyLightBlueTextColor;
