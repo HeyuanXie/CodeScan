@@ -567,6 +567,86 @@
             </objects>
             <point key="canvasLocation" x="-1206" y="3179"/>
         </scene>
+        <!--weekEnd列表-->
+        <scene sceneID="1rg-su-PZQ">
+            <objects>
+                <viewController storyboardIdentifier="WeekEndListController" id="4zl-CP-2GS" userLabel="weekEnd列表" customClass="WeekEndListController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V5j-EJ-iUa"/>
+                        <viewControllerLayoutGuide type="bottom" id="ALQ-FM-sAP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PAC-u2-6PM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TVP-kK-ubq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1204" y="3834"/>
+        </scene>
+        <!--weekEnd详情-->
+        <scene sceneID="2lV-RQ-Pcm">
+            <objects>
+                <viewController storyboardIdentifier="WeekEndDetailController" title="详情" id="ZpD-MC-nal" userLabel="weekEnd详情" customClass="WeekEndDetailController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="77m-DR-rtB"/>
+                        <viewControllerLayoutGuide type="bottom" id="rHn-52-PZC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6A4-v3-Ehi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SyC-Ex-FYC">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukl-i0-yWZ">
+                                        <rect key="frame" x="290" y="9" width="73" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="73" id="0IJ-uy-kdK"/>
+                                            <constraint firstAttribute="height" constant="32" id="SQu-jn-ALC"/>
+                                        </constraints>
+                                        <state key="normal" title="发送">
+                                            <color key="titleColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="说点什么吧..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ncx-AR-Ro4">
+                                        <rect key="frame" x="12" y="9" width="266" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="j2z-Un-nTn"/>
+                                        </constraints>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Ncx-AR-Ro4" firstAttribute="leading" secondItem="SyC-Ex-FYC" secondAttribute="leading" constant="12" id="GVd-KL-64a"/>
+                                    <constraint firstItem="Ncx-AR-Ro4" firstAttribute="centerY" secondItem="SyC-Ex-FYC" secondAttribute="centerY" id="KBe-RW-6tI"/>
+                                    <constraint firstAttribute="height" constant="50" id="M9r-BQ-zEq"/>
+                                    <constraint firstItem="ukl-i0-yWZ" firstAttribute="centerY" secondItem="SyC-Ex-FYC" secondAttribute="centerY" id="ejI-JR-au2"/>
+                                    <constraint firstItem="ukl-i0-yWZ" firstAttribute="leading" secondItem="Ncx-AR-Ro4" secondAttribute="trailing" constant="12" id="toH-7M-ISz"/>
+                                    <constraint firstAttribute="trailing" secondItem="ukl-i0-yWZ" secondAttribute="trailing" constant="12" id="xZg-fh-Zbf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="SyC-Ex-FYC" secondAttribute="trailing" id="1iU-8y-Hbi"/>
+                            <constraint firstItem="rHn-52-PZC" firstAttribute="top" secondItem="SyC-Ex-FYC" secondAttribute="bottom" id="1qC-ps-SNo"/>
+                            <constraint firstItem="SyC-Ex-FYC" firstAttribute="leading" secondItem="6A4-v3-Ehi" secondAttribute="leading" id="Aaj-yt-cbp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="commentBtn" destination="ukl-i0-yWZ" id="9bR-oy-qH4"/>
+                        <outlet property="commentTf" destination="Ncx-AR-Ro4" id="2Lm-Vz-1he"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4fW-Tx-ltO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-542" y="3833"/>
+        </scene>
         <!--精选视频-->
         <scene sceneID="zdx-sG-BNS">
             <objects>
@@ -1473,7 +1553,7 @@
         <!--确认订单-->
         <scene sceneID="AW4-VF-FQx">
             <objects>
-                <viewController storyboardIdentifier="YearCardOrderController" title="确认订单" id="zrm-Ek-ZqS" customClass="YearCardCommitOrderController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="YearCardCommitOrderController" title="确认订单" id="zrm-Ek-ZqS" customClass="YearCardCommitOrderController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ImS-QI-xbF"/>
                         <viewControllerLayoutGuide type="bottom" id="mN0-d2-Rre"/>
@@ -1560,6 +1640,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIr-AB-FMj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="869.60000000000002" y="1138.3808095952024"/>
+        </scene>
+        <!--订单详情-->
+        <scene sceneID="9u9-in-Usx">
+            <objects>
+                <viewController storyboardIdentifier="YearCardOrderController" title="订单详情" id="XU4-Jl-nHG" customClass="YearCardOrderController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fpk-7W-37H"/>
+                        <viewControllerLayoutGuide type="bottom" id="YhW-7D-Bf6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tZG-6y-mlC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bBc-xU-Hmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1542" y="1132"/>
         </scene>
         <!--专家讲座Detail-->
         <scene sceneID="xoo-kV-mAa">
@@ -1763,7 +1861,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ryi-Dr-BY9" id="nbg-EH-GRj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

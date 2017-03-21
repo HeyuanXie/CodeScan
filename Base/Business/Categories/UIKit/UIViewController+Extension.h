@@ -29,4 +29,12 @@
  */
 - (void)addDoubleNavigationItemsWithImages:(NSArray*)imageNames firstBlock:(void(^)())block1 secondBlock:(void(^)())block2;
 
+
+/**
+ 弹出actionSheet选择已安装地图导航
+ 
+ @param addressString 目的地址
+ */
+- (void)geocoderClick:(NSString *)addressString;
+
 @end

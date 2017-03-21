@@ -24,6 +24,7 @@ NSString* const kLectureApplyController = @"LectureApplyController";
 
 NSString* const kYearCardHomeController = @"YearCardHomeController";
 NSString* const kYearCardBindSuccessController = @"YearCardBindSuccessController";
+NSString* const kYearCardOrderController = @"YearCardOrderController";
 
 NSString* const kDeriveListController = @"DeriveListController";
 NSString* const kDeriveDetailController = @"DeriveDetailController";
@@ -45,6 +46,9 @@ NSString* const kSkillApplySucceedController = @"SkillApplySucceedController";
 
 NSString* const kVideoListViewController = @"VideoListViewController";
 NSString* const kVideoPlayViewController = @"VideoPlayViewController";
+
+NSString* const kWeekEndListController = @"WeekEndListController";
+NSString* const kWeekEndDetailController = @"WeekEndDetailController";
 
 //Mine
 NSString* const kSettingViewController = @"SettingViewController";
@@ -114,7 +118,8 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
 
                         @{@"cls":kYearCardHomeController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kYearCardBindSuccessController,@"sb":@"Main",@"method":@"push"},
-                        
+                        @{@"cls":kYearCardOrderController,@"sb":@"Main",@"method":@"push"},
+
                         @{@"cls":kDeriveListController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kDeriveDetailController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kDeriveOrderController,@"sb":@"Main",@"method":@"push"},
@@ -136,8 +141,10 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
                         @{@"cls":kVideoListViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kVideoPlayViewController,@"sb":@"Main",@"method":@"push"},
                         
-                        @{@"cls":kSettingViewController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kWeekEndListController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kWeekEndDetailController,@"sb":@"Main",@"method":@"push"},
                         
+                        @{@"cls":kSettingViewController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kUserInfoViewController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMessageHomeController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMessageListController,@"sb":@"Mine",@"method":@"push"},

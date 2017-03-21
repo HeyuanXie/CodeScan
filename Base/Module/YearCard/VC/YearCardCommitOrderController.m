@@ -63,6 +63,8 @@
                 OrderTopCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderTopCell identify]];
                 [HYTool configTableViewCellDefault:cell];
                 cell.contentView.backgroundColor = [UIColor whiteColor];
+                cell.rightImgV.hidden = YES;
+                cell.priceLbl.hidden = YES;
                 [cell configTopCell:nil];
                 return cell;
             }else{
@@ -176,6 +178,7 @@
 #pragma mark - IBActions
 - (IBAction)commitOrder:(id)sender {
     
+    APPROUTE(kYearCardOrderController);
 }
 
 #pragma mark - private methods

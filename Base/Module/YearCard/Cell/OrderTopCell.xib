@@ -47,15 +47,36 @@
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="下个页面箭头_灰" translatesAutoresizingMaskIntoConstraints="NO" id="gk1-lR-UXU">
+                        <rect key="frame" x="350" y="21" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="15" id="7nR-UZ-uFF"/>
+                            <constraint firstAttribute="height" constant="15" id="Guz-xz-Z4P"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubr-bq-RBw">
+                        <rect key="frame" x="116" y="76" width="247" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Qie-6S-KUc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <color key="textColor" red="0.95686274510000002" green="0.30588235289999999" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Ubr-bq-RBw" firstAttribute="top" secondItem="emp-VD-EcV" secondAttribute="bottom" constant="6" id="1Z5-KL-G5E"/>
                     <constraint firstItem="tR9-YX-DNM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="1q2-No-HFY"/>
                     <constraint firstItem="emp-VD-EcV" firstAttribute="top" secondItem="tR9-YX-DNM" secondAttribute="bottom" constant="10" id="2vW-aM-QQV"/>
                     <constraint firstItem="4Js-6b-K9v" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="89J-he-4HY"/>
+                    <constraint firstAttribute="trailing" secondItem="Ubr-bq-RBw" secondAttribute="trailing" constant="12" id="Fzg-8g-fyg"/>
                     <constraint firstAttribute="trailing" secondItem="tR9-YX-DNM" secondAttribute="trailing" constant="12" id="KE2-8V-1Tn"/>
                     <constraint firstItem="4Js-6b-K9v" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="S5a-88-QCz"/>
                     <constraint firstAttribute="trailing" secondItem="emp-VD-EcV" secondAttribute="trailing" constant="12" id="XMn-SO-xV6"/>
                     <constraint firstItem="tR9-YX-DNM" firstAttribute="leading" secondItem="4Js-6b-K9v" secondAttribute="trailing" constant="14" id="ZY2-rm-6h7"/>
+                    <constraint firstItem="Ubr-bq-RBw" firstAttribute="leading" secondItem="4Js-6b-K9v" secondAttribute="trailing" constant="14" id="Zlr-uC-arK"/>
+                    <constraint firstItem="gk1-lR-UXU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="21" id="egT-UR-Xut"/>
+                    <constraint firstAttribute="trailing" secondItem="gk1-lR-UXU" secondAttribute="trailing" constant="10" id="iMk-qh-BEg"/>
                     <constraint firstItem="emp-VD-EcV" firstAttribute="leading" secondItem="4Js-6b-K9v" secondAttribute="trailing" constant="14" id="jnA-l3-o9a"/>
                     <constraint firstItem="4Js-6b-K9v" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="90:128" id="lBF-LG-mYj"/>
                 </constraints>
@@ -63,9 +84,14 @@
             <connections>
                 <outlet property="descLbl" destination="emp-VD-EcV" id="HWx-lr-woo"/>
                 <outlet property="imgV" destination="4Js-6b-K9v" id="QNy-qO-Abr"/>
+                <outlet property="priceLbl" destination="Ubr-bq-RBw" id="k33-T6-OhG"/>
+                <outlet property="rightImgV" destination="gk1-lR-UXU" id="9k9-bo-Wtc"/>
                 <outlet property="titleLbl" destination="tR9-YX-DNM" id="rgf-QM-Wi2"/>
             </connections>
             <point key="canvasLocation" x="35.5" y="54"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="下个页面箭头_灰" width="17" height="17"/>
+    </resources>
 </document>

@@ -154,7 +154,7 @@
 }
 
 +(void)configViewLayerRound:(UIView*)view {
-    view.layer.cornerRadius = view.bounds.size.width/2;
+    view.layer.cornerRadius = view.bounds.size.height/2;
     view.layer.masksToBounds = YES;
 }
 

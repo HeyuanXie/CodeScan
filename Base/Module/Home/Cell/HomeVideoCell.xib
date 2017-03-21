@@ -159,7 +159,7 @@
                         </connections>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6vE-Zm-mbK" userLabel="three" customClass="HomeVideoView">
-                        <rect key="frame" x="12" y="178" width="170" height="166"/>
+                        <rect key="frame" x="12" y="179" width="170" height="166"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CkG-SD-AML">
                                 <rect key="frame" x="0.0" y="0.0" width="170" height="107"/>
@@ -227,7 +227,7 @@
                         </connections>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="viR-7Y-G55" userLabel="four" customClass="HomeVideoView">
-                        <rect key="frame" x="193" y="178" width="170" height="166"/>
+                        <rect key="frame" x="193" y="179" width="170" height="166"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cPi-gg-Pw7">
                                 <rect key="frame" x="0.0" y="0.0" width="170" height="107"/>
@@ -295,7 +295,7 @@
                         </connections>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBV-7R-Sur" userLabel="line">
-                        <rect key="frame" x="0.0" y="348" width="375" height="1"/>
+                        <rect key="frame" x="0.0" y="349" width="375" height="1"/>
                         <color key="backgroundColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="uVu-e4-uDU"/>
@@ -306,11 +306,11 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="VFh-O9-X8t"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                        <inset key="imageEdgeInsets" minX="130" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="查看全部" image="common_icon_arrow.png">
-                            <color key="titleColor" red="0.68235294117647061" green="0.68235294117647061" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="140" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="查看全部" image="下个页面箭头_灰">
+                            <color key="titleColor" red="0.58823529409999997" green="0.74509803919999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
                             <action selector="seeAll:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="1ZO-iy-Q4z"/>
@@ -354,6 +354,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="common_icon_arrow.png" width="12" height="12"/>
+        <image name="下个页面箭头_灰" width="17" height="17"/>
     </resources>
 </document>

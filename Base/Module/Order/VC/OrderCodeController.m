@@ -10,6 +10,8 @@
 #import "OrderCodeController.h"
 #import "CodeHeadCell.h"
 
+#import "UIViewController+Extension.h"
+
 @interface OrderCodeController ()
 
 @end
@@ -126,6 +128,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section==0 && indexPath.row==1) {
+        [self geocoderClick:@"东莞玉兰大剧院"];
+        return;
+    }
 }
 #pragma mark - private methods
 -(void)subviewStyle {

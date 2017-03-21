@@ -74,9 +74,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    //TODO:进入订单详情，传递type参数
+    //TODO:进入订单详情，传递type参数,传递订单Id参数
     NSArray* types = @[@"theater",@"lecture",@"derive",@"yearCard"];
-    APPROUTE(([NSString stringWithFormat:@"%@?type=%@",kOrderDetailController,types[self.typeId]]));
+    APPROUTE(([NSString stringWithFormat:@"%@?type=%@&Id=%d",kOrderDetailController,types[self.typeId],1]));
 }
 #pragma mark - private methods
 -(NSMutableArray *)dataArray {

@@ -31,11 +31,11 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="Hlb-bw-z1N"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                        <inset key="imageEdgeInsets" minX="130" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="查看全部" image="common_icon_arrow.png">
-                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="140" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="查看全部" image="下个页面箭头_灰">
+                            <color key="titleColor" red="0.58823529409999997" green="0.74509803919999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                         <connections>
                             <action selector="seeAll:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2SO-ES-DUy"/>
@@ -383,6 +383,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="common_icon_arrow.png" width="12" height="12"/>
+        <image name="下个页面箭头_灰" width="17" height="17"/>
     </resources>
 </document>

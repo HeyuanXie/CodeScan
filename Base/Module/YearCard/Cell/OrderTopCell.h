@@ -10,6 +10,9 @@
 
 @interface OrderTopCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *rightImgV;
+@property (weak, nonatomic) IBOutlet UILabel *priceLbl;
+
 +(NSString*)identify;
 -(void)configTopCell:(id)model;
 

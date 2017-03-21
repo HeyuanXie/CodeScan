@@ -19,13 +19,18 @@
 #import "HomeVideoCell.h"
 #import "HomeHotCell.h"
 #import "RecentHotView.h"
+#import "NewsCell.h"
+#import "WeekEndCell.h"
 
 #import "UITableViewCell+HYCell.h"
+#import "UIViewController+Extension.h"
 
 @interface HomeViewController ()<UITextFieldDelegate>
 
 @property(nonatomic, strong) NSArray* info;
-@property(nonatomic, strong) NSMutableArray* banners;
+@property(nonatomic, strong) NSMutableArray* banners;   //轮播
+@property(nonatomic, strong) NSMutableArray* news;  //资讯
+@property(nonatomic, strong) NSMutableArray* weekEnds;   //周末
 
 @property(nonatomic, strong) UIButton* leftBtn;
 @property(nonatomic, strong) BaseNavigationController* addressNVC;
@@ -53,6 +58,7 @@
     self.backItemHidden = YES;
     self.navigationBarBlue = NO;
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.showsVerticalScrollIndicator = NO;
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
@@ -60,13 +66,16 @@
     [self.tableView registerNib:[UINib nibWithNibName:[ThemeCell identify] bundle:nil] forCellReuseIdentifier:[ThemeCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[HomeVideoCell identify] bundle:nil] forCellReuseIdentifier:[HomeVideoCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[HomeHotCell identify] bundle:nil] forCellReuseIdentifier:[HomeHotCell identify]];
-
+    [self.tableView registerNib:[UINib nibWithNibName:[NewsCell identify] bundle:nil] forCellReuseIdentifier:[NewsCell identify]];
+    [self.tableView registerNib:[UINib nibWithNibName:[WeekEndCell identify] bundle:nil] forCellReuseIdentifier:[WeekEndCell identify]];
 
     
     self.info = @[@{@"section":@(0),@"title":@"轮播"},
                   @{@"section":@(1),@"title":@"近期上演"},
-                  @{@"section":@(3),@"title":@"主题活动"},
-                  @{@"section":@(4),@"title":@"精选视频"},
+                  @{@"section":@(3),@"title":@"小飞象资讯"},
+                  @{@"section":@(4),@"title":@"周末去哪儿"},
+//                  @{@"section":@(3),@"title":@"主题活动"},
+//                  @{@"section":@(4),@"title":@"精选视频"},
                   @{@"section":@(5),@"title":@"热门衍生品"}];
     
     [self effectInit];
@@ -125,6 +134,13 @@
     return self.info.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSString* title = self.info[section][@"title"];
+    if ([title isEqualToString:@"小飞象资讯"]) {
+        return self.news.count;
+    }
+    if ([title isEqualToString:@"周末去哪儿"]) {
+        return self.weekEnds.count;
+    }
     return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -136,10 +152,13 @@
             return [self recentCellForTableView:tableView RowAtIndexPath:indexPath];
         case 2:
             return [self parentChildCellForTableView:tableView RowAtIndexPath:indexPath];
+//            return [self weekEndCellForTableView:tableView indexPath:indexPath];
         case 3:
-            return [self themeCellForTableView:tableView RowAtIndexPath:indexPath];
+//            return [self themeCellForTableView:tableView RowAtIndexPath:indexPath];
+            return [self newsCellForTableView:tableView indexPath:indexPath];
         case 4:
-            return [self videoCellForTableView:tableView RowAtIndexPath:indexPath];
+//            return [self videoCellForTableView:tableView RowAtIndexPath:indexPath];
+            return [self weekEndCellForTableView:tableView indexPath:indexPath];
         case 5:
             return [self hotCellForTableView:tableView RowAtIndexPath:indexPath];
         default:
@@ -158,7 +177,6 @@
     lbl.text = self.info[section][@"title"];
     return section == 0 ? nil : headerView;
 }
-
 
 -(HomeImageCell*)imageCellForTableView:(UITableView *)tableView RowAtIndexPath:(NSIndexPath *)indexPath {
     HomeImageCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeImageCell identify]];
@@ -260,7 +278,41 @@
     [cell configHotCell:nil];
     return cell;
 }
+-(NewsCell*)newsCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
+    NewsCell* cell = [tableView dequeueReusableCellWithIdentifier:[NewsCell identify]];
+    if (indexPath.row == self.news.count-1) {
+        cell.allViewHeight.constant = 40;
+        cell.allView.hidden = NO;
+    }else{
+        cell.allViewHeight.constant = 0;
+        cell.allView.hidden = YES;
+    }
 
+    [cell.allBtn bk_whenTapped:^{
+        APPROUTE(([NSString stringWithFormat:@"%@?type=%d",kWeekEndListController,0]));
+    }];
+
+    [cell configNewsCell:nil];
+    return cell;
+}
+
+-(WeekEndCell*)weekEndCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
+    NSInteger section = [self.info[indexPath.section][@"section"] integerValue];
+    WeekEndCell* cell = [tableView dequeueReusableCellWithIdentifier:[WeekEndCell identify]];
+    if (section == 4 && indexPath.row == self.weekEnds.count-1) {
+        cell.allViewHeight.constant = 40;
+        cell.allView.hidden = NO;
+    }else{
+        cell.allViewHeight.constant = 0;
+        cell.allView.hidden = YES;
+    }
+    //TODO:configCell
+    [cell configWeekEndCell:nil];
+    [cell.allBtn bk_whenTapped:^{
+        APPROUTE(([NSString stringWithFormat:@"%@?type=%d",kWeekEndListController,1]));
+    }];
+    return cell;
+}
 #pragma mark- tableview delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger section = [self.info[indexPath.section][@"section"] integerValue];
@@ -272,9 +324,11 @@
         case 2:
             return 125;
         case 3:
-            return 66;
+//            return 66;
+            return indexPath.row == self.news.count-1 ? 158 : 120;
         case 4:
-            return 390;
+//            return 390;
+            return indexPath.row == self.weekEnds.count-1 ? 158 : 120;
         case 5:
             return 320;
         default:
@@ -303,8 +357,7 @@
     UIBarButtonItem* leftItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftBtn];
     self.navigationItem.leftBarButtonItem = leftItem;
     
-    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"message"] style:UIBarButtonItemStylePlain target:self action:@selector(message)];
-    self.navigationItem.rightBarButtonItem = rightItem;
+    [self configMessage];
     
     UIView* footerView = [[NSBundle mainBundle] loadNibNamed:@"HomeUseView" owner:self options:nil][2];
     self.tableView.tableFooterView = footerView;
@@ -322,6 +375,9 @@
 //            [self showMessage:responseObject[@"msg"]];
 //        }
 //    }];
+    self.news = [@[@"",@"",@""] mutableCopy];
+    self.weekEnds = [@[@"",@"",@""] mutableCopy];
+    [self.tableView reloadData];
 }
 
 -(BaseNavigationController *)addressNVC {
@@ -376,10 +432,6 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.addressNVC.view.alpha = CGFLOAT_MIN;
     }];
-}
-
-- (void)message {
-    
 }
 
 @end

@@ -55,6 +55,7 @@
             //TODO:取消收藏
             
         }];
+        cell.collectBtn.hidden = YES;
         cell.ticketBtnWidth.constant = 80;
         [cell.ticketBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
         return cell;
@@ -99,7 +100,10 @@
 }
 
 -(void)subviewStyle {
-    NSArray* titles = @[@"亲子剧场",@"专家讲座",@"才艺竞赛",@"衍生品"];
+    
+    [self configMessage];
+    
+    NSArray* titles = @[@"亲子剧场",@"资讯",@"周末去哪儿",@"衍生品"];
     CGFloat width = [titles[0] sizeWithFont:[UIFont systemFontOfSize:15] maxWidth:CGFLOAT_MAX].width;
     CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, MAX(width*titles.count, kScreen_Width) , 42) menuTitles:titles textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBlueTextColor] isLineAdaptText:YES];
     [btns setFinished:^(NSInteger index) {

@@ -24,6 +24,8 @@ extern NSString* const kLectureApplyController;
 
 extern NSString* const kYearCardHomeController;
 extern NSString* const kYearCardBindSuccessController;
+extern NSString* const kYearCardOrderController;
+
 
 extern NSString* const kDeriveListController;
 extern NSString* const kDeriveDetailController;
@@ -46,6 +48,9 @@ extern NSString* const kSkillApplySucceedController;
 
 extern NSString* const kVideoListViewController;
 extern NSString* const kVideoPlayViewController;
+
+extern NSString* const kWeekEndListController;
+extern NSString* const kWeekEndDetailController;
 
 //Mine
 extern NSString* const kSettingViewController;

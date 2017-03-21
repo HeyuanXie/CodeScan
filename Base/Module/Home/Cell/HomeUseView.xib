@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="147" height="230"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FmK-gK-iOC">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yazi.png" translatesAutoresizingMaskIntoConstraints="NO" id="FmK-gK-iOC">
                     <rect key="frame" x="0.0" y="0.0" width="147" height="187"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7月25日 大型儿童音乐剧——人猿泰山" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9P-zf-F7v">
@@ -23,7 +23,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="43" id="Cra-r3-1m9"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -40,6 +40,10 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="desLbl" destination="n9P-zf-F7v" id="7Nu-Va-uRg"/>
                 <outlet property="imgV" destination="FmK-gK-iOC" id="Wxo-32-nBu"/>
@@ -66,18 +70,18 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="啥啥啥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXJ-0o-0aW">
-                    <rect key="frame" x="23" y="12.5" width="342" height="20"/>
+                    <rect key="frame" x="18" y="12.5" width="347" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="bRd-L9-uPS"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.3921568627" green="0.67843137249999996" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.90588235294117647" green="0.94117647058823528" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.96470588235294119" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="uXJ-0o-0aW" firstAttribute="leading" secondItem="TZs-0q-M7g" secondAttribute="trailing" constant="10" id="AAU-gH-Omz"/>
+                <constraint firstItem="uXJ-0o-0aW" firstAttribute="leading" secondItem="TZs-0q-M7g" secondAttribute="trailing" constant="5" id="AAU-gH-Omz"/>
                 <constraint firstAttribute="trailing" secondItem="uXJ-0o-0aW" secondAttribute="trailing" constant="10" id="BKM-nh-60C"/>
                 <constraint firstItem="TZs-0q-M7g" firstAttribute="leading" secondItem="CS7-1q-Ak8" secondAttribute="leading" constant="10" id="MK8-bw-Vqc"/>
                 <constraint firstItem="TZs-0q-M7g" firstAttribute="centerY" secondItem="CS7-1q-Ak8" secondAttribute="centerY" id="X7i-t0-JuZ"/>
@@ -118,7 +122,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.90588235294117647" green="0.94117647058823528" blue="0.99607843137254903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.96470588235294119" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="e4a-UC-aTT" firstAttribute="centerY" secondItem="GU2-fF-dve" secondAttribute="centerY" id="43M-QY-TzW"/>
                 <constraint firstItem="dKL-Mu-iLF" firstAttribute="centerY" secondItem="GU2-fF-dve" secondAttribute="centerY" id="8s9-VV-KSN"/>
@@ -132,4 +136,7 @@
             <point key="canvasLocation" x="-350.5" y="-162"/>
         </view>
     </objects>
+    <resources>
+        <image name="yazi.png" width="96" height="133"/>
+    </resources>
 </document>
