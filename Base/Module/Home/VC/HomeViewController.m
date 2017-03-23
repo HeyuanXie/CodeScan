@@ -187,16 +187,16 @@
                 APPROUTE(kTheaterListViewController);
                 break;
             case 1:
-                APPROUTE(kLectureListController);
-                break;
-            case 2:
                 APPROUTE(kYearCardHomeController);
                 break;
+            case 2:
+                APPROUTE(([NSString stringWithFormat:@"%@?type=0",kWeekEndListController]));
+                break;
             case 3:
-                APPROUTE(kDeriveListController);
+                APPROUTE(([NSString stringWithFormat:@"%@?type=1",kWeekEndListController]));
                 break;
             case 4:
-                APPROUTE(kSkillListViewController);
+                APPROUTE(kDeriveListController);
                 break;
             default:
                 break;
@@ -346,13 +346,13 @@
     [self addSearchBar];
     
     self.leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.leftBtn.frame = CGRectMake(0, 0, 60, 32);
-    [_leftBtn setImage:[UIImage imageNamed:@"dinwei01"] forState:UIControlStateNormal];
+    self.leftBtn.frame = CGRectMake(0, 0, 85, 32);
+//    [_leftBtn setImage:[UIImage imageNamed:@"dinwei01"] forState:UIControlStateNormal];
     [_leftBtn setTitle:@"未定位" forState:UIControlStateNormal];
     [_leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    _leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
-    _leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+//    _leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+//    _leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
     [_leftBtn addTarget:self action:@selector(filterAddress:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* leftItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftBtn];
     self.navigationItem.leftBarButtonItem = leftItem;

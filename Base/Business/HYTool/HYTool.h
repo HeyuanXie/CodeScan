@@ -15,7 +15,7 @@
 #pragma mark - CreateUI
 +(UITextField*)getTextFieldWithFrame:(CGRect)frame placeHolder:(NSString*)holder fontSize:(CGFloat)size textColor:(UIColor*)color;
 
-+(UITextView*)getTextViewWithFrame:(CGRect)frame placeHolder:(NSString*)holder fontSize:(CGFloat)size textColor:(UIColor*)color;
++(UITextView*)getTextViewWithFrame:(CGRect)frame placeHolder:(NSString*)holder placeHolderColor:(UIColor*)holdColor fontSize:(CGFloat)size textColor:(UIColor*)color;
 
 +(UILabel*)getLabelWithFrame:(CGRect)frame text:(NSString*)text fontSize:(CGFloat)size textColor:(UIColor*)color textAlignment:(NSTextAlignment)alignment;
 

@@ -13,8 +13,10 @@
 
 @interface OrderHomeController ()
 
-@property(assign,nonatomic)NSInteger typeId;
-@property(assign,nonatomic)NSInteger statuId;
+@property(strong,nonatomic)UIView* topView;
+
+@property(assign,nonatomic)NSInteger typeId;    //0为演出、1为商品、2为年卡
+@property(assign,nonatomic)NSInteger statuId;   //待付款、待评价等等
 @property(strong,nonatomic)NSMutableArray* dataArray;
 
 @property(strong,nonatomic)NSArray *types;
@@ -31,8 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.backItemHidden = YES;
-    self.types = @[@"全部订单",@"演出",@"商品",@"年卡"];
-    self.status = @[@"全部",@"待付款",@"待使用",@"待评价",@"退款"];
+    self.types = @[@"演出",@"商品",@"年卡"];
+    self.status = @[@"已付款",@"待付款",@"待评价",@"退款"];
     
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(42, 0, 0, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[OrderListCell identify] bundle:nil] forCellReuseIdentifier:[OrderListCell identify]];
@@ -63,7 +65,13 @@
     OrderListCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderListCell identify]];
     [HYTool configTableViewCellDefault:cell];
     
-    [cell configOrderListCell:nil];
+    if (self.typeId == 0) {
+        [cell configTheaterCell:nil];
+    }else if (self.typeId == 1) {
+        [cell configDeriveCell:nil];
+    }else{
+        [cell configYearCardCell:nil];
+    }
     return cell;
 }
 
@@ -115,16 +123,21 @@
     
     [self configNavigation];
     
-    UIView* topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 42)];
-    topView.backgroundColor = [UIColor whiteColor];
+    if (!self.topView) {
+        self.topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 42)];
+    }
+    for (UIView* subview in self.topView.subviews) {
+        [subview removeFromSuperview];
+    }
+    _topView.backgroundColor = [UIColor whiteColor];
     CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, kScreen_Width, 42) menuTitles:_status textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBarTintColor] isLineAdaptText:YES];
     
     [btns setFinished:^(NSInteger index) {
         self.statuId = index;
         [self fetchData];
     }];
-    [topView addSubview:btns];
-    [self.view addSubview:topView];
+    [_topView addSubview:btns];
+    [self.view addSubview:_topView];
 }
 
 -(void)configNavigation {
@@ -134,13 +147,8 @@
     [self.filterBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.filterBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [self.filterBtn setImage:ImageNamed(@"arrow_down") forState:UIControlStateNormal];
-    if (self.typeId == 0) {
-        self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 90, 0, -60);
-        self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 20);
-    }else{
-        self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 50, 0, -40);
-        self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 20);
-    }
+    self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 50, 0, -40);
+    self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 20);
 
     [self.filterBtn addTarget:self action:@selector(filterClassify) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = self.filterBtn;
@@ -163,7 +171,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.filterVC.view.hidden = NO;
         self.filterVC.view.frame = CGRectMake(0, 0, kScreen_Width, kScreen_Height-64);
-        self.filterVC.tableView.frame = CGRectMake(0, 0, kScreen_Width, 182);
+        self.filterVC.tableView.frame = CGRectMake(0, 0, kScreen_Width, 182*3/4);
         
     } completion:^(BOOL finished) {
         self.filterBtn.enabled = YES;
@@ -175,6 +183,15 @@
         self.typeId = row;
         [self selectClass:row];
         [self hiddenFilterClassify];
+        
+        if (row == 0) {
+            self.status = @[@"已付款",@"待付款",@"待评价",@"退款"];
+        }else if (row == 1) {
+            self.status = @[@"待领取",@"已领取",@"待评价"];
+        }else{
+            self.status = @[@"已付款",@"待付款",@"待使用",@"退款"];
+        }
+        [self subviewStyle];
     }];
     
 }
@@ -188,13 +205,8 @@
     }];
     [self.backGrayView removeFromSuperview];
     [self.filterBtn setImage:ImageNamed(@"arrow_down") forState:UIControlStateNormal];
-    if (self.typeId == 0) {
-        self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 90, 0, -60);
-        self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 20);
-    }else{
-        self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 50, 0, -40);
-        self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 20);
-    }
+    self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 50, 0, -40);
+    self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 20);
 }
 - (void)selectClass:(NSInteger)row{
     [self.filterBtn setTitle:_types[row] forState:UIControlStateNormal];

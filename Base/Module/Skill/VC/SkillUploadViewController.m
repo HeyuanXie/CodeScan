@@ -112,7 +112,7 @@
                     
                     UILabel* lbl = [HYTool getLabelWithFrame:CGRectMake(0, 0, 90, 48) text:@"个人简介:" fontSize:14 textColor:[UIColor hyBlackTextColor] textAlignment:NSTextAlignmentCenter];
                     [cell.contentView addSubview:lbl];
-                    UITextView* textView = [HYTool getTextViewWithFrame:CGRectMake(93, 2, kScreen_Width-93-10, 92) placeHolder:@"写点什么帮你宝宝拉票吧！" fontSize:15 textColor:[UIColor hyBlackTextColor]];
+                    UITextView* textView = [HYTool getTextViewWithFrame:CGRectMake(93, 2, kScreen_Width-93-10, 92) placeHolder:@"写点什么帮你宝宝拉票吧！" placeHolderColor:nil fontSize:15 textColor:[UIColor hyBlackTextColor]];
                     [HYTool configViewLayer:textView withColor:[UIColor hySeparatorColor]];
                     textView.delegate = self;
                     [cell.contentView addSubview:textView];

@@ -30,13 +30,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTa-kn-nw8">
                                 <rect key="frame" x="0.0" y="-0.5" width="75" height="90"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1juchang" translatesAutoresizingMaskIntoConstraints="NO" id="Ujs-DN-kzu">
+                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1亲子剧场" translatesAutoresizingMaskIntoConstraints="NO" id="Ujs-DN-kzu">
                                         <rect key="frame" x="14.5" y="12" width="46" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Ujs-DN-kzu" secondAttribute="height" multiplier="1:1" id="FBj-l0-iz1"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亲自剧场" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftM-3Y-xg6">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亲子剧场" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftM-3Y-xg6">
                                         <rect key="frame" x="0.0" y="63" width="75" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -58,13 +58,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tv7-Mf-iqt">
                                 <rect key="frame" x="75" y="-0.5" width="75" height="90"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2jiangzuo" translatesAutoresizingMaskIntoConstraints="NO" id="h1Q-Wb-oi1">
+                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2年卡" translatesAutoresizingMaskIntoConstraints="NO" id="h1Q-Wb-oi1">
                                         <rect key="frame" x="14.5" y="12" width="46" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="h1Q-Wb-oi1" secondAttribute="height" multiplier="1:1" id="6CO-tb-T17"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="专家讲座" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Os4-WM-wU4">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Os4-WM-wU4">
                                         <rect key="frame" x="0.0" y="63" width="75" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -86,13 +86,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOl-1i-KEX">
                                 <rect key="frame" x="150" y="-0.5" width="75" height="90"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3nianka" translatesAutoresizingMaskIntoConstraints="NO" id="E6s-qk-4UK">
+                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3资讯" translatesAutoresizingMaskIntoConstraints="NO" id="E6s-qk-4UK">
                                         <rect key="frame" x="14.5" y="12" width="46" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="E6s-qk-4UK" secondAttribute="height" multiplier="1:1" id="97w-0d-YMI"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Rm-EA-IMI">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资讯" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Rm-EA-IMI">
                                         <rect key="frame" x="0.0" y="63" width="75" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -114,13 +114,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qq7-V3-KDZ">
                                 <rect key="frame" x="225" y="-0.5" width="75" height="90"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4yansheng" translatesAutoresizingMaskIntoConstraints="NO" id="U2T-GA-XoV">
+                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4周末去哪儿" translatesAutoresizingMaskIntoConstraints="NO" id="U2T-GA-XoV">
                                         <rect key="frame" x="14.5" y="12" width="46" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="U2T-GA-XoV" secondAttribute="height" multiplier="1:1" id="n1b-Hf-niB"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="衍生品" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvJ-tT-ZLG">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="周末去哪儿" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvJ-tT-ZLG">
                                         <rect key="frame" x="0.0" y="63" width="75" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -142,13 +142,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0X9-ye-BFE">
                                 <rect key="frame" x="300" y="-0.5" width="75" height="90"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5jingsai" translatesAutoresizingMaskIntoConstraints="NO" id="scf-Gt-qdc">
+                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5衍生品" translatesAutoresizingMaskIntoConstraints="NO" id="scf-Gt-qdc">
                                         <rect key="frame" x="14.5" y="12" width="46" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="scf-Gt-qdc" secondAttribute="height" multiplier="1:1" id="h9q-il-pMx"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="才艺竞赛" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8u-JV-qxo">
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="衍生品" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8u-JV-qxo">
                                         <rect key="frame" x="0.0" y="63" width="75" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -213,10 +213,10 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="1juchang" width="48" height="48"/>
-        <image name="2jiangzuo" width="48" height="48"/>
-        <image name="3nianka" width="48" height="48"/>
-        <image name="4yansheng" width="48" height="48"/>
-        <image name="5jingsai" width="48" height="48"/>
+        <image name="1亲子剧场" width="48" height="48"/>
+        <image name="2年卡" width="48" height="48"/>
+        <image name="3资讯" width="48" height="48"/>
+        <image name="4周末去哪儿" width="48" height="48"/>
+        <image name="5衍生品" width="48" height="48"/>
     </resources>
 </document>

@@ -11,7 +11,8 @@
 @interface OrderListCell : UITableViewCell
 
 +(NSString*)identify;
+-(void)configTheaterCell:(id)model;
+-(void)configDeriveCell:(id)model;
 -(void)configYearCardCell:(id)model;
--(void)configOrderListCell:(id)model;
 
 @end

@@ -33,7 +33,7 @@
 
 -(NSArray *)titles {
     if (_titles == nil) {
-        _titles = @[@"全部订单",@"演出",@"商品",@"年卡"];
+        _titles = @[@"演出",@"商品",@"年卡"];
     }
     return _titles;
 }

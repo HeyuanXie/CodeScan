@@ -264,6 +264,7 @@
             self.areaName = @"";
         }
         addressC.areaName = [NSString stringWithFormat:@"%@%@", self.areaName, dict[@"n"]];
+        addressC.areaName = dict[@"n"];
         addressC.selectAddress = self.selectAddress;
         addressC.addresses = array;
         addressC.level = self.level+1;
@@ -289,7 +290,12 @@
             if (!self.areaName) {
                 self.areaName = @"";
             }
-            self.selectAddress([NSString stringWithFormat:@"%@%@", self.areaName, dict[@"n"]], [NSString stringWithFormat:@"%@", dict[@"k"]]);
+//            self.selectAddress([NSString stringWithFormat:@"%@%@", self.areaName, dict[@"n"]], [NSString stringWithFormat:@"%@", dict[@"k"]]);
+            if ([dict[@"n"] isEqualToString:@"全省"] || [dict[@"n"] isEqualToString:@"全市"]) {
+                self.selectAddress([NSString stringWithFormat:@"%@%@", self.areaName, dict[@"n"]], [NSString stringWithFormat:@"%@", dict[@"k"]]);
+            }else{
+                self.selectAddress(dict[@"n"],dict[@"k"]);
+            }
         }
         [self dismissViewControllerAnimated:YES completion:nil];
     }

@@ -33,8 +33,38 @@
     return NSStringFromClass([self class]);
 }
 
+-(void)configTheaterCell:(id)model {
+    
+    self.typeImgV.image = ImageNamed(@"订单类型_话剧");
+    self.lbl4.hidden = NO;
+    
+    [self.leftBtn bk_whenTapped:^{
+        APPROUTE(kCommentViewController);
+    }];
+    [self.rightBtn bk_whenTapped:^{
+        APPROUTE(kCommentListController);
+    }];
+}
+
+-(void)configDeriveCell:(id)model {
+    
+    self.typeImgV.image = ImageNamed(@"订单类型_商品");
+    self.lbl4.hidden = YES;
+    
+    self.lbl1.text = @"领取地点: 东莞玉兰大剧场";
+    self.lbl2.text = @"数量: 2张";
+    self.lbl3.text = @"总价: ¥99";
+}
+
 -(void)configYearCardCell:(id)model {
-    self.leftBtn.hidden = YES;
+    
+    self.typeImgV.image = ImageNamed(@"订单类型_年卡");
+    self.lbl4.hidden = YES;
+    
+    self.lbl1.text = @"卡号: 12344565";
+    self.lbl2.text = @"数量: 2张";
+    self.lbl3.text = @"总价: ¥99";
+    
     switch ([model[@"statu"] integerValue]) {
         case 0:
         {
@@ -60,11 +90,6 @@
             break;
         }
     }
-}
-
--(void)configOrderListCell:(id)model {
-    
-    //根据type设置typeImgV的图片
 }
 
 - (void)awakeFromNib {

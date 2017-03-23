@@ -66,7 +66,7 @@
     [HYTool configViewLayer:self.registBtn withColor:[UIColor whiteColor]];
     [HYTool configViewLayer:self.registBtn size:20];
     
-    self.otherLoginView.hidden = YES;
+//    self.otherLoginView.hidden = YES;
 }
 
 - (void)subviewBind {

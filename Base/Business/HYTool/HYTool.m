@@ -45,7 +45,7 @@
     return field;
 }
 
-+(UITextView *)getTextViewWithFrame:(CGRect)frame placeHolder:(NSString *)holder fontSize:(CGFloat)size textColor:(UIColor *)color {
++(UITextView*)getTextViewWithFrame:(CGRect)frame placeHolder:(NSString*)holder placeHolderColor:(UIColor*)holdColor fontSize:(CGFloat)size textColor:(UIColor*)color {
 
     UITextView* textView = [[UITextView alloc] initWithFrame:frame];
     textView.font = [UIFont systemFontOfSize:size];
@@ -54,7 +54,12 @@
     }else{
         textView.textColor = [UIColor hyBlackTextColor];
     }
-    UILabel* label = [self getLabelWithFrame:CGRectMake(5, 5, frame.size.width, frame.size.height) text:holder fontSize:size textColor:[UIColor hyGrayTextColor] textAlignment:NSTextAlignmentLeft];
+    UILabel* label = [self getLabelWithFrame:CGRectMake(5, 5, frame.size.width, 20) text:holder fontSize:size textColor:nil textAlignment:NSTextAlignmentLeft];
+    if (holdColor) {
+        label.textColor = holdColor;
+    }else{
+        label.textColor = [UIColor hyGrayTextColor];
+    }
     label.tag = 10000;
     [textView addSubview:label];
     return textView;

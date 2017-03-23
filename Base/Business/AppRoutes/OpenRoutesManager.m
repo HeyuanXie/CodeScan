@@ -16,7 +16,9 @@ NSString* const kMineHomeViewController = @"MineHomeViewController";
 NSString* const kTheaterListViewController = @"TheaterListViewController";
 NSString* const kTheaterDetailViewController = @"TheaterDetailViewController";
 NSString* const kTheaterTicketViewController = @"TheaterTicketViewController";
-NSString* const kFilterViewController = @"FilterViewController";
+NSString* const kFilterTableViewController = @"FilterTableViewController";
+NSString* const kCommentViewController = @"CommentViewController";
+NSString* const kCommentListController = @"CommentListController";
 
 NSString* const kLectureListController = @"LectureListController";
 NSString* const kLectureDetailController = @"LectureDetailController";
@@ -81,7 +83,6 @@ NSString* const kSearchGuideController = @"SearchGuideController";
 NSString* const kFilterClassTableViewController = @"FilterClassTableViewController";
 NSString* const kModifyPWController = @"ModifyPWController";
 NSString* const kAddressController = @"HYAddressController";
-NSString* const kFilterTableViewController = @"FilterTableViewController";
 
 @implementation OpenRoutesManager
 
@@ -111,6 +112,8 @@ NSString* const kFilterTableViewController = @"FilterTableViewController";
                         @{@"cls":kTheaterDetailViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterTicketViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kFilterTableViewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kCommentViewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kCommentListController,@"sb":@"Main",@"method":@"push"},
                         
                         @{@"cls":kLectureListController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kLectureDetailController,@"sb":@"Main",@"method":@"push"},

@@ -109,7 +109,7 @@
     [HYTool configViewLayer:self.loginBtn withColor:[UIColor whiteColor]];
     [HYTool configViewLayer:self.loginBtn size:20];
     
-    self.otherLoginView.hidden = YES;
+//    self.otherLoginView.hidden = YES;
 }
 
 -(void)subviewBind {

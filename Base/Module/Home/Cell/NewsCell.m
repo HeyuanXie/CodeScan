@@ -45,6 +45,12 @@
         //TODO:评论
         
     }];
+    
+    NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc] init];
+    [style setLineSpacing:3.0];
+    NSMutableAttributedString* mAttr = [[NSMutableAttributedString alloc] initWithString:self.detailLbl.text];
+    [mAttr addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, self.detailLbl.text.length)];
+    self.detailLbl.attributedText = mAttr;
 }
 
 

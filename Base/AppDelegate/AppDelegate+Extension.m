@@ -13,6 +13,7 @@
 #import "APIHelper+User.h"
 #import "UIImage+HYImages.h"
 #import <IQKeyboardManager.h>
+#import "WXApi.h"
 
 NS_ENUM(NSUInteger, TabType) {
     TabTypeHome = 0,
@@ -107,6 +108,12 @@ NS_ENUM(NSUInteger, TabType) {
     [[IQKeyboardManager sharedManager] setEnable:YES];
     [[IQKeyboardManager sharedManager] setShouldResignOnTouchOutside:YES];
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
+}
+
+
+-(void)configPaySDK {
+    
+    [WXApi registerApp:WX_APPID withDescription:@"demo"];
 }
 
 @end

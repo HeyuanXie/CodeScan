@@ -11,6 +11,8 @@
 #import "CustomJumpBtns.h"
 #import "HYAlertView.h"
 
+#import "UIButton+HYButtons.h"
+
 @interface DeriveListController ()
 
 @property (weak, nonatomic) IBOutlet UIView *topView;
@@ -140,10 +142,10 @@
     [self.recordBtn addTarget:self action:@selector(mineRecord:) forControlEvents:UIControlEventTouchUpInside];
 }
 -(void)mineScore:(UIButton*)btn {
-    DLog(@"我的积分");
+    APPROUTE(kPointManageController);
 }
 -(void)mineRecord:(UIButton*)btn {
-    DLog(@"兑换记录");
+    APPROUTE(kDeriveRecordController);
 }
 
 

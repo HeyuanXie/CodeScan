@@ -21,7 +21,6 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6x-D1-ebB">
                         <rect key="frame" x="316" y="0.0" width="47" height="47"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="i6x-D1-ebB" secondAttribute="height" multiplier="1:1" id="w0x-iJ-fAa"/>
                         </constraints>
