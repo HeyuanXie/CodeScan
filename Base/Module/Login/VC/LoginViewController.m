@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "APIHelper+User.h"
 #import "UIViewController+Extension.h"
+#import "NSString+HYUtilities.h"
 
 @interface LoginViewController ()
 
@@ -37,6 +38,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (self.schemaArgu[@"phone"]) {
+        self.accountTf.text = [self.schemaArgu objectForKey:@"phone"];
+    }
     [self subviewStyle];
     [self subviewBind];
     // Do any additional setup after loading the view.
@@ -61,6 +66,7 @@
     }
     
     self.accountTf.keyboardType = UIKeyboardTypeNumberPad;
+    self.passwordTf.secureTextEntry = YES;
     
     [HYTool configViewLayer:self.loginBtn size:20];
     [HYTool configViewLayer:self.registBtn withColor:[UIColor whiteColor]];
@@ -98,12 +104,17 @@
         return;
     }
     [MBProgressHUD hy_showLoadingHUDAddedTo:self.view animated:YES];
-    [APIHELPER login:self.accountTf.text password:self.passwordTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    
+    NSString* salt = @"12345";
+    NSString* sha1Str = [[[self.passwordTf.text sha1String] lowercaseString] stringByAppendingString:salt];
+    NSString* sha1PS = [[sha1Str sha1String] lowercaseString];
+    
+    [APIHELPER login:self.accountTf.text password:sha1PS complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [MBProgressHUD hy_showLoadingHUDAddedTo:self.view animated:NO];
         if (isSuccess) {
             [Global setUserAuth:responseObject[@"data"][@"auth"]];
-            APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"][@"user"]];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
+            [self.navigationController popViewControllerAnimated:YES];
         }else{
             [MBProgressHUD hy_showMessage:error.userInfo[NSLocalizedDescriptionKey] inView:self.view];
         }

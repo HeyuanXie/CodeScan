@@ -210,7 +210,7 @@
         case 1:{
             switch (indexPath.row) {
                 case 0:{
-                    APPROUTE(kModifyPWController);
+                    APPROUTE(kChangePasswordController);
                 }break;
                 default:
                     break;

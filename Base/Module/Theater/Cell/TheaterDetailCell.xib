@@ -88,31 +88,31 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pqp-Jo-TY0">
                                 <rect key="frame" x="101" y="22" width="95" height="29"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close.png" translatesAutoresizingMaskIntoConstraints="NO" id="sES-zI-k98">
+                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect02" translatesAutoresizingMaskIntoConstraints="NO" id="sES-zI-k98">
                                         <rect key="frame" x="0.0" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sES-zI-k98" secondAttribute="height" multiplier="1:1" id="W2c-jz-MoF"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close.png" translatesAutoresizingMaskIntoConstraints="NO" id="TMA-tg-QGl">
+                                    <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect02" translatesAutoresizingMaskIntoConstraints="NO" id="TMA-tg-QGl">
                                         <rect key="frame" x="19" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="TMA-tg-QGl" secondAttribute="height" multiplier="1:1" id="dtQ-5l-8dL"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close.png" translatesAutoresizingMaskIntoConstraints="NO" id="VFg-fI-npS">
+                                    <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect02" translatesAutoresizingMaskIntoConstraints="NO" id="VFg-fI-npS">
                                         <rect key="frame" x="57" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="VFg-fI-npS" secondAttribute="height" multiplier="1:1" id="5hR-tK-DaK"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Pd-Jr-RIR">
+                                    <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect03" translatesAutoresizingMaskIntoConstraints="NO" id="8Pd-Jr-RIR">
                                         <rect key="frame" x="76" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="8Pd-Jr-RIR" secondAttribute="height" multiplier="1:1" id="Qa9-4w-tzv"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jgc-kT-L1C">
+                                    <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect02" translatesAutoresizingMaskIntoConstraints="NO" id="Jgc-kT-L1C">
                                         <rect key="frame" x="39" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Jgc-kT-L1C" secondAttribute="height" multiplier="1:1" id="PU5-fX-7jD"/>
@@ -265,7 +265,8 @@
     </objects>
     <resources>
         <image name="cart" width="30" height="30"/>
-        <image name="close.png" width="24" height="24"/>
+        <image name="collect02" width="22" height="22"/>
+        <image name="collect03" width="22" height="22"/>
         <image name="yazi.png" width="96" height="133"/>
     </resources>
 </document>

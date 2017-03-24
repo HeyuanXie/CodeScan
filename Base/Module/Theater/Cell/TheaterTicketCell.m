@@ -47,7 +47,8 @@
         UIView* ticketView = LOADNIB(@"TheaterUseView", 1);
         [HYTool configViewLayerFrame:ticketView WithColor:[UIColor hySeparatorColor]];
         [ticketView bk_whenTapped:^{
-            //TODO:跳到选座
+            //TODO:跳到选座,传递场次数据参数
+            APPROUTE(kTheaterSeatPreviewController);
         }];
         //TODO:configTicketView
         [self.ticketScroll addSubview:ticketView];

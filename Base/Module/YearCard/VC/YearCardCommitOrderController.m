@@ -26,6 +26,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
+    self.selectIndex = 1;
+    
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 60, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.tableView registerNib:[UINib nibWithNibName:[OrderTopCell identify] bundle:nil] forCellReuseIdentifier:[OrderTopCell identify]];
@@ -118,29 +120,34 @@
                 cell.textLabel.font = [UIFont systemFontOfSize:15];
                 
                 UIButton* selectBtn = [HYTool getButtonWithFrame:CGRectZero title:nil titleSize:0 titleColor:nil backgroundColor:[UIColor clearColor] blockForClick:nil];
-                [selectBtn setImage:ImageNamed(@"on") forState:UIControlStateSelected];
-                [selectBtn setImage:ImageNamed(@"off") forState:UIControlStateNormal];
-                selectBtn.tag = 1000 + indexPath.row;
+                [selectBtn setImage:ImageNamed(@"已选择") forState:UIControlStateSelected];
+                [selectBtn setImage:ImageNamed(@"未选择") forState:UIControlStateNormal];
+                selectBtn.tag = 1000;// + indexPath.row;
                 [cell.contentView addSubview:selectBtn];
                 [selectBtn autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 0, 0) excludingEdge:ALEdgeLeft];
                 [selectBtn autoSetDimension:ALDimensionWidth toSize:48];
             }
-            UIButton* selectBtn = [cell.contentView viewWithTag:1000+indexPath.row];
+            UIButton* selectBtn = [cell.contentView viewWithTag:1000];//+indexPath.row];
             selectBtn.selected = indexPath.row == self.selectIndex;
             selectBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
                 self.selectIndex = indexPath.row;
-                [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
                 return [RACSignal empty];
             }];
             if (indexPath.row == 0) {
                 selectBtn.hidden = YES;
+                cell.imageView.hidden = YES;
+                cell.imageView.image = nil;
                 cell.textLabel.text = @"支付方式";
+                cell.textLabel.font = [UIFont systemFontOfSize:16];
                 cell.textLabel.textColor = [UIColor blackColor];
             }else{
                 selectBtn.hidden = NO;
-                cell.imageView.image = ImageNamed(@"cart");
-                cell.textLabel.text = self.payMethods[indexPath.row];
+                cell.imageView.hidden = NO;
+                cell.imageView.image = ImageNamed(self.payMethods[indexPath.row][@"image"]);
+                cell.textLabel.text = self.payMethods[indexPath.row][@"title"];
                 cell.textLabel.textColor = [UIColor hyBlackTextColor];
+                cell.textLabel.font = [UIFont systemFontOfSize:15];
             }
             return cell;
         }
@@ -168,10 +175,16 @@
     return zoom(15);
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section != 1) {
+    if (indexPath.section == 1) {
+        //TODO:进入优惠券列表
+
         return;
     }
-    //TODO:进入优惠券列表
+    if (indexPath.section == 2) {
+        self.selectIndex = indexPath.row;
+        [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
+        return;
+    }
 }
 
 
@@ -185,7 +198,7 @@
 -(NSMutableArray *)payMethods {
     if (!_payMethods) {
 //        _payMethods = [NSMutableArray array];
-        _payMethods = [@[@"支付方式",@"微信支付",@"支付宝支付"] mutableCopy];
+        _payMethods = [@[@{@"title":@"支付方式",@"image":@""},@{@"title":@"微信支付",@"image":@"支付方式_微信"},@{@"title":@"支付宝支付",@"image":@"支付方式_支付宝"}] mutableCopy];
     }
     return _payMethods;
 }

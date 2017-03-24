@@ -7,6 +7,7 @@
 //
 
 #import "OrderListCell.h"
+#import "NSString+Extension.h"
 
 @interface OrderListCell ()
 
@@ -65,30 +66,62 @@
     self.lbl2.text = @"数量: 2张";
     self.lbl3.text = @"总价: ¥99";
     
+    //测试支付倒计时
+    NSString* time = @" 剩余支付时间:14分20秒";
+    self.orderNumLbl.attributedText = [time attributeStringWithAttachment:CGRectMake(0, -2, 15, 15) fontSize:13 textColor:RGB(127, 127, 127, 1.0) index:0 imageName:@"支付倒计时"];
+    
     switch ([model[@"statu"] integerValue]) {
         case 0:
         {
-            self.statuLbl.text = @"待使用";
-            [self.rightBtn setTitle:@"去使用" forState:UIControlStateNormal];
-            [self.rightBtn bk_whenTapped:^{
-                //TODO:跳到订单详情页(入场二维码)
+            self.statuLbl.text = @"已付款";
+            [self.leftBtn setTitle:@"退款" forState:UIControlStateNormal];
+            [self.leftBtn bk_whenTapped:^{
+                //TODO:退款
+                
             }];
-            break;
+            [self.rightBtn setTitle:@"立即绑定" forState:UIControlStateNormal];
+            [self.rightBtn bk_whenTapped:^{
+                //TODO:绑定
+                
+            }];
         }
         case 1:
         {
-            self.statuLbl.text = @"已完成";
-            self.rightBtn.hidden = YES;
-            break;
+            self.statuLbl.text = @"代付款";
         }
         case 2:
         {
-            self.statuLbl.text = @"待评价";
-            [self.rightBtn bk_whenTapped:^{
-                //TODO:跳到评价页面
-            }];
-            break;
+            self.statuLbl.text = @"已使用";
+
         }
+        case 3:
+        {
+            self.statuLbl.text = @"退款";
+
+        }
+//        case 1:
+//        {
+//            self.statuLbl.text = @"待使用";
+//            [self.rightBtn setTitle:@"去使用" forState:UIControlStateNormal];
+//            [self.rightBtn bk_whenTapped:^{
+//                //TODO:跳到订单详情页(入场二维码)
+//            }];
+//            break;
+//        }
+//        case 2:
+//        {
+//            self.statuLbl.text = @"已完成";
+//            self.rightBtn.hidden = YES;
+//            break;
+//        }
+//        case 3:
+//        {
+//            self.statuLbl.text = @"待评价";
+//            [self.rightBtn bk_whenTapped:^{
+//                //TODO:跳到评价页面
+//            }];
+//            break;
+//        }
     }
 }
 

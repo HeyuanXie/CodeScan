@@ -135,8 +135,52 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-350.5" y="-162"/>
         </view>
+        <view contentMode="scaleToFill" id="amz-lK-Fw1">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="34"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGX-zQ-xZ9">
+                    <rect key="frame" x="0.0" y="0.0" width="60" height="34"/>
+                    <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="mfk-P6-mSQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="文章" image="三角形_黑色下">
+                        <color key="titleColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="highlighted" image="arrow_down"/>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bvm-jw-DF0">
+                    <rect key="frame" x="65" y="0.0" width="235" height="34"/>
+                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="UGX-zQ-xZ9" firstAttribute="leading" secondItem="amz-lK-Fw1" secondAttribute="leading" id="9T4-3g-HbX"/>
+                <constraint firstAttribute="bottom" secondItem="UGX-zQ-xZ9" secondAttribute="bottom" id="Crr-s4-tTN"/>
+                <constraint firstItem="Bvm-jw-DF0" firstAttribute="top" secondItem="amz-lK-Fw1" secondAttribute="top" id="Nub-fn-eIx"/>
+                <constraint firstItem="UGX-zQ-xZ9" firstAttribute="top" secondItem="amz-lK-Fw1" secondAttribute="top" id="R1b-6U-neT"/>
+                <constraint firstAttribute="bottom" secondItem="Bvm-jw-DF0" secondAttribute="bottom" id="RvF-fA-KAw"/>
+                <constraint firstAttribute="trailing" secondItem="Bvm-jw-DF0" secondAttribute="trailing" id="fZp-Qp-t8v"/>
+                <constraint firstItem="Bvm-jw-DF0" firstAttribute="leading" secondItem="UGX-zQ-xZ9" secondAttribute="trailing" constant="5" id="uRf-zd-IDz"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.cornerRadius" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="-394" y="-17"/>
+        </view>
     </objects>
     <resources>
+        <image name="arrow_down" width="17" height="10"/>
         <image name="yazi.png" width="96" height="133"/>
+        <image name="三角形_黑色下" width="12" height="12"/>
     </resources>
 </document>

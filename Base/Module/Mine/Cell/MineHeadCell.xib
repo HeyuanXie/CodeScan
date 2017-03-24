@@ -30,7 +30,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张三" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ho9-s1-Jfc">
-                        <rect key="frame" x="116" y="109" width="210" height="21"/>
+                        <rect key="frame" x="116" y="109" width="215" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="16q-cQ-GYV"/>
                         </constraints>
@@ -38,8 +38,8 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_icon_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="P5K-WU-59l">
-                        <rect key="frame" x="338" y="106.5" width="25" height="25"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="下个页面箭头_白" translatesAutoresizingMaskIntoConstraints="NO" id="P5K-WU-59l">
+                        <rect key="frame" x="343" y="109" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="P5K-WU-59l" secondAttribute="height" multiplier="1:1" id="quu-xL-ZDf"/>
                         </constraints>
@@ -51,7 +51,7 @@
                     <constraint firstItem="ho9-s1-Jfc" firstAttribute="centerY" secondItem="lLu-Hz-A2D" secondAttribute="centerY" id="31H-6F-ueT"/>
                     <constraint firstAttribute="bottom" secondItem="lLu-Hz-A2D" secondAttribute="bottom" constant="32" id="8Bc-1e-vyo"/>
                     <constraint firstItem="lLu-Hz-A2D" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="67:185" id="8rC-9d-UmE"/>
-                    <constraint firstItem="P5K-WU-59l" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="25:185" id="F1E-yD-eJK"/>
+                    <constraint firstItem="P5K-WU-59l" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="20:185" id="F1E-yD-eJK"/>
                     <constraint firstItem="drV-N3-Om3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MTi-rz-hiS"/>
                     <constraint firstItem="P5K-WU-59l" firstAttribute="centerY" secondItem="lLu-Hz-A2D" secondAttribute="centerY" id="QY1-N4-uzS"/>
                     <constraint firstAttribute="bottom" secondItem="drV-N3-Om3" secondAttribute="bottom" id="bK1-hE-jyz"/>
@@ -70,7 +70,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="common_icon_arrow.png" width="12" height="12"/>
         <image name="gradualBackground.png" width="750" height="1334"/>
+        <image name="下个页面箭头_白" width="17" height="17"/>
     </resources>
 </document>

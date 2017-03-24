@@ -143,10 +143,9 @@ alpha:a]
 //#define kSaveObject
 #define kUserDefaults [NSUserDefaults standardUserDefaults]
 //存
-#define kSaveObjectToUserDefaults(object,key){\
-    [kUserDefaults setObject:object forKey:key]; \
-    [kUserDefaults synchronize]; \
-}
+#define kSaveObjectToUserDefaults(key,object){\
+[kUserDefaults setObject:object forKey:key]; \
+[kUserDefaults synchronize]; }
 //取
 #define kGetObjectFromUserDefaults(key) [kUserDefaults objectForKey:key]
 //删

@@ -82,17 +82,15 @@
     [self fetchData];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    [self.view endEditing:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark- event function
--(void)addSearchBar {
-    HYSearchBar* searchBar = [HYSearchBar searchBarWithFrame:CGRectMake(0, 0, 210, 30) placeholder:@"小鬼当家"];
-    searchBar.delegate = self;
-    [HYTool configViewLayer:searchBar size:15];
-    self.navigationItem.titleView = searchBar;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -109,25 +107,11 @@
 }
 
 #pragma mark- UITextFieldDelegate
--(void)textFieldDidBeginEditing:(UITextField *)textField {
-    UIButton* btn = [[UIButton alloc] initWithFrame:self.view.bounds];
-    btn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        [btn removeFromSuperview];
-        return [RACSignal empty];
-    }];
-    btn.backgroundColor = [UIColor clearColor];
-    btn.tag = 6666;
-    [self.view addSubview:btn];
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self.view endEditing:YES];
-    if (![textField.text isEqualToString:@""]) {
-        [[self.view viewWithTag:6666] removeFromSuperview];
-    }
-    return YES;
-}
-
+//-(void)textFieldDidBeginEditing:(UITextField *)textField {
+//    [self.view endEditing:YES];
+//    [textField resignFirstResponder];
+//    APPROUTE(kSearchGuideController);
+//}
 
 #pragma mark- tableview datasource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -274,12 +258,16 @@
 
 -(HomeHotCell*)hotCellForTableView:(UITableView *)tableView RowAtIndexPath:(NSIndexPath *)indexPath {
     HomeHotCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeHotCell identify]];
+    [HYTool configTableViewCellDefault:cell];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     //TODO:configCell
     [cell configHotCell:nil];
     return cell;
 }
 -(NewsCell*)newsCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
     NewsCell* cell = [tableView dequeueReusableCellWithIdentifier:[NewsCell identify]];
+    [HYTool configTableViewCellDefault:cell];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     if (indexPath.row == self.news.count-1) {
         cell.allViewHeight.constant = 40;
         cell.allView.hidden = NO;
@@ -299,6 +287,8 @@
 -(WeekEndCell*)weekEndCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
     NSInteger section = [self.info[indexPath.section][@"section"] integerValue];
     WeekEndCell* cell = [tableView dequeueReusableCellWithIdentifier:[WeekEndCell identify]];
+    [HYTool configTableViewCellDefault:cell];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     if (section == 4 && indexPath.row == self.weekEnds.count-1) {
         cell.allViewHeight.constant = 40;
         cell.allView.hidden = NO;
@@ -346,7 +336,7 @@
     [self addSearchBar];
     
     self.leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.leftBtn.frame = CGRectMake(0, 0, 85, 32);
+    self.leftBtn.frame = CGRectMake(0, 0, 60, 32);
 //    [_leftBtn setImage:[UIImage imageNamed:@"dinwei01"] forState:UIControlStateNormal];
     [_leftBtn setTitle:@"未定位" forState:UIControlStateNormal];
     [_leftBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -361,6 +351,18 @@
     
     UIView* footerView = [[NSBundle mainBundle] loadNibNamed:@"HomeUseView" owner:self options:nil][2];
     self.tableView.tableFooterView = footerView;
+}
+
+-(void)addSearchBar {
+    HYSearchBar* searchBar = [HYSearchBar searchBarWithFrame:CGRectMake(0, 0, kScreen_Width-110, 30) placeholder:@"小鬼当家"];
+    [HYTool configViewLayer:searchBar size:15];
+    self.navigationItem.titleView = searchBar;
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 210, 30)];
+    view.backgroundColor = [UIColor clearColor];
+    [view bk_whenTapped:^{
+        APPROUTE(kSearchGuideController);
+    }];
+    [searchBar addSubview:view];
 }
 
 -(void)fetchData {

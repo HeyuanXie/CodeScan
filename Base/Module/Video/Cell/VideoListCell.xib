@@ -132,7 +132,7 @@
                                         <color key="textColor" red="0.55294117649999996" green="0.55294117649999996" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close.png" translatesAutoresizingMaskIntoConstraints="NO" id="Cy4-sj-9st">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="renshu" translatesAutoresizingMaskIntoConstraints="NO" id="Cy4-sj-9st">
                                         <rect key="frame" x="12" y="14" width="14" height="14"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Cy4-sj-9st" secondAttribute="height" id="CPN-PM-tQV"/>
@@ -194,7 +194,7 @@
     </objects>
     <resources>
         <image name="cart" width="30" height="30"/>
-        <image name="close.png" width="24" height="24"/>
+        <image name="renshu" width="12" height="13"/>
         <image name="yazi.png" width="96" height="133"/>
     </resources>
 </document>

@@ -20,7 +20,9 @@ extern NSString* const kTheaterTicketViewController;
 extern NSString* const kFilterTableViewController;
 extern NSString* const kCommentViewController;  //添加剧场评论
 extern NSString* const kCommentListController;  //指定剧场的用户评论列表
-
+extern NSString* const kTheaterSeatPreviewController;
+extern NSString* const kTheaterSeatSelectController;
+extern NSString* const kTheaterCommitOrderController;
 
 extern NSString* const kLectureListController;
 extern NSString* const kLectureDetailController;
@@ -85,10 +87,9 @@ extern NSString* const kBindPhoneController;
 extern NSString* const kBindPhoneChangeController;
 
 
-extern NSString* const kSearchViewController;
 extern NSString* const kSearchGuideController;
+extern NSString* const kSearchResultController;
 extern NSString* const kFilterClassTableViewController;
-extern NSString* const kModifyPWController;
 extern NSString* const kAddressController;
 
 

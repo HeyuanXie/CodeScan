@@ -72,7 +72,9 @@
     [APIHELPER regist:self.phoneTf.text password:self.passwordTf.text code:self.codeTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [self hideLoadingAnimation];
         if (isSuccess) {
-            
+           [Global setUserAuth:responseObject[@"data"][@"auth"]];
+           APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
+           APPROUTE(([NSString stringWithFormat:@"%@?phone=%@",kLoginViewController,self.phoneTf.text]));
         }else{
             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
         }

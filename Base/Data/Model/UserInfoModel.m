@@ -12,7 +12,7 @@
 
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
     return @{
-             @"userID":@"user_id",
+             @"userID":@"uid",
              @"account":@"account",
              @"faceUrl":@"face",
              @"nickName":@"nickname",

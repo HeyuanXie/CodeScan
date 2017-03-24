@@ -19,6 +19,9 @@ NSString* const kTheaterTicketViewController = @"TheaterTicketViewController";
 NSString* const kFilterTableViewController = @"FilterTableViewController";
 NSString* const kCommentViewController = @"CommentViewController";
 NSString* const kCommentListController = @"CommentListController";
+NSString* const kTheaterSeatPreviewController = @"TheaterSeatPreviewController";
+NSString* const kTheaterSeatSelectController = @"TheaterSeatSelectController";
+NSString* const kTheaterCommitOrderController = @"TheaterCommitOrderController";
 
 NSString* const kLectureListController = @"LectureListController";
 NSString* const kLectureDetailController = @"LectureDetailController";
@@ -78,10 +81,9 @@ NSString* const kChangePasswordController = @"ChangePasswordController";
 NSString* const kBindPhoneController = @"BindPhoneController";
 NSString* const kBindPhoneChangeController = @"BindPhoneChangeController";
 
-NSString* const kSearchViewController = @"SearchViewController";
 NSString* const kSearchGuideController = @"SearchGuideController";
+NSString* const kSearchResultController = @"SearchResultController";
 NSString* const kFilterClassTableViewController = @"FilterClassTableViewController";
-NSString* const kModifyPWController = @"ModifyPWController";
 NSString* const kAddressController = @"HYAddressController";
 
 @implementation OpenRoutesManager
@@ -114,6 +116,9 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kFilterTableViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kCommentViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kCommentListController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kTheaterSeatPreviewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kTheaterSeatSelectController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kTheaterCommitOrderController,@"sb":@"Main",@"method":@"push"},
                         
                         @{@"cls":kLectureListController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kLectureDetailController,@"sb":@"Main",@"method":@"push"},
@@ -170,10 +175,9 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kBindPhoneController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kBindPhoneChangeController,@"sb":@"Login",@"method":@"push"},
                         
-                        @{@"cls":kSearchViewController,@"sb":@"Home",@"method":@"push"},
-                        @{@"cls":kSearchGuideController,@"sb":@"Home",@"method":@"push"},
+                        @{@"cls":kSearchGuideController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kSearchResultController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kFilterClassTableViewController,@"sb":@"Policy",@"method":@"push"},
-                        @{@"cls":kModifyPWController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kAddressController,@"sb":@"Login",@"method":@"push"},
                         ];
     return routes;

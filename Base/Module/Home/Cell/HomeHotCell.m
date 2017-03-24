@@ -16,6 +16,7 @@
 }
 
 -(void)configHotCell:(id)model {
+    int i = 0;
     for (UIView* subview in self.hotSubviews) {
         UIImageView* imgView = [subview viewWithTag:1000];
         UILabel* titleLbl = [subview viewWithTag:1001];
@@ -26,6 +27,11 @@
         [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:[text rangeOfString:@"积分"]];
         [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor hyRedColor] range:[text rangeOfString:@"积分"]];
         jifenLbl.attributedText = attrStr;
+        
+        [subview bk_whenTapped:^{
+            APPROUTE(([NSString stringWithFormat:@"%@?id=%d",kDeriveDetailController,i]));
+        }];
+        i++;
     }
 }
 

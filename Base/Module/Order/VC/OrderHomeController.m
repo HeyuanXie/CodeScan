@@ -11,7 +11,7 @@
 #import "OrderListCell.h"
 #import "CustomJumpBtns.h"
 
-@interface OrderHomeController ()
+@interface OrderHomeController ()<UITextFieldDelegate>
 
 @property(strong,nonatomic)UIView* topView;
 
@@ -36,7 +36,7 @@
     self.types = @[@"演出",@"商品",@"年卡"];
     self.status = @[@"已付款",@"待付款",@"待评价",@"退款"];
     
-    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(42, 0, 0, 0)];
+    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(90, 0, 0, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[OrderListCell identify] bundle:nil] forCellReuseIdentifier:[OrderListCell identify]];
 
     [self subviewStyle];
@@ -86,6 +86,15 @@
     NSArray* types = @[@"theater",@"lecture",@"derive",@"yearCard"];
     APPROUTE(([NSString stringWithFormat:@"%@?type=%@&Id=%d",kOrderDetailController,types[self.typeId],1]));
 }
+
+#pragma mark - textField delegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    //TODO:根据关键字fetchData
+    [self fetchData];
+    return YES;
+}
+
 #pragma mark - private methods
 -(NSMutableArray *)dataArray {
     if (!_dataArray) {
@@ -124,20 +133,36 @@
     [self configNavigation];
     
     if (!self.topView) {
-        self.topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 42)];
+        self.topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 90)];
     }
+    [self.view addSubview:_topView];
     for (UIView* subview in self.topView.subviews) {
         [subview removeFromSuperview];
     }
     _topView.backgroundColor = [UIColor whiteColor];
-    CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, kScreen_Width, 42) menuTitles:_status textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBarTintColor] isLineAdaptText:YES];
     
+    CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, kScreen_Width, 42) menuTitles:_status textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBarTintColor] isLineAdaptText:YES];
     [btns setFinished:^(NSInteger index) {
         self.statuId = index;
         [self fetchData];
     }];
     [_topView addSubview:btns];
-    [self.view addSubview:_topView];
+ 
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 42, kScreen_Width, 48)];
+    view.backgroundColor = [UIColor hyViewBackgroundColor];
+    [_topView addSubview:view];
+    UITextField* textField = [HYTool getTextFieldWithFrame:CGRectMake(12, 12, kScreen_Width-24, 36) placeHolder:@"输入订单号/名称" fontSize:16 textColor:[UIColor hyBlackTextColor]];
+    textField.backgroundColor = [UIColor whiteColor];
+    textField.returnKeyType = UIReturnKeySearch;
+    textField.delegate = self;
+    [HYTool configViewLayer:textField];
+    UIView* leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+    UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(8, 8, 20, 20)];
+    imgV.image = ImageNamed(@"home_search");
+    [leftView addSubview:imgV];
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    textField.leftView = leftView;
+    [view addSubview:textField];
 }
 
 -(void)configNavigation {
@@ -146,21 +171,22 @@
     [self.filterBtn setTitle:_types[self.typeId] forState:UIControlStateNormal];
     [self.filterBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.filterBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [self.filterBtn setImage:ImageNamed(@"arrow_down") forState:UIControlStateNormal];
-    self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 50, 0, -40);
-    self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 20);
+    [self.filterBtn setImage:ImageNamed(@"三角形_白色下") forState:UIControlStateNormal];
+    self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 35, 0, -35);
+    self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -15, 0, 15);
 
     [self.filterBtn addTarget:self action:@selector(filterClassify) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = self.filterBtn;
 }
 
 - (void)filterClassify{
+    [self.view endEditing:YES];
     if (self.filterVC.view.superview) {//分类
         [self hiddenFilterClassify];
         return;
     }
     [self.view addSubview:self.backGrayView];
-    [self.filterBtn setImage:ImageNamed(@"arrow_up") forState:UIControlStateNormal];
+    [self.filterBtn setImage:ImageNamed(@"三角形_白色上") forState:UIControlStateNormal];
     self.filterBtn.enabled = NO;
     [self.view addSubview:self.filterVC.view];
     [self addChildViewController:self.filterVC];
@@ -187,9 +213,9 @@
         if (row == 0) {
             self.status = @[@"已付款",@"待付款",@"待评价",@"退款"];
         }else if (row == 1) {
-            self.status = @[@"待领取",@"已领取",@"待评价"];
+            self.status = @[@"待领取",@"待评价",@"已完成"];
         }else{
-            self.status = @[@"已付款",@"待付款",@"待使用",@"退款"];
+            self.status = @[@"已付款",@"待付款",@"已使用",@"退款"];
         }
         [self subviewStyle];
     }];
@@ -204,9 +230,9 @@
         self.filterVC.view.hidden = YES;
     }];
     [self.backGrayView removeFromSuperview];
-    [self.filterBtn setImage:ImageNamed(@"arrow_down") forState:UIControlStateNormal];
-    self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 50, 0, -40);
-    self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 20);
+    [self.filterBtn setImage:ImageNamed(@"三角形_白色下") forState:UIControlStateNormal];
+    self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 35, 0, -35);
+    self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -15, 0, 15);
 }
 - (void)selectClass:(NSInteger)row{
     [self.filterBtn setTitle:_types[row] forState:UIControlStateNormal];

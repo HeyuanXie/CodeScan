@@ -30,6 +30,7 @@
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param safe_setValue:account forKey:@"account"];
     [param safe_setValue:pw forKey:@"password"];
+    [param safe_setValue:@"12345" forKey:@"salt"];
     
     [APIHELPER postWithURL:@"auth/login" param:param complete:complete];
 }

@@ -21,8 +21,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    if (self.schemaArgu[@"Id"]) {
+        self.url = [self.schemaArgu objectForKey:@"Id"];
+    }
     [self subviewStyle];
+//    [self loadWebView];
 }
 
 - (void)didReceiveMemoryWarning {

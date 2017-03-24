@@ -18,12 +18,18 @@
 @property(nonatomic,assign)NSInteger descriptionHight;
 @property(nonatomic,assign)BOOL isFold;
 
+@property(nonatomic,assign)NSInteger Id;
+
 @end
 
 @implementation TheaterDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (self.schemaArgu[@"Id"]) {
+        self.Id = [[self.schemaArgu objectForKey:@"Id"] integerValue];
+    }
     self.navigationBarTransparent = YES;
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(-64, 0, 60, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[TheaterDetailCell identify] bundle:nil] forCellReuseIdentifier:[TheaterDetailCell identify]];
