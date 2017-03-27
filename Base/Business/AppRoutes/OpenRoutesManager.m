@@ -22,6 +22,7 @@ NSString* const kCommentListController = @"CommentListController";
 NSString* const kTheaterSeatPreviewController = @"TheaterSeatPreviewController";
 NSString* const kTheaterSeatSelectController = @"TheaterSeatSelectController";
 NSString* const kTheaterCommitOrderController = @"TheaterCommitOrderController";
+NSString* const kSelectCouponController = @"SelectCouponController";
 
 NSString* const kLectureListController = @"LectureListController";
 NSString* const kLectureDetailController = @"LectureDetailController";
@@ -119,7 +120,8 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kTheaterSeatPreviewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterSeatSelectController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterCommitOrderController,@"sb":@"Main",@"method":@"push"},
-                        
+                        @{@"cls":kSelectCouponController,@"sb":@"Main",@"method":@"push"},
+
                         @{@"cls":kLectureListController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kLectureDetailController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kLectureApplyController,@"sb":@"Main",@"method":@"push"},

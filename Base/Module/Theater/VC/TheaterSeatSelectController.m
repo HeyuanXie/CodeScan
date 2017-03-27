@@ -7,6 +7,7 @@
 //
 
 #import "TheaterSeatSelectController.h"
+#import "TheaterCommitOrderController.h"
 #import "TheaterSeatView.h"
 #import "NSString+Extension.h"
 
@@ -28,7 +29,7 @@
     // Do any additional setup after loading the view.
     
     [self subviewStyle];
-    self.selectArray = [@[@"",@"",@""] mutableCopy];
+    self.selectArray = [@[@"1",@"2",@"3"] mutableCopy];
     [self reloadSeatScrollView];
 }
 
@@ -48,7 +49,10 @@
 
 - (IBAction)comfirm:(id)sender {
     
-    APPROUTE(([NSString stringWithFormat:@"%@?selectArray=%@",kTheaterCommitOrderController,self.selectArray]));
+    TheaterCommitOrderController* vc = (TheaterCommitOrderController*)VIEWCONTROLLER(kTheaterCommitOrderController);
+    vc.selectArray = self.selectArray;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

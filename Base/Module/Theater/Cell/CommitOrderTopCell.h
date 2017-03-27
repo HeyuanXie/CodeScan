@@ -10,4 +10,9 @@
 
 @interface CommitOrderTopCell : UITableViewCell
 
++(NSString*)identify;
+
+-(void)configNotVipCell:(id)model;
+-(void)configVipCell:(id)model;
+
 @end

@@ -105,7 +105,7 @@
 #define kScreen_Width    ([UIScreen mainScreen].bounds.size.width)
 #define KScreen_Scale    ([UIScreen mainScreen].scale)
 #define kScale_width    kScreen_Width/375.0 //相对于iphone6
-#define kScale_height   kScreen_Width/667.0 //相对于iphone6
+#define kScale_height   kScreen_Height/667.0 //相对于iphone6
 #define zoom(value)     value*kScreen_Width/375.0
 
 #define kDefaultNavigationBarHeight 64 //navigation bar高度

@@ -10,4 +10,7 @@
 
 @interface TheaterCommitOrderController : BaseTableViewController
 
+@property (strong, nonatomic) NSArray* selectArray; //选择的座位的array
+
+
 @end

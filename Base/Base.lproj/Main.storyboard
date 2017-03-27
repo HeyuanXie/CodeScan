@@ -276,7 +276,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common_icon_arrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="2Ei-J9-Iot">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="下个页面箭头_灰" translatesAutoresizingMaskIntoConstraints="NO" id="2Ei-J9-Iot">
                                         <rect key="frame" x="329" y="25.5" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="2Ei-J9-Iot" secondAttribute="height" multiplier="1:1" id="C1w-1Z-ow3"/>
@@ -2032,24 +2032,26 @@
                                     <constraint firstAttribute="bottom" secondItem="Fjw-gn-Q3i" secondAttribute="bottom" id="zOP-gG-0iF"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="price.png" translatesAutoresizingMaskIntoConstraints="NO" id="TIU-ki-KP2">
-                                <rect key="frame" x="0.0" y="603" width="375" height="64"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6J-Iy-Llo">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="D6M-Hs-cNY"/>
+                                    <constraint firstAttribute="height" constant="60" id="Sc2-Mt-xfv"/>
                                 </constraints>
-                            </imageView>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.94117647059999998" green="0.96470588239999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="87H-ym-Xfr" firstAttribute="top" secondItem="SyD-ni-rIP" secondAttribute="bottom" id="3JK-nK-SAC"/>
-                            <constraint firstItem="TIU-ki-KP2" firstAttribute="leading" secondItem="2Bw-oc-Jeu" secondAttribute="leading" id="EoB-GE-oxf"/>
+                            <constraint firstItem="t6J-Iy-Llo" firstAttribute="leading" secondItem="2Bw-oc-Jeu" secondAttribute="leading" id="Brz-Pl-gNR"/>
+                            <constraint firstAttribute="bottom" secondItem="t6J-Iy-Llo" secondAttribute="bottom" id="Ek6-Il-T3y"/>
                             <constraint firstItem="87H-ym-Xfr" firstAttribute="leading" secondItem="2Bw-oc-Jeu" secondAttribute="leading" id="FPu-oA-ox8"/>
-                            <constraint firstAttribute="trailing" secondItem="TIU-ki-KP2" secondAttribute="trailing" id="X7P-g5-CMA"/>
-                            <constraint firstItem="6YT-Ei-pI0" firstAttribute="top" secondItem="TIU-ki-KP2" secondAttribute="bottom" id="dRi-zJ-BIC"/>
+                            <constraint firstAttribute="trailing" secondItem="t6J-Iy-Llo" secondAttribute="trailing" id="m2s-QB-USj"/>
                             <constraint firstAttribute="trailing" secondItem="87H-ym-Xfr" secondAttribute="trailing" id="uEa-OG-pff"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="botScrollV" destination="t6J-Iy-Llo" id="Okx-sQ-UOF"/>
                         <outlet property="descLbl" destination="Fjw-gn-Q3i" id="N19-XW-Zb8"/>
                     </connections>
                 </viewController>
@@ -2271,38 +2273,26 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZzY-vv-bwg">
                                 <rect key="frame" x="0.0" y="20" width="375" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余支付时间 :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7v9-AW-bek">
-                                        <rect key="frame" x="127.5" y="0.0" width="90" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余支付时间 : 15分00秒" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7v9-AW-bek">
+                                        <rect key="frame" x="122.5" y="0.0" width="160" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="90" id="oze-ce-fDf"/>
+                                            <constraint firstAttribute="width" constant="160" id="oze-ce-fDf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="支付倒计时" translatesAutoresizingMaskIntoConstraints="NO" id="5Dm-Hu-37s">
-                                        <rect key="frame" x="106.5" y="6" width="18" height="18"/>
+                                        <rect key="frame" x="101.5" y="6" width="18" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="11e-Yb-tJ0"/>
                                             <constraint firstAttribute="width" constant="18" id="jJw-AC-ZuR"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14分45秒" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aii-ex-KJc">
-                                        <rect key="frame" x="217.5" y="0.0" width="65" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="65" id="YTb-Yk-lO9"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.93333333330000001" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="aii-ex-KJc" firstAttribute="leading" secondItem="7v9-AW-bek" secondAttribute="trailing" id="5Xb-zg-T3h"/>
-                                    <constraint firstItem="7v9-AW-bek" firstAttribute="centerX" secondItem="ZzY-vv-bwg" secondAttribute="centerX" constant="-15" id="JTv-SF-NTt"/>
-                                    <constraint firstItem="aii-ex-KJc" firstAttribute="top" secondItem="ZzY-vv-bwg" secondAttribute="top" id="NPl-t0-2Qx"/>
-                                    <constraint firstAttribute="bottom" secondItem="aii-ex-KJc" secondAttribute="bottom" id="VYL-FJ-0fx"/>
+                                    <constraint firstItem="7v9-AW-bek" firstAttribute="centerX" secondItem="ZzY-vv-bwg" secondAttribute="centerX" constant="15" id="JTv-SF-NTt"/>
                                     <constraint firstAttribute="bottom" secondItem="7v9-AW-bek" secondAttribute="bottom" id="ZlT-Jy-eHO"/>
                                     <constraint firstItem="7v9-AW-bek" firstAttribute="top" secondItem="ZzY-vv-bwg" secondAttribute="top" id="g9A-Xc-JfB"/>
                                     <constraint firstItem="7v9-AW-bek" firstAttribute="leading" secondItem="5Dm-Hu-37s" secondAttribute="trailing" constant="3" id="hjh-W1-0vE"/>
@@ -2366,6 +2356,7 @@
                                     <constraint firstItem="5KA-Ed-bHO" firstAttribute="leading" secondItem="8iU-o3-rbq" secondAttribute="trailing" id="cTP-aB-kDl"/>
                                     <constraint firstItem="Hfb-2x-zWq" firstAttribute="leading" secondItem="5KA-Ed-bHO" secondAttribute="trailing" id="knt-0v-J09"/>
                                     <constraint firstItem="CJc-ME-prX" firstAttribute="height" secondItem="IO1-DH-Web" secondAttribute="height" multiplier="2:3" id="ltP-JB-RXK"/>
+                                    <constraint firstAttribute="height" constant="60" id="pK2-MC-8hH"/>
                                     <constraint firstItem="CJc-ME-prX" firstAttribute="leading" secondItem="Hfb-2x-zWq" secondAttribute="trailing" constant="10" id="psD-39-epK"/>
                                     <constraint firstItem="8iU-o3-rbq" firstAttribute="centerY" secondItem="IO1-DH-Web" secondAttribute="centerY" id="usz-ru-vYw"/>
                                     <constraint firstAttribute="trailing" secondItem="CJc-ME-prX" secondAttribute="trailing" constant="12" id="vtU-mi-m0o"/>
@@ -2379,11 +2370,11 @@
                             <constraint firstItem="IO1-DH-Web" firstAttribute="leading" secondItem="ZH7-pk-VHE" secondAttribute="leading" id="JvM-xC-1bh"/>
                             <constraint firstItem="ZzY-vv-bwg" firstAttribute="leading" secondItem="ZH7-pk-VHE" secondAttribute="leading" id="Sef-P8-9V0"/>
                             <constraint firstAttribute="trailing" secondItem="IO1-DH-Web" secondAttribute="trailing" id="VX3-5l-zsX"/>
-                            <constraint firstItem="IO1-DH-Web" firstAttribute="height" secondItem="ZH7-pk-VHE" secondAttribute="height" multiplier="60:667" id="crP-O9-XCh"/>
                             <constraint firstItem="5L6-Gu-tmO" firstAttribute="top" secondItem="IO1-DH-Web" secondAttribute="bottom" id="grr-Tf-dqL"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="timeLbl" destination="7v9-AW-bek" id="Kvk-TL-a1d"/>
                         <outlet property="totalLbl" destination="Hfb-2x-zWq" id="dbg-5e-ccQ"/>
                     </connections>
                 </viewController>
@@ -2391,16 +2382,33 @@
             </objects>
             <point key="canvasLocation" x="4064.8000000000002" y="-186.65667166416793"/>
         </scene>
+        <!--Select Coupon Controller-->
+        <scene sceneID="GlG-Te-h1X">
+            <objects>
+                <viewController storyboardIdentifier="SelectCouponController" id="iMb-cI-q0B" customClass="SelectCouponController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QKq-Xn-evN"/>
+                        <viewControllerLayoutGuide type="bottom" id="5pC-XY-In7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SWl-nS-lgu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lW3-gh-Alm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4737" y="-187"/>
+        </scene>
     </scenes>
     <resources>
         <image name="cart" width="30" height="30"/>
         <image name="collect02" width="22" height="22"/>
         <image name="collect03" width="22" height="22"/>
-        <image name="common_icon_arrow.png" width="12" height="12"/>
         <image name="jifen" width="30" height="30"/>
-        <image name="price.png" width="537" height="83"/>
         <image name="price2.png" width="746" height="79"/>
         <image name="yazi.png" width="96" height="133"/>
+        <image name="下个页面箭头_灰" width="17" height="17"/>
         <image name="不勾选协议" width="16" height="16"/>
         <image name="兑换记录小" width="27" height="27"/>
         <image name="勾选协议" width="22" height="22"/>

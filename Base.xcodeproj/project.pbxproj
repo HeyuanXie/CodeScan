@@ -244,6 +244,11 @@
 		84924F191E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F121E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m */; };
 		84924F1A1E2CC926005F05C3 /* UITableView+Sure_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F141E2CC926005F05C3 /* UITableView+Sure_Placeholder.m */; };
 		84924F1D1E2CCD62005F05C3 /* HYPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */; };
+		8497B67C1E889DFE00392973 /* CommitOrderSeatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B67A1E889DFE00392973 /* CommitOrderSeatCell.m */; };
+		8497B67D1E889DFE00392973 /* CommitOrderSeatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8497B67B1E889DFE00392973 /* CommitOrderSeatCell.xib */; };
+		8497B6801E88AC9C00392973 /* SelectCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B67F1E88AC9C00392973 /* SelectCouponController.m */; };
+		8497B6841E88AE2200392973 /* SelectCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B6821E88AE2200392973 /* SelectCouponCell.m */; };
+		8497B6851E88AE2200392973 /* SelectCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8497B6831E88AE2200392973 /* SelectCouponCell.xib */; };
 		84DCC2631E77880A0019898E /* MineSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2621E77880A0019898E /* MineSupportViewController.m */; };
 		84DCC2691E7789610019898E /* SkillApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2681E7789610019898E /* SkillApplyViewController.m */; };
 		84DCC26C1E77896D0019898E /* SkillUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC26B1E77896D0019898E /* SkillUploadViewController.m */; };
@@ -830,6 +835,14 @@
 		84924F141E2CC926005F05C3 /* UITableView+Sure_Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Sure_Placeholder.m"; sourceTree = "<group>"; };
 		84924F1B1E2CCD62005F05C3 /* HYPaddingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPaddingLabel.h; sourceTree = "<group>"; };
 		84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPaddingLabel.m; sourceTree = "<group>"; };
+		8497B6791E889DFE00392973 /* CommitOrderSeatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitOrderSeatCell.h; sourceTree = "<group>"; };
+		8497B67A1E889DFE00392973 /* CommitOrderSeatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitOrderSeatCell.m; sourceTree = "<group>"; };
+		8497B67B1E889DFE00392973 /* CommitOrderSeatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitOrderSeatCell.xib; sourceTree = "<group>"; };
+		8497B67E1E88AC9B00392973 /* SelectCouponController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCouponController.h; sourceTree = "<group>"; };
+		8497B67F1E88AC9C00392973 /* SelectCouponController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCouponController.m; sourceTree = "<group>"; };
+		8497B6811E88AE2200392973 /* SelectCouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCouponCell.h; sourceTree = "<group>"; };
+		8497B6821E88AE2200392973 /* SelectCouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCouponCell.m; sourceTree = "<group>"; };
+		8497B6831E88AE2200392973 /* SelectCouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCouponCell.xib; sourceTree = "<group>"; };
 		84DCC2611E77880A0019898E /* MineSupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineSupportViewController.h; sourceTree = "<group>"; };
 		84DCC2621E77880A0019898E /* MineSupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineSupportViewController.m; sourceTree = "<group>"; };
 		84DCC2671E7789610019898E /* SkillApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillApplyViewController.h; sourceTree = "<group>"; };
@@ -1605,6 +1618,7 @@
 				84E5EE601E2DCADA0062A2BE /* XGPush */,
 				84924F0A1E2CC926005F05C3 /* NoData_Placeholder */,
 				8413CEC41E665E0000436B2F /* JYSlideSegmentController */,
+				8497B6861E8919C700392973 /* SeatSelectController */,
 			);
 			path = ThirdParty;
 			sourceTree = "<group>";
@@ -1721,6 +1735,12 @@
 				843329B71E8523A800A7421E /* CommitOrderTopCell.h */,
 				843329B81E8523A800A7421E /* CommitOrderTopCell.m */,
 				843329B91E8523A800A7421E /* CommitOrderTopCell.xib */,
+				8497B6791E889DFE00392973 /* CommitOrderSeatCell.h */,
+				8497B67A1E889DFE00392973 /* CommitOrderSeatCell.m */,
+				8497B67B1E889DFE00392973 /* CommitOrderSeatCell.xib */,
+				8497B6811E88AE2200392973 /* SelectCouponCell.h */,
+				8497B6821E88AE2200392973 /* SelectCouponCell.m */,
+				8497B6831E88AE2200392973 /* SelectCouponCell.xib */,
 				842D6B9A1E8249E7004A1271 /* Comment */,
 			);
 			path = Cell;
@@ -1743,6 +1763,8 @@
 				843329AC1E84FC9300A7421E /* TheaterCommitOrderController.m */,
 				84235B721E6EA18100A81A6B /* FilterTableViewController.h */,
 				84235B731E6EA18100A81A6B /* FilterTableViewController.m */,
+				8497B67E1E88AC9B00392973 /* SelectCouponController.h */,
+				8497B67F1E88AC9C00392973 /* SelectCouponController.m */,
 				842D6BA51E8249F0004A1271 /* Comment */,
 			);
 			path = VC;
@@ -1858,6 +1880,13 @@
 				84924F141E2CC926005F05C3 /* UITableView+Sure_Placeholder.m */,
 			);
 			path = NoData_Placeholder;
+			sourceTree = "<group>";
+		};
+		8497B6861E8919C700392973 /* SeatSelectController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SeatSelectController;
 			sourceTree = "<group>";
 		};
 		84DCC27C1E77E7130019898E /* Video */ = {
@@ -2510,6 +2539,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8497B67D1E889DFE00392973 /* CommitOrderSeatCell.xib in Resources */,
 				848A8FCC1E8372C700B45D0C /* SearchGuideCell.xib in Resources */,
 				84E74BCA1E70E90B00016A99 /* LectureDetailTopCell.xib in Resources */,
 				84DCC28E1E77E83C0019898E /* VideoCommentCell.xib in Resources */,
@@ -2566,6 +2596,7 @@
 				843329BB1E8523A800A7421E /* CommitOrderTopCell.xib in Resources */,
 				841D4AF41E7A3C84002C49C0 /* OrderListCell.xib in Resources */,
 				843142DE1E68FC9C0007740A /* HeadCell.xib in Resources */,
+				8497B6851E88AE2200392973 /* SelectCouponCell.xib in Resources */,
 				844343EB1E70018300D9FD2F /* LectureListCell.xib in Resources */,
 				843142FD1E695BC30007740A /* HomeVideoCell.xib in Resources */,
 				84E5EE871E2DCADB0062A2BE /* ShareSDK.bundle in Resources */,
@@ -2678,6 +2709,7 @@
 				844343EA1E70018300D9FD2F /* LectureListCell.m in Sources */,
 				842A56F71E793ABD00D489CA /* DatePickerController.m in Sources */,
 				842A56EF1E79318E00D489CA /* APIHelper+Common.m in Sources */,
+				8497B6801E88AC9C00392973 /* SelectCouponController.m in Sources */,
 				841961301E67C73500A78877 /* UserInfoModel.m in Sources */,
 				84DCC28D1E77E83C0019898E /* VideoCommentCell.m in Sources */,
 				841D4AF31E7A3C84002C49C0 /* OrderListCell.m in Sources */,
@@ -2750,6 +2782,7 @@
 				84924EA51E2C7D45005F05C3 /* UIColor+HYColors.m in Sources */,
 				842A56FA1E79404700D489CA /* FeedbackController.m in Sources */,
 				84F691381E2C68700048B6DF /* OpenRoutesManager.m in Sources */,
+				8497B67C1E889DFE00392973 /* CommitOrderSeatCell.m in Sources */,
 				8447C2C31E7F71F900853052 /* OrderFilterTableController.m in Sources */,
 				843142EA1E691D9C0007740A /* HomeImageCell.m in Sources */,
 				84F691141E2C55E00048B6DF /* NSMutableArray+Safety.m in Sources */,
@@ -2807,6 +2840,7 @@
 				843329BA1E8523A800A7421E /* CommitOrderTopCell.m in Sources */,
 				848A8FC21E836B7100B45D0C /* SearchResultController.m in Sources */,
 				84E5EE651E2DCADA0062A2BE /* NSString+AES.m in Sources */,
+				8497B6841E88AE2200392973 /* SelectCouponCell.m in Sources */,
 				84525A401E2E23E60054C6A1 /* BaseModel.m in Sources */,
 				841E45AA1E812B49007B6EF3 /* YearCardDescCell.m in Sources */,
 				84924ED21E2C9A66005F05C3 /* UITabBar+Badge.m in Sources */,

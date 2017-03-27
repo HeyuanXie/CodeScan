@@ -23,6 +23,8 @@ extern NSString* const kCommentListController;  //指定剧场的用户评论列
 extern NSString* const kTheaterSeatPreviewController;
 extern NSString* const kTheaterSeatSelectController;
 extern NSString* const kTheaterCommitOrderController;
+extern NSString* const kSelectCouponController;
+
 
 extern NSString* const kLectureListController;
 extern NSString* const kLectureDetailController;
