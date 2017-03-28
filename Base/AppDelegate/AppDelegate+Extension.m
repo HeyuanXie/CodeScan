@@ -25,14 +25,8 @@ NS_ENUM(NSUInteger, TabType) {
 @implementation AppDelegate (Extension)
 
 -(void)verifyLogin {
-    //...
-    if (kAccount != nil && kPassword != nil) {
-        [APIHELPER login:kAccount password:kPassword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-            
-        }];
-    }
+
     [self configTabbar];
-    
     [self.window makeKeyAndVisible];
     
 }

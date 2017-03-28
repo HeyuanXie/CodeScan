@@ -7,6 +7,7 @@
 //
 
 #import "CommitOrderSeatCell.h"
+#import "FVSeatItem.h"
 
 @interface CommitOrderSeatCell ()
 
@@ -29,7 +30,9 @@
     self.originalPriceView.hidden = YES;
     self.selelctBtn.hidden = YES;
     
-    
+    FVSeatItem* seatInfo = (FVSeatItem*)model;
+    self.seatLbl.text = seatInfo.seatName;
+    self.pirceLbl.text = [NSString stringWithFormat:@"%.2d",seatInfo.price];
 }
 
 -(void)configVipCell:(id)model {
@@ -38,9 +41,13 @@
     self.selelctBtn.selected = NO;
     [self.selelctBtn setImage:ImageNamed(@"未选择") forState:UIControlStateNormal];
     [self.selelctBtn setImage:ImageNamed(@"已选择") forState:UIControlStateSelected];
-    self.pirceLblLeading.constant = kScreen_Width/2-20;
+    self.pirceLblLeading.constant = kScreen_Width/2;
     self.originalPriceLbl.text = @"¥180";
     self.selelctBtn.hidden = NO;
+    
+    FVSeatItem* seatInfo = (FVSeatItem*)model;
+    self.seatLbl.text = seatInfo.seatName;
+    self.pirceLbl.text = [NSString stringWithFormat:@"%.2f",(CGFloat)(seatInfo.price)];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

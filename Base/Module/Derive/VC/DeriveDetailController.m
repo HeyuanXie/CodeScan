@@ -78,6 +78,7 @@
 }
 -(void)exchange {
     //TODO:兑换
+    
 }
 -(void)gain {
     //TODO:赚积分

@@ -1320,6 +1320,24 @@
             </objects>
             <point key="canvasLocation" x="159" y="1858"/>
         </scene>
+        <!--兑换成功-->
+        <scene sceneID="5Z5-Yh-YgW">
+            <objects>
+                <viewController storyboardIdentifier="DeriveExchangeSuccessController" title="兑换成功" id="BpF-FE-nK9" customClass="DeriveExchangeSuccessController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Oht-aS-1hl"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Il-wL-78E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5eo-jW-5ZJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PHV-Xj-apu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="817" y="1857"/>
+        </scene>
         <!--绑定年卡-->
         <scene sceneID="58H-pG-hWM">
             <objects>
@@ -1697,7 +1715,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBc-xU-Hmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1542" y="1132"/>
+            <point key="canvasLocation" x="1545" y="1138"/>
+        </scene>
+        <!--下单成功-->
+        <scene sceneID="3up-Ts-Do2">
+            <objects>
+                <viewController storyboardIdentifier="TheaterCommitOrderSuccessController" title="下单成功" id="9jG-bo-2C2" customClass="TheaterCommitOrderSuccessController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z2L-2k-xuT"/>
+                        <viewControllerLayoutGuide type="bottom" id="HYO-Xm-QNM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hFf-4X-7wH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dHe-Qn-sn5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5372" y="-187"/>
         </scene>
         <!--专家讲座Detail-->
         <scene sceneID="xoo-kV-mAa">
@@ -1985,10 +2021,10 @@
             </objects>
             <point key="canvasLocation" x="2077" y="-185"/>
         </scene>
-        <!--Theater Seat Preview Controller-->
+        <!--亲子剧场选座预览-->
         <scene sceneID="v14-Mq-ubW">
             <objects>
-                <viewController storyboardIdentifier="TheaterSeatPreviewController" id="JgK-jS-yhd" customClass="TheaterSeatPreviewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TheaterSeatPreviewController" id="JgK-jS-yhd" userLabel="亲子剧场选座预览" customClass="TheaterSeatPreviewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SyD-ni-rIP"/>
                         <viewControllerLayoutGuide type="bottom" id="6YT-Ei-pI0"/>
@@ -2059,10 +2095,10 @@
             </objects>
             <point key="canvasLocation" x="2728.8000000000002" y="-186.65667166416793"/>
         </scene>
-        <!--Theater Seat Select Controller-->
+        <!--亲子剧场选座-->
         <scene sceneID="QFg-gF-ari">
             <objects>
-                <viewController storyboardIdentifier="TheaterSeatSelectController" id="zMe-01-JGu" customClass="TheaterSeatSelectController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TheaterSeatSelectController" id="zMe-01-JGu" userLabel="亲子剧场选座" customClass="TheaterSeatSelectController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g6k-pO-q6D"/>
                         <viewControllerLayoutGuide type="bottom" id="BAI-N1-fd5"/>
@@ -2213,13 +2249,13 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="price2.png" translatesAutoresizingMaskIntoConstraints="NO" id="uJu-hF-WHn">
-                                <rect key="frame" x="0.0" y="490" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="492" width="375" height="38"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Ahm-ni-t4u"/>
+                                    <constraint firstAttribute="height" constant="38" id="Ahm-ni-t4u"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZRZ-hB-biW">
-                                <rect key="frame" x="0.0" y="104" width="375" height="386"/>
+                                <rect key="frame" x="0.0" y="104" width="375" height="388"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -2382,10 +2418,10 @@
             </objects>
             <point key="canvasLocation" x="4064.8000000000002" y="-186.65667166416793"/>
         </scene>
-        <!--Select Coupon Controller-->
+        <!--亲子剧场下单选择优惠券-->
         <scene sceneID="GlG-Te-h1X">
             <objects>
-                <viewController storyboardIdentifier="SelectCouponController" id="iMb-cI-q0B" customClass="SelectCouponController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectCouponController" id="iMb-cI-q0B" userLabel="亲子剧场下单选择优惠券" customClass="SelectCouponController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QKq-Xn-evN"/>
                         <viewControllerLayoutGuide type="bottom" id="5pC-XY-In7"/>

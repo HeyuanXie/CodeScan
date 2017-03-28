@@ -57,6 +57,7 @@
     // Do any additional setup after loading the view.
     self.backItemHidden = YES;
     self.navigationBarBlue = NO;
+    self.tabBarController.tabBar.hidden = NO;
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableView.showsVerticalScrollIndicator = NO;

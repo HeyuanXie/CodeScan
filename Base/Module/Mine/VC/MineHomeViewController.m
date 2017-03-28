@@ -28,6 +28,12 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -60,7 +66,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:[HeadCell identify] bundle:nil] forCellReuseIdentifier:[HeadCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[MineHeadCell identify] bundle:nil] forCellReuseIdentifier:[MineHeadCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[FunctionCell identify] bundle:nil] forCellReuseIdentifier:[FunctionCell identify]];
-    [self.tableView reloadData];
     
     @weakify(self);
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kAfterUserLoginSuccessNotification object:nil] subscribeNext:^(NSNotification *notification){

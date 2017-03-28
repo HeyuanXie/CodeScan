@@ -7,6 +7,7 @@
 //
 
 #import "TheaterSeatView.h"
+#import "FVSeatItem.h"
 
 @interface TheaterSeatView ()
 
@@ -20,7 +21,10 @@
 @implementation TheaterSeatView
 
 -(void)configSeatView:(id)model {
-
+    
+    FVSeatItem* item = (FVSeatItem*)model;
+    self.seatLbl.text = item.seatName;
+    self.priceLbl.text = [NSString stringWithFormat:@"%d",item.price];
     [self.deleteBtn bk_whenTapped:^{
         if (self.deleteClick) {
             self.deleteClick();

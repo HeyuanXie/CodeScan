@@ -167,13 +167,13 @@
 
 -(void)configNavigation {
     self.filterBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.filterBtn.frame = CGRectMake(0, 0, 120, 44);
+    self.filterBtn.frame = CGRectMake(0, 0, 80, 44);
     [self.filterBtn setTitle:_types[self.typeId] forState:UIControlStateNormal];
     [self.filterBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.filterBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [self.filterBtn setImage:ImageNamed(@"三角形_白色下") forState:UIControlStateNormal];
-    self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 35, 0, -35);
-    self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -15, 0, 15);
+    self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 40, 0, -40);
+    self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 10);
 
     [self.filterBtn addTarget:self action:@selector(filterClassify) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.titleView = self.filterBtn;
@@ -231,8 +231,8 @@
     }];
     [self.backGrayView removeFromSuperview];
     [self.filterBtn setImage:ImageNamed(@"三角形_白色下") forState:UIControlStateNormal];
-    self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 35, 0, -35);
-    self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -15, 0, 15);
+    self.filterBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 40, 0, -40);
+    self.filterBtn.titleEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 10);
 }
 - (void)selectClass:(NSInteger)row{
     [self.filterBtn setTitle:_types[row] forState:UIControlStateNormal];

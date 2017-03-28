@@ -7,6 +7,7 @@
 //
 
 #import "APIHelper+User.h"
+#import "NSString+HYUtilities.h"
 
 @implementation APIHelper (User)
 
@@ -28,8 +29,11 @@
      complete:(ApiRequestCompleteBlock)complete{
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    NSString* salt = @"12345";
+    NSString* sha1Str = [[[pw sha1String] lowercaseString] stringByAppendingString:salt];
+    NSString* sha1PS = [[sha1Str sha1String] lowercaseString];
     [param safe_setValue:account forKey:@"account"];
-    [param safe_setValue:pw forKey:@"password"];
+    [param safe_setValue:sha1PS forKey:@"password"];
     [param safe_setValue:@"12345" forKey:@"salt"];
     
     [APIHELPER postWithURL:@"auth/login" param:param complete:complete];
@@ -102,6 +106,7 @@
     //退出登陆，清空UserAuth和userInfo
     [Global setUserAuth:nil];
     self.userInfo = nil;
+    kCleanPassword;
 }
 
 

@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -81,5 +83,130 @@
             </objects>
             <point key="canvasLocation" x="1609" y="167"/>
         </scene>
+        <!--退款-->
+        <scene sceneID="bJR-um-KE1">
+            <objects>
+                <viewController storyboardIdentifier="OrderRefundController" title="退款" id="uIe-gh-0Ys" customClass="OrderRefundController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UoV-LA-rBg"/>
+                        <viewControllerLayoutGuide type="bottom" id="soi-nH-ol4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gfq-Zx-F6z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPv-ea-BZR">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDd-ct-B2c">
+                                        <rect key="frame" x="16" y="10" width="343" height="40"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.31372549020000001" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="申请退款"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="kDd-ct-B2c" firstAttribute="centerY" secondItem="nPv-ea-BZR" secondAttribute="centerY" id="5Mn-to-PpZ"/>
+                                    <constraint firstItem="kDd-ct-B2c" firstAttribute="width" secondItem="nPv-ea-BZR" secondAttribute="width" multiplier="343:375" id="PJQ-6T-8ao"/>
+                                    <constraint firstItem="kDd-ct-B2c" firstAttribute="centerX" secondItem="nPv-ea-BZR" secondAttribute="centerX" id="XPD-hk-mMP"/>
+                                    <constraint firstItem="kDd-ct-B2c" firstAttribute="height" secondItem="nPv-ea-BZR" secondAttribute="height" multiplier="2:3" id="dEL-ZP-a1P"/>
+                                    <constraint firstAttribute="height" constant="60" id="ze2-sj-Lp7"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nPv-ea-BZR" firstAttribute="leading" secondItem="Gfq-Zx-F6z" secondAttribute="leading" id="Fjd-i7-3P4"/>
+                            <constraint firstAttribute="trailing" secondItem="nPv-ea-BZR" secondAttribute="trailing" id="OAf-hy-5B8"/>
+                            <constraint firstAttribute="bottom" secondItem="nPv-ea-BZR" secondAttribute="bottom" id="wxN-Kg-z9B"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="commitBtn" destination="kDd-ct-B2c" id="M9W-s2-wzF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bNk-oJ-Sng" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2302" y="167"/>
+        </scene>
+        <!--已提交退款申请-->
+        <scene sceneID="6S1-Wx-PDA">
+            <objects>
+                <viewController storyboardIdentifier="OrderRefundSuccessController" title="已提交退款申请" id="2nj-Fu-nG0" customClass="OrderRefundSuccessController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="c1Y-QJ-Y5V"/>
+                        <viewControllerLayoutGuide type="bottom" id="Huv-IS-L96"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dEM-qR-dZQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="smH-5B-qMl">
+                                <rect key="frame" x="134.5" y="273" width="106" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="i3y-Oc-aB8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="继续逛逛">
+                                    <color key="titleColor" red="0.41960784309999999" green="0.70196078429999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smile02" translatesAutoresizingMaskIntoConstraints="NO" id="Lrq-f0-eZC">
+                                <rect key="frame" x="144" y="60" width="87" height="87"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Lrq-f0-eZC" secondAttribute="height" multiplier="1:1" id="tPc-65-fT7"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您的退款申请已提交!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmj-cu-PDW">
+                                <rect key="frame" x="0.0" y="172" width="375" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="rEb-yF-VPE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退款金额将在7个工作日内返还到您的账户, 请注意查收!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYZ-Yz-orD">
+                                <rect key="frame" x="40" y="193" width="295" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7Of-sI-1BV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="rYZ-Yz-orD" secondAttribute="trailing" constant="40" id="41X-Mi-qvS"/>
+                            <constraint firstItem="cmj-cu-PDW" firstAttribute="top" secondItem="Lrq-f0-eZC" secondAttribute="bottom" constant="25" id="Esd-fU-aSe"/>
+                            <constraint firstItem="Lrq-f0-eZC" firstAttribute="width" secondItem="dEM-qR-dZQ" secondAttribute="width" multiplier="87:375" id="I6i-9U-Vd4"/>
+                            <constraint firstItem="Lrq-f0-eZC" firstAttribute="centerX" secondItem="dEM-qR-dZQ" secondAttribute="centerX" id="Jwu-Ya-Udx"/>
+                            <constraint firstItem="cmj-cu-PDW" firstAttribute="leading" secondItem="dEM-qR-dZQ" secondAttribute="leading" id="K4f-Tw-9ry"/>
+                            <constraint firstItem="smH-5B-qMl" firstAttribute="top" secondItem="rYZ-Yz-orD" secondAttribute="bottom" constant="30" id="RPe-qx-p82"/>
+                            <constraint firstItem="smH-5B-qMl" firstAttribute="width" secondItem="dEM-qR-dZQ" secondAttribute="width" multiplier="106:375" id="aAi-lR-3kx"/>
+                            <constraint firstItem="smH-5B-qMl" firstAttribute="centerX" secondItem="dEM-qR-dZQ" secondAttribute="centerX" id="gxp-cE-NEj"/>
+                            <constraint firstAttribute="trailing" secondItem="cmj-cu-PDW" secondAttribute="trailing" id="iih-95-hHH"/>
+                            <constraint firstItem="rYZ-Yz-orD" firstAttribute="top" secondItem="cmj-cu-PDW" secondAttribute="bottom" id="jgz-4i-QHJ"/>
+                            <constraint firstItem="Lrq-f0-eZC" firstAttribute="top" secondItem="c1Y-QJ-Y5V" secondAttribute="bottom" constant="40" id="rE6-hn-MHe"/>
+                            <constraint firstItem="rYZ-Yz-orD" firstAttribute="leading" secondItem="dEM-qR-dZQ" secondAttribute="leading" constant="40" id="tBs-qn-hOu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="continueBtn" destination="smH-5B-qMl" id="soh-te-7Ft"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="egs-P6-scO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3006" y="167"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="smile02" width="80" height="80"/>
+    </resources>
 </document>

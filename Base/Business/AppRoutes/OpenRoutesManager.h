@@ -23,6 +23,7 @@ extern NSString* const kCommentListController;  //指定剧场的用户评论列
 extern NSString* const kTheaterSeatPreviewController;
 extern NSString* const kTheaterSeatSelectController;
 extern NSString* const kTheaterCommitOrderController;
+extern NSString* const kTheaterCommmitOrderSuccessController;
 extern NSString* const kSelectCouponController;
 
 
@@ -39,11 +40,14 @@ extern NSString* const kDeriveListController;
 extern NSString* const kDeriveDetailController;
 extern NSString* const kDeriveOrderController;
 extern NSString* const kDeriveRecordController;
+extern NSString* const kDeriveExchangeSuccessController;
 
 
-extern NSString* const kOrderListController;
 extern NSString* const kOrderDetailController;
 extern NSString* const kOrderCodeController;
+extern NSString* const kOrderRefundController;
+extern NSString* const kOrderRefundSuccessController;
+
 
 extern NSString* const kSkillListViewController;
 extern NSString* const kSkillDetailController;

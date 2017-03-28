@@ -76,6 +76,20 @@
 		842020341E7BC22000B13C5B /* ChangePasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842020331E7BC22000B13C5B /* ChangePasswordController.m */; };
 		842020371E7BC24F00B13C5B /* BindPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842020361E7BC24F00B13C5B /* BindPhoneController.m */; };
 		8420203A1E7BEDFC00B13C5B /* BindPhoneChangeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842020391E7BEDFC00B13C5B /* BindPhoneChangeController.m */; };
+		842260D51E8A0696009C3FAF /* districtOne.plist in Resources */ = {isa = PBXBuildFile; fileRef = 842260D41E8A0696009C3FAF /* districtOne.plist */; };
+		842260D91E8A07AC009C3FAF /* NSDictionary+FVExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260D81E8A07AC009C3FAF /* NSDictionary+FVExtension.m */; };
+		842260DC1E8A164B009C3FAF /* OrderRefundController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260DB1E8A164B009C3FAF /* OrderRefundController.m */; };
+		842260DF1E8A1675009C3FAF /* OrderRefundSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260DE1E8A1675009C3FAF /* OrderRefundSuccessController.m */; };
+		842260E11E8A36F8009C3FAF /* OrderUseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842260E01E8A36F8009C3FAF /* OrderUseView.xib */; };
+		842260E51E8A38C9009C3FAF /* RefundHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260E31E8A38C9009C3FAF /* RefundHeadCell.m */; };
+		842260E61E8A38C9009C3FAF /* RefundHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842260E41E8A38C9009C3FAF /* RefundHeadCell.xib */; };
+		842260E91E8A494B009C3FAF /* DeriveExchangeSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260E81E8A494B009C3FAF /* DeriveExchangeSuccessController.m */; };
+		842260EC1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260EB1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m */; };
+		842260F51E8A4A79009C3FAF /* CommitOrderSuccessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260F31E8A4A79009C3FAF /* CommitOrderSuccessCell.m */; };
+		842260F61E8A4A79009C3FAF /* CommitOrderSuccessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842260F41E8A4A79009C3FAF /* CommitOrderSuccessCell.xib */; };
+		842260FA1E8A5C5A009C3FAF /* CommitOrderSuccessCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260F81E8A5C5A009C3FAF /* CommitOrderSuccessCell2.m */; };
+		842260FB1E8A5C5A009C3FAF /* CommitOrderSuccessCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842260F91E8A5C5A009C3FAF /* CommitOrderSuccessCell2.xib */; };
+		842260FE1E8A6DCD009C3FAF /* APIHelper+YearCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260FD1E8A6DCD009C3FAF /* APIHelper+YearCard.m */; };
 		84235B6A1E6E5AE900A81A6B /* MineHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B681E6E5AE900A81A6B /* MineHeadCell.m */; };
 		84235B6B1E6E5AE900A81A6B /* MineHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84235B691E6E5AE900A81A6B /* MineHeadCell.xib */; };
 		84235B6E1E6E8E7500A81A6B /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B6D1E6E8E7500A81A6B /* NSString+Extension.m */; };
@@ -99,7 +113,6 @@
 		842D6BAF1E824D49004A1271 /* CommentListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BAD1E824D49004A1271 /* CommentListCell.m */; };
 		842D6BB01E824D49004A1271 /* CommentListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842D6BAE1E824D49004A1271 /* CommentListCell.xib */; };
 		842D6BB31E826925004A1271 /* APIHelper+Pay.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6BB21E826925004A1271 /* APIHelper+Pay.m */; };
-		842E4C571E3304E600888B18 /* APIHelper+Policy.m in Sources */ = {isa = PBXBuildFile; fileRef = 842E4C561E3304E600888B18 /* APIHelper+Policy.m */; };
 		843142DD1E68FC9C0007740A /* HeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843142DB1E68FC9C0007740A /* HeadCell.m */; };
 		843142DE1E68FC9C0007740A /* HeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 843142DC1E68FC9C0007740A /* HeadCell.xib */; };
 		843142E11E68FED50007740A /* gradualBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 843142E01E68FED50007740A /* gradualBackground.png */; };
@@ -249,6 +262,9 @@
 		8497B6801E88AC9C00392973 /* SelectCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B67F1E88AC9C00392973 /* SelectCouponController.m */; };
 		8497B6841E88AE2200392973 /* SelectCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B6821E88AE2200392973 /* SelectCouponCell.m */; };
 		8497B6851E88AE2200392973 /* SelectCouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8497B6831E88AE2200392973 /* SelectCouponCell.xib */; };
+		8497B6901E8921CD00392973 /* FVSeatItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B68B1E8921CD00392973 /* FVSeatItem.m */; };
+		8497B6911E8921CD00392973 /* FVSeatsPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B68D1E8921CD00392973 /* FVSeatsPicker.m */; };
+		8497B6921E8921CD00392973 /* FVSeatsPickerIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B68F1E8921CD00392973 /* FVSeatsPickerIndexView.m */; };
 		84DCC2631E77880A0019898E /* MineSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2621E77880A0019898E /* MineSupportViewController.m */; };
 		84DCC2691E7789610019898E /* SkillApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2681E7789610019898E /* SkillApplyViewController.m */; };
 		84DCC26C1E77896D0019898E /* SkillUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC26B1E77896D0019898E /* SkillUploadViewController.m */; };
@@ -475,6 +491,29 @@
 		842020361E7BC24F00B13C5B /* BindPhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindPhoneController.m; sourceTree = "<group>"; };
 		842020381E7BEDFC00B13C5B /* BindPhoneChangeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindPhoneChangeController.h; sourceTree = "<group>"; };
 		842020391E7BEDFC00B13C5B /* BindPhoneChangeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindPhoneChangeController.m; sourceTree = "<group>"; };
+		842260D41E8A0696009C3FAF /* districtOne.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = districtOne.plist; sourceTree = "<group>"; };
+		842260D71E8A07AC009C3FAF /* NSDictionary+FVExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+FVExtension.h"; sourceTree = "<group>"; };
+		842260D81E8A07AC009C3FAF /* NSDictionary+FVExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+FVExtension.m"; sourceTree = "<group>"; };
+		842260DA1E8A164B009C3FAF /* OrderRefundController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderRefundController.h; sourceTree = "<group>"; };
+		842260DB1E8A164B009C3FAF /* OrderRefundController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderRefundController.m; sourceTree = "<group>"; };
+		842260DD1E8A1675009C3FAF /* OrderRefundSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderRefundSuccessController.h; sourceTree = "<group>"; };
+		842260DE1E8A1675009C3FAF /* OrderRefundSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderRefundSuccessController.m; sourceTree = "<group>"; };
+		842260E01E8A36F8009C3FAF /* OrderUseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderUseView.xib; sourceTree = "<group>"; };
+		842260E21E8A38C9009C3FAF /* RefundHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefundHeadCell.h; sourceTree = "<group>"; };
+		842260E31E8A38C9009C3FAF /* RefundHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefundHeadCell.m; sourceTree = "<group>"; };
+		842260E41E8A38C9009C3FAF /* RefundHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefundHeadCell.xib; sourceTree = "<group>"; };
+		842260E71E8A494B009C3FAF /* DeriveExchangeSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeriveExchangeSuccessController.h; sourceTree = "<group>"; };
+		842260E81E8A494B009C3FAF /* DeriveExchangeSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeriveExchangeSuccessController.m; sourceTree = "<group>"; };
+		842260EA1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterCommitOrderSuccessController.h; sourceTree = "<group>"; };
+		842260EB1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterCommitOrderSuccessController.m; sourceTree = "<group>"; };
+		842260F21E8A4A79009C3FAF /* CommitOrderSuccessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitOrderSuccessCell.h; sourceTree = "<group>"; };
+		842260F31E8A4A79009C3FAF /* CommitOrderSuccessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitOrderSuccessCell.m; sourceTree = "<group>"; };
+		842260F41E8A4A79009C3FAF /* CommitOrderSuccessCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitOrderSuccessCell.xib; sourceTree = "<group>"; };
+		842260F71E8A5C5A009C3FAF /* CommitOrderSuccessCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitOrderSuccessCell2.h; sourceTree = "<group>"; };
+		842260F81E8A5C5A009C3FAF /* CommitOrderSuccessCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitOrderSuccessCell2.m; sourceTree = "<group>"; };
+		842260F91E8A5C5A009C3FAF /* CommitOrderSuccessCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitOrderSuccessCell2.xib; sourceTree = "<group>"; };
+		842260FC1E8A6DCD009C3FAF /* APIHelper+YearCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+YearCard.h"; sourceTree = "<group>"; };
+		842260FD1E8A6DCD009C3FAF /* APIHelper+YearCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+YearCard.m"; sourceTree = "<group>"; };
 		84235B671E6E5AE900A81A6B /* MineHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeadCell.h; sourceTree = "<group>"; };
 		84235B681E6E5AE900A81A6B /* MineHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineHeadCell.m; sourceTree = "<group>"; };
 		84235B691E6E5AE900A81A6B /* MineHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineHeadCell.xib; sourceTree = "<group>"; };
@@ -515,8 +554,6 @@
 		842D6BAE1E824D49004A1271 /* CommentListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentListCell.xib; sourceTree = "<group>"; };
 		842D6BB11E826925004A1271 /* APIHelper+Pay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Pay.h"; sourceTree = "<group>"; };
 		842D6BB21E826925004A1271 /* APIHelper+Pay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Pay.m"; sourceTree = "<group>"; };
-		842E4C551E3304E600888B18 /* APIHelper+Policy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Policy.h"; sourceTree = "<group>"; };
-		842E4C561E3304E600888B18 /* APIHelper+Policy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Policy.m"; sourceTree = "<group>"; };
 		843142DA1E68FC9C0007740A /* HeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadCell.h; sourceTree = "<group>"; };
 		843142DB1E68FC9C0007740A /* HeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadCell.m; sourceTree = "<group>"; };
 		843142DC1E68FC9C0007740A /* HeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeadCell.xib; sourceTree = "<group>"; };
@@ -843,6 +880,12 @@
 		8497B6811E88AE2200392973 /* SelectCouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCouponCell.h; sourceTree = "<group>"; };
 		8497B6821E88AE2200392973 /* SelectCouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCouponCell.m; sourceTree = "<group>"; };
 		8497B6831E88AE2200392973 /* SelectCouponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCouponCell.xib; sourceTree = "<group>"; };
+		8497B68A1E8921CD00392973 /* FVSeatItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVSeatItem.h; sourceTree = "<group>"; };
+		8497B68B1E8921CD00392973 /* FVSeatItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVSeatItem.m; sourceTree = "<group>"; };
+		8497B68C1E8921CD00392973 /* FVSeatsPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVSeatsPicker.h; sourceTree = "<group>"; };
+		8497B68D1E8921CD00392973 /* FVSeatsPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVSeatsPicker.m; sourceTree = "<group>"; };
+		8497B68E1E8921CD00392973 /* FVSeatsPickerIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVSeatsPickerIndexView.h; sourceTree = "<group>"; };
+		8497B68F1E8921CD00392973 /* FVSeatsPickerIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVSeatsPickerIndexView.m; sourceTree = "<group>"; };
 		84DCC2611E77880A0019898E /* MineSupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineSupportViewController.h; sourceTree = "<group>"; };
 		84DCC2621E77880A0019898E /* MineSupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineSupportViewController.m; sourceTree = "<group>"; };
 		84DCC2671E7789610019898E /* SkillApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillApplyViewController.h; sourceTree = "<group>"; };
@@ -1141,6 +1184,15 @@
 				841E45901E80DD03007B6EF3 /* WeekEndDetailController.m */,
 			);
 			path = VC;
+			sourceTree = "<group>";
+		};
+		842260D61E8A0792009C3FAF /* category */ = {
+			isa = PBXGroup;
+			children = (
+				842260D71E8A07AC009C3FAF /* NSDictionary+FVExtension.h */,
+				842260D81E8A07AC009C3FAF /* NSDictionary+FVExtension.m */,
+			);
+			path = category;
 			sourceTree = "<group>";
 		};
 		842D6B9A1E8249E7004A1271 /* Comment */ = {
@@ -1544,6 +1596,7 @@
 		845BDFAC1E28D8D30064ACAE /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				842260D41E8A0696009C3FAF /* districtOne.plist */,
 				843142E01E68FED50007740A /* gradualBackground.png */,
 				844343DD1E6FA02D00D9FD2F /* yazi.png */,
 				841C01011E729BFC0082ECDA /* baidi.png */,
@@ -1653,6 +1706,7 @@
 		8472F71B1E6D37D8000AE550 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				842260E01E8A36F8009C3FAF /* OrderUseView.xib */,
 				841D4AF01E7A3C84002C49C0 /* OrderListCell.h */,
 				841D4AF11E7A3C84002C49C0 /* OrderListCell.m */,
 				841D4AF21E7A3C84002C49C0 /* OrderListCell.xib */,
@@ -1671,6 +1725,9 @@
 				8447C2DE1E7FDC0F00853052 /* CodeHeadCell.h */,
 				8447C2DF1E7FDC0F00853052 /* CodeHeadCell.m */,
 				8447C2E01E7FDC0F00853052 /* CodeHeadCell.xib */,
+				842260E21E8A38C9009C3FAF /* RefundHeadCell.h */,
+				842260E31E8A38C9009C3FAF /* RefundHeadCell.m */,
+				842260E41E8A38C9009C3FAF /* RefundHeadCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1684,6 +1741,10 @@
 				8447C2C81E7F885100853052 /* OrderDetailController.m */,
 				841C010C1E72A9330082ECDA /* OrderCodeController.h */,
 				841C010D1E72A9330082ECDA /* OrderCodeController.m */,
+				842260DA1E8A164B009C3FAF /* OrderRefundController.h */,
+				842260DB1E8A164B009C3FAF /* OrderRefundController.m */,
+				842260DD1E8A1675009C3FAF /* OrderRefundSuccessController.h */,
+				842260DE1E8A1675009C3FAF /* OrderRefundSuccessController.m */,
 				8447C2C11E7F71F900853052 /* OrderFilterTableController.h */,
 				8447C2C21E7F71F900853052 /* OrderFilterTableController.m */,
 			);
@@ -1718,13 +1779,13 @@
 		8472F72A1E6D3D6E000AE550 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				84235B781E6EBB7400A81A6B /* TheaterUseView.xib */,
 				8472F73B1E6D4684000AE550 /* TheaterListCell.h */,
 				8472F73C1E6D4684000AE550 /* TheaterListCell.m */,
 				8472F73D1E6D4684000AE550 /* TheaterListCell.xib */,
 				8472F7401E6D585E000AE550 /* TheaterDetailCell.h */,
 				8472F7411E6D585E000AE550 /* TheaterDetailCell.m */,
 				8472F7421E6D585E000AE550 /* TheaterDetailCell.xib */,
-				84235B781E6EBB7400A81A6B /* TheaterUseView.xib */,
 				84235B7A1E6EBBE500A81A6B /* DetailDervieView.h */,
 				84235B7B1E6EBBE500A81A6B /* DetailDervieView.m */,
 				844343DF1E6FD39600D9FD2F /* TheaterTicketCell.h */,
@@ -1741,6 +1802,12 @@
 				8497B6811E88AE2200392973 /* SelectCouponCell.h */,
 				8497B6821E88AE2200392973 /* SelectCouponCell.m */,
 				8497B6831E88AE2200392973 /* SelectCouponCell.xib */,
+				842260F21E8A4A79009C3FAF /* CommitOrderSuccessCell.h */,
+				842260F31E8A4A79009C3FAF /* CommitOrderSuccessCell.m */,
+				842260F41E8A4A79009C3FAF /* CommitOrderSuccessCell.xib */,
+				842260F71E8A5C5A009C3FAF /* CommitOrderSuccessCell2.h */,
+				842260F81E8A5C5A009C3FAF /* CommitOrderSuccessCell2.m */,
+				842260F91E8A5C5A009C3FAF /* CommitOrderSuccessCell2.xib */,
 				842D6B9A1E8249E7004A1271 /* Comment */,
 			);
 			path = Cell;
@@ -1761,6 +1828,8 @@
 				843329A91E84FC5E00A7421E /* TheaterSeatSelectController.m */,
 				843329AB1E84FC9300A7421E /* TheaterCommitOrderController.h */,
 				843329AC1E84FC9300A7421E /* TheaterCommitOrderController.m */,
+				842260EA1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.h */,
+				842260EB1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m */,
 				84235B721E6EA18100A81A6B /* FilterTableViewController.h */,
 				84235B731E6EA18100A81A6B /* FilterTableViewController.m */,
 				8497B67E1E88AC9B00392973 /* SelectCouponController.h */,
@@ -1885,6 +1954,13 @@
 		8497B6861E8919C700392973 /* SeatSelectController */ = {
 			isa = PBXGroup;
 			children = (
+				842260D61E8A0792009C3FAF /* category */,
+				8497B68A1E8921CD00392973 /* FVSeatItem.h */,
+				8497B68B1E8921CD00392973 /* FVSeatItem.m */,
+				8497B68C1E8921CD00392973 /* FVSeatsPicker.h */,
+				8497B68D1E8921CD00392973 /* FVSeatsPicker.m */,
+				8497B68E1E8921CD00392973 /* FVSeatsPickerIndexView.h */,
+				8497B68F1E8921CD00392973 /* FVSeatsPickerIndexView.m */,
 			);
 			path = SeatSelectController;
 			sourceTree = "<group>";
@@ -2106,10 +2182,10 @@
 				84525A381E2E08D20054C6A1 /* APIHelper+User.m */,
 				84E6D4281E4817CD0056A702 /* APIHelper+Home.h */,
 				84E6D4291E4817CD0056A702 /* APIHelper+Home.m */,
-				842E4C551E3304E600888B18 /* APIHelper+Policy.h */,
-				842E4C561E3304E600888B18 /* APIHelper+Policy.m */,
 				842D6BB11E826925004A1271 /* APIHelper+Pay.h */,
 				842D6BB21E826925004A1271 /* APIHelper+Pay.m */,
+				842260FC1E8A6DCD009C3FAF /* APIHelper+YearCard.h */,
+				842260FD1E8A6DCD009C3FAF /* APIHelper+YearCard.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -2140,6 +2216,8 @@
 				841C00F41E7289B40082ECDA /* DeriveListController.m */,
 				841C00F61E7289CA0082ECDA /* DeriveDetailController.h */,
 				841C00F71E7289CA0082ECDA /* DeriveDetailController.m */,
+				842260E71E8A494B009C3FAF /* DeriveExchangeSuccessController.h */,
+				842260E81E8A494B009C3FAF /* DeriveExchangeSuccessController.m */,
 				84428CE11E7627FB001D1B7B /* DeriveRecordController.h */,
 				84428CE21E7627FB001D1B7B /* DeriveRecordController.m */,
 			);
@@ -2540,6 +2618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8497B67D1E889DFE00392973 /* CommitOrderSeatCell.xib in Resources */,
+				842260F61E8A4A79009C3FAF /* CommitOrderSuccessCell.xib in Resources */,
 				848A8FCC1E8372C700B45D0C /* SearchGuideCell.xib in Resources */,
 				84E74BCA1E70E90B00016A99 /* LectureDetailTopCell.xib in Resources */,
 				84DCC28E1E77E83C0019898E /* VideoCommentCell.xib in Resources */,
@@ -2579,17 +2658,21 @@
 				842A56F41E793A6100D489CA /* InfoHeaderCell.xib in Resources */,
 				841C00ED1E7258710082ECDA /* HomeSecondCell.xib in Resources */,
 				841E45881E80CB28007B6EF3 /* WeekEndCell.xib in Resources */,
+				842260FB1E8A5C5A009C3FAF /* CommitOrderSuccessCell2.xib in Resources */,
 				8472F7441E6D585E000AE550 /* TheaterDetailCell.xib in Resources */,
 				845BDFB21E28D8D30064ACAE /* Assets.xcassets in Resources */,
 				843142F01E694C640007740A /* HomeUseView.xib in Resources */,
 				845BDF7F1E28D2C00064ACAE /* Main.storyboard in Resources */,
 				842020291E7B7DF000B13C5B /* MineCouponCell.xib in Resources */,
 				841E45831E80C288007B6EF3 /* MessageSystemCell.xib in Resources */,
+				842260E61E8A38C9009C3FAF /* RefundHeadCell.xib in Resources */,
 				8420202E1E7B86A900B13C5B /* MineCommentCell.xib in Resources */,
+				842260E11E8A36F8009C3FAF /* OrderUseView.xib in Resources */,
 				841E45A61E8125C3007B6EF3 /* YearCardOrderCommonCell.xib in Resources */,
 				84525A1D1E2E019D0054C6A1 /* AlipaySDK.bundle in Resources */,
 				84DCC2791E77C85A0019898E /* SkillDeclarationCell.xib in Resources */,
 				841D4AE11E7A2A93002C49C0 /* verticalDotLine.png in Resources */,
+				842260D51E8A0696009C3FAF /* districtOne.plist in Resources */,
 				84E5EE821E2DCADB0062A2BE /* WeiboSDK.bundle in Resources */,
 				841C01001E7296B50082ECDA /* DeriveListCell.xib in Resources */,
 				843329B11E84FF0200A7421E /* price.png in Resources */,
@@ -2730,6 +2813,7 @@
 				843329B61E85102600A7421E /* TheaterSeatView.m in Sources */,
 				84F6911A1E2C56090048B6DF /* NSObject+Global.m in Sources */,
 				841C00F51E7289B40082ECDA /* DeriveListController.m in Sources */,
+				842260FA1E8A5C5A009C3FAF /* CommitOrderSuccessCell2.m in Sources */,
 				8413CECB1E669DF200436B2F /* CustomJumpBtns.m in Sources */,
 				84E6D42A1E4817CD0056A702 /* APIHelper+Home.m in Sources */,
 				843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */,
@@ -2740,6 +2824,7 @@
 				84428CE91E7629BB001D1B7B /* SkillDetailController.m in Sources */,
 				841D4B021E7A7313002C49C0 /* PointDetailController.m in Sources */,
 				84E74C0A1E715DC800016A99 /* YearCardBindController.m in Sources */,
+				842260DC1E8A164B009C3FAF /* OrderRefundController.m in Sources */,
 				84428CEF1E762A49001D1B7B /* SkillCompetitorController.m in Sources */,
 				84E74C071E71595700016A99 /* YearCardBindSuccessController.m in Sources */,
 				8447C2DC1E7FD5ED00853052 /* OrderDetailCell.m in Sources */,
@@ -2753,14 +2838,17 @@
 				84E5EE9A1E2DED5F0062A2BE /* HttpHelper.m in Sources */,
 				841E45A51E8125C3007B6EF3 /* YearCardOrderCommonCell.m in Sources */,
 				842A56EC1E792DF500D489CA /* UserInfoViewController.m in Sources */,
+				842260D91E8A07AC009C3FAF /* NSDictionary+FVExtension.m in Sources */,
 				84DCC2781E77C85A0019898E /* SkillDeclarationCell.m in Sources */,
 				843142E51E69166C0007740A /* FunctionCell.m in Sources */,
 				848A8FCB1E8372C700B45D0C /* SearchGuideCell.m in Sources */,
+				842260E91E8A494B009C3FAF /* DeriveExchangeSuccessController.m in Sources */,
 				84E5EE771E2DCADB0062A2BE /* HTProductDetailImageBrowserView.m in Sources */,
 				8447C2CD1E7FB10300853052 /* OrderDetailHeadCell.m in Sources */,
 				841E45941E80F8C0007B6EF3 /* WeekEndUseView.m in Sources */,
 				841E45911E80DD03007B6EF3 /* WeekEndDetailController.m in Sources */,
 				84F691321E2C568B0048B6DF /* UIStoryboard+HYStoryboard.m in Sources */,
+				842260F51E8A4A79009C3FAF /* CommitOrderSuccessCell.m in Sources */,
 				84DCC2731E7790400019898E /* MineSupportCell.m in Sources */,
 				84924EA21E2C7D37005F05C3 /* UIButton+HYButtons.m in Sources */,
 				844343E21E6FD39600D9FD2F /* TheaterTicketCell.m in Sources */,
@@ -2784,6 +2872,7 @@
 				84F691381E2C68700048B6DF /* OpenRoutesManager.m in Sources */,
 				8497B67C1E889DFE00392973 /* CommitOrderSeatCell.m in Sources */,
 				8447C2C31E7F71F900853052 /* OrderFilterTableController.m in Sources */,
+				842260E51E8A38C9009C3FAF /* RefundHeadCell.m in Sources */,
 				843142EA1E691D9C0007740A /* HomeImageCell.m in Sources */,
 				84F691141E2C55E00048B6DF /* NSMutableArray+Safety.m in Sources */,
 				843329A71E84FC4900A7421E /* TheaterSeatPreviewController.m in Sources */,
@@ -2808,6 +2897,7 @@
 				84525A211E2E019D0054C6A1 /* base64.m in Sources */,
 				84F691431E2C6C160048B6DF /* Global.m in Sources */,
 				8447C2D71E7FD17200853052 /* OrderCodeCell.m in Sources */,
+				8497B6901E8921CD00392973 /* FVSeatItem.m in Sources */,
 				84924E991E2C7CCA005F05C3 /* UIView+FrameExpand.m in Sources */,
 				84E74BDD1E71305400016A99 /* ApplyTitleCell.m in Sources */,
 				842A56E61E792D9700D489CA /* SettingViewController.m in Sources */,
@@ -2825,6 +2915,7 @@
 				84DE2CA61E6815B5008BD672 /* RegistViewController.m in Sources */,
 				843329AD1E84FC9300A7421E /* TheaterCommitOrderController.m in Sources */,
 				8420202D1E7B86A900B13C5B /* MineCommentCell.m in Sources */,
+				8497B6921E8921CD00392973 /* FVSeatsPickerIndexView.m in Sources */,
 				84924EF81E2CC245005F05C3 /* WKWebViewController.m in Sources */,
 				841D4ADC1E7A25CD002C49C0 /* MineYearCardCell.m in Sources */,
 				84DCC2691E7789610019898E /* SkillApplyViewController.m in Sources */,
@@ -2854,6 +2945,7 @@
 				842D6BA81E8249F0004A1271 /* CommentViewController.m in Sources */,
 				84DCC2881E77E8100019898E /* VideoListCell.m in Sources */,
 				842A56E31E78E59900D489CA /* SkillDetailHeadView.m in Sources */,
+				8497B6911E8921CD00392973 /* FVSeatsPicker.m in Sources */,
 				84235B7C1E6EBBE500A81A6B /* DetailDervieView.m in Sources */,
 				84924F181E2CC926005F05C3 /* SurePlaceholderView.m in Sources */,
 				84428CFD1E764432001D1B7B /* SituationDoubleCell.m in Sources */,
@@ -2868,6 +2960,7 @@
 				842D6BB31E826925004A1271 /* APIHelper+Pay.m in Sources */,
 				84924E9C1E2C7CD2005F05C3 /* UIView+Badge.m in Sources */,
 				84525A271E2E019D0054C6A1 /* RSADataSigner.m in Sources */,
+				842260DF1E8A1675009C3FAF /* OrderRefundSuccessController.m in Sources */,
 				8420203A1E7BEDFC00B13C5B /* BindPhoneChangeController.m in Sources */,
 				841C00E21E723D460082ECDA /* OrderTopCell.m in Sources */,
 				84924EAE1E2C7D91005F05C3 /* UIImageView+HYImageView.m in Sources */,
@@ -2890,6 +2983,7 @@
 				843329AA1E84FC5E00A7421E /* TheaterSeatSelectController.m in Sources */,
 				84924E7B1E2C7806005F05C3 /* BaseViewController.m in Sources */,
 				84428CE61E7628E9001D1B7B /* SkillListViewController.m in Sources */,
+				842260FE1E8A6DCD009C3FAF /* APIHelper+YearCard.m in Sources */,
 				8472F7361E6D410C000AE550 /* TheaterDetailViewController.m in Sources */,
 				8447C2C91E7F885100853052 /* OrderDetailController.m in Sources */,
 				841D4AE71E7A2CE1002C49C0 /* YearCardRecordController.m in Sources */,
@@ -2910,8 +3004,8 @@
 				843142DD1E68FC9C0007740A /* HeadCell.m in Sources */,
 				84F25F431E65814D00FC9E31 /* HYCountDown.m in Sources */,
 				841E459E1E8118FA007B6EF3 /* WeekEndTopView.m in Sources */,
+				842260EC1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m in Sources */,
 				840C480E1E4DB82000F4C80A /* HYAddressController.m in Sources */,
-				842E4C571E3304E600888B18 /* APIHelper+Policy.m in Sources */,
 				84F691031E2C53600048B6DF /* AppDelegate+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

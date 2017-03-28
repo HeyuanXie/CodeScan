@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.infos = @[@{@"image":@"",@"title":@"系统消息"},@{@"image":@"",@"title":@"订单消息"}];
+    self.infos = @[@{@"image":@"系统消息",@"title":@"系统消息"},@{@"image":@"订单消息",@"title":@"订单消息"}];
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 }

@@ -148,14 +148,7 @@ typedef enum : NSUInteger {
     self.dataArray = [@[@"",@""] mutableCopy];
     [self.tableView reloadData];
 }
-
 -(void)subviewStyle {
-    
-    UIView* headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 45)];
-    headView.backgroundColor = [UIColor hyViewBackgroundColor];
-    UILabel* lbl = [HYTool getLabelWithFrame:CGRectMake(12, 0, kScreen_Width-20, 45) text:@"全部搜索,共2条结果" fontSize:14 textColor:[UIColor hyGrayTextColor] textAlignment:NSTextAlignmentLeft];
-    [headView addSubview:lbl];
-    self.tableView.tableHeaderView = headView;
     
     UIView* searhView = LOADNIB(@"HomeUseView", 3);
     searhView.frame = CGRectMake(0, 0, kScreen_Width-80, 34);
@@ -163,18 +156,19 @@ typedef enum : NSUInteger {
     
     NSArray* menu = @[@"演出",@"商品",@"文章"];
     UIButton* btn = [searhView viewWithTag:1000];
-    [btn setTitle:menu[self.contentType] forState:UIControlStateNormal];
-    btn.titleEdgeInsets = UIEdgeInsetsMake(0, -15, 0, 23);
-    btn.imageEdgeInsets = UIEdgeInsetsMake(0, 36, 0, 0);
+    btn.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 0, -30);
+    btn.titleEdgeInsets = UIEdgeInsetsMake(0, -12, 0, 12);
     [btn bk_whenTapped:^{
-        [btn setImage:ImageNamed(@"arrow_up") forState:UIControlStateNormal];
+        [btn setImage:ImageNamed(@"三角形_黑色上") forState:UIControlStateNormal];
         [[FTPopOverMenuConfiguration defaultConfiguration] setMenuWidth:100];
-        [FTPopOverMenu showForSender:btn withMenuArray:menu imageArray:@[@"yazi",@"yazi",@"yazi"] doneBlock:^(NSInteger selectedIndex) {
+        [[FTPopOverMenuConfiguration defaultConfiguration] setMenuTextMargin:12];
+        [[FTPopOverMenuConfiguration defaultConfiguration] setMenuIconMargin:12];
+        [FTPopOverMenu showForSender:btn withMenuArray:menu imageArray:@[@"搜索类别_演出",@"搜索类别_商品",@"搜索类别_文章"] doneBlock:^(NSInteger selectedIndex) {
             [btn setTitle:menu[selectedIndex] forState:UIControlStateNormal];
-            [btn setImage:ImageNamed(@"arrow_down") forState:UIControlStateNormal];
+            [btn setImage:ImageNamed(@"三角形_黑色下") forState:UIControlStateNormal];
             self.contentType = selectedIndex;
         } dismissBlock:^{
-            [btn setImage:ImageNamed(@"arrow_down") forState:UIControlStateNormal];
+            [btn setImage:ImageNamed(@"三角形_黑色下") forState:UIControlStateNormal];
         }];
     }];
     
@@ -183,7 +177,6 @@ typedef enum : NSUInteger {
     self.textField = textField;
     self.textField.delegate = self;
     self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.textField.text = self.word;
     self.textField.tintColor = RGB(0, 122, 255, 1);
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searhView];
     

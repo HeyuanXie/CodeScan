@@ -72,6 +72,9 @@
     [HYTool configViewLayer:self.registBtn withColor:[UIColor whiteColor]];
     [HYTool configViewLayer:self.registBtn size:20];
     
+    if (kAccount) {
+        self.accountTf.text = kAccount;
+    }
 //    self.otherLoginView.hidden = YES;
 }
 
@@ -105,15 +108,12 @@
     }
     [MBProgressHUD hy_showLoadingHUDAddedTo:self.view animated:YES];
     
-    NSString* salt = @"12345";
-    NSString* sha1Str = [[[self.passwordTf.text sha1String] lowercaseString] stringByAppendingString:salt];
-    NSString* sha1PS = [[sha1Str sha1String] lowercaseString];
-    
-    [APIHELPER login:self.accountTf.text password:sha1PS complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-        [MBProgressHUD hy_showLoadingHUDAddedTo:self.view animated:NO];
+    [APIHELPER login:self.accountTf.text password:self.passwordTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (isSuccess) {
             [Global setUserAuth:responseObject[@"data"][@"auth"]];
             APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
+            kSaveAccountAndPassword(self.accountTf.text, self.passwordTf.text)
             [self.navigationController popViewControllerAnimated:YES];
         }else{
             [MBProgressHUD hy_showMessage:error.userInfo[NSLocalizedDescriptionKey] inView:self.view];

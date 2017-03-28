@@ -19,7 +19,6 @@
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsZero];
     [self dataInit];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    [self.tableView reloadData];
     if (!APIHELPER.config) {
         [APIHELPER fetchConfiguration:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             if (isSuccess) {
@@ -27,6 +26,12 @@
             }
         }];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

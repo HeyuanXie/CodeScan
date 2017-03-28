@@ -22,6 +22,7 @@ NSString* const kCommentListController = @"CommentListController";
 NSString* const kTheaterSeatPreviewController = @"TheaterSeatPreviewController";
 NSString* const kTheaterSeatSelectController = @"TheaterSeatSelectController";
 NSString* const kTheaterCommitOrderController = @"TheaterCommitOrderController";
+NSString* const kTheaterCommmitOrderSuccessController = @"TheaterCommitOrderSuccessController";
 NSString* const kSelectCouponController = @"SelectCouponController";
 
 NSString* const kLectureListController = @"LectureListController";
@@ -36,10 +37,12 @@ NSString* const kDeriveListController = @"DeriveListController";
 NSString* const kDeriveDetailController = @"DeriveDetailController";
 NSString* const kDeriveOrderController = @"DeriveOrderController";
 NSString* const kDeriveRecordController = @"DeriveRecordController";
+NSString* const kDeriveExchangeSuccessController = @"DeriveExchangeSuccessControlelr";
 
-NSString* const kOrderListController = @"OrderListController";
 NSString* const kOrderDetailController = @"OrderDetailController";
 NSString* const kOrderCodeController = @"OrderCodeController";
+NSString* const kOrderRefundController = @"OrderRefundController";
+NSString* const kOrderRefundSuccessController = @"OrderRefundSuccessController";
 
 NSString* const kSkillListViewController = @"SkillListViewController";
 NSString* const kSkillDetailController = @"SkillDetailController";
@@ -111,6 +114,11 @@ NSString* const kAddressController = @"HYAddressController";
 
 -(NSArray*)routeConfigs {
     NSArray *routes = @[
+                        @{@"cls":kHomeViewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kCollectViewController,@"sb":@"Collect",@"method":@"push"},
+                        @{@"cls":kOrderHomeController,@"sb":@"Order",@"method":@"push"},
+                        @{@"cls":kMineHomeViewController,@"sb":@"Mine",@"method":@"push"},
+                        
                         @{@"cls":kTheaterListViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterDetailViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterTicketViewController,@"sb":@"Main",@"method":@"push"},
@@ -120,6 +128,7 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kTheaterSeatPreviewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterSeatSelectController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterCommitOrderController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kTheaterCommmitOrderSuccessController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kSelectCouponController,@"sb":@"Main",@"method":@"push"},
 
                         @{@"cls":kLectureListController,@"sb":@"Main",@"method":@"push"},
@@ -134,10 +143,12 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kDeriveDetailController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kDeriveOrderController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kDeriveRecordController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kDeriveExchangeSuccessController,@"sb":@"Main",@"method":@"push"},
                         
-                        @{@"cls":kOrderListController,@"sb":@"Order",@"method":@"push"},
                         @{@"cls":kOrderDetailController,@"sb":@"Order",@"method":@"push"},
                         @{@"cls":kOrderCodeController,@"sb":@"Order",@"method":@"push"},
+                        @{@"cls":kOrderRefundController,@"sb":@"Order",@"method":@"push"},
+                        @{@"cls":kOrderRefundSuccessController,@"sb":@"Order",@"method":@"push"},
                         
                         @{@"cls":kSkillListViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kSkillDetailController,@"sb":@"Main",@"method":@"push"},

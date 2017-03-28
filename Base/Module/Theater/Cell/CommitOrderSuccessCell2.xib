@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CommitOrderSuccessCell2">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="127"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="126"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xEb-1C-yRo">
+                        <rect key="frame" x="12" y="12" width="296" height="66"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yazi.png" translatesAutoresizingMaskIntoConstraints="NO" id="PtB-DG-KfN">
+                                <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PtB-DG-KfN" secondAttribute="height" multiplier="1:1" id="yAg-CW-4WE"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小熊维尼公仔" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0km-Lh-E9Y">
+                                <rect key="frame" x="70" y="8" width="214" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="K7k-4u-zWA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1520积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVa-M0-tqC">
+                                <rect key="frame" x="70" y="33" width="214" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Apr-1p-A1O"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="PtB-DG-KfN" firstAttribute="top" secondItem="xEb-1C-yRo" secondAttribute="top" constant="8" id="BsT-XF-ZEb"/>
+                            <constraint firstAttribute="bottom" secondItem="PtB-DG-KfN" secondAttribute="bottom" constant="8" id="E0U-4W-eEM"/>
+                            <constraint firstItem="0km-Lh-E9Y" firstAttribute="leading" secondItem="PtB-DG-KfN" secondAttribute="trailing" constant="12" id="Eq5-nV-Kx7"/>
+                            <constraint firstAttribute="height" constant="65.5" id="Obg-yg-Qnw"/>
+                            <constraint firstAttribute="trailing" secondItem="VVa-M0-tqC" secondAttribute="trailing" constant="12" id="X2v-hT-fBB"/>
+                            <constraint firstItem="VVa-M0-tqC" firstAttribute="top" secondItem="0km-Lh-E9Y" secondAttribute="bottom" constant="4" id="ah5-vr-dec"/>
+                            <constraint firstItem="0km-Lh-E9Y" firstAttribute="top" secondItem="xEb-1C-yRo" secondAttribute="top" constant="8" id="ph5-cJ-lmW"/>
+                            <constraint firstAttribute="trailing" secondItem="0km-Lh-E9Y" secondAttribute="trailing" constant="12" id="s2m-fX-00e"/>
+                            <constraint firstItem="PtB-DG-KfN" firstAttribute="leading" secondItem="xEb-1C-yRo" secondAttribute="leading" constant="8" id="vGR-C9-Fov"/>
+                            <constraint firstItem="VVa-M0-tqC" firstAttribute="leading" secondItem="PtB-DG-KfN" secondAttribute="trailing" constant="12" id="zBm-s8-6Y2"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地点:   东莞玉兰大剧场售票中心" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6u-lO-aSw">
+                        <rect key="frame" x="12" y="93.5" width="296" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="fR5-Jp-Wte"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="J6u-lO-aSw" secondAttribute="trailing" constant="12" id="FgL-mH-Mbv"/>
+                    <constraint firstItem="xEb-1C-yRo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="LlG-mg-HAp"/>
+                    <constraint firstAttribute="bottom" secondItem="J6u-lO-aSw" secondAttribute="bottom" constant="15" id="bAh-v5-f5d"/>
+                    <constraint firstItem="J6u-lO-aSw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="jEk-Th-oMz"/>
+                    <constraint firstAttribute="trailing" secondItem="xEb-1C-yRo" secondAttribute="trailing" constant="12" id="jFt-Ph-Z19"/>
+                    <constraint firstItem="xEb-1C-yRo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="u9h-ix-RhP"/>
+                </constraints>
+            </tableViewCellContentView>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="yazi.png" width="96" height="133"/>
+    </resources>
+</document>

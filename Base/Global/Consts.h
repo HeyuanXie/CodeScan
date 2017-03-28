@@ -136,7 +136,7 @@ alpha:a]
 //MARK:-其他
 #define kNotificationCenter [NSNotificationCenter defaultCenter]
 #define kApplication [UIApplication sharedApplication]
-#define kAppDelegate ((AppDelegate*)[UIApplication sharedApplication].delegate)
+#define kAppDelegate ((AppDelegate*)([UIApplication sharedApplication].delegate))
 
 #define ImageNamed(fp) [UIImage imageNamed:fp]
 
@@ -171,11 +171,11 @@ alpha:a]
 #define kAccount [(NSString*)(kGetObjectFromUserDefaults(kKeyAccount)) decrypt:k_SecretKey]
 #define kPassword [(NSString*)(kGetObjectFromUserDefaults(kKeyPassword)) decrypt:k_SecretKey]
 #define kSaveAccountAndPassword(account,password) {\
-    kSaveObjectToUserDefaults([account encrypt:k_SecretKey], kKeyAccount)\
+    kSaveObjectToUserDefaults(kKeyAccount, [account encrypt:k_SecretKey])\
     if (password == nil) {\
         kCleanPassword\
     }else{\
-        kSaveObjectToUserDefaults([password encrypt:k_SecretKey], kKeyPassword)\
+        kSaveObjectToUserDefaults(kKeyPassword, [password encrypt:k_SecretKey])\
     }\
 }
 /// 清除密码

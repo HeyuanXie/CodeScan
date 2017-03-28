@@ -34,7 +34,7 @@
 
 - (IBAction)commit:(id)sender {
     //TODO:提交选座订单
-    
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=0",kTheaterCommmitOrderSuccessController]));
 }
 
 - (void)viewDidLoad {
@@ -246,7 +246,7 @@
         cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
         cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
     }
-    cell.textLabel.text = @"数量: 3张";
+    cell.textLabel.text = [NSString stringWithFormat:@"数量: %ld张",self.selectArray.count];
     cell.detailTextLabel.text = @"(需补差价¥0) 合计¥130";
     return cell;
 }
@@ -256,11 +256,12 @@
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
     //TODO:configVip or NotVip
+    id model = self.selectArray[indexPath.row-1];
     if (self.selectCard == nil) {
-        [cell configNotVipCell:nil];
+        [cell configNotVipCell:model];
     }else{
         
-        [cell configVipCell:nil];
+        [cell configVipCell:model];
         
         for (NSNumber* row in self.cardIndexArray) {
             if ([row integerValue] == indexPath.row) {
@@ -268,8 +269,6 @@
                 cell.originalPriceView.hidden = NO;
             }
         }
-        
-        
         [cell.selelctBtn bk_whenTapped:^{
             
             if (!cell.selelctBtn.selected) {

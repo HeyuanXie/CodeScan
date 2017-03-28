@@ -84,6 +84,7 @@
             switch (bottonType) {
                 case AlertViewClickBottonTypeSubBotton: {
                     //TODO:兑换
+                    APPROUTE(([NSString stringWithFormat:@"%@?contentType=1",kTheaterCommmitOrderSuccessController]));
                     break;
                 }
                 default:{

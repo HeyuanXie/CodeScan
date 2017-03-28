@@ -9,6 +9,7 @@
 #import "YearCardHomeController.h"
 #import "HomeTopCell.h"
 #import "HomeSecondCell.h"
+#import "APIHelper+YearCard.h"
 
 @interface YearCardHomeController ()
 
@@ -23,6 +24,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:[HomeSecondCell identify] bundle:nil] forCellReuseIdentifier:[HomeSecondCell identify]];
 
     [self subviewInit];
+    [self fetchData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,10 +94,19 @@
 
 
 #pragma mark - private methods
+-(void)fetchData {
+    [APIHELPER fetchYearCardInfoComplete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            
+        }
+    }];
+}
+
+
 -(void)subviewInit {
     
-    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithImage:ImageNamed(@"") style:UIBarButtonItemStylePlain target:self action:@selector(message:)];
-    self.navigationController.navigationItem.rightBarButtonItem = rightItem;
+//    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithImage:ImageNamed(@"") style:UIBarButtonItemStylePlain target:self action:@selector(message:)];
+//    self.navigationController.navigationItem.rightBarButtonItem = rightItem;
 }
 
 -(void)message:(UIBarButtonItem*)item {
