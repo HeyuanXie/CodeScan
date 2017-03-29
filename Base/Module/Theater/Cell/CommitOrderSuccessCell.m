@@ -39,6 +39,14 @@
     
 }
 
+-(void)configDeriveCell:(id)model
+{
+    self.seatLbl.hidden = YES;
+    self.addressLbl.hidden = YES;
+    
+    self.priceLbl.text = @"地点: 东莞玉兰大剧场售票中心";
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

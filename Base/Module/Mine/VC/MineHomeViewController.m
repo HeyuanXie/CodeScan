@@ -12,11 +12,12 @@
 #import "MineHeadCell.h"
 #import "FunctionCell.h"
 #import "UIViewController+Extension.h"
+#import "UserInfoModel.h"
+#import "APIHelper+User.h"
 
 @interface MineHomeViewController ()
 
 @property(nonatomic,strong)NSArray* infos;
-
 
 @end
 
@@ -24,14 +25,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self subviewStyle];
     
+    [self subviewStyle];
+    [self fetchData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:YES];
+    [super viewWillAppear: YES];
     
-    [self.tableView reloadData];
+    [self fetchData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -74,6 +76,20 @@
     }];
 }
 
+
+-(void)fetchData {
+    if ([Global userAuth]) {
+        [APIHELPER fetchUserInfo:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            if (isSuccess) {
+                APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
+                [self.tableView reloadData];
+                return ;
+            }
+        }];
+    }
+    
+    [self.tableView reloadData];
+}
 
 
 #pragma mark - tableView delegate
@@ -147,21 +163,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *info = self.infos[indexPath.section][indexPath.row];
     //如果需要登陆而userAuth==nil(没登录), 就进入LoginViewController
-//    if ([info[@"needLogin"] boolValue] && ![Global userAuth]) {
-//        APPROUTE(kLoginViewController);
-//        return;
-//    }
+    if ([info[@"needLogin"] boolValue] && ![Global userAuth]) {
+        APPROUTE(kLoginViewController);
+        return;
+    }
     APPROUTE(info[@"router"]);
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -28,7 +28,7 @@
         self.nameLbl.text = @"未登陆";
         self.headImgV.image = ImageNamed(@"4yansheng");
     }else{
-        [self.headImgV sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1488509505&di=97cda624db932332a70ee8018c9b0848&src=http://img1.7wenta.com/upload/qa_headIcons/20150122/14219365390308909.jpg"]];
+        [self.headImgV sd_setImageWithURL:[NSURL URLWithString:APIHELPER.userInfo.faceUrl] placeholderImage:ImageNamed(@"")];
         self.nameLbl.text = [APIHELPER userInfo].nickName;
     }
 }

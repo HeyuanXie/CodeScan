@@ -310,6 +310,7 @@
     [self loadCoord:currentLocation.coordinate finish:^(NSString *address) {
         @strongify(self);
         self.areaCodeDict[@"当前定位城市"] = @[@{@"k":@(0),@"n":address}];
+        kSaveObjectToUserDefaults(@"currentLocation", address);
         [self.tableView reloadData];
     }];
     [self.locationManager stopUpdatingLocation];

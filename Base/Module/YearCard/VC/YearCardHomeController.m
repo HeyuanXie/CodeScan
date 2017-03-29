@@ -9,9 +9,13 @@
 #import "YearCardHomeController.h"
 #import "HomeTopCell.h"
 #import "HomeSecondCell.h"
+#import "HomeDescCell.h"
 #import "APIHelper+YearCard.h"
+#import <UITableView+FDTemplateLayoutCell.h>
 
 @interface YearCardHomeController ()
+
+@property (nonatomic, strong)NSDictionary* data;
 
 @end
 
@@ -22,6 +26,7 @@
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 90, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[HomeTopCell identify] bundle:nil] forCellReuseIdentifier:[HomeTopCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[HomeSecondCell identify] bundle:nil] forCellReuseIdentifier:[HomeSecondCell identify]];
+    [self.tableView registerNib:[UINib nibWithNibName:[HomeDescCell identify] bundle:nil] forCellReuseIdentifier:[HomeDescCell identify]];
 
     [self subviewInit];
     [self fetchData];
@@ -35,7 +40,7 @@
 
 #pragma mark - talbeView dataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return self.data == nil ? 0 : 3;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
@@ -46,7 +51,7 @@
         {
             HomeTopCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeTopCell identify]];
             [HYTool configTableViewCellDefault:cell];
-            [cell configTopCell:nil];
+            [cell configTopCell:self.data];
             return cell;
             break;
         }
@@ -54,20 +59,14 @@
         {
             HomeSecondCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeSecondCell identify]];
             [HYTool configTableViewCellDefault:cell];
+            [cell configSecondCell:self.data];
             return cell;
         }
         default:
         {
-            static NSString* cellId = @"descCell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-            if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-                [HYTool configTableViewCellDefault:cell];
-                UIImageView* imgV = [[UIImageView alloc] initWithImage:ImageNamed(@"")];
-                imgV.backgroundColor = [UIColor whiteColor];
-                [cell.contentView addSubview:imgV];
-                [imgV autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 12, 0, 12)];
-            }
+            HomeDescCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeDescCell identify]];
+            [HYTool configTableViewCellDefault:cell];
+            [cell configDescCell:self.data];
             return cell;
         }
     }
@@ -85,7 +84,9 @@
         case 1:
             return 76;
         default:
-            return 113;
+            return [tableView fd_heightForCellWithIdentifier:[HomeDescCell identify] cacheByIndexPath:indexPath configuration:^(HomeDescCell* cell) {
+                [cell configDescCell:self.data];
+            }];
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -97,7 +98,8 @@
 -(void)fetchData {
     [APIHELPER fetchYearCardInfoComplete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
-            
+            self.data = responseObject[@"data"];
+            [self.tableView reloadData];
         }
     }];
 }

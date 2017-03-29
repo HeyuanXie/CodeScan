@@ -147,7 +147,7 @@ alpha:a]
 [kUserDefaults setObject:object forKey:key]; \
 [kUserDefaults synchronize]; }
 //取
-#define kGetObjectFromUserDefaults(key) [kUserDefaults objectForKey:key]
+#define kGetObjectFromUserDefaults(key)  [kUserDefaults objectForKey:key]
 //删
 #define kRemoveObjectFromUserDefault(key) {\
     [kUserDefaults removeObjectForKey:key];\

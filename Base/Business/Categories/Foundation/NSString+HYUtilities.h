@@ -21,4 +21,6 @@
 
 - (NSString *)phoneSeparatorString;
 
++ (NSString *)stringWithHtmlString:(NSString *)hString;
+
 @end

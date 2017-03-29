@@ -11,6 +11,7 @@
 @interface BaseTableViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong) UITableView* tableView;
+@property(nonatomic,assign) BOOL haveNext;
 
 -(void)baseSetupTableView:(UITableViewStyle)style InSets:(UIEdgeInsets)edge;
 

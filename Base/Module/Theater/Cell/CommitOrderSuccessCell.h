@@ -12,5 +12,6 @@
 
 +(NSString*)identify;
 -(void)configTheaterCell:(id)model;
+-(void)configDeriveCell:(id)model;
 
 @end

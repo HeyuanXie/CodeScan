@@ -11,6 +11,7 @@
 #import "BaseNavigationController.h"
 #import "BaseViewController.h"
 #import "APIHelper+User.h"
+#import "APIHelper+Common.h"
 #import "UIImage+HYImages.h"
 #import <IQKeyboardManager.h>
 #import "WXApi.h"
@@ -26,6 +27,19 @@ NS_ENUM(NSUInteger, TabType) {
 
 -(void)verifyLogin {
 
+    if ([Global userAuth]) {
+        [APIHELPER fetchUserInfo:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            if (isSuccess) {
+                APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
+            }
+        }];
+    }
+    [APIHELPER fetchConfiguration:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            APIHELPER.config = responseObject[@"data"];
+        }
+    }];
+    
     [self configTabbar];
     [self.window makeKeyAndVisible];
     

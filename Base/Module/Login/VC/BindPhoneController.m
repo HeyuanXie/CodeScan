@@ -33,7 +33,7 @@
 
 #pragma mark - private methods
 -(void)subviewStyle {
-    [HYTool configViewLayer:self.codeBtn withColor:RGB(211, 211, 211, 1.0)];
+    [HYTool configViewLayer:self.codeBtn withColor:[UIColor lightGrayColor]];
     [HYTool configViewLayer:self.codeBtn size:13];
     
     [self.firstTf addTarget:self action:@selector(textFieldDidChanged:) forControlEvents:UIControlEventEditingChanged];

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8401F2D11E8B504F0032FE32 /* APIHelper+Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401F2D01E8B504F0032FE32 /* APIHelper+Article.m */; };
+		8401F2D41E8B51150032FE32 /* ArticleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401F2D31E8B51150032FE32 /* ArticleModel.m */; };
+		8401F2D71E8B9C3A0032FE32 /* APIHelper+Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401F2D61E8B9C3A0032FE32 /* APIHelper+Theater.m */; };
+		8401F2DA1E8B9C4A0032FE32 /* APIHelper+Derive.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401F2D91E8B9C4A0032FE32 /* APIHelper+Derive.m */; };
+		8401F2DD1E8B9FB80032FE32 /* FilterAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401F2DC1E8B9FB80032FE32 /* FilterAddressController.m */; };
+		8401F2E01E8BB8BA0032FE32 /* TheaterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8401F2DF1E8BB8BA0032FE32 /* TheaterModel.m */; };
 		840C480E1E4DB82000F4C80A /* HYAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 840C480D1E4DB82000F4C80A /* HYAddressController.m */; };
 		840C48101E4DC0B600F4C80A /* area.json in Resources */ = {isa = PBXBuildFile; fileRef = 840C480F1E4DC0B600F4C80A /* area.json */; };
 		8413CEC71E665E0000436B2F /* JYSlideSegmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8413CEC61E665E0000436B2F /* JYSlideSegmentController.m */; };
@@ -376,6 +382,18 @@
 
 /* Begin PBXFileReference section */
 		53AC6045FA5F2F0CF0780A57 /* Pods-Base.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Base/Pods-Base.debug.xcconfig"; sourceTree = "<group>"; };
+		8401F2CF1E8B504F0032FE32 /* APIHelper+Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Article.h"; sourceTree = "<group>"; };
+		8401F2D01E8B504F0032FE32 /* APIHelper+Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Article.m"; sourceTree = "<group>"; };
+		8401F2D21E8B51150032FE32 /* ArticleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleModel.h; sourceTree = "<group>"; };
+		8401F2D31E8B51150032FE32 /* ArticleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleModel.m; sourceTree = "<group>"; };
+		8401F2D51E8B9C3A0032FE32 /* APIHelper+Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Theater.h"; sourceTree = "<group>"; };
+		8401F2D61E8B9C3A0032FE32 /* APIHelper+Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Theater.m"; sourceTree = "<group>"; };
+		8401F2D81E8B9C4A0032FE32 /* APIHelper+Derive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Derive.h"; sourceTree = "<group>"; };
+		8401F2D91E8B9C4A0032FE32 /* APIHelper+Derive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Derive.m"; sourceTree = "<group>"; };
+		8401F2DB1E8B9FB80032FE32 /* FilterAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterAddressController.h; sourceTree = "<group>"; };
+		8401F2DC1E8B9FB80032FE32 /* FilterAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterAddressController.m; sourceTree = "<group>"; };
+		8401F2DE1E8BB8BA0032FE32 /* TheaterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterModel.h; sourceTree = "<group>"; };
+		8401F2DF1E8BB8BA0032FE32 /* TheaterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterModel.m; sourceTree = "<group>"; };
 		840C480C1E4DB82000F4C80A /* HYAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYAddressController.h; sourceTree = "<group>"; };
 		840C480D1E4DB82000F4C80A /* HYAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYAddressController.m; sourceTree = "<group>"; };
 		840C480F1E4DC0B600F4C80A /* area.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = area.json; sourceTree = "<group>"; };
@@ -1386,6 +1404,7 @@
 		84554D921E2F3A04007EE209 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				843142EF1E694C640007740A /* HomeUseView.xib */,
 				843142E71E691D9C0007740A /* HomeImageCell.h */,
 				843142E81E691D9C0007740A /* HomeImageCell.m */,
 				843142E91E691D9C0007740A /* HomeImageCell.xib */,
@@ -1400,7 +1419,6 @@
 				843142FE1E695BD70007740A /* HomeHotCell.h */,
 				843142FF1E695BD70007740A /* HomeHotCell.m */,
 				843143001E695BD70007740A /* HomeHotCell.xib */,
-				843142EF1E694C640007740A /* HomeUseView.xib */,
 				843142F11E694DE70007740A /* RecentHotView.h */,
 				843142F21E694DE70007740A /* RecentHotView.m */,
 				841E45841E80CB28007B6EF3 /* WeekEndCell.h */,
@@ -1832,6 +1850,8 @@
 				842260EB1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m */,
 				84235B721E6EA18100A81A6B /* FilterTableViewController.h */,
 				84235B731E6EA18100A81A6B /* FilterTableViewController.m */,
+				8401F2DB1E8B9FB80032FE32 /* FilterAddressController.h */,
+				8401F2DC1E8B9FB80032FE32 /* FilterAddressController.m */,
 				8497B67E1E88AC9B00392973 /* SelectCouponController.h */,
 				8497B67F1E88AC9C00392973 /* SelectCouponController.m */,
 				842D6BA51E8249F0004A1271 /* Comment */,
@@ -2163,6 +2183,10 @@
 				84525A3F1E2E23E60054C6A1 /* BaseModel.m */,
 				8419612E1E67C73500A78877 /* UserInfoModel.h */,
 				8419612F1E67C73500A78877 /* UserInfoModel.m */,
+				8401F2D21E8B51150032FE32 /* ArticleModel.h */,
+				8401F2D31E8B51150032FE32 /* ArticleModel.m */,
+				8401F2DE1E8BB8BA0032FE32 /* TheaterModel.h */,
+				8401F2DF1E8BB8BA0032FE32 /* TheaterModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2178,14 +2202,20 @@
 				84E5EE931E2DCDEC0062A2BE /* APIHelper.m */,
 				842A56ED1E79318E00D489CA /* APIHelper+Common.h */,
 				842A56EE1E79318E00D489CA /* APIHelper+Common.m */,
+				842D6BB11E826925004A1271 /* APIHelper+Pay.h */,
+				842D6BB21E826925004A1271 /* APIHelper+Pay.m */,
 				84525A371E2E08D20054C6A1 /* APIHelper+User.h */,
 				84525A381E2E08D20054C6A1 /* APIHelper+User.m */,
 				84E6D4281E4817CD0056A702 /* APIHelper+Home.h */,
 				84E6D4291E4817CD0056A702 /* APIHelper+Home.m */,
-				842D6BB11E826925004A1271 /* APIHelper+Pay.h */,
-				842D6BB21E826925004A1271 /* APIHelper+Pay.m */,
+				8401F2D51E8B9C3A0032FE32 /* APIHelper+Theater.h */,
+				8401F2D61E8B9C3A0032FE32 /* APIHelper+Theater.m */,
+				8401F2D81E8B9C4A0032FE32 /* APIHelper+Derive.h */,
+				8401F2D91E8B9C4A0032FE32 /* APIHelper+Derive.m */,
 				842260FC1E8A6DCD009C3FAF /* APIHelper+YearCard.h */,
 				842260FD1E8A6DCD009C3FAF /* APIHelper+YearCard.m */,
+				8401F2CF1E8B504F0032FE32 /* APIHelper+Article.h */,
+				8401F2D01E8B504F0032FE32 /* APIHelper+Article.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -2791,6 +2821,7 @@
 				84235B741E6EA18100A81A6B /* FilterTableViewController.m in Sources */,
 				844343EA1E70018300D9FD2F /* LectureListCell.m in Sources */,
 				842A56F71E793ABD00D489CA /* DatePickerController.m in Sources */,
+				8401F2DA1E8B9C4A0032FE32 /* APIHelper+Derive.m in Sources */,
 				842A56EF1E79318E00D489CA /* APIHelper+Common.m in Sources */,
 				8497B6801E88AC9C00392973 /* SelectCouponController.m in Sources */,
 				841961301E67C73500A78877 /* UserInfoModel.m in Sources */,
@@ -2809,11 +2840,13 @@
 				841E45821E80C288007B6EF3 /* MessageSystemCell.m in Sources */,
 				842D6BAB1E824B19004A1271 /* CommentListController.m in Sources */,
 				8472F73E1E6D4684000AE550 /* TheaterListCell.m in Sources */,
+				8401F2D11E8B504F0032FE32 /* APIHelper+Article.m in Sources */,
 				84E74BD31E70F0E600016A99 /* LectureApplyerCell.m in Sources */,
 				843329B61E85102600A7421E /* TheaterSeatView.m in Sources */,
 				84F6911A1E2C56090048B6DF /* NSObject+Global.m in Sources */,
 				841C00F51E7289B40082ECDA /* DeriveListController.m in Sources */,
 				842260FA1E8A5C5A009C3FAF /* CommitOrderSuccessCell2.m in Sources */,
+				8401F2D41E8B51150032FE32 /* ArticleModel.m in Sources */,
 				8413CECB1E669DF200436B2F /* CustomJumpBtns.m in Sources */,
 				84E6D42A1E4817CD0056A702 /* APIHelper+Home.m in Sources */,
 				843AA2251E30B14100DAE1FF /* UIViewExtension.swift in Sources */,
@@ -2833,6 +2866,7 @@
 				841E45A11E811F15007B6EF3 /* YearCardOrderController.m in Sources */,
 				84428CE31E7627FB001D1B7B /* DeriveRecordController.m in Sources */,
 				841D4AD41E7A1E1A002C49C0 /* MineCommentController.m in Sources */,
+				8401F2DD1E8B9FB80032FE32 /* FilterAddressController.m in Sources */,
 				841C01081E72A8A70082ECDA /* OrderHomeController.m in Sources */,
 				84E5EDBD1E2DC93E0062A2BE /* HYPayEngine.m in Sources */,
 				84E5EE9A1E2DED5F0062A2BE /* HttpHelper.m in Sources */,
@@ -2840,6 +2874,7 @@
 				842A56EC1E792DF500D489CA /* UserInfoViewController.m in Sources */,
 				842260D91E8A07AC009C3FAF /* NSDictionary+FVExtension.m in Sources */,
 				84DCC2781E77C85A0019898E /* SkillDeclarationCell.m in Sources */,
+				8401F2D71E8B9C3A0032FE32 /* APIHelper+Theater.m in Sources */,
 				843142E51E69166C0007740A /* FunctionCell.m in Sources */,
 				848A8FCB1E8372C700B45D0C /* SearchGuideCell.m in Sources */,
 				842260E91E8A494B009C3FAF /* DeriveExchangeSuccessController.m in Sources */,
@@ -2931,6 +2966,7 @@
 				843329BA1E8523A800A7421E /* CommitOrderTopCell.m in Sources */,
 				848A8FC21E836B7100B45D0C /* SearchResultController.m in Sources */,
 				84E5EE651E2DCADA0062A2BE /* NSString+AES.m in Sources */,
+				8401F2E01E8BB8BA0032FE32 /* TheaterModel.m in Sources */,
 				8497B6841E88AE2200392973 /* SelectCouponCell.m in Sources */,
 				84525A401E2E23E60054C6A1 /* BaseModel.m in Sources */,
 				841E45AA1E812B49007B6EF3 /* YearCardDescCell.m in Sources */,

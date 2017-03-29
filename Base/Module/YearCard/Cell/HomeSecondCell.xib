@@ -46,18 +46,17 @@
                         <color key="textColor" red="0.55294117647058827" green="0.55294117647058827" blue="0.55294117647058827" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1C-re-cPg">
-                        <rect key="frame" x="320" y="38" width="31" height="26"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G1C-re-cPg">
+                        <rect key="frame" x="271" y="38" width="80" height="26"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="26" id="wuh-xj-hX6"/>
-                            <constraint firstAttribute="width" constant="31" id="z9k-6v-U5x"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                         <color key="textColor" red="0.94117647059999998" green="0.31372549020000001" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hol-2a-FWC">
-                        <rect key="frame" x="301" y="43" width="16" height="21"/>
+                        <rect key="frame" x="252" y="43" width="16" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="PnF-Sc-xP6"/>
                             <constraint firstAttribute="width" constant="16" id="bCi-C6-t7K"/>
@@ -95,6 +94,10 @@
                     <constraint firstAttribute="trailing" secondItem="G1C-re-cPg" secondAttribute="trailing" constant="24" id="qfY-UO-0qx"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="detailLbl" destination="hGB-Te-faj" id="wB4-Vw-xIX"/>
+                <outlet property="priceLbl" destination="G1C-re-cPg" id="InK-ZW-udf"/>
+            </connections>
             <point key="canvasLocation" x="34.5" y="54"/>
         </tableViewCell>
     </objects>

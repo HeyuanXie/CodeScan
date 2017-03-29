@@ -16,6 +16,7 @@ NSString* const kMineHomeViewController = @"MineHomeViewController";
 NSString* const kTheaterListViewController = @"TheaterListViewController";
 NSString* const kTheaterDetailViewController = @"TheaterDetailViewController";
 NSString* const kTheaterTicketViewController = @"TheaterTicketViewController";
+NSString* const kFilterAddressController = @"FilterAddressController";
 NSString* const kFilterTableViewController = @"FilterTableViewController";
 NSString* const kCommentViewController = @"CommentViewController";
 NSString* const kCommentListController = @"CommentListController";
@@ -122,6 +123,7 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kTheaterListViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterDetailViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kTheaterTicketViewController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kFilterAddressController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kFilterTableViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kCommentViewController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kCommentListController,@"sb":@"Main",@"method":@"push"},

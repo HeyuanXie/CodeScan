@@ -28,6 +28,9 @@
     [super viewDidLoad];
 
     self.contentType = 2;   //默认为文章
+    if (self.schemaArgu[@"contentType"]) {
+        self.contentType = [[self.schemaArgu objectForKey:@"contentType"] integerValue];
+    }
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[SearchGuideCell identify] bundle:nil] forCellReuseIdentifier:[SearchGuideCell identify]];
 
@@ -180,6 +183,7 @@
     
     NSArray* menu = @[@"演出",@"商品",@"文章"];
     UIButton* btn = [searhView viewWithTag:1000];
+    [btn setTitle:menu[self.contentType] forState:UIControlStateNormal];
     btn.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 0, -30);
     btn.titleEdgeInsets = UIEdgeInsetsMake(0, -12, 0, 12);
     [btn bk_whenTapped:^{

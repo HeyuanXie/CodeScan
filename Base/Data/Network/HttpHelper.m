@@ -74,7 +74,10 @@
     [self.requestSerializer setValue:[Global IDFV] forHTTPHeaderField:@"Client-id"];
     if ([Global userAuth]) {
         [self.requestSerializer setValue:[Global userAuth] forHTTPHeaderField:@"auth"];
-    }    //    [self.requestSerializer setQueryStringSerializationWithBlock:^NSString * _Nonnull(NSURLRequest * _Nonnull request, id  _Nonnull parameters, NSError * _Nullable __autoreleasing * _Nullable error) {
+    }else{
+        [self.requestSerializer setValue:nil forHTTPHeaderField:@"auth"];
+    }
+    //    [self.requestSerializer setQueryStringSerializationWithBlock:^NSString * _Nonnull(NSURLRequest * _Nonnull request, id  _Nonnull parameters, NSError * _Nullable __autoreleasing * _Nullable error) {
     //        return parameters;
     //    }];
     
@@ -120,6 +123,8 @@
     [self.requestSerializer setValue:[Global IDFV] forHTTPHeaderField:@"Client-id"];
     if ([Global userAuth]) {
         [self.requestSerializer setValue:[Global userAuth] forHTTPHeaderField:@"auth"];
+    }else{
+        [self.requestSerializer setValue:nil forHTTPHeaderField:@"auth"];
     }
     
     //打印POST的JSON数据

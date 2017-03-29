@@ -10,4 +10,7 @@
 
 @interface HomeDescCell : UITableViewCell
 
++(NSString*)identify;
+-(void)configDescCell:(id)model;
+
 @end

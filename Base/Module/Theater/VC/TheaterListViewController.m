@@ -8,16 +8,18 @@
 
 #import "TheaterListViewController.h"
 #import "HYAddressController.h"
-#import "BaseNavigationController.h"
+#import "FilterAddressController.h"
 #import "FilterTableViewController.h"
 #import "TheaterListCell.h"
+#import "APIHelper+Theater.h"
+#import "TheaterModel.h"
 
 @interface TheaterListViewController ()
 
 @property(nonatomic,strong)UIButton *addressBtn;
 @property(nonatomic,strong)UIButton *filterBtn;
 @property(nonatomic,strong)UIView *backGrayView;
-@property(nonatomic,strong)BaseNavigationController* addressNVC;
+@property(nonatomic,strong)FilterAddressController* filterCityVC;
 @property(nonatomic,strong)FilterTableViewController* filterVC;
 
 @property(nonatomic,assign)NSInteger currentIndex;
@@ -68,9 +70,16 @@
 }
 
 #pragma mark - private methods
+-(NSMutableArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
+
 -(void)subviewInit {
-    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithImage:ImageNamed(@"") style:UIBarButtonItemStylePlain target:self action:@selector(search)];
-    self.navigationController.navigationItem.rightBarButtonItem = rightItem;
+    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithImage:[ImageNamed(@"订单搜索") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(search)];
+    self.navigationItem.rightBarButtonItem = rightItem;
     
     UIView* filterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, zoom(44))];
     filterView.backgroundColor = [UIColor whiteColor];
@@ -79,27 +88,61 @@
     for (NSString* title in titles) {
         UIButton * btn = [HYTool getButtonWithFrame:CGRectMake(i*kScreen_Width/titles.count, 0, kScreen_Width/titles.count, zoom(44)) title:title titleSize:14 titleColor:[UIColor hyBlackTextColor] backgroundColor:[UIColor clearColor] blockForClick:nil];
         btn.tag = 1000 + i;
+        [btn setImage:ImageNamed(@"三角形_黑色下") forState:UIControlStateNormal];
+        btn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+        btn.imageEdgeInsets = UIEdgeInsetsMake(0, 75, 0, 0);
         [btn addTarget:self action:@selector(filter:) forControlEvents:UIControlEventTouchUpInside];
         [filterView addSubview:btn];
         i++;
     }
+    [filterView addSubview:[HYTool getLineWithFrame:CGRectMake(0, zoom(44), kScreen_Width, 0.5) lineColor:nil]];
     [self.view addSubview:filterView];
 }
 
 - (void)fetchData {
-    _dataArray = [NSMutableArray array];
-    [_dataArray addObject:@(1)];
-    
-    if (1) {
-        [self appendFooterView];
-    }
+    [self.dataArray removeAllObjects];
+    [self showLoadingAnimation];
+    [APIHELPER theaterListStart:0 limit:10 classId:0 orderType:@"" city:@"" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        
+        if (isSuccess) {
+            [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[TheaterModel class] array:responseObject[@"data"][@"list"]] ];
+            self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+            if (self.haveNext) {
+                [self appendFooterView];
+            }else{
+                [self removeFooterRefresh];
+            }
+            [self.tableView reloadData];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
 
 -(void)headerViewInit {
     @weakify(self);
+    [self.dataArray removeAllObjects];
     [self addHeaderRefresh:^{
         @strongify(self);
-        //TODO:
+        [self showLoadingAnimation];
+        [APIHELPER theaterListStart:0 limit:10 classId:0 orderType:@"" city:@"" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[TheaterModel class] array:responseObject[@"data"][@"list"]] ];
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+                [self.tableView reloadData];
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
     }];
 }
 
@@ -107,12 +150,29 @@
     @weakify(self);
     [self addFooterRefresh:^{
         @strongify(self);
-        //TODO:
+        [self showLoadingAnimation];
+        [APIHELPER theaterListStart:self.dataArray.count limit:10 classId:0 orderType:@"" city:@"" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[TheaterModel class] array:responseObject[@"data"][@"list"]] ];
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+                [self.tableView reloadData];
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
     }];
 }
 
 -(void)search {
-    
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=%d",kSearchGuideController,0]));
 }
 
 -(void)filter:(UIButton*)btn {
@@ -142,47 +202,33 @@
     return _filterVC;
 }
 
--(BaseNavigationController *)addressNVC {
-    if (!_addressNVC) {
-        HYAddressController *addressC = (HYAddressController *)VIEWCONTROLLER(kAddressController);
-        addressC.backItemHidden = YES;
+
+-(FilterAddressController *)filterCityVC {
+    if (!_filterCityVC) {
+        _filterCityVC = (FilterAddressController*)VIEWCONTROLLER(kFilterAddressController);
         @weakify(self);
-        [addressC setSelectAddress:^(NSString *areaName, NSString *areaID) {
+        [_filterCityVC setSelectCity:^(NSString * city) {
             @strongify(self);
-            [self.addressBtn setTitle:areaName forState:UIControlStateNormal];
             [self hiddenFilterAddress];
             //TODO:fetchData
         }];
-        [addressC setFilterDismiss:^{
-            @strongify(self);
-            [self hiddenFilterAddress];
-        }];
-        addressC.isFilter = YES;
-        _addressNVC = [[BaseNavigationController alloc] initWithRootViewController:addressC];
-        [_addressNVC.navigationBar setBackgroundColor:[UIColor whiteColor]];
-        [_addressNVC.navigationBar setTintColor:[UIColor whiteColor]];
-        [_addressNVC.navigationBar setBarTintColor:[UIColor whiteColor]];
-        [_addressNVC.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor hyBlackTextColor],
-                                                            NSFontAttributeName: [UIFont systemFontOfSize:17.0f]}];
     }
-    return _addressNVC;
+    return _filterCityVC;
 }
 
 - (void)filterAddress:(UIButton *)button{
     [self hideFilterView:self.filterBtn];
-    if (self.addressNVC.view.superview) {
-        //如果self.addressNVC已经加载，点击后移除self.addressNVC
+    if (self.filterCityVC.view.superview) {
         [self hiddenFilterAddress];
         return;
     }
     button.enabled = NO;    //避免多次addressNVC未加载成功时点击多次，而加载多个addressNVC
-    [self addChildViewController:self.addressNVC];
-    [self.view addSubview:self.addressNVC.view];
-    [self.view bringSubviewToFront:self.addressNVC.view];
-    [self.addressNVC popToRootViewControllerAnimated:NO];
-    [self.addressNVC.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(zoom(45), 0, -44, 0)];
+    [self addChildViewController:self.filterCityVC];
+    [self.view addSubview:self.filterCityVC.view];
+    [self.view bringSubviewToFront:self.filterCityVC.view];
+    [self.filterCityVC.view autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(zoom(45), 0, -44, 0)];
     [UIView animateWithDuration:0.3 animations:^{
-        self.addressNVC.view.alpha = 1.0;
+        self.filterCityVC.view.alpha = 1.0;
     } completion:^(BOOL finished) {
         button.enabled = YES;   //addressNVC加载成功后恢复button.enabled
     }];
@@ -190,11 +236,11 @@
 }
 
 - (void)hiddenFilterAddress{
-    [self.addressNVC removeFromParentViewController];
-    [self.addressNVC.view removeFromSuperview];
+    [self.filterCityVC removeFromParentViewController];
+    [self.filterCityVC.view removeFromSuperview];
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.addressNVC.view.alpha = CGFLOAT_MIN;
+        self.filterCityVC.view.alpha = CGFLOAT_MIN;
     }];
 }
 

@@ -298,9 +298,9 @@
         cell.allView.hidden = YES;
     }
     //TODO:configCell
-    [cell configWeekEndCell:nil];
+    [cell configWeekEndCell:nil type:indexPath.section-2];
     [cell.allBtn bk_whenTapped:^{
-        APPROUTE(([NSString stringWithFormat:@"%@?type=%d",kWeekEndListController,1]));
+        APPROUTE(([NSString stringWithFormat:@"%@?type=%ld",kWeekEndListController,indexPath.section-2]));
     }];
     return cell;
 }

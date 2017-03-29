@@ -17,6 +17,7 @@ extern NSString* const kMineHomeViewController;
 extern NSString* const kTheaterListViewController;
 extern NSString* const kTheaterDetailViewController;
 extern NSString* const kTheaterTicketViewController;
+extern NSString* const kFilterAddressController;
 extern NSString* const kFilterTableViewController;
 extern NSString* const kCommentViewController;  //添加剧场评论
 extern NSString* const kCommentListController;  //指定剧场的用户评论列表

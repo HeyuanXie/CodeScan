@@ -21,7 +21,9 @@
 }
 
 -(void)configTopCell:(id)model {
-    
+    if (model) {
+        self.titleLbl.text = model[@"card_name"];
+    }
 }
 
 - (void)awakeFromNib {

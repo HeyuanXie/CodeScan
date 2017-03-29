@@ -88,7 +88,7 @@ typedef enum : NSUInteger {
             cell.contentView.backgroundColor = [UIColor whiteColor];
             cell.allViewHeight.constant = 0;
             cell.allView.hidden = YES;
-            [cell configWeekEndCell:nil];
+            [cell configWeekEndCell:nil type:0];
             return cell;
         }
     }

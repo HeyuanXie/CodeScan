@@ -149,7 +149,6 @@
                     <state key="normal" title="文章" image="三角形_黑色下">
                         <color key="titleColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                    <state key="highlighted" image="arrow_down"/>
                 </button>
                 <textField opaque="NO" clipsSubviews="YES" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bvm-jw-DF0">
                     <rect key="frame" x="65" y="0.0" width="235" height="34"/>
@@ -179,7 +178,6 @@
         </view>
     </objects>
     <resources>
-        <image name="arrow_down" width="17" height="10"/>
         <image name="yazi.png" width="96" height="133"/>
         <image name="三角形_黑色下" width="12" height="12"/>
     </resources>

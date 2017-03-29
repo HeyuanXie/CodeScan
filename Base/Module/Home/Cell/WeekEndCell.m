@@ -7,6 +7,8 @@
 //
 
 #import "WeekEndCell.h"
+#import "ArticleModel.h"
+#import "NSDate+HYFormat.h"
 
 @interface WeekEndCell ()
 
@@ -36,7 +38,19 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configWeekEndCell:(id)model {
+-(void)configWeekEndCell:(id)model type:(NSInteger)type {
+    ArticleModel* article = (ArticleModel*)model;
+    
+    if (article.title) {
+        self.titleLbl.text = article.title;
+    }
+    self.timeLbl.text = [NSDate dateStringWithString:article.addtime inputFormat:nil outputFormat:@"MM-dd HH-mm"];
+    if (![article.img isEmpty]) {
+        [self.imgV sd_setImageWithURL:[NSURL URLWithString:article.img] placeholderImage:nil];
+    }
+    
+    [self.supportBtn setTitle:[article.light stringValue] forState:UIControlStateNormal];
+    [self.commentBtn setTitle:[article.commentNum stringValue] forState:UIControlStateNormal];
     [self.supportBtn bk_whenTapped:^{
         //TODO:点赞
         
@@ -46,6 +60,9 @@
         
     }];
     
+    if (article.summary) {
+        self.detailLbl.text = article.summary;
+    }
     NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc] init];
     [style setLineSpacing:3.0];
     NSMutableAttributedString* mAttr = [[NSMutableAttributedString alloc] initWithString:self.detailLbl.text];

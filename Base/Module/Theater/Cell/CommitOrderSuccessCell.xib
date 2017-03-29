@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CommitOrderSuccessCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="193" id="KGk-i7-Jjw" customClass="CommitOrderSuccessCell">
             <rect key="frame" x="0.0" y="0.0" width="375" height="185"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -71,7 +71,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地点:   东莞玉兰大剧场" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPg-o2-kat">
-                        <rect key="frame" x="12" y="147" width="351" height="18"/>
+                        <rect key="frame" x="12" y="146" width="351" height="18"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="1ED-3q-uH1"/>
                         </constraints>
@@ -80,10 +80,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1楼20排14座 / 1楼20排15座 / 1楼20排16座 / 1楼20排17座 /1楼20排18座" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wm1-zU-4yf">
-                        <rect key="frame" x="60" y="114" width="303" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="4g5-ij-gZs"/>
-                        </constraints>
+                        <rect key="frame" x="60" y="114" width="303" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -114,7 +111,7 @@
                 <outlet property="titleLbl" destination="Tbw-aX-dIX" id="eNG-og-n2v"/>
                 <outlet property="topView" destination="CzW-k7-ZtN" id="dX1-P8-gao"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="53.5"/>
+            <point key="canvasLocation" x="33.5" y="57.5"/>
         </tableViewCell>
     </objects>
     <resources>

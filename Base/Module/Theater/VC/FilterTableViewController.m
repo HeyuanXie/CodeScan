@@ -58,9 +58,16 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreen_Width-32, (240/5-20)/2, 20, 20)];
+        imageView.image = ImageNamed(@"选中");
+        imageView.tag = 1000;
+        [cell.contentView addSubview:imageView];
     }
     cell.textLabel.text = self.titles[indexPath.row];
     cell.textLabel.textColor = self.currentIndex == indexPath.row ? [UIColor hyBlueTextColor] : [UIColor hyBlackTextColor];
+    
+    UIImageView* imgV = [cell.contentView viewWithTag:1000];
+    imgV.hidden = !(self.currentIndex == indexPath.row);
     return cell;
 }
 

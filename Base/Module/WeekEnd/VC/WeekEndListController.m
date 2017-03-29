@@ -11,7 +11,8 @@
 #import "WeekEndUseView.h"
 #import "WeekEndTopView.h"
 #import "NSString+Extension.h"
-
+#import "ArticleModel.h"
+#import "APIHelper+Article.h"
 
 @interface WeekEndListController ()
 
@@ -19,6 +20,8 @@
 @property(nonatomic,assign)NSInteger type;  //类型，0为小飞象资讯、1为周末去哪儿
 
 @property(nonatomic,strong)NSMutableArray* countries;   //镇区
+@property(nonatomic,assign)NSInteger areaId;
+@property(nonatomic,assign)NSInteger cateId;
 @property(nonatomic,strong)NSString* selectCountry;
 @property(nonatomic,strong)UIButton* rightBtn;  //navigationItem 的btn
 
@@ -41,6 +44,7 @@
 
     [self subviewStyle];
     [self fetchData];
+    [self headViewInit];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,7 +63,7 @@
     WeekEndCell* cell = [tableView dequeueReusableCellWithIdentifier:[WeekEndCell identify]];
     cell.allViewHeight.constant = 0;
     cell.allView.hidden = YES;
-    [cell configWeekEndCell:nil];
+    [cell configWeekEndCell:self.dataArray[indexPath.row] type:self.type];
     return cell;
 }
 
@@ -70,7 +74,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    APPROUTE(([NSString stringWithFormat:@"%@?Id=%@",kWeekEndDetailController,@"1"]));
+    ArticleModel* article = self.dataArray[indexPath.row];
+    NSInteger articleId = self.type == 0 ? article.seekId.integerValue : article.articleId.integerValue;
+    APPROUTE(([NSString stringWithFormat:@"%@?Id=%ld",kWeekEndDetailController,articleId]));
 }
 #pragma mark - private methods
 -(NSMutableArray *)dataArray {
@@ -81,13 +87,129 @@
 }
 
 -(void)fetchData {
-    if (self.type == 0) {
-        
+    [self.dataArray removeAllObjects];
+    [self showLoadingAnimation];
+    if (self.type == 1) {
+        [APIHELPER weekEndArticleAreaId:self.areaId cateId:self.cateId start:0 limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            if (isSuccess) {
+                NSArray* articleArr = [NSArray yy_modelArrayWithClass:[ArticleModel class] array:responseObject[@"data"][@"list"]];
+                [self.dataArray addObjectsFromArray:articleArr];
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+                [self.tableView reloadData];
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+        }];
     }else{
-        
+        [APIHELPER informationArticleStart:0 limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            if (isSuccess) {
+                NSArray* articleArr = [NSArray yy_modelArrayWithClass:[ArticleModel class] array:responseObject[@"data"][@"list"]];
+                [self.dataArray addObjectsFromArray:articleArr];
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+                [self.tableView reloadData];
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+        }];
     }
-    self.dataArray = [@[@"",@""] mutableCopy];
-    [self.tableView reloadData];
+}
+-(void)headViewInit {
+    @weakify(self);
+    [self addHeaderRefresh:^{
+        @strongify(self);
+        [self.dataArray removeAllObjects];
+        if (self.type == 1) {
+            [APIHELPER weekEndArticleAreaId:self.areaId cateId:self.cateId start:0 limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    NSArray* articleArr = [NSArray yy_modelArrayWithClass:[ArticleModel class] array:responseObject[@"data"][@"list"]];
+                    [self.dataArray addObjectsFromArray:articleArr];
+                    self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                    if (self.haveNext) {
+                        [self appendFooterView];
+                    }else{
+                        [self removeFooterRefresh];
+                    }
+                    [self.tableView reloadData];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+                [self endRefreshing];
+            }];
+        }else{
+            [APIHELPER informationArticleStart:0 limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    NSArray* articleArr = [NSArray yy_modelArrayWithClass:[ArticleModel class] array:responseObject[@"data"][@"list"]];
+                    [self.dataArray addObjectsFromArray:articleArr];
+                    self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                    if (self.haveNext) {
+                        [self appendFooterView];
+                    }else{
+                        [self removeFooterRefresh];
+                    }
+                    [self.tableView reloadData];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+                [self endRefreshing];
+            }];
+        }
+    }];
+}
+-(void)appendFooterView {
+    @weakify(self);
+    [self addFooterRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        if (self.type == 1) {
+            [APIHELPER weekEndArticleAreaId:self.areaId cateId:self.cateId start:self.dataArray.count limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [self hideLoadingAnimation];
+                if (isSuccess) {
+                    NSArray* articleArr = [NSArray yy_modelArrayWithClass:[ArticleModel class] array:responseObject[@"data"][@"list"]];
+                    [self.dataArray addObjectsFromArray:articleArr];
+                    self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                    if (self.haveNext) {
+                        [self appendFooterView];
+                    }else{
+                        [self removeFooterRefresh];
+                    }
+                    [self.tableView reloadData];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+                [self endRefreshing];
+            }];
+        }else{
+            [APIHELPER informationArticleStart:self.dataArray.count limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [self hideLoadingAnimation];
+                if (isSuccess) {
+                    NSArray* articleArr = [NSArray yy_modelArrayWithClass:[ArticleModel class] array:responseObject[@"data"][@"list"]];
+                    [self.dataArray addObjectsFromArray:articleArr];
+                    self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                    if (self.haveNext) {
+                        [self appendFooterView];
+                    }else{
+                        [self removeFooterRefresh];
+                    }
+                    [self.tableView reloadData];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+                [self endRefreshing];
+            }];
+        }
+    }];
 }
 
 -(void)subviewStyle  {

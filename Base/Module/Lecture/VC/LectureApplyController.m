@@ -181,8 +181,8 @@
             cell.contentView.backgroundColor = [UIColor whiteColor];
 
             UIButton* selectBtn = [HYTool getButtonWithFrame:CGRectZero title:nil titleSize:0 titleColor:nil backgroundColor:[UIColor clearColor] blockForClick:nil];
-            [selectBtn setImage:ImageNamed(@"on") forState:UIControlStateSelected];
-            [selectBtn setImage:ImageNamed(@"off") forState:UIControlStateNormal];
+            [selectBtn setImage:ImageNamed(@"已选择") forState:UIControlStateSelected];
+            [selectBtn setImage:ImageNamed(@"未选择") forState:UIControlStateNormal];
             selectBtn.tag = 1000 + indexPath.row;
             [cell.contentView addSubview:selectBtn];
             [selectBtn autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 0, 0) excludingEdge:ALEdgeLeft];

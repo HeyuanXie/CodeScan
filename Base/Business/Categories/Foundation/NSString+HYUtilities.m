@@ -277,4 +277,24 @@ static NSString *base64_encode_data(NSData *data){
     return keyRef;
 }
 
+/**
+ 去掉html字符串中的标签，得到正常字符串
+
+
+ @param hString 带标签的html字符串
+ @return 返回的正常字符串
+ */
++ (NSString *)stringWithHtmlString:(NSString*)hString {
+    
+    NSScanner * scanner = [NSScanner scannerWithString:hString];
+    NSString * text = nil;
+    while([scanner isAtEnd]==NO)
+    {
+        [scanner scanUpToString:@"<" intoString:nil];
+        [scanner scanUpToString:@">" intoString:&text];
+        hString = [hString stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+    }
+    return hString;
+}
+
 @end

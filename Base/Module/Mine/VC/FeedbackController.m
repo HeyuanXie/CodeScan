@@ -87,7 +87,7 @@
     for (int i=0; i<typeViews.count; i++) {
         UIView *view = typeViews[i];
         UIImageView *imageView = [view viewWithTag:10086];
-        imageView.image = [self.selectTypeArray[i] boolValue] ? ImageNamed(@"on"):ImageNamed(@"out");
+        imageView.image = [self.selectTypeArray[i] boolValue] ? ImageNamed(@"勾选协议"):ImageNamed(@"未选择");
     }
 }
 
