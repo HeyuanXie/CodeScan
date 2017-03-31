@@ -10,4 +10,12 @@
 
 @interface APIHelper (Derive)
 
+-(void)deriveListStart:(NSInteger)start limit:(NSInteger)limit categoryId:(NSInteger)categoryId complete:(ApiRequestCompleteBlock)complete;
+
+-(void)deriveDetail:(NSInteger)goodId complete:(ApiRequestCompleteBlock)complete;
+
+-(void)deriveExchange:(NSInteger)goodId buyNum:(NSInteger)buyNum complete:(ApiRequestCompleteBlock)complete;
+
+-(void)deriveOrderDetail:(NSString*)orderSn complete:(ApiRequestCompleteBlock)complete;
+
 @end

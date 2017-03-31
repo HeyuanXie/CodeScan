@@ -22,20 +22,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYF-0a-01F">
                         <rect key="frame" x="12" y="0.0" width="168" height="229"/>
                         <subviews>
-                            <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUw-eb-eDH">
-                                <rect key="frame" x="110" y="195" width="48" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="0fr-EF-OSV"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="兑换">
-                                    <color key="titleColor" red="0.41960784309999999" green="0.70196078429999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZa-jF-QSW">
                                 <rect key="frame" x="10" y="195" width="90" height="24"/>
                                 <constraints>
@@ -58,9 +44,27 @@
                                 <rect key="frame" x="0.0" y="0.0" width="168" height="171"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.52941176469999995" blue="0.60392156860000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gba-xg-fpL">
+                                <rect key="frame" x="0.0" y="0.0" width="168" height="229"/>
+                            </button>
+                            <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUw-eb-eDH">
+                                <rect key="frame" x="110" y="195" width="48" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="0fr-EF-OSV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="兑换">
+                                    <color key="titleColor" red="0.41960784309999999" green="0.70196078429999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gba-xg-fpL" secondAttribute="trailing" id="0l4-eY-dZX"/>
                             <constraint firstItem="jhl-HK-Q08" firstAttribute="leading" secondItem="bYF-0a-01F" secondAttribute="leading" constant="10" id="26g-5V-IZt"/>
                             <constraint firstItem="EUw-eb-eDH" firstAttribute="width" secondItem="bYF-0a-01F" secondAttribute="width" multiplier="48:168" id="2JG-qh-vWa"/>
                             <constraint firstItem="DZa-jF-QSW" firstAttribute="top" secondItem="jhl-HK-Q08" secondAttribute="bottom" id="7mf-Qc-ZOq"/>
@@ -69,10 +73,13 @@
                             <constraint firstAttribute="trailing" secondItem="jhl-HK-Q08" secondAttribute="trailing" id="Xvy-HJ-AAO"/>
                             <constraint firstItem="DZa-jF-QSW" firstAttribute="leading" secondItem="bYF-0a-01F" secondAttribute="leading" constant="10" id="e3Z-mv-0M3"/>
                             <constraint firstItem="ezB-sa-ZoT" firstAttribute="leading" secondItem="bYF-0a-01F" secondAttribute="leading" id="e8e-Qw-XC9"/>
+                            <constraint firstAttribute="bottom" secondItem="gba-xg-fpL" secondAttribute="bottom" id="f50-O7-oFE"/>
                             <constraint firstAttribute="bottom" secondItem="EUw-eb-eDH" secondAttribute="bottom" constant="10" id="jYN-zC-h5x"/>
                             <constraint firstItem="DZa-jF-QSW" firstAttribute="centerY" secondItem="EUw-eb-eDH" secondAttribute="centerY" id="kmH-h8-yEz"/>
+                            <constraint firstItem="gba-xg-fpL" firstAttribute="top" secondItem="bYF-0a-01F" secondAttribute="top" id="lgj-zM-Njl"/>
                             <constraint firstItem="EUw-eb-eDH" firstAttribute="leading" secondItem="DZa-jF-QSW" secondAttribute="trailing" constant="10" id="nUu-Gs-Wfo"/>
                             <constraint firstAttribute="trailing" secondItem="EUw-eb-eDH" secondAttribute="trailing" constant="10" id="twN-8O-GaU"/>
+                            <constraint firstItem="gba-xg-fpL" firstAttribute="leading" secondItem="bYF-0a-01F" secondAttribute="leading" id="wOj-tP-SjD"/>
                             <constraint firstItem="jhl-HK-Q08" firstAttribute="top" secondItem="ezB-sa-ZoT" secondAttribute="bottom" id="woZ-z3-TLr"/>
                         </constraints>
                     </view>
@@ -86,20 +93,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZR-HW-69i">
                         <rect key="frame" x="195" y="0.0" width="168" height="229"/>
                         <subviews>
-                            <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mio-4o-GYC">
-                                <rect key="frame" x="110" y="195" width="48" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="ZIQ-GY-oo7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="兑换">
-                                    <color key="titleColor" red="0.41960784309999999" green="0.70196078429999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amg-0P-dhQ">
                                 <rect key="frame" x="10" y="195" width="90" height="24"/>
                                 <constraints>
@@ -122,6 +115,23 @@
                                 <rect key="frame" x="0.0" y="0.0" width="168" height="171"/>
                                 <color key="backgroundColor" red="0.96862745100000003" green="0.52941176469999995" blue="0.60392156860000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OTc-fC-3On">
+                                <rect key="frame" x="0.0" y="0.0" width="168" height="229"/>
+                            </button>
+                            <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mio-4o-GYC">
+                                <rect key="frame" x="110" y="195" width="48" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="ZIQ-GY-oo7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="兑换">
+                                    <color key="titleColor" red="0.41960784309999999" green="0.70196078429999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -129,14 +139,18 @@
                             <constraint firstItem="amg-0P-dhQ" firstAttribute="leading" secondItem="rZR-HW-69i" secondAttribute="leading" constant="10" id="5At-B7-raP"/>
                             <constraint firstAttribute="trailing" secondItem="bWd-it-ZYQ" secondAttribute="trailing" id="9da-Zd-oTR"/>
                             <constraint firstItem="amg-0P-dhQ" firstAttribute="centerY" secondItem="Mio-4o-GYC" secondAttribute="centerY" id="BMr-JC-ard"/>
+                            <constraint firstAttribute="trailing" secondItem="OTc-fC-3On" secondAttribute="trailing" id="Evh-eY-NiN"/>
                             <constraint firstItem="Mio-4o-GYC" firstAttribute="width" secondItem="rZR-HW-69i" secondAttribute="width" multiplier="48:168" id="Lrg-e2-x2E"/>
                             <constraint firstItem="bWd-it-ZYQ" firstAttribute="leading" secondItem="rZR-HW-69i" secondAttribute="leading" constant="10" id="OCv-RM-9da"/>
+                            <constraint firstItem="OTc-fC-3On" firstAttribute="leading" secondItem="rZR-HW-69i" secondAttribute="leading" id="OJr-q5-vus"/>
                             <constraint firstAttribute="trailing" secondItem="qDT-fH-ThT" secondAttribute="trailing" id="TJe-7u-BBp"/>
                             <constraint firstItem="qDT-fH-ThT" firstAttribute="leading" secondItem="rZR-HW-69i" secondAttribute="leading" id="ZvH-Js-ecp"/>
                             <constraint firstAttribute="trailing" secondItem="Mio-4o-GYC" secondAttribute="trailing" constant="10" id="aLe-2H-bS1"/>
                             <constraint firstItem="qDT-fH-ThT" firstAttribute="top" secondItem="rZR-HW-69i" secondAttribute="top" id="hHb-GJ-kdf"/>
                             <constraint firstAttribute="bottom" secondItem="Mio-4o-GYC" secondAttribute="bottom" constant="10" id="mJd-dh-1PO"/>
+                            <constraint firstAttribute="bottom" secondItem="OTc-fC-3On" secondAttribute="bottom" id="qof-at-umS"/>
                             <constraint firstItem="bWd-it-ZYQ" firstAttribute="top" secondItem="qDT-fH-ThT" secondAttribute="bottom" id="wVO-77-FSy"/>
+                            <constraint firstItem="OTc-fC-3On" firstAttribute="top" secondItem="rZR-HW-69i" secondAttribute="top" id="xgY-CH-DLG"/>
                             <constraint firstItem="Mio-4o-GYC" firstAttribute="leading" secondItem="amg-0P-dhQ" secondAttribute="trailing" constant="10" id="y8O-2s-TBy"/>
                         </constraints>
                     </view>
@@ -157,7 +171,9 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="leftBtn" destination="gba-xg-fpL" id="PU6-dY-l98"/>
                 <outlet property="leftView" destination="bYF-0a-01F" id="2oG-SQ-5NM"/>
+                <outlet property="rightBtn" destination="OTc-fC-3On" id="oxd-sT-PTT"/>
                 <outlet property="rightView" destination="rZR-HW-69i" id="2DE-Cp-SxV"/>
             </connections>
             <point key="canvasLocation" x="-39.5" y="36"/>

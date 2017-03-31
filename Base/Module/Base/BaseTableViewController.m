@@ -64,6 +64,11 @@
 
 -(void)removeFooterRefresh {
     self.tableView.mj_footer = nil;
+    
+    if (self.haveTableFooter) {
+        UIView* foot = LOADNIB(@"HomeUseView", 2);
+        self.tableView.tableFooterView = foot;
+    }
 }
 
 -(BOOL)hasFooterRefresh {

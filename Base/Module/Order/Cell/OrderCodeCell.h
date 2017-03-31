@@ -12,5 +12,6 @@
 
 +(NSString*)identify;
 -(void)configCodeCell:(id)model;
+-(void)configDeriveCodeCell:(id)model;
 
 @end

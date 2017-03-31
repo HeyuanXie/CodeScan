@@ -7,6 +7,7 @@
 //
 
 #import "PointManageTopCell.h"
+#import "NSDate+HYFormat.h"
 
 @interface PointManageTopCell ()
 
@@ -26,7 +27,7 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configPointManageTopCell:(id)model {
+-(void)configPointManageTopCell:(id)minePoint {
     [self.recordView bk_whenTapped:^{
         APPROUTE(kDeriveRecordController);
     }];
@@ -36,6 +37,9 @@
     [self.ruleView bk_whenTapped:^{
         APPROUTE(kPointDescController);
     }];
+    
+    self.pointLbl.text = [minePoint stringValue];
+    self.timeLbl.text = [[NSDate dateStringWithDate:[NSDate date] format:@"yyyy"] stringByAppendingString:@"-12-30"];
 }
 
 - (void)awakeFromNib {

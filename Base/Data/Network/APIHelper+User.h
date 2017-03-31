@@ -45,4 +45,25 @@
 
 - (void)logout;
 
+- (void)collect:(NSInteger)collectionId
+           type:(NSInteger)type
+       complete:(ApiRequestCompleteBlock)complete;
+
+- (void)cancelCollect:(NSInteger)collectionId
+                 type:(NSInteger)type
+             complete:(ApiRequestCompleteBlock)complete;
+
+- (void)fetchCollectList:(NSInteger)start
+                   limit:(NSInteger)limit
+                    type:(NSInteger)type
+                complete:(ApiRequestCompleteBlock)complete;
+
+- (void)scoreManageComplete:(ApiRequestCompleteBlock)complete;
+
+- (void)scoreInfoList:(NSInteger)start
+                limit:(NSInteger)limit
+             complete:(ApiRequestCompleteBlock)complte;
+
+- (void)scoreSignComplete:(ApiRequestCompleteBlock)complete;
+
 @end

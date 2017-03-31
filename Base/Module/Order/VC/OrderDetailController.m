@@ -11,14 +11,13 @@
 #import "OrderRefundCell.h"
 #import "OrderCodeCell.h"
 #import "OrderDetailCell.h"
-
 #import "UIViewController+Extension.h"
 
 @interface OrderDetailController ()
 
 @property(strong,nonatomic)NSMutableArray* codeArray;
 @property(strong,nonatomic)NSString* type;  //订单类型
-@property(assign,nonatomic)NSInteger Id;    //订单Id
+@property(assign,nonatomic)NSString* Id;    //订单Id
 
 @property(strong,nonatomic)NSArray* maps;//手机安装的地图的数组
 @end
@@ -32,7 +31,7 @@
         self.type = [self.schemaArgu objectForKey:@"type"];
     }
     if (self.schemaArgu[@"Id"]) {
-        self.Id = [[self.schemaArgu objectForKey:@"Id"] integerValue];
+        self.Id = [self.schemaArgu objectForKey:@"Id"];
     }
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -217,7 +216,11 @@
     OrderCodeCell*cell = [tableView dequeueReusableCellWithIdentifier:[OrderCodeCell identify]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    [cell configCodeCell:nil];
+    if ([self.type isEqualToString:@"theater"]) {
+        [cell configCodeCell:nil];
+    }else if ([self.type isEqualToString:@"derive"]) {
+        [cell configDeriveCodeCell:nil];
+    }
     return cell;
 }
 -(UITableViewCell*)detailHeadCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
@@ -250,7 +253,7 @@
 }
 
 -(void)fetchData {
-    self.codeArray = [@[@"",@""] mutableCopy];
+    
     [self.tableView reloadData];
 }
 @end

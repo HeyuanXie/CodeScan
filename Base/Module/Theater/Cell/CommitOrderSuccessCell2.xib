@@ -80,6 +80,12 @@
                     <constraint firstItem="xEb-1C-yRo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="u9h-ix-RhP"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="addressLbl" destination="J6u-lO-aSw" id="4eO-LC-5R1"/>
+                <outlet property="imgV" destination="PtB-DG-KfN" id="vN9-ct-9MD"/>
+                <outlet property="priceLbl" destination="VVa-M0-tqC" id="Ivj-g5-Vyj"/>
+                <outlet property="titleLbl" destination="0km-Lh-E9Y" id="Gvo-qx-lra"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

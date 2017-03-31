@@ -12,7 +12,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *leftView;
 @property (weak, nonatomic) IBOutlet UIView *rightView;
-
+@property (weak, nonatomic) IBOutlet UIButton *leftBtn;
+@property (weak, nonatomic) IBOutlet UIButton *rightBtn;
 
 @end
 
@@ -22,45 +23,64 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configListCellWithLeft:(id)leftModel right:(id)rightModel {
+-(void)configListCellWithLeft:(DeriveModel*)leftModel right:(DeriveModel*)rightModel {
+    
     [self configLeftView:leftModel];
     [self configRightView:rightModel];
 }
 
--(void)configLeftView:(id)model {
+-(void)configLeftView:(DeriveModel*)model {
+    
     ((UIImageView*)[self.leftView viewWithTag:1000]).image = ImageNamed(@"baidi");
-    ((UILabel*)[self.leftView viewWithTag:1001]).text = @"白雪公主连衣裙";
-    ((UILabel*)[self.leftView viewWithTag:1002]).text = @"1200积分";
-    [((UIButton*)[self.leftView viewWithTag:1003]) bk_whenTapped:^{
+    if (![model.img isEqualToString:@""]) {
+        [(UIImageView*)[self.leftView viewWithTag:1000] sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
+    }
+    ((UILabel*)[self.leftView viewWithTag:1001]).text = model.goodName;
+    ((UILabel*)[self.leftView viewWithTag:1002]).text = [NSString stringWithFormat:@"%ld",model.shopPrice.integerValue];
+    
+    ((UIButton*)[self.leftView viewWithTag:1003]).rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        
         if (self.exchangeClick) {
             self.exchangeClick(model);
         }
+        return [RACSignal empty];
     }];
-    
-    [self.leftView bk_whenTapped:^{
+    self.leftBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+       
         if (self.itemClick) {
             self.itemClick(model);
         }
+        return [RACSignal empty];
     }];
 }
--(void)configRightView:(id)model {
+-(void)configRightView:(DeriveModel*)model {
     if (model == nil) {
         self.rightView.hidden = YES;
         return;
+    }else{
+        self.rightView.hidden = NO;
     }
     ((UIImageView*)[self.rightView viewWithTag:1000]).image = ImageNamed(@"baidi");
-    ((UILabel*)[self.rightView viewWithTag:1001]).text = @"白雪公主连衣裙";
-    ((UILabel*)[self.rightView viewWithTag:1002]).text = @"1200积分";
-    [((UIButton*)[self.rightView viewWithTag:1003]) bk_whenTapped:^{
+    if (![model.img isEqualToString:@""]) {
+        [((UIImageView*)[self.rightView viewWithTag:1000]) sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
+    }
+    ((UILabel*)[self.rightView viewWithTag:1001]).text = model.goodName;
+    ((UILabel*)[self.rightView viewWithTag:1002]).text = [NSString stringWithFormat:@"%ld",model.shopPrice.integerValue];
+    
+    ((UIButton*)[self.rightView viewWithTag:1003]).rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+       
         if (self.exchangeClick) {
             self.exchangeClick(model);
         }
+        return [RACSignal empty];
     }];
-    
-    [self.rightView bk_whenTapped:^{
+
+    self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        
         if (self.itemClick) {
             self.itemClick(model);
         }
+        return [RACSignal empty];
     }];
 }
 

@@ -89,7 +89,6 @@
 		842260E11E8A36F8009C3FAF /* OrderUseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842260E01E8A36F8009C3FAF /* OrderUseView.xib */; };
 		842260E51E8A38C9009C3FAF /* RefundHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260E31E8A38C9009C3FAF /* RefundHeadCell.m */; };
 		842260E61E8A38C9009C3FAF /* RefundHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842260E41E8A38C9009C3FAF /* RefundHeadCell.xib */; };
-		842260E91E8A494B009C3FAF /* DeriveExchangeSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260E81E8A494B009C3FAF /* DeriveExchangeSuccessController.m */; };
 		842260EC1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260EB1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m */; };
 		842260F51E8A4A79009C3FAF /* CommitOrderSuccessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260F31E8A4A79009C3FAF /* CommitOrderSuccessCell.m */; };
 		842260F61E8A4A79009C3FAF /* CommitOrderSuccessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842260F41E8A4A79009C3FAF /* CommitOrderSuccessCell.xib */; };
@@ -271,6 +270,7 @@
 		8497B6901E8921CD00392973 /* FVSeatItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B68B1E8921CD00392973 /* FVSeatItem.m */; };
 		8497B6911E8921CD00392973 /* FVSeatsPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B68D1E8921CD00392973 /* FVSeatsPicker.m */; };
 		8497B6921E8921CD00392973 /* FVSeatsPickerIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B68F1E8921CD00392973 /* FVSeatsPickerIndexView.m */; };
+		84B862F51E8C98CB002320E2 /* DeriveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B862F41E8C98CB002320E2 /* DeriveModel.m */; };
 		84DCC2631E77880A0019898E /* MineSupportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2621E77880A0019898E /* MineSupportViewController.m */; };
 		84DCC2691E7789610019898E /* SkillApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC2681E7789610019898E /* SkillApplyViewController.m */; };
 		84DCC26C1E77896D0019898E /* SkillUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DCC26B1E77896D0019898E /* SkillUploadViewController.m */; };
@@ -520,8 +520,6 @@
 		842260E21E8A38C9009C3FAF /* RefundHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefundHeadCell.h; sourceTree = "<group>"; };
 		842260E31E8A38C9009C3FAF /* RefundHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefundHeadCell.m; sourceTree = "<group>"; };
 		842260E41E8A38C9009C3FAF /* RefundHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefundHeadCell.xib; sourceTree = "<group>"; };
-		842260E71E8A494B009C3FAF /* DeriveExchangeSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeriveExchangeSuccessController.h; sourceTree = "<group>"; };
-		842260E81E8A494B009C3FAF /* DeriveExchangeSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeriveExchangeSuccessController.m; sourceTree = "<group>"; };
 		842260EA1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterCommitOrderSuccessController.h; sourceTree = "<group>"; };
 		842260EB1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterCommitOrderSuccessController.m; sourceTree = "<group>"; };
 		842260F21E8A4A79009C3FAF /* CommitOrderSuccessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitOrderSuccessCell.h; sourceTree = "<group>"; };
@@ -904,6 +902,8 @@
 		8497B68D1E8921CD00392973 /* FVSeatsPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVSeatsPicker.m; sourceTree = "<group>"; };
 		8497B68E1E8921CD00392973 /* FVSeatsPickerIndexView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FVSeatsPickerIndexView.h; sourceTree = "<group>"; };
 		8497B68F1E8921CD00392973 /* FVSeatsPickerIndexView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FVSeatsPickerIndexView.m; sourceTree = "<group>"; };
+		84B862F31E8C98CB002320E2 /* DeriveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeriveModel.h; sourceTree = "<group>"; };
+		84B862F41E8C98CB002320E2 /* DeriveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeriveModel.m; sourceTree = "<group>"; };
 		84DCC2611E77880A0019898E /* MineSupportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineSupportViewController.h; sourceTree = "<group>"; };
 		84DCC2621E77880A0019898E /* MineSupportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineSupportViewController.m; sourceTree = "<group>"; };
 		84DCC2671E7789610019898E /* SkillApplyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillApplyViewController.h; sourceTree = "<group>"; };
@@ -2187,6 +2187,8 @@
 				8401F2D31E8B51150032FE32 /* ArticleModel.m */,
 				8401F2DE1E8BB8BA0032FE32 /* TheaterModel.h */,
 				8401F2DF1E8BB8BA0032FE32 /* TheaterModel.m */,
+				84B862F31E8C98CB002320E2 /* DeriveModel.h */,
+				84B862F41E8C98CB002320E2 /* DeriveModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2246,8 +2248,6 @@
 				841C00F41E7289B40082ECDA /* DeriveListController.m */,
 				841C00F61E7289CA0082ECDA /* DeriveDetailController.h */,
 				841C00F71E7289CA0082ECDA /* DeriveDetailController.m */,
-				842260E71E8A494B009C3FAF /* DeriveExchangeSuccessController.h */,
-				842260E81E8A494B009C3FAF /* DeriveExchangeSuccessController.m */,
 				84428CE11E7627FB001D1B7B /* DeriveRecordController.h */,
 				84428CE21E7627FB001D1B7B /* DeriveRecordController.m */,
 			);
@@ -2877,7 +2877,6 @@
 				8401F2D71E8B9C3A0032FE32 /* APIHelper+Theater.m in Sources */,
 				843142E51E69166C0007740A /* FunctionCell.m in Sources */,
 				848A8FCB1E8372C700B45D0C /* SearchGuideCell.m in Sources */,
-				842260E91E8A494B009C3FAF /* DeriveExchangeSuccessController.m in Sources */,
 				84E5EE771E2DCADB0062A2BE /* HTProductDetailImageBrowserView.m in Sources */,
 				8447C2CD1E7FB10300853052 /* OrderDetailHeadCell.m in Sources */,
 				841E45941E80F8C0007B6EF3 /* WeekEndUseView.m in Sources */,
@@ -2892,6 +2891,7 @@
 				84F6913E1E2C6B7E0048B6DF /* NSObject+Routes.m in Sources */,
 				841E458E1E80DCDF007B6EF3 /* WeekEndListController.m in Sources */,
 				84525A261E2E019D0054C6A1 /* openssl_wrapper.m in Sources */,
+				84B862F51E8C98CB002320E2 /* DeriveModel.m in Sources */,
 				843143051E6965770007740A /* HomeVideoView.m in Sources */,
 				84525A241E2E019D0054C6A1 /* MD5DataSigner.m in Sources */,
 				84E5EE761E2DCADB0062A2BE /* HTImageBrowserZoomableView.m in Sources */,

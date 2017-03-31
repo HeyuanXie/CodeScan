@@ -83,7 +83,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     //TODO:进入订单详情，传递type参数,传递订单Id参数
-    NSArray* types = @[@"theater",@"lecture",@"derive",@"yearCard"];
+    NSArray* types = @[@"theater",@"derive",@"yearCard",@"lecture"];
     APPROUTE(([NSString stringWithFormat:@"%@?type=%@&Id=%d",kOrderDetailController,types[self.typeId],1]));
 }
 

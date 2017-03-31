@@ -14,6 +14,7 @@
 @interface TheaterCommitOrderSuccessController ()
 
 @property(nonatomic,strong)NSMutableArray* infos;
+@property(nonatomic,strong)NSMutableDictionary* data;
 
 @end
 
@@ -24,6 +25,10 @@
     
     if (self.schemaArgu[@"contentType"]) {
         self.contentType = [[self.schemaArgu objectForKey:@"contentType"] integerValue];
+    }
+    self.data = [NSMutableDictionary dictionary];
+    for (NSString* key in @[@"thumb_img",@"goods_name",@"total_price",@"exchange_place",@"order_sn"]) {
+        [self.data setValue:[self.schemaArgu objectForKey:key] forKey:key];
     }
 
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsZero];
@@ -55,7 +60,7 @@
                 CommitOrderSuccessCell* cell = [tableView dequeueReusableCellWithIdentifier:[CommitOrderSuccessCell identify]];
                 [HYTool configTableViewCellDefault:cell];
                 cell.contentView.backgroundColor = [UIColor whiteColor];
-                [cell configTheaterCell:nil];
+                [cell configTheaterCell:self.data];
                 return cell;
             }
             case TypeDerive:
@@ -64,7 +69,7 @@
                 [HYTool configTableViewCellDefault:cell];
                 cell.contentView.backgroundColor = [UIColor whiteColor];
                 
-                [cell configDeriveCell:nil];
+                [cell configDeriveCell:self.data];
                 return cell;
             }
             default:
@@ -125,7 +130,7 @@
             
             break;
         case TypeDerive:
-            
+            APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@&type=%@",kOrderDetailController,self.data[@"order_sn"],@"derive"]));
             break;
         default:
             break;

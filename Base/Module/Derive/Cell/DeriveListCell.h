@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DeriveModel.h"
 
 @interface DeriveListCell : UITableViewCell
 
-@property(nonatomic,copy)void (^itemClick)(id model);       //点击item
-@property(nonatomic,copy)void (^exchangeClick)(id model);   //点击兑换按钮
+@property(nonatomic,copy)void (^itemClick)(DeriveModel* model);       //点击item
+@property(nonatomic,copy)void (^exchangeClick)(DeriveModel* model);   //点击兑换按钮
 
 +(NSString*)identify;
--(void)configListCellWithLeft:(id)leftModel right:(id)rightModel;
+-(void)configListCellWithLeft:(DeriveModel*)leftModel right:(DeriveModel*)rightModel;
 
 @end

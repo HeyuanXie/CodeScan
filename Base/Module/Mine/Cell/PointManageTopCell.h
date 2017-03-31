@@ -11,6 +11,6 @@
 @interface PointManageTopCell : UITableViewCell
 
 +(NSString*)identify;
--(void)configPointManageTopCell:(id)model;
+-(void)configPointManageTopCell:(id)minePoint;
 
 @end

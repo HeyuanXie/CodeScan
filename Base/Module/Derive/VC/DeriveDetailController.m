@@ -7,6 +7,7 @@
 //
 
 #import "DeriveDetailController.h"
+#import "APIHelper+Derive.h"
 
 @interface DeriveDetailController ()
 @property (weak, nonatomic) IBOutlet UIImageView *botImgV;
@@ -17,8 +18,10 @@
 @property (weak, nonatomic) IBOutlet UIView *botView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *botViewHeight;
 
-@property (strong, nonatomic) NSString* productId;
+@property (assign, nonatomic) NSInteger productId;
 @property (assign, nonatomic) BOOL isEnough;
+
+@property (strong, nonatomic) NSDictionary* data;
 
 @end
 
@@ -28,11 +31,12 @@
     [super viewDidLoad];
     
     if (self.schemaArgu[@"id"]) {
-        self.productId = [self.schemaArgu objectForKey:@"id"];
+        self.productId = [[self.schemaArgu objectForKey:@"id"] integerValue];
     }
     if (self.schemaArgu[@"isEnough"]) {
         self.isEnough = [[self.schemaArgu objectForKey:@"isEnough"] boolValue];
     }
+    [self fetchData];
     [self webViewInit];
     // Do any additional setup after loading the view.
 }
@@ -53,6 +57,17 @@
 -(void)webViewInit {
     
 }
+
+-(void)fetchData {
+    [self showLoadingAnimation];
+    [APIHELPER deriveDetail:self.productId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        if (isSuccess) {
+            self.data = responseObject[@"data"];
+        }
+    }];
+}
+
 -(void)subviewStyle {
     if (self.isEnough) {
         self.botImgV.hidden = YES;
@@ -78,7 +93,16 @@
 }
 -(void)exchange {
     //TODO:兑换
-    
+    [self showLoadingAnimation];
+    [APIHELPER deriveExchange:self.productId buyNum:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        
+        if (isSuccess) {
+            [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&",kTheaterCommmitOrderSuccessController] withParam:self.data];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
 -(void)gain {
     //TODO:赚积分

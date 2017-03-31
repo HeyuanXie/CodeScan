@@ -30,6 +30,9 @@
     }else{
         self.firstView.hidden = YES;
     }
+    
+    self.titleLbl.text = model[@"rule_name"];
+    self.numLbl.text = [NSString stringWithFormat:@"+%@",[model[@"rule_action"] stringValue]];
 }
 
 - (void)awakeFromNib {

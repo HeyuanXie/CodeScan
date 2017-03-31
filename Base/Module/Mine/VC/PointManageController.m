@@ -10,10 +10,12 @@
 #import "PointManageTopCell.h"
 #import "PointManageBotCell.h"
 #import "UITableViewCell+HYCell.h"
+#import "APIHelper+User.h"
 
 @interface PointManageController ()
 
 @property(nonatomic,strong)NSMutableArray* dataArray;
+@property(nonatomic,assign)NSNumber* minePoint;
 
 @end
 
@@ -23,7 +25,7 @@
     [super viewDidLoad];
     
     self.navigationBarTransparent = YES;
-    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(-64, 0, zoom(60), 0)];
+    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(-64, 0, zoom(60)+2, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[PointManageTopCell identify] bundle:nil] forCellReuseIdentifier:[PointManageTopCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[PointManageBotCell identify] bundle:nil] forCellReuseIdentifier:[PointManageBotCell identify]];
     
@@ -48,7 +50,7 @@
     if (indexPath.section == 0) {
         PointManageTopCell* cell = [tableView dequeueReusableCellWithIdentifier:[PointManageTopCell identify]];
         [HYTool configTableViewCellDefault:cell];
-        [cell configPointManageTopCell:nil];
+        [cell configPointManageTopCell:self.minePoint];
         return cell;
     }
     
@@ -74,7 +76,8 @@
     if (indexPath.row != self.dataArray.count) {
         [cell addLine:NO leftOffSet:12 rightOffSet:-12];
     }
-    [cell configPointManageBotCell:nil indexPath:indexPath];
+    NSDictionary* model = (self.dataArray.count == 0 || indexPath.row == 0) ? nil : self.dataArray[indexPath.row-1];
+    [cell configPointManageBotCell:model indexPath:indexPath];
     return cell;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -103,8 +106,16 @@
 }
 
 -(void)fetchData {
-    self.dataArray = [@[@"",@"",@""] mutableCopy];
-    [self.tableView reloadData];
+    [APIHELPER scoreManageComplete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            [self.dataArray removeAllObjects];
+            [self.dataArray addObjectsFromArray:responseObject[@"data"][@"rules"]];
+            self.minePoint = responseObject[@"data"][@"person_score"];
+            [self.tableView reloadData];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
 
 #pragma mark - IBActions

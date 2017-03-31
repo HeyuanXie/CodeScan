@@ -10,8 +10,9 @@
 #import "DeriveListCell.h"
 #import "CustomJumpBtns.h"
 #import "HYAlertView.h"
-
 #import "UIButton+HYButtons.h"
+#import "APIHelper+Derive.h"
+#import "DeriveModel.h"
 
 @interface DeriveListController ()
 
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *recordBtn;
 
 @property (strong, nonatomic) NSMutableArray* categoryArr;
+@property (assign, nonatomic) NSInteger categoryId; //选中的分类Id
 @property (strong, nonatomic) NSMutableArray* dataArray;
 
 @property (strong, nonatomic) NSString* minePoint;
@@ -30,10 +32,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.categoryId = 0;
+    self.haveTableFooter = YES;
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(92, 0, 0, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[DeriveListCell identify] bundle:nil] forCellReuseIdentifier:[DeriveListCell identify]];
     
-    [self subviewStyle];
+    [self fetchData];
+    [self headerViewInit];
     [self subviewBind];
     // Do any additional setup after loading the view.
 }
@@ -57,22 +63,23 @@
 }
 
 #pragma mark - tableView dataSource
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     NSInteger line = self.dataArray.count / 2;
     NSInteger row = self.dataArray.count % 2;
     return line + row;
 }
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DeriveListCell* cell = [tableView dequeueReusableCellWithIdentifier:[DeriveListCell identify]];
     [HYTool configTableViewCellDefault:cell];
-    [cell setItemClick:^(id model) {
+    [cell setItemClick:^(DeriveModel* model) {
         //TODO:
-        BOOL isEnough = self.minePoint.integerValue > 1200;
-        APPROUTE(([NSString stringWithFormat:@"%@?id=%d&isEnough=%d",kDeriveDetailController,0,isEnough]));
+        BOOL isEnough = self.minePoint.integerValue >= model.shopPrice.integerValue;
+        APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&isEnough=%d",kDeriveDetailController,model.goodId.integerValue,isEnough]));
     }];
-    [cell setExchangeClick:^(id model) {
-        
+    [cell setExchangeClick:^(DeriveModel* model) {
         HYAlertView* alert = [HYAlertView sharedInstance];
         [alert setSubBottonBackgroundColor:[UIColor hyRedColor]];
         [alert setSubBottonTitleColor:[UIColor whiteColor]];
@@ -80,22 +87,32 @@
         [alert setCancelButtonTitleColor:[UIColor hyBarTintColor]];
         [alert setCancelButtonBackgroundColor:[UIColor whiteColor]];
         [alert setBtnCornerRadius:5];
-        [alert showAlertViewWithMessage:[NSString stringWithFormat:@"是否用%d积分兑换改商品?",1520] subBottonTitle:@"确定" cancelButtonTitle:@"取消" handler:^(AlertViewClickBottonType bottonType) {
+        [alert showAlertViewWithMessage:[NSString stringWithFormat:@"是否用%ld积分兑换改商品?",model.shopPrice.integerValue] subBottonTitle:@"确定" cancelButtonTitle:@"取消" handler:^(AlertViewClickBottonType bottonType) {
             switch (bottonType) {
                 case AlertViewClickBottonTypeSubBotton: {
                     //TODO:兑换
-                    APPROUTE(([NSString stringWithFormat:@"%@?contentType=1",kTheaterCommmitOrderSuccessController]));
+                    [APIHELPER deriveExchange:model.goodId.integerValue buyNum:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                        if (isSuccess) {
+                            NSDictionary* param = responseObject[@"data"];
+                            //剧场下单成功和衍生品兑换成功公用一个VC
+                            [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&thumb_img=%@",kTheaterCommmitOrderSuccessController,model.img] withParam:param];
+                        }else{
+                            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                        }
+                    }];
                     break;
                 }
                 default:{
-                    DLog(@"取消");
                     break;
                 }
             }
         }];
+
     }];
     
-    [cell configListCellWithLeft:nil right:nil];
+    DeriveModel* leftModel = self.dataArray[indexPath.section*2];
+    DeriveModel* rightModel = (self.dataArray.count%2!=0 && self.dataArray.count/2==indexPath.section) ? nil : self.dataArray[indexPath.section*2+1];
+    [cell configListCellWithLeft:leftModel right:rightModel];
     return cell;
 }
      
@@ -117,24 +134,119 @@
 #pragma mark - private methods
 -(NSMutableArray *)categoryArr {
     if (!_categoryArr) {
-        _categoryArr = [@[@"全部",@"玩具",@"服饰"] mutableCopy];
+        _categoryArr = [NSMutableArray array];
     }
     return _categoryArr;
+}
+-(NSMutableArray *)dataArray {
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray array];
+    }
+    return _dataArray;
+}
+
+- (void)fetchData {
+    [self.dataArray removeAllObjects];
+    [self.tableView reloadData];
+    self.tableView.tableFooterView = nil;
+    [self showLoadingAnimation];
+    [APIHELPER deriveListStart:0 limit:8 categoryId:self.categoryId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        
+        if (isSuccess) {
+            [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[DeriveModel class] array:responseObject[@"data"][@"list"]] ];
+            [self.tableView reloadData];
+
+            self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+            if (self.haveNext) {
+                [self appendFooterView];
+            }else{
+                [self removeFooterRefresh];
+            }
+            
+            [self.categoryArr addObjectsFromArray:responseObject[@"data"][@"category_list"]];
+            self.minePoint = [NSString stringWithFormat:@"%ld",[responseObject[@"data"][@"score"] integerValue]];
+            if (![self.topView viewWithTag:1000]) {
+                [self subviewStyle];
+            }
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+}
+
+-(void)headerViewInit {
+    @weakify(self);
+    [self addHeaderRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER deriveListStart:0 limit:8 categoryId:self.categoryId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            [self.dataArray removeAllObjects];
+            [self.tableView reloadData];
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[DeriveModel class] array:responseObject[@"data"][@"list"]] ];
+                [self.tableView reloadData];
+
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
+}
+
+-(void)appendFooterView {
+    @weakify(self);
+    [self addFooterRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+         [APIHELPER deriveListStart:self.dataArray.count limit:8 categoryId:self.categoryId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[DeriveModel class] array:responseObject[@"data"][@"list"]] ];
+                [self.tableView reloadData];
+
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
 }
 
 -(void)subviewStyle {
     UIScrollView* scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 42)];
+    scroll.tag = 1000;
     scroll.showsHorizontalScrollIndicator = NO;
     scroll.contentSize = CGSizeMake(74*self.categoryArr.count, 0);
     [self.topView addSubview:scroll];
-    CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, MAX(74*self.categoryArr.count, kScreen_Width) , 42) menuTitles:self.categoryArr textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBlueTextColor] isLineAdaptText:YES];
+    
+    NSMutableArray* titles = [NSMutableArray array];
+    for (NSDictionary* dic in self.categoryArr) {
+        [titles addObject:dic[@"name"]];
+    }
+    CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, MAX(74*self.categoryArr.count, kScreen_Width) , 42) menuTitles:titles textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBlueTextColor] isLineAdaptText:YES];
     [btns setFinished:^(NSInteger index) {
-        NSString* category = self.categoryArr[index];
-        //TODO:刷新table
+        self.categoryId = [self.categoryArr[index][@"cat_id"] integerValue];
+        [self fetchData];
     }];
     [scroll addSubview:btns];
     
-    self.minePoint = @"1000";
     [self.scoreBtn setTitle:[NSString stringWithFormat:@"积分%@",self.minePoint] forState:UIControlStateNormal];
 }
 

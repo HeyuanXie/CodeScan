@@ -109,5 +109,68 @@
     kCleanPassword;
 }
 
+- (void)collect:(NSInteger)collectionId
+           type:(NSInteger)type
+       complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param safe_setValue:@(collectionId) forKey:@"collection_id"];
+    [param safe_setValue:@(type) forKey:@"type"];
+    [APIHELPER getWithURL:@"collect/collect" param:param complete:complete];
+}
+
+- (void)cancelCollect:(NSInteger)collectionId
+                 type:(NSInteger)type
+             complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    [param safe_setValue:@(collectionId) forKey:@"collection_id"];
+//    [param safe_setValue:@(type) forKey:@"type"];
+    [APIHELPER getWithURL:@"collect/cancelColl" param:param complete:complete];
+}
+
+- (void)fetchCollectList:(NSInteger)start limit:(NSInteger)limit type:(NSInteger)type complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:@(start) forKey:@"start"];
+    [param safe_setValue:@(limit) forKey:@"limit"];
+    [param safe_setValue:@(type) forKey:@"type"];
+    [APIHELPER getWithURL:@"collect/collectlist" param:param complete:complete];
+}
+
+/**
+ 积分管理
+
+ @param complete <#complete description#>
+ */
+- (void)scoreManageComplete:(ApiRequestCompleteBlock)complete {
+    
+    [APIHELPER getWithURL:@"user/scoremanage" param:nil complete:complete];
+}
+
+/**
+ 积分明细
+
+ @param start start
+ @param limit limit
+ @param complte complte
+ */
+- (void)scoreInfoList:(NSInteger)start limit:(NSInteger)limit complete:(ApiRequestCompleteBlock)complte {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:@(start) forKey:@"start"];
+    [param safe_setValue:@(limit) forKey:@"limit"];
+    [APIHELPER getWithURL:@"user/scoreinfo" param:param complete:complte];
+}
+
+/**
+ 积分每日签到
+
+ @param complete complete 
+ */
+- (void)scoreSignComplete:(ApiRequestCompleteBlock)complete {
+    
+    [APIHELPER getWithURL:@"user/sign" param:nil complete:complete];
+}
 
 @end
