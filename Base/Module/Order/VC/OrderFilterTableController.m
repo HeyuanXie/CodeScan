@@ -63,14 +63,22 @@
         [lbl autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:17];
         [lbl autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10];
         [lbl autoSetDimension:ALDimensionHeight toSize:25];
+        
+        UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(kScreen_Width-32, (182/4-20)/2, 20, 20)];
+        imageView.image = ImageNamed(@"选中");
+        imageView.tag = 102;
+        [cell.contentView addSubview:imageView];
     }
     
     UILabel* lbl = [cell.contentView viewWithTag:101];
+    UIImageView* imgV = (UIImageView*)[cell.contentView viewWithTag:102];
     lbl.text = self.titles[indexPath.row];
     if (self.currentIndex == indexPath.row) {
         lbl.textColor = [UIColor hyBarTintColor];
+        imgV.hidden = NO;
     }else{
         lbl.textColor = [UIColor hyBlackTextColor];
+        imgV.hidden = YES;
     }
     return cell;
 }

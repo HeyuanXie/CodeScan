@@ -33,18 +33,14 @@
     if (self.schemaArgu[@"id"]) {
         self.productId = [[self.schemaArgu objectForKey:@"id"] integerValue];
     }
-    if (self.schemaArgu[@"isEnough"]) {
-        self.isEnough = [[self.schemaArgu objectForKey:@"isEnough"] boolValue];
-    }
-    [self fetchData];
+
     [self webViewInit];
     // Do any additional setup after loading the view.
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     
-    [self subviewStyle];
-    [self subviewBind];
+    [self fetchData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,6 +60,9 @@
         [self hideLoadingAnimation];
         if (isSuccess) {
             self.data = responseObject[@"data"];
+            self.isEnough = self.data[@"is_enough_price"];
+            [self subviewStyle];
+            [self subviewBind];
         }
     }];
 }

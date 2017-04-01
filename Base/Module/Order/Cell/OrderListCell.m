@@ -8,6 +8,7 @@
 
 #import "OrderListCell.h"
 #import "NSString+Extension.h"
+#import "UIButton+HYButtons.h"
 
 @interface OrderListCell ()
 
@@ -37,6 +38,7 @@
 -(void)configTheaterCell:(id)model {
     
     self.typeImgV.image = ImageNamed(@"订单类型_话剧");
+    self.typeLbl.text = @"演出";
     self.lbl4.hidden = NO;
     
     [self.leftBtn bk_whenTapped:^{
@@ -50,44 +52,86 @@
 -(void)configDeriveCell:(id)model {
     
     self.typeImgV.image = ImageNamed(@"订单类型_商品");
+    self.typeLbl.text = @"商品";
     self.lbl4.hidden = YES;
     
-    self.lbl1.text = @"领取地点: 东莞玉兰大剧场";
-    self.lbl2.text = @"数量: 2张";
-    self.lbl3.text = @"总价: ¥99";
+    self.titleLbl.text = model[@"goods_name"];
+    self.orderNumLbl.text = model[@"order_sn"];
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:model[@"thumb_img"]] placeholderImage:ImageNamed(@"elephant")];
+    self.lbl1.text = model[@"exchange_place"];
+    self.lbl2.text = [NSString stringWithFormat:@"数量: %ld个",[model[@"goods_num"] integerValue]];
+    self.lbl3.text = [NSString stringWithFormat:@"总价: %ld积分",[model[@"exchange_total_price"] integerValue]];
+    
+    NSArray* status = @[@"待领取",@"待评价",@"已完成"];
+    self.statuLbl.text = status[[model[@"order_status"] integerValue]-1];
+    if ([self.statuLbl.text isEqualToString:@"待评价"]) {
+        self.leftBtn.hidden = YES;
+        [self.rightBtn setTitle:@"去评价" forState:(UIControlStateNormal)];
+        [self.rightBtn bk_whenTapped:^{
+            //TODO:传递商品Id
+            APPROUTE(kCommentViewController);
+        }];
+    }else{
+        self.leftBtn.hidden = YES;
+        self.rightBtn.hidden = YES;
+    }
 }
 
 -(void)configYearCardCell:(id)model {
     
     self.typeImgV.image = ImageNamed(@"订单类型_年卡");
+    self.typeLbl.text = @"年卡";
     self.lbl4.hidden = YES;
+
+    self.titleLbl.text = @"飞象卡1+1家庭年票";
+    self.orderNumLbl.text = [model[@"order_id"] stringValue];
+    self.lbl1.text = [NSString stringWithFormat:@"卡号: %@",model[@"order_sn"]];
+    self.lbl2.text = [NSString stringWithFormat:@"数量: %@张",model[@"count"]];
+    self.lbl3.text = [NSString stringWithFormat:@"总价: ¥%@",model[@"payable_amount"]];
     
-    self.lbl1.text = @"卡号: 12344565";
-    self.lbl2.text = @"数量: 2张";
-    self.lbl3.text = @"总价: ¥99";
-    
-    //测试支付倒计时
-    NSString* time = @" 剩余支付时间:14分20秒";
-    self.orderNumLbl.attributedText = [time attributeStringWithAttachment:CGRectMake(0, -2, 15, 15) fontSize:13 textColor:RGB(127, 127, 127, 1.0) index:0 imageName:@"支付倒计时"];
-    
-    switch ([model[@"statu"] integerValue]) {
+    NSInteger payStatus = [model[@"pay_status"] integerValue];
+    /*  payStatus
+     define('PAY_STATUS_UNPAID', '0'); //未付款
+     define('PAY_STATUS_PAID', '1'); //已付款
+     define('PAY_STATUS_FAIL', '2'); //付款失败
+     define('PAY_STATUS_REFUND', '3'); //已退款
+     define('PAY_STATUS_EXPIRE', '5'); //已过期
+     */
+    BOOL isBind = [model[@"is_bind"] boolValue];
+    switch (payStatus) {
         case 0:
         {
-            self.statuLbl.text = @"已付款";
-            [self.leftBtn setTitle:@"退款" forState:UIControlStateNormal];
-            [self.leftBtn bk_whenTapped:^{
-                //TODO:退款
-                
-            }];
-            [self.rightBtn setTitle:@"立即绑定" forState:UIControlStateNormal];
+            self.statuLbl.text = @"待付款";
+            [self.rightBtn setTitle:@"去支付" forState:UIControlStateNormal];
+            [self.rightBtn setRedStyle];
             [self.rightBtn bk_whenTapped:^{
-                //TODO:绑定
+                //TODO:去付款
                 
             }];
         }
         case 1:
         {
-            self.statuLbl.text = @"代付款";
+            self.statuLbl.text = @"已付款";
+            if (isBind) {
+                self.leftBtn.hidden = YES;
+                [self.rightBtn setTitle:@"退款" forState:UIControlStateNormal];
+                [self.rightBtn bk_whenTapped:^{
+                    //TODO:退款
+                    
+                }];
+            }else{
+                self.leftBtn.hidden = NO;
+                [self.leftBtn setTitle:@"退款" forState:UIControlStateNormal];
+                [self.leftBtn bk_whenTapped:^{
+                    //TODO:退款
+                    
+                }];
+                [self.rightBtn setTitle:@"立即绑定" forState:UIControlStateNormal];
+                [self.rightBtn bk_whenTapped:^{
+                    //TODO:绑定
+                    
+                }];
+            }
         }
         case 2:
         {
@@ -96,32 +140,13 @@
         }
         case 3:
         {
-            self.statuLbl.text = @"退款";
+            self.statuLbl.text = @"已退款";
 
         }
-//        case 1:
-//        {
-//            self.statuLbl.text = @"待使用";
-//            [self.rightBtn setTitle:@"去使用" forState:UIControlStateNormal];
-//            [self.rightBtn bk_whenTapped:^{
-//                //TODO:跳到订单详情页(入场二维码)
-//            }];
-//            break;
-//        }
-//        case 2:
-//        {
-//            self.statuLbl.text = @"已完成";
-//            self.rightBtn.hidden = YES;
-//            break;
-//        }
-//        case 3:
-//        {
-//            self.statuLbl.text = @"待评价";
-//            [self.rightBtn bk_whenTapped:^{
-//                //TODO:跳到评价页面
-//            }];
-//            break;
-//        }
+        case 5:
+        {
+            self.statuLbl.text = @"已过期";
+        }
     }
 }
 

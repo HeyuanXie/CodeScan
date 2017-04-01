@@ -77,4 +77,10 @@
                     forState:UIControlStateSelected];
 }
 
+- (void)setRedStyle {
+    [self setBackgroundColor:[UIColor hyRedColor]];
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.layer.borderColor = [UIColor hyRedColor].CGColor;
+}
+
 @end

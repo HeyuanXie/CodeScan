@@ -12,7 +12,6 @@
 
 @interface WeekEndDetailController ()
 
-@property (assign, nonatomic) NSInteger articleId;  //资讯或者周末去哪儿文章Id
 @property (strong, nonatomic) NSString* collectImg; //navigationBar收藏按钮图片
 
 @property (weak, nonatomic) IBOutlet UITextField *commentTf;
@@ -26,8 +25,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.articleId = self.data.articleType.integerValue == 0 ? self.data.seekId.integerValue : self.data.articleId.integerValue;
-    self.collectImg = self.data.isFav.boolValue ? @"collect02" : @"collect01";
+    if (!self.isFav) {
+        //从收藏列表进来直接就不为0，从文章列表进来就要从self.data中获取
+        self.articleId = self.data.articleType.integerValue == 0 ? self.data.seekId.integerValue : self.data.articleId.integerValue;
+        //从收藏列表进来直接是YES，从文章列表进来就要从self.data中获取
+        self.isFav = self.data.isFav.boolValue;
+        //从收藏列表进来直接有值，从文章列表进来就要从self.data中获取
+        self.articleType = self.data.articleType.integerValue+2;
+    }
+
     [self subviewStyle];
 //    [self loadWebView];
 }
@@ -45,25 +51,26 @@
 //MARK: - private methods
 -(void)subviewStyle {
     
+    self.collectImg = self.isFav ? @"collect02" : @"collect01";
     @weakify(self);
     [self addDoubleNavigationItemsWithImages:@[self.collectImg,@"share"] firstBlock:^{
         @strongify(self);
         //TODO:收藏 & 取消收藏
-        if (self.data.isFav.boolValue) {
-            [APIHELPER cancelCollect:self.articleId type:self.data.articleType.integerValue+1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (self.isFav) {
+            [APIHELPER cancelCollect:self.articleId type:self.articleType complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"取消收藏成功"];
-                    self.collectImg = @"collect01";
+                    self.isFav = NO;
                     [self subviewStyle];
                 }else{
                     [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
                 }
             }];
         }else{
-            [APIHELPER collect:self.articleId type:self.data.articleType.integerValue+1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [APIHELPER collect:self.articleId type:self.articleType complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"收藏成功"];
-                    self.collectImg = @"collect02";
+                    self.isFav = YES;
                     [self subviewStyle];
                 }else{
                     [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];

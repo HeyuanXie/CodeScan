@@ -23,6 +23,6 @@
 - (void)showMessage:(NSString *)message;
 - (void)showMessage:(NSString *)message complete:(void(^)())complate;
 
-- (void)checkUserLogined;
+- (BOOL)checkUserLogined;
 
 @end

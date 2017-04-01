@@ -31,9 +31,5 @@
     [APIHELPER getWithURL:@"/goods/exchange" param:param complete:complete];
 }
 
--(void)deriveOrderDetail:(NSString *)orderSn complete:(ApiRequestCompleteBlock)complete {
-    
-    [APIHELPER getWithURL:@"goods_order/read" param:@{@"order_sn":orderSn} complete:complete];
-}
 
 @end

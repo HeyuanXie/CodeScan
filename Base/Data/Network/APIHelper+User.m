@@ -125,7 +125,7 @@
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param safe_setValue:@(collectionId) forKey:@"collection_id"];
-//    [param safe_setValue:@(type) forKey:@"type"];
+    [param safe_setValue:@(type) forKey:@"type"];
     [APIHELPER getWithURL:@"collect/cancelColl" param:param complete:complete];
 }
 

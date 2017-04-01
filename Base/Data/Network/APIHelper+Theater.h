@@ -15,10 +15,12 @@
 -(void)theaterListStart:(NSInteger)start
                   limit:(NSInteger)limit
                 classId:(NSInteger)classId
+                orderBy:(NSString*)orderBy
               orderType:(NSString*)orderType
                    city:(NSString*)city
                complete:(ApiRequestCompleteBlock)complete;
 
+-(void)theaterDetail:(NSInteger)playId complete:(ApiRequestCompleteBlock)complete;
 
 
 @end

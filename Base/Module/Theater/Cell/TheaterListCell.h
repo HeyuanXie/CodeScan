@@ -24,6 +24,7 @@
 
 
 @property(nonatomic,copy)void (^ticketBtnClick)(id model);
+@property(nonatomic,copy)void (^collectBtnClick)(id model);
 
 
 

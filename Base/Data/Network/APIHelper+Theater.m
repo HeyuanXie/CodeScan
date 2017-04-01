@@ -18,6 +18,7 @@
 -(void)theaterListStart:(NSInteger)start
                   limit:(NSInteger)limit
                 classId:(NSInteger)classId
+                orderBy:(NSString*)orderBy
               orderType:(NSString *)orderType
                    city:(NSString *)city
                complete:(ApiRequestCompleteBlock)complete {
@@ -26,10 +27,17 @@
     [param safe_setValue:@(start) forKey:@"start"];
     [param safe_setValue:@(limit) forKey:@"limit"];
     [param safe_setValue:@(classId) forKey:@"class_id"];
+    [param safe_setValue:orderBy forKey:@"order_by"];
     [param safe_setValue:orderType forKey:@"order_type"];
     [param safe_setValue:city forKey:@"city"];
-    [APIHELPER getWithURL:@"" param:param complete:complete];
+    [APIHELPER getWithURL:@"movie/index" param:param complete:complete];
     
+}
+
+-(void)theaterDetail:(NSInteger)playId
+            complete:(ApiRequestCompleteBlock)complete {
+    
+    [APIHELPER getWithURL:@"movie/detail" param:@{@"play_id":@(playId)} complete:complete];
 }
 
 @end

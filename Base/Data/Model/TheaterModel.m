@@ -13,11 +13,13 @@
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper{
     return @{
              @"playName":@"play_name",
+             @"subTitle":@"sub_title",
              @"playId":@"play_id",
              @"classId":@"class_id",
              @"createTime":@"create_time",
              @"updateTime":@"update_time",
              @"desc":@"description",
+             @"isFav":@"is_fav"
              };
 }
 

@@ -25,6 +25,12 @@
     [self fetchData];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -75,6 +81,10 @@
             [HYTool configViewLayerFrame:btn WithColor:[UIColor hySeparatorColor]];
             [cell.contentView addSubview:btn];
             [btn setTitle:dataArray[i] forState:(UIControlStateNormal)];
+            if ([self.selectedCity isEqualToString:dataArray[i]]) {
+                [btn setTitleColor:[UIColor hyBlueTextColor] forState:UIControlStateNormal];
+                btn.layer.borderColor = [UIColor hyBlueTextColor].CGColor;
+            }
             [btn bk_whenTapped:^{
                 if (self.selectCity) {
                     self.selectCity(dataArray[i]);

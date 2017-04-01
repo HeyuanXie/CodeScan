@@ -11,8 +11,10 @@
 #import "FilterAddressController.h"
 #import "FilterTableViewController.h"
 #import "TheaterListCell.h"
-#import "APIHelper+Theater.h"
 #import "TheaterModel.h"
+
+#import "APIHelper+Theater.h"
+#import "APIHelper+User.h"
 
 @interface TheaterListViewController ()
 
@@ -25,6 +27,10 @@
 @property(nonatomic,assign)NSInteger currentIndex;
 @property(nonatomic,strong)NSMutableArray* dataArray;
 
+@property(nonatomic,strong)NSString* selectedCity;  //选中的city
+@property(nonatomic,assign)BOOL isDesc;     //是否倒序
+@property(nonatomic,strong)NSArray* orderBys;   //排序方式数组(价格、时长等)
+
 @end
 
 @implementation TheaterListViewController
@@ -33,6 +39,8 @@
     [super viewDidLoad];
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(zoom(44), 0, 0, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[TheaterListCell identify] bundle:nil] forCellReuseIdentifier:[TheaterListCell identify]];
+    
+    self.orderBys = @[@"play_id",@"pricel",@"sydate",@"pctime",@"score"];
 
     [self subviewInit];
     [self fetchData];
@@ -53,11 +61,35 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TheaterListCell* cell = [tableView dequeueReusableCellWithIdentifier:[TheaterListCell identify]];
     [HYTool configTableViewCellDefault:cell];
-    //TODO:
-    [cell setTicketBtnClick:^(id model) {
+    [cell setTicketBtnClick:^(TheaterModel* model) {
         APPROUTE(kTheaterTicketViewController);
     }];
-    [cell configTheaterListCell:nil];
+    
+    @weakify(cell);
+    [cell setCollectBtnClick:^(TheaterModel* model) {
+        if (model.isFav) {
+            @strongify(cell);
+            [APIHELPER cancelCollect:model.playId.integerValue type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    [self showMessage:@"取消收藏成功"];
+                    [cell.collectBtn setImage:ImageNamed(@"collect03") forState:UIControlStateNormal];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }else{
+            @strongify(cell);
+            [APIHELPER collect:model.playId.integerValue type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    [self showMessage:@"收藏成功"];
+                    [cell.collectBtn setImage:ImageNamed(@"collect02") forState:UIControlStateNormal];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }
+    }];
+    [cell configTheaterListCell:self.dataArray[indexPath.row]];
     return cell;
 }
 
@@ -66,7 +98,8 @@
     return 173;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    APPROUTE(kTheaterDetailViewController);
+    TheaterModel* model = self.dataArray[indexPath.row];
+    APPROUTE(([NSString stringWithFormat:@"%@?Id=%ld",kTheaterDetailViewController,model.playId.integerValue]));
 }
 
 #pragma mark - private methods
@@ -102,7 +135,7 @@
 - (void)fetchData {
     [self.dataArray removeAllObjects];
     [self showLoadingAnimation];
-    [APIHELPER theaterListStart:0 limit:10 classId:0 orderType:@"" city:@"" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+    [APIHELPER theaterListStart:0 limit:10 classId:1 orderBy:self.orderBys[self.currentIndex] orderType:self.isDesc?@"desc":@"asc" city:self.selectedCity complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [self hideLoadingAnimation];
         
         if (isSuccess) {
@@ -126,7 +159,7 @@
     [self addHeaderRefresh:^{
         @strongify(self);
         [self showLoadingAnimation];
-        [APIHELPER theaterListStart:0 limit:10 classId:0 orderType:@"" city:@"" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [APIHELPER theaterListStart:0 limit:10 classId:1 orderBy:self.orderBys[self.currentIndex] orderType:self.isDesc?@"desc":@"asc" city:self.selectedCity complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             [self hideLoadingAnimation];
             
             if (isSuccess) {
@@ -151,7 +184,7 @@
     [self addFooterRefresh:^{
         @strongify(self);
         [self showLoadingAnimation];
-        [APIHELPER theaterListStart:self.dataArray.count limit:10 classId:0 orderType:@"" city:@"" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [APIHELPER theaterListStart:self.dataArray.count limit:10 classId:1 orderBy:self.orderBys[self.currentIndex] orderType:self.isDesc?@"desc":@"asc" city:self.selectedCity complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             [self hideLoadingAnimation];
             
             if (isSuccess) {
@@ -210,7 +243,8 @@
         [_filterCityVC setSelectCity:^(NSString * city) {
             @strongify(self);
             [self hiddenFilterAddress];
-            //TODO:fetchData
+            self.selectedCity = city;
+            [self fetchData];
         }];
     }
     return _filterCityVC;
@@ -223,6 +257,7 @@
         return;
     }
     button.enabled = NO;    //避免多次addressNVC未加载成功时点击多次，而加载多个addressNVC
+    self.filterCityVC.selectedCity = self.selectedCity;
     [self addChildViewController:self.filterCityVC];
     [self.view addSubview:self.filterCityVC.view];
     [self.view bringSubviewToFront:self.filterCityVC.view];
@@ -270,8 +305,11 @@
     [self.filterVC setSelectIndex:^(NSInteger index) {
         @strongify(self);
         [self hideFilterView:self.filterBtn];
+        if (self.currentIndex == index) {
+            self.isDesc = !self.isDesc;
+        }
         self.currentIndex = index;
-        //TODO:fetchData
+        [self fetchData];
     }];
 }
 

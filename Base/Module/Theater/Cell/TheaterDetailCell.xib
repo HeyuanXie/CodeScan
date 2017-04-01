@@ -190,7 +190,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="McO-N7-cqC"/>
                                 </constraints>
-                                <state key="normal" image="cart"/>
+                                <state key="normal" image="三角形_黑色下"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剧情简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hik-x0-2jg">
                                 <rect key="frame" x="12" y="12" width="327" height="20"/>
@@ -202,7 +202,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ts1-Ld-4jE">
-                                <rect key="frame" x="12" y="37" width="329" height="95"/>
+                                <rect key="frame" x="12" y="37" width="329" height="100"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">阿萨德法师法师法师打发的方式是打发发生的发生发大水]阿斯达所阿萨德法师法师法师打发的方式是打发发生的发生发大水法法师打发斯蒂芬啊实打实大水电费阿萨德法师法师法师打发的方式是打发发生的发生发大水法法师打发斯蒂芬阿萨德法师法师法师打发的方式是打发发生的发生发大水法法师打发斯蒂芬阿萨德法师法师法师打发的方式是打发发生的发生发大水法法师打发斯蒂芬阿萨德法师法师法师打发的方式是打发发生的发生发大水法法师打发斯蒂芬啊啊啊</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -216,7 +216,7 @@
                             <constraint firstAttribute="bottom" secondItem="7X7-V2-lYW" secondAttribute="bottom" id="7FN-ZI-TQE"/>
                             <constraint firstItem="Ts1-Ld-4jE" firstAttribute="leading" secondItem="vat-uX-foq" secondAttribute="leading" constant="12" id="80C-HB-P4M"/>
                             <constraint firstItem="hik-x0-2jg" firstAttribute="top" secondItem="vat-uX-foq" secondAttribute="top" constant="12" id="P8Z-7p-8TI"/>
-                            <constraint firstItem="7X7-V2-lYW" firstAttribute="top" secondItem="Ts1-Ld-4jE" secondAttribute="bottom" constant="5" id="UlG-Kh-gsG"/>
+                            <constraint firstItem="7X7-V2-lYW" firstAttribute="top" secondItem="Ts1-Ld-4jE" secondAttribute="bottom" id="UlG-Kh-gsG"/>
                             <constraint firstAttribute="trailing" secondItem="Ts1-Ld-4jE" secondAttribute="trailing" constant="10" id="WYj-U1-YY4"/>
                             <constraint firstItem="hik-x0-2jg" firstAttribute="leading" secondItem="vat-uX-foq" secondAttribute="leading" constant="12" id="f5I-HR-A1q"/>
                             <constraint firstItem="7X7-V2-lYW" firstAttribute="leading" secondItem="vat-uX-foq" secondAttribute="leading" id="jL9-9p-y1X"/>
@@ -264,9 +264,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cart" width="30" height="30"/>
         <image name="collect02" width="22" height="22"/>
         <image name="collect03" width="22" height="22"/>
         <image name="yazi.png" width="96" height="133"/>
+        <image name="三角形_黑色下" width="12" height="12"/>
     </resources>
 </document>

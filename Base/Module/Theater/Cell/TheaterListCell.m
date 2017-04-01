@@ -7,6 +7,7 @@
 //
 
 #import "TheaterListCell.h"
+#import "TheaterModel.h"
 
 @implementation TheaterListCell
 
@@ -16,14 +17,28 @@
 
 -(void)configTheaterListCell:(id)model {
     
+    TheaterModel* theater = (TheaterModel*)model;
     @weakify(self);
     [self.ticketBtn bk_whenTapped:^{
         @strongify(self);
         if (self.ticketBtnClick) {
-            self.ticketBtnClick(model);
+            self.ticketBtnClick(theater);
+        }
+    }];
+    [self.collectBtn bk_whenTapped:^{
+        @strongify(self);
+        if (self.collectBtnClick) {
+            self.collectBtnClick(theater);
         }
     }];
     
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:theater.picurl] placeholderImage:ImageNamed(@"elephant")];
+    self.titleLbl.text = theater.playName;
+    self.typeLbl.text = theater.subTitle;
+    self.timeLbl.text = [NSString stringWithFormat:@"时长: %@分钟",theater.pctime];
+    self.dateLbl.text = [NSString stringWithFormat:@"上映: %@",theater.sydate];
+    
+    self.priceLbl.text = [NSString stringWithFormat:@"¥%@ - ¥%@",theater.pricel,theater.priceh];
     NSMutableAttributedString* mAttStr = [[NSMutableAttributedString alloc] initWithString:self.priceLbl.text];
     NSArray* ranges = [self rangeOfSubString:@"¥" inString:self.priceLbl.text];
     for (NSString* rangeStr in ranges) {

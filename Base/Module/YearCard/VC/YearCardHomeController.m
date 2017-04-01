@@ -112,14 +112,16 @@
 #pragma mark - IBActions
 - (IBAction)buyNow:(id)sender {
     
-    [self checkUserLogined];
-    [ROUTER routeByStoryboardID:kYearCardCommitOrderController withParam:self.data];
+    if ([self checkUserLogined]) {
+        [ROUTER routeByStoryboardID:kYearCardCommitOrderController withParam:self.data];
+    }
 }
 
 - (IBAction)bindNow:(id)sender {
     
-    [self checkUserLogined];
-    APPROUTE(kYearCardBindController);
+    if ([self checkUserLogined]) {
+        APPROUTE(kYearCardBindController);
+    }
 }
 
 @end

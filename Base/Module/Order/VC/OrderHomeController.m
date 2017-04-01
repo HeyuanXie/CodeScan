@@ -10,17 +10,18 @@
 #import "OrderFilterTableController.h"
 #import "OrderListCell.h"
 #import "CustomJumpBtns.h"
+#import "APIHelper+Order.h"
 
 @interface OrderHomeController ()<UITextFieldDelegate>
 
 @property(strong,nonatomic)UIView* topView;
 
-@property(assign,nonatomic)NSInteger typeId;    //0为演出、1为商品、2为年卡
-@property(assign,nonatomic)NSInteger statuId;   //待付款、待评价等等
+@property(assign,nonatomic)NSInteger typeId;    //订单类型Id, 0为演出、1为商品、2为年卡
+@property(assign,nonatomic)NSInteger statuId;   //订单状态Id, 待付款、待评价等等
 @property(strong,nonatomic)NSMutableArray* dataArray;
 
-@property(strong,nonatomic)NSArray *types;
-@property(strong,nonatomic)NSArray *status;
+@property(strong,nonatomic)NSArray *types;  //订单类型数组
+@property(strong,nonatomic)NSArray *status; //订单状态数组
 @property(strong,nonatomic)UIButton* filterBtn;
 
 @property(strong,nonatomic)OrderFilterTableController* filterVC;
@@ -33,17 +34,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.backItemHidden = YES;
+    self.haveTableFooter = YES;
     self.types = @[@"演出",@"商品",@"年卡"];
     self.status = @[@"已付款",@"待付款",@"待评价",@"退款"];
+    self.statuId = 1;
     
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(90, 0, 0, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[OrderListCell identify] bundle:nil] forCellReuseIdentifier:[OrderListCell identify]];
 
     [self subviewStyle];
+    [self headerViewInit];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
     [self fetchData];
 }
 
--(void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     
     [self hiddenFilterClassify];
@@ -65,12 +74,13 @@
     OrderListCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderListCell identify]];
     [HYTool configTableViewCellDefault:cell];
     
+    NSDictionary* model = self.dataArray[indexPath.row];
     if (self.typeId == 0) {
-        [cell configTheaterCell:nil];
+        [cell configTheaterCell:model];
     }else if (self.typeId == 1) {
-        [cell configDeriveCell:nil];
+        [cell configDeriveCell:model];
     }else{
-        [cell configYearCardCell:nil];
+        [cell configYearCardCell:model];
     }
     return cell;
 }
@@ -122,10 +132,238 @@
     return _backGrayView;
 }
 
--(void)fetchData {
-    self.dataArray = [@[@"",@""] mutableCopy];
-    //TODO:根据self.typeId、self.statuId请求数据
+- (void)fetchData {
+    
+    self.tableView.tableFooterView = nil;
+    [self.dataArray removeAllObjects];
     [self.tableView reloadData];
+    [self showLoadingAnimation];
+    switch (self.typeId) {
+        case 0:
+        {
+            //演出
+            [APIHELPER orderListTheater:0 limit:4 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [self hideLoadingAnimation];
+                if (isSuccess) {
+                    [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                    [self.tableView reloadData];
+                    
+                    self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                    if (self.haveNext) {
+                        [self appendFooterView];
+                    }else{
+                        [self removeFooterRefresh];
+                    }
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+            break;
+        }
+        case 1:
+        {
+            //商品
+            [APIHELPER orderListDerive:0 limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [self hideLoadingAnimation];
+                if (isSuccess) {
+                    [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                    [self.tableView reloadData];
+                    
+                    self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                    if (self.haveNext) {
+                        [self appendFooterView];
+                    }else{
+                        [self removeFooterRefresh];
+                    }
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+            break;
+        }
+        case 2:
+        {
+            //年卡
+            [APIHELPER orderListCard:0 limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [self hideLoadingAnimation];
+                if (isSuccess) {
+                    [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                    [self.tableView reloadData];
+                    
+                    self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                    if (self.haveNext) {
+                        [self appendFooterView];
+                    }else{
+                        [self removeFooterRefresh];
+                    }
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+-(void)headerViewInit {
+    @weakify(self);
+    [self addHeaderRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        switch (self.typeId) {
+            case 0:
+            {
+                //演出
+                [APIHELPER orderListTheater:0 limit:4 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    [self hideLoadingAnimation];
+                    if (isSuccess) {
+                        [self.dataArray removeAllObjects];
+                        [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                        [self.tableView reloadData];
+                        
+                        self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                        if (self.haveNext) {
+                            [self appendFooterView];
+                        }else{
+                            [self removeFooterRefresh];
+                        }
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                    [self endRefreshing];
+                }];
+                break;
+            }
+            case 1:
+            {
+                //商品
+                [APIHELPER orderListDerive:0 limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    [self hideLoadingAnimation];
+                    if (isSuccess) {
+                        [self.dataArray removeAllObjects];
+                        [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                        [self.tableView reloadData];
+                        
+                        self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                        if (self.haveNext) {
+                            [self appendFooterView];
+                        }else{
+                            [self removeFooterRefresh];
+                        }
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                    [self endRefreshing];
+                }];
+                break;
+            }
+            case 2:
+            {
+                //年卡
+                [APIHELPER orderListCard:0 limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    [self hideLoadingAnimation];
+                    if (isSuccess) {
+                        [self.dataArray removeAllObjects];
+                        [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                        [self.tableView reloadData];
+                        
+                        self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                        if (self.haveNext) {
+                            [self appendFooterView];
+                        }else{
+                            [self removeFooterRefresh];
+                        }
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                    [self endRefreshing];
+                }];
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+}
+
+-(void)appendFooterView {
+    @weakify(self);
+    [self addFooterRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        switch (self.typeId) {
+            case 0:
+            {
+                //演出
+                [APIHELPER orderListTheater:self.dataArray.count limit:4 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    [self hideLoadingAnimation];
+                    if (isSuccess) {
+                        [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                        [self.tableView reloadData];
+                        
+                        self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                        if (self.haveNext) {
+                            [self appendFooterView];
+                        }else{
+                            [self removeFooterRefresh];
+                        }
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                    [self endRefreshing];
+                }];
+                break;
+            }
+            case 1:
+            {
+                //商品
+                [APIHELPER orderListDerive:self.dataArray.count limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    [self hideLoadingAnimation];
+                    if (isSuccess) {
+                        [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                        [self.tableView reloadData];
+                        
+                        self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                        if (self.haveNext) {
+                            [self appendFooterView];
+                        }else{
+                            [self removeFooterRefresh];
+                        }
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                    [self endRefreshing];
+                }];
+                break;
+            }
+            case 2:
+            {
+                //年卡
+                [APIHELPER orderListCard:self.dataArray.count limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    [self hideLoadingAnimation];
+                    if (isSuccess) {
+                        [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                        [self.tableView reloadData];
+                        
+                        self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                        if (self.haveNext) {
+                            [self appendFooterView];
+                        }else{
+                            [self removeFooterRefresh];
+                        }
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                    [self endRefreshing];
+                }];
+                break;
+            }
+            default:
+                break;
+        }
+    }];
 }
 
 -(void)subviewStyle {
@@ -143,7 +381,7 @@
     
     CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, kScreen_Width, 42) menuTitles:_status textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBarTintColor] isLineAdaptText:YES];
     [btns setFinished:^(NSInteger index) {
-        self.statuId = index;
+        self.statuId = index+1;
         [self fetchData];
     }];
     [_topView addSubview:btns];
@@ -236,11 +474,8 @@
 }
 - (void)selectClass:(NSInteger)row{
     [self.filterBtn setTitle:_types[row] forState:UIControlStateNormal];
-    if (row == 0) {
-
-    }else{
-//        self.filterParam[@"type_id"] = [NSString stringWithFormat:@"%@", @(row)];
-    }
+    //选择订单类型，设置默认订单状态
+    self.statuId = 1;
     [self fetchData];
 }
 @end

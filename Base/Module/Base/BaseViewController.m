@@ -174,7 +174,7 @@
     }
 }
 
--(void)checkUserLogined {
+-(BOOL)checkUserLogined {
     
     if ([Global userAuth]==nil) {
         HYAlertView* alert = [HYAlertView sharedInstance];
@@ -184,7 +184,7 @@
         [alert setCancelButtonBackgroundColor:[UIColor hyRedColor]];
         [alert setCancelButtonBorderColor:[UIColor whiteColor]];
         [alert setCancelButtonTitleColor:[UIColor whiteColor]];
-        [alert showAlertView:@"未登录!" message:@"是否立即登录?" subBottonTitle:@"取消" cancelButtonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+        [alert showAlertView:@"此操作需要登陆!" message:@"是否立即登陆?" subBottonTitle:@"取消" cancelButtonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
             switch (bottonType) {
                 case AlertViewClickBottonTypeSubBotton:
                     break;
@@ -193,8 +193,9 @@
                     break;
             }
         }];
-        return;
+        return NO;
     }
+    return YES;
 }
 
 

@@ -12,8 +12,7 @@
 #import "OrderCodeCell.h"
 #import "OrderDetailCell.h"
 #import "UIViewController+Extension.h"
-#import "APIHelper+Derive.h"
-
+#import "APIHelper+Order.h"
 @interface OrderDetailController ()
 
 @property(strong,nonatomic)NSDictionary* data;  //订单详情数据
@@ -264,10 +263,10 @@
     if ([self.type isEqualToString:@"theater"]) {
         
     }else if ([self.type isEqualToString:@"derive"]) {
-        [APIHELPER deriveOrderDetail:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [APIHELPER orderDetailDerive:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             if (isSuccess) {
                 self.data = responseObject[@"data"];
-//                [self.codeArray addObjectsFromArray:responseObject[@"data"][@"exchange_barcode"]];
+                //                [self.codeArray addObjectsFromArray:responseObject[@"data"][@"exchange_barcode"]];
                 //TODO:后面exchange_barcode将会是一个数组
                 [self.codeArray addObject:responseObject[@"data"][@"exchange_barcode"]];
                 [self.tableView reloadData];

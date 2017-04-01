@@ -137,7 +137,6 @@
 		843329A71E84FC4900A7421E /* TheaterSeatPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843329A61E84FC4900A7421E /* TheaterSeatPreviewController.m */; };
 		843329AA1E84FC5E00A7421E /* TheaterSeatSelectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843329A91E84FC5E00A7421E /* TheaterSeatSelectController.m */; };
 		843329AD1E84FC9300A7421E /* TheaterCommitOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 843329AC1E84FC9300A7421E /* TheaterCommitOrderController.m */; };
-		843329B11E84FF0200A7421E /* price.png in Resources */ = {isa = PBXBuildFile; fileRef = 843329B01E84FF0200A7421E /* price.png */; };
 		843329B31E85049F00A7421E /* price2.png in Resources */ = {isa = PBXBuildFile; fileRef = 843329B21E85049F00A7421E /* price2.png */; };
 		843329B61E85102600A7421E /* TheaterSeatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 843329B51E85102600A7421E /* TheaterSeatView.m */; };
 		843329BA1E8523A800A7421E /* CommitOrderTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843329B81E8523A800A7421E /* CommitOrderTopCell.m */; };
@@ -262,6 +261,8 @@
 		84924F191E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F121E2CC926005F05C3 /* UICollectionView+Sure_Placeholder.m */; };
 		84924F1A1E2CC926005F05C3 /* UITableView+Sure_Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F141E2CC926005F05C3 /* UITableView+Sure_Placeholder.m */; };
 		84924F1D1E2CCD62005F05C3 /* HYPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */; };
+		84955A381E8F486A00136469 /* APIHelper+Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 84955A371E8F486A00136469 /* APIHelper+Order.m */; };
+		84955A3A1E8F7D7F00136469 /* elephant.png in Resources */ = {isa = PBXBuildFile; fileRef = 84955A391E8F7D7F00136469 /* elephant.png */; };
 		8497B67C1E889DFE00392973 /* CommitOrderSeatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B67A1E889DFE00392973 /* CommitOrderSeatCell.m */; };
 		8497B67D1E889DFE00392973 /* CommitOrderSeatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8497B67B1E889DFE00392973 /* CommitOrderSeatCell.xib */; };
 		8497B6801E88AC9C00392973 /* SelectCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B67F1E88AC9C00392973 /* SelectCouponController.m */; };
@@ -600,7 +601,6 @@
 		843329A91E84FC5E00A7421E /* TheaterSeatSelectController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterSeatSelectController.m; sourceTree = "<group>"; };
 		843329AB1E84FC9300A7421E /* TheaterCommitOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterCommitOrderController.h; sourceTree = "<group>"; };
 		843329AC1E84FC9300A7421E /* TheaterCommitOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterCommitOrderController.m; sourceTree = "<group>"; };
-		843329B01E84FF0200A7421E /* price.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = price.png; sourceTree = "<group>"; };
 		843329B21E85049F00A7421E /* price2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = price2.png; sourceTree = "<group>"; };
 		843329B41E85102600A7421E /* TheaterSeatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterSeatView.h; sourceTree = "<group>"; };
 		843329B51E85102600A7421E /* TheaterSeatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterSeatView.m; sourceTree = "<group>"; };
@@ -888,6 +888,9 @@
 		84924F141E2CC926005F05C3 /* UITableView+Sure_Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Sure_Placeholder.m"; sourceTree = "<group>"; };
 		84924F1B1E2CCD62005F05C3 /* HYPaddingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPaddingLabel.h; sourceTree = "<group>"; };
 		84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPaddingLabel.m; sourceTree = "<group>"; };
+		84955A361E8F486A00136469 /* APIHelper+Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Order.h"; sourceTree = "<group>"; };
+		84955A371E8F486A00136469 /* APIHelper+Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Order.m"; sourceTree = "<group>"; };
+		84955A391E8F7D7F00136469 /* elephant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = elephant.png; sourceTree = "<group>"; };
 		8497B6791E889DFE00392973 /* CommitOrderSeatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitOrderSeatCell.h; sourceTree = "<group>"; };
 		8497B67A1E889DFE00392973 /* CommitOrderSeatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitOrderSeatCell.m; sourceTree = "<group>"; };
 		8497B67B1E889DFE00392973 /* CommitOrderSeatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitOrderSeatCell.xib; sourceTree = "<group>"; };
@@ -1620,8 +1623,8 @@
 				841C01011E729BFC0082ECDA /* baidi.png */,
 				841D4ADE1E7A2A92002C49C0 /* horizonDotLine.png */,
 				841D4ADF1E7A2A92002C49C0 /* verticalDotLine.png */,
-				843329B01E84FF0200A7421E /* price.png */,
 				843329B21E85049F00A7421E /* price2.png */,
+				84955A391E8F7D7F00136469 /* elephant.png */,
 				845BDF821E28D2C00064ACAE /* LaunchScreen.storyboard */,
 				845BDF7D1E28D2C00064ACAE /* Main.storyboard */,
 				8472F7261E6D388A000AE550 /* Collect.storyboard */,
@@ -2210,6 +2213,8 @@
 				84525A381E2E08D20054C6A1 /* APIHelper+User.m */,
 				84E6D4281E4817CD0056A702 /* APIHelper+Home.h */,
 				84E6D4291E4817CD0056A702 /* APIHelper+Home.m */,
+				84955A361E8F486A00136469 /* APIHelper+Order.h */,
+				84955A371E8F486A00136469 /* APIHelper+Order.m */,
 				8401F2D51E8B9C3A0032FE32 /* APIHelper+Theater.h */,
 				8401F2D61E8B9C3A0032FE32 /* APIHelper+Theater.m */,
 				8401F2D81E8B9C4A0032FE32 /* APIHelper+Derive.h */,
@@ -2695,6 +2700,7 @@
 				845BDF7F1E28D2C00064ACAE /* Main.storyboard in Resources */,
 				842020291E7B7DF000B13C5B /* MineCouponCell.xib in Resources */,
 				841E45831E80C288007B6EF3 /* MessageSystemCell.xib in Resources */,
+				84955A3A1E8F7D7F00136469 /* elephant.png in Resources */,
 				842260E61E8A38C9009C3FAF /* RefundHeadCell.xib in Resources */,
 				8420202E1E7B86A900B13C5B /* MineCommentCell.xib in Resources */,
 				842260E11E8A36F8009C3FAF /* OrderUseView.xib in Resources */,
@@ -2705,7 +2711,6 @@
 				842260D51E8A0696009C3FAF /* districtOne.plist in Resources */,
 				84E5EE821E2DCADB0062A2BE /* WeiboSDK.bundle in Resources */,
 				841C01001E7296B50082ECDA /* DeriveListCell.xib in Resources */,
-				843329B11E84FF0200A7421E /* price.png in Resources */,
 				843329BB1E8523A800A7421E /* CommitOrderTopCell.xib in Resources */,
 				841D4AF41E7A3C84002C49C0 /* OrderListCell.xib in Resources */,
 				843142DE1E68FC9C0007740A /* HeadCell.xib in Resources */,
@@ -2977,6 +2982,7 @@
 				84924E841E2C788B005F05C3 /* WebViewController.m in Sources */,
 				841C00F81E7289CA0082ECDA /* DeriveDetailController.m in Sources */,
 				84924EAB1E2C7D7C005F05C3 /* UIImage+HYSize.m in Sources */,
+				84955A381E8F486A00136469 /* APIHelper+Order.m in Sources */,
 				84E5EE731E2DCADB0062A2BE /* UIScrollView+EffectHeaderView.m in Sources */,
 				842D6BA81E8249F0004A1271 /* CommentViewController.m in Sources */,
 				84DCC2881E77E8100019898E /* VideoListCell.m in Sources */,

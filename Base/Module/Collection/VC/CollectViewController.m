@@ -7,6 +7,7 @@
 //
 
 #import "CollectViewController.h"
+#import "WeekEndDetailController.h"
 #import "TheaterListCell.h"
 #import "NewsCell.h"
 #import "WeekEndCell.h"
@@ -52,6 +53,11 @@ typedef enum : NSUInteger {
 
     
     [self subviewStyle];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
     [self fetchData];
 }
 
@@ -156,6 +162,38 @@ typedef enum : NSUInteger {
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary* model = self.dataArray[indexPath.row];
+    
+    switch (self.contentType) {
+        case TypeTheater:
+            
+            break;
+        case TypeNews:
+            
+            break;
+        case TypeWeekEnd:
+        {
+            WeekEndDetailController* vc = (WeekEndDetailController*)VIEWCONTROLLER(kWeekEndDetailController);
+            vc.isFav = YES;
+            vc.articleId = [model[@"collection_id"] integerValue];
+            vc.articleType = [model[@"type"] integerValue];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
+        case TypeDerive:
+        {
+            WeekEndDetailController* vc = (WeekEndDetailController*)VIEWCONTROLLER(kWeekEndDetailController);
+            vc.isFav = YES;
+            vc.articleId = [model[@"collection_id"] integerValue];
+            vc.articleType = [model[@"type"] integerValue];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
+        default:
+            break;
+    }
 }
 #pragma mark - private methods
 -(NSMutableArray *)dataArray {

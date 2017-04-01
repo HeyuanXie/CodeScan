@@ -16,6 +16,4 @@
 
 -(void)deriveExchange:(NSInteger)goodId buyNum:(NSInteger)buyNum complete:(ApiRequestCompleteBlock)complete;
 
--(void)deriveOrderDetail:(NSString*)orderSn complete:(ApiRequestCompleteBlock)complete;
-
 @end

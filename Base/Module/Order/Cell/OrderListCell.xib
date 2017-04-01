@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5nr-6E-2UB">
@@ -46,7 +46,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="qDO-bx-dhI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -56,6 +56,10 @@
                                     <constraint firstAttribute="width" constant="55" id="gLe-49-N5N"/>
                                     <constraint firstAttribute="width" secondItem="OmA-Ed-Apf" secondAttribute="height" multiplier="1:1" id="gZY-Oh-yIQ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="3"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待使用" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ywD-Gd-VgM">
                                 <rect key="frame" x="297" y="42" width="42" height="21"/>
@@ -63,7 +67,7 @@
                                     <constraint firstAttribute="height" constant="21" id="H6A-dl-dcR"/>
                                     <constraint firstAttribute="width" constant="42" id="rfY-KQ-jgk"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.68627450980000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -104,23 +108,23 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9G-2f-rmP">
-                                <rect key="frame" x="274" y="119" width="65" height="30"/>
+                                <rect key="frame" x="269" y="119" width="70" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="FSZ-qe-ZET"/>
-                                    <constraint firstAttribute="width" constant="65" id="gnZ-Jj-pqX"/>
+                                    <constraint firstAttribute="width" constant="70" id="gnZ-Jj-pqX"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="去使用">
                                     <color key="titleColor" red="0.40000000000000002" green="0.68627450980000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lz5-7X-xMk">
-                                <rect key="frame" x="204" y="119" width="65" height="30"/>
+                                <rect key="frame" x="194" y="119" width="70" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="65" id="PX4-7s-sCz"/>
+                                    <constraint firstAttribute="width" constant="70" id="PX4-7s-sCz"/>
                                     <constraint firstAttribute="height" constant="30" id="qud-jH-3H7"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="再次购买">
                                     <color key="titleColor" red="0.40000000000000002" green="0.68627450980000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>

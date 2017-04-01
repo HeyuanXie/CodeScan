@@ -8,6 +8,7 @@
 
 #import "TheaterDetailCell.h"
 #import "UIImageView+HYImageView.h"
+#import "TheaterModel.h"
 
 @interface TheaterDetailCell ()
 
@@ -34,19 +35,26 @@
 
 -(void)configTopCell:(id)model {
     
+    TheaterModel* theater = (TheaterModel*)model;
     [self.unfoldBtn bk_whenTapped:^{
         if (self.unfoldBtnClick) {
             self.unfoldBtnClick();
         }
     }];
     
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:theater.picurl] placeholderImage:ImageNamed(@"elephant")];
+    [self.backImgV sd_setImageWithURL:[NSURL URLWithString:theater.picurl] placeholderImage:ImageNamed(@"elephant")];
+    self.titleLbl.text = theater.playName;
+    self.timeLbl.text = [NSString stringWithFormat:@"时长: %@分钟",theater.pctime];
+    self.dateLbl.text = [NSString stringWithFormat:@"上映: %@",theater.sydate];
+    
+    self.descriptionLbl.text = theater.desc;
     NSMutableAttributedString* mAttStr = [[NSMutableAttributedString alloc] initWithString:self.descriptionLbl.text];
     NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc] init];
     [style setLineSpacing:4.0];
     [mAttStr addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, self.descriptionLbl.text.length)];
     self.descriptionLbl.attributedText = mAttStr;
     self.descriptionLbl.lineBreakMode = NSLineBreakByTruncatingTail;
-    
     self.descriptionLbl.numberOfLines = self.isFold ? 4 : 0;
 }
 

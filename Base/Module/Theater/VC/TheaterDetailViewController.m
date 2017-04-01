@@ -11,8 +11,16 @@
 #import "DetailDervieView.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "RecentHotView.h"
+#import "TheaterModel.h"
+#import "DeriveModel.h"
 
+#import "APIHelper+Theater.h"
 @interface TheaterDetailViewController ()
+
+@property(nonatomic,strong)TheaterModel* playInfo;
+@property(nonatomic,strong)NSMutableArray* goodList;
+@property(nonatomic,strong)NSMutableArray* commentList;
+@property(nonatomic,strong)NSMutableArray* commendList;
 
 @property(nonatomic,strong)NSArray* titles;
 @property(nonatomic,assign)NSInteger descriptionHight;
@@ -66,7 +74,7 @@
 
 #pragma mark - tableView dataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.titles.count;
+    return self.playInfo == nil ? 0 : self.titles.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
@@ -99,8 +107,10 @@
         [self.tableView reloadData];
     }];
     cell.isFold = self.isFold;
+    NSString* imgName = self.isFold ? @"三角形_黑色下" : @"三角形_黑色上";
+    [cell.unfoldBtn setImage:ImageNamed(imgName) forState:UIControlStateNormal];
     cell.unfoldBtnHeight.constant = self.descriptionHight < 68 ? 0 : 30;
-    [cell configTopCell:nil];
+    [cell configTopCell:self.playInfo];
     return cell;
 }
 -(UITableViewCell*)aroundCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
@@ -116,12 +126,19 @@
         [cell.contentView addSubview:scrollView];
     }
     UIScrollView* scrollView = (UIScrollView*)[cell.contentView viewWithTag:1000];
-    for (int i = 0; i<7; i++) {
+    for (int i = 0; i<self.goodList.count; i++) {
+        DeriveModel* model = self.goodList[i];
         DetailDervieView* view = (DetailDervieView*)[[NSBundle mainBundle] loadNibNamed:@"TheaterUseView" owner:self options:nil][0];
         view.frame = CGRectMake(106*i+10, 0, 106, 138);
+        [view.imgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:ImageNamed(@"elephant")];
+        view.titleLbl.text = model.goodName;
+        view.priceLbl.text = model.shopPrice;
+        [view bk_whenTapped:^{
+            APPROUTE(([NSString stringWithFormat:@"%@?id=%ld",kDeriveDetailController,model.goodId.integerValue]));
+        }];
         [scrollView addSubview:view];
     }
-    scrollView.contentSize = CGSizeMake(10+106*7, 0);
+    scrollView.contentSize = CGSizeMake(10+106*self.goodList.count, 0);
     return cell;
 }
 
@@ -168,7 +185,7 @@
                     }];
                     cell.isFold = self.isFold;
                     cell.unfoldBtnHeight.constant = self.descriptionHight < 68 ? 0 : 30;
-                    [cell configTopCell:nil];
+                    [cell configTopCell:self.playInfo];
                 }];
             }else{
                 return [tableView fd_heightForCellWithIdentifier:[TheaterDetailCell identify] configuration:^(TheaterDetailCell* cell) {
@@ -179,7 +196,7 @@
                     }];
                     cell.isFold = self.isFold;
                     cell.unfoldBtnHeight.constant = self.descriptionHight < 68 ? 0 : 30;
-                    [cell configTopCell:nil];
+                    [cell configTopCell:self.playInfo];
                 }];
             }
         case 1:
@@ -201,22 +218,57 @@
 }
 
 #pragma mark - private methods
+- (NSMutableArray *)goodList {
+    if (!_goodList) {
+        _goodList = [NSMutableArray array];
+    }
+    return _goodList;
+}
+
+- (NSMutableArray *)commentList {
+    if (!_commentList) {
+        _commentList = [NSMutableArray array];
+    }
+    return _commentList;
+}
+
+- (NSMutableArray *)commendList {
+    if (!_commendList) {
+        _commendList = [NSMutableArray array];
+    }
+    return _commendList;
+}
+
 -(void)dataInit {
     self.titles = @[@"",@"戏剧周边",@"观众点评",@"演出推荐"];
     self.isFold = YES;  //默认折叠
     
-//    [APIHELPER ]
-    NSString* desc = @"阿萨德法师法师法师打发的方式是打发发生的发生发大水]阿斯达所阿萨德法师法师法师打发的方式是打发发生的发生发大水法法师打发斯蒂芬啊实打实大水电费阿萨德法师法师法师打发的方式是打发发生的发生发大水法法师打发斯蒂芬阿萨德法师法师法师打发的方式是打发发生的发生发大水法法师打发斯蒂芬阿萨德法师法师法师打发的方式是打发发生的发生发大水法法师打发斯蒂芬阿萨德法师法师法师打发的方式是打发发生的发生发大水法法师打发斯蒂芬啊啊啊";
-    NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc] init];
-    [style setLineSpacing:4];
-    NSDictionary* attributes = @{NSParagraphStyleAttributeName:style,NSFontAttributeName:[UIFont systemFontOfSize:14]};
-    
-    CGRect rect = [desc boundingRectWithSize:CGSizeMake(kScreen_Width-46, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:NULL];
-    self.descriptionHight = rect.size.height;
+    [self showLoadingAnimation];
+    [APIHELPER theaterDetail:self.Id complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        if (isSuccess) {
+            self.playInfo = [TheaterModel yy_modelWithJSON:responseObject[@"data"][@"play_info"]];
+            NSString* desc = self.playInfo.desc;
+            NSMutableParagraphStyle* style = [[NSMutableParagraphStyle alloc] init];
+            [style setLineSpacing:4];
+            NSDictionary* attributes = @{NSParagraphStyleAttributeName:style,NSFontAttributeName:[UIFont systemFontOfSize:14]};
+            CGRect rect = [desc boundingRectWithSize:CGSizeMake(kScreen_Width-46, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:NULL];
+            self.descriptionHight = rect.size.height;
+            
+            [self.goodList addObjectsFromArray:[NSArray yy_modelArrayWithClass:[DeriveModel class] json:responseObject[@"data"][@"goods_list"]]];
+            [self.commentList addObject:responseObject[@"data"][@"comment_list"]];
+            [self.commendList addObject:[NSArray yy_modelArrayWithClass:[TheaterModel class] json:responseObject[@"data"][@"commend_list"]]];
+            
+            self.title = self.playInfo.playName;
+            [self.tableView reloadData];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+
 }
 
 -(void)subviewInit {
-    self.title = @"丑小鸭";
     
     UIBarButtonItem* item1 = [[UIBarButtonItem alloc] initWithImage:ImageNamed(@"cart") style:UIBarButtonItemStyleDone target:self action:@selector(collect)];
     UIBarButtonItem* item2 = [[UIBarButtonItem alloc] initWithImage:ImageNamed(@"") style:UIBarButtonItemStyleDone target:self action:@selector(share)];

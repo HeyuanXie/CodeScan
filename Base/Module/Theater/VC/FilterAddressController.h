@@ -11,6 +11,6 @@
 @interface FilterAddressController : UITableViewController
 
 @property(nonatomic,copy)void (^selectCity)(NSString* city);
-
+@property(nonatomic,strong)NSString* selectedCity;
 
 @end
