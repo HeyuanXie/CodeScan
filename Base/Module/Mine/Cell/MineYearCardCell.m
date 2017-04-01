@@ -26,6 +26,10 @@
 
 -(void)configYearCardCell:(id)model {
     
+    self.titleLbl.text = model[@"card_name"];
+    self.numLbl.text = model[@"card_sn"];
+    self.timeLbl.text = [[model[@"expire_time"] componentsSeparatedByString:@" "] firstObject];
+    self.countLbl.text = [model[@"left_times"] stringValue];
 }
 
 - (void)awakeFromNib {

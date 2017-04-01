@@ -21,5 +21,7 @@
 @property (nonatomic, strong) NSNumber *cateId;
 @property (nonatomic, strong) NSNumber *views;
 @property (nonatomic, strong) NSNumber *light;
+@property (nonatomic, strong) NSNumber *isFav;
+@property (nonatomic, strong) NSNumber *articleType;
 
 @end

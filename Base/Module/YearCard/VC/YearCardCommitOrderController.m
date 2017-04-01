@@ -12,6 +12,7 @@
 
 @interface YearCardCommitOrderController ()
 
+@property (strong, nonatomic) NSMutableDictionary* data;
 @property (weak, nonatomic) IBOutlet UILabel *totalLbl;
 
 @property (strong, nonatomic) NSMutableArray* payMethods;
@@ -27,7 +28,10 @@
     // Do any additional setup after loading the view.
 
     self.selectIndex = 1;
-    
+    self.data = [NSMutableDictionary dictionary];
+    for (NSString* key in @[@"card_name",@"total_times",@"thumb",@"price"]) {
+        [self.data setObject:[self.schemaArgu objectForKey:key] forKey:key];
+    }
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 60, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.tableView registerNib:[UINib nibWithNibName:[OrderTopCell identify] bundle:nil] forCellReuseIdentifier:[OrderTopCell identify]];
@@ -67,7 +71,7 @@
                 cell.contentView.backgroundColor = [UIColor whiteColor];
                 cell.rightImgV.hidden = YES;
                 cell.priceLbl.hidden = YES;
-                [cell configTopCell:nil];
+                [cell configTopCell:self.data];
                 return cell;
             }else{
                 static NSString* cellId = @"commonCell";
@@ -84,8 +88,9 @@
                 
                 cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
                 cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-                NSString* str = @"合计: ¥99";
-                NSAttributedString* attStr = [str addAttribute:@[NSForegroundColorAttributeName,NSForegroundColorAttributeName,NSFontAttributeName] values:@[[UIColor hyRedColor],[UIColor hyRedColor],[UIFont systemFontOfSize:19]] subStrings:@[@"¥",@"99",@"99"]];
+//                NSString* str = @"合计: ¥99";
+                NSString* str = [NSString stringWithFormat:@"积分 ¥%@",self.data[@"price"]];
+                NSAttributedString* attStr = [str addAttribute:@[NSForegroundColorAttributeName,NSForegroundColorAttributeName,NSFontAttributeName] values:@[[UIColor hyRedColor],[UIColor hyRedColor],[UIFont systemFontOfSize:19]] subStrings:@[@"¥",self.data[@"price"],self.data[@"price"]]];
                 cell.detailTextLabel.attributedText = attStr;
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 return cell;

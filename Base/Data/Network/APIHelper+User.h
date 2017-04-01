@@ -45,6 +45,7 @@
 
 - (void)logout;
 
+//收藏
 - (void)collect:(NSInteger)collectionId
            type:(NSInteger)type
        complete:(ApiRequestCompleteBlock)complete;
@@ -58,6 +59,7 @@
                     type:(NSInteger)type
                 complete:(ApiRequestCompleteBlock)complete;
 
+//积分
 - (void)scoreManageComplete:(ApiRequestCompleteBlock)complete;
 
 - (void)scoreInfoList:(NSInteger)start
@@ -65,5 +67,8 @@
              complete:(ApiRequestCompleteBlock)complte;
 
 - (void)scoreSignComplete:(ApiRequestCompleteBlock)complete;
+
+//年卡
+- (void)mineYearCardList:(NSInteger)start limit:(NSInteger)limit complete:(ApiRequestCompleteBlock)complete;
 
 @end

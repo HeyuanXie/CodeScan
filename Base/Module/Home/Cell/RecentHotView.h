@@ -17,4 +17,5 @@
 
 +(CGSize)homeSize;
 +(CGSize)showDetailSize;
+-(void)configRecentView:(id)model;
 @end

@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLbl;
 
 +(NSString*)identify;
--(void)configTopCell:(id)model;
+-(void)configTopCell:(NSDictionary*)model;
 
 
 @end

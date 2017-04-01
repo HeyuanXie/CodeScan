@@ -12,12 +12,14 @@
 #import "OrderCodeCell.h"
 #import "OrderDetailCell.h"
 #import "UIViewController+Extension.h"
+#import "APIHelper+Derive.h"
 
 @interface OrderDetailController ()
 
-@property(strong,nonatomic)NSMutableArray* codeArray;
+@property(strong,nonatomic)NSDictionary* data;  //订单详情数据
+@property(strong,nonatomic)NSMutableArray* codeArray;   //订单二维码数组
 @property(strong,nonatomic)NSString* type;  //订单类型
-@property(assign,nonatomic)NSString* Id;    //订单Id
+@property(assign,nonatomic)NSString* orderId;    //订单Id
 
 @property(strong,nonatomic)NSArray* maps;//手机安装的地图的数组
 @end
@@ -30,8 +32,8 @@
     if (self.schemaArgu[@"type"]) {
         self.type = [self.schemaArgu objectForKey:@"type"];
     }
-    if (self.schemaArgu[@"Id"]) {
-        self.Id = [self.schemaArgu objectForKey:@"Id"];
+    if (self.schemaArgu[@"orderId"]) {
+        self.orderId = [self.schemaArgu objectForKey:@"orderId"];
     }
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -134,13 +136,13 @@
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
     if ([self.type isEqualToString:@"theater"]) {
-        [cell configTheaterHeadCell:nil];
+        [cell configTheaterHeadCell:self.data];
     }else if ([self.type isEqualToString:@"lecture"]) {
-        [cell configLectureHeadCell:nil];
+        [cell configLectureHeadCell:self.data];
     }else if ([self.type isEqualToString:@"derive"]) {
-        [cell configDeriveHeadCell:nil];
+        [cell configDeriveHeadCell:self.data];
     }else{
-        [cell configYearCardHeadCell:nil];
+        [cell configYearCardHeadCell:self.data];
     }
     return cell;
 }
@@ -179,10 +181,15 @@
     lbl.text = @"有效期至: 2017-4-30";
     
     if ([self.type isEqualToString:@"derive"]) {
-        [btn setTitle:@"去评价" forState:UIControlStateNormal];
-        [btn bk_whenTapped:^{
-            //TODO:评价
-        }];
+        if ([self.data[@"order_status"] integerValue] == 2) {
+            [btn setTitle:@"去评价" forState:UIControlStateNormal];
+            [btn bk_whenTapped:^{
+                //TODO:评价
+                APPROUTE(kCommentViewController);
+            }];
+        }else{
+            btn.hidden = YES;
+        }
     }else{
         [btn bk_whenTapped:^{
             //TODO:退款
@@ -209,7 +216,7 @@
         [cell.contentView addSubview:lbl];
     }
     UILabel* lbl = [cell.contentView viewWithTag:1000];
-    lbl.text = @"东莞玉兰大剧场";
+    lbl.text = self.data == nil ? @"" : self.data[@"exchange_place"];
     return cell;
 }
 -(UITableViewCell*)codeCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
@@ -242,7 +249,7 @@
     OrderDetailCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderDetailCell identify]];
     [HYTool configTableViewCellDefault:cell];
     cell.contentView.backgroundColor = [UIColor whiteColor];
-    [cell configDetailCell:nil];
+    [cell configDetailCell:self.data type:self.type];
     return cell;
 }
 -(NSMutableArray *)codeArray {
@@ -254,6 +261,20 @@
 
 -(void)fetchData {
     
-    [self.tableView reloadData];
+    if ([self.type isEqualToString:@"theater"]) {
+        
+    }else if ([self.type isEqualToString:@"derive"]) {
+        [APIHELPER deriveOrderDetail:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            if (isSuccess) {
+                self.data = responseObject[@"data"];
+//                [self.codeArray addObjectsFromArray:responseObject[@"data"][@"exchange_barcode"]];
+                //TODO:后面exchange_barcode将会是一个数组
+                [self.codeArray addObject:responseObject[@"data"][@"exchange_barcode"]];
+                [self.tableView reloadData];
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+        }];
+    }
 }
 @end

@@ -8,6 +8,7 @@
 
 #import "MineYearCardController.h"
 #import "MineYearCardCell.h"
+#import "APIHelper+User.h"
 
 @interface MineYearCardController ()
 
@@ -23,6 +24,7 @@
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsZero];
     [self.tableView registerNib:[UINib nibWithNibName:[MineYearCardCell identify] bundle:nil] forCellReuseIdentifier:[MineYearCardCell identify]];
     
+    [self headerViewInit];
     [self fetchData];
     
 }
@@ -40,7 +42,8 @@
     MineYearCardCell* cell = [tableView dequeueReusableCellWithIdentifier:[MineYearCardCell identify]];
     [HYTool configTableViewCellDefault:cell];
     //TODO:
-    [cell configYearCardCell:nil];
+    NSDictionary* model = self.dataArray[indexPath.row];
+    [cell configYearCardCell:model];
     return cell;
 }
 
@@ -63,8 +66,81 @@
     return _dataArray;
 }
 
--(void)fetchData {
-    self.dataArray = [@[@"",@""] mutableCopy];
+- (void)fetchData {
+    self.tableView.tableFooterView = nil;
+    [self showLoadingAnimation];
+    [APIHELPER mineYearCardList:self.dataArray.count limit:6 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        
+        if (isSuccess) {
+            [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+            
+            self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+            if (self.haveNext) {
+                [self appendFooterView];
+            }else{
+                [self removeFooterRefresh];
+            }
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+}
+
+-(void)headerViewInit {
+    @weakify(self);
+    [self addHeaderRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [self.dataArray removeAllObjects];
+        [APIHELPER mineYearCardList:self.dataArray.count limit:6 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            [self.dataArray removeAllObjects];
+            [self.tableView reloadData];
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
+}
+
+-(void)appendFooterView {
+    @weakify(self);
+    [self addFooterRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER mineYearCardList:self.dataArray.count limit:6 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
 }
 
 @end

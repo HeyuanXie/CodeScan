@@ -7,6 +7,7 @@
 //
 
 #import "SearchResultController.h"
+#import "WeekEndDetailController.h"
 #import "FTPopOverMenu.h"
 #import "TheaterListCell.h"
 #import "WeekEndCell.h"
@@ -122,8 +123,14 @@ typedef enum : NSUInteger {
             APPROUTE(([NSString stringWithFormat:@"%@?id=%d",kDeriveDetailController,0]));
             break;
         default:
-            APPROUTE(([NSString stringWithFormat:@"%@?Id=%d",kWeekEndDetailController,0]));
+        {
+            WeekEndDetailController* vc = (WeekEndDetailController*)VIEWCONTROLLER(kWeekEndDetailController);
+            ArticleModel* article = (ArticleModel*)model;
+            vc.data = article;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
             break;
+        }
     }
 }
 

@@ -17,6 +17,8 @@
              @"cateId":@"cate_id",
              @"sourceUrl":@"source_url",
              @"commentNum":@"comment_num",
+             @"isFav":@"is_fav",
+             @"articleType":@"article_type"
              };
 }
 

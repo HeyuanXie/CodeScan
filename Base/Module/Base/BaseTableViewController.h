@@ -12,7 +12,11 @@
 
 @property(nonatomic,strong) UITableView* tableView;
 @property(nonatomic,assign) BOOL haveNext;
-@property(nonatomic,assign) BOOL haveTableFooter;   //是否有“已经到底了”底部视图
+
+/**
+是否有“已经到底了”底部视图
+ */
+@property(nonatomic,assign) BOOL haveTableFooter;   
 
 -(void)baseSetupTableView:(UITableViewStyle)style InSets:(UIEdgeInsets)edge;
 

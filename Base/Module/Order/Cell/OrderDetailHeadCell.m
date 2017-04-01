@@ -64,13 +64,21 @@
 }
 
 -(void)configDeriveHeadCell:(id)model {
+    if (model == nil) {
+        return;
+    }
     self.rightImgV.hidden = YES;
     self.thirdLbl.hidden = YES;
     self.forthLbl.hidden = YES;
     self.secondLblTop.constant = 10;
     
-    NSString* text = [NSString stringWithFormat:@"%d积分",1520];
-    self.secondLbl.attributedText = [text addAttribute:@[NSFontAttributeName,NSForegroundColorAttributeName] values:@[[UIFont systemFontOfSize:19],[UIColor hyRedColor]] subStrings:@[@"1520",@"1520"]];
+    if (![model[@"thumb_img"] isEqualToString:@""]) {
+        [self.imgV sd_setImageWithURL:[NSURL URLWithString:model[@"thumb_img"]] placeholderImage:nil];
+    }
+    self.firstLbl.text = model[@"goods_name"];
+    NSString* price = [NSString stringWithFormat:@"%ld",[model[@"exchange_total_price"] integerValue]];
+    NSString* text = [NSString stringWithFormat:@"%@积分",price];
+    self.secondLbl.attributedText = [text addAttribute:@[NSFontAttributeName,NSForegroundColorAttributeName] values:@[[UIFont systemFontOfSize:19],[UIColor hyRedColor]] subStrings:@[price,price]];
 }
 
 -(void)configYearCardHeadCell:(id)model {

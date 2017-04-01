@@ -173,4 +173,20 @@
     [APIHELPER getWithURL:@"user/sign" param:nil complete:complete];
 }
 
+
+/**
+ 获取我的年卡列表
+
+ @param start <#start description#>
+ @param limit <#limit description#>
+ @param complete <#complete description#>
+ */
+- (void)mineYearCardList:(NSInteger)start limit:(NSInteger)limit complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:@(start) forKey:@"start"];
+    [param safe_setValue:@(limit) forKey:@"limit"];
+    [APIHELPER getWithURL:@"card/myCardList" param:param complete:complete];
+}
+
 @end

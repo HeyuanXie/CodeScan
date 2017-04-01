@@ -10,6 +10,7 @@
 #import "HomeViewController.h"
 #import "HYAddressController.h"
 #import "BaseNavigationController.h"
+#import "WeekEndDetailController.h"
 #import "APIHelper+Home.h"
 
 #import "HYScrollView.h"
@@ -227,10 +228,13 @@
         [hotView autoSetDimensionsToSize:[RecentHotView homeSize]];
         [hotView autoPinEdgeToSuperviewEdge:ALEdgeTop];
         [hotView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10+(147+10)*i];
+        [hotView configRecentView:nil];
+        [hotView bk_whenTapped:^{
+            APPROUTE(kTheaterDetailViewController);
+        }];
     }
     scroll.contentSize = CGSizeMake(5*(10+147)+10, 0);
     return cell;
-    
 }
 
 -(UITableViewCell*)parentChildCellForTableView:(UITableView *)tableView RowAtIndexPath:(NSIndexPath *)indexPath {
@@ -328,7 +332,41 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger section = [self.info[indexPath.section][@"section"] integerValue];
+    switch (section) {
+        case 0:
+            
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3:
+        {
+            //资讯
+            WeekEndDetailController* vc = (WeekEndDetailController*)VIEWCONTROLLER(kWeekEndDetailController);
+            vc.data = self.news[indexPath.row];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
+        case 4:
+        {
+            //周末去哪儿
+            WeekEndDetailController* vc = (WeekEndDetailController*)VIEWCONTROLLER(kWeekEndDetailController);
+            vc.data = self.news[indexPath.row];
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+            break;
+        }
+        case 5:
 
+            break;
+        default:
+            break;
+    }
 }
 
 

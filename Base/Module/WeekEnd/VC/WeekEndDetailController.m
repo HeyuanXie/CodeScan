@@ -8,8 +8,12 @@
 
 #import "WeekEndDetailController.h"
 #import "UIViewController+Extension.h"
+#import "APIHelper+User.h"
 
 @interface WeekEndDetailController ()
+
+@property (assign, nonatomic) NSInteger articleId;  //资讯或者周末去哪儿文章Id
+@property (strong, nonatomic) NSString* collectImg; //navigationBar收藏按钮图片
 
 @property (weak, nonatomic) IBOutlet UITextField *commentTf;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
@@ -21,16 +25,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (self.schemaArgu[@"Id"]) {
-        self.url = [self.schemaArgu objectForKey:@"Id"];
-    }
+
+    self.articleId = self.data.articleType.integerValue == 0 ? self.data.seekId.integerValue : self.data.articleId.integerValue;
+    self.collectImg = self.data.isFav.boolValue ? @"collect02" : @"collect01";
     [self subviewStyle];
 //    [self loadWebView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 //MARK: - override method
@@ -42,9 +45,31 @@
 //MARK: - private methods
 -(void)subviewStyle {
     
-    [self addDoubleNavigationItemsWithImages:@[@"collect01",@"share"] firstBlock:^{
-        //TODO:收藏
-        
+    @weakify(self);
+    [self addDoubleNavigationItemsWithImages:@[self.collectImg,@"share"] firstBlock:^{
+        @strongify(self);
+        //TODO:收藏 & 取消收藏
+        if (self.data.isFav.boolValue) {
+            [APIHELPER cancelCollect:self.articleId type:self.data.articleType.integerValue+1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    [self showMessage:@"取消收藏成功"];
+                    self.collectImg = @"collect01";
+                    [self subviewStyle];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }else{
+            [APIHELPER collect:self.articleId type:self.data.articleType.integerValue+1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    [self showMessage:@"收藏成功"];
+                    self.collectImg = @"collect02";
+                    [self subviewStyle];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }
     } secondBlock:^{
         //TODO:分享
     }];

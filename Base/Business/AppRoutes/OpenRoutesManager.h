@@ -33,6 +33,8 @@ extern NSString* const kLectureDetailController;
 extern NSString* const kLectureApplyController;
 
 extern NSString* const kYearCardHomeController;
+extern NSString* const kYearCardCommitOrderController;
+extern NSString* const kYearCardBindController;
 extern NSString* const kYearCardBindSuccessController;
 extern NSString* const kYearCardOrderController;
 

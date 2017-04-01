@@ -31,6 +31,8 @@ NSString* const kLectureDetailController = @"LectureDetailController";
 NSString* const kLectureApplyController = @"LectureApplyController";
 
 NSString* const kYearCardHomeController = @"YearCardHomeController";
+NSString* const kYearCardCommitOrderController = @"YearCardCommitOrderController";
+NSString* const kYearCardBindController = @"YearCardBindController";
 NSString* const kYearCardBindSuccessController = @"YearCardBindSuccessController";
 NSString* const kYearCardOrderController = @"YearCardOrderController";
 
@@ -138,6 +140,8 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kLectureApplyController,@"sb":@"Main",@"method":@"push"},
 
                         @{@"cls":kYearCardHomeController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kYearCardCommitOrderController,@"sb":@"Main",@"method":@"push"},
+                        @{@"cls":kYearCardBindController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kYearCardBindSuccessController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kYearCardOrderController,@"sb":@"Main",@"method":@"push"},
 

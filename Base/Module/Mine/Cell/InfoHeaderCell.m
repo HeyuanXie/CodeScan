@@ -42,7 +42,7 @@
 }
 
 - (void)setHeaderUrlString:(NSString *)url{
-    [self.headerImageView hy_setImageWithURL:[NSURL URLWithString:url] placeholderImage:ImageNamed(@"noone")];
+    [self.headerImageView hy_setImageWithURL:[NSURL URLWithString:url] placeholderImage:ImageNamed(@"")];
 }
 
 @end

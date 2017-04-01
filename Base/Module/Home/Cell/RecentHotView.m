@@ -19,6 +19,10 @@
     return CGSizeMake(110, 180);
 }
 
+-(void)configRecentView:(id)model {
+    
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

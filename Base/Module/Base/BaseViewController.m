@@ -10,6 +10,7 @@
 #import "MBProgressHUD+hyHUD.h"
 #import "LoginViewController.h"
 #import "RegistViewController.h"
+#import "HYAlertView.h"
 
 @interface BaseViewController ()
 
@@ -170,6 +171,29 @@
     }
     for (UIView* view in superView.subviews) {
         [self showBackView:view];
+    }
+}
+
+-(void)checkUserLogined {
+    
+    if ([Global userAuth]==nil) {
+        HYAlertView* alert = [HYAlertView sharedInstance];
+        [alert setSubBottonBackgroundColor:[UIColor whiteColor]];
+        [alert setSubBottonTitleColor:[UIColor hyRedColor]];
+        [alert setSubBottonBorderColor:[UIColor hyRedColor]];
+        [alert setCancelButtonBackgroundColor:[UIColor hyRedColor]];
+        [alert setCancelButtonBorderColor:[UIColor whiteColor]];
+        [alert setCancelButtonTitleColor:[UIColor whiteColor]];
+        [alert showAlertView:@"未登录!" message:@"是否立即登录?" subBottonTitle:@"取消" cancelButtonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+            switch (bottonType) {
+                case AlertViewClickBottonTypeSubBotton:
+                    break;
+                default:
+                    APPROUTE(kLoginViewController);
+                    break;
+            }
+        }];
+        return;
     }
 }
 

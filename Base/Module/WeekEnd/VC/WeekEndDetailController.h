@@ -7,7 +7,11 @@
 //
 
 #import "WebViewController.h"
+#import "ArticleModel.h"
 
 @interface WeekEndDetailController : WebViewController
+
+//@property (nonatomic,assign)NSInteger type; //0：资讯，1：周末去哪儿
+@property (nonatomic,strong)ArticleModel* data;
 
 @end

@@ -7,15 +7,29 @@
 //
 
 #import "CollectViewController.h"
-#import "UIViewController+Extension.h"
-#import "NSString+Extension.h"
-#import "CustomJumpBtns.h"
 #import "TheaterListCell.h"
+#import "NewsCell.h"
+#import "WeekEndCell.h"
+#import "DeriveListCell.h"
+
+#import "UIViewController+Extension.h"
+#import "UITableViewCell+HYCell.h"
+#import "NSString+Extension.h"
+#import "APIHelper+User.h"
+#import "CustomJumpBtns.h"
+
+
+typedef enum : NSUInteger {
+    TypeTheater = 1,
+    TypeNews,
+    TypeWeekEnd,
+    TypeDerive
+} ContentType;
 
 @interface CollectViewController ()
 
-@property(strong,nonatomic)NSArray* cellTypes;
-@property(strong,nonatomic)NSString* cellType;
+@property(strong,nonatomic)NSArray* titles;
+@property(assign,nonatomic)ContentType contentType;
 @property(strong,nonatomic)NSMutableArray* dataArray;
 @property (weak, nonatomic) IBOutlet UIScrollView *topScroll;
 
@@ -27,9 +41,15 @@
     [super viewDidLoad];
     
     self.backItemHidden = YES;
-    self.cellTypes = @[@"theaterCell",@"lectureCell",@"skillCell",@"deriveCell"];
+    self.haveTableFooter = YES;
+    self.contentType = 1;
+    self.titles = @[@"亲子剧场",@"资讯",@"周末去哪儿",@"衍生品"];
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(zoom(42), 0, 0, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[TheaterListCell identify] bundle:nil] forCellReuseIdentifier:[TheaterListCell identify]];
+    [self.tableView registerNib:[UINib nibWithNibName:[NewsCell identify] bundle:nil] forCellReuseIdentifier:[NewsCell identify]];
+    [self.tableView registerNib:[UINib nibWithNibName:[WeekEndCell identify] bundle:nil] forCellReuseIdentifier:[WeekEndCell identify]];
+    [self.tableView registerNib:[UINib nibWithNibName:[DeriveListCell identify] bundle:nil] forCellReuseIdentifier:[DeriveListCell identify]];
+
     
     [self subviewStyle];
     [self fetchData];
@@ -42,52 +62,98 @@
 
 #pragma mark - talbeView dataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    NSInteger line = self.dataArray.count / 2,col = self.dataArray.count % 2;
+    return self.contentType == TypeDerive ? line + col : 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    return self.contentType == TypeDerive ? 1 : self.dataArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.cellType isEqualToString:@"theaterCell"]) {
-        TheaterListCell* cell = [tableView dequeueReusableCellWithIdentifier:[TheaterListCell identify]];
-        cell.contentView.backgroundColor = [UIColor hyViewBackgroundColor];
-        [cell setTicketBtnClick:^(id model) {
-            //TODO:取消收藏
+    switch (self.contentType) {
+        case TypeTheater:
+        {
+            TheaterListCell* cell = [tableView dequeueReusableCellWithIdentifier:[TheaterListCell identify]];
+            [HYTool configTableViewCellDefault:cell];
             
-        }];
-        cell.collectBtn.hidden = YES;
-        cell.ticketBtnWidth.constant = 80;
-        [cell.ticketBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
-        return cell;
+            NSDictionary* model = self.dataArray.count == 0 ? nil : self.dataArray[indexPath.row];
+            [cell configTheaterListCell:model];
+            [cell setTicketBtnClick:^(id model) {
+                //TODO:取消收藏
+                
+            }];
+            cell.collectBtn.hidden = YES;
+            cell.ticketBtnWidth.constant = 80;
+            [cell.ticketBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
+            
+            return cell;
+        }
+        case TypeNews:
+        {
+            NewsCell* cell = [tableView dequeueReusableCellWithIdentifier:[NewsCell identify]];
+            [HYTool configTableViewCellDefault:cell];
+            cell.contentView.backgroundColor = [UIColor whiteColor];
+            cell.allViewHeight.constant = 0;
+            cell.allView.hidden = YES;
+            
+            NSDictionary* model = self.dataArray.count == 0 ? nil : self.dataArray[indexPath.row];
+            [cell configNewsCell:nil];
+            [cell addLine:NO leftOffSet:12 rightOffSet:0];
+            return cell;
+        }
+        case TypeWeekEnd:
+        {
+            WeekEndCell* cell = [tableView dequeueReusableCellWithIdentifier:[WeekEndCell identify]];
+            [HYTool configTableViewCellDefault:cell];
+            cell.contentView.backgroundColor = [UIColor whiteColor];
+            cell.allViewHeight.constant = 0;
+            cell.allView.hidden = YES;
+            
+            NSDictionary* model = self.dataArray.count == 0 ? nil : self.dataArray[indexPath.row];
+            [cell configWeekEndCell:nil type:1];
+            [cell addLine:NO leftOffSet:12 rightOffSet:0];
+            return cell;
+        }
+        case TypeDerive:
+        {
+            DeriveListCell* cell = [tableView dequeueReusableCellWithIdentifier:[DeriveListCell identify]];
+            [HYTool configTableViewCellDefault:cell];
+            cell.contentView.backgroundColor = [UIColor hyViewBackgroundColor];
+            
+            DeriveModel* leftModel = self.dataArray[indexPath.section*2];
+            DeriveModel* rightModel = (self.dataArray.count%2!=0 && self.dataArray.count/2==indexPath.section) ? nil : self.dataArray[indexPath.section*2+1];
+            [cell configListCellWithLeft:nil right:nil];
+            return cell;
+        }
+        default:
+            break;
     }
-    if ([self.cellType isEqualToString:@"lectureCell"]) {
-        
-    }
-    if ([self.cellType isEqualToString:@"skillCell"]) {
-        
-    }
-    if ([self.cellType isEqualToString:@"deriveCell"]) {
-        
-    }
-    return [UITableViewCell new];
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView* headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, zoom(12))];
+    headView.backgroundColor = [UIColor hyViewBackgroundColor];
+    return headView;
 }
 
 #pragma mark - tableView delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self.cellType isEqualToString:@"theaterCell"]) {
-        return 173;
+    switch (self.contentType) {
+        case TypeTheater:
+            return 173;
+        case TypeNews:
+            return 120;
+        case TypeWeekEnd:
+            return 120;
+        case TypeDerive:
+            return 230;
+        default:
+            return 0;
     }
-    if ([self.cellType isEqualToString:@"lectureCell"]) {
-        
-    }
-    if ([self.cellType isEqualToString:@"skillCell"]) {
-        
-    }
-    if ([self.cellType isEqualToString:@"deriveCell"]) {
-        
-    }
-    return 0;
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return self.contentType == TypeDerive ? zoom(12) : 0;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -103,23 +169,93 @@
     
     [self configMessage];
     
-    NSArray* titles = @[@"亲子剧场",@"资讯",@"周末去哪儿",@"衍生品"];
-    CGFloat width = [titles[0] sizeWithFont:[UIFont systemFontOfSize:15] maxWidth:CGFLOAT_MAX].width;
-    CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, MAX(width*titles.count, kScreen_Width) , 42) menuTitles:titles textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBlueTextColor] isLineAdaptText:YES];
+    CGFloat width = [self.titles[0] sizeWithFont:[UIFont systemFontOfSize:15] maxWidth:CGFLOAT_MAX].width;
+    CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, MAX(width*self.titles.count, kScreen_Width) , 42) menuTitles:self.titles textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBlueTextColor] isLineAdaptText:YES];
     [btns setFinished:^(NSInteger index) {
         //TODO:
-        self.cellType = self.cellTypes[index];
+        self.contentType = index+1;
         [self fetchData];
     }];
     [self.topScroll addSubview:btns];
-    self.topScroll.contentSize = CGSizeMake(titles.count*width, 0);
+    self.topScroll.contentSize = CGSizeMake(self.titles.count*width, 0);
 }
 
--(void)fetchData {
-    self.dataArray = [@[@"",@""] mutableCopy];
-    //TODO:根据self.cellType请求数据
-    
+- (void)fetchData {
+
+    [self.dataArray removeAllObjects];
     [self.tableView reloadData];
+    self.tableView.tableFooterView = nil;
+    [self showLoadingAnimation];
+    [APIHELPER fetchCollectList:self.dataArray.count limit:8 type:self.contentType complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        
+        if (isSuccess) {
+            [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+            
+            self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+            if (self.haveNext) {
+                [self appendFooterView];
+            }else{
+                [self removeFooterRefresh];
+            }
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+}
+
+-(void)headerViewInit {
+    @weakify(self);
+    [self addHeaderRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER fetchCollectList:0 limit:8 type:self.contentType complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray removeAllObjects];
+                [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
+}
+
+-(void)appendFooterView {
+    @weakify(self);
+    [self addFooterRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER fetchCollectList:self.dataArray.count limit:8 type:self.contentType complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[DeriveModel class] array:responseObject[@"data"][@"list"]] ];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
 }
 
 @end

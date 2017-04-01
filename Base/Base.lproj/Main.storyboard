@@ -397,7 +397,7 @@
                                         <rect key="frame" x="0.0" y="41" width="375" height="49"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtm-f9-o3T">
-                                                <rect key="frame" x="15.5" y="0.0" width="344" height="38"/>
+                                                <rect key="frame" x="16" y="0.0" width="344" height="38"/>
                                                 <color key="backgroundColor" red="0.94117647059999998" green="0.31372549020000001" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="bjh-R5-EL0"/>
@@ -410,7 +410,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="bind:" destination="v0o-rJ-C5U" eventType="touchUpInside" id="Isx-8S-XHr"/>
-                                                    <segue destination="zrm-Ek-ZqS" kind="show" id="NcE-Pt-HnY"/>
+                                                    <action selector="buyNow:" destination="8g3-j8-Kgg" eventType="touchUpInside" id="6ee-5P-3Fc"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -423,7 +423,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已有年卡?点击" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Su5-t3-uAO">
-                                        <rect key="frame" x="121.5" y="0.0" width="88" height="39"/>
+                                        <rect key="frame" x="122" y="0.0" width="88" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="88" id="UAa-Mk-kRH"/>
                                         </constraints>
@@ -432,7 +432,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-yT-QG1">
-                                        <rect key="frame" x="209.5" y="27.5" width="44" height="0.5"/>
+                                        <rect key="frame" x="210" y="27" width="44" height="0.0"/>
                                         <color key="backgroundColor" red="0.41960784309999999" green="0.70196078429999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="GPp-4L-SOZ"/>
@@ -449,7 +449,7 @@
                                             <color key="titleColor" red="0.41960784309999999" green="0.70196078429999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="v0o-rJ-C5U" kind="show" id="set-m1-FqY"/>
+                                            <action selector="bindNow:" destination="8g3-j8-Kgg" eventType="touchUpInside" id="eSG-bU-PeH"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1356,8 +1356,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ej-hs-Ru0">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="绑定账号: 15377679415" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KA-xT-8vA">
-                                                <rect key="frame" x="12" y="14.5" width="351" height="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KA-xT-8vA">
+                                                <rect key="frame" x="12" y="23.5" width="351" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.68235294120000001" green="0.68235294120000001" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1548,7 +1548,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4N-5Q-TrG">
-                                <rect key="frame" x="61" y="334.5" width="253" height="38"/>
+                                <rect key="frame" x="61" y="254.5" width="253" height="38"/>
                                 <color key="backgroundColor" red="0.94117647059999998" green="0.31372549020000001" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="aMv-ad-Fqd"/>
@@ -1564,7 +1564,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有效期至: 2017-12-31 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNs-Py-Dmh">
-                                <rect key="frame" x="0.0" y="298.5" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="218.5" width="375" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="8Bc-ck-UXk"/>
                                 </constraints>
@@ -1573,15 +1573,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜你,你已成功绑定飞象年卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlu-2r-ZZG">
-                                <rect key="frame" x="0.0" y="272.5" width="375" height="21"/>
+                                <rect key="frame" x="0.0" y="192.5" width="375" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Jdm-LP-u9n"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yazi.png" translatesAutoresizingMaskIntoConstraints="NO" id="SQ0-IA-paa">
-                                <rect key="frame" x="117" y="107" width="140" height="140"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smile01" translatesAutoresizingMaskIntoConstraints="NO" id="SQ0-IA-paa">
+                                <rect key="frame" x="143.5" y="80" width="87" height="87"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="SQ0-IA-paa" secondAttribute="height" multiplier="1:1" id="hWj-Gt-QaR"/>
                                 </constraints>
@@ -1589,7 +1589,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="V4N-5Q-TrG" firstAttribute="centerY" secondItem="Upa-Ab-4hZ" secondAttribute="centerY" constant="20" id="4gk-bQ-0by"/>
+                            <constraint firstItem="SQ0-IA-paa" firstAttribute="top" secondItem="vdl-yZ-yUU" secondAttribute="bottom" constant="60" id="2Qc-gh-WQF"/>
                             <constraint firstItem="V4N-5Q-TrG" firstAttribute="centerX" secondItem="Upa-Ab-4hZ" secondAttribute="centerX" id="5nK-3T-cHa"/>
                             <constraint firstItem="V4N-5Q-TrG" firstAttribute="width" secondItem="Upa-Ab-4hZ" secondAttribute="width" multiplier="253:375" id="9ii-Ta-KZT"/>
                             <constraint firstAttribute="trailing" secondItem="zlu-2r-ZZG" secondAttribute="trailing" id="A8l-Zn-A3f"/>
@@ -1597,12 +1597,15 @@
                             <constraint firstItem="iNs-Py-Dmh" firstAttribute="leading" secondItem="Upa-Ab-4hZ" secondAttribute="leading" id="N0V-zP-4gU"/>
                             <constraint firstItem="zlu-2r-ZZG" firstAttribute="leading" secondItem="Upa-Ab-4hZ" secondAttribute="leading" id="QIA-G3-f9p"/>
                             <constraint firstItem="V4N-5Q-TrG" firstAttribute="top" secondItem="iNs-Py-Dmh" secondAttribute="bottom" constant="15" id="g4K-4e-RHz"/>
-                            <constraint firstItem="SQ0-IA-paa" firstAttribute="width" secondItem="Upa-Ab-4hZ" secondAttribute="width" multiplier="140:375" id="nSi-uf-tZA"/>
+                            <constraint firstItem="SQ0-IA-paa" firstAttribute="width" secondItem="Upa-Ab-4hZ" secondAttribute="width" multiplier="87:375" id="nSi-uf-tZA"/>
                             <constraint firstItem="iNs-Py-Dmh" firstAttribute="top" secondItem="zlu-2r-ZZG" secondAttribute="bottom" constant="5" id="uvX-41-OyZ"/>
                             <constraint firstAttribute="trailing" secondItem="iNs-Py-Dmh" secondAttribute="trailing" id="vMS-K5-Npf"/>
                             <constraint firstItem="SQ0-IA-paa" firstAttribute="centerX" secondItem="Upa-Ab-4hZ" secondAttribute="centerX" id="xO4-k7-glh"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="timeLbl" destination="iNs-Py-Dmh" id="IKO-Mt-mlN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nyf-Ko-8DL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2471,6 +2474,7 @@
         <image name="collect03" width="22" height="22"/>
         <image name="jifen" width="30" height="30"/>
         <image name="price2.png" width="746" height="79"/>
+        <image name="smile01" width="80" height="80"/>
         <image name="yazi.png" width="96" height="133"/>
         <image name="下个页面箭头_灰" width="17" height="17"/>
         <image name="不勾选协议" width="16" height="16"/>

@@ -31,9 +31,21 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configDetailCell:(id)model {
+-(void)configDetailCell:(id)model type:(NSString *)type {
     
-    self.priceLbl.attributedText = [self.priceLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:13]] subStrings:@[@"¥"]];
+    if (model == nil) {
+        return;
+    }
+    self.orderNumLbl.text = model[@"order_sn"];
+    self.phoneNumLbl.text = model[@"mobile"];
+    self.personNameLbl.text = model[@"consignee"];
+    self.countLbl.text = [NSString stringWithFormat:@"%ld",[model[@"goods_num"] integerValue]] ;
+    if ([type isEqualToString:@"derive"]) {
+        self.priceLbl.text = [NSString stringWithFormat:@"%ld 积分",[model[@"exchange_total_price"] integerValue]];
+    }else{
+        self.priceLbl.text = [NSString stringWithFormat:@"¥ %ld",[model[@"exchange_total_price"] integerValue]];
+        self.priceLbl.attributedText = [self.priceLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:13]] subStrings:@[@"¥"]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

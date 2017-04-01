@@ -24,9 +24,13 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configTopCell:(id)model {
+-(void)configTopCell:(NSDictionary*)model {
     
-    self.imgV.image = ImageNamed(@"yazi");
+    if (![model[@"thumb"] isEqualToString:@""]) {
+        [self.imgV sd_setImageWithURL:[NSURL URLWithString:model[@"thumb"]] placeholderImage:nil];
+    }
+    self.titleLbl.text = model[@"card_name"];
+    self.descLbl.text = [NSString stringWithFormat:@"一年%@次观剧机会, 一次限2人",model[@"total_times"]];
 }
 
 - (void)awakeFromNib {

@@ -179,7 +179,7 @@
                 OrderDetailCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderDetailCell identify]];
                 [HYTool configTableViewCellDefault:cell];
                 cell.contentView.backgroundColor = [UIColor whiteColor];
-                [cell configDetailCell:nil];
+                [cell configDetailCell:nil type:@"card"];
                 return cell;
             }
     }

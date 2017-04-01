@@ -10,13 +10,20 @@
 
 @interface YearCardBindSuccessController ()
 
+@property(nonatomic,strong)NSString* deadline;
+@property (weak, nonatomic) IBOutlet UILabel *timeLbl;
+
 @end
 
 @implementation YearCardBindSuccessController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    if ([self.schemaArgu objectForKey:@"deadline"]) {
+        self.deadline = [self.schemaArgu objectForKey:@""];
+    }
+    [self subviewStyle];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,16 +35,11 @@
 #pragma mark - IBActions
 - (IBAction)leave:(id)sender {
     
+    APPROUTE(kHomeViewController);
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)subviewStyle {
+    self.timeLbl.text = [NSString stringWithFormat:@"有效期至: %@",self.deadline];
 }
-*/
 
 @end

@@ -12,6 +12,7 @@
 #import "HomeDescCell.h"
 #import "APIHelper+YearCard.h"
 #import <UITableView+FDTemplateLayoutCell.h>
+#import "UIViewController+Extension.h"
 
 @interface YearCardHomeController ()
 
@@ -53,7 +54,6 @@
             [HYTool configTableViewCellDefault:cell];
             [cell configTopCell:self.data];
             return cell;
-            break;
         }
         case 1:
         {
@@ -106,14 +106,20 @@
 
 
 -(void)subviewInit {
-    
-//    UIBarButtonItem* rightItem = [[UIBarButtonItem alloc] initWithImage:ImageNamed(@"") style:UIBarButtonItemStylePlain target:self action:@selector(message:)];
-//    self.navigationController.navigationItem.rightBarButtonItem = rightItem;
+    [self configMessage];
 }
 
--(void)message:(UIBarButtonItem*)item {
-    //TODO:
-//    APPROUTE(kMessageController)
+#pragma mark - IBActions
+- (IBAction)buyNow:(id)sender {
+    
+    [self checkUserLogined];
+    [ROUTER routeByStoryboardID:kYearCardCommitOrderController withParam:self.data];
+}
+
+- (IBAction)bindNow:(id)sender {
+    
+    [self checkUserLogined];
+    APPROUTE(kYearCardBindController);
 }
 
 @end

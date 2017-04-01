@@ -2606,7 +2606,7 @@
 				TargetAttributes = {
 					845BDF701E28D2C00064ACAE = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = G8E84C747V;
+						DevelopmentTeam = HN3F5Y5U68;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -3197,7 +3197,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = G8E84C747V;
+				DEVELOPMENT_TEAM = HN3F5Y5U68;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Base/ThirdParty/AlipaySDK",
@@ -3235,7 +3235,7 @@
 					"$(PROJECT_DIR)/Base/ThirdParty/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/Base/ThirdParty/XGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vipxfx.ios.dumbo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vipxfx.dumbo;
 				PRODUCT_MODULE_NAME = Base;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -3256,7 +3256,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = G8E84C747V;
+				DEVELOPMENT_TEAM = HN3F5Y5U68;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Base/ThirdParty/AlipaySDK",
@@ -3298,7 +3298,7 @@
 					"$(PROJECT_DIR)/Base/ThirdParty/ShareSDK/Support/PlatformSDK/WeChatSDK",
 					"$(PROJECT_DIR)/Base/ThirdParty/XGPush",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vipxfx.ios.dumbo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vipxfx.dumbo;
 				PRODUCT_MODULE_NAME = Base;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/admin/Desktop/LittleElephant/Base/Business/SwiftExtension/Base-Bridging-Header.h";

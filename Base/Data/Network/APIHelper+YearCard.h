@@ -12,4 +12,6 @@
 
 -(void)fetchYearCardInfoComplete:(ApiRequestCompleteBlock)complete;
 
+-(void)bindYearCard:(NSString*)cardSn password:(NSString*)password complete:(ApiRequestCompleteBlock)complete;
+
 @end
