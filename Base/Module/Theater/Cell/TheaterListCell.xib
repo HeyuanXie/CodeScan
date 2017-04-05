@@ -74,12 +74,12 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1A-fX-Klb">
-                                <rect key="frame" x="123" y="126" width="141" height="21"/>
+                                <rect key="frame" x="123" y="126" width="143" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="dzC-B8-xDe"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.93333333330000001" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" red="0.94509803921568625" green="0.19215686274509802" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -100,7 +100,7 @@
                             <constraint firstItem="SXn-sk-7R8" firstAttribute="top" secondItem="ibd-fP-j9Q" secondAttribute="top" constant="13" id="Thl-O1-mHe"/>
                             <constraint firstItem="GPX-LF-2M0" firstAttribute="leading" secondItem="SXn-sk-7R8" secondAttribute="trailing" constant="10" id="VfY-ks-UR9"/>
                             <constraint firstAttribute="bottom" secondItem="Fln-LJ-u68" secondAttribute="bottom" constant="13" id="YiO-bL-bhA"/>
-                            <constraint firstItem="Fln-LJ-u68" firstAttribute="leading" secondItem="B1A-fX-Klb" secondAttribute="trailing" constant="12" id="bji-fN-api"/>
+                            <constraint firstItem="Fln-LJ-u68" firstAttribute="leading" secondItem="B1A-fX-Klb" secondAttribute="trailing" constant="10" id="bji-fN-api"/>
                             <constraint firstAttribute="trailing" secondItem="GPX-LF-2M0" secondAttribute="trailing" constant="13" id="cP8-Hw-5y5"/>
                             <constraint firstAttribute="bottom" secondItem="B1A-fX-Klb" secondAttribute="bottom" constant="12" id="drB-tm-Zcu"/>
                             <constraint firstItem="B1A-fX-Klb" firstAttribute="top" secondItem="pyv-UT-ion" secondAttribute="bottom" constant="15" id="dru-TR-9I9"/>

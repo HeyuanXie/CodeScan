@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSNumber *goodId;
 @property (nonatomic, copy) NSString *img;
 @property (nonatomic, copy) NSString *goodName;
+@property (nonatomic, strong) NSNumber *storeCount;
 
 @end

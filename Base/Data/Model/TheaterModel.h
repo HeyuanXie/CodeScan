@@ -28,6 +28,13 @@
 @property (nonatomic, strong) NSNumber *hits;
 @property (nonatomic, assign) BOOL isFav;
 
+@property (nonatomic, strong) NSNumber *timeId;
+@property (nonatomic, strong) NSString *playTime;
+@property (nonatomic, strong) NSString *language;
+@property (nonatomic, strong) NSNumber *hallId;
+@property (nonatomic, strong) NSNumber *theaterId;
+@property (nonatomic, strong) NSString *theaterName;
+@property (nonatomic, strong) NSString *address;
 
 
 @end

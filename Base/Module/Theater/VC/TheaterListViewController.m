@@ -13,9 +13,6 @@
 #import "TheaterListCell.h"
 #import "TheaterModel.h"
 
-#import "APIHelper+Theater.h"
-#import "APIHelper+User.h"
-
 @interface TheaterListViewController ()
 
 @property(nonatomic,strong)UIButton *addressBtn;
@@ -61,8 +58,11 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TheaterListCell* cell = [tableView dequeueReusableCellWithIdentifier:[TheaterListCell identify]];
     [HYTool configTableViewCellDefault:cell];
+    
+    TheaterModel* model = self.dataArray[indexPath.row];
     [cell setTicketBtnClick:^(TheaterModel* model) {
-        APPROUTE(kTheaterTicketViewController);
+        
+        APPROUTE(([NSString stringWithFormat:@"%@?playId=%ld&img=%@&name=%@&score=%ld&subTitle=%@&time=%@&date=%@&statu=%ld",kTheaterTicketViewController,model.playId.integerValue,model.picurl,model.playName,model.score.integerValue,model.subTitle,model.pctime,model.sydate,model.status.integerValue]));
     }];
     
     @weakify(cell);
@@ -89,7 +89,12 @@
             }];
         }
     }];
-    [cell configTheaterListCell:self.dataArray[indexPath.row]];
+    [cell configTheaterListCell:model];
+    if (model.isFav) {
+        [cell.collectBtn setImage:ImageNamed(@"collect02") forState:UIControlStateNormal];
+    }else{
+        [cell.collectBtn setImage:ImageNamed(@"collect03") forState:UIControlStateNormal];
+    }
     return cell;
 }
 
@@ -99,7 +104,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TheaterModel* model = self.dataArray[indexPath.row];
-    APPROUTE(([NSString stringWithFormat:@"%@?Id=%ld",kTheaterDetailViewController,model.playId.integerValue]));
+    APPROUTE(([NSString stringWithFormat:@"%@?Id=%ld&isFav=%@",kTheaterDetailViewController,model.playId.integerValue,@(model.isFav)]));
 }
 
 #pragma mark - private methods
@@ -155,7 +160,6 @@
 
 -(void)headerViewInit {
     @weakify(self);
-    [self.dataArray removeAllObjects];
     [self addHeaderRefresh:^{
         @strongify(self);
         [self showLoadingAnimation];
@@ -163,6 +167,7 @@
             [self hideLoadingAnimation];
             
             if (isSuccess) {
+                [self.dataArray removeAllObjects];
                 [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[TheaterModel class] array:responseObject[@"data"][@"list"]] ];
                 self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
                 if (self.haveNext) {

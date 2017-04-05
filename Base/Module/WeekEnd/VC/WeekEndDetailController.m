@@ -8,12 +8,14 @@
 
 #import "WeekEndDetailController.h"
 #import "UIViewController+Extension.h"
-#import "APIHelper+User.h"
 
 @interface WeekEndDetailController ()
 
 @property (strong, nonatomic) NSString* collectImg; //navigationBar收藏按钮图片
 
+@property (assign, nonatomic) BOOL isFav;
+@property (assign, nonatomic) NSInteger articleId;
+@property (assign, nonatomic) NSInteger type;
 @property (weak, nonatomic) IBOutlet UITextField *commentTf;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
 
@@ -25,15 +27,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    if (!self.isFav) {
-        //从收藏列表进来直接就不为0，从文章列表进来就要从self.data中获取
-        self.articleId = self.data.articleType.integerValue == 0 ? self.data.seekId.integerValue : self.data.articleId.integerValue;
-        //从收藏列表进来直接是YES，从文章列表进来就要从self.data中获取
-        self.isFav = self.data.isFav.boolValue;
-        //从收藏列表进来直接有值，从文章列表进来就要从self.data中获取
-        self.articleType = self.data.articleType.integerValue+2;
+//    if (!self.isFav) {
+//        //从收藏列表进来直接就不为0，从文章列表进来就要从self.data中获取
+//        self.articleId = self.data.articleType.integerValue == 0 ? self.data.seekId.integerValue : self.data.articleId.integerValue;
+//        //从收藏列表进来直接是YES，从文章列表进来就要从self.data中获取
+//        self.isFav = self.data.isFav.boolValue;
+//        //从收藏列表进来直接有值，从文章列表进来就要从self.data中获取
+//        self.articleType = self.data.articleType.integerValue+2;
+//    }
+    
+    if (self.schemaArgu[@"isFav"]) {
+        self.isFav = [[self.schemaArgu objectForKey:@"isFav"] boolValue];
     }
-
+    if (self.schemaArgu[@"articleId"]) {
+        self.articleId = [[self.schemaArgu objectForKey:@"articleId"] integerValue];
+    }
+    if (self.schemaArgu[@"type"]) {
+        self.type = [[self.schemaArgu objectForKey:@"type"] integerValue];
+    }
+    
     [self subviewStyle];
 //    [self loadWebView];
 }
@@ -51,13 +63,13 @@
 //MARK: - private methods
 -(void)subviewStyle {
     
-    self.collectImg = self.isFav ? @"collect02" : @"collect01";
+    NSArray* images = self.isFav ? @[@"collect02",@"share"] : @[@"collect01",@"share"];
     @weakify(self);
-    [self addDoubleNavigationItemsWithImages:@[self.collectImg,@"share"] firstBlock:^{
+    [self addDoubleNavigationItemsWithImages:images firstBlock:^{
         @strongify(self);
         //TODO:收藏 & 取消收藏
         if (self.isFav) {
-            [APIHELPER cancelCollect:self.articleId type:self.articleType complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [APIHELPER cancelCollect:self.articleId type:self.type complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"取消收藏成功"];
                     self.isFav = NO;
@@ -67,7 +79,7 @@
                 }
             }];
         }else{
-            [APIHELPER collect:self.articleId type:self.articleType complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [APIHELPER collect:self.articleId type:self.type complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"收藏成功"];
                     self.isFav = YES;

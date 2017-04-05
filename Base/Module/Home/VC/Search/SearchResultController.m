@@ -124,11 +124,10 @@ typedef enum : NSUInteger {
             break;
         default:
         {
-            WeekEndDetailController* vc = (WeekEndDetailController*)VIEWCONTROLLER(kWeekEndDetailController);
-            ArticleModel* article = (ArticleModel*)model;
-            vc.data = article;
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
+            NSInteger articleId = [self.dataArray[indexPath.section][@"article_id"] integerValue];
+            NSInteger type = [self.dataArray[indexPath.section][@"article_type"] integerValue]+1;
+            BOOL isFav = [self.dataArray[indexPath.section][@"is_fav"] boolValue];
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,@(isFav),articleId,type]));
             break;
         }
     }

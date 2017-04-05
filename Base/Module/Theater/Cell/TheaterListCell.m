@@ -39,6 +39,9 @@
     self.dateLbl.text = [NSString stringWithFormat:@"上映: %@",theater.sydate];
     
     self.priceLbl.text = [NSString stringWithFormat:@"¥%@ - ¥%@",theater.pricel,theater.priceh];
+    if (!theater.priceh) {
+        self.priceLbl.text = [NSString stringWithFormat:@"¥%@",theater.pricel];
+    }
     NSMutableAttributedString* mAttStr = [[NSMutableAttributedString alloc] initWithString:self.priceLbl.text];
     NSArray* ranges = [self rangeOfSubString:@"¥" inString:self.priceLbl.text];
     for (NSString* rangeStr in ranges) {

@@ -11,7 +11,6 @@
 #import "CustomJumpBtns.h"
 #import "HYAlertView.h"
 #import "UIButton+HYButtons.h"
-#import "APIHelper+Derive.h"
 #import "DeriveModel.h"
 
 @interface DeriveListController ()
@@ -75,9 +74,7 @@
     DeriveListCell* cell = [tableView dequeueReusableCellWithIdentifier:[DeriveListCell identify]];
     [HYTool configTableViewCellDefault:cell];
     [cell setItemClick:^(DeriveModel* model) {
-        //TODO:
-        BOOL isEnough = self.minePoint.integerValue >= model.shopPrice.integerValue;
-        APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&isEnough=%d",kDeriveDetailController,model.goodId.integerValue,isEnough]));
+        APPROUTE(([NSString stringWithFormat:@"%@?id=%ld",kDeriveDetailController,model.goodId.integerValue]));
     }];
     [cell setExchangeClick:^(DeriveModel* model) {
         HYAlertView* alert = [HYAlertView sharedInstance];
@@ -95,7 +92,7 @@
                         if (isSuccess) {
                             NSDictionary* param = responseObject[@"data"];
                             //剧场下单成功和衍生品兑换成功公用一个VC
-                            [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&thumb_img=%@",kTheaterCommmitOrderSuccessController,model.img] withParam:param];
+                            [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&",kTheaterCommitOrderSuccessController] withParam:param];
                         }else{
                             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
                         }

@@ -7,13 +7,11 @@
 //
 
 #import "WeekEndListController.h"
-#import "WeekEndDetailController.h"
 #import "WeekEndCell.h"
 #import "WeekEndUseView.h"
 #import "WeekEndTopView.h"
 #import "NSString+Extension.h"
 #import "ArticleModel.h"
-#import "APIHelper+Article.h"
 
 @interface WeekEndListController ()
 
@@ -76,10 +74,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     ArticleModel* article = self.dataArray[indexPath.row];
-    WeekEndDetailController* vc = (WeekEndDetailController*)VIEWCONTROLLER(kWeekEndDetailController);
-    vc.data = article;
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,@(article.isFav.boolValue),article.articleId.integerValue,article.articleType.integerValue+1]));
 }
 #pragma mark - private methods
 -(NSMutableArray *)dataArray {

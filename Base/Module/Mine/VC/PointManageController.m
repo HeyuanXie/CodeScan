@@ -10,7 +10,6 @@
 #import "PointManageTopCell.h"
 #import "PointManageBotCell.h"
 #import "UITableViewCell+HYCell.h"
-#import "APIHelper+User.h"
 
 @interface PointManageController ()
 

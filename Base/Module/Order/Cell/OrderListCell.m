@@ -41,12 +41,7 @@
     self.typeLbl.text = @"演出";
     self.lbl4.hidden = NO;
     
-    [self.leftBtn bk_whenTapped:^{
-        APPROUTE(kCommentViewController);
-    }];
-    [self.rightBtn bk_whenTapped:^{
-        APPROUTE(kCommentListController);
-    }];
+    
 }
 
 -(void)configDeriveCell:(id)model {
@@ -63,13 +58,25 @@
     self.lbl3.text = [NSString stringWithFormat:@"总价: %ld积分",[model[@"exchange_total_price"] integerValue]];
     
     NSArray* status = @[@"待领取",@"待评价",@"已完成"];
-    self.statuLbl.text = status[[model[@"order_status"] integerValue]-1];
-    if ([self.statuLbl.text isEqualToString:@"待评价"]) {
+    NSInteger statu = [model[@"order_status"] integerValue];
+    self.statuLbl.text = status[statu-1];
+    if (statu == 2) {
         self.leftBtn.hidden = YES;
+        self.rightBtn.hidden = NO;
         [self.rightBtn setTitle:@"去评价" forState:(UIControlStateNormal)];
-        [self.rightBtn bk_whenTapped:^{
-            //TODO:传递商品Id
+        self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            
             APPROUTE(kCommentViewController);
+            return [RACSignal empty];
+        }];
+    }else if (statu == 3){
+        self.leftBtn.hidden = YES;
+        self.rightBtn.hidden = NO;
+        [self.rightBtn setTitle:@"再次兑换" forState:(UIControlStateNormal)];
+        self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+            
+            APPROUTE(([NSString stringWithFormat:@"%@?id=%ld",kDeriveDetailController,[model[@"goods_id"] integerValue]]));
+            return [RACSignal empty];
         }];
     }else{
         self.leftBtn.hidden = YES;
@@ -102,11 +109,12 @@
         case 0:
         {
             self.statuLbl.text = @"待付款";
+            self.leftBtn.hidden = YES;
             [self.rightBtn setTitle:@"去支付" forState:UIControlStateNormal];
             [self.rightBtn setRedStyle];
-            [self.rightBtn bk_whenTapped:^{
-                //TODO:去付款
+            self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
                 
+                return [RACSignal empty];
             }];
         }
         case 1:
@@ -115,21 +123,24 @@
             if (isBind) {
                 self.leftBtn.hidden = YES;
                 [self.rightBtn setTitle:@"退款" forState:UIControlStateNormal];
-                [self.rightBtn bk_whenTapped:^{
+                self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
                     //TODO:退款
-                    
+                    APPROUTE(kOrderRefundController);
+                    return [RACSignal empty];
                 }];
             }else{
                 self.leftBtn.hidden = NO;
                 [self.leftBtn setTitle:@"退款" forState:UIControlStateNormal];
-                [self.leftBtn bk_whenTapped:^{
+                self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
                     //TODO:退款
-                    
+                    APPROUTE(kOrderRefundController);
+                    return [RACSignal empty];
                 }];
                 [self.rightBtn setTitle:@"立即绑定" forState:UIControlStateNormal];
-                [self.rightBtn bk_whenTapped:^{
+                self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
                     //TODO:绑定
-                    
+                    APPROUTE(kYearCardBindController);
+                    return [RACSignal empty];
                 }];
             }
         }

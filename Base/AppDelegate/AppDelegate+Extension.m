@@ -10,8 +10,6 @@
 #import "UIStoryboard+HYStoryboard.h"
 #import "BaseNavigationController.h"
 #import "BaseViewController.h"
-#import "APIHelper+User.h"
-#import "APIHelper+Common.h"
 #import "UIImage+HYImages.h"
 #import <IQKeyboardManager.h>
 #import "WXApi.h"

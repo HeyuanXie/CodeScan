@@ -11,7 +11,6 @@
 #import "HYAddressController.h"
 #import "BaseNavigationController.h"
 #import "WeekEndDetailController.h"
-#import "APIHelper+Home.h"
 
 #import "HYScrollView.h"
 #import "HYSearchBar.h"
@@ -346,19 +345,19 @@
         case 3:
         {
             //资讯
-            WeekEndDetailController* vc = (WeekEndDetailController*)VIEWCONTROLLER(kWeekEndDetailController);
-            vc.data = self.news[indexPath.row];
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
+            NSInteger articleId = [self.news[indexPath.row][@"article_id"] integerValue];
+            NSInteger type = [self.news[indexPath.row][@"article_type"] integerValue]+1;
+            BOOL isFav = [self.news[indexPath.row][@"is_fav"] boolValue];
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,@(isFav),articleId,type]));
             break;
         }
         case 4:
         {
             //周末去哪儿
-            WeekEndDetailController* vc = (WeekEndDetailController*)VIEWCONTROLLER(kWeekEndDetailController);
-            vc.data = self.news[indexPath.row];
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
+            NSInteger articleId = [self.weekEnds[indexPath.row][@"article_id"] integerValue];
+            NSInteger type = [self.weekEnds[indexPath.row][@"article_type"] integerValue]+1;
+            BOOL isFav = [self.weekEnds[indexPath.row][@"is_fav"] boolValue];
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,@(isFav),articleId,type]));
             break;
         }
         case 5:

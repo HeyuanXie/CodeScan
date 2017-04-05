@@ -19,7 +19,12 @@
              @"createTime":@"create_time",
              @"updateTime":@"update_time",
              @"desc":@"description",
-             @"isFav":@"is_fav"
+             @"isFav":@"is_fav",
+             @"timeId":@"time_id",
+             @"playTime":@"play_time",
+             @"hallId":@"hall_id",
+             @"theaterId":@"theatre_id",
+             @"theaterName":@"theatre_name"
              };
 }
 

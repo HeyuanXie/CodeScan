@@ -24,7 +24,7 @@ extern NSString* const kCommentListController;  //指定剧场的用户评论列
 extern NSString* const kTheaterSeatPreviewController;
 extern NSString* const kTheaterSeatSelectController;
 extern NSString* const kTheaterCommitOrderController;
-extern NSString* const kTheaterCommmitOrderSuccessController;
+extern NSString* const kTheaterCommitOrderSuccessController;
 extern NSString* const kSelectCouponController;
 
 

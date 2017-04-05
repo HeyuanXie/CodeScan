@@ -31,20 +31,34 @@
 
 -(void)configLeftView:(DeriveModel*)model {
     
-    ((UIImageView*)[self.leftView viewWithTag:1000]).image = ImageNamed(@"baidi");
-    if (![model.img isEqualToString:@""]) {
-        [(UIImageView*)[self.leftView viewWithTag:1000] sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
-    }
-    ((UILabel*)[self.leftView viewWithTag:1001]).text = model.goodName;
-    ((UILabel*)[self.leftView viewWithTag:1002]).text = [NSString stringWithFormat:@"%ld",model.shopPrice.integerValue];
+    UIImageView* productImg = (UIImageView*)[self.rightView viewWithTag:1000];
+    UILabel* nameLbl = (UILabel*)[self.rightView viewWithTag:1001];
+    UILabel* priceLbl = (UILabel*)[self.rightView viewWithTag:1002];
+    UIButton* exchangeBtn = (UIButton*)[self.rightView viewWithTag:1003];
+    UIImageView* noneImg = (UIImageView*)[self.rightView viewWithTag:1004];
     
-    ((UIButton*)[self.leftView viewWithTag:1003]).rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    [productImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:ImageNamed(@"baidi")];
+    nameLbl.text = model.goodName;
+    priceLbl.text = [NSString stringWithFormat:@"%ld",model.shopPrice.integerValue];
+    exchangeBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         if (self.exchangeClick) {
             self.exchangeClick(model);
         }
         return [RACSignal empty];
     }];
+
+    if (model.storeCount.integerValue == 0) {
+        noneImg.hidden = NO;
+        [HYTool configViewLayer:exchangeBtn withColor:[UIColor colorWithString:@"bfbfbf"]];
+        exchangeBtn.layer.borderWidth = 1;
+        [exchangeBtn setTitleColor:[UIColor colorWithString:@"bfbfbf"] forState:UIControlStateNormal];
+    }else{
+        noneImg.hidden = YES;
+        [HYTool configViewLayer:exchangeBtn withColor:RGB(107, 179, 246, 1.0)];
+        exchangeBtn.layer.borderWidth = 1;
+        [exchangeBtn setTitleColor:RGB(107, 179, 246, 1.0) forState:UIControlStateNormal];
+    }
     self.leftBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
        
         if (self.itemClick) {
@@ -53,6 +67,8 @@
         return [RACSignal empty];
     }];
 }
+
+
 -(void)configRightView:(DeriveModel*)model {
     if (model == nil) {
         self.rightView.hidden = YES;
@@ -60,21 +76,35 @@
     }else{
         self.rightView.hidden = NO;
     }
-    ((UIImageView*)[self.rightView viewWithTag:1000]).image = ImageNamed(@"baidi");
-    if (![model.img isEqualToString:@""]) {
-        [((UIImageView*)[self.rightView viewWithTag:1000]) sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:nil];
-    }
-    ((UILabel*)[self.rightView viewWithTag:1001]).text = model.goodName;
-    ((UILabel*)[self.rightView viewWithTag:1002]).text = [NSString stringWithFormat:@"%ld",model.shopPrice.integerValue];
     
-    ((UIButton*)[self.rightView viewWithTag:1003]).rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-       
+    UIImageView* productImg = (UIImageView*)[self.leftView viewWithTag:1000];
+    UILabel* nameLbl = (UILabel*)[self.leftView viewWithTag:1001];
+    UILabel* priceLbl = (UILabel*)[self.leftView viewWithTag:1002];
+    UIButton* exchangeBtn = (UIButton*)[self.leftView viewWithTag:1003];
+    UIImageView* noneImg = (UIImageView*)[self.leftView viewWithTag:1004];
+    
+    [productImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:ImageNamed(@"baidi")];
+    nameLbl.text = model.goodName;
+    priceLbl.text = [NSString stringWithFormat:@"%ld",model.shopPrice.integerValue];
+    exchangeBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        
         if (self.exchangeClick) {
             self.exchangeClick(model);
         }
         return [RACSignal empty];
     }];
-
+    
+    if (model.storeCount.integerValue == 0) {
+        noneImg.hidden = NO;
+        [HYTool configViewLayer:exchangeBtn withColor:[UIColor colorWithString:@"bfbfbf"]];
+        exchangeBtn.layer.borderWidth = 1;
+        [exchangeBtn setTitleColor:[UIColor colorWithString:@"bfbfbf"] forState:UIControlStateNormal];
+    }else{
+        noneImg.hidden = YES;
+        [HYTool configViewLayer:exchangeBtn withColor:RGB(107, 179, 246, 1.0)];
+        exchangeBtn.layer.borderWidth = 1;
+        [exchangeBtn setTitleColor:RGB(107, 179, 246, 1.0) forState:UIControlStateNormal];
+    }
     self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         if (self.itemClick) {
@@ -88,10 +118,6 @@
     [super awakeFromNib];
     // Initialization code
     
-    UIButton* leftBtn = [self.leftView viewWithTag:1003];
-    UIButton* rightBtn = [self.rightView viewWithTag:1003];
-    [HYTool configViewLayer:leftBtn withColor:RGB(107, 179, 246, 1.0)];
-    [HYTool configViewLayer:rightBtn withColor:RGB(107, 179, 246, 1.0)];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

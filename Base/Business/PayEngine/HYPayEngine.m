@@ -8,7 +8,6 @@
 
 #import "HYPayEngine.h"
 #import <AlipaySDK/AlipaySDK.h>
-#import "APIHelper+Pay.h"
 
 static NSString *const AppScheme = @"";
 

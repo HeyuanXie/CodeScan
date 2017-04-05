@@ -7,7 +7,6 @@
 //
 
 #import "RegistViewController.h"
-#import "APIHelper+User.h"
 #import "UIViewController+Extension.h"
 #import "HYCountDown.h"
 

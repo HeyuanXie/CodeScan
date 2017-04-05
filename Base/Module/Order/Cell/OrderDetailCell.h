@@ -11,6 +11,6 @@
 @interface OrderDetailCell : UITableViewCell
 
 +(NSString*)identify;
--(void)configDetailCell:(id)model type:(NSString*)type;
+-(void)configDetailCell:(id)model type:(NSInteger)type;
 
 @end

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -61,6 +62,12 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <imageView userInteractionEnabled="NO" tag="1004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="标签" translatesAutoresizingMaskIntoConstraints="NO" id="sB1-J6-fMo">
+                                <rect key="frame" x="39" y="40" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sB1-J6-fMo" secondAttribute="height" multiplier="1:1" id="fSV-DO-H8b"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -68,8 +75,11 @@
                             <constraint firstItem="jhl-HK-Q08" firstAttribute="leading" secondItem="bYF-0a-01F" secondAttribute="leading" constant="10" id="26g-5V-IZt"/>
                             <constraint firstItem="EUw-eb-eDH" firstAttribute="width" secondItem="bYF-0a-01F" secondAttribute="width" multiplier="48:168" id="2JG-qh-vWa"/>
                             <constraint firstItem="DZa-jF-QSW" firstAttribute="top" secondItem="jhl-HK-Q08" secondAttribute="bottom" id="7mf-Qc-ZOq"/>
+                            <constraint firstItem="sB1-J6-fMo" firstAttribute="centerX" secondItem="bYF-0a-01F" secondAttribute="centerX" id="BYp-fr-CMX"/>
                             <constraint firstItem="ezB-sa-ZoT" firstAttribute="top" secondItem="bYF-0a-01F" secondAttribute="top" id="LKk-9B-xQe"/>
+                            <constraint firstItem="sB1-J6-fMo" firstAttribute="top" secondItem="bYF-0a-01F" secondAttribute="top" constant="40" id="OjU-rQ-Loz"/>
                             <constraint firstAttribute="trailing" secondItem="ezB-sa-ZoT" secondAttribute="trailing" id="S9d-Lr-5hL"/>
+                            <constraint firstItem="sB1-J6-fMo" firstAttribute="width" secondItem="bYF-0a-01F" secondAttribute="width" multiplier="90:168" id="WMD-TP-HXC"/>
                             <constraint firstAttribute="trailing" secondItem="jhl-HK-Q08" secondAttribute="trailing" id="Xvy-HJ-AAO"/>
                             <constraint firstItem="DZa-jF-QSW" firstAttribute="leading" secondItem="bYF-0a-01F" secondAttribute="leading" constant="10" id="e3Z-mv-0M3"/>
                             <constraint firstItem="ezB-sa-ZoT" firstAttribute="leading" secondItem="bYF-0a-01F" secondAttribute="leading" id="e8e-Qw-XC9"/>
@@ -132,6 +142,12 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <imageView userInteractionEnabled="NO" tag="1004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="标签" translatesAutoresizingMaskIntoConstraints="NO" id="qDb-x4-feX">
+                                <rect key="frame" x="39" y="40" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qDb-x4-feX" secondAttribute="height" multiplier="1:1" id="gio-AW-Nc8"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -140,12 +156,16 @@
                             <constraint firstAttribute="trailing" secondItem="bWd-it-ZYQ" secondAttribute="trailing" id="9da-Zd-oTR"/>
                             <constraint firstItem="amg-0P-dhQ" firstAttribute="centerY" secondItem="Mio-4o-GYC" secondAttribute="centerY" id="BMr-JC-ard"/>
                             <constraint firstAttribute="trailing" secondItem="OTc-fC-3On" secondAttribute="trailing" id="Evh-eY-NiN"/>
+                            <constraint firstItem="qDb-x4-feX" firstAttribute="top" secondItem="rZR-HW-69i" secondAttribute="top" constant="40" id="GjW-GS-ZOC"/>
                             <constraint firstItem="Mio-4o-GYC" firstAttribute="width" secondItem="rZR-HW-69i" secondAttribute="width" multiplier="48:168" id="Lrg-e2-x2E"/>
+                            <constraint firstItem="qDb-x4-feX" firstAttribute="width" secondItem="rZR-HW-69i" secondAttribute="width" multiplier="90:168" id="Msl-7M-04i"/>
                             <constraint firstItem="bWd-it-ZYQ" firstAttribute="leading" secondItem="rZR-HW-69i" secondAttribute="leading" constant="10" id="OCv-RM-9da"/>
                             <constraint firstItem="OTc-fC-3On" firstAttribute="leading" secondItem="rZR-HW-69i" secondAttribute="leading" id="OJr-q5-vus"/>
                             <constraint firstAttribute="trailing" secondItem="qDT-fH-ThT" secondAttribute="trailing" id="TJe-7u-BBp"/>
                             <constraint firstItem="qDT-fH-ThT" firstAttribute="leading" secondItem="rZR-HW-69i" secondAttribute="leading" id="ZvH-Js-ecp"/>
                             <constraint firstAttribute="trailing" secondItem="Mio-4o-GYC" secondAttribute="trailing" constant="10" id="aLe-2H-bS1"/>
+                            <constraint firstItem="qDb-x4-feX" firstAttribute="width" secondItem="qDb-x4-feX" secondAttribute="height" multiplier="1:1" id="cfP-Gy-y6l"/>
+                            <constraint firstItem="qDb-x4-feX" firstAttribute="centerX" secondItem="rZR-HW-69i" secondAttribute="centerX" id="gvr-Xh-OWh"/>
                             <constraint firstItem="qDT-fH-ThT" firstAttribute="top" secondItem="rZR-HW-69i" secondAttribute="top" id="hHb-GJ-kdf"/>
                             <constraint firstAttribute="bottom" secondItem="Mio-4o-GYC" secondAttribute="bottom" constant="10" id="mJd-dh-1PO"/>
                             <constraint firstAttribute="bottom" secondItem="OTc-fC-3On" secondAttribute="bottom" id="qof-at-umS"/>
@@ -181,5 +201,6 @@
     </objects>
     <resources>
         <image name="baidi.png" width="168" height="170"/>
+        <image name="标签" width="90" height="90"/>
     </resources>
 </document>

@@ -7,7 +7,6 @@
 //
 
 #import "MineHeadCell.h"
-#import "APIHelper+User.h"
 
 @interface MineHeadCell ()
 

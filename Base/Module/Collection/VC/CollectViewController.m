@@ -7,18 +7,16 @@
 //
 
 #import "CollectViewController.h"
-#import "WeekEndDetailController.h"
 #import "TheaterListCell.h"
 #import "NewsCell.h"
 #import "WeekEndCell.h"
 #import "DeriveListCell.h"
-
+#import "TheaterModel.h"
 #import "UIViewController+Extension.h"
 #import "UITableViewCell+HYCell.h"
 #import "NSString+Extension.h"
-#import "APIHelper+User.h"
 #import "CustomJumpBtns.h"
-
+#import "HYAlertView.h"
 
 typedef enum : NSUInteger {
     TypeTheater = 1,
@@ -53,6 +51,7 @@ typedef enum : NSUInteger {
 
     
     [self subviewStyle];
+    [self headerViewInit];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -82,10 +81,18 @@ typedef enum : NSUInteger {
             [HYTool configTableViewCellDefault:cell];
             
             NSDictionary* model = self.dataArray.count == 0 ? nil : self.dataArray[indexPath.row];
-            [cell configTheaterListCell:model];
+            TheaterModel* theater = [TheaterModel yy_modelWithDictionary:model];
+            [cell configTheaterListCell:theater];
             [cell setTicketBtnClick:^(id model) {
                 //TODO:取消收藏
-                
+                [APIHELPER cancelCollect:theater.playId.integerValue type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    if (isSuccess) {
+                        [self showMessage:@"取消收藏成功"];
+                        [self fetchData];
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                }];
             }];
             cell.collectBtn.hidden = YES;
             cell.ticketBtnWidth.constant = 80;
@@ -125,9 +132,42 @@ typedef enum : NSUInteger {
             [HYTool configTableViewCellDefault:cell];
             cell.contentView.backgroundColor = [UIColor hyViewBackgroundColor];
             
-            DeriveModel* leftModel = self.dataArray[indexPath.section*2];
-            DeriveModel* rightModel = (self.dataArray.count%2!=0 && self.dataArray.count/2==indexPath.section) ? nil : self.dataArray[indexPath.section*2+1];
-            [cell configListCellWithLeft:nil right:nil];
+            DeriveModel* leftModel = [DeriveModel yy_modelWithDictionary:self.dataArray[indexPath.section*2]];
+            DeriveModel* rightModel = [DeriveModel yy_modelWithDictionary:(self.dataArray.count%2!=0 && self.dataArray.count/2==indexPath.section) ? nil : self.dataArray[indexPath.section*2+1]];
+            [cell configListCellWithLeft:leftModel right:rightModel];
+            [cell setItemClick:^(DeriveModel* model) {
+                APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&isFav=%@",kDeriveDetailController,model.goodId.integerValue,@(YES)]));
+            }];
+            [cell setExchangeClick:^(DeriveModel* model) {
+                HYAlertView* alert = [HYAlertView sharedInstance];
+                [alert setSubBottonBackgroundColor:[UIColor hyRedColor]];
+                [alert setSubBottonTitleColor:[UIColor whiteColor]];
+                [alert setCancelButtonBorderColor:[UIColor hyBarTintColor]];
+                [alert setCancelButtonTitleColor:[UIColor hyBarTintColor]];
+                [alert setCancelButtonBackgroundColor:[UIColor whiteColor]];
+                [alert setBtnCornerRadius:5];
+                [alert showAlertViewWithMessage:[NSString stringWithFormat:@"是否用%ld积分兑换改商品?",model.shopPrice.integerValue] subBottonTitle:@"确定" cancelButtonTitle:@"取消" handler:^(AlertViewClickBottonType bottonType) {
+                    switch (bottonType) {
+                        case AlertViewClickBottonTypeSubBotton: {
+                            //TODO:兑换
+                            [APIHELPER deriveExchange:model.goodId.integerValue buyNum:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                                if (isSuccess) {
+                                    NSDictionary* param = responseObject[@"data"];
+                                    //剧场下单成功和衍生品兑换成功公用一个VC
+                                    [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&",kTheaterCommitOrderSuccessController] withParam:param];
+                                }else{
+                                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                                }
+                            }];
+                            break;
+                        }
+                        default:{
+                            break;
+                        }
+                    }
+                }];
+                
+            }];
             return cell;
         }
         default:
@@ -166,33 +206,20 @@ typedef enum : NSUInteger {
     
     switch (self.contentType) {
         case TypeTheater:
-            
+            APPROUTE(([NSString stringWithFormat:@"%@?Id=%ld&isFav=%@",kTheaterDetailViewController,[model[@"play_id"] integerValue],@(YES)]));
             break;
-        case TypeNews:
-            
-            break;
-        case TypeWeekEnd:
-        {
-            WeekEndDetailController* vc = (WeekEndDetailController*)VIEWCONTROLLER(kWeekEndDetailController);
-            vc.isFav = YES;
-            vc.articleId = [model[@"collection_id"] integerValue];
-            vc.articleType = [model[@"type"] integerValue];
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
-            break;
-        }
         case TypeDerive:
         {
-            WeekEndDetailController* vc = (WeekEndDetailController*)VIEWCONTROLLER(kWeekEndDetailController);
-            vc.isFav = YES;
-            vc.articleId = [model[@"collection_id"] integerValue];
-            vc.articleType = [model[@"type"] integerValue];
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
             break;
         }
         default:
+        {
+            //资讯和周末去哪儿
+            NSInteger articleId = [model[@"collection_id"] integerValue];
+            NSInteger type = [model[@"type"] integerValue];
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,@(YES),articleId,type]));
             break;
+        }
     }
 }
 #pragma mark - private methods

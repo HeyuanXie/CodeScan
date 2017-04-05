@@ -13,8 +13,8 @@
 #import "RecentHotView.h"
 #import "TheaterModel.h"
 #import "DeriveModel.h"
+#import "UIViewController+Extension.h"
 
-#import "APIHelper+Theater.h"
 @interface TheaterDetailViewController ()
 
 @property(nonatomic,strong)TheaterModel* playInfo;
@@ -27,6 +27,7 @@
 @property(nonatomic,assign)BOOL isFold;
 
 @property(nonatomic,assign)NSInteger Id;
+@property(nonatomic,assign)BOOL isFav;
 
 @end
 
@@ -37,6 +38,9 @@
     
     if (self.schemaArgu[@"Id"]) {
         self.Id = [[self.schemaArgu objectForKey:@"Id"] integerValue];
+    }
+    if (self.schemaArgu[@"isFav"]) {
+        self.isFav = [[self.schemaArgu objectForKey:@"isFav"] boolValue];
     }
     self.navigationBarTransparent = YES;
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(-64, 0, 60, 0)];
@@ -214,7 +218,8 @@
 
 #pragma mark - actions
 - (IBAction)buyTicket:(id)sender {
-    APPROUTE(kTheaterTicketViewController);
+    TheaterModel* model = self.playInfo;
+    APPROUTE(([NSString stringWithFormat:@"%@?playId=%ld&img=%@&name=%@&score=%ld&subTitle=%@&time=%@&date=%@&statu=%ld",kTheaterTicketViewController,model.playId.integerValue,model.picurl,model.playName,model.score.integerValue,model.subTitle,model.pctime,model.sydate,model.status.integerValue]));
 }
 
 #pragma mark - private methods
@@ -259,7 +264,7 @@
             [self.commentList addObject:responseObject[@"data"][@"comment_list"]];
             [self.commendList addObject:[NSArray yy_modelArrayWithClass:[TheaterModel class] json:responseObject[@"data"][@"commend_list"]]];
             
-            self.title = self.playInfo.playName;
+//            self.title = self.playInfo.playName;
             [self.tableView reloadData];
         }else{
             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
@@ -269,17 +274,41 @@
 }
 
 -(void)subviewInit {
-    
-    UIBarButtonItem* item1 = [[UIBarButtonItem alloc] initWithImage:ImageNamed(@"cart") style:UIBarButtonItemStyleDone target:self action:@selector(collect)];
-    UIBarButtonItem* item2 = [[UIBarButtonItem alloc] initWithImage:ImageNamed(@"") style:UIBarButtonItemStyleDone target:self action:@selector(share)];
-    self.navigationController.navigationItem.rightBarButtonItems = @[item1,item2];
+    self.title = @"详情";
+    [self configNavigation];
 }
--(void)collect {
-    
+-(void)configNavigation {
+    NSArray* images = self.isFav ? @[@"collect02",@"share"] : @[@"collect01",@"share"];
+    @weakify(self);
+    [self addDoubleNavigationItemsWithImages:images firstBlock:^{
+        @strongify(self);
+        if (!self.isFav) {
+            //TODO:收藏
+            [APIHELPER collect:self.Id type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    [self showMessage:@"收藏成功"];
+                    self.isFav = !self.isFav;
+                    [self configNavigation];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }else{
+            //TODO:取消收藏
+            [APIHELPER cancelCollect:self.Id type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    [self showMessage:@"取消收藏成功"];
+                    self.isFav = !self.isFav;
+                    [self configNavigation];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }
+    } secondBlock:^{
+        //TODO:分享
+        
+    }];
 }
--(void)share {
-    
-}
-
 
 @end

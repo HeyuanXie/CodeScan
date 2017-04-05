@@ -22,5 +22,32 @@
 
 -(void)theaterDetail:(NSInteger)playId complete:(ApiRequestCompleteBlock)complete;
 
+-(void)theaterSession:(NSInteger)start
+                limit:(NSInteger)limit
+               playId:(NSInteger)playId
+                 date:(NSString*)date
+             complete:(ApiRequestCompleteBlock)complete;
+
+-(void)theaterSeatDetail:(NSInteger)hallId
+                  timeId:(NSInteger)timeId
+                complete:(ApiRequestCompleteBlock)complete;
+
+-(void)theaterSeatLock:(NSInteger)timeId
+                 seats:(NSArray*)seats
+              complete:(ApiRequestCompleteBlock)complete;
+
+-(void)theaterCommitOrder:(NSInteger)timeId
+                  payType:(NSInteger)payType
+                   cardSn:(NSString*)cardSn
+                 couponSn:(NSString*)couponSn
+                    seats:(NSArray*)seats
+                 complete:(ApiRequestCompleteBlock)complete;
+
+-(void)theaterComment:(NSInteger)playId
+              orderId:(NSString*)orderId
+                score:(NSInteger)score
+              content:(NSString*)content
+               images:(NSArray*)images
+             complete:(ApiRequestCompleteBlock)complete;
 
 @end

@@ -3,8 +3,6 @@
 #import <UIActionSheet+BlocksKit.h>
 #import <UIAlertView+BlocksKit.h>
 #import "WebViewController.h"
-#import "APIHelper+User.h"
-#import "APIHelper+Common.h"
 
 @interface SettingViewController ()
 

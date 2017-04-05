@@ -20,5 +20,4 @@
 + (NSDate *)dateWithString:(NSString*)dateStr format:(NSString*)formatStr;
 + (NSString *)dateStringWithDate:(NSDate*)date format:(NSString*)formatStr;
 + (NSString *)dateStringWithString:(NSString *)dateStr inputFormat:(NSString*)inputFormatStr outputFormat:(NSString *)outputFormatStr;
-
 @end

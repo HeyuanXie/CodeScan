@@ -31,7 +31,7 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configDetailCell:(id)model type:(NSString *)type {
+-(void)configDetailCell:(id)model type:(NSInteger)type {
     
     if (model == nil) {
         return;
@@ -40,7 +40,7 @@
     self.phoneNumLbl.text = model[@"mobile"];
     self.personNameLbl.text = model[@"consignee"];
     self.countLbl.text = [NSString stringWithFormat:@"%ld",[model[@"goods_num"] integerValue]] ;
-    if ([type isEqualToString:@"derive"]) {
+    if (type == 1) {
         self.priceLbl.text = [NSString stringWithFormat:@"%ld 积分",[model[@"exchange_total_price"] integerValue]];
     }else{
         self.priceLbl.text = [NSString stringWithFormat:@"¥ %ld",[model[@"exchange_total_price"] integerValue]];

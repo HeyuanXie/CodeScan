@@ -9,12 +9,10 @@
 #import "UserInfoViewController.h"
 #import "InfoHeaderCell.h"
 #import "UIButton+HYButtons.h"
-#import "APIHelper+User.h"
 #import <UIActionSheet+BlocksKit.h>
 #import "DatePickerController.h"
 #import "UIViewController+KNSemiModal.h"
 #import "MBProgressHUD+hyHUD.h"
-#import "APIHelper+Common.h"
 #import "HYAddressController.h"
 
 #define kCellMineIdentify @"CellMineIdentify"

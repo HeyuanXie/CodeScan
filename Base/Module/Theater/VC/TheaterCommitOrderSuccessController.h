@@ -8,13 +8,9 @@
 
 #import "BaseTableViewController.h"
 
-typedef enum : NSUInteger {
-    TypeTheater = 0,
-    TypeDerive,
-} ContentType;
+
 
 @interface TheaterCommitOrderSuccessController : BaseTableViewController
 
-@property(nonatomic,assign)ContentType contentType;
 
 @end

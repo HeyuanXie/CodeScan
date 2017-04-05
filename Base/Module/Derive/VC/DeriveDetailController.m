@@ -7,7 +7,8 @@
 //
 
 #import "DeriveDetailController.h"
-#import "APIHelper+Derive.h"
+#import "UIViewController+Extension.h"
+
 
 @interface DeriveDetailController ()
 @property (weak, nonatomic) IBOutlet UIImageView *botImgV;
@@ -20,6 +21,7 @@
 
 @property (assign, nonatomic) NSInteger productId;
 @property (assign, nonatomic) BOOL isEnough;
+@property (assign, nonatomic) BOOL isFav;
 
 @property (strong, nonatomic) NSDictionary* data;
 
@@ -29,11 +31,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (self.schemaArgu[@"isFav"]) {
+        self.isFav = [[self.schemaArgu objectForKey:@"isFav"] boolValue];
+    }
     
     if (self.schemaArgu[@"id"]) {
         self.productId = [[self.schemaArgu objectForKey:@"id"] integerValue];
     }
 
+    [self configNavigation];
     [self webViewInit];
     // Do any additional setup after loading the view.
 }
@@ -61,6 +67,7 @@
         if (isSuccess) {
             self.data = responseObject[@"data"];
             self.isEnough = self.data[@"is_enough_price"];
+            self.isFav = self.data[@"is_fav"];
             [self subviewStyle];
             [self subviewBind];
         }
@@ -82,6 +89,40 @@
     }
 }
 
+-(void)configNavigation {
+    NSArray* images = self.isFav ? @[@"collect02",@"share"] : @[@"collect01",@"share"];
+    @weakify(self);
+    [self addDoubleNavigationItemsWithImages:images firstBlock:^{
+        @strongify(self);
+        if (!self.isFav) {
+            //TODO:收藏
+            [APIHELPER collect:self.productId type:4 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    [self showMessage:@"收藏成功"];
+                    self.isFav = !self.isFav;
+                    [self configNavigation];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }else{
+            //TODO:取消收藏
+            [APIHELPER cancelCollect:self.productId type:4 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    [self showMessage:@"取消收藏成功"];
+                    self.isFav = !self.isFav;
+                    [self configNavigation];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }
+    } secondBlock:^{
+        //TODO:分享
+        
+    }];
+}
+
 -(void)subviewBind {
     if (self.isEnough) {
         [self.botBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
@@ -97,7 +138,7 @@
         [self hideLoadingAnimation];
         
         if (isSuccess) {
-            [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&",kTheaterCommmitOrderSuccessController] withParam:self.data];
+            [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&",kTheaterCommitOrderSuccessController] withParam:self.data];
         }else{
             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
         }

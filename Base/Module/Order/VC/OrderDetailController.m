@@ -12,12 +12,18 @@
 #import "OrderCodeCell.h"
 #import "OrderDetailCell.h"
 #import "UIViewController+Extension.h"
-#import "APIHelper+Order.h"
+
+typedef enum : NSUInteger {
+    TypeTheater = 0,
+    TypeDerive,
+    TypeCard,
+} ContentType;
+
 @interface OrderDetailController ()
 
 @property(strong,nonatomic)NSDictionary* data;  //订单详情数据
 @property(strong,nonatomic)NSMutableArray* codeArray;   //订单二维码数组
-@property(strong,nonatomic)NSString* type;  //订单类型
+@property(assign,nonatomic)ContentType contentType;//订单类型,0:theater、1:derive、2:card
 @property(assign,nonatomic)NSString* orderId;    //订单Id
 
 @property(strong,nonatomic)NSArray* maps;//手机安装的地图的数组
@@ -28,8 +34,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    if (self.schemaArgu[@"type"]) {
-        self.type = [self.schemaArgu objectForKey:@"type"];
+    if (self.schemaArgu[@"contentType"]) {
+        self.contentType = [[self.schemaArgu objectForKey:@"contentType"] integerValue];
     }
     if (self.schemaArgu[@"orderId"]) {
         self.orderId = [self.schemaArgu objectForKey:@"orderId"];
@@ -134,20 +140,25 @@
     [HYTool configTableViewCellDefault:cell];
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
-    if ([self.type isEqualToString:@"theater"]) {
-        [cell configTheaterHeadCell:self.data];
-    }else if ([self.type isEqualToString:@"lecture"]) {
-        [cell configLectureHeadCell:self.data];
-    }else if ([self.type isEqualToString:@"derive"]) {
-        [cell configDeriveHeadCell:self.data];
-    }else{
-        [cell configYearCardHeadCell:self.data];
+    switch (self.contentType) {
+        case TypeTheater:
+            [cell configTheaterHeadCell:self.data];
+            break;
+        case TypeDerive:
+            [cell configDeriveHeadCell:self.data];
+            break;
+        case TypeCard:
+            [cell configYearCardHeadCell:self.data];
+            break;
+        default:
+            [cell configLectureHeadCell:self.data];
+            break;
     }
     return cell;
 }
 -(UITableViewCell*)refundCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
     OrderRefundCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderRefundCell identify]];
-    if ([self.type isEqualToString:@"derive"]) {
+    if (self.contentType == TypeDerive) {
         [cell configDeriveRefundCell];
     }
     return cell;
@@ -179,7 +190,7 @@
     
     lbl.text = @"有效期至: 2017-4-30";
     
-    if ([self.type isEqualToString:@"derive"]) {
+    if (self.contentType == TypeDerive) {
         if ([self.data[@"order_status"] integerValue] == 2) {
             [btn setTitle:@"去评价" forState:UIControlStateNormal];
             [btn bk_whenTapped:^{
@@ -222,9 +233,9 @@
     OrderCodeCell*cell = [tableView dequeueReusableCellWithIdentifier:[OrderCodeCell identify]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    if ([self.type isEqualToString:@"theater"]) {
+    if (self.contentType == TypeTheater) {
         [cell configCodeCell:nil];
-    }else if ([self.type isEqualToString:@"derive"]) {
+    }else if (self.contentType == TypeDerive) {
         [cell configDeriveCodeCell:nil];
     }
     return cell;
@@ -248,7 +259,7 @@
     OrderDetailCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderDetailCell identify]];
     [HYTool configTableViewCellDefault:cell];
     cell.contentView.backgroundColor = [UIColor whiteColor];
-    [cell configDetailCell:self.data type:self.type];
+    [cell configDetailCell:self.data type:self.contentType];
     return cell;
 }
 -(NSMutableArray *)codeArray {
@@ -260,9 +271,9 @@
 
 -(void)fetchData {
     
-    if ([self.type isEqualToString:@"theater"]) {
+    if (self.contentType == TypeTheater) {
         
-    }else if ([self.type isEqualToString:@"derive"]) {
+    }else if (self.contentType == TypeDerive) {
         [APIHELPER orderDetailDerive:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             if (isSuccess) {
                 self.data = responseObject[@"data"];

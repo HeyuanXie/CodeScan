@@ -13,7 +13,6 @@
 #import "FunctionCell.h"
 #import "UIViewController+Extension.h"
 #import "UserInfoModel.h"
-#import "APIHelper+User.h"
 
 @interface MineHomeViewController ()
 

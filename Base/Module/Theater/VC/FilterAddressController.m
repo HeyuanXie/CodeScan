@@ -7,7 +7,6 @@
 //
 
 #import "FilterAddressController.h"
-#import "APIHelper+Theater.h"
 
 @interface FilterAddressController ()
 

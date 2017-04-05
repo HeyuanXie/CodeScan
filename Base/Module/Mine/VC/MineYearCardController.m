@@ -8,7 +8,6 @@
 
 #import "MineYearCardController.h"
 #import "MineYearCardCell.h"
-#import "APIHelper+User.h"
 
 @interface MineYearCardController ()
 

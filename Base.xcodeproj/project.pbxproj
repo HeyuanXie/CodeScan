@@ -90,10 +90,6 @@
 		842260E51E8A38C9009C3FAF /* RefundHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260E31E8A38C9009C3FAF /* RefundHeadCell.m */; };
 		842260E61E8A38C9009C3FAF /* RefundHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842260E41E8A38C9009C3FAF /* RefundHeadCell.xib */; };
 		842260EC1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260EB1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m */; };
-		842260F51E8A4A79009C3FAF /* CommitOrderSuccessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260F31E8A4A79009C3FAF /* CommitOrderSuccessCell.m */; };
-		842260F61E8A4A79009C3FAF /* CommitOrderSuccessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842260F41E8A4A79009C3FAF /* CommitOrderSuccessCell.xib */; };
-		842260FA1E8A5C5A009C3FAF /* CommitOrderSuccessCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260F81E8A5C5A009C3FAF /* CommitOrderSuccessCell2.m */; };
-		842260FB1E8A5C5A009C3FAF /* CommitOrderSuccessCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842260F91E8A5C5A009C3FAF /* CommitOrderSuccessCell2.xib */; };
 		842260FE1E8A6DCD009C3FAF /* APIHelper+YearCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 842260FD1E8A6DCD009C3FAF /* APIHelper+YearCard.m */; };
 		84235B6A1E6E5AE900A81A6B /* MineHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B681E6E5AE900A81A6B /* MineHeadCell.m */; };
 		84235B6B1E6E5AE900A81A6B /* MineHeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84235B691E6E5AE900A81A6B /* MineHeadCell.xib */; };
@@ -208,6 +204,7 @@
 		845BDF9A1E28D2C00064ACAE /* BaseUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BDF991E28D2C00064ACAE /* BaseUITests.m */; };
 		845BDFAA1E28D8920064ACAE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BDFA91E28D8920064ACAE /* AppDelegate.m */; };
 		845BDFB21E28D8D30064ACAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 845BDFAD1E28D8D30064ACAE /* Assets.xcassets */; };
+		846E13401E94F53C00C7C015 /* TheaterSessionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 846E133F1E94F53C00C7C015 /* TheaterSessionModel.m */; };
 		8472F7171E6CEBEF000AE550 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8472F7161E6CEBEF000AE550 /* UIImage+Extension.m */; };
 		8472F7221E6D383A000AE550 /* CollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8472F7211E6D383A000AE550 /* CollectViewController.m */; };
 		8472F7271E6D388A000AE550 /* Collect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8472F7261E6D388A000AE550 /* Collect.storyboard */; };
@@ -523,12 +520,6 @@
 		842260E41E8A38C9009C3FAF /* RefundHeadCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RefundHeadCell.xib; sourceTree = "<group>"; };
 		842260EA1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterCommitOrderSuccessController.h; sourceTree = "<group>"; };
 		842260EB1E8A4965009C3FAF /* TheaterCommitOrderSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterCommitOrderSuccessController.m; sourceTree = "<group>"; };
-		842260F21E8A4A79009C3FAF /* CommitOrderSuccessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitOrderSuccessCell.h; sourceTree = "<group>"; };
-		842260F31E8A4A79009C3FAF /* CommitOrderSuccessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitOrderSuccessCell.m; sourceTree = "<group>"; };
-		842260F41E8A4A79009C3FAF /* CommitOrderSuccessCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitOrderSuccessCell.xib; sourceTree = "<group>"; };
-		842260F71E8A5C5A009C3FAF /* CommitOrderSuccessCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitOrderSuccessCell2.h; sourceTree = "<group>"; };
-		842260F81E8A5C5A009C3FAF /* CommitOrderSuccessCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitOrderSuccessCell2.m; sourceTree = "<group>"; };
-		842260F91E8A5C5A009C3FAF /* CommitOrderSuccessCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitOrderSuccessCell2.xib; sourceTree = "<group>"; };
 		842260FC1E8A6DCD009C3FAF /* APIHelper+YearCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+YearCard.h"; sourceTree = "<group>"; };
 		842260FD1E8A6DCD009C3FAF /* APIHelper+YearCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+YearCard.m"; sourceTree = "<group>"; };
 		84235B671E6E5AE900A81A6B /* MineHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineHeadCell.h; sourceTree = "<group>"; };
@@ -790,6 +781,8 @@
 		845BDFA91E28D8920064ACAE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		845BDFAD1E28D8D30064ACAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		845BDFB31E28DA470064ACAE /* MyPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPCH.pch; sourceTree = "<group>"; };
+		846E133E1E94F53C00C7C015 /* TheaterSessionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterSessionModel.h; sourceTree = "<group>"; };
+		846E133F1E94F53C00C7C015 /* TheaterSessionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterSessionModel.m; sourceTree = "<group>"; };
 		8472F7151E6CEBEF000AE550 /* UIImage+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extension.h"; sourceTree = "<group>"; };
 		8472F7161E6CEBEF000AE550 /* UIImage+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extension.m"; sourceTree = "<group>"; };
 		8472F7201E6D383A000AE550 /* CollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectViewController.h; sourceTree = "<group>"; };
@@ -1823,12 +1816,6 @@
 				8497B6811E88AE2200392973 /* SelectCouponCell.h */,
 				8497B6821E88AE2200392973 /* SelectCouponCell.m */,
 				8497B6831E88AE2200392973 /* SelectCouponCell.xib */,
-				842260F21E8A4A79009C3FAF /* CommitOrderSuccessCell.h */,
-				842260F31E8A4A79009C3FAF /* CommitOrderSuccessCell.m */,
-				842260F41E8A4A79009C3FAF /* CommitOrderSuccessCell.xib */,
-				842260F71E8A5C5A009C3FAF /* CommitOrderSuccessCell2.h */,
-				842260F81E8A5C5A009C3FAF /* CommitOrderSuccessCell2.m */,
-				842260F91E8A5C5A009C3FAF /* CommitOrderSuccessCell2.xib */,
 				842D6B9A1E8249E7004A1271 /* Comment */,
 			);
 			path = Cell;
@@ -2190,6 +2177,8 @@
 				8401F2D31E8B51150032FE32 /* ArticleModel.m */,
 				8401F2DE1E8BB8BA0032FE32 /* TheaterModel.h */,
 				8401F2DF1E8BB8BA0032FE32 /* TheaterModel.m */,
+				846E133E1E94F53C00C7C015 /* TheaterSessionModel.h */,
+				846E133F1E94F53C00C7C015 /* TheaterSessionModel.m */,
 				84B862F31E8C98CB002320E2 /* DeriveModel.h */,
 				84B862F41E8C98CB002320E2 /* DeriveModel.m */,
 			);
@@ -2653,7 +2642,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8497B67D1E889DFE00392973 /* CommitOrderSeatCell.xib in Resources */,
-				842260F61E8A4A79009C3FAF /* CommitOrderSuccessCell.xib in Resources */,
 				848A8FCC1E8372C700B45D0C /* SearchGuideCell.xib in Resources */,
 				84E74BCA1E70E90B00016A99 /* LectureDetailTopCell.xib in Resources */,
 				84DCC28E1E77E83C0019898E /* VideoCommentCell.xib in Resources */,
@@ -2693,7 +2681,6 @@
 				842A56F41E793A6100D489CA /* InfoHeaderCell.xib in Resources */,
 				841C00ED1E7258710082ECDA /* HomeSecondCell.xib in Resources */,
 				841E45881E80CB28007B6EF3 /* WeekEndCell.xib in Resources */,
-				842260FB1E8A5C5A009C3FAF /* CommitOrderSuccessCell2.xib in Resources */,
 				8472F7441E6D585E000AE550 /* TheaterDetailCell.xib in Resources */,
 				845BDFB21E28D8D30064ACAE /* Assets.xcassets in Resources */,
 				843142F01E694C640007740A /* HomeUseView.xib in Resources */,
@@ -2850,7 +2837,6 @@
 				843329B61E85102600A7421E /* TheaterSeatView.m in Sources */,
 				84F6911A1E2C56090048B6DF /* NSObject+Global.m in Sources */,
 				841C00F51E7289B40082ECDA /* DeriveListController.m in Sources */,
-				842260FA1E8A5C5A009C3FAF /* CommitOrderSuccessCell2.m in Sources */,
 				8401F2D41E8B51150032FE32 /* ArticleModel.m in Sources */,
 				8413CECB1E669DF200436B2F /* CustomJumpBtns.m in Sources */,
 				84E6D42A1E4817CD0056A702 /* APIHelper+Home.m in Sources */,
@@ -2887,7 +2873,6 @@
 				841E45941E80F8C0007B6EF3 /* WeekEndUseView.m in Sources */,
 				841E45911E80DD03007B6EF3 /* WeekEndDetailController.m in Sources */,
 				84F691321E2C568B0048B6DF /* UIStoryboard+HYStoryboard.m in Sources */,
-				842260F51E8A4A79009C3FAF /* CommitOrderSuccessCell.m in Sources */,
 				84DCC2731E7790400019898E /* MineSupportCell.m in Sources */,
 				84924EA21E2C7D37005F05C3 /* UIButton+HYButtons.m in Sources */,
 				844343E21E6FD39600D9FD2F /* TheaterTicketCell.m in Sources */,
@@ -2961,6 +2946,7 @@
 				84DCC2691E7789610019898E /* SkillApplyViewController.m in Sources */,
 				84E74C011E71574400016A99 /* YearCardCommitOrderController.m in Sources */,
 				841D4B061E7A7475002C49C0 /* PointManageTopCell.m in Sources */,
+				846E13401E94F53C00C7C015 /* TheaterSessionModel.m in Sources */,
 				84EF70771E4AC18D0098A606 /* HYScrollView.m in Sources */,
 				84DCC26C1E77896D0019898E /* SkillUploadViewController.m in Sources */,
 				841C00F11E7258820082ECDA /* HomeDescCell.m in Sources */,

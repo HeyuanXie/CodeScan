@@ -34,7 +34,7 @@
 
 - (IBAction)commit:(id)sender {
     //TODO:提交选座订单
-    APPROUTE(([NSString stringWithFormat:@"%@?contentType=0",kTheaterCommmitOrderSuccessController]));
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@",kTheaterCommitOrderSuccessController,@"order_sn"]));
 }
 
 - (void)viewDidLoad {

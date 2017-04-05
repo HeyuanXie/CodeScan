@@ -112,7 +112,7 @@
         return;
     }
     if (indexPath.row == 1) {
-        APPROUTE(([NSString stringWithFormat:@"%@?type=%@&orderId=%d",kOrderDetailController,@"theater",1]));
+        APPROUTE(([NSString stringWithFormat:@"%@?contentType=%d&orderId=%@",kOrderDetailController,0,@"orderId"]));
     }
 }
 #pragma mark - private methods

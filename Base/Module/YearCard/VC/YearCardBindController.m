@@ -7,7 +7,6 @@
 //
 
 #import "YearCardBindController.h"
-#import "APIHelper+YearCard.h"
 
 @interface YearCardBindController ()
 @property (weak, nonatomic) IBOutlet UILabel *accountLbl;

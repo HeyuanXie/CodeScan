@@ -13,7 +13,6 @@
 #import <UIActionSheet+BlocksKit.h>
 #import "UIButton+HYButtons.h"
 #import "MBProgressHUD+hyHUD.h"
-#import "APIHelper+Common.h"
 
 @interface FeedbackController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
