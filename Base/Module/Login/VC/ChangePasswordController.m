@@ -14,8 +14,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *secondTf;
 @property (weak, nonatomic) IBOutlet UIView *eyeView;
 @property (weak, nonatomic) IBOutlet UIImageView *eyeImgV;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *eyeImgVBottom;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
+@property (weak, nonatomic) IBOutlet UIImageView *imgV;
+@property (weak, nonatomic) IBOutlet UIButton *otherBtn;
 
 @property (assign, nonatomic) BOOL canSee;
 
@@ -50,7 +51,6 @@
 #pragma mark - subviewStyle
 -(void)subviewStyle {
 
-    self.eyeImgVBottom.constant = zoom(50-23);
     UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 200)];
     footerView.backgroundColor = [UIColor hyViewBackgroundColor];
     self.tableView.tableFooterView = footerView;
@@ -73,20 +73,28 @@
     [self.eyeView bk_whenTapped:^{
         
         self.canSee = !self.canSee;
-        NSString* imageName = self.canSee ? @"密码不可见" : @"密码可见";
+        NSString* imageName = self.canSee ? @"密码不可见_灰" : @"密码可见_灰";
         self.eyeImgV.image = ImageNamed(imageName);
-        self.secondTf.secureTextEntry = !self.canSee;
+        self.firstTf.secureTextEntry = !self.canSee;
     }];
+    
+    [self.otherBtn addTarget:self action:@selector(otherImage) forControlEvents:UIControlEventTouchUpInside];
     
     [self.submitBtn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
 }
+
+-(void)otherImage {
+    //TODO:另一张
+    
+}
+
 -(void)submit {
     if ([self.firstTf.text isEmpty]) {
-        [self showMessage:@"请输入当前密码"];
+        [self showMessage:@"请输入新密码"];
         return;
     }
     if ([self.secondTf.text isEmpty]) {
-        [self showMessage:@"请输入新密码"];
+        [self showMessage:@"请输入图中文字"];
         return;
     }
     //TODO:修改密码

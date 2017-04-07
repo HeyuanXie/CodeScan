@@ -36,6 +36,9 @@
     self.haveTableFooter = YES;
     self.types = @[@"演出",@"商品",@"年卡"];
     self.status = @[@"已付款",@"待付款",@"待评价",@"退款"];
+    if (self.schemaArgu[@"typeId"]) {
+        self.typeId = [[self.schemaArgu objectForKey:@"typeId"] integerValue];
+    }
     self.statuId = 1;
     
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(90, 0, 0, 0)];

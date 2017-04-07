@@ -26,7 +26,7 @@
 
 - (void)updateUserInfo:(NSString *)nickname
                   face:(NSString *)face
-                   sex:(NSString *)sex
+                   sex:(NSInteger)sex
               birthday:(NSString *)birthday
                   area:(NSString *)areaID
               complete:(ApiRequestCompleteBlock)complete;

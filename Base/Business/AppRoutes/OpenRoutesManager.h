@@ -94,6 +94,10 @@ extern NSString* const kLoginViewController;
 extern NSString* const kChangePasswordController;
 extern NSString* const kBindPhoneController;
 extern NSString* const kBindPhoneChangeController;
+extern NSString* const kCheckCodeController;
+extern NSString* const kDidBindPhoneController;
+
+
 
 
 extern NSString* const kSearchGuideController;

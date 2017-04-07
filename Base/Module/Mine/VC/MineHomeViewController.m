@@ -77,16 +77,16 @@
 
 
 -(void)fetchData {
-    if ([Global userAuth]) {
-        [APIHELPER fetchUserInfo:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-            if (isSuccess) {
-                APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
-                [self.tableView reloadData];
-                return ;
-            }
-        }];
-    }
-    
+//    if ([Global userAuth]) {
+//        [APIHELPER fetchUserInfo:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+//            if (isSuccess) {
+//                APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
+//                [self.tableView reloadData];
+//                return ;
+//            }
+//        }];
+//    }
+//    
     [self.tableView reloadData];
 }
 

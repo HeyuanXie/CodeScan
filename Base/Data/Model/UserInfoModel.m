@@ -14,13 +14,13 @@
     return @{
              @"userID":@"uid",
              @"account":@"account",
-             @"faceUrl":@"face",
+             @"faceUrl":@"header_img",
              @"nickName":@"nickname",
-             @"sex":@"sex",
+             @"sex":@"gender",
              @"birthday":@"birthday",
-             @"areaID":@"area_id",
              @"phone":@"phone",
-             @"areaName":@"area_name",
+             @"areaId":@"city_id",
+             @"areaName":@"city_name",
              };
 }
 

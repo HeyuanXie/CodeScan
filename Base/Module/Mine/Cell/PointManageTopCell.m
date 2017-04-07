@@ -39,7 +39,7 @@
         [self.qiandaoBtn setTitle:@"签到+1" forState:UIControlStateNormal];
     }
     [self.recordView bk_whenTapped:^{
-        APPROUTE(kDeriveRecordController);
+        APPROUTE(([NSString stringWithFormat:@"%@?typeId=%d",kOrderHomeController,1]));
     }];
     [self.detailView bk_whenTapped:^{
         APPROUTE(kPointDetailController);

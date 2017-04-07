@@ -87,6 +87,8 @@ NSString* const kLoginViewController = @"LoginViewController";
 NSString* const kChangePasswordController = @"ChangePasswordController";
 NSString* const kBindPhoneController = @"BindPhoneController";
 NSString* const kBindPhoneChangeController = @"BindPhoneChangeController";
+NSString* const kCheckCodeController = @"CheckCodeController";
+NSString* const kDidBindPhoneController = @"DidBindPhoneController";
 
 NSString* const kSearchGuideController = @"SearchGuideController";
 NSString* const kSearchResultController = @"SearchResultController";
@@ -193,6 +195,8 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kChangePasswordController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kBindPhoneController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kBindPhoneChangeController,@"sb":@"Login",@"method":@"push"},
+                        @{@"cls":kCheckCodeController,@"sb":@"Login",@"method":@"push"},
+                        @{@"cls":kDidBindPhoneController,@"sb":@"Login",@"method":@"push"},
                         
                         @{@"cls":kSearchGuideController,@"sb":@"Main",@"method":@"push"},
                         @{@"cls":kSearchResultController,@"sb":@"Main",@"method":@"push"},

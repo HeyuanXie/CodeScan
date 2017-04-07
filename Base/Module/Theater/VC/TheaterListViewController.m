@@ -74,7 +74,6 @@
     }
     [cell setCollectBtnClick:^(TheaterModel* model) {
         if (model.isFav) {
-            @strongify(cell);
             [APIHELPER cancelCollect:model.playId.integerValue type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"取消收藏成功"];
@@ -84,7 +83,6 @@
                 }
             }];
         }else{
-            @strongify(cell);
             [APIHELPER collect:model.playId.integerValue type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"收藏成功"];

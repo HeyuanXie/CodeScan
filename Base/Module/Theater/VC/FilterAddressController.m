@@ -140,7 +140,6 @@
             [MBProgressHUD hy_showMessage:error.userInfo[NSLocalizedDescriptionKey] inView:self.view];
         }
     }];
-    _hotsArray = [@[@"广州",@"成都市",@"佛山市",@"珠海市",@"中山市"] mutableCopy];
     [self.tableView reloadData];
 }
 

@@ -105,6 +105,8 @@
 		842A56F41E793A6100D489CA /* InfoHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842A56F21E793A6100D489CA /* InfoHeaderCell.xib */; };
 		842A56F71E793ABD00D489CA /* DatePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56F61E793ABD00D489CA /* DatePickerController.m */; };
 		842A56FA1E79404700D489CA /* FeedbackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56F91E79404700D489CA /* FeedbackController.m */; };
+		842BC7D41E9779A7009807D3 /* CheckCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842BC7D11E9779A7009807D3 /* CheckCodeController.m */; };
+		842BC7D51E9779A7009807D3 /* DidBindPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842BC7D31E9779A7009807D3 /* DidBindPhoneController.m */; };
 		842D6BA11E8249E7004A1271 /* CommentImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6B9C1E8249E7004A1271 /* CommentImageCell.m */; };
 		842D6BA21E8249E7004A1271 /* CommentImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842D6B9D1E8249E7004A1271 /* CommentImageCell.xib */; };
 		842D6BA31E8249E7004A1271 /* CommentScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842D6B9F1E8249E7004A1271 /* CommentScoreCell.m */; };
@@ -547,6 +549,10 @@
 		842A56F61E793ABD00D489CA /* DatePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerController.m; sourceTree = "<group>"; };
 		842A56F81E79404700D489CA /* FeedbackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackController.h; sourceTree = "<group>"; };
 		842A56F91E79404700D489CA /* FeedbackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackController.m; sourceTree = "<group>"; };
+		842BC7D01E9779A7009807D3 /* CheckCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckCodeController.h; sourceTree = "<group>"; };
+		842BC7D11E9779A7009807D3 /* CheckCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckCodeController.m; sourceTree = "<group>"; };
+		842BC7D21E9779A7009807D3 /* DidBindPhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DidBindPhoneController.h; sourceTree = "<group>"; };
+		842BC7D31E9779A7009807D3 /* DidBindPhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DidBindPhoneController.m; sourceTree = "<group>"; };
 		842D6B9B1E8249E7004A1271 /* CommentImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentImageCell.h; sourceTree = "<group>"; };
 		842D6B9C1E8249E7004A1271 /* CommentImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentImageCell.m; sourceTree = "<group>"; };
 		842D6B9D1E8249E7004A1271 /* CommentImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentImageCell.xib; sourceTree = "<group>"; };
@@ -1391,6 +1397,10 @@
 				842020331E7BC22000B13C5B /* ChangePasswordController.m */,
 				842020351E7BC24F00B13C5B /* BindPhoneController.h */,
 				842020361E7BC24F00B13C5B /* BindPhoneController.m */,
+				842BC7D01E9779A7009807D3 /* CheckCodeController.h */,
+				842BC7D11E9779A7009807D3 /* CheckCodeController.m */,
+				842BC7D21E9779A7009807D3 /* DidBindPhoneController.h */,
+				842BC7D31E9779A7009807D3 /* DidBindPhoneController.m */,
 				842020381E7BEDFC00B13C5B /* BindPhoneChangeController.h */,
 				842020391E7BEDFC00B13C5B /* BindPhoneChangeController.m */,
 			);
@@ -2827,6 +2837,7 @@
 				843142F71E6953140007740A /* ThemeCell.m in Sources */,
 				843142F31E694DE70007740A /* RecentHotView.m in Sources */,
 				8472F7331E6D40F8000AE550 /* TheaterListViewController.m in Sources */,
+				842BC7D51E9779A7009807D3 /* DidBindPhoneController.m in Sources */,
 				8447C2D21E7FBC9E00853052 /* OrderRefundCell.m in Sources */,
 				84554D961E2F3A04007EE209 /* HomeViewController.m in Sources */,
 				841E45821E80C288007B6EF3 /* MessageSystemCell.m in Sources */,
@@ -2908,6 +2919,7 @@
 				84525A251E2E019D0054C6A1 /* NSDataEx.m in Sources */,
 				84924EC91E2C9A10005F05C3 /* UINavigationController+HYNavigationHiddenShowBug.m in Sources */,
 				841E45871E80CB28007B6EF3 /* WeekEndCell.m in Sources */,
+				842BC7D41E9779A7009807D3 /* CheckCodeController.m in Sources */,
 				84924EC31E2C9970005F05C3 /* UITextView+MaxLimit.m in Sources */,
 				8447C2E11E7FDC0F00853052 /* CodeHeadCell.m in Sources */,
 				845BDF761E28D2C00064ACAE /* main.m in Sources */,

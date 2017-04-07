@@ -7,6 +7,7 @@
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
+//积分明细
 #import "PointDetailController.h"
 #import "UITableViewCell+HYCell.h"
 
@@ -25,6 +26,7 @@
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self fetchData];
+    [self headerViewInit];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +50,8 @@
         numLbl.tag = 1000;
         [cell.contentView addSubview:numLbl];
     }
-    [self configPointDetailCell:cell model:nil];
+    NSDictionary* model = self.dataArray[indexPath.row];
+    [self configPointDetailCell:cell model:model];
     return cell;
 }
 
@@ -68,24 +71,95 @@
     return _dataArray;
 }
 
--(void)fetchData {
-    self.dataArray = [@[@"",@"",@""] mutableCopy];
-    [self.tableView reloadData];
+- (void)fetchData {
+    self.tableView.tableFooterView = nil;
+    [self showLoadingAnimation];
+    [APIHELPER scoreInfoList:0 limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        
+        if (isSuccess) {
+            [self.dataArray removeAllObjects];
+            [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+            
+            self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+            if (self.haveNext) {
+                [self appendFooterView];
+            }else{
+                [self removeFooterRefresh];
+            }
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+}
+
+-(void)headerViewInit {
+    @weakify(self);
+    [self addHeaderRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER scoreInfoList:0 limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray removeAllObjects];
+                [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
+}
+
+-(void)appendFooterView {
+    @weakify(self);
+    [self addFooterRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER scoreInfoList:self.dataArray.count limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
 }
 
 -(void)configPointDetailCell:(UITableViewCell*)cell model:(id)model {
-    if ([self.tableView indexPathForCell:cell].row == self.dataArray.count-1) {
-        UILabel* numLbl = [cell.contentView viewWithTag:1000];
-        numLbl.textColor = [UIColor colorWithString:@"2cbb80"];
-        numLbl.text = @"-1000";
-        
-    }
-    cell.textLabel.text = @"选座购票";
+    UILabel* numLbl = [cell.contentView viewWithTag:1000];
+    
+    NSInteger point = [model[@"change_points"] integerValue];
+    numLbl.text = [NSString stringWithFormat:@"%ld",point];
+    numLbl.textColor = point > 0 ? RGB(242, 179, 87, 1.0) : [UIColor colorWithString:@"2cbb80"];
+    
+    cell.textLabel.text = model[@"change_des"];
     cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.textLabel.textColor = [UIColor hyBlackTextColor];
     
-    cell.detailTextLabel.text = @"2017-03-02 9:40";
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:13];
+//    cell.detailTextLabel.text = [HYTool dateStringWithString:model[@"create_time"] inputFormat:nil outputFormat:@"yyyy-MM-dd HH:mm"];
+    cell.detailTextLabel.text = @"2017-04-04 09:32";
     cell.detailTextLabel.textColor = RGB(161, 161, 161, 1.0);
 }
 

@@ -95,7 +95,7 @@
                 cell.detailTextLabel.text = self.userInfo.nickName;
             }break;
             case 2:{//性别
-                cell.detailTextLabel.text = [self.userInfo.sex isEqualToString:@"1"] ? @"男": @"女";
+                cell.detailTextLabel.text = self.userInfo.sex == 1 ? @"男": @"女";
             }break;
             case 3:{//生日
                 cell.detailTextLabel.text = self.userInfo.birthday;
@@ -166,12 +166,12 @@
                     @weakify(self);
                     [alertC addAction:[UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         @strongify(self);
-                        self.userInfo.sex = @"1";
+                        self.userInfo.sex = 1;
                         [self updateUserInfo];
                     }]];
                     [alertC addAction:[UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         @strongify(self);
-                        self.userInfo.sex = @"2";
+                        self.userInfo.sex = 2;
                         [self updateUserInfo];
                     }]];
                     [alertC addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
@@ -194,8 +194,9 @@
                 }break;
                 case 4:{
                     HYAddressController *addressC = (HYAddressController *)VIEWCONTROLLER(kAddressController);
+                    
                     [addressC setSelectAddress:^(NSString *areaName, NSString *areaID) {
-                        self.userInfo.areaID = areaID;
+                        self.userInfo.areaId = areaID;
                         self.userInfo.areaName = areaName;
                         [self updateUserInfo];
                     }];
@@ -222,14 +223,14 @@
 - (void)updateUserInfo{
     [MBProgressHUD hy_showLoadingHUDAddedTo:self.view animated:YES];
     @weakify(self);
-    [APIHELPER updateUserInfo:self.userInfo.nickName face:self.userInfo.filename sex:self.userInfo.sex birthday:self.userInfo.birthday area:self.userInfo.areaID complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+    [APIHELPER updateUserInfo:self.userInfo.nickName face:self.userInfo.filename sex:self.userInfo.sex birthday:self.userInfo.birthday area:self.userInfo.areaId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         @strongify(self);
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (!isSuccess && error) {
             self.userInfo = [APIHELPER.userInfo copy];
             [MBProgressHUD hy_showMessage:error.userInfo[NSLocalizedDescriptionKey] inView:self.view];
         }else{
-            APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
+            APIHELPER.userInfo = self.userInfo;// [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
         }
         [self.tableView reloadData];
     }];

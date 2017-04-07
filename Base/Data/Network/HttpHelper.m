@@ -129,7 +129,7 @@
     
     //打印POST的JSON数据
     NSString* jsonStr = [NSString jsonStringWithDictionary:parameters];
-    NSLog(@"%@",jsonStr);
+    DLog(@"%@",jsonStr);
     
     return [self POST:relativeurl parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 #ifdef SHOWNETDEBUG

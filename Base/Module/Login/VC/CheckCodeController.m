@@ -1,29 +1,33 @@
 //
-//  BindPhoneChangeController.m
+//  CheckCodeController.m
 //  Base
 //
-//  Created by admin on 2017/3/17.
+//  Created by admin on 2017/4/7.
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "BindPhoneChangeController.h"
+//修改登陆密码、修改绑定手机的中间验证页面
+#import "CheckCodeController.h"
 #import "HYCountDown.h"
 
-@interface BindPhoneChangeController ()<UITextFieldDelegate>
+@interface CheckCodeController ()<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *phoneTf;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLbl;
 @property (weak, nonatomic) IBOutlet UITextField *codeTf;
-
 @property (weak, nonatomic) IBOutlet UIButton *getCodeBtn;
-@property (weak, nonatomic) IBOutlet UIButton *bindBtn;
-@property (strong, nonatomic) HYCountDown* countDown;
+@property (weak, nonatomic) IBOutlet UIButton *nextBtn;
+@property (strong,nonatomic) HYCountDown* countDown;
 
 @end
 
-@implementation BindPhoneChangeController
+@implementation CheckCodeController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (self.schemaArgu[@"contentType"]) {
+        self.contentType = [[self.schemaArgu objectForKey:@"contentType"] integerValue];
+    }
     
     [self subviewStyle];
     [self subviewBind];
@@ -36,11 +40,11 @@
 
 #pragma mark - textField delegate
 -(void)textFieldDidChanged:(UITextField*)textField {
-    if (![self.phoneTf.text isEmpty] && ![self.codeTf.text isEmpty]) {
-        self.bindBtn.backgroundColor = [UIColor hyBarTintColor];
-    }else{
-        self.bindBtn.backgroundColor = RGB(211, 211, 211, 1.0);
-    }
+if (![self.codeTf.text isEmpty]) {
+    self.nextBtn.backgroundColor = [UIColor hyBarTintColor];
+}else{
+    self.nextBtn.backgroundColor = RGB(211, 211, 211, 1.0);
+}
 }
 
 #pragma mark - private methods
@@ -49,14 +53,12 @@
     [HYTool configViewLayer:self.getCodeBtn withColor:[UIColor hySeparatorColor]];
     [HYTool configViewLayer:self.getCodeBtn size:13];
     
-    self.phoneTf.keyboardType = UIKeyboardTypeNumberPad;
     self.codeTf.keyboardType = UIKeyboardTypeNumberPad;
 }
 
 -(void)subviewBind {
     
     [self.getCodeBtn addTarget:self action:@selector(fetchCode:) forControlEvents:UIControlEventTouchUpInside];
-    [self.phoneTf addTarget:self action:@selector(textFieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.codeTf addTarget:self action:@selector(textFieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
 }
 
@@ -86,10 +88,22 @@
     }];
 }
 
-#pragma mark - IBActions
-- (IBAction)bind:(id)sender {
-    
+- (IBAction)next:(id)sender {
+    if ([self.codeTf.text isEmpty]) {
+        [self showMessage:@"请输入验证码"];
+        return;
+    }
+    //TODO:checkCode，成功后到下一个页面
+    switch (self.contentType) {
+        case TypePassword:
+            APPROUTE(kChangePasswordController);
+            break;
+        case TypePhone:
+            APPROUTE(kBindPhoneChangeController);
+            break;
+        default:
+            break;
+    }
 }
-
 
 @end

@@ -61,8 +61,24 @@
     return zoom(50);
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString* router = indexPath.row == 0 ? kChangePasswordController : kBindPhoneController;
-    APPROUTE(router);
+    if (![Global userAuth]) {
+        APPROUTE(kLoginViewController);
+        return;
+    }
+    switch (indexPath.row) {
+        case 0:
+            APPROUTE(([NSString stringWithFormat:@"%@?contentType=%d",kCheckCodeController,0]));
+            break;
+        default:{
+            if (0) {
+                //没有绑定手机
+                APPROUTE(kBindPhoneController);
+            }else{
+                //已经绑定手机
+                APPROUTE(kDidBindPhoneController);
+            }
+        }break;
+    }
 }
 
 #pragma mark - subviewStyle 

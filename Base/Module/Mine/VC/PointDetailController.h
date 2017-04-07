@@ -6,7 +6,6 @@
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-//积分明细
 #import "BaseTableViewController.h"
 
 @interface PointDetailController : BaseTableViewController

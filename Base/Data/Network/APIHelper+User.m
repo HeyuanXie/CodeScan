@@ -65,17 +65,17 @@
 
 - (void)updateUserInfo:(NSString *)nickname
                   face:(NSString *)face
-                   sex:(NSString *)sex
+                   sex:(NSInteger)sex
               birthday:(NSString *)birthday
                   area:(NSString *)areaID
               complete:(ApiRequestCompleteBlock)complete{
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param safe_setValue:nickname forKey:@"nickname"];
-    [param safe_setValue:face forKey:@"face"];
-    [param safe_setValue:sex forKey:@"sex"];
+    [param safe_setValue:face forKey:@"header_img"];
+    [param safe_setValue:@(sex) forKey:@"gender"];
     [param safe_setValue:birthday forKey:@"birthday"];
-    [param safe_setValue:areaID forKey:@"area_id"];
+    [param safe_setValue:areaID forKey:@"city_id"];
     
     [APIHELPER postWithURL:@"user/update" param:param complete:complete];
 }
