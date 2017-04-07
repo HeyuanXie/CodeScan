@@ -11,17 +11,10 @@
 #import "TheaterSeatView.h"
 #import "NSString+Extension.h"
 
-#import "FVSeatsPicker.h"
-#import "NSDictionary+FVExtension.h"
 
 @interface TheaterSeatSelectController ()<FVSeatsPickerDelegate>
 
 @property (nonatomic, strong) FVSeatsPicker* seatsPicker;
-@property (nonatomic, strong) NSArray <FVSeatItem *>* seatsInfo;
-@property (nonatomic, assign) int areaId;
-@property (nonatomic, assign) int seatMaxX;
-@property (nonatomic, assign) int seatMaxY;
-@property (nonatomic, assign) int maxSeatNum;
 
 @property (weak, nonatomic) IBOutlet UILabel *descLbl;
 @property (weak, nonatomic) IBOutlet UILabel *priceLbl;
@@ -164,38 +157,37 @@
 
 -(void)loadData {
     //TODO:获取座位数据
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"districtOne" ofType:@"plist"];
-    NSDictionary *result = [NSDictionary dictionaryWithContentsOfFile:path];
-    if (result)
-    {
-        _areaId = [result intValueForKey:@"areaid"];
-        _seatMaxX = [result intValueForKey:@"x"];
-        _seatMaxY = [result intValueForKey:@"y"];
-        _maxSeatNum = [result intValueForKey:@"max_num"];
-        NSArray *tempArray = [result arrayForKey:@"seats"];
-        
-        id resultData = [NSMutableArray new];
-        for (NSDictionary* dict in tempArray)
-        {
-            if (NO == [dict isKindOfClass:[NSDictionary class]])
-            {
-                continue;
-            }
-            FVSeatItem* seatsInfo = [FVSeatItem new];
-            seatsInfo.seatId = [dict intValueForKey:@"id"];
-            seatsInfo.seatName = [dict stringForKey:@"name"];
-            seatsInfo.price = [dict intValueForKey:@"price"];
-            seatsInfo.col = [dict intValueForKey:@"col"];
-            seatsInfo.row = [dict intValueForKey:@"row"];
-            seatsInfo.seatStatus = [dict intValueForKey:@"status"];
-            seatsInfo.coordinateX = [dict intValueForKey:@"x"];
-            seatsInfo.coordinateY = [dict intValueForKey:@"y"];
-            
-            [resultData addObject:seatsInfo];
-        }
-        _seatsInfo = resultData;
-        [self fillDataToSeatsSelector];
-    }
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"districtOne" ofType:@"plist"];
+//    NSDictionary *result = [NSDictionary dictionaryWithContentsOfFile:path];
+//    if (result)
+//    {
+//        _seatMaxX = [result intValueForKey:@"x"];
+//        _seatMaxY = [result intValueForKey:@"y"];
+//        NSArray *tempArray = [result arrayForKey:@"seats"];
+//        
+//        id resultData = [NSMutableArray new];
+//        for (NSDictionary* dict in tempArray)
+//        {
+//            if (NO == [dict isKindOfClass:[NSDictionary class]])
+//            {
+//                continue;
+//            }
+//            FVSeatItem* seatsInfo = [FVSeatItem new];
+//            seatsInfo.seatId = [dict intValueForKey:@"id"];
+//            seatsInfo.seatName = [dict stringForKey:@"name"];
+//            seatsInfo.price = [dict intValueForKey:@"price"];
+//            seatsInfo.col = [dict intValueForKey:@"col"];
+//            seatsInfo.row = [dict intValueForKey:@"row"];
+//            seatsInfo.seatStatus = [dict intValueForKey:@"status"];
+//            seatsInfo.coordinateX = [dict intValueForKey:@"x"];
+//            seatsInfo.coordinateY = [dict intValueForKey:@"y"];
+//            
+//            [resultData addObject:seatsInfo];
+//        }
+//        _seatsInfo = resultData;
+//        [self fillDataToSeatsSelector];
+//    }
+    [self fillDataToSeatsSelector];
 }
 
 - (void)fillDataToSeatsSelector

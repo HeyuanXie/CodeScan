@@ -15,6 +15,7 @@
 
 @property(nonatomic,strong)NSMutableArray* dataArray;
 @property(nonatomic,assign)NSNumber* minePoint;
+@property(nonatomic,assign)NSInteger canSign;
 
 @end
 
@@ -49,7 +50,17 @@
     if (indexPath.section == 0) {
         PointManageTopCell* cell = [tableView dequeueReusableCellWithIdentifier:[PointManageTopCell identify]];
         [HYTool configTableViewCellDefault:cell];
-        [cell configPointManageTopCell:self.minePoint];
+        [cell configPointManageTopCell:self.minePoint canSign:self.canSign];
+        [cell setQianDaoClick:^{
+            [APIHELPER scoreSignComplete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    [self fetchData];
+                    [self.tableView reloadData];
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }];
         return cell;
     }
     
@@ -108,8 +119,9 @@
     [APIHELPER scoreManageComplete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
             [self.dataArray removeAllObjects];
-            [self.dataArray addObjectsFromArray:responseObject[@"data"][@"rules"]];
+            [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
             self.minePoint = responseObject[@"data"][@"person_score"];
+            self.canSign = [responseObject[@"data"][@"can_sign"] integerValue];
             [self.tableView reloadData];
         }else{
             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];

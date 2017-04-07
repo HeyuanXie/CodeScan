@@ -91,8 +91,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    NSDictionary* model = self.dataArray[indexPath.row];
+    NSString* orderId = model[@"order_sn"];
     //TODO:进入订单详情，传递type参数,传递订单Id参数
-    APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@",kOrderDetailController,self.typeId,@"orderId"]));
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@",kOrderDetailController,self.typeId,orderId]));
 }
 
 #pragma mark - textField delegate

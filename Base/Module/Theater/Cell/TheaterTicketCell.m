@@ -41,7 +41,7 @@
 -(void)configTicketCell:(id)model {
     
     TheaterSessionModel* session = (TheaterSessionModel*)model;
-    self.titleLbl.text = session.theatreName;
+    self.titleLbl.text = session.theaterName;
     self.addressLbl.text = session.address;
     self.priceLbl.text = session.price;
     
@@ -63,7 +63,7 @@
         [HYTool configViewLayerFrame:ticketView WithColor:[UIColor hySeparatorColor]];
         [ticketView bk_whenTapped:^{
             //TODO:跳到选座,传递场次数据参数
-            APPROUTE(kTheaterSeatPreviewController);
+            [ROUTER routeByStoryboardID:kTheaterSeatPreviewController withParam:[theater yy_modelToJSONObject]];
         }];
         //TODO:configTicketView
         [self.ticketScroll addSubview:ticketView];

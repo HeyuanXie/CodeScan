@@ -8,6 +8,17 @@
 
 #import "BaseTableViewController.h"
 
+typedef enum : NSUInteger {
+    TypeTheater = 0,
+    TypeDerive,
+    TypeCard,
+    TypeLecture
+} ContentType;
+
 @interface OrderCodeController : BaseTableViewController
+
+@property (nonatomic,assign)ContentType contentType;
+@property (nonatomic,strong)NSDictionary* data;
+@property (nonatomic,strong)NSDictionary* code;
 
 @end

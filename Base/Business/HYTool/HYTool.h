@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <ReactiveCocoa.h>
+
+#define defaultInputFormat @"yyyy-MM-dd HH:mm:ss"
+#define defaultOutputFormat @"MM-dd HH:mm"
+
 @interface HYTool : NSObject
 
 +(instancetype)shareHYTool;
@@ -24,8 +28,6 @@
 +(UIButton*)getButtonWithFrame:(CGRect)frame title:(NSString*)title titleSize:(CGFloat)size titleColor:(UIColor*)titleColor backgroundColor:(UIColor*)backgroundColor blockForClick:(void (^)(id sender))block;
 
 +(UIButton*)getButtonWithFrame:(CGRect)frame title:(NSString*)title titleSize:(CGFloat)size titleColorForNormal:(UIColor*)titleColor titleColorForSelect:(UIColor*)selectColor backgroundColor:(UIColor*)backgroundColor blockForClick:(void(^)(id sender))block;
-
-+(UITextField*)getSearchBarWithFrame:(CGRect)frame laceholder:(NSString *)placeholder;
 
 
 #pragma mark - ConfigUI
@@ -48,8 +50,11 @@
 
 #pragma mark - convenient
 //MARK:-NSDate
-+(NSString*)dateStringWithDate:(NSDate*)date andFormatter:(NSString*)formatter;
++(NSDate *)dateWithString:(NSString*)dateStr format:(NSString*)formatStr;
++(NSString*)dateStringWithDate:(NSDate*)date format:(NSString*)formatter;
 +(NSString*)dateStringWithFormatter:(NSString*)formatter;
++(NSString *)dateStringWithString:(NSString *)dateStr inputFormat:(NSString*)inputFormatStr outputFormat:(NSString *)outputFormatStr;
+
 +(NSString*)weekStirngWithDate:(NSDate*)date;
 +(NSString*)weekString;
 

@@ -10,6 +10,7 @@
 #import "CustomJumpBtns.h"
 #import "TheaterTicketCell.h"
 #import "TheaterSessionModel.h"
+#import "NSString+Extension.h"
 
 @interface TheaterTicketViewController ()
 
@@ -103,6 +104,8 @@
 #pragma mark - private methods
 - (void)subviewStyle {
     
+    self.title = self.name;
+    
     [self.imgV sd_setImageWithURL:[NSURL URLWithString:self.picUrl] placeholderImage:ImageNamed(@"yazi")];
     [self.backImgV sd_setImageWithURL:[NSURL URLWithString:self.picUrl] placeholderImage:ImageNamed(@"yazi")];
     self.titleLbl.text = self.name;
@@ -113,12 +116,23 @@
     self.statuLbl.backgroundColor = [self.statuLbl.backgroundColor colorWithAlphaComponent:0.5];
     self.statuLbl.text = self.statu == 1 ? @"售票中" : @"售罄";
     
+    self.scoreLbl.text = [NSString stringWithFormat:@"观众评分: %.1f分",(float)self.score];
+    self.scoreLbl.attributedText = [self.scoreLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:18]] subStrings:@[[NSString stringWithFormat:@"%ld",self.score]]];
+    for (int i=0; i<self.score/2; i++) {
+        UIImageView* imgV = (UIImageView*)[self.scoreView viewWithTag:1000+i];
+        imgV.image = ImageNamed(@"星星01");
+    }
+    for (int i=(int)self.score/2; i<5; i++) {
+        UIImageView* imgV = (UIImageView*)[self.scoreView viewWithTag:1000+i];
+        imgV.image = ImageNamed(@"星星02");
+    }
+    
     _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 45)];
     _scroll.showsVerticalScrollIndicator = NO;
     _scroll.showsHorizontalScrollIndicator = NO;
     [self.btnsView addSubview:_scroll];
     
-    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(223, 0, 0, 0)];
+    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(223, 0, 10, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:[TheaterTicketCell identify] bundle:nil] forCellReuseIdentifier:[TheaterTicketCell identify]];
 
@@ -129,13 +143,13 @@
     for (int i=1; i<7; i++) {
         NSDate* date = [NSDate dateWithTimeIntervalSinceNow:i*24*60*60];
         NSString* weekStr = [HYTool weekStirngWithDate:date];
-        NSString* dateStr = [HYTool dateStringWithDate:date andFormatter:@"MM月dd日"];
+        NSString* dateStr = [HYTool dateStringWithDate:date format:@"MM月dd日"];
         [titles addObject:[NSString stringWithFormat:@"%@%@",dateStr,weekStr]];
     }
     CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, MAX(115*7, kScreen_Width), 45) menuTitles:titles textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBlueTextColor] isLineAdaptText:NO];
     [btns setFinished:^(NSInteger index) {
         NSDate* date = [NSDate dateWithTimeIntervalSinceNow:index*24*60*60];
-        self.selectDate = [HYTool dateStringWithDate:date andFormatter:@"yyyy-MM-dd"];
+        self.selectDate = [HYTool dateStringWithDate:date format:@"yyyy-MM-dd"];
         [self fetchData];
     }];
     [_scroll addSubview:btns];
@@ -154,7 +168,7 @@
     [self.tableView reloadData];
     self.tableView.tableFooterView = nil;
     [self showLoadingAnimation];
-    [APIHELPER theaterSession:0 limit:4 playId:self.playId date:self.selectDate complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+    [APIHELPER theaterSession:0 limit:4 playId:self.playId date:@"2017-06-01" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [self hideLoadingAnimation];
         if (isSuccess) {
             [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[TheaterSessionModel class] array:responseObject[@"data"][@"list"]]];

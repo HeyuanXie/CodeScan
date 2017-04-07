@@ -178,18 +178,64 @@
 
 
 #pragma mark - Convenient
-/// 得到指定date的dateString(formatter格式)
-+(NSString*)dateStringWithDate:(NSDate*)date andFormatter:(NSString*)formatter {
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:formatter];
-    NSString* dateStr = [dateFormatter stringFromDate:date];
-    return dateStr;
+/**
+ 将时间字符串转成时间戳对象
+ 
+ @param dateStr 输入的时间字符串
+ @param formatStr 输入的时间字符串的格式
+ @return 返回的时间戳对象
+ */
++ (NSDate *)dateWithString:(NSString *)dateStr format:(NSString *)formatStr {
+    if (formatStr == nil) {
+        formatStr = defaultInputFormat;
+    }
+    NSDateFormatter* format = [[NSDateFormatter alloc] init];
+    format.dateFormat = formatStr;
+    return [format dateFromString:dateStr];
 }
+
+/**
+ 将时间戳对象以某种格式转成字符串
+ 
+ @param date 输入的时间戳对象
+ @param formatStr 输出时间字符串格式
+ @return 返回的时间字符串
+ */
++ (NSString *)dateStringWithDate:(NSDate *)date format:(NSString *)formatStr {
+    if (formatStr == nil) {
+        formatStr = defaultOutputFormat;
+    }
+    NSDateFormatter* format = [[NSDateFormatter alloc] init];
+    format.dateFormat = formatStr;
+    return [format stringFromDate:date];
+}
+
 /// 得到今天的dateString(formatter格式)
 +(NSString*)dateStringWithFormatter:(NSString*)formatter {
     NSDate* currentDate = [NSDate date];
-    return [self dateStringWithDate:currentDate andFormatter:formatter];
+    return [self dateStringWithDate:currentDate format:formatter];
 }
+
+/**
+ 将某种格式时间字符串，转成另一种格式的时间字符串
+ 
+ @param dateStr 时间字符串
+ @param inputFormatStr 输入的时间戳格式
+ @param outputFormatStr 输出的时间戳格式
+ @return 返回的指定格式的时间字符串
+ */
++ (NSString *)dateStringWithString:(NSString *)dateStr inputFormat:(NSString*)inputFormatStr outputFormat:(NSString *)outputFormatStr {
+    if (outputFormatStr == nil) {
+        outputFormatStr = defaultOutputFormat;
+    }
+    if (inputFormatStr == nil) {
+        inputFormatStr = defaultInputFormat;
+    }
+    NSDateFormatter* format = [[NSDateFormatter alloc] init];
+    format.dateFormat = outputFormatStr;
+    return [format stringFromDate:[self dateWithString:dateStr format:inputFormatStr]];
+}
+
 /// 指定date是周几
 +(NSString*)weekStirngWithDate:(NSDate*)date {
     NSCalendar* gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];

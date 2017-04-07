@@ -17,6 +17,14 @@
  */
 - (NSString *)HTMobileInsertInterval;
 
+
+/**
+ 电话 中间四位数变密文 例如 15377679514 返回 153****9514
+
+ @return 153****9514
+ */
+- (NSString *)HTMobileInsertSecurity;
+
 - (NSString *)HtIdCardNumInsertInterval;
 
 - (NSMutableAttributedString *)htPriceUnitTreatment;

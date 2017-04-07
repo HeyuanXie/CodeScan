@@ -11,6 +11,10 @@
 @interface CodeHeadCell : UITableViewCell
 
 +(NSString*)identify;
--(void)configCodeHeadCell:(id)model;
+
+-(void)configTheaterHeadCell:(id)model;
+-(void)configLectureHeadCell:(id)model;
+-(void)configDeriveHeadCell:(id)model;
+-(void)configYearCardHeadCell:(id)model;
 
 @end

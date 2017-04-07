@@ -27,7 +27,6 @@
 
     
     [self subviewStyle];
-    [self fetchData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,7 +49,22 @@
                 [HYTool configTableViewCellDefault:cell];
                 cell.contentView.backgroundColor = [UIColor whiteColor];
                 
-                [cell configCodeHeadCell:nil];
+                switch (self.contentType) {
+                    case TypeTheater:
+                        [cell configTheaterHeadCell:self.data];
+                        break;
+                    case TypeDerive:
+                        [cell configDeriveHeadCell:self.data];
+                        break;
+                    case TypeCard:
+                        [cell configYearCardHeadCell:self.data];
+                        break;
+                    case TypeLecture:
+                        [cell configLectureHeadCell:self.data];
+                        break;
+                    default:
+                        break;
+                }
                 return cell;
             }else{
                 static NSString* cellId = @"addressCell";
@@ -69,7 +83,17 @@
                     [cell.contentView addSubview:lbl];
                 }
                 UILabel* lbl = [cell.contentView viewWithTag:1000];
-                lbl.text = @"东莞玉兰大剧场";
+                NSString* address = @"";
+                switch (self.contentType) {
+                    case 0:
+                        address = self.data[@"theatre_name"];
+                        break;
+                    case 1:
+                        address = self.data[@"exchange_place"];
+                    default:
+                        break;
+                }
+                lbl.text = address;
                 return cell;
             }
             
@@ -95,13 +119,7 @@
                 [cell.contentView addSubview:codeImgV];
             }
             
-            UILabel* passwordLbl = [cell.contentView viewWithTag:1000];
-            UILabel* seatLbl = [cell.contentView viewWithTag:1001];
-            UIImageView* codeImgV = [cell.contentView viewWithTag:1002];
-
-            passwordLbl.text = @"消费密码: 1265466666";
-            seatLbl.text = @"一楼20排10号座";
-            [codeImgV sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1490001149&di=1336a528fd7efc7386a985dd3c81bf23&src=http://pic1.fangketong.net/app_attach/201507/30/20150730_110_37862_0.jpg"] placeholderImage:nil];
+            [self configCodeCell:cell model:self.code];
             return cell;
         }
     }
@@ -143,9 +161,35 @@
     
 }
 
--(void)fetchData {
+-(void)configCodeCell:(UITableViewCell*)cell model:(id)model {
     
-    [self.tableView reloadData];
+    UILabel* passwordLbl = [cell.contentView viewWithTag:1000];
+    UILabel* seatLbl = [cell.contentView viewWithTag:1001];
+    UIImageView* codeImgV = [cell.contentView viewWithTag:1002];
+    
+    switch (self.contentType) {
+        case TypeTheater:
+        {
+            
+        }break;
+        case TypeDerive:
+        {
+            seatLbl.hidden = YES;
+            passwordLbl.text = [NSString stringWithFormat:@"消费密码: %@",model[@"code"]];
+//            [codeImgV sd_setImageWithURL:[NSURL URLWithString:model[@"url"]] placeholderImage:nil];
+            [codeImgV sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1490001149&di=1336a528fd7efc7386a985dd3c81bf23&src=http://pic1.fangketong.net/app_attach/201507/30/20150730_110_37862_0.jpg"] placeholderImage:nil];
+        }break;
+        case TypeCard:
+        {
+            
+        }break;
+        case TypeLecture:
+        {
+            
+        }break;
+        default:
+            break;
+    }
 }
 
 @end

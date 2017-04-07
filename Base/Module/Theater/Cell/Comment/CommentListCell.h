@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLineVHeight;
 +(NSString*)identify;
 -(void)configListCell:(id)model;
 

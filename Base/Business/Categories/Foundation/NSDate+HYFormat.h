@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define defaultInputFormat @"yyyy-MM-dd HH:mm:ss"
-#define defaultOutputFormat @"MM-dd HH:mm"
-
 @interface NSDate (HYFormat)
 
 - (NSString *)conversationTimeString;

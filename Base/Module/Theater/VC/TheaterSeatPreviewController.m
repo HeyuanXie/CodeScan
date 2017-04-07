@@ -8,15 +8,28 @@
 
 #import "TheaterSeatPreviewController.h"
 #import "TheaterSeatSelectController.h"
+#import "NSDate+HYFormat.h"
 
-@interface TheaterSeatPreviewController ()
+@interface TheaterSeatPreviewController ()<FVSeatsPickerDelegate>
+
+@property (strong, nonatomic) FVSeatsPicker* seatsPicker;
+@property (nonatomic, assign) int seatMaxX;
+@property (nonatomic, assign) int seatMaxY;
 
 @property (weak, nonatomic) IBOutlet UILabel *descLbl;
 @property (weak, nonatomic) IBOutlet UIScrollView *botScrollV;
+@property (weak, nonatomic) IBOutlet UIView *seatSelectV;
 
+@property (strong,nonatomic) NSString* theatreName;
+@property (strong,nonatomic) NSString* playName;
+@property (strong,nonatomic) NSString* playDate;
+@property (strong,nonatomic) NSString* language;
+@property (strong,nonatomic) NSString* playTime;
+
+@property (assign, nonatomic) NSInteger hallId;
+@property (assign, nonatomic) NSInteger timeId;
 @property (strong, nonatomic) NSMutableArray* seatList;
 @property (strong, nonatomic) NSMutableArray* priceList;
-
 
 @end
 
@@ -24,8 +37,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    if (self.schemaArgu[@"theatre_name"]) {
+        self.theatreName = [self.schemaArgu objectForKey:@"theatre_name"];
+    }
+    if (self.schemaArgu[@"play_name"]) {
+        self.playName = [[[self.schemaArgu objectForKey:@"play_name"] stringByReplacingOccurrencesOfString:@"《" withString:@""] stringByReplacingOccurrencesOfString:@"》" withString:@""];
+    }
+    if (self.schemaArgu[@"play_date"]) {
+        self.playDate = [self.schemaArgu objectForKey:@"play_date"];
+        if ([self.playDate isEqualToString:[HYTool dateStringWithFormatter:@"yyyy-MM-dd"]]) {
+            self.playDate = @"今天";
+        }else{
+            self.playDate = [NSDate dateStringWithString:self.playDate inputFormat:@"yyyy-MM-dd" outputFormat:@"MM-dd"];
+        }
+    }
+    if (self.schemaArgu[@"lauguage"]) {
+        self.language = [self.schemaArgu objectForKey:@"language"];
+    }
+    if (self.schemaArgu[@"play_time"]) {
+        self.playTime = [self.schemaArgu objectForKey:@"play_time"];
+    }
+    if (self.schemaArgu[@"hall_id"]) {
+        self.hallId = [[self.schemaArgu objectForKey:@"hall_id"] integerValue];
+    }
+    if (self.schemaArgu[@"time_id"]) {
+        self.timeId = [[self.schemaArgu objectForKey:@"time_id"] integerValue];
+    }
+
+    self.title = self.theatreName;
+    self.descLbl.text = [NSString stringWithFormat:@"%@ | %@ %@ %@",_playName,_playDate,_playTime,_language];
     
+    [self configSeatsPicker];
     [self fetchData];
 }
 
@@ -37,6 +80,41 @@
 - (IBAction)reSelect:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - FVSeatsPickerDelegate
+
+- (BOOL)shouldSelectSeat:(FVSeatItem *)seatInfo inPicker:(FVSeatsPicker* )picker
+{
+    return YES;
+}
+
+- (BOOL)shouldDeselectSeat:(FVSeatItem *)seatInfo inPicker:(FVSeatsPicker* )picker
+{
+    return YES;
+}
+
+- (void)seatsPicker:(FVSeatsPicker* )picker didSelectSeat:(FVSeatItem *)seatInfo
+{
+    TheaterSeatSelectController* vc = (TheaterSeatSelectController*)VIEWCONTROLLER(kTheaterSeatSelectController);
+    vc.desc = self.descLbl.text;
+    vc.title = self.title;
+    vc.seatsInfo = self.seatList;
+    vc.seatMaxX = self.seatMaxX;
+    vc.seatMaxY = self.seatMaxY;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    DLog(@"%s---%@",__func__,seatInfo);
+}
+- (void)seatsPicker:(FVSeatsPicker* )picker didDeselectSeat:(FVSeatItem *)seatInfo
+{
+    DLog(@"%s---%@",__func__,seatInfo);
+}
+
+- (void)selectionDidChangeInSeatsPicker:(FVSeatsPicker *)picker
+{
+    DLog(@"%s",__func__);
+}
+
 
 #pragma mark - private methods
 -(NSMutableArray *)seatList {
@@ -54,8 +132,52 @@
 }
 
 -(void)fetchData {
-    //TODO:成功后
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"districtOne" ofType:@"plist"];
+    NSDictionary *result = [NSDictionary dictionaryWithContentsOfFile:path];
+    if (result)
+    {
+        _seatMaxX = [result intValueForKey:@"x"];
+        _seatMaxY = [result intValueForKey:@"y"];
+        NSArray *tempArray = [result arrayForKey:@"seats"];
+        
+        id resultData = [NSMutableArray new];
+        for (NSDictionary* dict in tempArray)
+        {
+            if (NO == [dict isKindOfClass:[NSDictionary class]])
+            {
+                continue;
+            }
+            FVSeatItem* seatsInfo = [FVSeatItem new];
+            seatsInfo.seatId = [dict intValueForKey:@"id"];
+            seatsInfo.seatName = [dict stringForKey:@"name"];
+            seatsInfo.price = [dict intValueForKey:@"price"];
+            seatsInfo.col = [dict intValueForKey:@"col"];
+            seatsInfo.row = [dict intValueForKey:@"row"];
+            seatsInfo.seatStatus = [dict intValueForKey:@"status"];
+            seatsInfo.coordinateX = [dict intValueForKey:@"x"];
+            seatsInfo.coordinateY = [dict intValueForKey:@"y"];
+//            seatsInfo.coordinateX = [dict intValueForKey:@"col"];
+//            seatsInfo.coordinateY = [dict intValueForKey:@"row"];
+
+            
+            [resultData addObject:seatsInfo];
+        }
+        self.seatList = [NSMutableArray arrayWithArray:resultData];
+    }
+    
     [self botViewInit];
+    [self fillDataToSeatsSelector];
+//    [APIHELPER theaterSeatDetail:self.hallId timeId:self.timeId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+//        if (isSuccess) {
+//            [self.seatList addObjectsFromArray:[NSArray yy_modelArrayWithClass:[FVSeatItem class] json:responseObject[@"data"][@"seat_list"]]];
+//            [self.priceList addObjectsFromArray:responseObject[@"data"][@"price_list"]];
+//            
+//            [self botViewInit];
+//            [self fillDataToSeatsSelector];
+//        }else{
+//            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+//        }
+//    }];
 }
 
 -(void)botViewInit {
@@ -73,11 +195,41 @@
     self.botScrollV.contentSize = CGSizeMake(width*self.priceList.count, 0);
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    TheaterSeatSelectController* vc = (TheaterSeatSelectController*)VIEWCONTROLLER(kTheaterSeatSelectController);
-    vc.desc = @"场次介绍";
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+-(void)configSeatsPicker {
+    _seatsPicker = ({
+        FVSeatsPicker* picker = [FVSeatsPicker new];
+        picker.seatsDelegate = self;
+        picker.cellSize = CGSizeMake(25, 25);
+        picker.zoomScale = 0.5;
+        // 你可以在这里设置图片，同时你也可以不设置FVSeatsPicker内部会自动设置默认的图片，如果设置新的图片将会采用最新设置的图片
+        [picker setImage:[UIImage imageNamed:@"座位状态_可选"] forState:UIControlStateNormal];
+        [picker setImage:[UIImage imageNamed:@"座位状态_不可选"] forState:UIControlStateDisabled];
+        [picker setImage:[UIImage imageNamed:@"座位状态_已选"] forState:UIControlStateSelected];
+        [self.seatSelectV addSubview:picker];
+        picker;
+    });
+    [_seatsPicker autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
 }
+
+- (void)fillDataToSeatsSelector
+{
+    _seatsPicker.rowCount = _seatMaxX;
+    _seatsPicker.colCount = _seatMaxY;
+    _seatsPicker.seats = self.seatList;
+    [_seatsPicker reloadData];
+}
+
+
+
+//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    TheaterSeatSelectController* vc = (TheaterSeatSelectController*)VIEWCONTROLLER(kTheaterSeatSelectController);
+//    vc.desc = self.descLbl.text;
+//    vc.title = self.title;
+//    vc.seatsInfo = self.seatList;
+//    vc.seatMaxX = self.seatMaxX;
+//    vc.seatMaxY = self.seatMaxY;
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
+//}
 
 @end

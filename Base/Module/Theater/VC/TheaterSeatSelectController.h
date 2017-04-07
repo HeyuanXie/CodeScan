@@ -7,9 +7,16 @@
 //
 
 #import "BaseTableViewController.h"
+#import "FVSeatsPicker.h"
+#import "NSDictionary+FVExtension.h"
 
 @interface TheaterSeatSelectController : BaseTableViewController
 
-@property(strong,nonatomic)NSString* desc;  //场次介绍
+@property(strong,nonatomic)NSString* desc;  //剧名、时间、语种
+
+@property (nonatomic, strong) NSArray <FVSeatItem *>* seatsInfo;
+@property (nonatomic, assign) int seatMaxX;
+@property (nonatomic, assign) int seatMaxY;
+
 
 @end

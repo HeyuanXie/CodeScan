@@ -88,41 +88,41 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pqp-Jo-TY0">
                                 <rect key="frame" x="101" y="22" width="95" height="29"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect02" translatesAutoresizingMaskIntoConstraints="NO" id="sES-zI-k98">
+                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星01" translatesAutoresizingMaskIntoConstraints="NO" id="sES-zI-k98">
                                         <rect key="frame" x="0.0" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sES-zI-k98" secondAttribute="height" multiplier="1:1" id="W2c-jz-MoF"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect02" translatesAutoresizingMaskIntoConstraints="NO" id="TMA-tg-QGl">
+                                    <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星01" translatesAutoresizingMaskIntoConstraints="NO" id="TMA-tg-QGl">
                                         <rect key="frame" x="19" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="TMA-tg-QGl" secondAttribute="height" multiplier="1:1" id="dtQ-5l-8dL"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect02" translatesAutoresizingMaskIntoConstraints="NO" id="VFg-fI-npS">
-                                        <rect key="frame" x="57" y="5" width="19" height="19"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="VFg-fI-npS" secondAttribute="height" multiplier="1:1" id="5hR-tK-DaK"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect03" translatesAutoresizingMaskIntoConstraints="NO" id="8Pd-Jr-RIR">
-                                        <rect key="frame" x="76" y="5" width="19" height="19"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="8Pd-Jr-RIR" secondAttribute="height" multiplier="1:1" id="Qa9-4w-tzv"/>
-                                        </constraints>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collect02" translatesAutoresizingMaskIntoConstraints="NO" id="Jgc-kT-L1C">
-                                        <rect key="frame" x="39" y="5" width="19" height="19"/>
+                                    <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星01" translatesAutoresizingMaskIntoConstraints="NO" id="Jgc-kT-L1C">
+                                        <rect key="frame" x="38" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Jgc-kT-L1C" secondAttribute="height" multiplier="1:1" id="PU5-fX-7jD"/>
                                             <constraint firstAttribute="width" secondItem="Jgc-kT-L1C" secondAttribute="height" multiplier="1:1" id="Ygy-Nv-TRu"/>
                                         </constraints>
                                     </imageView>
+                                    <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星01" translatesAutoresizingMaskIntoConstraints="NO" id="VFg-fI-npS">
+                                        <rect key="frame" x="57" y="5" width="19" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="VFg-fI-npS" secondAttribute="height" multiplier="1:1" id="5hR-tK-DaK"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" tag="104" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星02" translatesAutoresizingMaskIntoConstraints="NO" id="8Pd-Jr-RIR">
+                                        <rect key="frame" x="76" y="5" width="19" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="8Pd-Jr-RIR" secondAttribute="height" multiplier="1:1" id="Qa9-4w-tzv"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Jgc-kT-L1C" firstAttribute="centerX" secondItem="Pqp-Jo-TY0" secondAttribute="centerX" constant="1" id="3Ge-Ug-UGL"/>
+                                    <constraint firstItem="Jgc-kT-L1C" firstAttribute="centerX" secondItem="Pqp-Jo-TY0" secondAttribute="centerX" id="3Ge-Ug-UGL"/>
                                     <constraint firstItem="sES-zI-k98" firstAttribute="width" secondItem="8Pd-Jr-RIR" secondAttribute="width" id="BR9-pF-7zn"/>
                                     <constraint firstItem="8Pd-Jr-RIR" firstAttribute="centerY" secondItem="Pqp-Jo-TY0" secondAttribute="centerY" id="LY9-GZ-a5A"/>
                                     <constraint firstItem="VFg-fI-npS" firstAttribute="centerY" secondItem="Pqp-Jo-TY0" secondAttribute="centerY" id="RUz-Ef-ksU"/>
@@ -139,8 +139,8 @@
                                     <constraint firstItem="Jgc-kT-L1C" firstAttribute="centerY" secondItem="Pqp-Jo-TY0" secondAttribute="centerY" id="wnx-j3-jIM"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.2分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYd-81-Q7P">
-                                <rect key="frame" x="206" y="26" width="133" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8.0分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYd-81-Q7P">
+                                <rect key="frame" x="204" y="26" width="135" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="ar4-OA-xmC"/>
                                 </constraints>
@@ -155,7 +155,7 @@
                             <constraint firstAttribute="bottom" secondItem="tCf-tv-38q" secondAttribute="bottom" id="6Yh-u3-4yq"/>
                             <constraint firstItem="Pqp-Jo-TY0" firstAttribute="width" secondItem="mXl-gZ-G6L" secondAttribute="width" multiplier="95:351" id="7Lp-mz-HfM"/>
                             <constraint firstItem="h5J-VZ-Uqc" firstAttribute="height" secondItem="Ygy-4p-Sf9" secondAttribute="height" id="BqS-Op-qkf"/>
-                            <constraint firstItem="iYd-81-Q7P" firstAttribute="leading" secondItem="Pqp-Jo-TY0" secondAttribute="trailing" constant="10" id="C2c-Ka-OWZ"/>
+                            <constraint firstItem="iYd-81-Q7P" firstAttribute="leading" secondItem="Pqp-Jo-TY0" secondAttribute="trailing" constant="8" id="C2c-Ka-OWZ"/>
                             <constraint firstItem="Pqp-Jo-TY0" firstAttribute="leading" secondItem="tCf-tv-38q" secondAttribute="trailing" constant="10" id="DLS-Vj-CiU"/>
                             <constraint firstItem="h5J-VZ-Uqc" firstAttribute="top" secondItem="Ygy-4p-Sf9" secondAttribute="bottom" constant="29" id="Dex-qX-CBg"/>
                             <constraint firstAttribute="trailing" secondItem="Ygy-4p-Sf9" secondAttribute="trailing" id="KAA-h3-4uO"/>
@@ -264,9 +264,9 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="collect02" width="22" height="22"/>
-        <image name="collect03" width="22" height="22"/>
         <image name="yazi.png" width="96" height="133"/>
         <image name="三角形_黑色下" width="12" height="12"/>
+        <image name="星星01" width="18" height="18"/>
+        <image name="星星02" width="18" height="18"/>
     </resources>
 </document>

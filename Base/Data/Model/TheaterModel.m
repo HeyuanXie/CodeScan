@@ -22,6 +22,7 @@
              @"isFav":@"is_fav",
              @"timeId":@"time_id",
              @"playTime":@"play_time",
+             @"playDate":@"play_date",
              @"hallId":@"hall_id",
              @"theaterId":@"theatre_id",
              @"theaterName":@"theatre_name"

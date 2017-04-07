@@ -7,17 +7,12 @@
 //
 
 #import "OrderDetailController.h"
+#import "OrderCodeController.h"
 #import "OrderDetailHeadCell.h"
 #import "OrderRefundCell.h"
 #import "OrderCodeCell.h"
 #import "OrderDetailCell.h"
 #import "UIViewController+Extension.h"
-
-typedef enum : NSUInteger {
-    TypeTheater = 0,
-    TypeDerive,
-    TypeCard,
-} ContentType;
 
 @interface OrderDetailController ()
 
@@ -125,12 +120,28 @@ typedef enum : NSUInteger {
     
     if (indexPath.section == 1 && indexPath.row == 1) {
         //TODO:打开地图
-        [self geocoderClick:@"东莞玉兰大剧院"];
+        NSString* address = @"";
+        switch (self.contentType) {
+            case 0:
+                address = self.data[@"theatre_name"];
+                break;
+            case 1:
+                address = self.data[@"exchange_total_price"];
+                break;
+            default:
+                
+                break;
+        }
+        [self geocoderClick:address];
         return;
     }
     if (indexPath.section == 2) {
-        //TODO:跳到二维码页面,传递参数
-        APPROUTE(([NSString stringWithFormat:@"%@?Id=%d",kOrderCodeController,0]))
+        OrderCodeController* vc = (OrderCodeController*)VIEWCONTROLLER(kOrderCodeController);
+        vc.data = self.data;
+        vc.code = self.codeArray[indexPath.row];
+        vc.contentType = self.contentType;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
         return;
     }
 }
@@ -188,7 +199,8 @@ typedef enum : NSUInteger {
     UIButton* btn = [cell.contentView viewWithTag:1000];
     UILabel* lbl = [cell.contentView  viewWithTag:1001];
     
-    lbl.text = @"有效期至: 2017-4-30";
+    NSString* deadLine = [HYTool dateStringWithString:self.data[@"deadline"] inputFormat:nil outputFormat:@"yyyy-MM-dd"];
+    lbl.text = [NSString stringWithFormat:@"有效期至: %@",deadLine];
     
     if (self.contentType == TypeDerive) {
         if ([self.data[@"order_status"] integerValue] == 2) {
@@ -209,6 +221,7 @@ typedef enum : NSUInteger {
     return cell;
     
 }
+
 -(UITableViewCell*)addressCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
     static NSString* cellId = @"addressCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -226,7 +239,17 @@ typedef enum : NSUInteger {
         [cell.contentView addSubview:lbl];
     }
     UILabel* lbl = [cell.contentView viewWithTag:1000];
-    lbl.text = self.data == nil ? @"" : self.data[@"exchange_place"];
+    NSString* address = @"";
+    switch (self.contentType) {
+        case 0:
+            address = self.data[@"theatre_name"];
+            break;
+        case 1:
+            address = self.data[@"exchange_place"];
+        default:
+            break;
+    }
+    lbl.text = address;
     return cell;
 }
 -(UITableViewCell*)codeCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
@@ -236,7 +259,7 @@ typedef enum : NSUInteger {
     if (self.contentType == TypeTheater) {
         [cell configCodeCell:nil];
     }else if (self.contentType == TypeDerive) {
-        [cell configDeriveCodeCell:nil];
+        [cell configDeriveCodeCell:self.codeArray[indexPath.row] statu:[self.data[@"order_status"] integerValue]];
     }
     return cell;
 }
@@ -277,9 +300,7 @@ typedef enum : NSUInteger {
         [APIHELPER orderDetailDerive:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             if (isSuccess) {
                 self.data = responseObject[@"data"];
-                //                [self.codeArray addObjectsFromArray:responseObject[@"data"][@"exchange_barcode"]];
-                //TODO:后面exchange_barcode将会是一个数组
-                [self.codeArray addObject:responseObject[@"data"][@"exchange_barcode"]];
+                [self.codeArray addObjectsFromArray:responseObject[@"data"][@"exchange_barcode"]];
                 [self.tableView reloadData];
             }else{
                 [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];

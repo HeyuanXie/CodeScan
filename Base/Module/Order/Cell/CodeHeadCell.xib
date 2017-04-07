@@ -56,6 +56,15 @@
                         <color key="textColor" red="0.30588235289999999" green="0.30588235289999999" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥30 - ¥120" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U11-rS-XsV">
+                        <rect key="frame" x="114" y="111" width="249" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Z9L-Wa-1O3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <color key="textColor" red="0.93333333330000001" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="SfR-qL-bfK" firstAttribute="leading" secondItem="Oyp-Wv-Tp8" secondAttribute="trailing" constant="12" id="0vX-jZ-xGH"/>
@@ -63,15 +72,29 @@
                     <constraint firstAttribute="trailing" secondItem="SfR-qL-bfK" secondAttribute="trailing" constant="12" id="DQs-bV-4dX"/>
                     <constraint firstItem="Oyp-Wv-Tp8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="HVx-Iw-RgF"/>
                     <constraint firstAttribute="trailing" secondItem="BI2-4s-qix" secondAttribute="trailing" constant="12" id="KaE-b3-BeQ"/>
+                    <constraint firstItem="U11-rS-XsV" firstAttribute="top" secondItem="BI2-4s-qix" secondAttribute="bottom" constant="16" id="Q7H-W9-m1o"/>
                     <constraint firstItem="BI2-4s-qix" firstAttribute="top" secondItem="SfR-qL-bfK" secondAttribute="bottom" constant="6" id="ahP-XD-h2J"/>
+                    <constraint firstItem="U11-rS-XsV" firstAttribute="leading" secondItem="Oyp-Wv-Tp8" secondAttribute="trailing" constant="12" id="cB5-bc-wMl"/>
                     <constraint firstAttribute="bottom" secondItem="Oyp-Wv-Tp8" secondAttribute="bottom" constant="19" id="cPW-rg-wII"/>
                     <constraint firstItem="BI2-4s-qix" firstAttribute="leading" secondItem="Oyp-Wv-Tp8" secondAttribute="trailing" constant="12" id="ezT-L9-uoQ"/>
                     <constraint firstAttribute="trailing" secondItem="9lf-7Q-0H5" secondAttribute="trailing" constant="12" id="iMT-vL-099"/>
                     <constraint firstItem="9lf-7Q-0H5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="jEa-nh-KXk"/>
                     <constraint firstItem="Oyp-Wv-Tp8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="nBx-mI-hCf"/>
                     <constraint firstItem="9lf-7Q-0H5" firstAttribute="leading" secondItem="Oyp-Wv-Tp8" secondAttribute="trailing" constant="12" id="tec-bW-L6H"/>
+                    <constraint firstAttribute="trailing" secondItem="U11-rS-XsV" secondAttribute="trailing" constant="12" id="zIl-Dv-ae8"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="firstLbl" destination="9lf-7Q-0H5" id="11R-aG-Udu"/>
+                <outlet property="firstLblLeading" destination="tec-bW-L6H" id="Dee-9l-8IA"/>
+                <outlet property="forthLbl" destination="U11-rS-XsV" id="nC5-v1-o0o"/>
+                <outlet property="imgV" destination="Oyp-Wv-Tp8" id="prm-je-LxD"/>
+                <outlet property="imgVWidth" destination="os0-MB-59K" id="rm5-lG-5GX"/>
+                <outlet property="secondLbl" destination="SfR-qL-bfK" id="UnE-AH-u3Z"/>
+                <outlet property="secondLblTop" destination="DAz-HP-NVX" id="YlX-Wh-tgN"/>
+                <outlet property="thirdLbl" destination="BI2-4s-qix" id="QeM-Oc-7pW"/>
+                <outlet property="thirdLblTop" destination="ahP-XD-h2J" id="59l-C7-pfN"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

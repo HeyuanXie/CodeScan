@@ -228,9 +228,10 @@
         [hotView autoPinEdgeToSuperviewEdge:ALEdgeTop];
         [hotView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10+(147+10)*i];
         [hotView configRecentView:nil];
-        [hotView bk_whenTapped:^{
+        [hotView setRecentViewClick:^(TheaterModel* model) {
             APPROUTE(kTheaterDetailViewController);
         }];
+        [hotView configRecentView:nil];
     }
     scroll.contentSize = CGSizeMake(5*(10+147)+10, 0);
     return cell;

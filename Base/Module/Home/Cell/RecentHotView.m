@@ -7,7 +7,6 @@
 //
 
 #import "RecentHotView.h"
-
 @implementation RecentHotView
 
 
@@ -19,8 +18,17 @@
     return CGSizeMake(110, 180);
 }
 
--(void)configRecentView:(id)model {
+-(void)configRecentView:(TheaterModel*)model {
     
+    [self bk_whenTapped:^{
+        if (self.recentViewClick) {
+            self.recentViewClick(model);
+        }
+    }];
+    TheaterModel* theater = (TheaterModel*)model;
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:theater.picurl] placeholderImage:ImageNamed(@"elephant")];
+    NSString* playName = [[theater.playName stringByReplacingOccurrencesOfString:@"《" withString:@""] stringByReplacingOccurrencesOfString:@"》" withString:@""];
+    self.desLbl.text = [NSString stringWithFormat:@"%@ %@——%@",theater.sydate,theater.subTitle,playName];
 }
 
 /*

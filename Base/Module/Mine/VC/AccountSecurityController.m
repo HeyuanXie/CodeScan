@@ -7,6 +7,7 @@
 //
 
 #import "AccountSecurityController.h"
+#import "NSString+HYMobileInsertInterval.h"
 
 @interface AccountSecurityController ()
 
@@ -49,7 +50,7 @@
     cell.textLabel.text = indexPath.row == 0 ? @"修改登陆密码" : @"绑定手机号";
     cell.textLabel.textColor = [UIColor hyBlackTextColor];
     
-    cell.detailTextLabel.text = indexPath.row == 0 ? @"" : APIHELPER.userInfo.phone;// @"153****9415";
+    cell.detailTextLabel.text = indexPath.row == 0 ? @"" : [APIHELPER.userInfo.phone HTMobileInsertSecurity];// @"153****9415";
     cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
 
     return cell;

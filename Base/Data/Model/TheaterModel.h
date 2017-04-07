@@ -26,10 +26,11 @@
 @property (nonatomic, copy) NSString *priceh;
 @property (nonatomic, strong) NSNumber *score;
 @property (nonatomic, strong) NSNumber *hits;
-@property (nonatomic, assign) BOOL isFav;
+@property (nonatomic, assign) NSInteger isFav;
 
 @property (nonatomic, strong) NSNumber *timeId;
 @property (nonatomic, strong) NSString *playTime;
+@property (nonatomic, strong) NSString *playDate;
 @property (nonatomic, strong) NSString *language;
 @property (nonatomic, strong) NSNumber *hallId;
 @property (nonatomic, strong) NSNumber *theaterId;

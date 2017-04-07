@@ -66,13 +66,19 @@
     }];
     
     @weakify(cell);
+    [cell configTheaterListCell:model];
+    if (model.isFav) {
+        [cell.collectBtn setImage:ImageNamed(@"collect02") forState:UIControlStateNormal];
+    }else{
+        [cell.collectBtn setImage:ImageNamed(@"collect03") forState:UIControlStateNormal];
+    }
     [cell setCollectBtnClick:^(TheaterModel* model) {
         if (model.isFav) {
             @strongify(cell);
             [APIHELPER cancelCollect:model.playId.integerValue type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"取消收藏成功"];
-                    [cell.collectBtn setImage:ImageNamed(@"collect03") forState:UIControlStateNormal];
+                    [self fetchData];
                 }else{
                     [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
                 }
@@ -82,19 +88,14 @@
             [APIHELPER collect:model.playId.integerValue type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"收藏成功"];
-                    [cell.collectBtn setImage:ImageNamed(@"collect02") forState:UIControlStateNormal];
+                    [self fetchData];
+//                    [cell.collectBtn setImage:ImageNamed(@"collect02") forState:UIControlStateNormal];
                 }else{
                     [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
                 }
             }];
         }
     }];
-    [cell configTheaterListCell:model];
-    if (model.isFav) {
-        [cell.collectBtn setImage:ImageNamed(@"collect02") forState:UIControlStateNormal];
-    }else{
-        [cell.collectBtn setImage:ImageNamed(@"collect03") forState:UIControlStateNormal];
-    }
     return cell;
 }
 

@@ -17,7 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *pointLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
-@property (weak, nonatomic) IBOutlet UIButton *qiandaoBtn;
 
 @end
 
@@ -27,7 +26,18 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configPointManageTopCell:(id)minePoint {
+-(void)configPointManageTopCell:(id)minePoint canSign:(NSInteger)canSign {
+    if (canSign == 0) {
+        [self.qiandaoBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        self.qiandaoBtn.layer.borderColor = [UIColor grayColor].CGColor;
+        [self.qiandaoBtn setImage:ImageNamed(@"") forState:UIControlStateNormal];
+        [self.qiandaoBtn setTitle:@"已签到" forState:UIControlStateNormal];
+    }else{
+        [self.qiandaoBtn setTitleColor:[UIColor hyBlueTextColor] forState:UIControlStateNormal];
+        self.qiandaoBtn.layer.borderColor = [UIColor hyBlueTextColor].CGColor;
+        [self.qiandaoBtn setImage:ImageNamed(@"签到图标") forState:UIControlStateNormal];
+        [self.qiandaoBtn setTitle:@"签到+1" forState:UIControlStateNormal];
+    }
     [self.recordView bk_whenTapped:^{
         APPROUTE(kDeriveRecordController);
     }];
@@ -37,7 +47,11 @@
     [self.ruleView bk_whenTapped:^{
         APPROUTE(kPointDescController);
     }];
-    
+    [self.qiandaoBtn bk_whenTapped:^{
+        if (self.qianDaoClick) {
+            self.qianDaoClick();
+        }
+    }];
     self.pointLbl.text = [minePoint stringValue];
     self.timeLbl.text = [[NSDate dateStringWithDate:[NSDate date] format:@"yyyy"] stringByAppendingString:@"-12-30"];
 }

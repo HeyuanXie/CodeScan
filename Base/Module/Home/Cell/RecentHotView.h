@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TheaterModel.h"
 
 @interface RecentHotView : UIView
 
-@property(nonatomic,copy)void (^recentViewClick)();
+@property(nonatomic,copy)void (^recentViewClick)(TheaterModel* model);
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgV;
 @property (weak, nonatomic) IBOutlet UILabel *desLbl;

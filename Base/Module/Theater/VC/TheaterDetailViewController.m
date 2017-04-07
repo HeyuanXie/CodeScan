@@ -8,12 +8,14 @@
 
 #import "TheaterDetailViewController.h"
 #import "TheaterDetailCell.h"
+#import "CommentListCell.h"
 #import "DetailDervieView.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "RecentHotView.h"
 #import "TheaterModel.h"
 #import "DeriveModel.h"
 #import "UIViewController+Extension.h"
+#import "UITableViewCell+HYCell.h"
 
 @interface TheaterDetailViewController ()
 
@@ -45,6 +47,7 @@
     self.navigationBarTransparent = YES;
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(-64, 0, 60, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[TheaterDetailCell identify] bundle:nil] forCellReuseIdentifier:[TheaterDetailCell identify]];
+    [self.tableView registerNib:[UINib nibWithNibName:[CommentListCell identify] bundle:nil] forCellReuseIdentifier:[CommentListCell identify]];
     
     [self dataInit];
     [self subviewInit];
@@ -81,6 +84,10 @@
     return self.playInfo == nil ? 0 : self.titles.count;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSString* title = self.titles[section];
+    if ([title isEqualToString:@"观众点评"]) {
+        return self.commentList.count >= 2 ? 3 : self.commentList.count;
+    }
     return 1;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -98,7 +105,12 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView* headerView = [[NSBundle mainBundle] loadNibNamed:@"HomeUseView" owner:self options:nil][1];
     UILabel* lbl = (UILabel*)[headerView viewWithTag:1001];
-    lbl.text = self.titles[section];
+    NSString* title = self.titles[section];
+    if ([title isEqualToString:@"观众点评"]) {
+        lbl.text = [NSString stringWithFormat:@"%@(%ld)",title,self.commentList.count];
+    }else{
+        lbl.text = title;
+    }
     return section == 0 ? nil : headerView;
 }
 
@@ -147,14 +159,42 @@
 }
 
 -(UITableViewCell*)commentCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
-    static NSString* cellId = @"commentCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        [HYTool configTableViewCellDefault:cell];
+    if (indexPath.row == 2) {
+        static NSString* cellId = @"seeAllCell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+            [HYTool configTableViewCellDefault:cell];
+            cell.contentView.backgroundColor = [UIColor whiteColor];
+            
+            UIButton* btn = [HYTool getButtonWithFrame:CGRectMake((kScreen_Width-90)/2, 0, 90, 48) title:@"查看全部" titleSize:15 titleColor:[UIColor darkGrayColor] backgroundColor:nil blockForClick:^(id sender) {
+                //TODO:进入评论列表页面
+                APPROUTE(kCommentListController);
+            }];
+            [btn setImage:ImageNamed(@"下个页面箭头_灰") forState:UIControlStateNormal];
+            btn.titleEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 10);
+            btn.imageEdgeInsets = UIEdgeInsetsMake(0, 70, 0, -70);
+            [cell.contentView addSubview:btn];
+        }
+        return cell;
     }
+    CommentListCell* cell = [tableView dequeueReusableCellWithIdentifier:[CommentListCell identify]];
+    [HYTool configTableViewCellDefault:cell];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    
+    [cell configListCell:self.commentList[indexPath.row]];
+    if (indexPath.row==0) {
+        cell.scrollHeight.constant = 0;
+        cell.scrollBottom.constant = 0;
+    }else{
+        cell.scrollHeight.constant = 106;
+        cell.scrollBottom.constant = 14;
+    }
+    cell.topLineVHeight.constant = 0.5;
+    [cell addLine:NO leftOffSet:0 rightOffSet:0];
     return cell;
 }
+
 -(UITableViewCell*)recommendCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
     static NSString* cellId = @"recommendCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -169,10 +209,13 @@
             [view autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10+(width+10)*i];
             [view autoSetDimensionsToSize:[RecentHotView showDetailSize]];
             view.tag = 1000 + i;
+            TheaterModel* model = self.commendList[i];
+            [view configRecentView:model];
+            view.desLbl.font = [UIFont systemFontOfSize:12];
+            [view setRecentViewClick:^(TheaterModel *model) {
+                APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&Id=%ld",kTheaterDetailViewController,@(model.isFav),model.playId.integerValue]));
+            }];
         }
-        
-        //TODO:configHotView
-        
     }
     return cell;
 }
@@ -206,7 +249,22 @@
         case 1:
             return 138;
         case 2:
-            return 245;
+            if (indexPath.row == 2) {
+                return 48;
+            }
+            return [tableView fd_heightForCellWithIdentifier:[CommentListCell identify] cacheByIndexPath:indexPath configuration:^(CommentListCell* cell) {
+                
+                [cell configListCell:self.commentList[indexPath.row]];
+                if (indexPath.row==0) {
+                    cell.scrollHeight.constant = 0;
+                    cell.scrollBottom.constant = 0;
+                }else{
+                    cell.scrollHeight.constant = 106;
+                    cell.scrollBottom.constant = 14;
+                }
+                cell.topLineVHeight.constant = 0;
+                [cell addLine:NO leftOffSet:0 rightOffSet:0];
+            }];
         default:
             return 222;
     }
@@ -261,10 +319,9 @@
             self.descriptionHight = rect.size.height;
             
             [self.goodList addObjectsFromArray:[NSArray yy_modelArrayWithClass:[DeriveModel class] json:responseObject[@"data"][@"goods_list"]]];
-            [self.commentList addObject:responseObject[@"data"][@"comment_list"]];
-            [self.commendList addObject:[NSArray yy_modelArrayWithClass:[TheaterModel class] json:responseObject[@"data"][@"commend_list"]]];
+            [self.commentList addObjectsFromArray:responseObject[@"data"][@"comment_list"]];
+            [self.commendList addObjectsFromArray:[NSArray yy_modelArrayWithClass:[TheaterModel class] json:responseObject[@"data"][@"commend_list"]]];
             
-//            self.title = self.playInfo.playName;
             [self.tableView reloadData];
         }else{
             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];

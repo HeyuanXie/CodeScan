@@ -20,6 +20,15 @@
     }
     return [NSString stringWithString:MTStr];
 }
+
+- (NSString *)HTMobileInsertSecurity {
+    if (self.length == 11) {
+        return [self stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
+    }else{
+        return self;
+    }
+}
+
 - (NSString *)HtIdCardNumInsertInterval{
     if (self.length == 18) {
         return [self stringByReplacingCharactersInRange:NSMakeRange(6, 8) withString:@"********"];
