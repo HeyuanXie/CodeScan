@@ -51,6 +51,7 @@
 #pragma mark - subviewStyle
 -(void)subviewStyle {
 
+    self.firstTf.secureTextEntry = YES;
     UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 200)];
     footerView.backgroundColor = [UIColor hyViewBackgroundColor];
     self.tableView.tableFooterView = footerView;
