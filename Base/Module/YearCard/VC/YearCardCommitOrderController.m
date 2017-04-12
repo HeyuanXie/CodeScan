@@ -9,6 +9,7 @@
 #import "YearCardCommitOrderController.h"
 #import "OrderTopCell.h"
 #import "NSString+Extension.h"
+#import "HYPayEngine.h"
 
 @interface YearCardCommitOrderController ()
 
@@ -29,7 +30,7 @@
 
     self.selectIndex = 1;
     self.data = [NSMutableDictionary dictionary];
-    for (NSString* key in @[@"card_name",@"total_times",@"thumb",@"price"]) {
+    for (NSString* key in @[@"card_name",@"total_times",@"thumb",@"price",@"card_id"]) {
         [self.data setObject:[self.schemaArgu objectForKey:key] forKey:key];
     }
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 60, 0)];
@@ -195,8 +196,31 @@
 
 #pragma mark - IBActions
 - (IBAction)commitOrder:(id)sender {
-    
-    APPROUTE(kYearCardOrderController);
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    NSInteger payType = self.selectIndex == 1 ? 2 : 1;
+    [param safe_setValue:@([self.data[@"card_id"] integerValue]) forKey:@"card_id"];
+    [param safe_setValue:@(payType) forKey:@"pay_type"];
+    [param safe_setValue:@"" forKey:@"coupon_sn"];
+
+    [APIHELPER requestCardPayInfoWithParam:param complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            if ([responseObject[@"data"][@"pay_type"] integerValue] == 1) {
+                [HYPayEngine alipayWithPayInfo:responseObject[@"data"] withFinishBlock:^(BOOL success, NSString *payMessage) {
+                    if (!success) {
+                        [self showMessage:payMessage];
+                    }
+                }];
+            }else{
+                [HYPayEngine wxpayWithPayInfo:responseObject[@"data"] WithFinishBlock:^(BOOL success, NSInteger code, NSString *payMessage) {
+                    if (!success) {
+                        [self showMessage:payMessage];
+                    }
+                }];
+            }
+        }else{
+            [self showMessage:@"提交订单失败"];
+        }
+    }];
 }
 
 #pragma mark - private methods

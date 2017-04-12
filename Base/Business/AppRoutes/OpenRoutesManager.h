@@ -97,9 +97,6 @@ extern NSString* const kBindPhoneChangeController;
 extern NSString* const kCheckCodeController;
 extern NSString* const kDidBindPhoneController;
 
-
-
-
 extern NSString* const kSearchGuideController;
 extern NSString* const kSearchResultController;
 extern NSString* const kFilterClassTableViewController;

@@ -286,7 +286,7 @@
         APPROUTE(([NSString stringWithFormat:@"%@?type=%d",kWeekEndListController,0]));
     }];
     
-    [cell configNewsCell:self.news[indexPath.row]];
+    [cell configNewsCell:self.news[indexPath.row] isCollect:NO];
     return cell;
 }
 
@@ -304,7 +304,7 @@
     }
     //TODO:configCell
     ArticleModel* week = self.weekEnds[indexPath.row];
-    [cell configWeekEndCell:week];
+    [cell configWeekEndCell:week isCollect:NO];
     [cell.allBtn bk_whenTapped:^{
         APPROUTE(([NSString stringWithFormat:@"%@?type=%ld",kWeekEndListController,indexPath.section-2]));
     }];

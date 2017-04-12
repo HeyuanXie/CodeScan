@@ -29,11 +29,11 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configSearchDeriveCell:(id)model keyword:(NSString*)word {
-    NSString* title = [NSString stringWithFormat:@"测试商品搜索%@",word];
+-(void)configSearchDeriveCell:(DeriveModel*)model keyword:(NSString*)word {
+    NSString* title = model.goodName;
     self.titleLbl.attributedText = [title addAttribute:@[NSForegroundColorAttributeName] values:@[[UIColor hyRedColor]] subStrings:@[word]];
     
-    NSString* price = self.priceLb.text;
+    NSString* price = [NSString stringWithFormat:@"%@积分",model.shopPrice];
     self.priceLb.attributedText = [price addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:13]] subStrings:@[@"积分"]];
 }
 

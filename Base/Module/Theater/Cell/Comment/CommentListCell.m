@@ -31,13 +31,21 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configListCell:(id)model {
+-(void)configListCell:(CommentModel*)model type:(NSInteger)type {
     
-//    self.nameLbl.text = model[@"user_name"];
-    [self.imgV sd_setImageWithURL:[NSURL URLWithString:model[@"header_img"]] placeholderImage:ImageNamed(@"elephant")];
-    self.timeLbl.text = model[@"create_time"];
-    self.commentLbl.text = model[@"content"];
-    NSArray* imgs = model[@"show_img"];
+    if (model.showImg.count == 0) {
+        self.scrollHeight.constant = 0;
+        self.scrollBottom.constant = 0;
+    }else{
+        self.scrollHeight.constant = 106;
+        self.scrollBottom.constant = 14;
+    }
+    
+    self.nameLbl.text = model.userName;
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:ImageNamed(@"elephant")];
+    self.timeLbl.text = model.createTime;
+    self.commentLbl.text = model.content;
+    NSArray* imgs = model.showImg;
     for (int i=0; i<imgs.count; i++) {
         UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(8+(106+8)*i, 0, 106, 106)];
         [imgV sd_setImageWithURL:[NSURL URLWithString:imgs[i]] placeholderImage:ImageNamed(@"yazi")];
@@ -45,7 +53,7 @@
     }
     self.botScroll.contentSize = CGSizeMake(8+(106+8)*imgs.count, 0);
     
-    NSInteger score = [model[@"score"] integerValue];
+    NSInteger score = type == 0 ? model.score.integerValue : model.commentScore.integerValue;
     for (int i=0; i<score/2; i++) {
         UIButton* btn = (UIButton*)[self.scoreV viewWithTag:1000+i];
         [btn setImage:ImageNamed(@"星星01") forState:UIControlStateNormal];

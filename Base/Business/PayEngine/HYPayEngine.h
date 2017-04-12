@@ -16,9 +16,9 @@ typedef void(^WXPayFinishCallback)(BOOL success, NSInteger code, NSString* payMe
 
 +(instancetype)sharePayEngine;
 
-+ (void) alipayArticleInfo:(NSDictionary *) payInfo WithFinishBlock:(AlipayFinishCallback) alipayCallback;
++ (void) alipayWithPayInfo:(NSDictionary*)payInfo withFinishBlock:(AlipayFinishCallback) alipayCallback;
 
-+ (void) wxpayArticleInfo:(NSDictionary *) payInfo WithFinishBlock:(WXPayFinishCallback) wxpayCallback;
++ (void) wxpayWithPayInfo:(NSDictionary *) payInfo WithFinishBlock:(WXPayFinishCallback) wxpayCallback;
 
 + (void) wxpayCallbackWithResponse:(BaseResp *) resp;
 

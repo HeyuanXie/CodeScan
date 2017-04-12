@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DeriveModel.h"
 
 @interface SearchDeriveCell : UITableViewCell
 
 +(NSString*)identify;
--(void)configSearchDeriveCell:(id)model keyword:(NSString*)word;
+-(void)configSearchDeriveCell:(DeriveModel*)model keyword:(NSString*)word;
 
 @end

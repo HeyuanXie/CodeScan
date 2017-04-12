@@ -62,7 +62,7 @@
     WeekEndCell* cell = [tableView dequeueReusableCellWithIdentifier:[WeekEndCell identify]];
     cell.allViewHeight.constant = 0;
     cell.allView.hidden = YES;
-    [cell configWeekEndCell:self.dataArray[indexPath.row]];
+    [cell configWeekEndCell:self.dataArray[indexPath.row] isCollect:NO];
     return cell;
 }
 

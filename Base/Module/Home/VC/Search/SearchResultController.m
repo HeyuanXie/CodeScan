@@ -51,6 +51,7 @@ typedef enum : NSUInteger {
     
     [self subviewStyle];
     [self fetchData];
+    [self headerViewInit];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,13 +74,16 @@ typedef enum : NSUInteger {
             cell.ticketBtn.hidden = YES;
             cell.collectBtn.hidden = YES;
             [HYTool configTableViewCellDefault:cell];
-            [cell configTheaterListCell:nil];
+            TheaterModel* model = [TheaterModel yy_modelWithDictionary:self.dataArray[indexPath.section]];
+            [cell configTheaterListCell:model];
+            cell.dateLblBot.constant = 10;
             return cell;
         }
         case ContentTypeDerive:
         {
             SearchDeriveCell* cell = [tableView dequeueReusableCellWithIdentifier:[SearchDeriveCell identify]];
-            [cell configSearchDeriveCell:nil keyword:self.word];
+            DeriveModel* model = [DeriveModel yy_modelWithDictionary:self.dataArray[indexPath.section]];
+            [cell configSearchDeriveCell:model keyword:self.word];
             return cell;
         }
         default:
@@ -89,7 +93,8 @@ typedef enum : NSUInteger {
             cell.contentView.backgroundColor = [UIColor whiteColor];
             cell.allViewHeight.constant = 0;
             cell.allView.hidden = YES;
-            [cell configWeekEndCell:nil];
+            ArticleModel* model = [ArticleModel yy_modelWithDictionary:self.dataArray[indexPath.section]];
+            [cell configWeekEndCell:model isCollect:NO];
             return cell;
         }
     }
@@ -149,11 +154,87 @@ typedef enum : NSUInteger {
     return _dataArray;
 }
 
--(void)fetchData {
-    //TODO:根据self.contentType和word来请求数据
-    self.dataArray = [@[@"",@""] mutableCopy];
-    [self.tableView reloadData];
+
+- (void)fetchData {
+    self.tableView.tableFooterView = nil;
+    [self showLoadingAnimation];
+    NSArray* types = @[@"movie",@"goods",@"article"];
+    [APIHELPER homeSearch:0 limit:8 keyword:self.word type:types[self.contentType] complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        
+        if (isSuccess) {
+            [self.dataArray removeAllObjects];
+            [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+            
+            self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+            if (self.haveNext) {
+                [self appendFooterView];
+            }else{
+                [self removeFooterRefresh];
+            }
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
+
+-(void)headerViewInit {
+    @weakify(self);
+    [self addHeaderRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        NSArray* types = @[@"movie",@"goods",@"article"];
+        [APIHELPER homeSearch:0 limit:8 keyword:self.word type:types[self.contentType] complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                
+                [self.dataArray removeAllObjects];
+                [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
+}
+
+-(void)appendFooterView {
+    @weakify(self);
+    [self addFooterRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        NSArray* types = @[@"movie",@"goods",@"article"];
+        [APIHELPER homeSearch:self.dataArray.count limit:8 keyword:self.word type:types[self.contentType] complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
+}
+
 -(void)subviewStyle {
     
     UIView* searhView = LOADNIB(@"HomeUseView", 3);
@@ -162,6 +243,7 @@ typedef enum : NSUInteger {
     
     NSArray* menu = @[@"演出",@"商品",@"文章"];
     UIButton* btn = [searhView viewWithTag:1000];
+    [btn setTitle:menu[self.contentType] forState:UIControlStateNormal];
     btn.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 0, -30);
     btn.titleEdgeInsets = UIEdgeInsetsMake(0, -12, 0, 12);
     [btn bk_whenTapped:^{

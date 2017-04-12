@@ -109,9 +109,22 @@
                             <constraint firstAttribute="height" constant="40" id="wAG-dc-HbT"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PeT-dY-yML">
+                        <rect key="frame" x="288" y="79" width="75" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="75" id="ehl-ye-uc3"/>
+                            <constraint firstAttribute="height" constant="30" id="mwn-HA-Jvm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="取消收藏">
+                            <color key="titleColor" red="0.41960784309999999" green="0.70196078429999997" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="O74-3p-GNA" firstAttribute="top" secondItem="4XP-He-ZSU" secondAttribute="bottom" constant="2" id="488-Iu-ZMt"/>
+                    <constraint firstAttribute="trailing" secondItem="PeT-dY-yML" secondAttribute="trailing" constant="12" id="4VZ-g4-PHM"/>
+                    <constraint firstItem="PeT-dY-yML" firstAttribute="centerY" secondItem="QNv-kx-aWI" secondAttribute="centerY" id="5k2-LI-Vts"/>
                     <constraint firstAttribute="trailing" secondItem="OmH-g9-sF3" secondAttribute="trailing" id="5op-E4-udA"/>
                     <constraint firstItem="iyI-z8-We8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="A1g-Ip-rFn"/>
                     <constraint firstItem="QNv-kx-aWI" firstAttribute="centerY" secondItem="HHS-mh-Vc7" secondAttribute="centerY" id="G1S-Oh-YVi"/>
@@ -137,6 +150,7 @@
                 <outlet property="allBtn" destination="MOT-TX-0JZ" id="waI-TA-4p9"/>
                 <outlet property="allView" destination="OmH-g9-sF3" id="it5-Jz-Cac"/>
                 <outlet property="allViewHeight" destination="wAG-dc-HbT" id="SkY-6C-UiO"/>
+                <outlet property="cancelCollectBtn" destination="PeT-dY-yML" id="GPc-3o-VVp"/>
                 <outlet property="commentBtn" destination="Fvr-nx-GPg" id="sQ5-VR-yEC"/>
                 <outlet property="detailLbl" destination="O74-3p-GNA" id="yh9-gp-rCr"/>
                 <outlet property="imgV" destination="iyI-z8-We8" id="ZvV-sl-DNN"/>

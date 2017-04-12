@@ -84,7 +84,7 @@ typedef enum : NSUInteger {
             TheaterModel* theater = [TheaterModel yy_modelWithDictionary:model];
             [cell configTheaterListCell:theater];
             [cell setTicketBtnClick:^(id model) {
-                //TODO:取消收藏
+                //取消收藏
                 [APIHELPER cancelCollect:theater.playId.integerValue type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                     if (isSuccess) {
                         [self showMessage:@"取消收藏成功"];
@@ -109,7 +109,18 @@ typedef enum : NSUInteger {
             cell.allView.hidden = YES;
             
             NSDictionary* dict = self.dataArray.count == 0 ? nil : self.dataArray[indexPath.row];
-            [cell configNewsCell:[ArticleModel yy_modelWithDictionary:dict]];
+            [cell configNewsCell:[ArticleModel yy_modelWithDictionary:dict] isCollect:YES];
+            [cell setCancelCollect:^(ArticleModel * model) {
+                //取消收藏
+                [APIHELPER cancelCollect:model.seekId.integerValue type:2 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    if (isSuccess) {
+                        [self showMessage:@"取消收藏成功"];
+                        [self fetchData];
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                }];
+            }];
             [cell addLine:NO leftOffSet:12 rightOffSet:0];
             return cell;
         }
@@ -122,7 +133,18 @@ typedef enum : NSUInteger {
             cell.allView.hidden = YES;
             
             NSDictionary* dict = self.dataArray.count == 0 ? nil : self.dataArray[indexPath.row];
-            [cell configWeekEndCell:[ArticleModel yy_modelWithDictionary:dict]];
+            [cell configWeekEndCell:[ArticleModel yy_modelWithDictionary:dict] isCollect:YES];
+            [cell setCancelCollect:^(ArticleModel * model) {
+                //取消收藏
+                [APIHELPER cancelCollect:model.articleId.integerValue type:3 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    if (isSuccess) {
+                        [self showMessage:@"取消收藏成功"];
+                        [self fetchData];
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                }];
+            }];
             [cell addLine:NO leftOffSet:12 rightOffSet:0];
             return cell;
         }
@@ -134,43 +156,20 @@ typedef enum : NSUInteger {
             
             DeriveModel* leftModel = [DeriveModel yy_modelWithDictionary:self.dataArray[indexPath.section*2]];
             DeriveModel* rightModel = [DeriveModel yy_modelWithDictionary:(self.dataArray.count%2!=0 && self.dataArray.count/2==indexPath.section) ? nil : self.dataArray[indexPath.section*2+1]];
-            [cell configListCellWithLeft:leftModel right:rightModel];
+            [cell configListCellWithLeft:leftModel right:rightModel isCollect:YES];
             [cell setItemClick:^(DeriveModel* model) {
                 APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&isFav=%@",kDeriveDetailController,model.goodId.integerValue,@(YES)]));
             }];
             [cell setExchangeClick:^(DeriveModel* model) {
-                if (model.storeCount.integerValue == 0) {
-                    [self showMessage:@"商品数量不足"];
-                    return ;
-                }
-                HYAlertView* alert = [HYAlertView sharedInstance];
-                [alert setSubBottonBackgroundColor:[UIColor hyRedColor]];
-                [alert setSubBottonTitleColor:[UIColor whiteColor]];
-                [alert setCancelButtonBorderColor:[UIColor hyBarTintColor]];
-                [alert setCancelButtonTitleColor:[UIColor hyBarTintColor]];
-                [alert setCancelButtonBackgroundColor:[UIColor whiteColor]];
-                [alert setBtnCornerRadius:5];
-                [alert showAlertViewWithMessage:[NSString stringWithFormat:@"是否用%ld积分兑换改商品?",model.shopPrice.integerValue] subBottonTitle:@"确定" cancelButtonTitle:@"取消" handler:^(AlertViewClickBottonType bottonType) {
-                    switch (bottonType) {
-                        case AlertViewClickBottonTypeSubBotton: {
-                            //TODO:兑换
-                            [APIHELPER deriveExchange:model.goodId.integerValue buyNum:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-                                if (isSuccess) {
-                                    NSDictionary* param = responseObject[@"data"];
-                                    //剧场下单成功和衍生品兑换成功公用一个VC
-                                    [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&order_sn=%@&",kTheaterCommitOrderSuccessController,responseObject[@"data"][@"order_sn"]] withParam:param];
-                                }else{
-                                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
-                                }
-                            }];
-                            break;
-                        }
-                        default:{
-                            break;
-                        }
+                //取消收藏
+                [APIHELPER cancelCollect:model.goodId.integerValue type:4 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    if (isSuccess) {
+                        [self showMessage:@"取消收藏成功"];
+                        [self fetchData];
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
                     }
                 }];
-                
             }];
             return cell;
         }

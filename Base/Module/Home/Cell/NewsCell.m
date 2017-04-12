@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *supportBtn;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cancelCollectBtn;
 
 @end
 
@@ -31,13 +32,15 @@
         [HYTool configViewLayer:btn size:10];
     }
     [HYTool configViewLayer:self.imgV];
+    
+    [HYTool configViewLayer:self.cancelCollectBtn withColor:[UIColor hyBlueTextColor]];
 }
 
 +(NSString *)identify {
     return NSStringFromClass([self class]);
 }
 
--(void)configNewsCell:(id)model {
+-(void)configNewsCell:(id)model isCollect:(BOOL)isCollect {
     ArticleModel* article = (ArticleModel*)model;
     
     if (article.title) {
@@ -50,6 +53,8 @@
     
     [self.supportBtn setTitle:[article.light stringValue] forState:UIControlStateNormal];
     [self.commentBtn setTitle:[article.commentNum stringValue] forState:UIControlStateNormal];
+    self.supportBtn.hidden = isCollect;
+    self.commentBtn.hidden = isCollect;
     [self.supportBtn bk_whenTapped:^{
         //TODO:点赞
         
@@ -67,6 +72,13 @@
     NSMutableAttributedString* mAttr = [[NSMutableAttributedString alloc] initWithString:self.detailLbl.text];
     [mAttr addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, self.detailLbl.text.length)];
     self.detailLbl.attributedText = mAttr;
+    
+    self.cancelCollectBtn.hidden = !isCollect;
+    [self.cancelCollectBtn bk_whenTapped:^{
+        if (self.cancelCollect) {
+            self.cancelCollect(model);
+        }
+    }];
 }
 
 

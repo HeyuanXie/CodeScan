@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TheaterModel.h"
 
 @interface TheaterListCell : UITableViewCell
 
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *ticketBtn;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *ticketBtnWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *dateLblBot;
 
 
 @property(nonatomic,copy)void (^ticketBtnClick)(id model);

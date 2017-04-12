@@ -106,10 +106,14 @@
                 
                 SearchGuideCell* cell = [tableView dequeueReusableCellWithIdentifier:[SearchGuideCell identify]];
                 [cell configGuideHistoryCell:nil];
-                cell.titleLbl.text = self.history[indexPath.row];
+//                cell.titleLbl.text = self.history[indexPath.row];
+                NSData* data = [self.history[indexPath.row] dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                cell.titleLbl.text = dict[@"text"];
                 [cell.closeView bk_whenTapped:^{
                     //清除本条记录
-                    [self deleteValueFromDB:[self createOrOpenDB] text:cell.titleLbl.text];
+//                    [self deleteValueFromDB:[self createOrOpenDB] text:cell.titleLbl.text];
+                    [self deleteValueFromDB:[self createOrOpenDB] text:self.history[indexPath.row]];
                     [self queryValueFromDB:[self createOrOpenDB]];
                 }];
                 [cell addLine:NO leftOffSet:12 rightOffSet:0];
@@ -136,7 +140,9 @@
             return;
         default:
             if (indexPath.row != self.history.count) {
-                APPROUTE(([NSString stringWithFormat:@"%@?word=%@",kSearchResultController,self.history[indexPath.row]]));
+                NSData* data = [self.history[indexPath.row] dataUsingEncoding:NSUTF8StringEncoding];
+                NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+                APPROUTE(([NSString stringWithFormat:@"%@?word=%@&type=%ld",kSearchResultController,dict[@"text"],[dict[@"type"] integerValue]]));
             }
     }
 }
@@ -148,7 +154,9 @@
         [self showMessage:@"请输入关键词"];
         return NO;
     }
-    [self insertValueToDB:[self createOrOpenDB] text:textField.text];
+    //搜索时，把文字和类型的字典转成JSONString存入数据库
+    NSString* text = [@{@"text":textField.text,@"type":@(self.contentType)} yy_modelToJSONString];
+    [self insertValueToDB:[self createOrOpenDB] text:text];
     [textField resignFirstResponder];
     APPROUTE(([NSString stringWithFormat:@"%@?word=%@&type=%ld",kSearchResultController,textField.text,self.contentType]));
     return YES;

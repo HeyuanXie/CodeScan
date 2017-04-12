@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommentModel.h"
 
 @interface CommentListCell : UITableViewCell
 
@@ -14,6 +15,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollBottom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLineVHeight;
 +(NSString*)identify;
--(void)configListCell:(id)model;
+-(void)configListCell:(CommentModel*)model type:(NSInteger)type;
 
 @end

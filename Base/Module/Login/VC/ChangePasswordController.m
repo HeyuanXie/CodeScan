@@ -87,7 +87,10 @@
 
 -(void)otherImage {
     //TODO:另一张
-    [self.imgV sd_setImageWithURL:[NSURL URLWithString:@"http://api.xfx.zhimadi.cn/captcha.html"] placeholderImage:nil];
+//    [[SDImageCache sharedImageCache] removeImageForKey:@"http://api.xfx.zhimadi.cn/captcha.html"];
+//    [self.imgV sd_setImageWithURL:[NSURL URLWithString:@"http://api.xfx.zhimadi.cn/captcha.html"] placeholderImage:nil];
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:@"http://api.xfx.zhimadi.cn/captcha.html"] placeholderImage:nil options:SDWebImageRefreshCached];
+
 }
 
 -(void)submit {

@@ -15,6 +15,6 @@
 @property(nonatomic,copy)void (^exchangeClick)(DeriveModel* model);   //点击兑换按钮
 
 +(NSString*)identify;
--(void)configListCellWithLeft:(DeriveModel*)leftModel right:(DeriveModel*)rightModel;
+-(void)configListCellWithLeft:(DeriveModel*)leftModel right:(DeriveModel*)rightModel isCollect:(BOOL)isCollect;
 
 @end

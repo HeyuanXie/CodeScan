@@ -10,7 +10,6 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "CommentListCell.h"
 #import "CustomJumpBtns.h"
-#import "CommentModel.h"
 
 typedef enum : NSUInteger {
     CommentAll = 0,
@@ -57,6 +56,7 @@ typedef enum : NSUInteger {
 
     [self subviewStyle];
     [self fetchData];
+    [self headerViewInit];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,14 +76,8 @@ typedef enum : NSUInteger {
     [HYTool configTableViewCellDefault:cell];
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
-    [cell configListCell:nil];
-    if (indexPath.section%2==0) {
-        cell.scrollHeight.constant = 0;
-        cell.scrollBottom.constant = 0;
-    }else{
-        cell.scrollHeight.constant = 106;
-        cell.scrollBottom.constant = 14;
-    }
+    CommentModel* model = self.dataArray[indexPath.section];
+    [cell configListCell:model type:self.contentType];
     return cell;
 }
 
@@ -91,14 +85,8 @@ typedef enum : NSUInteger {
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [tableView fd_heightForCellWithIdentifier:[CommentListCell identify] cacheByIndexPath:indexPath configuration:^(CommentListCell* cell) {
         
-        [cell configListCell:nil];
-        if (indexPath.section%2==0) {
-            cell.scrollHeight.constant = 0;
-            cell.scrollBottom.constant = 0;
-        }else{
-            cell.scrollHeight.constant = 106;
-            cell.scrollBottom.constant = 14;
-        }
+        CommentModel* model = self.dataArray[indexPath.section];
+        [cell configListCell:model type:self.contentType];
     }];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -10,6 +10,13 @@
 
 @interface APIHelper (Home)
 
--(void)fetchHomePageData:(NSString*)city complete:(ApiRequestCompleteBlock)complete;
+-(void)fetchHomePageData:(NSString*)city
+                complete:(ApiRequestCompleteBlock)complete;
+
+-(void)homeSearch:(NSInteger)start
+            limit:(NSInteger)limit
+          keyword:(NSString*)keyword
+             type:(NSString*)type
+         complete:(ApiRequestCompleteBlock)complete;
 
 @end

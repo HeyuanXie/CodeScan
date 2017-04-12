@@ -14,7 +14,8 @@
 @property (weak, nonatomic) IBOutlet UIView *rightView;
 @property (weak, nonatomic) IBOutlet UIButton *leftBtn;
 @property (weak, nonatomic) IBOutlet UIButton *rightBtn;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftExchangeBtnWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightExcahngeBtnWidth;
 @end
 
 @implementation DeriveListCell
@@ -23,13 +24,17 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configListCellWithLeft:(DeriveModel*)leftModel right:(DeriveModel*)rightModel {
+-(void)configListCellWithLeft:(DeriveModel*)leftModel right:(DeriveModel*)rightModel isCollect:(BOOL)isCollect {
     
-    [self configLeftView:leftModel];
-    [self configRightView:rightModel];
+    [self configLeftView:leftModel isCollect:isCollect];
+    [self configRightView:rightModel isCollect:isCollect];
+    if (isCollect) {
+        self.leftExchangeBtnWidth.constant = 70;
+        self.rightExcahngeBtnWidth.constant = 70;
+    }
 }
 
--(void)configLeftView:(DeriveModel*)model {
+-(void)configLeftView:(DeriveModel*)model isCollect:(BOOL)isCollect {
     
     UIImageView* productImg = (UIImageView*)[self.leftView viewWithTag:1000];
     UILabel* nameLbl = (UILabel*)[self.leftView viewWithTag:1001];
@@ -46,8 +51,9 @@
         }
         return [RACSignal empty];
     }];
-
-    if (model.storeCount.integerValue == 0) {
+    
+    [exchangeBtn setTitle:(isCollect ? @"取消收藏" : @"兑换") forState:UIControlStateNormal];
+    if (model.storeCount.integerValue == 0 && !isCollect) {
         noneImg.hidden = NO;
         [HYTool configViewLayer:exchangeBtn withColor:[UIColor colorWithString:@"bfbfbf"]];
         exchangeBtn.layer.borderWidth = 1;
@@ -58,6 +64,7 @@
         exchangeBtn.layer.borderWidth = 1;
         [exchangeBtn setTitleColor:RGB(107, 179, 246, 1.0) forState:UIControlStateNormal];
     }
+
     self.leftBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
        
         if (self.itemClick) {
@@ -68,7 +75,7 @@
 }
 
 
--(void)configRightView:(DeriveModel*)model {
+-(void)configRightView:(DeriveModel*)model isCollect:(BOOL)isCollect {
     if (model == nil) {
         self.rightView.hidden = YES;
         return;
@@ -93,7 +100,8 @@
         return [RACSignal empty];
     }];
     
-    if (model.storeCount.integerValue == 0) {
+    [exchangeBtn setTitle:(isCollect ? @"取消收藏" : @"兑换") forState:UIControlStateNormal];
+    if (model.storeCount.integerValue == 0 && !isCollect) {
         noneImg.hidden = NO;
         [HYTool configViewLayer:exchangeBtn withColor:[UIColor colorWithString:@"bfbfbf"]];
         exchangeBtn.layer.borderWidth = 1;

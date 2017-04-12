@@ -10,9 +10,14 @@
 
 @implementation APIHelper (Pay)
 
--(void)requestPayInfoWithParam:(NSDictionary *)param complete:(ApiRequestCompleteBlock)complete {
+-(void)requestTheaterPayInfoWithParam:(NSDictionary *)param complete:(ApiRequestCompleteBlock)complete {
     
-    [APIHELPER postWithURL:@"payApi" param:param complete:complete];
+    [APIHELPER postWithURL:@"theatre_order/order" param:param complete:complete];
 }
 
+
+-(void)requestCardPayInfoWithParam:(NSDictionary *)param complete:(ApiRequestCompleteBlock)complete {
+    
+    [APIHELPER postWithURL:@"card/order" param:param complete:complete];
+}
 @end

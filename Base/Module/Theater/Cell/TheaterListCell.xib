@@ -126,6 +126,7 @@
                 <outlet property="backView" destination="ibd-fP-j9Q" id="ghR-qf-HAp"/>
                 <outlet property="collectBtn" destination="3u4-F9-0OB" id="7VX-lP-3IO"/>
                 <outlet property="dateLbl" destination="pyv-UT-ion" id="vVa-2o-sR6"/>
+                <outlet property="dateLblBot" destination="dru-TR-9I9" id="DxN-TR-E3y"/>
                 <outlet property="imgV" destination="SXn-sk-7R8" id="b2J-BY-c67"/>
                 <outlet property="priceLbl" destination="B1A-fX-Klb" id="4mL-Kx-8an"/>
                 <outlet property="ticketBtn" destination="Fln-LJ-u68" id="f1i-ZN-E2u"/>

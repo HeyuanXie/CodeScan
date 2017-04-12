@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ArticleModel.h"
 
 @interface WeekEndCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIView *allView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *allViewHeight;
 @property (weak, nonatomic) IBOutlet UIButton *allBtn;
+@property(nonatomic,copy)void (^cancelCollect)(ArticleModel* model);
+
 
 +(NSString*)identify;
--(void)configWeekEndCell:(id)model;
+-(void)configWeekEndCell:(id)model isCollect:(BOOL)isCollect;
 
 @end

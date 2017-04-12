@@ -7,7 +7,6 @@
 //
 
 #import "TheaterListCell.h"
-#import "TheaterModel.h"
 
 @implementation TheaterListCell
 

@@ -182,14 +182,8 @@
     [HYTool configTableViewCellDefault:cell];
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
-    [cell configListCell:self.commentList[indexPath.row]];
-    if (indexPath.row==0) {
-        cell.scrollHeight.constant = 0;
-        cell.scrollBottom.constant = 0;
-    }else{
-        cell.scrollHeight.constant = 106;
-        cell.scrollBottom.constant = 14;
-    }
+    CommentModel* model = [CommentModel yy_modelWithDictionary:self.commentList[indexPath.row]];
+    [cell configListCell:model type:0];
     cell.topLineVHeight.constant = 0.5;
     [cell addLine:NO leftOffSet:0 rightOffSet:0];
     return cell;
@@ -254,14 +248,8 @@
             }
             return [tableView fd_heightForCellWithIdentifier:[CommentListCell identify] cacheByIndexPath:indexPath configuration:^(CommentListCell* cell) {
                 
-                [cell configListCell:self.commentList[indexPath.row]];
-                if (indexPath.row==0) {
-                    cell.scrollHeight.constant = 0;
-                    cell.scrollBottom.constant = 0;
-                }else{
-                    cell.scrollHeight.constant = 106;
-                    cell.scrollBottom.constant = 14;
-                }
+                CommentModel* model = [CommentModel yy_modelWithDictionary:self.commentList[indexPath.row]];
+                [cell configListCell:model type:0];
                 cell.topLineVHeight.constant = 0;
                 [cell addLine:NO leftOffSet:0 rightOffSet:0];
             }];

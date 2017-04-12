@@ -114,7 +114,7 @@
     
     DeriveModel* leftModel = self.dataArray[indexPath.section*2];
     DeriveModel* rightModel = (self.dataArray.count%2!=0 && self.dataArray.count/2==indexPath.section) ? nil : self.dataArray[indexPath.section*2+1];
-    [cell configListCellWithLeft:leftModel right:rightModel];
+    [cell configListCellWithLeft:leftModel right:rightModel isCollect:NO];
     return cell;
 }
      

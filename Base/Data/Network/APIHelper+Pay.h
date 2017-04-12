@@ -10,6 +10,7 @@
 
 @interface APIHelper (Pay)
 
--(void)requestPayInfoWithParam:(NSDictionary*)param complete:(ApiRequestCompleteBlock)complete;
+-(void)requestTheaterPayInfoWithParam:(NSDictionary*)param complete:(ApiRequestCompleteBlock)complete;
+-(void)requestCardPayInfoWithParam:(NSDictionary*)param complete:(ApiRequestCompleteBlock)complete;
 
 @end

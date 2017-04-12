@@ -9,7 +9,7 @@
 #import "HYPayEngine.h"
 #import <AlipaySDK/AlipaySDK.h>
 
-static NSString *const AppScheme = @"";
+static NSString *const AppScheme = @"alisdkLittleElephant";
 
 static NSString *const payApi = @"mobile_securitypay_pay";
 
@@ -39,76 +39,42 @@ static NSString *const payApi = @"mobile_securitypay_pay";
     return self;
 }
 
++ (void) alipayWithPayInfo:(NSDictionary *)payInfo withFinishBlock:(AlipayFinishCallback)alipayCallback {
+    
+    [[AlipaySDK defaultService] payOrder:payInfo[@"payData"] fromScheme:AppScheme callback:^(NSDictionary *resultDic) {
+        if ([resultDic[@"resultStatus"] isEqualToString:@"9000"]) {
+            alipayCallback(YES,nil);
+        }
+        else if ([resultDic[@"resultStatus"] isEqualToString:@"6001"]){
+            alipayCallback(NO,@"您已经取消了支付");
+        }
+        else{
+            alipayCallback(NO,resultDic[@"memo"]);
+        }
+    }];
 
-
-+ (void)alipayArticleInfo:(NSDictionary *)payInfo WithFinishBlock:(AlipayFinishCallback)alipayCallback {
-    [[HYPayEngine sharePayEngine] aliPayArticleInfo:payInfo WithFinishBlock:alipayCallback];
-}
-- (void) aliPayArticleInfo:(NSDictionary *) payInfo
-           WithFinishBlock:(AlipayFinishCallback) alipayCallback{
-    
-    NSMutableDictionary * mutableDic = [NSMutableDictionary dictionaryWithDictionary:payInfo];
-    [mutableDic setObject:@"1" forKey:@"pay_methods"];
-    
-        [APIHELPER requestPayInfoWithParam:mutableDic complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-            
-            if (isSuccess) {
-                
-                NSDictionary* responseDic = responseObject[@"data"];
-                [[AlipaySDK defaultService] payOrder:responseDic[@"payString"] fromScheme:AppScheme callback:^(NSDictionary *resultDic) {
-                    if ([resultDic[@"resultStatus"] isEqualToString:@"9000"]) {
-                        alipayCallback(YES,nil);
-                    }
-                    else if ([resultDic[@"resultStatus"] isEqualToString:@"6001"]){
-                        alipayCallback(NO,@"您已经取消了支付");
-                    }
-                    else{
-                        alipayCallback(NO,resultDic[@"memo"]);
-                    }
-                }];
-            }else{
-                alipayCallback(NO,@"支付失败");
-            }
-        }];
-    
 }
 
-+ (void)wxpayArticleInfo:(NSDictionary *)payInfo WithFinishBlock:(WXPayFinishCallback)wxpayCallback {
-    [[HYPayEngine sharePayEngine] wxPayParameter:payInfo WithFinishBlock:wxpayCallback];
-}
-- (void) wxPayParameter:(NSDictionary *) payInfo
-        WithFinishBlock:(WXPayFinishCallback) wxPayCallback{
++ (void) wxpayWithPayInfo:(NSDictionary *) payInfo WithFinishBlock:(WXPayFinishCallback) wxpayCallback {
     
     if (![WXApi isWXAppInstalled]) {
-        wxPayCallback(NO,10086,@"没有安装微信");
+        wxpayCallback(NO,10086,@"没有安装微信");
         return;
     }
     
-    self.wxPayCompletionHandler = [wxPayCallback copy];
-
-    NSMutableDictionary *mutableDic = [NSMutableDictionary dictionaryWithDictionary:payInfo];
+    NSDictionary* dic = payInfo[@"payData"];
+    PayReq *request = [[PayReq alloc] init];
     
-    [mutableDic setObject:@"2" forKey:@"pay_methods"];
+    request.partnerId = dic[@"partnerid"];
+    request.prepayId = dic[@"prepayid"];
+    request.package = dic[@"package"];
+    request.nonceStr = dic[@"noncestr"];
+    request.timeStamp = [dic[@"timestamp"] intValue];
+    request.sign = dic[@"sign"];
     
-    [APIHELPER requestPayInfoWithParam:mutableDic complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-        if (isSuccess) {
-            
-            NSDictionary* dic = responseObject[@"data"];
-            PayReq *request = [[PayReq alloc] init];
-            
-            request.partnerId = dic[@"partnerid"];
-            request.prepayId = dic[@"prepayid"];
-            request.package = dic[@"package"];
-            request.nonceStr = dic[@"noncestr"];
-            request.timeStamp = [dic[@"timestamp"] intValue];
-            request.sign = dic[@"sign"];
-            
-            [WXApi sendReq:request];
-        }else{
-            wxPayCallback(NO,0,@"支付失败");
-        }
-    }];
+    [WXApi sendReq:request];
 }
+
 
 + (void)wxpayCallbackWithResponse:(id)resp {
     [[HYPayEngine sharePayEngine] wxpayCallbackWithResponse:resp];
