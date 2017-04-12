@@ -7,12 +7,10 @@
 //
 
 #import "WKWebViewController.h"
-#import <WebKit/WebKit.h>
 #import "HYCacheURLProtocol.h"
 
 @interface WKWebViewController ()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 
-@property(nonatomic,strong)WKWebView* webView;
 @property(nonatomic,strong)WKUserContentController* userCC;
 
 @end
@@ -24,7 +22,6 @@
     // Do any additional setup after loading the view.
     
     [self webViewInit];
-    [self loadWebView];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -47,8 +44,6 @@
     WKWebViewConfiguration* config = [[WKWebViewConfiguration alloc] init];
     config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
     config.userContentController = _userCC;
-    
-
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
     [self.view addSubview:self.webView];

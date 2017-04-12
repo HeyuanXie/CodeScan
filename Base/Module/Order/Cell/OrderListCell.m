@@ -41,6 +41,7 @@
     self.typeLbl.text = @"演出";
     self.lbl4.hidden = NO;
     
+    //TODO:跳到评价页面，传递model和commentType
     
 }
 
@@ -66,7 +67,9 @@
         [self.rightBtn setTitle:@"去评价" forState:(UIControlStateNormal)];
         self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
             
-            APPROUTE(kCommentViewController);
+            if (self.commentBlock) {
+                self.commentBlock(model);
+            }
             return [RACSignal empty];
         }];
     }else if (statu == 3){

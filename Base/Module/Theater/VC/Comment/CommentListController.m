@@ -10,6 +10,7 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "CommentListCell.h"
 #import "CustomJumpBtns.h"
+#import "CommentModel.h"
 
 typedef enum : NSUInteger {
     CommentAll = 0,
@@ -17,10 +18,19 @@ typedef enum : NSUInteger {
     CommentNew,
 } CommentStyle;
 
+typedef enum : NSUInteger {
+    TypeTheater,
+    TypeDerive,
+} ContentType;
+
 @interface CommentListController ()
 
+@property(assign,nonatomic)NSInteger playId;
+@property(assign,nonatomic)NSInteger goodId;
 @property(strong,nonatomic)NSMutableArray* dataArray;
-@property(assign,nonatomic)CommentStyle style;
+
+@property(assign,nonatomic)CommentStyle commentStyle;
+@property(assign,nonatomic)ContentType contentType;
 
 @end
 
@@ -29,7 +39,17 @@ typedef enum : NSUInteger {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.style = CommentAll;
+    self.commentStyle = CommentAll;
+    self.contentType = TypeTheater;
+    if (self.schemaArgu[@"contentType"]) {
+        self.contentType = [[self.schemaArgu objectForKey:@"contentType"] integerValue];
+    }
+    if (self.schemaArgu[@"playId"]) {
+        self.playId = [[self.schemaArgu objectForKey:@"playId"] integerValue];
+    }
+    if (self.schemaArgu[@"goodId"]) {
+        self.goodId = [[self.schemaArgu objectForKey:@"goodId"] integerValue];
+    }
     
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(42, 0, 0, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -93,10 +113,166 @@ typedef enum : NSUInteger {
     return _dataArray;
 }
 
--(void)fetchData {
-    self.dataArray = [@[@"",@"",@"",@""] mutableCopy];
-    DLog("%ld",self.style);
-    [self.tableView reloadData];
+- (void)fetchData {
+    self.tableView.tableFooterView = nil;
+    
+    switch (self.contentType) {
+        case TypeTheater:{
+            [self showLoadingAnimation];
+            [APIHELPER theaterCommentList:0 limit:6 playId:self.playId type:self.commentStyle complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [self hideLoadingAnimation];
+                
+                if (isSuccess) {
+                    [self.dataArray removeAllObjects];
+                    [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[CommentModel class] array:responseObject[@"data"][@"list"]] ];
+                    [self.tableView reloadData];
+                    
+                    self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                    if (self.haveNext) {
+                        [self appendFooterView];
+                    }else{
+                        [self removeFooterRefresh];
+                    }
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }break;
+        case TypeDerive:{
+            [self showLoadingAnimation];
+            [APIHELPER deriveCommentList:0 limit:6 goodId:self.goodId type:self.commentStyle complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [self hideLoadingAnimation];
+                
+                if (isSuccess) {
+                    [self.dataArray removeAllObjects];
+                    [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[CommentModel class] array:responseObject[@"data"][@"list"]] ];
+                    [self.tableView reloadData];
+                    
+                    self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                    if (self.haveNext) {
+                        [self appendFooterView];
+                    }else{
+                        [self removeFooterRefresh];
+                    }
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }break;
+            
+        default:
+            break;
+    }
+}
+
+-(void)headerViewInit {
+    @weakify(self);
+    [self addHeaderRefresh:^{
+        @strongify(self);
+        switch (self.contentType) {
+            case TypeTheater:{
+                [self showLoadingAnimation];
+                [APIHELPER theaterCommentList:0 limit:6 playId:self.playId type:self.commentStyle complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    [self hideLoadingAnimation];
+                    
+                    if (isSuccess) {
+                        [self.dataArray removeAllObjects];
+                        [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[CommentModel class] array:responseObject[@"data"][@"list"]] ];
+                        [self.tableView reloadData];
+                        
+                        self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                        if (self.haveNext) {
+                            [self appendFooterView];
+                        }else{
+                            [self removeFooterRefresh];
+                        }
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                    [self endRefreshing];
+                }];
+            }break;
+            case TypeDerive:{
+                [self showLoadingAnimation];
+                [APIHELPER deriveCommentList:0 limit:6 goodId:self.goodId type:self.commentStyle complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    [self hideLoadingAnimation];
+                    
+                    if (isSuccess) {
+                        [self.dataArray removeAllObjects];
+                        [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[CommentModel class] array:responseObject[@"data"][@"list"]] ];
+                        [self.tableView reloadData];
+                        
+                        self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                        if (self.haveNext) {
+                            [self appendFooterView];
+                        }else{
+                            [self removeFooterRefresh];
+                        }
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                    [self endRefreshing];
+                }];
+            }break;
+                
+            default:
+                break;
+        }
+    }];
+}
+
+-(void)appendFooterView {
+    @weakify(self);
+    [self addFooterRefresh:^{
+        @strongify(self);
+        switch (self.contentType) {
+            case TypeTheater:{
+                [self showLoadingAnimation];
+                [APIHELPER theaterCommentList:self.dataArray.count limit:6 playId:self.playId type:self.commentStyle complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    [self hideLoadingAnimation];
+                    
+                    if (isSuccess) {
+                        [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[CommentModel class] array:responseObject[@"data"][@"list"]] ];
+                        [self.tableView reloadData];
+                        
+                        self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                        if (self.haveNext) {
+                            [self appendFooterView];
+                        }else{
+                            [self removeFooterRefresh];
+                        }
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                    [self endRefreshing];
+                }];
+            }break;
+            case TypeDerive:{
+                [self showLoadingAnimation];
+                [APIHELPER deriveCommentList:self.dataArray.count limit:6 goodId:self.goodId type:self.commentStyle complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    [self hideLoadingAnimation];
+                    
+                    if (isSuccess) {
+                        [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[CommentModel class] array:responseObject[@"data"][@"list"]] ];
+                        [self.tableView reloadData];
+                        
+                        self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                        if (self.haveNext) {
+                            [self appendFooterView];
+                        }else{
+                            [self removeFooterRefresh];
+                        }
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                    [self endRefreshing];
+                }];
+            }break;
+                
+            default:
+                break;
+        }
+    }];
 }
 
 -(void)subviewStyle {
@@ -108,8 +284,7 @@ typedef enum : NSUInteger {
     [topView addSubview:btns];
     NSArray* styles = @[@(CommentAll),@(CommentImage),@(CommentNew)];
     [btns setFinished:^(NSInteger index) {
-        //TODO:fetchData
-        self.style = [styles[index] integerValue];
+        self.commentStyle = [styles[index] integerValue];
         [self fetchData];
     }];
     [self.view addSubview:topView];

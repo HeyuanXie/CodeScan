@@ -7,6 +7,7 @@
 //
 
 #import "DidBindPhoneController.h"
+#import "NSString+HYMobileInsertInterval.h"
 
 @interface DidBindPhoneController ()
 
@@ -18,12 +19,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [self subviewStyle];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+-(void)subviewStyle {
+    self.phoneLbl.text = [NSString stringWithFormat:@"已绑定手机号:%@",[APIHELPER.userInfo.phone HTMobileInsertSecurity]];
 }
 
 - (IBAction)changeBindPhone:(id)sender {

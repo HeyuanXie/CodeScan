@@ -10,8 +10,11 @@
 
 @implementation APIHelper (Home)
 
--(void)fetchHomePageData:(ApiRequestCompleteBlock)complete {
-    [APIHELPER getWithURL:@"/api/article/home" param:nil complete:complete];
+-(void)fetchHomePageData:(NSString*)city complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:city forKey:@"city"];
+    [APIHELPER getWithURL:@"index/index" param:nil complete:complete];
 }
 
 @end

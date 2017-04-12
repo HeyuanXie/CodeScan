@@ -15,21 +15,25 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configHotCell:(id)model {
+-(void)configHotCell:(NSArray*)modelArr {
     int i = 0;
     for (UIView* subview in self.hotSubviews) {
+        DeriveModel* derive = modelArr[i];
         UIImageView* imgView = [subview viewWithTag:1000];
         UILabel* titleLbl = [subview viewWithTag:1001];
         UILabel* jifenLbl = [subview viewWithTag:1002];
         
-        NSString* text = jifenLbl.text;
+        titleLbl.text = derive.goodName;
+        [imgView sd_setImageWithURL:[NSURL URLWithString:derive.img] placeholderImage:ImageNamed(@"baidi")];
+        
+        NSString* text = [NSString stringWithFormat:@"%@积分",derive.shopPrice];
         NSMutableAttributedString* attrStr = [[NSMutableAttributedString alloc] initWithString:text];
         [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:12] range:[text rangeOfString:@"积分"]];
         [attrStr addAttribute:NSForegroundColorAttributeName value:[UIColor hyRedColor] range:[text rangeOfString:@"积分"]];
         jifenLbl.attributedText = attrStr;
         
         [subview bk_whenTapped:^{
-            APPROUTE(([NSString stringWithFormat:@"%@?id=%d",kDeriveDetailController,i]));
+            APPROUTE(([NSString stringWithFormat:@"%@?id=%ld",kDeriveDetailController,derive.goodId.integerValue]));
         }];
         i++;
     }

@@ -38,7 +38,7 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configWeekEndCell:(id)model type:(NSInteger)type {
+-(void)configWeekEndCell:(id)model {
     ArticleModel* article = (ArticleModel*)model;
     
     if (article.title) {

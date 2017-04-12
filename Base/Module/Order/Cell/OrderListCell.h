@@ -10,6 +10,9 @@
 
 @interface OrderListCell : UITableViewCell
 
+@property(nonatomic,copy)void (^commentBlock)(id model);
+
+
 +(NSString*)identify;
 -(void)configTheaterCell:(id)model;
 -(void)configDeriveCell:(id)model;

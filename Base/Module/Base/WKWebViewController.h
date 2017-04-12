@@ -7,9 +7,14 @@
 //
 
 #import "BaseViewController.h"
+#import <WebKit/WebKit.h>
 
 @interface WKWebViewController : BaseViewController
 
 @property(nonatomic,copy)NSString* url;
+@property(nonatomic,strong)WKWebView* webView;
+
+-(void)webViewInit;
+-(void)loadWebView;
 
 @end

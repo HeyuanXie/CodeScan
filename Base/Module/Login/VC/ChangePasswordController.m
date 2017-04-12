@@ -58,6 +58,7 @@
     [self.firstTf addTarget:self action:@selector(textFieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.secondTf addTarget:self action:@selector(textFieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
     
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:@"http://api.xfx.zhimadi.cn/captcha.html"] placeholderImage:nil];
 }
 
 -(void)textFieldDidChanged:(UITextField*)textField {
@@ -86,7 +87,7 @@
 
 -(void)otherImage {
     //TODO:另一张
-    
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:@"http://api.xfx.zhimadi.cn/captcha.html"] placeholderImage:nil];
 }
 
 -(void)submit {
@@ -99,6 +100,15 @@
         return;
     }
     //TODO:修改密码
+    [APIHELPER changePassword:self.firstTf.text captcha:self.secondTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            [self showMessage:@"修改密码成功"];
+            [APIHELPER logout];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
 
 @end

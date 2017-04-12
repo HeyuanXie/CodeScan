@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DeriveModel.h"
 
 @interface HomeHotCell : UITableViewCell
 
@@ -14,6 +15,6 @@
 
 +(NSString*)identify;
 
--(void)configHotCell:(id)model;
+-(void)configHotCell:(NSArray*)modelArr;
 
 @end

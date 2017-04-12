@@ -108,8 +108,8 @@ typedef enum : NSUInteger {
             cell.allViewHeight.constant = 0;
             cell.allView.hidden = YES;
             
-            NSDictionary* model = self.dataArray.count == 0 ? nil : self.dataArray[indexPath.row];
-            [cell configNewsCell:nil];
+            NSDictionary* dict = self.dataArray.count == 0 ? nil : self.dataArray[indexPath.row];
+            [cell configNewsCell:[ArticleModel yy_modelWithDictionary:dict]];
             [cell addLine:NO leftOffSet:12 rightOffSet:0];
             return cell;
         }
@@ -121,8 +121,8 @@ typedef enum : NSUInteger {
             cell.allViewHeight.constant = 0;
             cell.allView.hidden = YES;
             
-            NSDictionary* model = self.dataArray.count == 0 ? nil : self.dataArray[indexPath.row];
-            [cell configWeekEndCell:nil type:1];
+            NSDictionary* dict = self.dataArray.count == 0 ? nil : self.dataArray[indexPath.row];
+            [cell configWeekEndCell:[ArticleModel yy_modelWithDictionary:dict]];
             [cell addLine:NO leftOffSet:12 rightOffSet:0];
             return cell;
         }
@@ -139,6 +139,10 @@ typedef enum : NSUInteger {
                 APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&isFav=%@",kDeriveDetailController,model.goodId.integerValue,@(YES)]));
             }];
             [cell setExchangeClick:^(DeriveModel* model) {
+                if (model.storeCount.integerValue == 0) {
+                    [self showMessage:@"商品数量不足"];
+                    return ;
+                }
                 HYAlertView* alert = [HYAlertView sharedInstance];
                 [alert setSubBottonBackgroundColor:[UIColor hyRedColor]];
                 [alert setSubBottonTitleColor:[UIColor whiteColor]];
@@ -154,7 +158,7 @@ typedef enum : NSUInteger {
                                 if (isSuccess) {
                                     NSDictionary* param = responseObject[@"data"];
                                     //剧场下单成功和衍生品兑换成功公用一个VC
-                                    [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&",kTheaterCommitOrderSuccessController] withParam:param];
+                                    [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&order_sn=%@&",kTheaterCommitOrderSuccessController,responseObject[@"data"][@"order_sn"]] withParam:param];
                                 }else{
                                     [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
                                 }
@@ -212,12 +216,20 @@ typedef enum : NSUInteger {
         {
             break;
         }
+        case TypeNews:
+        {
+            //资讯
+            NSInteger articleId = [model[@"seek_id"] integerValue];
+            NSInteger type = [model[@"type"] integerValue];
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(YES),articleId,type,model[@"source_url"]]));
+            break;
+        }
         default:
         {
-            //资讯和周末去哪儿
-            NSInteger articleId = [model[@"collection_id"] integerValue];
+            //周末去哪儿
+            NSInteger articleId = [model[@"article_id"] integerValue];
             NSInteger type = [model[@"type"] integerValue];
-            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,@(YES),articleId,type]));
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(YES),articleId,type,model[@"source_url"]]));
             break;
         }
     }

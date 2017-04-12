@@ -15,6 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *allBtn;
 
 +(NSString*)identify;
--(void)configWeekEndCell:(id)model type:(NSInteger)type;
+-(void)configWeekEndCell:(id)model;
 
 @end

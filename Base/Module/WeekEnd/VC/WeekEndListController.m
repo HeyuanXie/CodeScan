@@ -16,7 +16,7 @@
 @interface WeekEndListController ()
 
 @property(nonatomic,strong)NSMutableArray* dataArray;
-@property(nonatomic,assign)NSInteger type;  //类型，0为小飞象资讯、1为周末去哪儿
+@property(nonatomic,assign)NSInteger type;  //类型，1为小飞象资讯、2为周末去哪儿
 
 @property(nonatomic,strong)NSMutableArray* countries;   //镇区
 @property(nonatomic,assign)NSInteger areaId;
@@ -62,7 +62,7 @@
     WeekEndCell* cell = [tableView dequeueReusableCellWithIdentifier:[WeekEndCell identify]];
     cell.allViewHeight.constant = 0;
     cell.allView.hidden = YES;
-    [cell configWeekEndCell:self.dataArray[indexPath.row] type:self.type];
+    [cell configWeekEndCell:self.dataArray[indexPath.row]];
     return cell;
 }
 
@@ -74,7 +74,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     ArticleModel* article = self.dataArray[indexPath.row];
-    APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,@(article.isFav.boolValue),article.articleId.integerValue,article.articleType.integerValue+1]));
+    NSInteger articleId = self.type == 1 ? article.seekId.integerValue : article.articleId.integerValue;
+    APPROUTE(([NSString stringWithFormat:@"%@?url=%@&isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,article.sourceUrl,@(article.isFav.boolValue),articleId,article.articleType.integerValue+2]));
 }
 #pragma mark - private methods
 -(NSMutableArray *)dataArray {
@@ -87,7 +88,7 @@
 -(void)fetchData {
     [self.dataArray removeAllObjects];
     [self showLoadingAnimation];
-    if (self.type == 1) {
+    if (self.type == 2) {
         [APIHELPER weekEndArticleAreaId:self.areaId cateId:self.cateId start:0 limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             [self hideLoadingAnimation];
             if (isSuccess) {
@@ -128,7 +129,7 @@
     [self addHeaderRefresh:^{
         @strongify(self);
         [self.dataArray removeAllObjects];
-        if (self.type == 1) {
+        if (self.type == 2) {
             [APIHELPER weekEndArticleAreaId:self.areaId cateId:self.cateId start:0 limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     NSArray* articleArr = [NSArray yy_modelArrayWithClass:[ArticleModel class] array:responseObject[@"data"][@"list"]];
@@ -170,7 +171,7 @@
     [self addFooterRefresh:^{
         @strongify(self);
         [self showLoadingAnimation];
-        if (self.type == 1) {
+        if (self.type == 2) {
             [APIHELPER weekEndArticleAreaId:self.areaId cateId:self.cateId start:self.dataArray.count limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 [self hideLoadingAnimation];
                 if (isSuccess) {
@@ -210,9 +211,9 @@
     }];
 }
 
--(void)subviewStyle  {
+-(void)subviewStyle {
     
-    self.title = self.type == 0 ? @"小飞象资讯" : @"周末去哪儿";
+    self.title = self.type == 1 ? @"小飞象资讯" : @"周末去哪儿";
     
     self.rightBtn = [HYTool getButtonWithFrame:CGRectMake(0, 0, 110, 36) title:@"镇区" titleSize:17 titleColor:[UIColor whiteColor] backgroundColor:nil blockForClick:nil];
     [self.rightBtn setImage:ImageNamed(@"arrow_down") forState:UIControlStateNormal];
@@ -227,7 +228,7 @@
         }
         return [RACSignal empty];
     }];
-    if (self.type == 1) {
+    if (self.type == 2) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightBtn];
     }
     
@@ -239,24 +240,27 @@
         [UIView animateWithDuration:0.2 animations:^{
             topView.Line.frame = CGRectMake(22, 98, width-20, 2);
         }];
-        //TODO:fetchData
+        self.cateId = 0;
+        [self fetchData];
     }];
     [topView setSecondClick:^{
         @strongify(topView);
         [UIView animateWithDuration:0.2 animations:^{
             topView.Line.frame = CGRectMake(22+width, 98, width-20, 2);
         }];
-        //TODO:fetchData
+        self.cateId = 1;
+        [self fetchData];
     }];
     [topView setThirdClick:^{
         @strongify(topView);
         [UIView animateWithDuration:0.2 animations:^{
             topView.Line.frame = CGRectMake(22+2*width, 98, width-20, 2);
         }];
-        //TODO:fetchData
+        self.cateId = 3;
+        [self fetchData];
     }];
     
-    if (self.type == 1) {
+    if (self.type == 2) {
         self.tableView.tableHeaderView = topView;
     }
     

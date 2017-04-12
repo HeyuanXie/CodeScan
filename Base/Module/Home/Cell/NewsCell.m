@@ -7,7 +7,6 @@
 //
 
 #import "NewsCell.h"
-#import "ArticleModel.h"
 #import "NSDate+HYFormat.h"
 
 @interface NewsCell ()

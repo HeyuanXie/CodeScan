@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CouponModel.h"
 
 @interface MineCouponCell : UITableViewCell
 
 +(NSString*)identify;
--(void)configCouponCell:(id)model;
+-(void)configCouponCell:(CouponModel*)model;
 
 @end

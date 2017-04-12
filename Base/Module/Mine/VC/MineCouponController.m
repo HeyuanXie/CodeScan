@@ -42,7 +42,8 @@
     MineCouponCell* cell = [tableView dequeueReusableCellWithIdentifier:[MineCouponCell identify]];
     [HYTool configTableViewCellDefault:cell];
     
-    [cell configCouponCell:nil];
+    CouponModel* coupon = self.dataArray[indexPath.row];
+    [cell configCouponCell:coupon];
     return cell;
 }
 
@@ -53,6 +54,19 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     //TODO:使用优惠券
+    
+    CouponModel* coupon = self.dataArray[indexPath.row];
+    switch (coupon.orderType.integerValue) {
+        case 1:{
+            APPROUTE(kTheaterListViewController);
+        }break;
+        case 2:{
+            APPROUTE(kYearCardHomeController);
+        }break;
+            
+        default:
+            break;
+    }
 }
 #pragma mark - private methods
 -(NSMutableArray *)dataArray {
@@ -62,9 +76,80 @@
     return _dataArray;
 }
 
--(void)fetchData {
-    self.dataArray = [@[@"",@""] mutableCopy];
-    [self.tableView reloadData];
+- (void)fetchData {
+    self.tableView.tableFooterView = nil;
+    [self showLoadingAnimation];
+    [APIHELPER mineCouponList:0 limit:6 orderType:0 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        
+        if (isSuccess) {
+            [self.dataArray removeAllObjects];
+            [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[CouponModel class] array:responseObject[@"data"][@"list"]] ];
+            [self.tableView reloadData];
+            
+            self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+            if (self.haveNext) {
+                [self appendFooterView];
+            }else{
+                [self removeFooterRefresh];
+            }
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+}
+
+-(void)headerViewInit {
+    @weakify(self);
+    [self addHeaderRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER mineCouponList:0 limit:6 orderType:0 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+
+            if (isSuccess) {
+                [self.dataArray removeAllObjects];
+                [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[CouponModel class] array:responseObject[@"data"][@"list"]] ];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
+}
+
+-(void)appendFooterView {
+    @weakify(self);
+    [self addFooterRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER mineCouponList:self.dataArray.count limit:6 orderType:0 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[CouponModel class] array:responseObject[@"data"][@"list"]] ];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
 }
 
 #pragma mark - IBActions

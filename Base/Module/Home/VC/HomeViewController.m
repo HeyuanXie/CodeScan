@@ -27,10 +27,13 @@
 
 @interface HomeViewController ()<UITextFieldDelegate>
 
+@property(nonatomic, strong) NSString* city;
 @property(nonatomic, strong) NSArray* info;
 @property(nonatomic, strong) NSMutableArray* banners;   //轮播
-@property(nonatomic, strong) NSMutableArray* news;  //资讯
-@property(nonatomic, strong) NSMutableArray* weekEnds;   //周末
+@property(nonatomic, strong) NSMutableArray* recents;   //近期
+@property(nonatomic, strong) NSMutableArray* news;      //资讯
+@property(nonatomic, strong) NSMutableArray* weekEnds;  //周末
+@property(nonatomic, strong) NSMutableArray* hots;      //热门衍生品
 
 @property(nonatomic, strong) UIButton* leftBtn;
 @property(nonatomic, strong) BaseNavigationController* addressNVC;
@@ -137,12 +140,9 @@
             return [self recentCellForTableView:tableView RowAtIndexPath:indexPath];
         case 2:
             return [self parentChildCellForTableView:tableView RowAtIndexPath:indexPath];
-//            return [self weekEndCellForTableView:tableView indexPath:indexPath];
         case 3:
-//            return [self themeCellForTableView:tableView RowAtIndexPath:indexPath];
             return [self newsCellForTableView:tableView indexPath:indexPath];
         case 4:
-//            return [self videoCellForTableView:tableView RowAtIndexPath:indexPath];
             return [self weekEndCellForTableView:tableView indexPath:indexPath];
         case 5:
             return [self hotCellForTableView:tableView RowAtIndexPath:indexPath];
@@ -175,10 +175,10 @@
                 APPROUTE(kYearCardHomeController);
                 break;
             case 2:
-                APPROUTE(([NSString stringWithFormat:@"%@?type=0",kWeekEndListController]));
+                APPROUTE(([NSString stringWithFormat:@"%@?type=1",kWeekEndListController]));
                 break;
             case 3:
-                APPROUTE(([NSString stringWithFormat:@"%@?type=1",kWeekEndListController]));
+                APPROUTE(([NSString stringWithFormat:@"%@?type=2",kWeekEndListController]));
                 break;
             case 4:
                 APPROUTE(kDeriveListController);
@@ -194,10 +194,10 @@
     }
     NSMutableArray* images = [NSMutableArray array];
     for (NSDictionary* slide in self.banners) {
-        [images addObject:slide[@"img"]];
+        [images addObject:slide[@"ad_img"]];
     }
     _banner.dataArray = images;
-    _banner.dataArray = @[@"http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg",@"http://pic55.nipic.com/file/20141208/19462408_171130083000_2.jpg",@"http://pic48.nipic.com/file/20140916/2531170_224158439000_2.jpg"];
+//    _banner.dataArray = @[@"http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg",@"http://pic55.nipic.com/file/20141208/19462408_171130083000_2.jpg",@"http://pic48.nipic.com/file/20140916/2531170_224158439000_2.jpg"];
     @weakify(self);
     _banner.clickAction = ^(NSInteger index,NSArray* dataArray){
         @strongify(self);
@@ -215,25 +215,26 @@
         [HYTool configTableViewCellDefault:cell];
         
         UIScrollView* scroll = [[UIScrollView alloc] init];
+        scroll.backgroundColor = [UIColor hyViewBackgroundColor];
         scroll.tag = 1000;
         [cell.contentView addSubview:scroll];
         scroll.showsHorizontalScrollIndicator = NO;
-        [scroll autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+        scroll.showsVerticalScrollIndicator = NO;
+        [scroll autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, -1, 0)];
     }
     UIScrollView* scroll = (UIScrollView*)[cell.contentView viewWithTag:1000];
-    for (int i=0; i<5; i++) {
+    for (int i=0; i<self.recents.count; i++) {
         RecentHotView* hotView = LOADNIB(@"HomeUseView", 0);
         [scroll addSubview:hotView];
         [hotView autoSetDimensionsToSize:[RecentHotView homeSize]];
         [hotView autoPinEdgeToSuperviewEdge:ALEdgeTop];
-        [hotView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10+(147+10)*i];
-        [hotView configRecentView:nil];
+        [hotView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10+(147+10)*i];\
+        [hotView configRecentView:self.recents[i]];
         [hotView setRecentViewClick:^(TheaterModel* model) {
-            APPROUTE(kTheaterDetailViewController);
+            APPROUTE(([NSString stringWithFormat:@"%@?Id=%ld&isFav=%@",kTheaterDetailViewController,model.playId.integerValue,@(model.isFav)]));
         }];
-        [hotView configRecentView:nil];
     }
-    scroll.contentSize = CGSizeMake(5*(10+147)+10, 0);
+    scroll.contentSize = CGSizeMake(self.recents.count*(10+147)+10, 0);
     return cell;
 }
 
@@ -266,7 +267,7 @@
     [HYTool configTableViewCellDefault:cell];
     cell.contentView.backgroundColor = [UIColor whiteColor];
     //TODO:configCell
-    [cell configHotCell:nil];
+    [cell configHotCell:self.hots];
     return cell;
 }
 -(NewsCell*)newsCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
@@ -284,8 +285,8 @@
     [cell.allBtn bk_whenTapped:^{
         APPROUTE(([NSString stringWithFormat:@"%@?type=%d",kWeekEndListController,0]));
     }];
-
-    [cell configNewsCell:nil];
+    
+    [cell configNewsCell:self.news[indexPath.row]];
     return cell;
 }
 
@@ -302,7 +303,8 @@
         cell.allView.hidden = YES;
     }
     //TODO:configCell
-    [cell configWeekEndCell:nil type:indexPath.section-2];
+    ArticleModel* week = self.weekEnds[indexPath.row];
+    [cell configWeekEndCell:week];
     [cell.allBtn bk_whenTapped:^{
         APPROUTE(([NSString stringWithFormat:@"%@?type=%ld",kWeekEndListController,indexPath.section-2]));
     }];
@@ -315,7 +317,7 @@
         case 0:
             return 210;
         case 1:
-            return 240;//257;
+            return 230;
         case 2:
             return 125;
         case 3:
@@ -346,19 +348,21 @@
         case 3:
         {
             //资讯
-            NSInteger articleId = [self.news[indexPath.row][@"article_id"] integerValue];
-            NSInteger type = [self.news[indexPath.row][@"article_type"] integerValue]+1;
-            BOOL isFav = [self.news[indexPath.row][@"is_fav"] boolValue];
-            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,@(isFav),articleId,type]));
+            ArticleModel* model = self.news[indexPath.row];
+            NSInteger articleId = model.articleId.integerValue;
+            NSInteger type = model.articleType.integerValue+1;
+            BOOL isFav = model.isFav.boolValue;
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(isFav),articleId,type,model.sourceUrl]));
             break;
         }
         case 4:
         {
             //周末去哪儿
-            NSInteger articleId = [self.weekEnds[indexPath.row][@"article_id"] integerValue];
-            NSInteger type = [self.weekEnds[indexPath.row][@"article_type"] integerValue]+1;
-            BOOL isFav = [self.weekEnds[indexPath.row][@"is_fav"] boolValue];
-            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,@(isFav),articleId,type]));
+            ArticleModel* model = self.news[indexPath.row];
+            NSInteger articleId = model.articleId.integerValue;
+            NSInteger type = model.articleType.integerValue+1;
+            BOOL isFav = model.isFav.boolValue;
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(isFav),articleId,type,model.sourceUrl]));
             break;
         }
         case 5:
@@ -371,6 +375,41 @@
 
 
 #pragma mark- private Method
+- (NSMutableArray *)banners {
+    if (!_banners) {
+        _banners = [NSMutableArray array];
+    }
+    return _banners;
+}
+
+- (NSMutableArray *)recents {
+    if (!_recents) {
+        _recents = [NSMutableArray array];
+    }
+    return _recents;
+}
+
+- (NSMutableArray *)news {
+    if (!_news) {
+        _news = [NSMutableArray array];
+    }
+    return _news;
+}
+
+- (NSMutableArray *)weekEnds {
+    if (!_weekEnds) {
+        _weekEnds = [NSMutableArray array];
+    }
+    return _weekEnds;
+}
+
+- (NSMutableArray *)hots {
+    if (!_hots) {
+        _hots = [NSMutableArray array];
+    }
+    return _hots;
+}
+
 -(void)effectInit {
     [self addSearchBar];
     
@@ -382,6 +421,7 @@
     _leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
 //    _leftBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
 //    _leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+    _leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 5);
     [_leftBtn addTarget:self action:@selector(filterAddress:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* leftItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftBtn];
     self.navigationItem.leftBarButtonItem = leftItem;
@@ -405,26 +445,41 @@
 }
 
 -(void)fetchData {
-//    [self showLoadingAnimation];
-//    @weakify(self);
-//    [APIHELPER fetchHomePageData:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-//        @strongify(self);
-//        [self hideLoadingAnimation];
-//        if (isSuccess) {
-//            [self.tableView reloadData];
-//        }else{
-//            [self showMessage:responseObject[@"msg"]];
-//        }
-//    }];
-    self.news = [@[@"",@"",@""] mutableCopy];
-    self.weekEnds = [@[@"",@"",@""] mutableCopy];
-    [self.tableView reloadData];
+    [self showLoadingAnimation];
+    @weakify(self);
+    [APIHELPER fetchHomePageData:self.city complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        @strongify(self);
+        [self hideLoadingAnimation];
+        if (isSuccess) {
+            
+            [self.banners removeAllObjects];
+            [self.banners addObjectsFromArray:responseObject[@"data"][@"ad_list"]];
+            
+            [self.recents removeAllObjects];
+            [self.recents addObjectsFromArray:[NSArray yy_modelArrayWithClass:[TheaterModel class] array:responseObject[@"data"][@"play_list"]]];
+            
+            [self.news removeAllObjects];
+            [self.news addObjectsFromArray:[NSArray yy_modelArrayWithClass:[ArticleModel class] array:responseObject[@"data"][@"seek_list"]]];
+            
+            [self.weekEnds removeAllObjects];
+            [self.weekEnds addObjectsFromArray:[NSArray yy_modelArrayWithClass:[ArticleModel class] array:responseObject[@"data"][@"article_list"]]];
+            
+            [self.hots removeAllObjects];
+            [self.hots addObjectsFromArray:[NSArray yy_modelArrayWithClass:[DeriveModel class] array:responseObject[@"data"][@"goods_list"]]];
+            
+            [self.tableView reloadData];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
 
 -(BaseNavigationController *)addressNVC {
     if (!_addressNVC) {
         HYAddressController *addressC = (HYAddressController *)VIEWCONTROLLER(kAddressController);
         addressC.backItemHidden = YES;
+        addressC.showLocation = YES;
+        addressC.showAllCountry = YES;
         @weakify(self);
         [addressC setSelectAddress:^(NSString *areaName, NSString *areaID) {
             @strongify(self);

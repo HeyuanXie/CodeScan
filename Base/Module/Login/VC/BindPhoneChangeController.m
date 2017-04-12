@@ -80,7 +80,7 @@
         }
     };
     
-    [APIHELPER fetchResetPWCode:APIHELPER.userInfo.phone complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+    [APIHELPER fetchCode:self.phoneTf.text type:@"bind" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [self hideLoadingAnimation];
         fetchCode(isSuccess,error.userInfo[NSLocalizedDescriptionKey]);
     }];
@@ -88,7 +88,24 @@
 
 #pragma mark - IBActions
 - (IBAction)bind:(id)sender {
-    
+    if ([self.phoneTf.text isEmpty]) {
+        [self showMessage:@"请输入新的手机号"];
+        return;
+    }
+    if ([self.codeTf.text isEmpty]) {
+        [self showMessage:@"请输入验证码"];
+        return;
+    }
+    [APIHELPER bindPhone:self.phoneTf.text code:self.codeTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            [self showMessage:@"修改绑定成功"];
+            APIHELPER.userInfo.phone = self.phoneTf.text;
+            UIViewController* vc = self.navigationController.viewControllers[2];
+            [self.navigationController popToViewController:vc animated:YES];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
 
 

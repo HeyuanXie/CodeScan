@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ArticleModel.h"
 
 @interface NewsCell : UITableViewCell
 

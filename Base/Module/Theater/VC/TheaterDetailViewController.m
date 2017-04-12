@@ -168,8 +168,8 @@
             cell.contentView.backgroundColor = [UIColor whiteColor];
             
             UIButton* btn = [HYTool getButtonWithFrame:CGRectMake((kScreen_Width-90)/2, 0, 90, 48) title:@"查看全部" titleSize:15 titleColor:[UIColor darkGrayColor] backgroundColor:nil blockForClick:^(id sender) {
-                //TODO:进入评论列表页面
-                APPROUTE(kCommentListController);
+                //进入评论列表页面,默认contentType为TypeTheater
+                APPROUTE(([NSString stringWithFormat:@"%@?playId=%ld",kCommentListController,self.playInfo.playId.integerValue]));
             }];
             [btn setImage:ImageNamed(@"下个页面箭头_灰") forState:UIControlStateNormal];
             btn.titleEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 10);

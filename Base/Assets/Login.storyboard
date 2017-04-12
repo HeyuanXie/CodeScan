@@ -1187,10 +1187,9 @@
                                 <rect key="frame" x="0.0" y="85" width="375" height="48"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iVE-AG-DJl">
-                                        <rect key="frame" x="49" y="9" width="130" height="30"/>
+                                        <rect key="frame" x="49" y="9" width="222" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Wq5-3Q-zlT"/>
-                                            <constraint firstAttribute="width" constant="130" id="YnI-sL-2mu"/>
                                         </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -1231,6 +1230,7 @@
                                 <constraints>
                                     <constraint firstItem="e1e-Fp-80c" firstAttribute="leading" secondItem="Lw6-Az-kt7" secondAttribute="leading" constant="12" id="AMt-OL-oNl"/>
                                     <constraint firstItem="Bek-79-Dee" firstAttribute="centerY" secondItem="Lw6-Az-kt7" secondAttribute="centerY" id="PxC-tN-a29"/>
+                                    <constraint firstItem="Bek-79-Dee" firstAttribute="leading" secondItem="iVE-AG-DJl" secondAttribute="trailing" constant="12" id="Qrg-Pi-f02"/>
                                     <constraint firstItem="iVE-AG-DJl" firstAttribute="centerY" secondItem="Lw6-Az-kt7" secondAttribute="centerY" id="b8X-9c-oRt"/>
                                     <constraint firstAttribute="trailing" secondItem="Bek-79-Dee" secondAttribute="trailing" constant="12" id="cJx-sb-sZD"/>
                                     <constraint firstItem="e1e-Fp-80c" firstAttribute="centerY" secondItem="Lw6-Az-kt7" secondAttribute="centerY" id="ixn-9V-FEy"/>

@@ -44,10 +44,16 @@
                  complete:(ApiRequestCompleteBlock)complete;
 
 -(void)theaterComment:(NSInteger)playId
-              orderId:(NSString*)orderId
+              orderId:(NSInteger)orderId
                 score:(NSInteger)score
               content:(NSString*)content
                images:(NSArray*)images
              complete:(ApiRequestCompleteBlock)complete;
+
+-(void)theaterCommentList:(NSInteger)start
+                    limit:(NSInteger)limit
+                   playId:(NSInteger)playId
+                     type:(NSInteger)type
+                 complete:(ApiRequestCompleteBlock)complete;
 
 @end

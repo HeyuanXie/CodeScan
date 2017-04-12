@@ -11,6 +11,8 @@
 @interface MineCommentCell : UITableViewCell
 
 +(NSString*)identify;
--(void)configMineCommentCell:(id)model;
+
+-(void)configTheaterCell:(id)model;
+-(void)configDeriveCell:(id)model;
 
 @end

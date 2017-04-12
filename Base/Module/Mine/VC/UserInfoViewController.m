@@ -194,13 +194,14 @@
                 }break;
                 case 4:{
                     HYAddressController *addressC = (HYAddressController *)VIEWCONTROLLER(kAddressController);
-                    
                     [addressC setSelectAddress:^(NSString *areaName, NSString *areaID) {
                         self.userInfo.areaId = areaID;
                         self.userInfo.areaName = areaName;
                         [self updateUserInfo];
                     }];
-                    [self presentViewController:[[UINavigationController alloc] initWithRootViewController:addressC] animated:YES completion:nil];
+                    UINavigationController* nvc = [[UINavigationController alloc] initWithRootViewController:addressC];
+                    nvc.navigationBar.barTintColor = [UIColor hyBarTintColor];
+                    [self presentViewController:nvc animated:YES completion:nil];
                 }break;
                 default:
                     break;

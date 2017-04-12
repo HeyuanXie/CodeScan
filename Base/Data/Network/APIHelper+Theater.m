@@ -153,7 +153,7 @@
 
 
 /**
- 剧场评价
+ 剧场添加评价
 
  @param playId <#playId description#>
  @param orderId <#orderId description#>
@@ -163,7 +163,7 @@
  @param complete <#complete description#>
  */
 -(void)theaterComment:(NSInteger)playId
-              orderId:(NSString *)orderId
+              orderId:(NSInteger)orderId
                 score:(NSInteger)score
               content:(NSString *)content
                images:(NSArray *)images
@@ -171,10 +171,35 @@
     
     NSMutableDictionary* param = [NSMutableDictionary dictionary];
     [param safe_setValue:@(playId) forKey:@"play_id"];
-    [param safe_setValue:orderId forKey:@"order_id"];
+    [param safe_setValue:@(orderId) forKey:@"order_id"];
     [param safe_setValue:@(score) forKey:@"score"];
     [param safe_setValue:images forKey:@"show_img"];
     [APIHELPER postWithURL:@"theatre_comment/comment" param:param complete:complete];
+}
+
+
+
+/**
+ 获取单个剧场评论列表
+
+ @param start <#start description#>
+ @param limit <#limit description#>
+ @param playId <#playId description#>
+ @param type 评论类型, 0:全部; 1:晒图
+ @param complete <#complete description#>
+ */
+-(void)theaterCommentList:(NSInteger)start
+                    limit:(NSInteger)limit
+                   playId:(NSInteger)playId
+                     type:(NSInteger)type
+                 complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:@(playId) forKey:@"play_id"];
+    [param safe_setValue:@(start) forKey:@"start"];
+    [param safe_setValue:@(limit) forKey:@"limit"];
+    [param safe_setValue:@(type) forKey:@"type"];
+    [APIHELPER postWithURL:@"theatre_comment/index" param:param complete:complete];
 }
 
 @end

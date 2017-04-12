@@ -22,6 +22,12 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -50,7 +56,11 @@
     cell.textLabel.text = indexPath.row == 0 ? @"修改登陆密码" : @"绑定手机号";
     cell.textLabel.textColor = [UIColor hyBlackTextColor];
     
-    cell.detailTextLabel.text = indexPath.row == 0 ? @"" : [APIHELPER.userInfo.phone HTMobileInsertSecurity];// @"153****9415";
+    if (indexPath.row==0) {
+        cell.detailTextLabel.text = @"";
+    }else{
+        cell.detailTextLabel.text = [APIHELPER.userInfo.phone isEmpty] ? @"" : [APIHELPER.userInfo.phone HTMobileInsertSecurity];// @"153****9415";
+    }
     cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
 
     return cell;
@@ -70,7 +80,7 @@
             APPROUTE(([NSString stringWithFormat:@"%@?contentType=%d",kCheckCodeController,0]));
             break;
         default:{
-            if (0) {
+            if ([APIHELPER.userInfo.phone isEmpty]) {
                 //没有绑定手机
                 APPROUTE(kBindPhoneController);
             }else{

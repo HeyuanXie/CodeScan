@@ -10,6 +10,6 @@
 
 @interface APIHelper (Home)
 
--(void)fetchHomePageData:(ApiRequestCompleteBlock)complete;
+-(void)fetchHomePageData:(NSString*)city complete:(ApiRequestCompleteBlock)complete;
 
 @end

@@ -11,6 +11,10 @@
 @interface CommentImageCell : UITableViewCell
 
 +(NSString*)identify;
--(void)configImageCell:(id)model;
+
+-(void)configTheaterCell:(id)model;
+-(void)configLectureCell:(id)model;
+-(void)configDeriveCell:(id)model;
+-(void)configSkillCell:(id)model;
 
 @end

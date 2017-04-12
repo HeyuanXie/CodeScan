@@ -15,10 +15,9 @@
 
 @property (assign, nonatomic) BOOL isFav;
 @property (assign, nonatomic) NSInteger articleId;
-@property (assign, nonatomic) NSInteger type;
+@property (assign, nonatomic) NSInteger type;   //0:资讯; 1:周末
 @property (weak, nonatomic) IBOutlet UITextField *commentTf;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
-
 
 @end
 
@@ -26,15 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-//    if (!self.isFav) {
-//        //从收藏列表进来直接就不为0，从文章列表进来就要从self.data中获取
-//        self.articleId = self.data.articleType.integerValue == 0 ? self.data.seekId.integerValue : self.data.articleId.integerValue;
-//        //从收藏列表进来直接是YES，从文章列表进来就要从self.data中获取
-//        self.isFav = self.data.isFav.boolValue;
-//        //从收藏列表进来直接有值，从文章列表进来就要从self.data中获取
-//        self.articleType = self.data.articleType.integerValue+2;
-//    }
     
     if (self.schemaArgu[@"isFav"]) {
         self.isFav = [[self.schemaArgu objectForKey:@"isFav"] boolValue];
@@ -45,9 +35,14 @@
     if (self.schemaArgu[@"type"]) {
         self.type = [[self.schemaArgu objectForKey:@"type"] integerValue];
     }
+    if (self.type == 2) {
+        self.url = [NSString stringWithFormat:@"http://xfx.zhimadi.cn/seek?seek_id=%ld",self.articleId];
+    }else{
+        self.url = [NSString stringWithFormat:@"http://xfx.zhimadi.cn/article?article_id=%ld",self.articleId];
+    }
     
     [self subviewStyle];
-//    [self loadWebView];
+    [self loadWebView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -55,9 +50,12 @@
 }
 
 //MARK: - override method
--(void)webViewStyle {
-    [super webViewStyle];
-    [self.webView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 50, 0)];
+
+-(void)webViewInit {
+    [super webViewInit];
+    
+    [self.webView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(-44, 0, -50, 0)];
+    [self.view sendSubviewToBack:self.webView];
 }
 
 //MARK: - private methods

@@ -46,9 +46,16 @@
     if (self.url != nil) {
         NSURL *url = [NSURL URLWithString:self.url];
         NSMutableURLRequest* urlReq = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20];
-//        [urlReq setValue:@"" forHTTPHeaderField:@""];   //定制请求头
+        [urlReq setValue:@"1" forHTTPHeaderField:@"App-id"];
+        [urlReq setValue:API_VERSION forHTTPHeaderField:@"Version"];
+        [urlReq setValue:[Global IDFV] forHTTPHeaderField:@"Client-id"];
+        if ([Global userAuth]) {
+            [urlReq setValue:[Global userAuth] forHTTPHeaderField:@"Auth"];
+        }
         [self.webView loadRequest:urlReq];
         [self showLoadingAnimation];
+    }else{
+        
     }
 }
 
@@ -56,9 +63,6 @@
     
     [self hideLoadingAnimation];
     
-    if ([webView stringByEvaluatingJavaScriptFromString:@"document.title"]) {
-        self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    }
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {

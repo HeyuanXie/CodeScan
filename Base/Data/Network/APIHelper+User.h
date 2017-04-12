@@ -45,6 +45,27 @@
 
 - (void)logout;
 
+//获取手机验证码
+- (void)fetchCode:(NSString*)phone
+             type:(NSString*)type
+         complete:(ApiRequestCompleteBlock)complete;
+
+//检验手机验证码
+- (void)checkCode:(NSString*)phone
+             code:(NSString*)code
+             type:(NSString*)type
+         complete:(ApiRequestCompleteBlock)complete;
+
+//绑定手机
+- (void)bindPhone:(NSString*)phone
+             code:(NSString*)code
+         complete:(ApiRequestCompleteBlock)complete;
+
+//修改密码
+- (void)changePassword:(NSString*)newPassword
+               captcha:(NSString*)captcha
+              complete:(ApiRequestCompleteBlock)complete;
+
 //收藏
 - (void)collect:(NSInteger)collectionId
            type:(NSInteger)type
@@ -70,5 +91,17 @@
 
 //年卡
 - (void)mineYearCardList:(NSInteger)start limit:(NSInteger)limit complete:(ApiRequestCompleteBlock)complete;
+
+//优惠券
+- (void)mineCouponList:(NSInteger)start
+                 limit:(NSInteger)limit
+             orderType:(NSInteger)orderType
+              complete:(ApiRequestCompleteBlock)complete;
+
+//我的评价列表
+- (void)mineCommentList:(NSInteger)start
+                  limit:(NSInteger)limit
+                   type:(NSInteger)type
+               complete:(ApiRequestCompleteBlock)complete;
 
 @end

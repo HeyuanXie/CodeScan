@@ -31,17 +31,16 @@
 
 -(void)configLeftView:(DeriveModel*)model {
     
-    UIImageView* productImg = (UIImageView*)[self.rightView viewWithTag:1000];
-    UILabel* nameLbl = (UILabel*)[self.rightView viewWithTag:1001];
-    UILabel* priceLbl = (UILabel*)[self.rightView viewWithTag:1002];
-    UIButton* exchangeBtn = (UIButton*)[self.rightView viewWithTag:1003];
-    UIImageView* noneImg = (UIImageView*)[self.rightView viewWithTag:1004];
+    UIImageView* productImg = (UIImageView*)[self.leftView viewWithTag:1000];
+    UILabel* nameLbl = (UILabel*)[self.leftView viewWithTag:1001];
+    UILabel* priceLbl = (UILabel*)[self.leftView viewWithTag:1002];
+    UIButton* exchangeBtn = (UIButton*)[self.leftView viewWithTag:1003];
+    UIImageView* noneImg = (UIImageView*)[self.leftView viewWithTag:1004];
     
     [productImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:ImageNamed(@"baidi")];
     nameLbl.text = model.goodName;
     priceLbl.text = [NSString stringWithFormat:@"%ld",model.shopPrice.integerValue];
     exchangeBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        
         if (self.exchangeClick) {
             self.exchangeClick(model);
         }
@@ -77,11 +76,11 @@
         self.rightView.hidden = NO;
     }
     
-    UIImageView* productImg = (UIImageView*)[self.leftView viewWithTag:1000];
-    UILabel* nameLbl = (UILabel*)[self.leftView viewWithTag:1001];
-    UILabel* priceLbl = (UILabel*)[self.leftView viewWithTag:1002];
-    UIButton* exchangeBtn = (UIButton*)[self.leftView viewWithTag:1003];
-    UIImageView* noneImg = (UIImageView*)[self.leftView viewWithTag:1004];
+    UIImageView* productImg = (UIImageView*)[self.rightView viewWithTag:1000];
+    UILabel* nameLbl = (UILabel*)[self.rightView viewWithTag:1001];
+    UILabel* priceLbl = (UILabel*)[self.rightView viewWithTag:1002];
+    UIButton* exchangeBtn = (UIButton*)[self.rightView viewWithTag:1003];
+    UIImageView* noneImg = (UIImageView*)[self.rightView viewWithTag:1004];
     
     [productImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:ImageNamed(@"baidi")];
     nameLbl.text = model.goodName;

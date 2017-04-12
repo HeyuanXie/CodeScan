@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="133"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JKB-7O-BaN">
@@ -29,25 +29,25 @@
                                 <rect key="frame" x="231" y="0.0" width="122" height="122"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余观看次数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LPM-da-XHY">
-                                        <rect key="frame" x="0.0" y="40.5" width="122" height="21"/>
+                                        <rect key="frame" x="0.0" y="39" width="122" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="fPG-L1-q4r"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXu-jS-43Y">
-                                        <rect key="frame" x="0.0" y="63.5" width="122" height="21"/>
+                                        <rect key="frame" x="0.0" y="62" width="122" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="Yy9-Pv-Ho6"/>
+                                            <constraint firstAttribute="height" constant="25" id="Yy9-Pv-Ho6"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="verticalDotLine.png" translatesAutoresizingMaskIntoConstraints="NO" id="ylc-6n-27d" userLabel="dotLine">
-                                        <rect key="frame" x="0.0" y="15" width="0.5" height="92"/>
+                                        <rect key="frame" x="0.0" y="15" width="1" height="92"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="0.5" id="kcF-He-FEe"/>
                                         </constraints>
@@ -75,19 +75,19 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="U31-yV-Fd1"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有效期至: 2018-01-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ap6-ma-FBp">
-                                        <rect key="frame" x="15" y="95.5" width="216" height="14.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="15" y="92" width="216" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="卡号: 123456789" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4j-WG-yF1">
-                                        <rect key="frame" x="15" y="75" width="216" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <rect key="frame" x="15" y="69" width="216" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -100,9 +100,9 @@
                                     <constraint firstItem="idY-hC-I8o" firstAttribute="top" secondItem="ERZ-5Z-tdy" secondAttribute="top" constant="15" id="Vwc-YF-m8E"/>
                                     <constraint firstItem="Ap6-ma-FBp" firstAttribute="leading" secondItem="ERZ-5Z-tdy" secondAttribute="leading" constant="15" id="X3e-1h-UMc"/>
                                     <constraint firstAttribute="trailing" secondItem="h4j-WG-yF1" secondAttribute="trailing" id="Y1O-BN-0U5"/>
-                                    <constraint firstItem="Ap6-ma-FBp" firstAttribute="top" secondItem="h4j-WG-yF1" secondAttribute="bottom" constant="3" id="im7-kI-h3v"/>
+                                    <constraint firstItem="Ap6-ma-FBp" firstAttribute="top" secondItem="h4j-WG-yF1" secondAttribute="bottom" constant="5" id="im7-kI-h3v"/>
                                     <constraint firstItem="idY-hC-I8o" firstAttribute="leading" secondItem="ERZ-5Z-tdy" secondAttribute="leading" constant="15" id="jMx-1b-be5"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ap6-ma-FBp" secondAttribute="bottom" constant="12" id="n4d-ao-8kr"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ap6-ma-FBp" secondAttribute="bottom" constant="14" id="n4d-ao-8kr"/>
                                 </constraints>
                             </view>
                         </subviews>

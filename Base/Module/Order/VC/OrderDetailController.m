@@ -8,6 +8,7 @@
 
 #import "OrderDetailController.h"
 #import "OrderCodeController.h"
+#import "CommentViewController.h"
 #import "OrderDetailHeadCell.h"
 #import "OrderRefundCell.h"
 #import "OrderCodeCell.h"
@@ -126,11 +127,13 @@
                 address = self.data[@"theatre_name"];
                 break;
             case 1:
-                address = self.data[@"exchange_total_price"];
+                address = self.data[@"exchange_place"];
                 break;
             default:
-                
                 break;
+        }
+        if ([address isEqualToString:@"线上兑换"]) {
+            return;
         }
         [self geocoderClick:address];
         return;
@@ -207,7 +210,10 @@
             [btn setTitle:@"去评价" forState:UIControlStateNormal];
             [btn bk_whenTapped:^{
                 //TODO:评价
-                APPROUTE(kCommentViewController);
+                CommentViewController* vc = (CommentViewController*)VIEWCONTROLLER(kCommentViewController);
+                vc.data = self.data;
+                vc.type = CommentTypeDerive;
+                [self.navigationController pushViewController:vc animated:YES];
             }];
         }else{
             btn.hidden = YES;

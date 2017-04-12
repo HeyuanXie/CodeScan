@@ -138,7 +138,6 @@
         NSData* areaCodeData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"area.json" ofType:nil]];
         self.addresses = [NSJSONSerialization JSONObjectWithData:areaCodeData options:NSJSONReadingAllowFragments error:nil];
     }
-    self.showAllCountry = YES;
     if (self.showQuickSearch) {
         NSMutableDictionary* keyCodes = [NSMutableDictionary dictionaryWithCapacity:self.addresses.count];
         for (NSDictionary* dict in self.addresses) {
@@ -156,14 +155,17 @@
         self.searchIndexs = [NSArray arrayWithArray:keys];
         
         NSMutableArray* mKeys = [NSMutableArray arrayWithArray:keys];
-        [mKeys insertObject:kLocationCityTag atIndex:0];
+        if (self.showLocation) {
+            [mKeys insertObject:kLocationCityTag atIndex:0];
+        }
         if (self.showAllCountry) {
             [mKeys insertObject:kAllCountryTag atIndex:0];
         }
         self.areaKeys = [NSArray arrayWithArray:mKeys];
-        
-        keyCodes[kAllCountryTag] = @[@{@"k":@(0),@"n":@"全国"}];
-        keyCodes[kLocationCityTag] = @[@{@"k":@(-1),@"n":@"定位中..."}];
+        if (self.showLocation) {
+            keyCodes[kAllCountryTag] = @[@{@"k":@(0),@"n":@"全国"}];
+            keyCodes[kLocationCityTag] = @[@{@"k":@(-1),@"n":@"定位中..."}];
+        }
         self.areaCodeDict = keyCodes;
     }else{
         self.areaKeys = @[kAllCountryTag];
@@ -174,6 +176,10 @@
 
 
 #pragma mark tableview source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.areaKeys.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSString *key = self.areaKeys[section];
     NSArray *contrys = self.areaCodeDict[key];
@@ -193,10 +199,6 @@
     }
     cell.textLabel.font = [UIFont systemFontOfSize:14.0];
     return cell;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.areaKeys.count;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

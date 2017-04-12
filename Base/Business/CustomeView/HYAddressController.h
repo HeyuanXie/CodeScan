@@ -12,6 +12,7 @@
 
 @property(nonatomic,assign) BOOL isFilter;  //是否显示在其他VC上，如果为YES则右上角显示“关闭”按钮
 @property(nonatomic,assign) BOOL showAllCountry;    //是否显示全国
+@property(nonatomic,assign) BOOL showLocation;      //是否有定位
 
 @property(nonatomic,copy)void(^selectAddress)(NSString* address, NSString* areaCode);
 @property(nonatomic,copy)void(^filterDismiss)();

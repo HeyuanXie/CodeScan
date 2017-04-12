@@ -8,7 +8,7 @@
 
 #import "DeriveDetailController.h"
 #import "UIViewController+Extension.h"
-
+#import "HYAlertView.h"
 
 @interface DeriveDetailController ()
 @property (weak, nonatomic) IBOutlet UIImageView *botImgV;
@@ -31,15 +31,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     if (self.schemaArgu[@"isFav"]) {
         self.isFav = [[self.schemaArgu objectForKey:@"isFav"] boolValue];
     }
-    
     if (self.schemaArgu[@"id"]) {
         self.productId = [[self.schemaArgu objectForKey:@"id"] integerValue];
     }
 
-    [self configNavigation];
     [self webViewInit];
     // Do any additional setup after loading the view.
 }
@@ -67,7 +66,8 @@
         if (isSuccess) {
             self.data = responseObject[@"data"];
             self.isEnough = self.data[@"is_enough_price"];
-            self.isFav = self.data[@"is_fav"];
+            self.isFav = [self.data[@"is_fav"] boolValue];
+            [self configNavigation];
             [self subviewStyle];
             [self subviewBind];
         }
@@ -132,15 +132,34 @@
     }
 }
 -(void)exchange {
-    //TODO:兑换
-    [self showLoadingAnimation];
-    [APIHELPER deriveExchange:self.productId buyNum:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-        [self hideLoadingAnimation];
-        
-        if (isSuccess) {
-            [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&",kTheaterCommitOrderSuccessController] withParam:self.data];
-        }else{
-            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+    
+    HYAlertView* alert = [HYAlertView sharedInstance];
+    [alert setSubBottonBackgroundColor:[UIColor hyRedColor]];
+    [alert setSubBottonTitleColor:[UIColor whiteColor]];
+    [alert setCancelButtonBorderColor:[UIColor hyBarTintColor]];
+    [alert setCancelButtonTitleColor:[UIColor hyBarTintColor]];
+    [alert setCancelButtonBackgroundColor:[UIColor whiteColor]];
+    [alert setBtnCornerRadius:5];
+    [alert showAlertViewWithMessage:[NSString stringWithFormat:@"是否用%ld积分兑换该商品?",[self.data[@"shop_price"] integerValue]] subBottonTitle:@"确定" cancelButtonTitle:@"取消" handler:^(AlertViewClickBottonType bottonType) {
+        switch (bottonType) {
+            case AlertViewClickBottonTypeSubBotton: {
+                //兑换
+                [self showLoadingAnimation];
+                [APIHELPER deriveExchange:[self.data[@"goods_id"] integerValue] buyNum:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    [self hideLoadingAnimation];
+                    if (isSuccess) {
+                        NSDictionary* param = responseObject[@"data"];
+                        //剧场下单成功和衍生品兑换成功公用一个VC
+                        [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&order_sn=%@&",kTheaterCommitOrderSuccessController,responseObject[@"data"][@"order_sn"]] withParam:param];
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                }];
+                break;
+            }
+            default:{
+                break;
+            }
         }
     }];
 }

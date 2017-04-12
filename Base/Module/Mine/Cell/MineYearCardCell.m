@@ -27,8 +27,8 @@
 -(void)configYearCardCell:(id)model {
     
     self.titleLbl.text = model[@"card_name"];
-    self.numLbl.text = model[@"card_sn"];
-    self.timeLbl.text = [[model[@"expire_time"] componentsSeparatedByString:@" "] firstObject];
+    self.numLbl.text = [NSString stringWithFormat:@"卡号: %@",model[@"card_sn"]];
+    self.timeLbl.text = [NSString stringWithFormat:@"有效期至: %@",[HYTool dateStringWithString:model[@"expire_time"] inputFormat:nil outputFormat:@"yyyy-MM-dd"]];
     self.countLbl.text = [model[@"left_times"] stringValue];
 }
 

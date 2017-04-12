@@ -7,6 +7,7 @@
 //
 
 #import "OrderHomeController.h"
+#import "CommentViewController.h"
 #import "OrderFilterTableController.h"
 #import "OrderListCell.h"
 #import "CustomJumpBtns.h"
@@ -77,13 +78,22 @@
     [HYTool configTableViewCellDefault:cell];
     
     NSDictionary* model = self.dataArray[indexPath.row];
+    CommentType type;
     if (self.typeId == 0) {
         [cell configTheaterCell:model];
+        type = CommentTypeTheater;
     }else if (self.typeId == 1) {
         [cell configDeriveCell:model];
+        type = CommentTypeDerive;
     }else{
         [cell configYearCardCell:model];
     }
+    [cell setCommentBlock:^(id model) {
+        CommentViewController* vc = (CommentViewController*)VIEWCONTROLLER(kCommentViewController);
+        vc.data = model;
+        vc.type = type;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
     return cell;
 }
 

@@ -9,6 +9,7 @@
 //修改登陆密码、修改绑定手机的中间验证页面
 #import "CheckCodeController.h"
 #import "HYCountDown.h"
+#import "NSString+HYMobileInsertInterval.h"
 
 @interface CheckCodeController ()<UITextFieldDelegate>
 
@@ -40,11 +41,11 @@
 
 #pragma mark - textField delegate
 -(void)textFieldDidChanged:(UITextField*)textField {
-if (![self.codeTf.text isEmpty]) {
-    self.nextBtn.backgroundColor = [UIColor hyBarTintColor];
-}else{
-    self.nextBtn.backgroundColor = RGB(211, 211, 211, 1.0);
-}
+    if (self.codeTf.text.integerValue/10000 != 0) {
+        self.nextBtn.backgroundColor = [UIColor hyBarTintColor];
+    }else{
+        self.nextBtn.backgroundColor = RGB(211, 211, 211, 1.0);
+    }
 }
 
 #pragma mark - private methods
@@ -54,6 +55,7 @@ if (![self.codeTf.text isEmpty]) {
     [HYTool configViewLayer:self.getCodeBtn size:13];
     
     self.codeTf.keyboardType = UIKeyboardTypeNumberPad;
+    self.phoneLbl.text = [NSString stringWithFormat:@"验证码将发送至手机:%@",[APIHELPER.userInfo.phone HTMobileInsertSecurity]];
 }
 
 -(void)subviewBind {
@@ -82,7 +84,7 @@ if (![self.codeTf.text isEmpty]) {
         }
     };
     
-    [APIHELPER fetchResetPWCode:APIHELPER.userInfo.phone complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+    [APIHELPER fetchCode:APIHELPER.userInfo.phone type:@"safe" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [self hideLoadingAnimation];
         fetchCode(isSuccess,error.userInfo[NSLocalizedDescriptionKey]);
     }];
@@ -93,17 +95,22 @@ if (![self.codeTf.text isEmpty]) {
         [self showMessage:@"请输入验证码"];
         return;
     }
-    //TODO:checkCode，成功后到下一个页面
-    switch (self.contentType) {
-        case TypePassword:
-            APPROUTE(kChangePasswordController);
-            break;
-        case TypePhone:
-            APPROUTE(kBindPhoneChangeController);
-            break;
-        default:
-            break;
-    }
+    [APIHELPER checkCode:APIHELPER.userInfo.phone code:self.codeTf.text type:@"safe" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            switch (self.contentType) {
+                case TypePassword:
+                    APPROUTE(kChangePasswordController);
+                    break;
+                case TypePhone:
+                    APPROUTE(kBindPhoneChangeController);
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
 
 @end

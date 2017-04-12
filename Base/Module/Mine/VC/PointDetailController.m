@@ -151,15 +151,15 @@
     UILabel* numLbl = [cell.contentView viewWithTag:1000];
     
     NSInteger point = [model[@"change_points"] integerValue];
-    numLbl.text = [NSString stringWithFormat:@"%ld",point];
     numLbl.textColor = point > 0 ? RGB(242, 179, 87, 1.0) : [UIColor colorWithString:@"2cbb80"];
-    
+    NSString* text = point > 0 ? [NSString stringWithFormat:@"+%ld",point] : [NSString stringWithFormat:@"%ld",point];
+    numLbl.text = text;
+
     cell.textLabel.text = model[@"change_des"];
     cell.textLabel.font = [UIFont systemFontOfSize:15];
     cell.textLabel.textColor = [UIColor hyBlackTextColor];
     
-//    cell.detailTextLabel.text = [HYTool dateStringWithString:model[@"create_time"] inputFormat:nil outputFormat:@"yyyy-MM-dd HH:mm"];
-    cell.detailTextLabel.text = @"2017-04-04 09:32";
+    cell.detailTextLabel.text = [HYTool dateStringWithString:model[@"create_time"] inputFormat:nil outputFormat:@"yyyy-MM-dd HH:mm"];
     cell.detailTextLabel.textColor = RGB(161, 161, 161, 1.0);
 }
 

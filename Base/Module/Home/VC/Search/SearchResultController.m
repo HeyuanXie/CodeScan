@@ -89,7 +89,7 @@ typedef enum : NSUInteger {
             cell.contentView.backgroundColor = [UIColor whiteColor];
             cell.allViewHeight.constant = 0;
             cell.allView.hidden = YES;
-            [cell configWeekEndCell:nil type:0];
+            [cell configWeekEndCell:nil];
             return cell;
         }
     }
@@ -127,7 +127,7 @@ typedef enum : NSUInteger {
             NSInteger articleId = [self.dataArray[indexPath.section][@"article_id"] integerValue];
             NSInteger type = [self.dataArray[indexPath.section][@"article_type"] integerValue]+1;
             BOOL isFav = [self.dataArray[indexPath.section][@"is_fav"] boolValue];
-            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,@(isFav),articleId,type]));
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(isFav),articleId,type,model[@"source_url"]]));
             break;
         }
     }

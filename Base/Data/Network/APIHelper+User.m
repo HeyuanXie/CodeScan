@@ -109,6 +109,73 @@
     kCleanPassword;
 }
 
+
+
+/**
+ 获取手机验证码
+
+ @param phone <#phone description#>
+ @param type 验证码类型,safe:安全验证; bind:绑定手机
+ @param complete <#complete description#>
+ */
+- (void)fetchCode:(NSString*)phone
+             type:(NSString*)type
+         complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:phone forKey:@"phone"];
+    [param safe_setValue:type forKey:@"type"];
+
+    [APIHELPER postWithURL:@"auth/sendCode" param:param complete:complete];
+}
+
+//
+/**
+ 检验手机验证码
+
+ @param phone <#phone description#>
+ @param code <#code description#>
+ @param type 验证码类型,safe:安全验证; bind:绑定手机
+ @param complete <#complete description#>
+ */
+- (void)checkCode:(NSString*)phone
+             code:(NSString*)code
+             type:(NSString*)type
+         complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:phone forKey:@"phone"];
+    [param safe_setValue:code forKey:@"code"];
+    [param safe_setValue:type forKey:@"type"];
+    
+    [APIHELPER postWithURL:@"auth/checkCode" param:param complete:complete];
+}
+
+//绑定手机
+- (void)bindPhone:(NSString*)phone
+             code:(NSString*)code
+         complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:phone forKey:@"phone"];
+    [param safe_setValue:code forKey:@"code"];
+    
+    [APIHELPER postWithURL:@"auth/bindPhone" param:param complete:complete];
+}
+
+//修改密码
+- (void)changePassword:(NSString*)newPassword
+               captcha:(NSString*)captcha
+              complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:newPassword forKey:@"new_password"];
+    [param safe_setValue:captcha forKey:@"captcha"];
+    
+    [APIHELPER postWithURL:@"auth/changePassword" param:param complete:complete];
+}
+
+
 - (void)collect:(NSInteger)collectionId
            type:(NSInteger)type
        complete:(ApiRequestCompleteBlock)complete {
@@ -187,6 +254,49 @@
     [param safe_setValue:@(start) forKey:@"start"];
     [param safe_setValue:@(limit) forKey:@"limit"];
     [APIHELPER getWithURL:@"card/myCardList" param:param complete:complete];
+}
+
+
+
+/**
+ 获取我的优惠券列表
+
+ @param start <#start description#>
+ @param limit <#limit description#>
+ @param orderType 优惠券使用类型,0:全部，1:购票使用，2:年卡使用
+ @param complete <#complete description#>
+ */
+- (void)mineCouponList:(NSInteger)start
+                 limit:(NSInteger)limit
+             orderType:(NSInteger)orderType
+              complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:@(start) forKey:@"start"];
+    [param safe_setValue:@(limit) forKey:@"limit"];
+    [param safe_setValue:@(orderType) forKey:@"order_type"];
+    [APIHELPER getWithURL:@"coupon/my" param:param complete:complete];
+}
+
+
+/**
+ 获取我的评价列表
+
+ @param start <#start description#>
+ @param limit <#limit description#>
+ @param type 评价类型,1:剧评; 2:商品评价
+ @param complete <#complete description#>
+ */
+- (void)mineCommentList:(NSInteger)start
+                  limit:(NSInteger)limit
+                   type:(NSInteger)type
+               complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:@(start) forKey:@"start"];
+    [param safe_setValue:@(limit) forKey:@"limit"];
+    [param safe_setValue:@(type) forKey:@"type"];
+    [APIHELPER getWithURL:@"user/comments" param:param complete:complete];
 }
 
 @end

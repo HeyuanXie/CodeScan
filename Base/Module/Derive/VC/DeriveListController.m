@@ -11,6 +11,7 @@
 #import "CustomJumpBtns.h"
 #import "HYAlertView.h"
 #import "UIButton+HYButtons.h"
+#import "NSString+Extension.h"
 #import "DeriveModel.h"
 
 @interface DeriveListController ()
@@ -77,6 +78,10 @@
         APPROUTE(([NSString stringWithFormat:@"%@?id=%ld",kDeriveDetailController,model.goodId.integerValue]));
     }];
     [cell setExchangeClick:^(DeriveModel* model) {
+        if (model.storeCount.integerValue == 0) {
+            [self showMessage:@"商品数量不足"];
+            return ;
+        }
         HYAlertView* alert = [HYAlertView sharedInstance];
         [alert setSubBottonBackgroundColor:[UIColor hyRedColor]];
         [alert setSubBottonTitleColor:[UIColor whiteColor]];
@@ -84,7 +89,7 @@
         [alert setCancelButtonTitleColor:[UIColor hyBarTintColor]];
         [alert setCancelButtonBackgroundColor:[UIColor whiteColor]];
         [alert setBtnCornerRadius:5];
-        [alert showAlertViewWithMessage:[NSString stringWithFormat:@"是否用%ld积分兑换改商品?",model.shopPrice.integerValue] subBottonTitle:@"确定" cancelButtonTitle:@"取消" handler:^(AlertViewClickBottonType bottonType) {
+        [alert showAlertViewWithMessage:[NSString stringWithFormat:@"是否用%ld积分兑换该商品?",model.shopPrice.integerValue] subBottonTitle:@"确定" cancelButtonTitle:@"取消" handler:^(AlertViewClickBottonType bottonType) {
             switch (bottonType) {
                 case AlertViewClickBottonTypeSubBotton: {
                     //TODO:兑换
@@ -92,7 +97,7 @@
                         if (isSuccess) {
                             NSDictionary* param = responseObject[@"data"];
                             //剧场下单成功和衍生品兑换成功公用一个VC
-                            [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&",kTheaterCommitOrderSuccessController] withParam:param];
+                            [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&order_sn=%@&",kTheaterCommitOrderSuccessController,responseObject[@"data"][@"order_sn"]] withParam:param];
                         }else{
                             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
                         }
@@ -244,7 +249,9 @@
     }];
     [scroll addSubview:btns];
     
-    [self.scoreBtn setTitle:[NSString stringWithFormat:@"积分%@",self.minePoint] forState:UIControlStateNormal];
+    NSString* title = [NSString stringWithFormat:@"积分%@",self.minePoint];
+    NSAttributedString* attrTitle = [title addAttribute:@[NSForegroundColorAttributeName] values:@[[UIColor hyBlueTextColor]] subStrings:@[self.minePoint]];
+    [self.scoreBtn setAttributedTitle:attrTitle forState:UIControlStateNormal];
 }
 
 -(void)subviewBind {

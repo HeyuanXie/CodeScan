@@ -12,9 +12,14 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "UITableViewCell+HYCell.h"
 
+typedef enum : NSUInteger {
+    TypeTheater = 1,
+    TypeDerive,
+} ContentType;
+
 @interface CommentController : BaseTableViewController
 
-@property(nonatomic,assign)BOOL isTheater;
+@property(nonatomic,assign)ContentType contentType;
 @property(nonatomic,strong)NSMutableArray* dataArray;
 
 @end
@@ -22,12 +27,15 @@
 @implementation CommentController
 
 -(void)viewDidLoad {
+    
+    self.haveTableFooter = YES;
     [self subviewStyle];
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[MineCommentCell identify] bundle:nil] forCellReuseIdentifier:[MineCommentCell identify]];
     self.tableView.backgroundColor = [UIColor whiteColor];
     [self subviewStyle];
     [self fetchData];
+    [self headerViewInit];
 }
 
 #pragma mark - talbeView dataSource
@@ -39,8 +47,15 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MineCommentCell* cell = [tableView dequeueReusableCellWithIdentifier:[MineCommentCell identify]];
+    [HYTool configTableViewCellDefault:cell];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     
-    [cell configMineCommentCell:nil];
+    NSDictionary* model = self.dataArray[indexPath.row];
+    if (self.contentType == TypeTheater) {
+        [cell configTheaterCell:model];
+    }else{
+        [cell configDeriveCell:model];
+    }
     [cell addLine:NO leftOffSet:0 rightOffSet:0];
     return cell;
 }
@@ -49,7 +64,12 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [tableView fd_heightForCellWithIdentifier:[MineCommentCell identify] cacheByIndexPath:indexPath configuration:^(MineCommentCell* cell) {
         
-        [cell configMineCommentCell:nil];
+        NSDictionary* model = self.dataArray[indexPath.row];
+        if (self.contentType == TypeTheater) {
+            [cell configTheaterCell:model];
+        }else{
+            [cell configDeriveCell:model];
+        }
         [cell addLine:NO leftOffSet:0 rightOffSet:0];
     }];
 }
@@ -65,15 +85,89 @@
     return _dataArray;
 }
 
--(void)fetchData {
-    self.dataArray = [@[@"",@""] mutableCopy];
-    [self.tableView reloadData];
+
+- (void)fetchData {
+    self.tableView.tableFooterView = nil;
+    [self showLoadingAnimation];
+    [APIHELPER mineCommentList:0 limit:6 type:self.contentType complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        
+        if (isSuccess) {
+            [self.dataArray removeAllObjects];
+            [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+            [self.tableView reloadData];
+
+            self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+            if (self.haveNext) {
+                [self appendFooterView];
+            }else{
+                [self removeFooterRefresh];
+            }
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+}
+
+-(void)headerViewInit {
+    @weakify(self);
+    [self addHeaderRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER mineCommentList:0 limit:6 type:self.contentType complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+
+            if (isSuccess) {
+                [self.dataArray removeAllObjects];
+                [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
+}
+
+-(void)appendFooterView {
+    @weakify(self);
+    [self addFooterRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER mineCommentList:self.dataArray.count limit:6 type:self.contentType complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
 }
 
 -(void)subviewStyle {
     UIView* headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, zoom(15))];
     headView.backgroundColor = [UIColor hyViewBackgroundColor];
     self.tableView.tableHeaderView = headView;
+    
+    self.tableView.backgroundColor = [UIColor hyViewBackgroundColor];
 }
 
 @end
@@ -107,19 +201,21 @@
 -(CommentController *)theaterVC {
     if (!_theaterVC) {
         _theaterVC = [[CommentController alloc] init];
-        _theaterVC.isTheater = YES;
+        _theaterVC.contentType = TypeTheater;
         _theaterVC.title = @"剧评";
     }
     return _theaterVC;
 }
+
 -(CommentController *)productVC {
     if (!_productVC) {
         _productVC = [[CommentController alloc] init];
-        _productVC.isTheater = NO;
+        _productVC.contentType = TypeDerive;
         _productVC.title = @"商品评价";
     }
     return _productVC;
 }
+
 -(JYSlideSegmentController *)slideController {
     if (!_slideController) {
         _slideController = [[JYSlideSegmentController alloc] initWithViewControllers:@[self.theaterVC,self.productVC]];

@@ -10,7 +10,9 @@
 
 @interface CommentScoreCell : UITableViewCell
 
+@property(nonatomic,copy)void (^scoreBtnClick)(int index);
+
 +(NSString*)identify;
--(void)configScoreCell:(id)model;
+-(void)configScoreCell:(int)score;
 
 @end

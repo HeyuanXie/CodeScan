@@ -237,8 +237,9 @@ NSString* const kAddressController = @"HYAddressController";
 }
 
 -(void)routeSchemaByString:(NSString*)urlstr {
-    NSString *encodingString = [urlstr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    [self routeSchemaByURL:[NSURL URLWithString:encodingString]];
+//    NSString *encodingString = [urlstr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+//    [self routeSchemaByURL:[NSURL URLWithString:encodingString]];
+    [self routeSchemaByURL:[NSURL URLWithString:urlstr]];
 }
 
 -(void)routeByStoryboardID:(NSString*)sid {

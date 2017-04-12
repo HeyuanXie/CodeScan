@@ -97,6 +97,7 @@
 		84235B741E6EA18100A81A6B /* FilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B731E6EA18100A81A6B /* FilterTableViewController.m */; };
 		84235B791E6EBB7400A81A6B /* TheaterUseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84235B781E6EBB7400A81A6B /* TheaterUseView.xib */; };
 		84235B7C1E6EBBE500A81A6B /* DetailDervieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B7B1E6EBBE500A81A6B /* DetailDervieView.m */; };
+		8427C3CE1E9DB836007A7D06 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427C3CD1E9DB836007A7D06 /* CommentModel.m */; };
 		842A56E31E78E59900D489CA /* SkillDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56E21E78E59900D489CA /* SkillDetailHeadView.m */; };
 		842A56E61E792D9700D489CA /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56E51E792D9700D489CA /* SettingViewController.m */; };
 		842A56EC1E792DF500D489CA /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56EB1E792DF500D489CA /* UserInfoViewController.m */; };
@@ -262,6 +263,7 @@
 		84924F1D1E2CCD62005F05C3 /* HYPaddingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84924F1C1E2CCD62005F05C3 /* HYPaddingLabel.m */; };
 		84955A381E8F486A00136469 /* APIHelper+Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 84955A371E8F486A00136469 /* APIHelper+Order.m */; };
 		84955A3A1E8F7D7F00136469 /* elephant.png in Resources */ = {isa = PBXBuildFile; fileRef = 84955A391E8F7D7F00136469 /* elephant.png */; };
+		8495C87B1E9B29A9002D41AE /* CouponModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8495C87A1E9B29A9002D41AE /* CouponModel.m */; };
 		8497B67C1E889DFE00392973 /* CommitOrderSeatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B67A1E889DFE00392973 /* CommitOrderSeatCell.m */; };
 		8497B67D1E889DFE00392973 /* CommitOrderSeatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8497B67B1E889DFE00392973 /* CommitOrderSeatCell.xib */; };
 		8497B6801E88AC9C00392973 /* SelectCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8497B67F1E88AC9C00392973 /* SelectCouponController.m */; };
@@ -534,6 +536,8 @@
 		84235B781E6EBB7400A81A6B /* TheaterUseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TheaterUseView.xib; sourceTree = "<group>"; };
 		84235B7A1E6EBBE500A81A6B /* DetailDervieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDervieView.h; sourceTree = "<group>"; };
 		84235B7B1E6EBBE500A81A6B /* DetailDervieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDervieView.m; sourceTree = "<group>"; };
+		8427C3CC1E9DB836007A7D06 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		8427C3CD1E9DB836007A7D06 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		842A56E11E78E59900D489CA /* SkillDetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillDetailHeadView.h; sourceTree = "<group>"; };
 		842A56E21E78E59900D489CA /* SkillDetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkillDetailHeadView.m; sourceTree = "<group>"; };
 		842A56E41E792D9700D489CA /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -890,6 +894,8 @@
 		84955A361E8F486A00136469 /* APIHelper+Order.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "APIHelper+Order.h"; sourceTree = "<group>"; };
 		84955A371E8F486A00136469 /* APIHelper+Order.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "APIHelper+Order.m"; sourceTree = "<group>"; };
 		84955A391E8F7D7F00136469 /* elephant.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = elephant.png; sourceTree = "<group>"; };
+		8495C8791E9B29A9002D41AE /* CouponModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponModel.h; sourceTree = "<group>"; };
+		8495C87A1E9B29A9002D41AE /* CouponModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponModel.m; sourceTree = "<group>"; };
 		8497B6791E889DFE00392973 /* CommitOrderSeatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommitOrderSeatCell.h; sourceTree = "<group>"; };
 		8497B67A1E889DFE00392973 /* CommitOrderSeatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommitOrderSeatCell.m; sourceTree = "<group>"; };
 		8497B67B1E889DFE00392973 /* CommitOrderSeatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommitOrderSeatCell.xib; sourceTree = "<group>"; };
@@ -2191,6 +2197,10 @@
 				846E133F1E94F53C00C7C015 /* TheaterSessionModel.m */,
 				84B862F31E8C98CB002320E2 /* DeriveModel.h */,
 				84B862F41E8C98CB002320E2 /* DeriveModel.m */,
+				8495C8791E9B29A9002D41AE /* CouponModel.h */,
+				8495C87A1E9B29A9002D41AE /* CouponModel.m */,
+				8427C3CC1E9DB836007A7D06 /* CommentModel.h */,
+				8427C3CD1E9DB836007A7D06 /* CommentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2867,6 +2877,7 @@
 				84E74BE21E7132F500016A99 /* ApplyCommonCell.m in Sources */,
 				841E45A11E811F15007B6EF3 /* YearCardOrderController.m in Sources */,
 				84428CE31E7627FB001D1B7B /* DeriveRecordController.m in Sources */,
+				8495C87B1E9B29A9002D41AE /* CouponModel.m in Sources */,
 				841D4AD41E7A1E1A002C49C0 /* MineCommentController.m in Sources */,
 				8401F2DD1E8B9FB80032FE32 /* FilterAddressController.m in Sources */,
 				841C01081E72A8A70082ECDA /* OrderHomeController.m in Sources */,
@@ -2961,6 +2972,7 @@
 				846E13401E94F53C00C7C015 /* TheaterSessionModel.m in Sources */,
 				84EF70771E4AC18D0098A606 /* HYScrollView.m in Sources */,
 				84DCC26C1E77896D0019898E /* SkillUploadViewController.m in Sources */,
+				8427C3CE1E9DB836007A7D06 /* CommentModel.m in Sources */,
 				841C00F11E7258820082ECDA /* HomeDescCell.m in Sources */,
 				84924E931E2C7CA6005F05C3 /* UIView+Layout.m in Sources */,
 				84924EBA1E2C9935005F05C3 /* UITextField+HYMaxLimit.m in Sources */,

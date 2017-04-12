@@ -6,6 +6,9 @@
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
+
+//下单成功
+
 #import "TheaterCommitOrderSuccessController.h"
 typedef enum : NSUInteger {
     TypeTheater = 0,
