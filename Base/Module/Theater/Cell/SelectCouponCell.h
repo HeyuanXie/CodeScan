@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CouponModel.h"
 
 @interface SelectCouponCell : UITableViewCell
 

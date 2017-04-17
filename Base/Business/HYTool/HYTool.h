@@ -54,6 +54,7 @@
 +(NSString*)dateStringWithDate:(NSDate*)date format:(NSString*)formatter;
 +(NSString*)dateStringWithFormatter:(NSString*)formatter;
 +(NSString *)dateStringWithString:(NSString *)dateStr inputFormat:(NSString*)inputFormatStr outputFormat:(NSString *)outputFormatStr;
++(NSDate*)dateAfterMonths:(NSDate*)fromDate gapMonth:(NSInteger)gapMonthCount;
 
 +(NSString*)weekStirngWithDate:(NSDate*)date;
 +(NSString*)weekString;

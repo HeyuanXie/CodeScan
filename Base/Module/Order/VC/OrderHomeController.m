@@ -11,6 +11,8 @@
 #import "OrderFilterTableController.h"
 #import "OrderListCell.h"
 #import "CustomJumpBtns.h"
+#import "HYPayEngine.h"
+#import "HYAlertView.h"
 
 @interface OrderHomeController ()<UITextFieldDelegate>
 
@@ -18,6 +20,7 @@
 
 @property(assign,nonatomic)NSInteger typeId;    //订单类型Id, 0为演出、1为商品、2为年卡
 @property(assign,nonatomic)NSInteger statuId;   //订单状态Id, 待付款、待评价等等
+@property(strong,nonatomic)NSString* keyword;   //关键词
 @property(strong,nonatomic)NSMutableArray* dataArray;
 
 @property(strong,nonatomic)NSArray *types;  //订单类型数组
@@ -26,6 +29,8 @@
 
 @property(strong,nonatomic)OrderFilterTableController* filterVC;
 @property(strong,nonatomic)UIView* backGrayView;
+
+@property(strong,nonatomic)NSString* payOrderSn;    //继续支付的订单的orderSn
 
 @end
 
@@ -40,12 +45,13 @@
     if (self.schemaArgu[@"typeId"]) {
         self.typeId = [[self.schemaArgu objectForKey:@"typeId"] integerValue];
     }
-    self.statuId = 1;
+    self.statuId = self.typeId == 0 ? 0 : 1;
     
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(90, 0, 0, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[OrderListCell identify] bundle:nil] forCellReuseIdentifier:[OrderListCell identify]];
 
     [self subviewStyle];
+    [self registNotification];
     [self headerViewInit];
 }
 
@@ -58,6 +64,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
     
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self hiddenFilterClassify];
 }
 
@@ -81,12 +88,80 @@
     CommentType type;
     if (self.typeId == 0) {
         [cell configTheaterCell:model];
+        [cell setPayContinueBlock:^(id model) {
+            self.payOrderSn = model[@"order_id"];
+            [APIHELPER requestTheaterContinuePayInfoWithOrderId:model[@"order_id"] complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    NSInteger payType = [responseObject[@"data"][@"pay_type"] integerValue];
+                    if (payType==1) {//支付宝
+                        [HYPayEngine alipayWithOrderStr:responseObject[@"data"][@"pay_data"] withFinishBlock:^(BOOL success, NSString *payMessage) {
+                            //这里的支付结果回调只有网页支付会掉，支付宝app支付会在appDelegate中回调
+                            if (!success) {
+                                [self showMessage:payMessage];
+                            }else{
+                                HYAlertView* alert = [HYAlertView sharedInstance];
+                                [alert showAlertView:nil message:@"支付成功" subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+                                }];
+                            }
+                        }];
+                    }else if (payType==2){//微信
+                        [HYPayEngine wxpayWithPayInfo:responseObject[@"data"][@"pay_data"] WithFinishBlock:^(BOOL success, NSInteger code, NSString *payMessage) {
+                            if (!success) {
+                                [self showMessage:payMessage];
+                            }else{
+                                HYAlertView* alert = [HYAlertView sharedInstance];
+                                [alert showAlertView:nil message:@"支付成功" subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+                                }];
+                            }
+                        }];
+                    }
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }];
         type = CommentTypeTheater;
     }else if (self.typeId == 1) {
         [cell configDeriveCell:model];
         type = CommentTypeDerive;
     }else{
         [cell configYearCardCell:model];
+        [cell setPayContinueBlock:^(id model) {
+            self.payOrderSn = model[@"order_id"];
+            [APIHELPER requestCardContinuePayInfoWithOrderId:model[@"order_id"] complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                if (isSuccess) {
+                    NSInteger payType = [responseObject[@"data"][@"pay_type"] integerValue];
+                    if (payType==1) {//支付宝
+                        [HYPayEngine alipayWithOrderStr:responseObject[@"data"][@"pay_data"] withFinishBlock:^(BOOL success, NSString *payMessage) {
+                            //这里的支付结果回调只有网页支付会掉，支付宝app支付会在appDelegate中回调
+                            if (!success) {
+                                [self showMessage:payMessage];
+                            }else{
+                                HYAlertView* alert = [HYAlertView sharedInstance];
+                                [alert showAlertView:nil message:@"支付成功" subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+                                }];
+                            }
+                        }];
+                    }else if (payType==2){//微信
+                        [HYPayEngine wxpayWithPayInfo:responseObject[@"data"][@"pay_data"] WithFinishBlock:^(BOOL success, NSInteger code, NSString *payMessage) {
+                            if (!success) {
+                                [self showMessage:payMessage];
+                            }else{
+                                HYAlertView* alert = [HYAlertView sharedInstance];
+                                [alert showAlertView:nil message:@"支付成功" subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+                                }];
+                            }
+                        }];
+                    }
+                }else{
+                    [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                }
+            }];
+        }];
     }
     [cell setCommentBlock:^(id model) {
         CommentViewController* vc = (CommentViewController*)VIEWCONTROLLER(kCommentViewController);
@@ -105,8 +180,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSDictionary* model = self.dataArray[indexPath.row];
-    NSString* orderId = model[@"order_sn"];
+    NSString* orderId = model[@"order_id"];
     //TODO:进入订单详情，传递type参数,传递订单Id参数
+    if (self.typeId == 2) {
+        APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@",kYearCardOrderController,self.typeId,orderId]));
+        return;
+    }
     APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@",kOrderDetailController,self.typeId,orderId]));
 }
 
@@ -155,7 +234,7 @@
         case 0:
         {
             //演出
-            [APIHELPER orderListTheater:0 limit:4 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [APIHELPER orderListTheater:0 limit:4 statu:self.statuId keyword:(NSString*)self.keyword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 [self hideLoadingAnimation];
                 if (isSuccess) {
                     [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
@@ -229,7 +308,7 @@
             case 0:
             {
                 //演出
-                [APIHELPER orderListTheater:0 limit:4 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [APIHELPER orderListTheater:0 limit:4 statu:self.statuId keyword:self.keyword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                     [self hideLoadingAnimation];
                     if (isSuccess) {
                         [self.dataArray removeAllObjects];
@@ -310,7 +389,7 @@
             case 0:
             {
                 //演出
-                [APIHELPER orderListTheater:self.dataArray.count limit:4 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [APIHELPER orderListTheater:self.dataArray.count limit:4 statu:self.statuId keyword:self.keyword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                     [self hideLoadingAnimation];
                     if (isSuccess) {
                         [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
@@ -394,7 +473,11 @@
     
     CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, kScreen_Width, 42) menuTitles:_status textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBarTintColor] isLineAdaptText:YES];
     [btns setFinished:^(NSInteger index) {
-        self.statuId = index+1;
+        if (self.typeId == 0) {
+            self.statuId = index;
+        }else{
+            self.statuId = index+1;
+        }
         [self fetchData];
     }];
     [_topView addSubview:btns];
@@ -488,7 +571,16 @@
 - (void)selectClass:(NSInteger)row{
     [self.filterBtn setTitle:_types[row] forState:UIControlStateNormal];
     //选择订单类型，设置默认订单状态
-    self.statuId = 1;
+    self.statuId = self.typeId == 0 ? 0 : 1;
     [self fetchData];
 }
+
+
+- (void)registNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccessNotification object:nil];
+}
+- (void)paySuccess {
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&order_sn=%@",kTheaterCommitOrderSuccessController,self.typeId,self.payOrderSn]));
+}
+
 @end

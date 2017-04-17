@@ -39,9 +39,8 @@ static NSString *const payApi = @"mobile_securitypay_pay";
     return self;
 }
 
-+ (void) alipayWithPayInfo:(NSDictionary *)payInfo withFinishBlock:(AlipayFinishCallback)alipayCallback {
-    
-    [[AlipaySDK defaultService] payOrder:payInfo[@"payData"] fromScheme:AppScheme callback:^(NSDictionary *resultDic) {
++ (void)alipayWithOrderStr:(NSString *)orderStr withFinishBlock:(AlipayFinishCallback)alipayCallback {
+    [[AlipaySDK defaultService] payOrder:orderStr fromScheme:AppScheme callback:^(NSDictionary *resultDic) {
         if ([resultDic[@"resultStatus"] isEqualToString:@"9000"]) {
             alipayCallback(YES,nil);
         }
@@ -51,8 +50,8 @@ static NSString *const payApi = @"mobile_securitypay_pay";
         else{
             alipayCallback(NO,resultDic[@"memo"]);
         }
+        NSLog(@"%@",resultDic);
     }];
-
 }
 
 + (void) wxpayWithPayInfo:(NSDictionary *) payInfo WithFinishBlock:(WXPayFinishCallback) wxpayCallback {
@@ -62,7 +61,7 @@ static NSString *const payApi = @"mobile_securitypay_pay";
         return;
     }
     
-    NSDictionary* dic = payInfo[@"payData"];
+    NSDictionary* dic = payInfo[@"pay_data"];
     PayReq *request = [[PayReq alloc] init];
     
     request.partnerId = dic[@"partnerid"];

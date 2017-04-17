@@ -123,6 +123,7 @@ alpha:a]
 #define kAfterUserLoginSuccessNotification     @"afterUserLoginSuccessNotification"
 #define kNetNotReachabilityNotification      @"netNotReachabilityNotification"
 #define kUserLogoutNotification             @"userLogoutNotification"
+#define kPaySuccessNotification             @"paySuccessNotification"
 
 //MARK:-动画时间
 #define HUD_MESSAGE_SHOWTIME 1.6f

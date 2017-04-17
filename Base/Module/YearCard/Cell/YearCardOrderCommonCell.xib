@@ -24,7 +24,7 @@
                         <constraints>
                             <constraint firstAttribute="width" secondItem="i6x-D1-ebB" secondAttribute="height" multiplier="1:1" id="w0x-iJ-fAa"/>
                         </constraints>
-                        <state key="normal" image="密码不可见"/>
+                        <state key="normal" image="密码不可见_灰"/>
                         <connections>
                             <action selector="eyeBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gqn-qj-OG2"/>
                         </connections>
@@ -63,6 +63,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="密码不可见" width="22" height="22"/>
+        <image name="密码不可见_灰" width="22" height="22"/>
     </resources>
 </document>

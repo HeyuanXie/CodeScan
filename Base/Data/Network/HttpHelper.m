@@ -26,6 +26,7 @@
         if (helper == nil) {
             helper = [[HttpHelper alloc] init];
             helper.responseSerializer = [AFJSONResponseSerializer serializer];
+            helper.requestSerializer = [AFJSONRequestSerializer serializer];
             helper.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/plain", nil];
         }
     });
@@ -118,6 +119,7 @@
 
 
 -(NSURLSessionDataTask *)postWithURL:(NSString *)relativeurl param:(NSDictionary *)parameters complete:(ApiRequestCompleteBlock)complete {
+    
     [self.requestSerializer setValue:@"1" forHTTPHeaderField:@"App-id"];
     [self.requestSerializer setValue:API_VERSION forHTTPHeaderField:@"Version"];
     [self.requestSerializer setValue:[Global IDFV] forHTTPHeaderField:@"Client-id"];

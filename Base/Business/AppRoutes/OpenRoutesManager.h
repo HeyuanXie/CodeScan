@@ -73,6 +73,8 @@ extern NSString* const kMessageHomeController;
 extern NSString* const kMessageListController;
 extern NSString* const kUserInfoViewController;
 extern NSString* const kFeedbackController;
+extern NSString* const kAboutUsViewController;
+
 extern NSString* const kAccountSecurityController;
 
 extern NSString* const kMineYearCardController;

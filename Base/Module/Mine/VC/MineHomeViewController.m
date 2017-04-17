@@ -44,11 +44,11 @@
     if (!_infos) {
         _infos = @[@[@{@"image":@"",@"title":@"未登录",@"router":kUserInfoViewController,@"needLogin":@(YES)}],
                    @[@{@"image":@"card",@"title":@"我的年卡",@"router":kMineYearCardController,@"needLogin":@(YES)},
-                     @{@"image":@"baoming",@"title":@"我的报名",@"router":kMineApplyController,@"needLogin":@(YES)},
+//                     @{@"image":@"baoming",@"title":@"我的报名",@"router":kMineApplyController,@"needLogin":@(YES)},
                      @{@"image":@"jifen",@"title":@"积分管理",@"router":kPointManageController,@"needLogin":@(YES)},
                      @{@"image":@"youhuiquan",@"title":@"优惠券",@"router":kMineCouponController,@"needLogin":@(YES)},
                      @{@"image":@"pingjia",@"title":@"我的评价",@"router":kMineCommentController,@"needLogin":@(YES)},
-                     @{@"image":@"toupiao",@"title":@"我的投票",@"router":kMineSupportViewController,@"needLogin":@(YES)}
+//                     @{@"image":@"toupiao",@"title":@"我的投票",@"router":kMineSupportViewController,@"needLogin":@(YES)}
                     ],
                    @[@{@"image":@"setting",@"title":@"设置",@"router":kSettingViewController,@"needLogin":@(NO)}]];
     }

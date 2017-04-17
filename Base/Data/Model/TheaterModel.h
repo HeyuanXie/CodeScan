@@ -19,6 +19,8 @@
 @property (nonatomic, strong) NSString *updateTime;
 @property (nonatomic, strong) NSString *keywords;
 @property (nonatomic, copy) NSString *desc;
+@property (nonatomic, strong) NSNumber *num;
+@property (nonatomic, strong) NSString* payableAmount;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSString *picurl;
 @property (nonatomic, strong) NSNumber *status;

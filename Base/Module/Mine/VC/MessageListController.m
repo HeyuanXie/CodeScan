@@ -10,13 +10,15 @@
 #import "CustomJumpBtns.h"
 #import "NSString+Extension.h"
 #import "MessageOrderCell.h"
+#import "MessageSystemCell.h"
 #import <UITableView+FDTemplateLayoutCell.h>
+#import "MessageModel.h"
 
 @interface MessageListController ()
 
 @property(assign,nonatomic)NSInteger type;
 @property(strong,nonatomic)NSMutableArray* dataArray;
-
+@property(strong,nonatomic)NSMutableArray* foldArr; //存储所有系统消息是否折叠的数组
 @end
 
 @implementation MessageListController
@@ -31,9 +33,11 @@
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.tableView registerNib:[UINib nibWithNibName:[MessageOrderCell identify] bundle:nil] forCellReuseIdentifier:[MessageOrderCell identify]];
+    [self.tableView registerNib:[UINib nibWithNibName:[MessageSystemCell identify] bundle:nil] forCellReuseIdentifier:[MessageSystemCell identify]];
 
     [self subviewStyle];
     [self fetchData];
+    [self headerViewInit];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,7 +55,19 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (self.type == 0) {//系统消息
-        return [UITableViewCell new];
+        MessageSystemCell* cell = [tableView dequeueReusableCellWithIdentifier:[MessageSystemCell identify]];
+        [HYTool configTableViewCellDefault:cell];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        
+        //TODO:configCell
+        [cell setFoldBtnClick:^{
+            BOOL isFold = ![[self.foldArr objectAtIndex:indexPath.section] boolValue];
+            [self.foldArr replaceObjectAtIndex:indexPath.section withObject:@(isFold)];
+            [self.tableView reloadData];
+        }];
+        BOOL isFold = [[self.foldArr objectAtIndex:indexPath.section] boolValue];
+        [cell configMessageCell:self.dataArray[indexPath.section] isFold:isFold];
+        return cell;
     }
     
     //订单消息
@@ -93,7 +109,28 @@
 #pragma mark - tableView delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.type == 0) {
-        return 0;
+        BOOL isFold = [[self.foldArr objectAtIndex:indexPath.section] boolValue];
+        if (isFold) {
+            return [tableView fd_heightForCellWithIdentifier:[MessageSystemCell identify] cacheByIndexPath:indexPath configuration:^(MessageSystemCell* cell) {
+                [cell setFoldBtnClick:^{
+                    BOOL isFold = ![[self.foldArr objectAtIndex:indexPath.section] boolValue];
+                    [self.foldArr replaceObjectAtIndex:indexPath.section withObject:@(isFold)];
+                    [self.tableView reloadData];
+                }];
+                BOOL isFold = [[self.foldArr objectAtIndex:indexPath.section] boolValue];
+                [cell configMessageCell:self.dataArray[indexPath.section] isFold:isFold];
+            }];
+        }else{
+            return [tableView fd_heightForCellWithIdentifier:[MessageSystemCell identify] configuration:^(MessageSystemCell* cell) {
+                [cell setFoldBtnClick:^{
+                    BOOL isFold = ![[self.foldArr objectAtIndex:indexPath.section] boolValue];
+                    [self.foldArr replaceObjectAtIndex:indexPath.section withObject:@(isFold)];
+                    [self.tableView reloadData];
+                }];
+                BOOL isFold = [[self.foldArr objectAtIndex:indexPath.section] boolValue];
+                [cell configMessageCell:self.dataArray[indexPath.section] isFold:isFold];
+            }];
+        }
     }
     return indexPath.row == 0 ? [tableView fd_heightForCellWithIdentifier:[MessageOrderCell identify] cacheByIndexPath:indexPath configuration:^(MessageOrderCell* cell) {
         
@@ -102,6 +139,9 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (self.type == 0) {
+        return 0;
+    }
     return section == self.dataArray.count-1 ? 0 : zoom(15);
 }
 
@@ -123,16 +163,93 @@
     return _dataArray;
 }
 
+- (NSMutableArray *)foldArr {
+    if (!_foldArr) {
+        _foldArr = [NSMutableArray array];
+    }
+    return _foldArr;
+}
+
 -(void)subviewStyle {
     
     self.title = self.type == 0 ? @"系统消息" : @"订单消息";
 }
 
--(void)fetchData {
-    self.dataArray = [@[@"",@"",@"",@"",@""] mutableCopy];
-    //TODO:根据self.cellType请求数据
-    
-    [self.tableView reloadData];
+
+- (void)fetchData {
+    self.tableView.tableFooterView = nil;
+    [self showLoadingAnimation];
+    [APIHELPER fetchMessage:0 limit:10 type:self.type complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        
+        if (isSuccess) {
+            [self.dataArray removeAllObjects];
+            [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[MessageModel class] array:responseObject[@"data"][@"list"]] ];
+            [self.tableView reloadData];
+            
+            self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+            if (self.haveNext) {
+                [self appendFooterView];
+            }else{
+                [self removeFooterRefresh];
+            }
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+}
+
+-(void)headerViewInit {
+    @weakify(self);
+    [self addHeaderRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER fetchMessage:0 limit:10 type:self.type complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            if (isSuccess) {
+                
+                [self.dataArray removeAllObjects];
+                [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[MessageModel class] array:responseObject[@"data"][@"list"]] ];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
+}
+
+-(void)appendFooterView {
+    @weakify(self);
+    [self addFooterRefresh:^{
+        @strongify(self);
+        [self showLoadingAnimation];
+        [APIHELPER fetchMessage:self.dataArray.count limit:10 type:self.type complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [self hideLoadingAnimation];
+            
+            if (isSuccess) {
+                [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[MessageModel class] array:responseObject[@"data"][@"list"]] ];
+                [self.tableView reloadData];
+                
+                self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
+                if (self.haveNext) {
+                    [self appendFooterView];
+                }else{
+                    [self removeFooterRefresh];
+                }
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+            [self endRefreshing];
+        }];
+    }];
 }
 
 @end

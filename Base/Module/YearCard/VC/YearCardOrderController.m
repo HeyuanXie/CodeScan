@@ -6,6 +6,8 @@
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
+//年卡的订单详情
+
 #import "YearCardOrderController.h"
 #import "OrderTopCell.h"
 #import "OrderRefundCell.h"
@@ -18,12 +20,19 @@
 @property(nonatomic,strong)NSArray* infos;
 @property(nonatomic,assign)BOOL canSee;
 
+@property(nonatomic,strong)NSString* orderId;
+@property(nonatomic,strong)NSDictionary* data;
+
 @end
 
 @implementation YearCardOrderController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (self.schemaArgu[@"orderId"]) {
+        self.orderId = [self.schemaArgu objectForKey:@"orderId"];
+    }
     
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -33,6 +42,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:[OrderDetailCell identify] bundle:nil] forCellReuseIdentifier:[OrderDetailCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[YearCardDescCell identify] bundle:nil] forCellReuseIdentifier:[YearCardDescCell identify]];
 
+    [self fetchData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,9 +62,7 @@
         case 0:
             if (indexPath.row == 0) {
                 OrderTopCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderTopCell identify]];
-                //TODO:configCell
-                
-                [cell configTopCell:nil];
+                [cell configTopCell:self.data];
                 return cell;
             }else{
                 OrderRefundCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderRefundCell identify]];
@@ -70,32 +78,38 @@
                     cell.contentView.backgroundColor = [UIColor whiteColor];
                     
                     UIButton* btn = [HYTool getButtonWithFrame:CGRectMake(kScreen_Width-12-60, 9, 60, 30) title:@"退款" titleSize:15 titleColor:[UIColor hyBlueTextColor] backgroundColor:nil blockForClick:^(id sender) {
-                        //TODO:退款
-                        
+                        //退款
+                        APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[self.data[@"order_id"] integerValue],1]));
                     }];
                     btn.tag = 1000;
                     [HYTool configViewLayer:btn withColor:[UIColor hyBlueTextColor]];
                     [cell.contentView addSubview:btn];
                     
-                    UILabel* label = [HYTool getLabelWithFrame:CGRectMake(12, 0, 60, 48) text:@"未使用" fontSize:15 textColor:[UIColor hyRedColor] textAlignment:NSTextAlignmentLeft];
+                    UILabel* label = [HYTool getLabelWithFrame:CGRectMake(12, 0, 60, 48) text:@"待使用" fontSize:15 textColor:[UIColor hyRedColor] textAlignment:NSTextAlignmentLeft];
                     label.tag = 1001;
                     [cell.contentView addSubview:label];
                 }
                 UIButton* btn = [cell.contentView viewWithTag:1000];
-                UILabel* lbl = [cell.contentView viewWithTag:10001];
+                UILabel* lbl = [cell.contentView viewWithTag:1001];
                 //TODO:根据订单状态设置是否隐藏btn，和lbl的文字
-                
+                if ([self.data[@"pay_status"] integerValue] == 0) {
+                    lbl.text = @"待支付";
+                    btn.hidden = YES;
+                }else if ([self.data[@"pay_status"] integerValue] == 1) {
+                    lbl.text = @"待使用";
+                    btn.hidden = NO;
+                }
                 return cell;
             }else if (indexPath.row == 1) {
                 YearCardOrderCommonCell* cell = [tableView dequeueReusableCellWithIdentifier:[YearCardOrderCommonCell identify]];
                 
-                [cell configYearCardOrderCommonCell:nil];
+                [cell configYearCardOrderCommonCell:self.data];
                 return cell;
             }else if (indexPath.row == 2) {
                 YearCardOrderCommonCell* cell = [tableView dequeueReusableCellWithIdentifier:[YearCardOrderCommonCell identify]];
-                [cell configYearCardOrderCommonEyeCell:nil];
+                [cell configYearCardOrderCommonEyeCell:self.data];
                 cell.textField.secureTextEntry = !self.canSee;
-                NSString* imageName = self.canSee ? @"密码可见" : @"密码不可见";
+                NSString* imageName = self.canSee ? @"密码可见_灰" : @"密码不可见_灰";
                 [cell.eyeBtn setImage:ImageNamed(imageName) forState:(UIControlStateNormal)];
                 @weakify(self);
                 [cell setEyeClick:^{
@@ -117,11 +131,15 @@
                     int i = 0;
                     for (NSString* title in @[@"转增",@"立即绑定"]) {
                         UIButton* btn = [HYTool getButtonWithFrame:CGRectMake(i*(width+0.5), 0, width, 48) title:title titleSize:15 titleColor:[UIColor hyBlueTextColor] backgroundColor:nil blockForClick:^(id sender) {
+                            if ([self.data[@"pay_status"] integerValue] == 0) {
+                                [self showMessage:@"请先完成支付"];
+                                return ;
+                            }
                             if (i == 0) {
                                 //TODO:转增
                                 NSLog(@"转增");
                             }else{
-                                NSLog(@"立即绑定");
+                                APPROUTE(([NSString stringWithFormat:@"%@?cardNum=%@&cardPassword=%@",kYearCardBindController,self.data[@"card_sn"],self.data[@"card_password"]]));
                             }
                         }];
                         [cell.contentView addSubview:btn];
@@ -179,7 +197,7 @@
                 OrderDetailCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderDetailCell identify]];
                 [HYTool configTableViewCellDefault:cell];
                 cell.contentView.backgroundColor = [UIColor whiteColor];
-                [cell configDetailCell:nil type:@"card"];
+                [cell configDetailCell:self.data type:2];
                 return cell;
             }
     }
@@ -208,7 +226,14 @@
 #pragma mark - private methods
 -(void)fetchData {
     
-    [self.tableView reloadData];
+    [APIHELPER orderDetailCard:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            self.data = responseObject[@"data"];
+            [self.tableView reloadData];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
 
 @end

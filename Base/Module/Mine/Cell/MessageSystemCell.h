@@ -10,4 +10,19 @@
 
 @interface MessageSystemCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *timeLbl;
+@property (weak, nonatomic) IBOutlet UILabel *typeLbl;
+@property (weak, nonatomic) IBOutlet UILabel *detailLbl;
+@property (weak, nonatomic) IBOutlet UIButton *foldBtn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *foldBtnHeight;
+
+@property(nonatomic,copy)void (^foldBtnClick)();
+
+
++(NSString*)identify;
+-(void)configMessageCell:(id)model isFold:(BOOL)isFold;
+
+/*
+ detailLbl文字内容高度小于49则没有展开btn
+ */
 @end

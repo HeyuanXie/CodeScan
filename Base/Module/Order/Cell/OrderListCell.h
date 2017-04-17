@@ -10,8 +10,9 @@
 
 @interface OrderListCell : UITableViewCell
 
+@property(nonatomic,copy)void (^payContinueBlock)(id model);
+@property(nonatomic,copy)void (^refundBlock)(id model);
 @property(nonatomic,copy)void (^commentBlock)(id model);
-
 
 +(NSString*)identify;
 -(void)configTheaterCell:(id)model;

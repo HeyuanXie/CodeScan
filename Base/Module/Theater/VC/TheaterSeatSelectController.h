@@ -13,6 +13,7 @@
 @interface TheaterSeatSelectController : BaseTableViewController
 
 @property(strong,nonatomic)NSString* desc;  //剧名、时间、语种
+@property(assign,nonatomic)NSInteger timeId;    //场次Id
 
 @property (nonatomic, strong) NSArray <FVSeatItem *>* seatsInfo;
 @property (nonatomic, assign) int seatMaxX;

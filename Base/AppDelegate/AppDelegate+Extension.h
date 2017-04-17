@@ -20,4 +20,6 @@
 
 - (void)configPaySDK;
 
+- (void)configShareSDK;
+
 @end

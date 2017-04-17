@@ -1,19 +1,88 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="MessageSystemCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="182"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="43"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="181"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-03-13 14:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkd-ly-ovF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
+                        <color key="backgroundColor" red="0.94117647059999998" green="0.96470588239999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="47" id="GJq-KM-mT1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="系统升级公告" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAV-ZD-ykZ">
+                        <rect key="frame" x="12" y="47" width="363" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="K9x-5u-bGs"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAO-PL-vKk">
+                        <rect key="frame" x="290" y="141.5" width="85" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="DwC-uS-2Wb"/>
+                            <constraint firstAttribute="width" constant="85" id="nDX-i1-q63"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="展开" image="蓝色箭头_下">
+                            <color key="titleColor" red="0.40000000000000002" green="0.68627450980000004" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBt-6X-b0K">
+                        <rect key="frame" x="12" y="92" width="351" height="49.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="bAV-ZD-ykZ" secondAttribute="trailing" id="1vs-qF-vEO"/>
+                    <constraint firstAttribute="trailing" secondItem="Jkd-ly-ovF" secondAttribute="trailing" id="Haq-rB-S4x"/>
+                    <constraint firstItem="QBt-6X-b0K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Nyq-s1-BzI"/>
+                    <constraint firstItem="bAV-ZD-ykZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Rcd-h6-IAt"/>
+                    <constraint firstAttribute="bottom" secondItem="bAO-PL-vKk" secondAttribute="bottom" id="hnr-V7-KkP"/>
+                    <constraint firstItem="Jkd-ly-ovF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nnM-N8-ZB1"/>
+                    <constraint firstAttribute="trailing" secondItem="bAO-PL-vKk" secondAttribute="trailing" id="ox5-e5-tij"/>
+                    <constraint firstItem="bAO-PL-vKk" firstAttribute="top" secondItem="QBt-6X-b0K" secondAttribute="bottom" id="qRx-OZ-TsY"/>
+                    <constraint firstItem="QBt-6X-b0K" firstAttribute="top" secondItem="bAV-ZD-ykZ" secondAttribute="bottom" id="vPY-Tp-whe"/>
+                    <constraint firstItem="bAV-ZD-ykZ" firstAttribute="top" secondItem="Jkd-ly-ovF" secondAttribute="bottom" id="xBf-x1-vxE"/>
+                    <constraint firstAttribute="trailing" secondItem="QBt-6X-b0K" secondAttribute="trailing" constant="12" id="xTO-0w-Oyo"/>
+                    <constraint firstItem="Jkd-ly-ovF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="xtm-2W-tgJ"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="detailLbl" destination="QBt-6X-b0K" id="Iyb-lA-Zs2"/>
+                <outlet property="foldBtn" destination="bAO-PL-vKk" id="Wy6-93-9Yf"/>
+                <outlet property="foldBtnHeight" destination="DwC-uS-2Wb" id="qLd-xF-Bed"/>
+                <outlet property="timeLbl" destination="Jkd-ly-ovF" id="aRN-Vq-n68"/>
+                <outlet property="typeLbl" destination="bAV-ZD-ykZ" id="Vdc-vk-oPc"/>
+            </connections>
+            <point key="canvasLocation" x="-93.5" y="30"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="蓝色箭头_下" width="16" height="16"/>
+    </resources>
 </document>

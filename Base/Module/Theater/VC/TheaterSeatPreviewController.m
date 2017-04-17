@@ -95,14 +95,6 @@
 
 - (void)seatsPicker:(FVSeatsPicker* )picker didSelectSeat:(FVSeatItem *)seatInfo
 {
-    TheaterSeatSelectController* vc = (TheaterSeatSelectController*)VIEWCONTROLLER(kTheaterSeatSelectController);
-    vc.desc = self.descLbl.text;
-    vc.title = self.title;
-    vc.seatsInfo = self.seatList;
-    vc.seatMaxX = self.seatMaxX;
-    vc.seatMaxY = self.seatMaxY;
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
     DLog(@"%s---%@",__func__,seatInfo);
 }
 - (void)seatsPicker:(FVSeatsPicker* )picker didDeselectSeat:(FVSeatItem *)seatInfo
@@ -132,52 +124,31 @@
 }
 
 -(void)fetchData {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"districtOne" ofType:@"plist"];
-    NSDictionary *result = [NSDictionary dictionaryWithContentsOfFile:path];
-    if (result)
-    {
-        _seatMaxX = [result intValueForKey:@"x"];
-        _seatMaxY = [result intValueForKey:@"y"];
-        NSArray *tempArray = [result arrayForKey:@"seats"];
-        
-        id resultData = [NSMutableArray new];
-        for (NSDictionary* dict in tempArray)
-        {
-            if (NO == [dict isKindOfClass:[NSDictionary class]])
-            {
-                continue;
-            }
-            FVSeatItem* seatsInfo = [FVSeatItem new];
-            seatsInfo.seatId = [dict intValueForKey:@"id"];
-            seatsInfo.seatName = [dict stringForKey:@"name"];
-            seatsInfo.price = [dict intValueForKey:@"price"];
-            seatsInfo.col = [dict intValueForKey:@"col"];
-            seatsInfo.row = [dict intValueForKey:@"row"];
-            seatsInfo.seatStatus = [dict intValueForKey:@"status"];
-            seatsInfo.coordinateX = [dict intValueForKey:@"x"];
-            seatsInfo.coordinateY = [dict intValueForKey:@"y"];
-//            seatsInfo.coordinateX = [dict intValueForKey:@"col"];
-//            seatsInfo.coordinateY = [dict intValueForKey:@"row"];
-
-            
-            [resultData addObject:seatsInfo];
-        }
-        self.seatList = [NSMutableArray arrayWithArray:resultData];
-    }
     
-    [self botViewInit];
-    [self fillDataToSeatsSelector];
-//    [APIHELPER theaterSeatDetail:self.hallId timeId:self.timeId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-//        if (isSuccess) {
-//            [self.seatList addObjectsFromArray:[NSArray yy_modelArrayWithClass:[FVSeatItem class] json:responseObject[@"data"][@"seat_list"]]];
-//            [self.priceList addObjectsFromArray:responseObject[@"data"][@"price_list"]];
-//            
-//            [self botViewInit];
-//            [self fillDataToSeatsSelector];
-//        }else{
-//            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
-//        }
-//    }];
+    [APIHELPER theaterSeatDetail:self.hallId timeId:self.timeId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            for (NSDictionary* dict in responseObject[@"data"][@"seat_list"]) {
+                FVSeatItem* seatsInfo = [FVSeatItem new];
+                seatsInfo.seatId = [dict intValueForKey:@"ps_id"];
+                seatsInfo.seatName = [dict stringForKey:@"seat_name"];
+                seatsInfo.price = [dict intValueForKey:@"market_price"];
+                seatsInfo.col = [dict intValueForKey:@"seat_x"];
+                seatsInfo.row = [dict intValueForKey:@"seat_y"];
+                seatsInfo.seatStatus = [dict intValueForKey:@"status"];
+                seatsInfo.coordinateX = [dict intValueForKey:@"seat_sort"];
+                seatsInfo.coordinateY = [dict intValueForKey:@"seat_y"];
+                [self.seatList addObject:seatsInfo];
+            }
+            
+            [self.priceList addObjectsFromArray:responseObject[@"data"][@"price_list"]];
+            self.seatMaxX = [responseObject[@"data"][@"hall_info"][@"upright"] intValue];
+            self.seatMaxY = [responseObject[@"data"][@"hall_info"][@"hall_rows"] intValue];
+            [self botViewInit];
+            [self fillDataToSeatsSelector];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
 
 -(void)botViewInit {
@@ -209,6 +180,19 @@
         picker;
     });
     [_seatsPicker autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    UIButton* btn = [HYTool getButtonWithFrame:CGRectZero title:@"" titleSize:0 titleColor:nil backgroundColor:nil blockForClick:^(id sender) {
+        TheaterSeatSelectController* vc = (TheaterSeatSelectController*)VIEWCONTROLLER(kTheaterSeatSelectController);
+        vc.desc = self.descLbl.text;
+        vc.title = self.title;
+        vc.timeId = self.timeId;
+        vc.seatsInfo = self.seatList;
+        vc.seatMaxX = self.seatMaxX;
+        vc.seatMaxY = self.seatMaxY;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    [self.seatSelectV addSubview:btn];
+    [btn autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
 }
 
 - (void)fillDataToSeatsSelector
@@ -218,18 +202,5 @@
     _seatsPicker.seats = self.seatList;
     [_seatsPicker reloadData];
 }
-
-
-
-//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    TheaterSeatSelectController* vc = (TheaterSeatSelectController*)VIEWCONTROLLER(kTheaterSeatSelectController);
-//    vc.desc = self.descLbl.text;
-//    vc.title = self.title;
-//    vc.seatsInfo = self.seatList;
-//    vc.seatMaxX = self.seatMaxX;
-//    vc.seatMaxY = self.seatMaxY;
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
-//}
 
 @end

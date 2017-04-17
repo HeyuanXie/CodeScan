@@ -41,10 +41,14 @@
     self.personNameLbl.text = model[@"consignee"];
     self.countLbl.text = [NSString stringWithFormat:@"%ld",[model[@"goods_num"] integerValue]] ;
     if (type == 1) {
-        self.priceLbl.text = [NSString stringWithFormat:@"%ld 积分",[model[@"exchange_total_price"] integerValue]];
+        self.priceLbl.text = [NSString stringWithFormat:@"%.2f 积分",[model[@"exchange_total_price"] floatValue]];
     }else{
-        self.priceLbl.text = [NSString stringWithFormat:@"¥ %ld",[model[@"exchange_total_price"] integerValue]];
+        self.priceLbl.text = [NSString stringWithFormat:@"¥ %@",model[@"price"]];
         self.priceLbl.attributedText = [self.priceLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:13]] subStrings:@[@"¥"]];
+    }
+    if (type == 2) {
+        self.phoneNumLbl.text = model[@"phone"];
+        self.countLbl.text = model[@"count"];
     }
 }
 

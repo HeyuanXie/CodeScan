@@ -10,19 +10,20 @@
 #import "SelectCouponController.h"
 #import "CommitOrderTopCell.h"
 #import "CommitOrderSeatCell.h"
+#import "HYAlertView.h"
+#import "HYPayEngine.h"
 
 @interface TheaterCommitOrderController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *totalLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
 
+@property (strong, nonatomic) NSString* orderSn;
 @property (strong, nonatomic) NSMutableArray* payMethods;  //支付方法array
 @property (assign, nonatomic) NSInteger selectIndex;    //选中的支付方法 1：微信，2：支付宝
 
 @property (strong, nonatomic) SelectCouponController* couponController;
-@property (strong, nonatomic) NSMutableArray* coupons;
-@property (strong, nonatomic) NSMutableArray* yearCards;
-@property (strong, nonatomic) id selectCoupon;  //选中的优惠券
+@property (strong, nonatomic) CouponModel* selectCoupon;  //选中的优惠券
 @property (strong, nonatomic) id selectCard;    //选中的年卡
 
 @property (strong, nonatomic) NSMutableArray* cardIndexArray;   //记录选择了哪些座位使用年卡
@@ -33,8 +34,67 @@
 
 
 - (IBAction)commit:(id)sender {
+    
+    NSMutableArray* seats = [NSMutableArray array];
+    NSInteger i = 0;
+    for (FVSeatItem* seat in self.selectArray) {
+        NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+        [dict safe_setValue:@(seat.seatId) forKey:@"ps_id"];
+        [dict safe_setValue:seat.seatName forKey:@"seat_name"];
+        NSInteger isUseCard = 0;
+        for (NSNumber* index in self.cardIndexArray) {
+            if (i == index.integerValue) {
+                isUseCard = 1;
+            }
+        }
+        [dict setValue:@(isUseCard) forKey:@"is_usecard"];
+        [seats addObject:dict];
+        i++;
+    }
+    
+    NSInteger payType = self.selectIndex == 1 ? 2 : 1;
+    NSString* coupon_sn = self.selectCoupon.couponSn;
+    NSString* card_sn = self.selectCard[@"card_sn"];
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:seats forKey:@"seats"];
+    [param safe_setValue:@(payType) forKey:@"pay_type"];
+    [param safe_setValue:coupon_sn forKey:@"coupon_sn"];
+    [param safe_setValue:card_sn forKey:@"card_sn"];
+    [param safe_setValue:@(self.timeId) forKey:@"time_id"];
     //TODO:提交选座订单
-    APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@",kTheaterCommitOrderSuccessController,@"order_sn"]));
+    [APIHELPER requestTheaterPayInfoWithParam:param complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            self.orderSn = responseObject[@"data"][@"order_id"];
+            if ([responseObject[@"data"][@"pay_type"] integerValue] == 1) {
+                [HYPayEngine alipayWithOrderStr:responseObject[@"data"][@"pay_data"] withFinishBlock:^(BOOL success, NSString *payMessage) {
+                    //这里的支付结果回调只有网页支付会掉，支付宝app支付会在appDelegate中回调
+                    if (!success) {
+                        [self showMessage:payMessage];
+                    }else{
+                        HYAlertView* alert = [HYAlertView sharedInstance];
+                        [alert showAlertView:nil message:@"支付成功" subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+                        }];
+                    }
+                }];
+            }else{
+                [HYPayEngine wxpayWithPayInfo:responseObject[@"data"][@"pay_data"] WithFinishBlock:^(BOOL success, NSInteger code, NSString *payMessage) {
+                    if (!success) {
+                        [self showMessage:payMessage];
+                    }else{
+                        HYAlertView* alert = [HYAlertView sharedInstance];
+                        [alert showAlertView:nil message:@"支付成功" subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+                        }];
+                    }
+                }];
+            }
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+
 }
 
 - (void)viewDidLoad {
@@ -46,8 +106,13 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.tableView registerNib:[UINib nibWithNibName:[CommitOrderTopCell identify] bundle:nil] forCellReuseIdentifier:[CommitOrderTopCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[CommitOrderSeatCell identify] bundle:nil] forCellReuseIdentifier:[CommitOrderSeatCell identify]];
+    [self secondsCountDown];
+    [self registNotification];
+}
 
-    [self fetchData];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,7 +169,7 @@
             if (self.coupons.count == 0) {
                 cell.detailTextLabel.text = @"无可用优惠券";
             }else{
-                cell.detailTextLabel.text = self.selectCoupon == nil ? @"选择优惠券" : self.selectCoupon[@"title"];
+                cell.detailTextLabel.text = self.selectCoupon == nil ? @"选择优惠券" : [NSString stringWithFormat:@"%@元代金券",[[self.selectCoupon.couponAmount componentsSeparatedByString:@"."] firstObject]];
             }
             return cell;
         }
@@ -130,7 +195,7 @@
             if (self.yearCards.count == 0) {
                 cell.detailTextLabel.text = @"无可用年卡";
             }else{
-                cell.detailTextLabel.text = self.selectCard == nil ? @"选择年卡" : self.selectCard[@"title"];
+                cell.detailTextLabel.text = self.selectCard == nil ? @"选择年卡" : self.selectCard[@"card_name"];
             }
             return cell;
         }
@@ -310,31 +375,11 @@
     return _cardIndexArray;
 }
 
--(void)fetchData {
-    
-    self.coupons = [@[@{@"title":@"5元观剧代金券",@"price":@"5元"},@{@"title":@"5元观剧代金券",@"price":@"5元"}] mutableCopy];
-    self.yearCards = [@[@{@"title":@"飞象卡(1大1小)",@"count":@"11",@"card_num":@"1235454657"},@{@"title":@"飞象卡(2大1小)",@"count":@"6",@"card_num":@"67834023435"}] mutableCopy];
-    
-    [self secondsCountDown];
-}
-
 -(SelectCouponController *)couponController {
     if (!_couponController) {
         _couponController = (SelectCouponController*)VIEWCONTROLLER(kSelectCouponController);
     }
     return _couponController;
-}
--(NSMutableArray *)coupons {
-    if (!_coupons) {
-        _coupons = [NSMutableArray array];
-    }
-    return _coupons;
-}
--(NSMutableArray *)yearCards {
-    if (!_yearCards) {
-        _yearCards = [NSMutableArray array];
-    }
-    return _yearCards;
 }
 
 -(void)showSelectCouponControllerSection:(NSInteger)section {
@@ -347,7 +392,11 @@
             self.couponController.couponIndex = index;
             [self hideSelectCouponController];
             //TODO:选择优惠券、刷新table
-            self.selectCoupon = self.coupons[index];
+            if (self.selectCoupon == self.coupons[index]) {
+                self.selectCoupon = nil;
+            }else{
+                self.selectCoupon = self.coupons[index];
+            }
             [self.tableView reloadData];
         }];
     }else{
@@ -359,7 +408,11 @@
             self.couponController.cardIndex = index;
             [self hideSelectCouponController];
             //TODO:选择年卡、刷新table
-            self.selectCard = self.yearCards[index];
+            if (self.selectCard == self.yearCards[index]) {
+                self.selectCard = nil;
+            }else{
+                self.selectCard = self.yearCards[index];
+            }
             [self.tableView reloadData];
         }];
     }
@@ -374,11 +427,12 @@
     
     [self addChildViewController:self.couponController];
     CGFloat height = section == 1 ? 48+120*self.coupons.count : 48+120*self.yearCards.count;
+    CGFloat reactHeight = MIN(height, kScreen_Height*2/3);
     self.couponController.view.frame = CGRectMake(0, self.view.bounds.size.height, kScreen_Width, height);
     [self.view addSubview:self.couponController.view];
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.couponController.view.frame = CGRectMake(0, self.view.bounds.size.height-height, kScreen_Width, height);
+        self.couponController.view.frame = CGRectMake(0, self.view.bounds.size.height-reactHeight, kScreen_Width, reactHeight);
     }];
 }
 
@@ -437,6 +491,34 @@
     });
     
     dispatch_resume(_timer);
+}
+
+#pragma mark - override methods
+-(void)backAction {
+    HYAlertView* alert = [HYAlertView sharedInstance];
+    [alert showAlertViewWithMessage:@"您将放弃选座,选中的座位也将解锁,是否继续?" subBottonTitle:@"取消" cancelButtonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+        switch (bottonType) {
+            case AlertViewClickBottonTypeSubBotton:
+                
+                break;
+                
+            default:{
+                [super backAction];
+                [APIHELPER theaterSeatUnLockSeats:@[@(1),@(2)] complete:^(BOOL isSuccess, NSDictionary *responseObject,     NSError *error) {
+                    //TODO:如果解锁失败，怎么处理
+                    
+                }];
+            }break;
+        }
+    }];
+}
+
+-(void)registNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccessNotification object:nil];
+}
+-(void)paySuccess {
+    
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@",kTheaterCommitOrderSuccessController,self.orderSn]));
 }
 
 @end

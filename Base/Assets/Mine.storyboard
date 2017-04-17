@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -676,6 +677,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ojx-nM-xRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3859" y="-113"/>
+        </scene>
+        <!--关于我们-->
+        <scene sceneID="hpB-8V-jMl">
+            <objects>
+                <viewController storyboardIdentifier="AboutUsViewController" title="关于我们" id="nS3-LD-bN0" customClass="AboutUsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eN8-6I-dGq"/>
+                        <viewControllerLayoutGuide type="bottom" id="fIg-OV-cLU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M4u-tm-5YX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oEV-SX-C4H">
+                                <rect key="frame" x="137.5" y="60" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="4WB-ns-FiP"/>
+                                    <constraint firstAttribute="width" secondItem="oEV-SX-C4H" secondAttribute="height" multiplier="1:1" id="IoQ-4I-9ia"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小飞象王国 1.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9S-9s-jAs">
+                                <rect key="frame" x="12" y="178" width="351" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="m8T-Ll-L7D"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小飞象王国是由广东省小飞象艺术剧团有限公司创建的一款在线选座订购亲自儿童剧的移动应用，小飞象王国致力于打造专攻儿童亲子剧类别的选座订购应用，使家长们订票更方便更快捷。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dad-KG-53A">
+                                <rect key="frame" x="30" y="234" width="315" height="90"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.44313725490196076" green="0.45098039215686275" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="广东小飞象艺术剧团有限公司" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kg-Ca-N3r">
+                                <rect key="frame" x="101.5" y="628" width="172.5" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="2BP-wd-OpS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright©2016-1017" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqM-dA-UpR">
+                                <rect key="frame" x="120.5" y="610" width="134.5" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="yFd-Gq-fkY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.74901960784313726" green="0.74901960784313726" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.96470588235294119" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="oEV-SX-C4H" firstAttribute="centerX" secondItem="M4u-tm-5YX" secondAttribute="centerX" id="DzP-w8-XZg"/>
+                            <constraint firstAttribute="trailing" secondItem="dad-KG-53A" secondAttribute="trailing" constant="30" id="Ezs-es-K0L"/>
+                            <constraint firstItem="dad-KG-53A" firstAttribute="leading" secondItem="M4u-tm-5YX" secondAttribute="leading" constant="30" id="NzY-FM-99E"/>
+                            <constraint firstAttribute="trailing" secondItem="N9S-9s-jAs" secondAttribute="trailing" constant="12" id="UcV-4B-MAH"/>
+                            <constraint firstItem="hqM-dA-UpR" firstAttribute="centerX" secondItem="M4u-tm-5YX" secondAttribute="centerX" id="UiZ-EG-zf9"/>
+                            <constraint firstItem="0Kg-Ca-N3r" firstAttribute="centerX" secondItem="M4u-tm-5YX" secondAttribute="centerX" id="aAD-xW-DL8"/>
+                            <constraint firstItem="fIg-OV-cLU" firstAttribute="top" secondItem="0Kg-Ca-N3r" secondAttribute="bottom" constant="18" id="aWO-2l-Czb"/>
+                            <constraint firstItem="0Kg-Ca-N3r" firstAttribute="top" secondItem="hqM-dA-UpR" secondAttribute="bottom" constant="3" id="dPw-Su-ETM"/>
+                            <constraint firstItem="dad-KG-53A" firstAttribute="top" secondItem="N9S-9s-jAs" secondAttribute="bottom" constant="35" id="e3k-o2-MkK"/>
+                            <constraint firstItem="N9S-9s-jAs" firstAttribute="top" secondItem="oEV-SX-C4H" secondAttribute="bottom" constant="18" id="n9C-xz-zh9"/>
+                            <constraint firstItem="N9S-9s-jAs" firstAttribute="leading" secondItem="M4u-tm-5YX" secondAttribute="leading" constant="12" id="ohl-lQ-eB8"/>
+                            <constraint firstItem="oEV-SX-C4H" firstAttribute="top" secondItem="eN8-6I-dGq" secondAttribute="bottom" constant="40" id="y9b-xt-3s8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descLbl" destination="dad-KG-53A" id="Sd6-px-8kt"/>
+                        <outlet property="logoImgV" destination="oEV-SX-C4H" id="Bs3-JZ-0fE"/>
+                        <outlet property="nameLbl" destination="N9S-9s-jAs" id="iWt-J4-J80"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IPC-2c-fOT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4525.6000000000004" y="-114.69265367316342"/>
         </scene>
         <!--我的优惠券-->
         <scene sceneID="Z3m-b3-XXJ">

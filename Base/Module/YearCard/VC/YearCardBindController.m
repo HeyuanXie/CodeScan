@@ -19,6 +19,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (self.schemaArgu[@"cardNum"]) {
+        self.cardTf.text = [self.schemaArgu objectForKey:@"cardNum"];
+    }
+    if (self.schemaArgu[@"cardPassword"]) {
+        self.passwordTf.text = [self.schemaArgu objectForKey:@"cardPassword"];
+    }
     // Do any additional setup after loading the view.
     [self subviewStyle];
 }
@@ -54,8 +61,9 @@
 
     [APIHELPER bindYearCard:num password:password complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
-//            NSString* deadline = responseObject[@"data"][@""];
-            APPROUTE(([NSString stringWithFormat:@"%@?deadline=%@",kYearCardBindSuccessController,@"2017-12-30"]));
+            NSDate* date = [HYTool dateAfterMonths:[NSDate date] gapMonth:12];
+            NSString* deadline = [HYTool dateStringWithDate:date format:@"yyyy-MM-dd"];
+            APPROUTE(([NSString stringWithFormat:@"%@?deadline=%@",kYearCardBindSuccessController,deadline]));
         }else{
             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
         }

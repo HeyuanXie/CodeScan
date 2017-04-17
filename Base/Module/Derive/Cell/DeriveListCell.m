@@ -7,6 +7,7 @@
 //
 
 #import "DeriveListCell.h"
+#import "NSString+Extension.h"
 
 @interface DeriveListCell ()
 
@@ -44,7 +45,8 @@
     
     [productImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:ImageNamed(@"baidi")];
     nameLbl.text = model.goodName;
-    priceLbl.text = [NSString stringWithFormat:@"%ld",model.shopPrice.integerValue];
+    priceLbl.text = [NSString stringWithFormat:@"%ld积分",model.shopPrice.integerValue];
+    priceLbl.attributedText = [priceLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:14]] subStrings:@[@"积分"]];
     exchangeBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         if (self.exchangeClick) {
             self.exchangeClick(model);
@@ -91,7 +93,8 @@
     
     [productImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:ImageNamed(@"baidi")];
     nameLbl.text = model.goodName;
-    priceLbl.text = [NSString stringWithFormat:@"%ld",model.shopPrice.integerValue];
+    priceLbl.text = [NSString stringWithFormat:@"%ld积分",model.shopPrice.integerValue];
+    priceLbl.attributedText = [priceLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:14]] subStrings:@[@"积分"]];
     exchangeBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         if (self.exchangeClick) {

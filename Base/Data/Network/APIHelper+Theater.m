@@ -125,30 +125,19 @@
 }
 
 
-/**
- 剧场确认订单支付
 
- @param timeId <#timeId description#>
- @param payType <#payType description#>
- @param cardSn <#cardSn description#>
- @param couponSn <#couponSn description#>
+/**
+ 座位解锁
+
  @param seats <#seats description#>
  @param complete <#complete description#>
  */
--(void)theaterCommitOrder:(NSInteger)timeId
-                  payType:(NSInteger)payType
-                   cardSn:(NSString *)cardSn
-                 couponSn:(NSString *)couponSn
-                    seats:(NSArray *)seats
-                 complete:(ApiRequestCompleteBlock)complete {
+-(void)theaterSeatUnLockSeats:(NSArray *)seats
+                     complete:(ApiRequestCompleteBlock)complete {
     
     NSMutableDictionary* param = [NSMutableDictionary dictionary];
-    [param safe_setValue:@(timeId) forKey:@"time_id"];
-    [param safe_setValue:@(payType) forKey:@"pay_type"];
-    [param safe_setValue:cardSn forKey:@"cardSn"];
-    [param safe_setValue:couponSn forKey:@"couponSn"];
     [param safe_setValue:seats forKey:@"seats"];
-    [APIHELPER postWithURL:@"theatre_order/order" param:param complete:complete];
+    [APIHELPER postWithURL:@"seat/unselect" param:param complete:complete];
 }
 
 

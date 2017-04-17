@@ -7,17 +7,25 @@
 //
 
 #import "YearCardCommitOrderController.h"
+#import "SelectCouponController.h"
+#import "CouponModel.h"
 #import "OrderTopCell.h"
 #import "NSString+Extension.h"
 #import "HYPayEngine.h"
+#import "HYAlertView.h"
 
 @interface YearCardCommitOrderController ()
 
 @property (strong, nonatomic) NSMutableDictionary* data;
 @property (weak, nonatomic) IBOutlet UILabel *totalLbl;
 
+@property (strong, nonatomic) NSString* orderSn;
 @property (strong, nonatomic) NSMutableArray* payMethods;
 @property (assign, nonatomic) NSInteger selectIndex;    //记录选择的支付方式
+
+@property (strong, nonatomic) SelectCouponController * couponController;
+@property (strong, nonatomic) NSMutableArray* coupons;
+@property (strong, nonatomic) CouponModel* selectCoupon;
 
 @end
 
@@ -37,7 +45,14 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.tableView registerNib:[UINib nibWithNibName:[OrderTopCell identify] bundle:nil] forCellReuseIdentifier:[OrderTopCell identify]];
 
+    [self fetchData];
     [self subviewInit];
+    [self registNotification];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,7 +105,7 @@
                 cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
                 cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
 //                NSString* str = @"合计: ¥99";
-                NSString* str = [NSString stringWithFormat:@"积分 ¥%@",self.data[@"price"]];
+                NSString* str = [NSString stringWithFormat:@"¥%@",self.data[@"price"]];
                 NSAttributedString* attStr = [str addAttribute:@[NSForegroundColorAttributeName,NSForegroundColorAttributeName,NSFontAttributeName] values:@[[UIColor hyRedColor],[UIColor hyRedColor],[UIFont systemFontOfSize:19]] subStrings:@[@"¥",self.data[@"price"],self.data[@"price"]]];
                 cell.detailTextLabel.attributedText = attStr;
                 cell.accessoryType = UITableViewCellAccessoryNone;
@@ -109,9 +124,13 @@
             cell.textLabel.text = @"优惠券";
             cell.textLabel.textColor = [UIColor hyBlackTextColor];
             cell.textLabel.font = [UIFont systemFontOfSize:15];
-            cell.detailTextLabel.text = @"没有可用优惠券";
             cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
             cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
+            if (self.coupons.count == 0) {
+                cell.detailTextLabel.text = @"无可用优惠券";
+            }else{
+                cell.detailTextLabel.text = self.selectCoupon == nil ? @"选择优惠券" : self.selectCoupon.couponName;
+            }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             return cell;
         }
@@ -183,7 +202,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         //TODO:进入优惠券列表
-
+        if (self.coupons.count == 0) {
+            return;
+        }
+        [self showSelectCouponController];
         return;
     }
     if (indexPath.section == 2) {
@@ -204,21 +226,33 @@
 
     [APIHELPER requestCardPayInfoWithParam:param complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
+            self.orderSn = responseObject[@"data"][@"order_id"];
             if ([responseObject[@"data"][@"pay_type"] integerValue] == 1) {
-                [HYPayEngine alipayWithPayInfo:responseObject[@"data"] withFinishBlock:^(BOOL success, NSString *payMessage) {
+                [HYPayEngine alipayWithOrderStr:responseObject[@"data"][@"pay_data"] withFinishBlock:^(BOOL success, NSString *payMessage) {
+                    //这里的支付结果回调只有网页支付会掉，支付宝app支付会在appDelegate中回调
                     if (!success) {
                         [self showMessage:payMessage];
+                    }else{
+                        HYAlertView* alert = [HYAlertView sharedInstance];
+                        [alert showAlertView:nil message:@"支付成功" subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+                        }];
                     }
                 }];
             }else{
-                [HYPayEngine wxpayWithPayInfo:responseObject[@"data"] WithFinishBlock:^(BOOL success, NSInteger code, NSString *payMessage) {
+                [HYPayEngine wxpayWithPayInfo:responseObject[@"data"][@"pay_data"] WithFinishBlock:^(BOOL success, NSInteger code, NSString *payMessage) {
                     if (!success) {
                         [self showMessage:payMessage];
+                    }else{
+                        HYAlertView* alert = [HYAlertView sharedInstance];
+                        [alert showAlertView:nil message:@"支付成功" subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+                        }];
                     }
                 }];
             }
         }else{
-            [self showMessage:@"提交订单失败"];
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
         }
     }];
 }
@@ -236,14 +270,84 @@
     
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)registNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccessNotification object:nil];
 }
-*/
+-(void)paySuccess {
+    
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=2&order_sn=%@",kTheaterCommitOrderSuccessController,self.orderSn]));
+}
+
+
+-(void)fetchData {
+    [self showLoadingAnimation];
+    [APIHELPER mineCouponList:0 limit:100 orderType:2 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
+        if (isSuccess) {
+            [self.coupons removeAllObjects];
+            [self.coupons addObjectsFromArray:[NSArray yy_modelArrayWithClass:[CouponModel class] array:responseObject[@"data"][@"list"]]];
+        }
+    }];
+}
+
+-(SelectCouponController *)couponController {
+    if (!_couponController) {
+        _couponController = (SelectCouponController*)VIEWCONTROLLER(kSelectCouponController);
+        _couponController.contentType = TypeYearCard;
+    }
+    return _couponController;
+}
+
+-(NSMutableArray *)coupons {
+    if (!_coupons) {
+        _coupons = [NSMutableArray array];
+    }
+    return _coupons;
+}
+
+-(void)showSelectCouponController {
+    
+    self.couponController.contentType = TypeCoupon;
+    self.couponController.dataArray = [NSMutableArray arrayWithArray:self.coupons];
+    @weakify(self);
+    [self.couponController setSelectFinish:^(NSInteger index) {
+        @strongify(self);
+        self.couponController.couponIndex = index;
+        [self hideSelectCouponController];
+        //TODO:选择优惠券、刷新table
+        self.selectCoupon = self.coupons[index];
+        [self.tableView reloadData];
+    }];
+    
+    UIView* backGrayView = [[UIView alloc] initWithFrame:self.view.bounds];
+    backGrayView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+    backGrayView.tag = 10000;
+    [backGrayView bk_whenTapped:^{
+        [self hideSelectCouponController];
+    }];
+    [self.view addSubview:backGrayView];
+    
+    [self addChildViewController:self.couponController];
+    CGFloat height = 48+120*self.coupons.count;
+    self.couponController.view.frame = CGRectMake(0, self.view.bounds.size.height, kScreen_Width, height);
+    [self.view addSubview:self.couponController.view];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.couponController.view.frame = CGRectMake(0, self.view.bounds.size.height-height, kScreen_Width, height);
+    }];
+}
+
+-(void)hideSelectCouponController {
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.couponController.view.frame = CGRectMake(0, self.view.bounds.size.height, kScreen_Width, 48+120*2);
+    } completion:^(BOOL finished) {
+        [self.couponController.view removeFromSuperview];
+        [self.couponController removeFromParentViewController];
+        if ([self.view viewWithTag:10000]) {
+            [[self.view viewWithTag:10000] removeFromSuperview];
+        }
+    }];
+}
 
 @end

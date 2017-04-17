@@ -36,12 +36,8 @@
                  seats:(NSArray*)seats
               complete:(ApiRequestCompleteBlock)complete;
 
--(void)theaterCommitOrder:(NSInteger)timeId
-                  payType:(NSInteger)payType
-                   cardSn:(NSString*)cardSn
-                 couponSn:(NSString*)couponSn
-                    seats:(NSArray*)seats
-                 complete:(ApiRequestCompleteBlock)complete;
+-(void)theaterSeatUnLockSeats:(NSArray*)seats
+                     complete:(ApiRequestCompleteBlock)complete;
 
 -(void)theaterComment:(NSInteger)playId
               orderId:(NSInteger)orderId

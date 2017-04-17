@@ -15,11 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退票说明: 提前24小时以上退票免手续费, 当天退票收取20%手续费" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agf-xi-4Hf">
-                    <rect key="frame" x="32" y="12" width="331" height="46"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="46" id="Y9q-bZ-rFg"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="退票说明: 提前24小时以上退票免手续费, 当天退票收取20%手续费" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agf-xi-4Hf">
+                    <rect key="frame" x="32" y="12" width="331" height="31.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.49803921569999998" green="0.49803921569999998" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -34,8 +31,8 @@
             </subviews>
             <color key="backgroundColor" red="0.94117647059999998" green="0.96470588239999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="7ZI-Cq-RKM" firstAttribute="centerY" secondItem="agf-xi-4Hf" secondAttribute="centerY" id="1bk-lQ-nkh"/>
                 <constraint firstAttribute="trailing" secondItem="agf-xi-4Hf" secondAttribute="trailing" constant="12" id="6Rp-tF-ITt"/>
-                <constraint firstItem="7ZI-Cq-RKM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="C21-Ft-K11"/>
                 <constraint firstItem="agf-xi-4Hf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="DjV-wm-FvP"/>
                 <constraint firstItem="agf-xi-4Hf" firstAttribute="leading" secondItem="7ZI-Cq-RKM" secondAttribute="trailing" constant="5" id="gNb-0Y-WlI"/>
                 <constraint firstItem="7ZI-Cq-RKM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="12" id="i0e-0s-6II"/>
@@ -43,6 +40,36 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="29.5" y="-25"/>
+        </view>
+        <view contentMode="scaleToFill" id="WfY-3z-fBa">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1楼11排20座" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gf5-3q-QmV">
+                    <rect key="frame" x="12" y="0.0" width="79" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.57647058819999997" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已出票" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLO-Wm-ULZ">
+                    <rect key="frame" x="320" y="0.0" width="43" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.57647058819999997" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="gf5-3q-QmV" secondAttribute="bottom" id="3g5-Xw-E9o"/>
+                <constraint firstItem="xLO-Wm-ULZ" firstAttribute="top" secondItem="WfY-3z-fBa" secondAttribute="top" id="Hzi-zE-Sg2"/>
+                <constraint firstAttribute="trailing" secondItem="xLO-Wm-ULZ" secondAttribute="trailing" constant="12" id="Lgb-Qa-0Op"/>
+                <constraint firstItem="gf5-3q-QmV" firstAttribute="leading" secondItem="WfY-3z-fBa" secondAttribute="leading" constant="12" id="Zf9-9W-VFg"/>
+                <constraint firstItem="gf5-3q-QmV" firstAttribute="top" secondItem="WfY-3z-fBa" secondAttribute="top" id="dfx-Xs-fRw"/>
+                <constraint firstAttribute="bottom" secondItem="xLO-Wm-ULZ" secondAttribute="bottom" id="pPP-ZO-1DW"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="30" y="130"/>
         </view>
     </objects>
     <resources>

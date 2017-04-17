@@ -21,7 +21,7 @@
     [super viewDidLoad];
     
     if ([self.schemaArgu objectForKey:@"deadline"]) {
-        self.deadline = [self.schemaArgu objectForKey:@""];
+        self.deadline = [self.schemaArgu objectForKey:@"deadline"];
     }
     [self subviewStyle];
 }
@@ -35,7 +35,10 @@
 #pragma mark - IBActions
 - (IBAction)leave:(id)sender {
     
-    APPROUTE(kHomeViewController);
+    //要先设置tab.selectIndex=0回到首页，再popToRootViewController让order的导航控制器回到rootViewController
+    UITabBarController* tab = (UITabBarController*)kApplication.keyWindow.rootViewController;
+    tab.selectedIndex = 0;
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void)subviewStyle {

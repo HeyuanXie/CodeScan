@@ -29,6 +29,9 @@
 
 -(void)configHeadCell:(id)model {
     
+    [self.imgV sd_setImageWithURL:model[@"thumb"] placeholderImage:nil];
+    self.titleLbl.text = model[@"title"];
+    self.detailLbl.text = model[@"sub_title"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

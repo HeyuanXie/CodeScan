@@ -10,6 +10,9 @@
 
 @interface MineCommentCell : UITableViewCell
 
+@property(nonatomic,weak)IBOutlet UIView *botLine;
+
+
 +(NSString*)identify;
 
 -(void)configTheaterCell:(id)model;

@@ -55,6 +55,7 @@
     [super webViewInit];
     
     [self.webView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(-44, 0, -50, 0)];
+    self.webView.scrollView.maximumZoomScale = 1.0;
     [self.view sendSubviewToBack:self.webView];
 }
 

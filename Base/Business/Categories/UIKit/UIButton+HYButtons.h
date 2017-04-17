@@ -19,5 +19,7 @@
 - (void)setMainUnAngleStyle;
 
 - (void)setRedStyle;
+- (void)setBlueStyle;
+- (void)setGrayStyle;
 
 @end

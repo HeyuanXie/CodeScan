@@ -9,6 +9,7 @@
 #import "TheaterSeatSelectController.h"
 #import "TheaterCommitOrderController.h"
 #import "TheaterSeatView.h"
+#import "CouponModel.h"
 #import "NSString+Extension.h"
 
 
@@ -55,10 +56,27 @@
 
 - (IBAction)comfirm:(id)sender {
     
-    TheaterCommitOrderController* vc = (TheaterCommitOrderController*)VIEWCONTROLLER(kTheaterCommitOrderController);
-    vc.selectArray = self.selectArray;
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    NSMutableArray* seatArr = [NSMutableArray array];
+    for (FVSeatItem* seat in self.selectArray) {
+        [seatArr addObject:@(seat.seatId)];
+    }
+    //锁定座位，成功后跳到付款页面
+    [APIHELPER theaterSeatLock:self.timeId seats:seatArr complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            NSArray* coupons = [NSArray yy_modelArrayWithClass:[CouponModel class] array:responseObject[@"data"][@"coupon_list"][@"list"]];
+            NSArray* yearCards = responseObject[@"data"][@"card_list"][@"list"];
+            
+            TheaterCommitOrderController* vc = (TheaterCommitOrderController*)VIEWCONTROLLER(kTheaterCommitOrderController);
+            vc.selectArray = self.selectArray;
+            vc.coupons = coupons;
+            vc.yearCards = yearCards;
+            vc.timeId = self.timeId;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
 
 #pragma mark - FVSeatsPickerDelegate

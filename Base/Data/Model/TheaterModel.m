@@ -25,7 +25,8 @@
              @"playDate":@"play_date",
              @"hallId":@"hall_id",
              @"theaterId":@"theatre_id",
-             @"theaterName":@"theatre_name"
+             @"theaterName":@"theatre_name",
+             @"payableAmount":@"payable_amount"
              };
 }
 

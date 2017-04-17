@@ -56,7 +56,6 @@ typedef enum : NSUInteger {
     }else{
         [cell configDeriveCell:model];
     }
-    [cell addLine:NO leftOffSet:0 rightOffSet:0];
     return cell;
 }
 
@@ -70,7 +69,6 @@ typedef enum : NSUInteger {
         }else{
             [cell configDeriveCell:model];
         }
-        [cell addLine:NO leftOffSet:0 rightOffSet:0];
     }];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

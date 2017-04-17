@@ -68,6 +68,7 @@ NSString* const kMessageHomeController = @"MessageHomeController";
 NSString* const kMessageListController = @"MessageListController";
 NSString* const kUserInfoViewController = @"UserInfoViewController";
 NSString* const kFeedbackController = @"FeedbackController";
+NSString* const kAboutUsViewController = @"AboutUsViewController";
 NSString* const kAccountSecurityController = @"AccountSecurityController";
 
 NSString* const kMineYearCardController = @"MineYearCardController";
@@ -178,6 +179,7 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kMessageHomeController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMessageListController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kFeedbackController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kAboutUsViewController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kAccountSecurityController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMineYearCardController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kYearCardDetailController,@"sb":@"Mine",@"method":@"push"},

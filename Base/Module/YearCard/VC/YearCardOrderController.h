@@ -7,7 +7,6 @@
 //
 
 
-//年卡的订单详情
 #import "BaseTableViewController.h"
 
 @interface YearCardOrderController : BaseTableViewController

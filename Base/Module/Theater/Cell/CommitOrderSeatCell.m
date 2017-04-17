@@ -7,7 +7,6 @@
 //
 
 #import "CommitOrderSeatCell.h"
-#import "FVSeatItem.h"
 
 @interface CommitOrderSeatCell ()
 

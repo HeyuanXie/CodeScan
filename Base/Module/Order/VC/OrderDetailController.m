@@ -14,11 +14,12 @@
 #import "OrderCodeCell.h"
 #import "OrderDetailCell.h"
 #import "UIViewController+Extension.h"
+#import "UITableViewCell+HYCell.h"
 
 @interface OrderDetailController ()
 
 @property(strong,nonatomic)NSDictionary* data;  //订单详情数据
-@property(strong,nonatomic)NSMutableArray* codeArray;   //订单二维码数组
+@property(strong,nonatomic)NSMutableArray* ticketArr;   //订单二维码数组
 @property(assign,nonatomic)ContentType contentType;//订单类型,0:theater、1:derive、2:card
 @property(assign,nonatomic)NSString* orderId;    //订单Id
 
@@ -59,7 +60,7 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 2) {
-        return self.codeArray.count;
+        return self.contentType == TypeTheater ? 2 : 1;
     }else{
         return 2;
     }
@@ -84,7 +85,11 @@
         }
             
         case 2:
-            return [self codeCellForTableView:tableView indexPath:indexPath];
+            if (indexPath.row == 0) {
+                return [self codeCellForTableView:tableView indexPath:indexPath];
+            }else{
+                return [self ticketCellForTableView:tableView indexPath:indexPath];
+            }
         default:{
             if (indexPath.row==0) {
                 return [self detailHeadCellForTableView:tableView indexPath:indexPath];
@@ -106,7 +111,11 @@
     NSArray* height = @[@[@(128),@(40)],@[@(48),@(48)],@[@(116)],@[@(48),@(142)]];
     
     if (indexPath.section == 2) {
-        return [height[2][0] floatValue];
+        if (indexPath.row == 0) {
+            return 212;
+        }else{
+            return self.ticketArr.count == 0 ? 0 : 18 + self.ticketArr.count * 30;
+        }
     }else{
         return [height[indexPath.section][indexPath.row] floatValue];
     }
@@ -138,15 +147,15 @@
         [self geocoderClick:address];
         return;
     }
-    if (indexPath.section == 2) {
-        OrderCodeController* vc = (OrderCodeController*)VIEWCONTROLLER(kOrderCodeController);
-        vc.data = self.data;
-        vc.code = self.codeArray[indexPath.row];
-        vc.contentType = self.contentType;
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
-    }
+//    if (indexPath.section == 2) {
+//        OrderCodeController* vc = (OrderCodeController*)VIEWCONTROLLER(kOrderCodeController);
+//        vc.data = self.data;
+//        vc.code = self.codeArray[indexPath.row];
+//        vc.contentType = self.contentType;
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//        return;
+//    }
 }
 #pragma mark - private methods
 -(UITableViewCell*)headCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
@@ -202,7 +211,7 @@
     UIButton* btn = [cell.contentView viewWithTag:1000];
     UILabel* lbl = [cell.contentView  viewWithTag:1001];
     
-    NSString* deadLine = [HYTool dateStringWithString:self.data[@"deadline"] inputFormat:nil outputFormat:@"yyyy-MM-dd"];
+    NSString* deadLine = [HYTool dateStringWithString:self.contentType == TypeDerive ? self.data[@"deadline"] : self.data[@"expire_time"] inputFormat:nil outputFormat:@"yyyy-MM-dd"];
     lbl.text = [NSString stringWithFormat:@"有效期至: %@",deadLine];
     
     if (self.contentType == TypeDerive) {
@@ -224,6 +233,7 @@
             APPROUTE(kOrderRefundController);
         }];
     }
+    btn.hidden = YES;
     return cell;
     
 }
@@ -237,7 +247,7 @@
         cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
-        UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 11.5, 25, 25)];
+        UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 14, 20, 20)];
         imageView.image = ImageNamed(@"定位");
         UILabel* lbl = [HYTool getLabelWithFrame:CGRectMake(40, 0, kScreen_Width, 48) text:@"" fontSize:15 textColor:[UIColor hyBlueTextColor] textAlignment:NSTextAlignmentLeft];
         lbl.tag = 1000;
@@ -250,8 +260,10 @@
         case 0:
             address = self.data[@"theatre_name"];
             break;
-        case 1:
+        case TypeDerive:
             address = self.data[@"exchange_place"];
+        case TypeCard:
+            address = self.data[@"theatre_name"];
         default:
             break;
     }
@@ -260,15 +272,37 @@
 }
 -(UITableViewCell*)codeCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
     OrderCodeCell*cell = [tableView dequeueReusableCellWithIdentifier:[OrderCodeCell identify]];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    if (self.contentType == TypeTheater) {
-        [cell configCodeCell:nil];
-    }else if (self.contentType == TypeDerive) {
-        [cell configDeriveCodeCell:self.codeArray[indexPath.row] statu:[self.data[@"order_status"] integerValue]];
+    [cell configCodeCell:self.data];
+    [cell addLine:NO leftOffSet:0 rightOffSet:0];
+    return cell;
+}
+-(UITableViewCell*)ticketCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
+    static NSString* cellId = @"ticketCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        [HYTool configTableViewCellDefault:cell];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+    }
+    for (UIView* subview in cell.contentView.subviews) {
+        [subview removeFromSuperview];
+    }
+    for (int i=0; i<self.ticketArr.count; i++) {
+        UIView* ticketView = LOADNIB(@"OrderUseView", 1);
+        ticketView.frame = CGRectMake(0, 9+i*30, kScreen_Width, 30);
+        UILabel* seatLbl = [ticketView viewWithTag:1000];
+        UILabel* statuLbl = [ticketView viewWithTag:1001];
+        if (i==1) {
+            seatLbl.textColor = [UIColor hyBlackTextColor];
+            statuLbl.textColor = [UIColor hyBlackTextColor];
+            statuLbl.text = @"未出票";
+        }
+        [cell.contentView addSubview:ticketView];
     }
     return cell;
 }
+
 -(UITableViewCell*)detailHeadCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
     
     static NSString* cellId = @"detailHeadCell";
@@ -291,22 +325,39 @@
     [cell configDetailCell:self.data type:self.contentType];
     return cell;
 }
--(NSMutableArray *)codeArray {
-    if (!_codeArray) {
-        _codeArray = [NSMutableArray array];
+
+- (NSMutableArray *)ticketArr {
+    if (!_ticketArr) {
+        _ticketArr = [NSMutableArray array];
     }
-    return _codeArray;
+    return _ticketArr;
 }
 
 -(void)fetchData {
     
     if (self.contentType == TypeTheater) {
-        
+        [APIHELPER orderDetailTheater:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            if (isSuccess) {
+                self.data = responseObject[@"data"];
+                [self.ticketArr addObjectsFromArray:responseObject[@"data"][@"detail"]];
+                [self.tableView reloadData];
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+        }];
     }else if (self.contentType == TypeDerive) {
         [APIHELPER orderDetailDerive:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             if (isSuccess) {
                 self.data = responseObject[@"data"];
-                [self.codeArray addObjectsFromArray:responseObject[@"data"][@"exchange_barcode"]];
+                [self.tableView reloadData];
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+        }];
+    }else if (self.contentType == TypeCard) {
+        [APIHELPER orderDetailCard:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            if (isSuccess) {
+                self.data = responseObject[@"data"];
                 [self.tableView reloadData];
             }else{
                 [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];

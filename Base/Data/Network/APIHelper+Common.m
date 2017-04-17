@@ -26,7 +26,7 @@
 
 - (void)feedback:(NSString *)content
             type:(NSString *)typeID
-             pic:(NSString *)picName
+             pic:(NSArray *)picName
          contact:(NSString *)contact
         complete:(ApiRequestCompleteBlock)complete{
     
@@ -36,7 +36,7 @@
     [param safe_setValue:picName forKey:@"pic"];
     [param safe_setValue:contact forKey:@"contact"];
     
-    [APIHELPER postWithURL:@"feedback/add" param:param complete:complete];
+    [APIHELPER postWithURL:@"feedback/save" param:param complete:complete];
 }
 
 - (void)fetchConfiguration:(ApiRequestCompleteBlock)complete{
@@ -55,6 +55,18 @@
 
 - (void)checkVersionComplete:(ApiRequestCompleteBlock)complete{
     [APIHELPER getWithURL:@"config/checkVersion" param:nil complete:complete];
+}
+
+- (void)fetchMessage:(NSInteger)start
+               limit:(NSInteger)limit
+                type:(NSInteger)type
+            complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary *param = [NSMutableDictionary new];
+    [param safe_setValue:@(start) forKey:@"start"];
+    [param safe_setValue:@(limit) forKey:@"limit"];
+    [param safe_setValue:@(type) forKey:@"type"];
+    [APIHELPER postWithURL:@"notify/index" param:param complete:complete];
 }
 @end
 

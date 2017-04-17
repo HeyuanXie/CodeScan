@@ -7,6 +7,7 @@
 //
 
 #import "BaseTableViewController.h"
+#import "SelectCouponCell.h"
 
 typedef enum : NSUInteger {
     TypeCoupon,

@@ -9,7 +9,9 @@
 #import "AppDelegate.h"
 #import "AppDelegate+Extension.h"
 #import "WXApi.h"
+#import <AlipaySDK/AlipaySDK.h>
 #import "HYPayEngine.h"
+#import "HYAlertView.h"
 
 @interface AppDelegate ()
 
@@ -65,8 +67,33 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    return [WXApi handleOpenURL:url delegate:[HYPayEngine sharePayEngine]];
+    [WXApi handleOpenURL:url delegate:[HYPayEngine sharePayEngine]];
+    
+    if ([url.host isEqualToString:@"safepay"]) {
+//         支付跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSString * strTitle = [NSString stringWithFormat:@"支付结果"];
+            NSString *strMsg;
+            if ([resultDic[@"resultStatus"] isEqualToString:@"9000"]) {
+                
+                strMsg = @"恭喜您，支付成功!";
+                
+            }else if([resultDic[@"resultStatus"] isEqualToString:@"6001"])
+            {
+                strMsg = @"已取消支付!";
+                
+            }else{
+                strMsg = @"支付失败!";
+            }
+            HYAlertView* alert = [HYAlertView sharedInstance];
+            [alert showAlertView:strTitle message:strMsg subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+                if ([strMsg isEqualToString:@"恭喜您，支付成功!"]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+                }
+            }];
+        }];
+    }
+    return YES;
 }
-
 
 @end

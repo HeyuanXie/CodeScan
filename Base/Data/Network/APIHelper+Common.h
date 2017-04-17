@@ -17,7 +17,7 @@
 
 - (void)feedback:(NSString *)content
             type:(NSString *)typeID
-             pic:(NSString *)picName
+             pic:(NSArray *)picName
          contact:(NSString *)contact
         complete:(ApiRequestCompleteBlock)complete;
 
@@ -39,4 +39,19 @@
  @param complete complete description
  */
 - (void)checkVersionComplete:(ApiRequestCompleteBlock)complete;
+
+
+
+/**
+ 获取消息列表
+
+ @param start <#start description#>
+ @param limit <#limit description#>
+ @param type 消息类型, 0:系统消息, 1:订单消息
+ @param complete <#complete description#>
+ */
+- (void)fetchMessage:(NSInteger)start
+               limit:(NSInteger)limit
+                type:(NSInteger)type
+            complete:(ApiRequestCompleteBlock)complete;
 @end

@@ -7,12 +7,36 @@
 //
 
 #import "MessageSystemCell.h"
+#import "NSString+Extension.h"
 
 @implementation MessageSystemCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+}
+
++(NSString *)identify {
+    return NSStringFromClass([self class]);
+}
+
+-(void)configMessageCell:(id)model isFold:(BOOL)isFold {
+    
+    [self.foldBtn bk_whenTapped:^{
+        if (self.foldBtnClick) {
+            self.foldBtnClick();
+        }
+    }];
+    
+    self.detailLbl.text = (NSString*)model;
+    self.detailLbl.numberOfLines = isFold ? 2 : 0;
+    NSString* title = isFold ? @"展开" : @"收起";
+    NSString* image = isFold ? @"蓝色箭头_下" : @"蓝色箭头_上";
+    [self.foldBtn setTitle:title forState:UIControlStateNormal];
+    [self.foldBtn setImage:ImageNamed(image) forState:UIControlStateNormal];
+    CGFloat textHeight = [self.detailLbl.text sizeWithFont:[UIFont systemFontOfSize:15] maxWidth:kScreen_Width-24].height;
+    self.foldBtnHeight.constant = textHeight < 49 ? 12 : 46;
+    self.foldBtn.hidden = textHeight < 49 ? YES : NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

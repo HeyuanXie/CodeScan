@@ -42,12 +42,15 @@
 
 -(void)configTheaterHeadCell:(id)model {
 
-    self.firstLbl.text = @"丑小鸭";
-    self.secondLbl.text = @"2017-2-23 周四 19:30";
-    self.thirdLbl.text = @"东莞市玉兰大剧场";
+    self.firstLbl.text = [[model[@"play_name"] stringByReplacingOccurrencesOfString:@"》" withString:@""] stringByReplacingOccurrencesOfString:@"《" withString:@""];
+    NSString* dateStr = model[@"play_time"];
+    self.secondLbl.text = [HYTool dateStringWithString:dateStr inputFormat:nil outputFormat:@"yyyy-MM-dd HH:mm"];
+    self.thirdLbl.text = model[@"theatre_name"];
     
-    NSString* text = [NSString stringWithFormat:@"¥%@(%d张)",@"340",3];
-    self.forthLbl.attributedText = [text addAttribute:@[NSFontAttributeName,NSFontAttributeName,NSForegroundColorAttributeName] values:@[[UIFont systemFontOfSize:14],[UIFont systemFontOfSize:14],RGB(78, 78, 78, 1.0)] subStrings:@[@"¥",[NSString stringWithFormat:@"(%d张)",3],[NSString stringWithFormat:@"(%d张)",3]]];
+    NSString* price = model[@"payable_amount"];
+    NSInteger num = [model[@"num"] integerValue];
+    NSString* text = [NSString stringWithFormat:@"¥%@(%ld张)",price,num];
+    self.forthLbl.attributedText = [text addAttribute:@[NSFontAttributeName,NSFontAttributeName,NSForegroundColorAttributeName] values:@[[UIFont systemFontOfSize:14],[UIFont systemFontOfSize:14],RGB(78, 78, 78, 1.0)] subStrings:@[@"¥",[NSString stringWithFormat:@"(%ld张)",num],[NSString stringWithFormat:@"(%ld张)",num]]];
 }
 
 -(void)configLectureHeadCell:(id)model {
@@ -86,10 +89,10 @@
     self.thirdLblTop.constant = 10;
     self.forthLbl.hidden = YES;
     
-    self.firstLbl.text = @"飞象卡1+1家庭年票";
-    self.secondLbl.text = @"一年12次观剧机会,每次限制两人";
+    self.firstLbl.text = model[@"card_name"];
+    self.secondLbl.text = [NSString stringWithFormat:@"一年%ld次观剧机会,每次限制两人",[model[@"total_times"] integerValue]];
     
-    NSString* text = [NSString stringWithFormat:@"¥%@",@"99"];
+    NSString* text = [NSString stringWithFormat:@"¥%@",model[@"price"]];
     self.thirdLbl.textColor = [UIColor hyRedColor];
     self.thirdLbl.font = [UIFont systemFontOfSize:19];
     self.thirdLbl.attributedText = [text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:14]] subStrings:@[@"¥"]];

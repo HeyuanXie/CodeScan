@@ -13,4 +13,9 @@
 -(void)requestTheaterPayInfoWithParam:(NSDictionary*)param complete:(ApiRequestCompleteBlock)complete;
 -(void)requestCardPayInfoWithParam:(NSDictionary*)param complete:(ApiRequestCompleteBlock)complete;
 
+-(void)requestTheaterContinuePayInfoWithOrderId:(NSString*)orderId
+                                       complete:(ApiRequestCompleteBlock)complete;
+-(void)requestCardContinuePayInfoWithOrderId:(NSString*)orderId
+                                       complete:(ApiRequestCompleteBlock)complete;
+
 @end

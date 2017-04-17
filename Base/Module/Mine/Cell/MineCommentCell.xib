@@ -163,13 +163,23 @@
                             <constraint firstAttribute="height" constant="104" id="rwu-rG-SsC"/>
                         </constraints>
                     </scrollView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2aQ-US-2F8">
+                        <rect key="frame" x="0.0" y="270.5" width="375" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="nrX-gR-7yK"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="2aQ-US-2F8" secondAttribute="trailing" id="1Nz-If-QeE"/>
+                    <constraint firstItem="2aQ-US-2F8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1VO-FK-TfO"/>
                     <constraint firstItem="3Zj-1b-9fx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="7bF-MV-clN"/>
                     <constraint firstItem="D35-lx-kd9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7oV-dF-iJZ"/>
                     <constraint firstAttribute="trailing" secondItem="Gxv-Ri-vrO" secondAttribute="trailing" constant="12" id="EPj-Y9-Iot"/>
                     <constraint firstItem="3Zj-1b-9fx" firstAttribute="top" secondItem="ONg-aL-QQc" secondAttribute="bottom" constant="12" id="FLr-qj-FTC"/>
                     <constraint firstItem="D35-lx-kd9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JKE-td-hRy"/>
+                    <constraint firstAttribute="bottom" secondItem="2aQ-US-2F8" secondAttribute="bottom" id="P9P-0f-yj2"/>
                     <constraint firstItem="Gxv-Ri-vrO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="QC3-ai-RYS"/>
                     <constraint firstItem="ONg-aL-QQc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="RFk-zV-mAb"/>
                     <constraint firstAttribute="bottom" secondItem="Gxv-Ri-vrO" secondAttribute="bottom" constant="12" id="Wv3-Nb-zLQ"/>
@@ -181,6 +191,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="botLine" destination="2aQ-US-2F8" id="i2T-Y2-Leg"/>
                 <outlet property="commentLbl" destination="ONg-aL-QQc" id="8dX-F6-22t"/>
                 <outlet property="imgV" destination="eXr-yJ-CeB" id="sPi-At-aKS"/>
                 <outlet property="scoreView" destination="vVN-oi-ifW" id="EqG-2l-HeJ"/>

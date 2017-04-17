@@ -83,4 +83,16 @@
     self.layer.borderColor = [UIColor hyRedColor].CGColor;
 }
 
+- (void)setBlueStyle {
+    [self setBackgroundColor:[UIColor whiteColor]];
+    [self setTitleColor:[UIColor hyBlueTextColor] forState:UIControlStateNormal];
+    self.layer.borderColor = [UIColor hyBlueTextColor].CGColor;
+}
+
+- (void)setGrayStyle {
+    [self setBackgroundColor:[UIColor colorWithString:@"cccccc"]];
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.layer.borderColor = [UIColor colorWithString:@"cccccc"].CGColor;
+}
+
 @end

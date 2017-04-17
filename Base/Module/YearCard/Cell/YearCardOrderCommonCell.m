@@ -29,13 +29,13 @@
 -(void)configYearCardOrderCommonCell:(id)model {
     self.eyeBtn.hidden = YES;
     self.lbl.text = @"卡号: ";
-    self.textField.text = @"12334534536456";
+    self.textField.text = model[@"card_sn"];
 }
 
 -(void)configYearCardOrderCommonEyeCell:(id)model {
     
     self.lbl.text = @"密码: ";
-    self.textField.text = @"123456";
+    self.textField.text = model[@"card_password"];
 }
 
 - (IBAction)eyeBtnClick:(id)sender {

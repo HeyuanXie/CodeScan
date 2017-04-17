@@ -12,7 +12,17 @@
 #import "BaseViewController.h"
 #import "UIImage+HYImages.h"
 #import <IQKeyboardManager.h>
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+//腾讯开放平台（对应QQ和QQ空间）SDK头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
+//微信SDK头文件
 #import "WXApi.h"
+
+//新浪微博SDK头文件
+#import "WeiboSDK.h"
 
 NS_ENUM(NSUInteger, TabType) {
     TabTypeHome = 0,
@@ -117,9 +127,61 @@ NS_ENUM(NSUInteger, TabType) {
 }
 
 
+- (void)configShareSDK{
+    [ShareSDK registerApp:kShareSDK_APPID
+          activePlatforms:@[
+                            @(SSDKPlatformTypeSinaWeibo),
+                            @(SSDKPlatformSubTypeWechatSession),
+                            @(SSDKPlatformSubTypeWechatTimeline),
+                            @(SSDKPlatformTypeQQ)]
+                 onImport:^(SSDKPlatformType platformType)
+     {
+         switch (platformType)
+         {
+             case SSDKPlatformTypeWechat:
+                 [ShareSDKConnector connectWeChat:[WXApi class]];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
+                 break;
+             case SSDKPlatformTypeSinaWeibo:
+                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
+                 break;
+             default:
+                 break;
+         }
+     }
+          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
+     {
+         
+         switch (platformType)
+         {
+             case SSDKPlatformTypeSinaWeibo:
+                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
+                 [appInfo SSDKSetupSinaWeiboByAppKey:kSINA_APPID
+                                           appSecret:kSINA_KEY
+                                         redirectUri:kSINA_REDIRECTURL
+                                            authType:SSDKAuthTypeBoth];
+                 break;
+             case SSDKPlatformTypeWechat:
+                 [appInfo SSDKSetupWeChatByAppId:kWX_APPID
+                                       appSecret:kWX_KEY];
+                 break;
+             case SSDKPlatformTypeQQ:
+                 [appInfo SSDKSetupQQByAppId:kQQ_APPID
+                                      appKey:kQQ_KEY
+                                    authType:SSDKAuthTypeBoth];
+                 break;
+             default:
+                 break;
+         }
+     }];
+}
+
+
 -(void)configPaySDK {
     
-    [WXApi registerApp:WX_APPID withDescription:@"demo"];
+    [WXApi registerApp:kWX_KEY withDescription:@"demo"];
 }
 
 @end

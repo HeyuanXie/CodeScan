@@ -11,6 +11,8 @@
 @interface TheaterCommitOrderController : BaseTableViewController
 
 @property (strong, nonatomic) NSArray* selectArray; //选择的座位的array
-
+@property (strong, nonatomic) NSArray* coupons;
+@property (strong, nonatomic) NSArray* yearCards;
+@property (assign, nonatomic) NSInteger timeId; //剧场time_id
 
 @end

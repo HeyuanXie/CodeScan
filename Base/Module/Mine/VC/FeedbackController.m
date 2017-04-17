@@ -14,7 +14,7 @@
 #import "UIButton+HYButtons.h"
 #import "MBProgressHUD+hyHUD.h"
 
-@interface FeedbackController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface FeedbackController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate>
 
 @property(nonatomic, strong) NSMutableArray *selectTypeArray;
 
@@ -78,7 +78,6 @@
     self.textView.placeholder = @"请写下您的建议(不少于10字)";
     [self refreshTypeViews];
     [self.submitButton setBlackDisableGrayStyle];
-    
 }
 
 - (void)refreshTypeViews{

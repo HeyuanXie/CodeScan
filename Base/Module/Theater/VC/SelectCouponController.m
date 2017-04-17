@@ -7,7 +7,6 @@
 //
 
 #import "SelectCouponController.h"
-#import "SelectCouponCell.h"
 
 @interface SelectCouponController ()
 

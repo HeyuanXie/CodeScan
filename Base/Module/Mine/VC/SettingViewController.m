@@ -40,7 +40,7 @@
 - (void)dataInit{
     self.settings = @[
                         @[@{@"title":@"个人资料",@"router":kUserInfoViewController,@"needLogin":@(NO)},@{@"title":@"账户安全",@"router":kAccountSecurityController,@"needLogin":@(NO)}],
-                        @[@{@"title":@"清理缓存"}, @{@"title":@"意见反馈",@"router":kFeedbackController},@{@"title":@"关于我们"}],
+                        @[@{@"title":@"清理缓存"}, @{@"title":@"意见反馈",@"router":kFeedbackController},@{@"title":@"关于我们",@"router":kAboutUsViewController,@"needLogin":@(NO)}],
                         @[@{@"title":@"退出登陆"}]
                     ];
 }
@@ -130,12 +130,12 @@
         }
         return;
     }
-    if (indexPath.section == 1 && indexPath.row == 2) {
-        WebViewController *webvc = [[WebViewController alloc] init];
-        webvc.url = APIHELPER.config[@"aboutus_url"];
-        [self.navigationController pushViewController:webvc animated:YES];
-        return;
-    }
+//    if (indexPath.section == 1 && indexPath.row == 2) {
+//        WebViewController *webvc = [[WebViewController alloc] init];
+//        webvc.url = APIHELPER.config[@"aboutus_url"];
+//        [self.navigationController pushViewController:webvc animated:YES];
+//        return;
+//    }
     
     NSDictionary* info = self.settings[indexPath.section][indexPath.row];
     if ([info[@"needLogin"] boolValue] && ![Global userAuth]) {

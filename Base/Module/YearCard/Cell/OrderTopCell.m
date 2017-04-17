@@ -30,6 +30,7 @@
         [self.imgV sd_setImageWithURL:[NSURL URLWithString:model[@"thumb"]] placeholderImage:nil];
     }
     self.titleLbl.text = model[@"card_name"];
+    self.priceLbl.text = [NSString stringWithFormat:@"¥ %@",model[@"price"]];
     self.descLbl.text = [NSString stringWithFormat:@"一年%@次观剧机会, 一次限2人",model[@"total_times"]];
 }
 

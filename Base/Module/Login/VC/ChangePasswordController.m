@@ -58,7 +58,7 @@
     [self.firstTf addTarget:self action:@selector(textFieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.secondTf addTarget:self action:@selector(textFieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
     
-    [self.imgV sd_setImageWithURL:[NSURL URLWithString:@"http://api.xfx.zhimadi.cn/captcha.html"] placeholderImage:nil];
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.xfx.zhimadi.cn/captcha/%@.html",[Global IDFV]]] placeholderImage:nil];
 }
 
 -(void)textFieldDidChanged:(UITextField*)textField {
@@ -89,7 +89,7 @@
     //TODO:另一张
 //    [[SDImageCache sharedImageCache] removeImageForKey:@"http://api.xfx.zhimadi.cn/captcha.html"];
 //    [self.imgV sd_setImageWithURL:[NSURL URLWithString:@"http://api.xfx.zhimadi.cn/captcha.html"] placeholderImage:nil];
-    [self.imgV sd_setImageWithURL:[NSURL URLWithString:@"http://api.xfx.zhimadi.cn/captcha.html"] placeholderImage:nil options:SDWebImageRefreshCached];
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.xfx.zhimadi.cn/captcha/%@.html",[Global IDFV]]] placeholderImage:nil options:SDWebImageRefreshCached];
 
 }
 
