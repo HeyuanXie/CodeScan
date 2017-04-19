@@ -13,6 +13,7 @@
 #import "CustomJumpBtns.h"
 #import "HYPayEngine.h"
 #import "HYAlertView.h"
+#import "NSString+Extension.h"
 
 @interface OrderHomeController ()<UITextFieldDelegate>
 
@@ -31,6 +32,9 @@
 @property(strong,nonatomic)UIView* backGrayView;
 
 @property(strong,nonatomic)NSString* payOrderSn;    //继续支付的订单的orderSn
+
+@property(strong,nonatomic)NSTimer* timer;  //用于订单倒计时
+@property(strong,nonatomic)NSMutableArray* totalLastTime;  //存储所有订单剩余支付时间和indexPath
 
 @end
 
@@ -58,6 +62,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
     
+    [self addTimer];
     [self fetchData];
 }
 
@@ -66,6 +71,7 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self hiddenFilterClassify];
+    [self removeTimer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,6 +95,10 @@
     if (self.typeId == 0) {
         [cell configTheaterCell:model];
         [cell setPayContinueBlock:^(id model) {
+            if ([model[@"time_left"] integerValue]==0) {
+                [self showMessage:@"支付超时, 订单已取消"];
+                return ;
+            }
             self.payOrderSn = model[@"order_id"];
             [APIHELPER requestTheaterContinuePayInfoWithOrderId:model[@"order_id"] complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
@@ -129,6 +139,10 @@
     }else{
         [cell configYearCardCell:model];
         [cell setPayContinueBlock:^(id model) {
+            if ([model[@"time_left"] integerValue]==0) {
+                [self showMessage:@"支付超时, 订单已取消"];
+                return ;
+            }
             self.payOrderSn = model[@"order_id"];
             [APIHELPER requestCardContinuePayInfoWithOrderId:model[@"order_id"] complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
@@ -205,6 +219,13 @@
     return _dataArray;
 }
 
+- (NSMutableArray *)totalLastTime {
+    if (!_totalLastTime) {
+        _totalLastTime = [NSMutableArray array];
+    }
+    return _totalLastTime;
+}
+
 -(OrderFilterTableController *)filterVC {
     if (!_filterVC) {
         _filterVC = [[OrderFilterTableController alloc] init];
@@ -238,6 +259,15 @@
                 [self hideLoadingAnimation];
                 if (isSuccess) {
                     [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                    [self.totalLastTime removeAllObjects];
+                    for (int i=0; i<self.dataArray.count; i++) {
+                        NSDictionary* dict = self.dataArray[i];
+                        NSInteger time = [dict[@"time_left"] integerValue];
+                        if (time == 0) {
+                            break;
+                        }
+                        [self.totalLastTime addObject:@{@"indexPath":[NSString stringWithFormat:@"%d",i],@"time":[NSString stringWithFormat:@"%ld",time]}];
+                    }
                     [self.tableView reloadData];
                     
                     self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
@@ -280,6 +310,15 @@
                 [self hideLoadingAnimation];
                 if (isSuccess) {
                     [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                    [self.totalLastTime removeAllObjects];
+                    for (int i=0; i<self.dataArray.count; i++) {
+                        NSDictionary* dict = self.dataArray[i];
+                        NSInteger time = [dict[@"time_left"] integerValue];
+                        if (time == 0) {
+                            continue;
+                        }
+                        [self.totalLastTime addObject:@{@"indexPath":[NSString stringWithFormat:@"%d",i],@"time":[NSString stringWithFormat:@"%ld",time]}];
+                    }
                     [self.tableView reloadData];
                     
                     self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
@@ -313,6 +352,15 @@
                     if (isSuccess) {
                         [self.dataArray removeAllObjects];
                         [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                        [self.totalLastTime removeAllObjects];
+                        for (int i=0; i<self.dataArray.count; i++) {
+                            NSDictionary* dict = self.dataArray[i];
+                            NSInteger time = [dict[@"time_left"] integerValue];
+                        if (time == 0) {
+                            continue;
+                        }
+                            [self.totalLastTime addObject:@{@"indexPath":[NSString stringWithFormat:@"%d",i],@"time":[NSString stringWithFormat:@"%ld",time]}];
+                        }
                         [self.tableView reloadData];
                         
                         self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
@@ -359,6 +407,15 @@
                     if (isSuccess) {
                         [self.dataArray removeAllObjects];
                         [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                        [self.totalLastTime removeAllObjects];
+                        for (int i=0; i<self.dataArray.count; i++) {
+                            NSDictionary* dict = self.dataArray[i];
+                            NSInteger time = [dict[@"time_left"] integerValue];
+                        if (time == 0) {
+                            continue;
+                        }
+                            [self.totalLastTime addObject:@{@"indexPath":[NSString stringWithFormat:@"%d",i],@"time":[NSString stringWithFormat:@"%ld",time]}];
+                        }
                         [self.tableView reloadData];
                         
                         self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
@@ -393,6 +450,15 @@
                     [self hideLoadingAnimation];
                     if (isSuccess) {
                         [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                        [self.totalLastTime removeAllObjects];
+                        for (int i=0; i<self.dataArray.count; i++) {
+                            NSDictionary* dict = self.dataArray[i];
+                            NSInteger time = [dict[@"time_left"] integerValue];
+                            if (time == 0) {
+                                continue;
+                            }
+                            [self.totalLastTime addObject:@{@"indexPath":[NSString stringWithFormat:@"%d",i],@"time":[NSString stringWithFormat:@"%ld",time]}];
+                        }
                         [self.tableView reloadData];
                         
                         self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
@@ -437,6 +503,15 @@
                     [self hideLoadingAnimation];
                     if (isSuccess) {
                         [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
+                        [self.totalLastTime removeAllObjects];
+                        for (int i=0; i<self.dataArray.count; i++) {
+                            NSDictionary* dict = self.dataArray[i];
+                            NSInteger time = [dict[@"time_left"] integerValue];
+                        if (time == 0) {
+                            continue;
+                        }
+                            [self.totalLastTime addObject:@{@"indexPath":[NSString stringWithFormat:@"%d",i],@"time":[NSString stringWithFormat:@"%ld",time]}];
+                        }
                         [self.tableView reloadData];
                         
                         self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
@@ -576,6 +651,7 @@
 }
 
 
+//MARK:- 支付成功收到回调
 - (void)registNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccessNotification object:nil];
 }
@@ -583,4 +659,55 @@
     APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&order_sn=%@",kTheaterCommitOrderSuccessController,self.typeId,self.payOrderSn]));
 }
 
+//MAKR:- 倒计时相关
+-(void)addTimer {
+    if (self.timer == nil) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshLessTime) userInfo:@"" repeats:YES];
+        //如果不添加下面这条语句，在UITableView拖动的时候，会阻塞定时器的调用
+        [[NSRunLoop currentRunLoop] addTimer:_timer forMode:UITrackingRunLoopMode];
+    }
+}
+
+-(void)refreshLessTime {
+    NSUInteger time;
+    for (int i = 0; i < self.totalLastTime.count; i++) {
+        time = [[[self.totalLastTime objectAtIndex:i] objectForKey:@"time"]integerValue];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[[[self.totalLastTime objectAtIndex:i] objectForKey:@"indexPath"] integerValue] inSection:0];
+        OrderListCell* cell = (OrderListCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+        if (time==0) {
+            cell.statuLbl.text = @"支付超时";
+            NSDictionary* model = self.dataArray[indexPath.row];
+            cell.orderNumLbl.text = [NSString stringWithFormat:@"订单号: %@",model[@"order_sn"]];
+            cell.leftBtn.hidden = YES;
+            cell.rightBtn.hidden = NO;
+            [cell.rightBtn setTitle:@"已取消" forState:UIControlStateNormal];
+            [cell.rightBtn setGrayStyle];
+            [cell setPayContinueBlock:^(id model) {
+                [self showMessage:@"支付超时, 订单已取消"];
+                return ;
+            }];
+            break;
+        }
+        NSString* str = [NSString stringWithFormat:@" 剩余支付时间：%@",[self lessSecondToDay:--time]];
+        cell.orderNumLbl.attributedText = [str attributeStringWithAttachment:CGRectMake(0, -3, 15, 15) fontSize:12 textColor:[UIColor colorWithString:@"7F7F7F"] index:0 imageName:@"支付倒计时"];
+//        cell.orderNumLbl.text = [NSString stringWithFormat:@"剩余支付时间：%@",[self lessSecondToDay:--time]];
+        NSDictionary *dic = @{@"indexPath": [NSString stringWithFormat:@"%ld",indexPath.row],@"time": [NSString stringWithFormat:@"%ld",time]};
+        [self.totalLastTime replaceObjectAtIndex:i withObject:dic];
+    }
+}
+
+- (NSString *)lessSecondToDay:(NSInteger)seconds
+{
+    NSInteger min  = seconds/60;
+    NSInteger second = seconds%60;
+    
+    NSString *time = [NSString stringWithFormat:@"%lu分%lu秒",(unsigned long)min,(unsigned long)second];
+    return time;
+}
+
+-(void)removeTimer {
+    
+    [self.timer invalidate];
+    self.timer = nil;
+}
 @end

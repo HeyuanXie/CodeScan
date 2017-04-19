@@ -76,7 +76,7 @@
     self.cancelCollectBtn.hidden = !isCollect;
     [self.cancelCollectBtn bk_whenTapped:^{
         if (self.cancelCollect) {
-            self.cancelCollect(model);
+            self.cancelCollect(article);
         }
     }];
 }

@@ -14,5 +14,6 @@
 @property (strong, nonatomic) NSArray* coupons;
 @property (strong, nonatomic) NSArray* yearCards;
 @property (assign, nonatomic) NSInteger timeId; //剧场time_id
+@property (assign, nonatomic) int timeLeft;   //订单支付剩余时间
 
 @end

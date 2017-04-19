@@ -88,26 +88,26 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pqp-Jo-TY0">
                                 <rect key="frame" x="101" y="22" width="95" height="29"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星01" translatesAutoresizingMaskIntoConstraints="NO" id="sES-zI-k98">
+                                    <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星02" translatesAutoresizingMaskIntoConstraints="NO" id="sES-zI-k98">
                                         <rect key="frame" x="0.0" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sES-zI-k98" secondAttribute="height" multiplier="1:1" id="W2c-jz-MoF"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星01" translatesAutoresizingMaskIntoConstraints="NO" id="TMA-tg-QGl">
+                                    <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星02" translatesAutoresizingMaskIntoConstraints="NO" id="TMA-tg-QGl">
                                         <rect key="frame" x="19" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="TMA-tg-QGl" secondAttribute="height" multiplier="1:1" id="dtQ-5l-8dL"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星01" translatesAutoresizingMaskIntoConstraints="NO" id="Jgc-kT-L1C">
+                                    <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星02" translatesAutoresizingMaskIntoConstraints="NO" id="Jgc-kT-L1C">
                                         <rect key="frame" x="38" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Jgc-kT-L1C" secondAttribute="height" multiplier="1:1" id="PU5-fX-7jD"/>
                                             <constraint firstAttribute="width" secondItem="Jgc-kT-L1C" secondAttribute="height" multiplier="1:1" id="Ygy-Nv-TRu"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星01" translatesAutoresizingMaskIntoConstraints="NO" id="VFg-fI-npS">
+                                    <imageView userInteractionEnabled="NO" tag="103" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="星星02" translatesAutoresizingMaskIntoConstraints="NO" id="VFg-fI-npS">
                                         <rect key="frame" x="57" y="5" width="19" height="19"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="VFg-fI-npS" secondAttribute="height" multiplier="1:1" id="5hR-tK-DaK"/>
@@ -266,7 +266,6 @@
     <resources>
         <image name="yazi.png" width="96" height="133"/>
         <image name="三角形_黑色下" width="12" height="12"/>
-        <image name="星星01" width="18" height="18"/>
         <image name="星星02" width="18" height="18"/>
     </resources>
 </document>

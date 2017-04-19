@@ -37,8 +37,9 @@
 
 #pragma mark - PrivateMethod
 -(void)webViewInit {
+    
     self.userCC = [[WKUserContentController alloc] init];
-    NSString* jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    NSString* jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);user-scalable=no;";
     WKUserScript* userScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
     [_userCC addUserScript:userScript];
     WKWebViewConfiguration* config = [[WKWebViewConfiguration alloc] init];

@@ -60,11 +60,11 @@
     NSInteger score = theater.score.intValue;
     self.scoreLbl.text = [NSString stringWithFormat:@"%ld分",score];
     for (int i=0; i<score/2; i++) {
-        UIImageView* imgV = (UIImageView*)[self.scoreView viewWithTag:1000+i];
+        UIImageView* imgV = (UIImageView*)[self.scoreView viewWithTag:100+i];
         imgV.image = ImageNamed(@"星星01");
    }
     for (int i=(int)score/2; i<5; i++) {
-        UIImageView* imgV = (UIImageView*)[self.scoreView viewWithTag:1000+i];
+        UIImageView* imgV = (UIImageView*)[self.scoreView viewWithTag:100+i];
         imgV.image = ImageNamed(@"星星02");
     }
 }

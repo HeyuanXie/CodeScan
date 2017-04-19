@@ -7,6 +7,7 @@
 //
 
 #import "HYPayEngine.h"
+#import "NSString+HYUtilities.h"
 #import <AlipaySDK/AlipaySDK.h>
 
 static NSString *const AppScheme = @"alisdkLittleElephant";
@@ -61,15 +62,14 @@ static NSString *const payApi = @"mobile_securitypay_pay";
         return;
     }
     
-    NSDictionary* dic = payInfo[@"pay_data"];
     PayReq *request = [[PayReq alloc] init];
     
-    request.partnerId = dic[@"partnerid"];
-    request.prepayId = dic[@"prepayid"];
-    request.package = dic[@"package"];
-    request.nonceStr = dic[@"noncestr"];
-    request.timeStamp = [dic[@"timestamp"] intValue];
-    request.sign = dic[@"sign"];
+    request.partnerId = payInfo[@"partnerid"];
+    request.prepayId = payInfo[@"prepayid"];
+    request.package = payInfo[@"package_value"];
+    request.nonceStr = payInfo[@"noncestr"];
+    request.timeStamp = [payInfo[@"timestamp"] intValue];
+    request.sign = payInfo[@"sign"];
     
     [WXApi sendReq:request];
 }
@@ -78,6 +78,7 @@ static NSString *const payApi = @"mobile_securitypay_pay";
 + (void)wxpayCallbackWithResponse:(id)resp {
     [[HYPayEngine sharePayEngine] wxpayCallbackWithResponse:resp];
 }
+
 - (void) wxpayCallbackWithResponse:(BaseResp *) resp{
     switch (resp.errCode) {
         case WXSuccess:
@@ -100,6 +101,62 @@ static NSString *const payApi = @"mobile_securitypay_pay";
             }
         }
             break;
+    }
+}
+
+- (void)onResp:(BaseResp *)resp {
+        
+    NSString * strTitle = [NSString stringWithFormat:@"支付结果"];
+    NSString *strMsg;
+//    if ([resultDic[@"resultStatus"] isEqualToString:@"9000"]) {
+//        
+//        strMsg = @"恭喜您，支付成功!";
+//        
+//    }else if([resultDic[@"resultStatus"] isEqualToString:@"6001"])
+//    {
+//        strMsg = @"已取消支付!";
+//        
+//    }else{
+//        strMsg = @"支付失败!";
+//    }
+//    HYAlertView* alert = [HYAlertView sharedInstance];
+//    [alert showAlertView:strTitle message:strMsg subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+//        if ([strMsg isEqualToString:@"恭喜您，支付成功!"]) {
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+//        }
+//        if ([strMsg isEqualToString:@"已取消支付!"]) {
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kPayCancelNotification object:nil];
+//        }
+//    }];
+
+    if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        strTitle = [NSString stringWithFormat:@"支付结果"];
+        
+        switch (resp.errCode) {
+            case WXSuccess:{
+                strMsg = @"恭喜您，支付成功!";
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil userInfo:@{@"status":@"success"}];
+                
+                break;
+            }
+            case WXErrCodeUserCancel:{
+                strMsg = @"已取消支付!";
+                [[NSNotificationCenter defaultCenter] postNotificationName:kPayCancelNotification object:nil userInfo:@{@"status":@"cancle"}];
+                break;
+            }
+            default:{
+                
+                strMsg = [NSString stringWithFormat:@"支付失败 !"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"payFailed" object:nil userInfo:@{@"status":@"cancle"}];
+                break;
+            }
+        }
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        
+        [alert show];
     }
 }
 

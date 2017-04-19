@@ -28,6 +28,8 @@
 
 @property (strong, nonatomic) NSMutableArray* cardIndexArray;   //记录选择了哪些座位使用年卡
 
+@property (assign, nonatomic) BOOL isPaySuccessd;   //退出时判断是否重写backAction
+
 @end
 
 @implementation TheaterCommitOrderController
@@ -452,7 +454,7 @@
 
 - (void)secondsCountDown {
     
-    __block int timeout = 15*60;
+    __block int timeout = self.timeLeft;
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     
@@ -495,6 +497,10 @@
 
 #pragma mark - override methods
 -(void)backAction {
+    if (self.isPaySuccessd) {
+        [super backAction];
+        return;
+    }
     HYAlertView* alert = [HYAlertView sharedInstance];
     [alert showAlertViewWithMessage:@"您将放弃选座,选中的座位也将解锁,是否继续?" subBottonTitle:@"取消" cancelButtonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
         switch (bottonType) {
@@ -504,7 +510,13 @@
                 
             default:{
                 [super backAction];
-                [APIHELPER theaterSeatUnLockSeats:@[@(1),@(2)] complete:^(BOOL isSuccess, NSDictionary *responseObject,     NSError *error) {
+                NSMutableArray* seats = [NSMutableArray array];
+                NSInteger i = 0;
+                for (FVSeatItem* seat in self.selectArray) {
+                    [seats addObject:@(seat.seatId)];
+                    i++;
+                }
+                [APIHELPER theaterSeatUnLockSeats:seats complete:^(BOOL isSuccess, NSDictionary *responseObject,     NSError *error) {
                     //TODO:如果解锁失败，怎么处理
                     
                 }];
@@ -515,10 +527,18 @@
 
 -(void)registNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelPay) name:kPayCancelNotification object:nil];
 }
 -(void)paySuccess {
     
     APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@",kTheaterCommitOrderSuccessController,self.orderSn]));
+    self.isPaySuccessd = YES;
+}
+-(void)cancelPay {
+    
+    NSInteger count = self.navigationController.viewControllers.count;
+    UIViewController *vc = self.navigationController.viewControllers[count-4];
+    [self.navigationController popToViewController:vc animated:YES];
 }
 
 @end

@@ -211,7 +211,7 @@
     UIButton* btn = [cell.contentView viewWithTag:1000];
     UILabel* lbl = [cell.contentView  viewWithTag:1001];
     
-    NSString* deadLine = [HYTool dateStringWithString:self.contentType == TypeDerive ? self.data[@"deadline"] : self.data[@"expire_time"] inputFormat:nil outputFormat:@"yyyy-MM-dd"];
+    NSString* deadLine = [HYTool dateStringWithString:self.data[@"expire_time"] inputFormat:nil outputFormat:@"yyyy-MM-dd"];
     lbl.text = [NSString stringWithFormat:@"有效期至: %@",deadLine];
     
     if (self.contentType == TypeDerive) {
@@ -262,8 +262,10 @@
             break;
         case TypeDerive:
             address = self.data[@"exchange_place"];
+            break;
         case TypeCard:
             address = self.data[@"theatre_name"];
+            break;
         default:
             break;
     }
@@ -289,14 +291,25 @@
         [subview removeFromSuperview];
     }
     for (int i=0; i<self.ticketArr.count; i++) {
+        NSDictionary* ticket = self.ticketArr[i];
         UIView* ticketView = LOADNIB(@"OrderUseView", 1);
         ticketView.frame = CGRectMake(0, 9+i*30, kScreen_Width, 30);
         UILabel* seatLbl = [ticketView viewWithTag:1000];
         UILabel* statuLbl = [ticketView viewWithTag:1001];
-        if (i==1) {
-            seatLbl.textColor = [UIColor hyBlackTextColor];
-            statuLbl.textColor = [UIColor hyBlackTextColor];
-            statuLbl.text = @"未出票";
+        
+        seatLbl.text = ticket[@"seat_name"];
+        switch ([ticket[@"status"] integerValue]) {
+            case -1:
+                statuLbl.text = @"已退款";
+                break;
+            case 0:{
+                seatLbl.textColor = [UIColor hyBlackTextColor];
+                statuLbl.textColor = [UIColor hyBlackTextColor];
+                statuLbl.text = @"未出票";
+            }break;
+            default:{
+                statuLbl.text = @"已出票";
+            }break;
         }
         [cell.contentView addSubview:ticketView];
     }

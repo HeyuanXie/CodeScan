@@ -90,6 +90,9 @@
                 if ([strMsg isEqualToString:@"恭喜您，支付成功!"]) {
                     [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
                 }
+                if ([strMsg isEqualToString:@"已取消支付!"]) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kPayCancelNotification object:nil];
+                }
             }];
         }];
     }

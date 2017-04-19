@@ -268,16 +268,8 @@
 
 -(void)subviewInit {
     
+    self.totalLbl.text = [NSString stringWithFormat:@"%.2f",[self.data[@"price"] floatValue]];
 }
-
--(void)registNotification {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccessNotification object:nil];
-}
--(void)paySuccess {
-    
-    APPROUTE(([NSString stringWithFormat:@"%@?contentType=2&order_sn=%@",kTheaterCommitOrderSuccessController,self.orderSn]));
-}
-
 
 -(void)fetchData {
     [self showLoadingAnimation];
@@ -314,8 +306,9 @@
         @strongify(self);
         self.couponController.couponIndex = index;
         [self hideSelectCouponController];
-        //TODO:选择优惠券、刷新table
+        //TODO:选择优惠券、刷新table; 更新self.totalLbl.text
         self.selectCoupon = self.coupons[index];
+//        self.totalLbl.text = ...
         [self.tableView reloadData];
     }];
     
@@ -348,6 +341,20 @@
             [[self.view viewWithTag:10000] removeFromSuperview];
         }
     }];
+}
+
+
+-(void)registNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelPay) name:kPayCancelNotification object:nil];
+}
+-(void)paySuccess {
+    
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=2&order_sn=%@",kTheaterCommitOrderSuccessController,self.orderSn]));
+}
+-(void)cancelPay {
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

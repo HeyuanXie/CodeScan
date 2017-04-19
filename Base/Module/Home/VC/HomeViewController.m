@@ -349,8 +349,8 @@
         {
             //资讯
             ArticleModel* model = self.news[indexPath.row];
-            NSInteger articleId = model.articleId.integerValue;
-            NSInteger type = model.articleType.integerValue+1;
+            NSInteger articleId = model.seekId.integerValue;
+            NSInteger type = model.articleType.integerValue+2;
             BOOL isFav = model.isFav.boolValue;
             APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(isFav),articleId,type,model.sourceUrl]));
             break;
@@ -358,9 +358,9 @@
         case 4:
         {
             //周末去哪儿
-            ArticleModel* model = self.news[indexPath.row];
+            ArticleModel* model = self.weekEnds[indexPath.row];
             NSInteger articleId = model.articleId.integerValue;
-            NSInteger type = model.articleType.integerValue+1;
+            NSInteger type = model.articleType.integerValue+2;
             BOOL isFav = model.isFav.boolValue;
             APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(isFav),articleId,type,model.sourceUrl]));
             break;

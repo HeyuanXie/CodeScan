@@ -71,7 +71,8 @@
         self.statu = [[self.schemaArgu objectForKey:@"statu"] integerValue];
     }
     
-    self.playId = 1;
+    //TODO:测试场次
+    self.playId = 3;
     self.selectDate = @"2017-06-01";
     self.navigationBarTransparent = YES;
     [self subviewStyle];
@@ -119,11 +120,11 @@
     self.scoreLbl.text = [NSString stringWithFormat:@"观众评分: %.1f分",(float)self.score];
     self.scoreLbl.attributedText = [self.scoreLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:18]] subStrings:@[[NSString stringWithFormat:@"%ld",self.score]]];
     for (int i=0; i<self.score/2; i++) {
-        UIImageView* imgV = (UIImageView*)[self.scoreView viewWithTag:1000+i];
+        UIImageView* imgV = (UIImageView*)[self.scoreView viewWithTag:100+i];
         imgV.image = ImageNamed(@"星星01");
     }
     for (int i=(int)self.score/2; i<5; i++) {
-        UIImageView* imgV = (UIImageView*)[self.scoreView viewWithTag:1000+i];
+        UIImageView* imgV = (UIImageView*)[self.scoreView viewWithTag:100+i];
         imgV.image = ImageNamed(@"星星02");
     }
     
@@ -164,13 +165,13 @@
 }
 
 - (void)fetchData {
-    [self.dataArray removeAllObjects];
-    [self.tableView reloadData];
+
     self.tableView.tableFooterView = nil;
     [self showLoadingAnimation];
     [APIHELPER theaterSession:0 limit:4 playId:self.playId date:@"2017-06-01" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [self hideLoadingAnimation];
         if (isSuccess) {
+            [self.dataArray removeAllObjects];
             [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[TheaterSessionModel class] array:responseObject[@"data"][@"list"]]];
             [self.tableView reloadData];
             

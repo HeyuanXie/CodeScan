@@ -132,11 +132,11 @@
                 seatsInfo.seatId = [dict intValueForKey:@"ps_id"];
                 seatsInfo.seatName = [dict stringForKey:@"seat_name"];
                 seatsInfo.price = [dict intValueForKey:@"market_price"];
-                seatsInfo.col = [dict intValueForKey:@"seat_x"];
-                seatsInfo.row = [dict intValueForKey:@"seat_y"];
+                seatsInfo.col = [dict intValueForKey:@"seat_y"];
+                seatsInfo.row = [dict intValueForKey:@"seat_x"];
                 seatsInfo.seatStatus = [dict intValueForKey:@"status"];
                 seatsInfo.coordinateX = [dict intValueForKey:@"seat_sort"];
-                seatsInfo.coordinateY = [dict intValueForKey:@"seat_y"];
+                seatsInfo.coordinateY = [dict intValueForKey:@"seat_x"];
                 [self.seatList addObject:seatsInfo];
             }
             
@@ -153,13 +153,13 @@
 
 -(void)botViewInit {
     
-    CGFloat width = 92,height = 60;
+    CGFloat width = 120,height = 60;
     CGFloat padding = (kScreen_Width-self.priceList.count*width) <= 0 ? 0 : (kScreen_Width-self.priceList.count*width)/(self.priceList.count+1);
     for (int i=0; i<self.priceList.count; i++) {
         NSDictionary* data = self.priceList[i];
         UIView* priceView = LOADNIB(@"TheaterUseView", 3);
         [priceView viewWithTag:1000].backgroundColor = [UIColor colorWithString:data[@"seat_color"]];
-        ((UILabel*)[priceView viewWithTag:1001]).text = data[@"real_price"];
+        ((UILabel*)[priceView viewWithTag:1001]).text = [NSString stringWithFormat:@"%@元",data[@"real_price"]];
         priceView.frame = CGRectMake(padding+(width+padding)*i, 0, width, height);
         [self.botScrollV addSubview:priceView];
     }
@@ -185,7 +185,7 @@
         vc.desc = self.descLbl.text;
         vc.title = self.title;
         vc.timeId = self.timeId;
-        vc.seatsInfo = self.seatList;
+        vc.hallId = self.hallId;
         vc.seatMaxX = self.seatMaxX;
         vc.seatMaxY = self.seatMaxY;
         vc.hidesBottomBarWhenPushed = YES;

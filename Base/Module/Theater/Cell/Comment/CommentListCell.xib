@@ -66,28 +66,28 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="O2N-a6-6mn" secondAttribute="height" multiplier="1:1" id="gmf-VK-5Cv"/>
                                         </constraints>
-                                        <state key="normal" image="星星01"/>
+                                        <state key="normal" image="星星02"/>
                                     </button>
                                     <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7tN-WW-7QA">
                                         <rect key="frame" x="15" y="0.0" width="15" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="7tN-WW-7QA" secondAttribute="height" multiplier="1:1" id="K4j-7t-y0r"/>
                                         </constraints>
-                                        <state key="normal" image="星星01"/>
+                                        <state key="normal" image="星星02"/>
                                     </button>
                                     <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jux-YH-cVR">
                                         <rect key="frame" x="30" y="0.0" width="15" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Jux-YH-cVR" secondAttribute="height" multiplier="1:1" id="mEp-pN-yZr"/>
                                         </constraints>
-                                        <state key="normal" image="星星01"/>
+                                        <state key="normal" image="星星02"/>
                                     </button>
                                     <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Slf-Tg-l5V">
                                         <rect key="frame" x="45" y="0.0" width="15" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Slf-Tg-l5V" secondAttribute="height" multiplier="1:1" id="PXM-mS-5sI"/>
                                         </constraints>
-                                        <state key="normal" image="星星01"/>
+                                        <state key="normal" image="星星02"/>
                                     </button>
                                     <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ln-Y9-ZoB">
                                         <rect key="frame" x="60" y="0.0" width="15" height="15"/>
@@ -190,7 +190,6 @@
     </objects>
     <resources>
         <image name="yazi.png" width="96" height="133"/>
-        <image name="星星01" width="18" height="18"/>
         <image name="星星02" width="18" height="18"/>
     </resources>
 </document>

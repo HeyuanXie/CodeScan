@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIView *seatSelectV;
 
 @property (strong, nonatomic) NSMutableArray* selectArray;
+@property (nonatomic, strong) NSMutableArray <FVSeatItem *>* seatsInfo;
 
 @end
 
@@ -33,9 +34,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    if (self.schemaArgu[@"hall_id"]) {
+        self.hallId = [[self.schemaArgu objectForKey:@"hall_id"] integerValue];
+    }
+    if (self.schemaArgu[@"time_id"]) {
+        self.timeId = [[self.schemaArgu objectForKey:@"time_id"] integerValue];
+    }
+    
     [self subviewStyle];
     [self reloadSeatScrollView];
+    [self configSeatsPicker];
+}
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear: YES];
+    
+    [self.selectArray removeAllObjects];
+    [self reloadSeatScrollView];
     [self configSeatsPicker];
     [self loadData];
 }
@@ -71,6 +87,7 @@
             vc.coupons = coupons;
             vc.yearCards = yearCards;
             vc.timeId = self.timeId;
+            vc.timeLeft = [responseObject[@"data"][@"time_left"] intValue];
             vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }else{
@@ -110,6 +127,13 @@
 }
 
 #pragma mark - private methods
+-(NSMutableArray<FVSeatItem *> *)seatsInfo {
+    if (!_seatsInfo) {
+        _seatsInfo = [NSMutableArray array];
+    }
+    return _seatsInfo;
+}
+
 -(NSMutableArray *)selectArray {
     if (!_selectArray) {
         _selectArray = [NSMutableArray array];
@@ -147,6 +171,7 @@
     self.seatScroll.contentSize = CGSizeMake(12+(104+7)*self.selectArray.count, 0);
     
     if (self.selectArray.count == 0) {
+        self.priceLbl.text = @"";
         return;
     }
     NSString* price = [NSString stringWithFormat:@"%.2f",total],*count = [NSString stringWithFormat:@"%ld",self.selectArray.count];
@@ -157,13 +182,14 @@
 
 //MARK: - 选座相关
 -(void)configSeatsPicker {
+    _seatsPicker = nil;
     _seatsPicker = ({
         FVSeatsPicker* picker = [FVSeatsPicker new];
         picker.cellSize = CGSizeMake(25, 25);
         picker.minimumZoomScale = 0.5;
         picker.maximumZoomScale = 2;
         picker.seatsDelegate = self;
-        // 你可以在这里设置图片，同时你也可以不设置FVSeatsPicker内部会自动设置默认的图片，如果设置新的图片将会采用最新设置的图片
+//        // 你可以在这里设置图片，同时你也可以不设置FVSeatsPicker内部会自动设置默认的图片，如果设置新的图片将会采用最新设置的图片
         [picker setImage:[UIImage imageNamed:@"座位状态_可选"] forState:UIControlStateNormal];
         [picker setImage:[UIImage imageNamed:@"座位状态_不可选"] forState:UIControlStateDisabled];
         [picker setImage:[UIImage imageNamed:@"座位状态_已选"] forState:UIControlStateSelected];
@@ -174,37 +200,30 @@
 }
 
 -(void)loadData {
-    //TODO:获取座位数据
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"districtOne" ofType:@"plist"];
-//    NSDictionary *result = [NSDictionary dictionaryWithContentsOfFile:path];
-//    if (result)
-//    {
-//        _seatMaxX = [result intValueForKey:@"x"];
-//        _seatMaxY = [result intValueForKey:@"y"];
-//        NSArray *tempArray = [result arrayForKey:@"seats"];
-//        
-//        id resultData = [NSMutableArray new];
-//        for (NSDictionary* dict in tempArray)
-//        {
-//            if (NO == [dict isKindOfClass:[NSDictionary class]])
-//            {
-//                continue;
-//            }
-//            FVSeatItem* seatsInfo = [FVSeatItem new];
-//            seatsInfo.seatId = [dict intValueForKey:@"id"];
-//            seatsInfo.seatName = [dict stringForKey:@"name"];
-//            seatsInfo.price = [dict intValueForKey:@"price"];
-//            seatsInfo.col = [dict intValueForKey:@"col"];
-//            seatsInfo.row = [dict intValueForKey:@"row"];
-//            seatsInfo.seatStatus = [dict intValueForKey:@"status"];
-//            seatsInfo.coordinateX = [dict intValueForKey:@"x"];
-//            seatsInfo.coordinateY = [dict intValueForKey:@"y"];
-//            
-//            [resultData addObject:seatsInfo];
-//        }
-//        _seatsInfo = resultData;
-//        [self fillDataToSeatsSelector];
-//    }
+
+    [APIHELPER theaterSeatDetail:self.hallId timeId:self.timeId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            for (NSDictionary* dict in responseObject[@"data"][@"seat_list"]) {
+                FVSeatItem* seatsInfo = [FVSeatItem new];
+                seatsInfo.seatId = [dict intValueForKey:@"ps_id"];
+                seatsInfo.seatName = [dict stringForKey:@"seat_name"];
+                seatsInfo.price = [dict intValueForKey:@"market_price"];
+                seatsInfo.col = [dict intValueForKey:@"seat_y"];
+                seatsInfo.row = [dict intValueForKey:@"seat_x"];
+                seatsInfo.seatStatus = [dict intValueForKey:@"status"];
+                seatsInfo.coordinateX = [dict intValueForKey:@"seat_sort"];
+                seatsInfo.coordinateY = [dict intValueForKey:@"seat_x"];
+                [self.seatsInfo addObject:seatsInfo];
+            }
+            
+            self.seatMaxX = [responseObject[@"data"][@"hall_info"][@"upright"] intValue];
+            self.seatMaxY = [responseObject[@"data"][@"hall_info"][@"hall_rows"] intValue];
+            [self fillDataToSeatsSelector];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+    
     [self fillDataToSeatsSelector];
 }
 

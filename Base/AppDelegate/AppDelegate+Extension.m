@@ -181,7 +181,7 @@ NS_ENUM(NSUInteger, TabType) {
 
 -(void)configPaySDK {
     
-    [WXApi registerApp:kWX_KEY withDescription:@"demo"];
+    [WXApi registerApp:kWX_APPID withDescription:@"demo"];
 }
 
 @end

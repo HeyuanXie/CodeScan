@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIButton+HYButtons.h"
 
 @interface OrderListCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UILabel *orderNumLbl;
+@property (weak, nonatomic) IBOutlet UILabel *statuLbl;
+@property (weak, nonatomic) IBOutlet UIButton *leftBtn;
+@property (weak, nonatomic) IBOutlet UIButton *rightBtn;
 
 @property(nonatomic,copy)void (^payContinueBlock)(id model);
 @property(nonatomic,copy)void (^refundBlock)(id model);
