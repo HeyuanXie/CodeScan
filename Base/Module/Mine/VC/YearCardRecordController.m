@@ -39,7 +39,6 @@
     OrderListCell* cell = [tableView dequeueReusableCellWithIdentifier:[OrderListCell identify]];
     [HYTool configTableViewCellDefault:cell];
     //TODO:
-    [cell configYearCardCell:nil];
     return cell;
 }
 

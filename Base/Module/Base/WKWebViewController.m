@@ -89,7 +89,7 @@
     NSString* webTitle = webView.title;
     self.navigationItem.title = webTitle;
     
-    [self addScriptMessage:self.userCC];
+//    [self addScriptMessage:self.userCC];
 }
 
 -(void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error{

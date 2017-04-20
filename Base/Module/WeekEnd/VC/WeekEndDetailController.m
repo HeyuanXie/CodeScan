@@ -15,7 +15,7 @@
 
 @property (assign, nonatomic) BOOL isFav;
 @property (assign, nonatomic) NSInteger articleId;
-@property (assign, nonatomic) NSInteger type;   //0:资讯; 1:周末
+@property (assign, nonatomic) NSInteger type;   //2:资讯; 3:周末
 @property (weak, nonatomic) IBOutlet UITextField *commentTf;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
 
@@ -104,5 +104,38 @@
     
     [HYTool configViewLayer:self.commentBtn withColor:RGB(238, 238, 238, 1.0)];
     [HYTool configViewLayerRound:self.commentBtn];
+    
+    [self.commentBtn bk_whenTapped:^{
+        if ([self.commentTf.text isEmpty]) {
+            [self showMessage:@"请填写评论内容!"];
+            return ;
+        }
+        switch (self.type) {
+            case 2:{
+                [APIHELPER informationComment:self.articleId content:self.commentTf.text becommenId:0 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    if (isSuccess) {
+                        [self showMessage:@"评论成功"];
+                        self.commentTf.text = @"";
+                        [self.webView reload];
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                }];
+                break;
+            }
+            default:{
+                [APIHELPER weekEndComment:self.articleId content:self.commentTf.text becommenId:0 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                    if (isSuccess) {
+                        [self showMessage:@"评论成功"];
+                        self.commentTf.text = @"";
+                        [self.webView reload];
+                    }else{
+                        [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+                    }
+                }];
+                break;
+            }
+        }
+    }];
 }
 @end

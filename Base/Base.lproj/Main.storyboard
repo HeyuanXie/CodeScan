@@ -1704,7 +1704,40 @@
                     <view key="view" contentMode="scaleToFill" id="tZG-6y-mlC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B4h-YN-HSE">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iU4-1J-AJ1">
+                                        <rect key="frame" x="16" y="10" width="343" height="40"/>
+                                        <color key="backgroundColor" red="0.94117647059999998" green="0.31372549020000001" blue="0.43921568630000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="立即支付"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="payNow:" destination="XU4-Jl-nHG" eventType="touchUpInside" id="lfc-yO-MdI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="1qn-0C-bJR"/>
+                                    <constraint firstItem="iU4-1J-AJ1" firstAttribute="centerY" secondItem="B4h-YN-HSE" secondAttribute="centerY" id="CZA-C1-HLX"/>
+                                    <constraint firstItem="iU4-1J-AJ1" firstAttribute="centerX" secondItem="B4h-YN-HSE" secondAttribute="centerX" id="Czg-sn-GgT"/>
+                                    <constraint firstItem="iU4-1J-AJ1" firstAttribute="height" secondItem="B4h-YN-HSE" secondAttribute="height" multiplier="2:3" id="JuF-4R-dcG"/>
+                                    <constraint firstItem="iU4-1J-AJ1" firstAttribute="width" secondItem="B4h-YN-HSE" secondAttribute="width" multiplier="343:375" id="unZ-la-BDE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YhW-7D-Bf6" firstAttribute="top" secondItem="B4h-YN-HSE" secondAttribute="bottom" id="Gfv-xc-7HJ"/>
+                            <constraint firstItem="B4h-YN-HSE" firstAttribute="leading" secondItem="tZG-6y-mlC" secondAttribute="leading" id="ck4-yJ-vYD"/>
+                            <constraint firstAttribute="trailing" secondItem="B4h-YN-HSE" secondAttribute="trailing" id="muU-jI-qFo"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBc-xU-Hmf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1931,7 +1964,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ryi-Dr-BY9" id="nbg-EH-GRj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1959,7 +1992,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iwj-Xo-5q0" id="3CH-P3-keF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -2285,8 +2318,8 @@
                                     <constraint firstAttribute="height" constant="38" id="Ahm-ni-t4u"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRZ-hB-biW">
-                                <rect key="frame" x="0.0" y="103" width="375" height="388"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZRZ-hB-biW">
+                                <rect key="frame" x="0.0" y="104" width="375" height="388"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>

@@ -10,6 +10,34 @@
 
 @implementation APIHelper (Article)
 
+//小飞象资讯
+-(void)informationArticleStart:(NSInteger)start
+                         limit:(NSInteger)limit
+                      complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:@(start) forKey:@"start"];
+    [param safe_setValue:@(limit) forKey:@"limit"];
+    
+    [APIHELPER getWithURL:@"seek/getSeek" param:param complete:complete];
+}
+
+-(void)informationComment:(NSInteger)seekId
+                  content:(NSString*)content
+               becommenId:(NSInteger)becommentId
+                 complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:@(seekId) forKey:@"seek_id"];
+    [param safe_setValue:content forKey:@"comment"];
+    [param safe_setValue:@(becommentId) forKey:@"becomment_id"];
+    
+    [APIHELPER getWithURL:@"seek/seekCom" param:param complete:complete];
+}
+
+
+
+//周末去哪儿
 -(void)weekEndArticleAreaId:(NSInteger)areaId cateId:(NSInteger)cateId start:(NSInteger)start limit:(NSInteger)limit complete:(ApiRequestCompleteBlock)complete {
     
     NSMutableDictionary* param = [NSMutableDictionary dictionary];
@@ -21,13 +49,16 @@
     [APIHELPER getWithURL:@"article/getArticleList" param:param complete:complete];
 }
 
--(void)informationArticleStart:(NSInteger)start limit:(NSInteger)limit complete:(ApiRequestCompleteBlock)complete {
+-(void)weekEndComment:(NSInteger)articleId
+              content:(NSString*)content
+           becommenId:(NSInteger)becommentId
+             complete:(ApiRequestCompleteBlock)complete {
     
     NSMutableDictionary* param = [NSMutableDictionary dictionary];
-    [param safe_setValue:@(start) forKey:@"start"];
-    [param safe_setValue:@(limit) forKey:@"limit"];
+    [param safe_setValue:@(articleId) forKey:@"article_id"];
+    [param safe_setValue:content forKey:@"comment"];
+    [param safe_setValue:@(becommentId) forKey:@"becomment_id"];
     
-    [APIHELPER getWithURL:@"seek/getSeek" param:param complete:complete];
+    [APIHELPER getWithURL:@"article/articleCom" param:param complete:complete];
 }
-
 @end

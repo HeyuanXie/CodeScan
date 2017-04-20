@@ -141,8 +141,8 @@
             }
             
             [self.priceList addObjectsFromArray:responseObject[@"data"][@"price_list"]];
-            self.seatMaxX = [responseObject[@"data"][@"hall_info"][@"upright"] intValue];
-            self.seatMaxY = [responseObject[@"data"][@"hall_info"][@"hall_rows"] intValue];
+            self.seatMaxX = [responseObject[@"data"][@"hall_info"][@"hall_rows"] intValue];
+            self.seatMaxY = [responseObject[@"data"][@"hall_info"][@"upright"] intValue];
             [self botViewInit];
             [self fillDataToSeatsSelector];
         }else{
@@ -197,7 +197,9 @@
 
 - (void)fillDataToSeatsSelector
 {
-    _seatsPicker.rowCount = _seatMaxX;
+//    _seatsPicker.rowCount = _seatMaxX;
+    //TODO:临时写死
+    _seatsPicker.rowCount = 10;
     _seatsPicker.colCount = _seatMaxY;
     _seatsPicker.seats = self.seatList;
     [_seatsPicker reloadData];

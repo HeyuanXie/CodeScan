@@ -216,8 +216,8 @@
                 [self.seatsInfo addObject:seatsInfo];
             }
             
-            self.seatMaxX = [responseObject[@"data"][@"hall_info"][@"upright"] intValue];
-            self.seatMaxY = [responseObject[@"data"][@"hall_info"][@"hall_rows"] intValue];
+            self.seatMaxX = [responseObject[@"data"][@"hall_info"][@"hall_rows"] intValue];
+            self.seatMaxY = [responseObject[@"data"][@"hall_info"][@"upright"] intValue];
             [self fillDataToSeatsSelector];
         }else{
             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
@@ -229,7 +229,9 @@
 
 - (void)fillDataToSeatsSelector
 {
-    _seatsPicker.rowCount = _seatMaxX;
+    //    _seatsPicker.rowCount = _seatMaxX;
+    //TODO:临时写死
+    _seatsPicker.rowCount = 10;
     _seatsPicker.colCount = _seatMaxY;
     _seatsPicker.seats = _seatsInfo;
     [_seatsPicker reloadData];

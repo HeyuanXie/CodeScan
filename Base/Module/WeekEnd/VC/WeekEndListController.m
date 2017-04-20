@@ -74,7 +74,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     ArticleModel* article = self.dataArray[indexPath.row];
-    NSInteger articleId = self.type == 1 ? article.seekId.integerValue : article.articleId.integerValue;
+    NSInteger articleId = self.type == 0 ? article.seekId.integerValue : article.articleId.integerValue;
     APPROUTE(([NSString stringWithFormat:@"%@?url=%@&isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,article.sourceUrl,@(article.isFav.boolValue),articleId,article.articleType.integerValue+2]));
 }
 #pragma mark - private methods
@@ -88,7 +88,7 @@
 -(void)fetchData {
     [self.dataArray removeAllObjects];
     [self showLoadingAnimation];
-    if (self.type == 2) {
+    if (self.type == 1) {
         [APIHELPER weekEndArticleAreaId:self.areaId cateId:self.cateId start:0 limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             [self hideLoadingAnimation];
             if (isSuccess) {
@@ -129,7 +129,7 @@
     [self addHeaderRefresh:^{
         @strongify(self);
         [self.dataArray removeAllObjects];
-        if (self.type == 2) {
+        if (self.type == 1) {
             [APIHELPER weekEndArticleAreaId:self.areaId cateId:self.cateId start:0 limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     NSArray* articleArr = [NSArray yy_modelArrayWithClass:[ArticleModel class] array:responseObject[@"data"][@"list"]];
@@ -171,7 +171,7 @@
     [self addFooterRefresh:^{
         @strongify(self);
         [self showLoadingAnimation];
-        if (self.type == 2) {
+        if (self.type == 1) {
             [APIHELPER weekEndArticleAreaId:self.areaId cateId:self.cateId start:self.dataArray.count limit:10 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 [self hideLoadingAnimation];
                 if (isSuccess) {
@@ -213,7 +213,7 @@
 
 -(void)subviewStyle {
     
-    self.title = self.type == 1 ? @"小飞象资讯" : @"周末去哪儿";
+    self.title = self.type == 0 ? @"小飞象资讯" : @"周末去哪儿";
     
     self.rightBtn = [HYTool getButtonWithFrame:CGRectMake(0, 0, 110, 36) title:@"镇区" titleSize:17 titleColor:[UIColor whiteColor] backgroundColor:nil blockForClick:nil];
     [self.rightBtn setImage:ImageNamed(@"arrow_down") forState:UIControlStateNormal];
@@ -228,7 +228,7 @@
         }
         return [RACSignal empty];
     }];
-    if (self.type == 2) {
+    if (self.type == 1) {
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightBtn];
     }
     
@@ -260,7 +260,7 @@
         [self fetchData];
     }];
     
-    if (self.type == 2) {
+    if (self.type == 1) {
         self.tableView.tableHeaderView = topView;
     }
     

@@ -93,7 +93,7 @@
     NSDictionary* model = self.dataArray[indexPath.row];
     CommentType type;
     if (self.typeId == 0) {
-        [cell configTheaterCell:model];
+        [cell configTheaterCell:model orderStatu:self.statuId];
         [cell setPayContinueBlock:^(id model) {
             if ([model[@"time_left"] integerValue]==0) {
                 [self showMessage:@"支付超时, 订单已取消"];
@@ -134,10 +134,10 @@
         }];
         type = CommentTypeTheater;
     }else if (self.typeId == 1) {
-        [cell configDeriveCell:model];
+        [cell configDeriveCell:model orderStatu:self.statuId];
         type = CommentTypeDerive;
     }else{
-        [cell configYearCardCell:model];
+        [cell configYearCardCell:model orderStatu:self.statuId];
         [cell setPayContinueBlock:^(id model) {
             if ([model[@"time_left"] integerValue]==0) {
                 [self showMessage:@"支付超时, 订单已取消"];
@@ -197,10 +197,10 @@
     NSString* orderId = model[@"order_id"];
     //TODO:进入订单详情，传递type参数,传递订单Id参数
     if (self.typeId == 2) {
-        APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@",kYearCardOrderController,self.typeId,orderId]));
+        APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@&orderStatu=%ld",kYearCardOrderController,self.typeId,orderId,self.statuId]));
         return;
     }
-    APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@",kOrderDetailController,self.typeId,orderId]));
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@&orderStatu=%ld",kOrderDetailController,self.typeId,orderId,self.statuId]));
 }
 
 #pragma mark - textField delegate
@@ -623,6 +623,7 @@
             self.status = @[@"已付款",@"待付款",@"待评价",@"退款"];
         }else if (row == 1) {
             self.status = @[@"待领取",@"待评价",@"已完成"];
+            [self.totalLastTime removeAllObjects];
         }else{
             self.status = @[@"已付款",@"待付款",@"已使用",@"退款"];
         }

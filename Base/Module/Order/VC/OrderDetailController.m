@@ -15,12 +15,16 @@
 #import "OrderDetailCell.h"
 #import "UIViewController+Extension.h"
 #import "UITableViewCell+HYCell.h"
+#import "NSString+Extension.h"
+#import "HYPayEngine.h"
+#import "HYAlertView.h"
 
 @interface OrderDetailController ()
 
 @property(strong,nonatomic)NSDictionary* data;  //订单详情数据
-@property(strong,nonatomic)NSMutableArray* ticketArr;   //订单二维码数组
+@property(strong,nonatomic)NSMutableArray* ticketArr;   //订单票数组
 @property(assign,nonatomic)ContentType contentType;//订单类型,0:theater、1:derive、2:card
+@property(assign,nonatomic)NSInteger orderStatu;    //已支付、待支付、待评价、退款等(0123,123,1234)
 @property(assign,nonatomic)NSString* orderId;    //订单Id
 
 @property(strong,nonatomic)NSArray* maps;//手机安装的地图的数组
@@ -37,6 +41,10 @@
     if (self.schemaArgu[@"orderId"]) {
         self.orderId = [self.schemaArgu objectForKey:@"orderId"];
     }
+    if (self.schemaArgu[@"orderStatu"]) {
+        self.orderStatu = [[self.schemaArgu objectForKey:@"orderStatu"] integerValue];
+    }
+    
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.tableView registerNib:[UINib nibWithNibName:[OrderDetailHeadCell identify] bundle:nil] forCellReuseIdentifier:[OrderDetailHeadCell identify]];
@@ -44,9 +52,15 @@
     [self.tableView registerNib:[UINib nibWithNibName:[OrderCodeCell identify] bundle:nil] forCellReuseIdentifier:[OrderCodeCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[OrderDetailCell identify] bundle:nil] forCellReuseIdentifier:[OrderDetailCell identify]];
 
-    
+    [self subviewStyle];
     [self fetchData];
+    [self registNotification];
+}
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,17 +68,73 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - IBActions
+- (IBAction)payNow:(id)sender {
+    
+    [APIHELPER requestTheaterContinuePayInfoWithOrderId:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            NSInteger payType = [responseObject[@"data"][@"pay_type"] integerValue];
+            if (payType==1) {//支付宝
+                [HYPayEngine alipayWithOrderStr:responseObject[@"data"][@"pay_data"] withFinishBlock:^(BOOL success, NSString *payMessage) {
+                    //这里的支付结果回调只有网页支付会掉，支付宝app支付会在appDelegate中回调
+                    if (!success) {
+                        [self showMessage:payMessage];
+                    }else{
+                        HYAlertView* alert = [HYAlertView sharedInstance];
+                        [alert showAlertView:nil message:@"支付成功" subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+                        }];
+                    }
+                }];
+            }else if (payType==2){//微信
+                [HYPayEngine wxpayWithPayInfo:responseObject[@"data"][@"pay_data"] WithFinishBlock:^(BOOL success, NSInteger code, NSString *payMessage) {
+                    if (!success) {
+                        [self showMessage:payMessage];
+                    }else{
+                        HYAlertView* alert = [HYAlertView sharedInstance];
+                        [alert showAlertView:nil message:@"支付成功" subBottonTitle:@"确定" handler:^(AlertViewClickBottonType bottonType) {
+                            [[NSNotificationCenter defaultCenter] postNotificationName:kPaySuccessNotification object:nil];
+                        }];
+                    }
+                }];
+            }
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+}
+
 #pragma mark - talbeView dataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    if (section == 1) {
+//        switch (self.contentType) {
+//            case TypeTheater:
+//                return self.orderStatu == 0 ? 2 : 1;
+//                break;
+//            case TypeDerive:
+//                return self.orderStatu == 1 ? 2 : 1;
+//            default:
+//                break;
+//        }
+//    }
     if (section == 2) {
-        return self.contentType == TypeTheater ? 2 : 1;
-    }else{
-        return 2;
+        switch (self.contentType) {
+            case TypeTheater:
+                return self.orderStatu == 0 ? 2 : 1;
+                break;
+            case TypeDerive:
+                return 1;
+            default:
+                break;
+        }
     }
+    return 2;   //section==0 || section==3
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case 0:
@@ -85,10 +155,14 @@
         }
             
         case 2:
-            if (indexPath.row == 0) {
-                return [self codeCellForTableView:tableView indexPath:indexPath];
+            if (self.contentType == TypeTheater && self.orderStatu == 1) {
+                return [self waitPayTicketsCellForTableView:tableView indexPath:indexPath];
             }else{
-                return [self ticketCellForTableView:tableView indexPath:indexPath];
+                if (indexPath.row == 0) {
+                    return [self codeCellForTableView:tableView indexPath:indexPath];
+                }else{
+                    return [self ticketCellForTableView:tableView indexPath:indexPath];
+                }
             }
         default:{
             if (indexPath.row==0) {
@@ -111,10 +185,14 @@
     NSArray* height = @[@[@(128),@(40)],@[@(48),@(48)],@[@(116)],@[@(48),@(142)]];
     
     if (indexPath.section == 2) {
-        if (indexPath.row == 0) {
-            return 212;
+        if (self.contentType == TypeTheater && self.orderStatu == 1) {
+            return 48;
         }else{
-            return self.ticketArr.count == 0 ? 0 : 18 + self.ticketArr.count * 30;
+            if (indexPath.row == 0) {
+                return 212;
+            }else{
+                return self.ticketArr.count == 0 ? 0 : 18 + self.ticketArr.count * 30;
+            }
         }
     }else{
         return [height[indexPath.section][indexPath.row] floatValue];
@@ -212,7 +290,52 @@
     UILabel* lbl = [cell.contentView  viewWithTag:1001];
     
     NSString* deadLine = [HYTool dateStringWithString:self.data[@"expire_time"] inputFormat:nil outputFormat:@"yyyy-MM-dd"];
-    lbl.text = [NSString stringWithFormat:@"有效期至: %@",deadLine];
+    if (self.contentType == TypeTheater) {
+        switch (self.orderStatu) {
+            case 0:{
+                lbl.text = [NSString stringWithFormat:@"有效期至: %@",deadLine];
+                lbl.textColor = [UIColor hyBlackTextColor];
+                break;
+            }
+            case 1:{
+                lbl.text = @"订单状态: 待支付";
+                lbl.attributedText = [lbl.text attributedStringWithString:@"待支付" andWithColor:[UIColor hyRedColor]];
+                break;
+            }
+            case 2:{
+                lbl.text = @"订单状态: 待评价";
+                lbl.attributedText = [lbl.text attributedStringWithString:@"待评价" andWithColor:[UIColor hyRedColor]];
+                break;
+            }
+            case 3:{
+                lbl.text = @"订单状态: 已退款";
+                lbl.attributedText = [lbl.text attributedStringWithString:@"已退款" andWithColor:[UIColor hyRedColor]];
+                break;
+            }
+            default:
+                break;
+        }
+    }else if (self.contentType == TypeDerive) {
+        switch (self.orderStatu) {
+            case 1:{
+                lbl.text = [NSString stringWithFormat:@"有效期至: %@",deadLine];
+                lbl.textColor = [UIColor hyBlackTextColor];
+                break;
+            }
+            case 2:{
+                lbl.text = @"订单状态: 待评价";
+                lbl.attributedText = [lbl.text attributedStringWithString:@"待评价" andWithColor:[UIColor hyRedColor]];
+                break;
+            }
+            case 3:{
+                lbl.text = @"订单状态: 已完成";
+                lbl.attributedText = [lbl.text attributedStringWithString:@"已完成" andWithColor:[UIColor hyRedColor]];
+                break;
+            }
+            default:
+                break;
+        }
+    }
     
     if (self.contentType == TypeDerive) {
         if ([self.data[@"order_status"] integerValue] == 2) {
@@ -247,9 +370,9 @@
         cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
-        UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 14, 20, 20)];
+        UIImageView* imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 16, 16, 16)];
         imageView.image = ImageNamed(@"定位");
-        UILabel* lbl = [HYTool getLabelWithFrame:CGRectMake(40, 0, kScreen_Width, 48) text:@"" fontSize:15 textColor:[UIColor hyBlueTextColor] textAlignment:NSTextAlignmentLeft];
+        UILabel* lbl = [HYTool getLabelWithFrame:CGRectMake(35, 0, kScreen_Width, 48) text:@"" fontSize:15 textColor:[UIColor hyBlueTextColor] textAlignment:NSTextAlignmentLeft];
         lbl.tag = 1000;
         [cell.contentView addSubview:imageView];
         [cell.contentView addSubview:lbl];
@@ -269,7 +392,7 @@
         default:
             break;
     }
-    lbl.text = address;
+    lbl.text = [NSString stringWithFormat:@"地点: %@",address];
     return cell;
 }
 -(UITableViewCell*)codeCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
@@ -312,6 +435,27 @@
             }break;
         }
         [cell.contentView addSubview:ticketView];
+    }
+    return cell;
+}
+-(UITableViewCell*)waitPayTicketsCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
+    
+    static NSString* cellId = @"waitPayTicketsCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        [HYTool configTableViewCellDefault:cell];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        
+        UIScrollView* scrollV = [[UIScrollView alloc] initWithFrame:cell.bounds];
+        scrollV.tag = 1000;
+        [cell.contentView addSubview:scrollV];
+    }
+    UIScrollView* scroll = [cell.contentView viewWithTag:1000];
+    for (int i=0; i<self.ticketArr.count; i++) {
+        NSDictionary* ticket = self.ticketArr[i];
+        UILabel* lbl = [HYTool getLabelWithFrame:CGRectMake(i*115, 0, 115, 48) text:ticket[@"seat_name"] fontSize:15 textColor:[UIColor hyBlackTextColor] textAlignment:NSTextAlignmentCenter];
+        [scroll addSubview:lbl];
     }
     return cell;
 }
@@ -378,4 +522,24 @@
         }];
     }
 }
+
+-(void)subviewStyle {
+    if (self.contentType == TypeTheater && self.orderStatu == 1) {
+        [self.tableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(30, 0, 72, 0)];
+    }else{
+        [self.tableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
+    }
+}
+
+
+#pragma mark - registNotification
+//MARK:- 支付成功收到回调
+- (void)registNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccessNotification object:nil];
+}
+- (void)paySuccess {
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=%d&order_sn=%@",kTheaterCommitOrderSuccessController,0,self.orderId]));
+}
+
+
 @end

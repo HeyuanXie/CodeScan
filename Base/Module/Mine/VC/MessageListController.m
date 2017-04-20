@@ -152,6 +152,7 @@
         return;
     }
     if (indexPath.row == 1) {
+        //TODO:传递orderStatu
         APPROUTE(([NSString stringWithFormat:@"%@?contentType=%d&orderId=%@",kOrderDetailController,0,@"orderId"]));
     }
 }

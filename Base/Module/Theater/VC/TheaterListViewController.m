@@ -65,7 +65,6 @@
         APPROUTE(([NSString stringWithFormat:@"%@?playId=%ld&img=%@&name=%@&score=%ld&subTitle=%@&time=%@&date=%@&statu=%ld",kTheaterTicketViewController,model.playId.integerValue,model.picurl,model.playName,model.score.integerValue,model.subTitle,model.pctime,model.sydate,model.status.integerValue]));
     }];
     
-    @weakify(cell);
     [cell configTheaterListCell:model];
     if (model.isFav) {
         [cell.collectBtn setImage:ImageNamed(@"collect02") forState:UIControlStateNormal];

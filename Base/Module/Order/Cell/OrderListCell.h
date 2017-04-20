@@ -21,8 +21,8 @@
 @property(nonatomic,copy)void (^commentBlock)(id model);
 
 +(NSString*)identify;
--(void)configTheaterCell:(id)model;
--(void)configDeriveCell:(id)model;
--(void)configYearCardCell:(id)model;
+-(void)configTheaterCell:(id)model orderStatu:(NSInteger)orderStatu;
+-(void)configDeriveCell:(id)model orderStatu:(NSInteger)orderStatu;
+-(void)configYearCardCell:(id)model orderStatu:(NSInteger)orderStatu;
 
 @end

@@ -24,6 +24,7 @@
 ////////////////////////////////////////////////////////////////
 //服务器地址配置
 #define DEFAULT_SERVER @"http://api.xfx.zhimadi.cn" //http://admin.vipxfx.com
+//#define DEFAULT_SERVER @"http://admin.vipxfx.com"
 #define DEFAULT_END_POINT @"/"
 #define DEFAULT_PATH @""
 

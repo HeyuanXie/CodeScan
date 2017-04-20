@@ -28,8 +28,8 @@
 
 @property (nonatomic, weak) id<FVSeatsPickerDelegate> seatsDelegate;
 @property (nonatomic, assign) CGSize cellSize;
-@property (nonatomic, assign) NSUInteger rowCount;
-@property (nonatomic, assign) NSUInteger colCount;
+@property (nonatomic, assign) NSUInteger rowCount;  //行数
+@property (nonatomic, assign) NSUInteger colCount;  //列数
 @property (nonatomic, assign) NSArray<FVSeatItem *>* seats;
 
 - (NSArray<FVSeatItem *>*)selectedSeats;

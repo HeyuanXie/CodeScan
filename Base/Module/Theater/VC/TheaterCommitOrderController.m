@@ -534,8 +534,9 @@
     APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@",kTheaterCommitOrderSuccessController,self.orderSn]));
     self.isPaySuccessd = YES;
 }
+
 -(void)cancelPay {
-    
+    //没安装支付宝，不会走appDelegate中的支付回调，不发发出支付取消的通知
     NSInteger count = self.navigationController.viewControllers.count;
     UIViewController *vc = self.navigationController.viewControllers[count-4];
     [self.navigationController popToViewController:vc animated:YES];

@@ -175,10 +175,10 @@
                 APPROUTE(kYearCardHomeController);
                 break;
             case 2:
-                APPROUTE(([NSString stringWithFormat:@"%@?type=1",kWeekEndListController]));
+                APPROUTE(([NSString stringWithFormat:@"%@?type=0",kWeekEndListController]));
                 break;
             case 3:
-                APPROUTE(([NSString stringWithFormat:@"%@?type=2",kWeekEndListController]));
+                APPROUTE(([NSString stringWithFormat:@"%@?type=1",kWeekEndListController]));
                 break;
             case 4:
                 APPROUTE(kDeriveListController);
@@ -306,7 +306,7 @@
     ArticleModel* week = self.weekEnds[indexPath.row];
     [cell configWeekEndCell:week isCollect:NO];
     [cell.allBtn bk_whenTapped:^{
-        APPROUTE(([NSString stringWithFormat:@"%@?type=%ld",kWeekEndListController,indexPath.section-2]));
+        APPROUTE(([NSString stringWithFormat:@"%@?type=%d",kWeekEndListController,1]));
     }];
     return cell;
 }

@@ -72,7 +72,7 @@
     }
     
     //TODO:测试场次
-    self.playId = 3;
+    self.playId = 2;
     self.selectDate = @"2017-06-01";
     self.navigationBarTransparent = YES;
     [self subviewStyle];
