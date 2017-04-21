@@ -198,6 +198,10 @@
                 <outlet property="titleLbl" destination="nfP-AN-eBV" id="hCS-IY-ntf"/>
                 <outlet property="typeImgV" destination="nzm-Ip-JiT" id="GDd-bh-mGg"/>
                 <outlet property="typeLbl" destination="jA0-2R-auC" id="N3F-Kw-nCJ"/>
+                <outletCollection property="leftRightBtnWidths" destination="gnZ-Jj-pqX" id="iyF-0R-Vs5"/>
+                <outletCollection property="leftRightBtnWidths" destination="PX4-7s-sCz" id="3N2-Wv-ppi"/>
+                <outletCollection property="leftRightBtnHeights" destination="FSZ-qe-ZET" id="yoi-5a-XMI"/>
+                <outletCollection property="leftRightBtnHeights" destination="qud-jH-3H7" id="shK-JT-DJx"/>
             </connections>
             <point key="canvasLocation" x="35.5" y="54"/>
         </tableViewCell>

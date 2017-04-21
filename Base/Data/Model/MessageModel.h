@@ -13,6 +13,7 @@
 @property(nonatomic,assign)NSInteger noticeId;
 @property(nonatomic,assign)NSInteger noticeCode;
 @property(nonatomic,assign)NSInteger orderId;
+@property(nonatomic,assign)NSInteger orderType;
 @property(nonatomic,assign)NSInteger userId;
 @property(nonatomic,assign)NSInteger status;
 @property(nonatomic,strong)NSString *title;

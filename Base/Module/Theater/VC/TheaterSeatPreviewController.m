@@ -197,9 +197,9 @@
 
 - (void)fillDataToSeatsSelector
 {
-//    _seatsPicker.rowCount = _seatMaxX;
-    //TODO:临时写死
-    _seatsPicker.rowCount = 10;
+    _seatsPicker.rowCount = _seatMaxX;
+//    //TODO:临时写死
+//    _seatsPicker.rowCount = 10;
     _seatsPicker.colCount = _seatMaxY;
     _seatsPicker.seats = self.seatList;
     [_seatsPicker reloadData];

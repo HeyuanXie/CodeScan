@@ -59,7 +59,6 @@
         [HYTool configTableViewCellDefault:cell];
         cell.contentView.backgroundColor = [UIColor whiteColor];
         
-        //TODO:configCell
         [cell setFoldBtnClick:^{
             BOOL isFold = ![[self.foldArr objectAtIndex:indexPath.section] boolValue];
             [self.foldArr replaceObjectAtIndex:indexPath.section withObject:@(isFold)];
@@ -71,13 +70,12 @@
     }
     
     //订单消息
+    MessageModel* message = self.dataArray[indexPath.section];
     if (indexPath.row == 0) {
         MessageOrderCell* cell = [tableView dequeueReusableCellWithIdentifier:[MessageOrderCell identify]];
         [HYTool configTableViewCellDefault:cell];
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        
-        //TODO:
-        [cell configMessageOrderCell:nil];
+        [cell configMessageOrderCell:message];
         return cell;
     }else{
         static NSString* cellId = @"orderBotCell";
@@ -94,7 +92,7 @@
             cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
             cell.detailTextLabel.textColor = [UIColor hyBlackTextColor];
         }
-        cell.textLabel.text = @"2017-02-23 14:00";
+        cell.textLabel.text = [HYTool dateStringWithString:message.updateTime inputFormat:nil outputFormat:@"yyyy-MM-dd HH:mm"];
         cell.detailTextLabel.text = @"查看详情";
         return cell;
     }
@@ -134,7 +132,8 @@
     }
     return indexPath.row == 0 ? [tableView fd_heightForCellWithIdentifier:[MessageOrderCell identify] cacheByIndexPath:indexPath configuration:^(MessageOrderCell* cell) {
         
-        [cell configMessageOrderCell:nil];
+        MessageModel* message = self.dataArray[indexPath.section];
+        [cell configMessageOrderCell:message];
     }] : zoom(40);
 }
 
@@ -153,7 +152,14 @@
     }
     if (indexPath.row == 1) {
         //TODO:传递orderStatu
-        APPROUTE(([NSString stringWithFormat:@"%@?contentType=%d&orderId=%@",kOrderDetailController,0,@"orderId"]));
+        MessageModel* message = self.dataArray[indexPath.section];
+        if (message.orderType == 2) {
+            //年卡订单详情与其他订单详情页是分开的
+            APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@&orderStatu=%d",kYearCardOrderController,[NSString stringWithFormat:@"%ld",message.orderId],0]));
+        }else{
+            NSInteger contentType = message.orderType == 1 ? 0 : 1;
+            APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@&orderStatu=%d",kOrderDetailController,contentType,[NSString stringWithFormat:@"%ld",message.orderId],1]));
+        }
     }
 }
 #pragma mark - private methods
@@ -185,7 +191,10 @@
         
         if (isSuccess) {
             [self.dataArray removeAllObjects];
-            [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[MessageModel class] array:responseObject[@"data"][@"list"]] ];
+            [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[MessageModel class] array:responseObject[@"data"][@"list"]]];
+            for (int i=0; i<self.dataArray.count; i++) {
+                [self.foldArr addObject:@(YES)];
+            }
             [self.tableView reloadData];
             
             self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
@@ -211,6 +220,9 @@
                 
                 [self.dataArray removeAllObjects];
                 [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[MessageModel class] array:responseObject[@"data"][@"list"]] ];
+                for (int i=0; i<self.dataArray.count; i++) {
+                    [self.foldArr addObject:@(YES)];
+                }
                 [self.tableView reloadData];
                 
                 self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];
@@ -237,6 +249,9 @@
             
             if (isSuccess) {
                 [self.dataArray addObjectsFromArray:[NSArray yy_modelArrayWithClass:[MessageModel class] array:responseObject[@"data"][@"list"]] ];
+                for (int i=0; i<self.dataArray.count; i++) {
+                    [self.foldArr addObject:@(YES)];
+                }
                 [self.tableView reloadData];
                 
                 self.haveNext = [responseObject[@"data"][@"have_next"] boolValue];

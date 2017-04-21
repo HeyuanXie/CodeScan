@@ -15,6 +15,7 @@
              @"noticeId":@"id",
              @"noticeCode":@"notice_code",
              @"orderId":@"order_id",
+             @"orderType":@"order_type",
              @"userId":@"user_id",
              @"createTime":@"create_time",
              @"updateTime":@"update_time",

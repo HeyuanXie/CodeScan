@@ -22,6 +22,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *lbl3;
 @property (weak, nonatomic) IBOutlet UILabel *lbl4;
 
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *leftRightBtnWidths;
+
+@property (strong, nonatomic) IBOutletCollection(NSLayoutConstraint) NSArray *leftRightBtnHeights;
+
 @end
 
 @implementation OrderListCell
@@ -170,6 +174,26 @@
     self.lbl1.text = [NSString stringWithFormat:@"卡号: %@",model[@"card_sn"]];
     self.lbl2.text = [NSString stringWithFormat:@"数量: %@张",model[@"count"]];
     self.lbl3.text = [NSString stringWithFormat:@"总价: ¥%@",model[@"payable_amount"]];
+    
+    if (IS_IPHONE_5s) {
+        self.leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        for (NSLayoutConstraint* width in self.leftRightBtnWidths) {
+            width.constant = 60;
+        }
+        for (NSLayoutConstraint* height in self.leftRightBtnHeights) {
+            height.constant = 25;
+        }
+    }else{
+        self.leftBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        self.rightBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        for (NSLayoutConstraint* width in self.leftRightBtnWidths) {
+            width.constant = 70;
+        }
+        for (NSLayoutConstraint* height in self.leftRightBtnHeights) {
+            height.constant = 30;
+        }
+    }
     
     switch (orderStatu-1) {
         case 0:

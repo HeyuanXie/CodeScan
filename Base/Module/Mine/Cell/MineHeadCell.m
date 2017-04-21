@@ -37,7 +37,7 @@
     // Initialization code
     
     [HYTool configViewLayerFrame:self.headImgV WithColor:[UIColor whiteColor] borderWidth:2];
-    [HYTool configViewLayerRound:self.headImgV];
+    [HYTool configViewLayer:self.headImgV size:zoom(185)*67/(185*2)];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

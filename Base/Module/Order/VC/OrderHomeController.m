@@ -197,7 +197,7 @@
     NSString* orderId = model[@"order_id"];
     //TODO:进入订单详情，传递type参数,传递订单Id参数
     if (self.typeId == 2) {
-        APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@&orderStatu=%ld",kYearCardOrderController,self.typeId,orderId,self.statuId]));
+        APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@&orderStatu=%ld",kYearCardOrderController,orderId,self.statuId]));
         return;
     }
     APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@&orderStatu=%ld",kOrderDetailController,self.typeId,orderId,self.statuId]));

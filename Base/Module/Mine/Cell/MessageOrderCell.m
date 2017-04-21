@@ -7,6 +7,7 @@
 //
 
 #import "MessageOrderCell.h"
+#import "MessageModel.h"
 
 @interface MessageOrderCell ()
 
@@ -27,7 +28,9 @@
 }
 
 -(void)configMessageOrderCell:(id)model {
-    
+    MessageModel* message = (MessageModel*)model;
+    self.typeLbl.text = message.title;
+    self.detailLbl.text = message.content;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *codeTf;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTf;
 
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginViewTop;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (weak, nonatomic) IBOutlet UIButton *getCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *eyeBtn;
@@ -111,6 +113,7 @@
     [HYTool configViewLayer:self.loginBtn size:20];
     
 //    self.otherLoginView.hidden = YES;
+    self.loginViewTop.constant = zoom(84);
 }
 
 -(void)subviewBind {

@@ -46,7 +46,15 @@
     [productImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:ImageNamed(@"baidi")];
     nameLbl.text = model.goodName;
     priceLbl.text = [NSString stringWithFormat:@"%ld积分",model.shopPrice.integerValue];
-    priceLbl.attributedText = [priceLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:14]] subStrings:@[@"积分"]];
+    if (IS_IPHONE_5s) {
+        nameLbl.font = [UIFont systemFontOfSize:13];
+        priceLbl.font = [UIFont systemFontOfSize:17];
+        priceLbl.attributedText = [priceLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:12]] subStrings:@[@"积分"]];
+    }else{
+        nameLbl.font = [UIFont systemFontOfSize:14];
+        priceLbl.font = [UIFont systemFontOfSize:19];
+        priceLbl.attributedText = [priceLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:14]] subStrings:@[@"积分"]];
+    }
     exchangeBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         if (self.exchangeClick) {
             self.exchangeClick(model);
@@ -94,7 +102,15 @@
     [productImg sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:ImageNamed(@"baidi")];
     nameLbl.text = model.goodName;
     priceLbl.text = [NSString stringWithFormat:@"%ld积分",model.shopPrice.integerValue];
-    priceLbl.attributedText = [priceLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:14]] subStrings:@[@"积分"]];
+    if (IS_IPHONE_5s) {
+        nameLbl.font = [UIFont systemFontOfSize:13];
+        priceLbl.font = [UIFont systemFontOfSize:17];
+        priceLbl.attributedText = [priceLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:12]] subStrings:@[@"积分"]];
+    }else{
+        nameLbl.font = [UIFont systemFontOfSize:14];
+        priceLbl.font = [UIFont systemFontOfSize:19];
+        priceLbl.attributedText = [priceLbl.text addAttribute:@[NSFontAttributeName] values:@[[UIFont systemFontOfSize:14]] subStrings:@[@"积分"]];
+    }
     exchangeBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         if (self.exchangeClick) {

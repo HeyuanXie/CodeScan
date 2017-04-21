@@ -8,6 +8,7 @@
 
 #import "MessageSystemCell.h"
 #import "NSString+Extension.h"
+#import "MessageModel.h"
 
 @implementation MessageSystemCell
 
@@ -28,7 +29,9 @@
         }
     }];
     
-    self.detailLbl.text = (NSString*)model;
+    MessageModel* message = (MessageModel*)model;
+    self.timeLbl.text = [HYTool dateStringWithString:message.updateTime inputFormat:nil outputFormat:@"yyyy-MM-dd HH:mm"];
+    self.detailLbl.text = message.content;
     self.detailLbl.numberOfLines = isFold ? 2 : 0;
     NSString* title = isFold ? @"展开" : @"收起";
     NSString* image = isFold ? @"蓝色箭头_下" : @"蓝色箭头_上";

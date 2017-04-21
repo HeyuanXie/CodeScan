@@ -63,7 +63,7 @@ typedef enum : NSUInteger {
         UIButton* btn = [HYTool getButtonWithFrame:CGRectMake(0, 1, zoom(108), 30) title:@"查看订单详情" titleSize:15 titleColor:RGB(63,165,243,1.0) backgroundColor:nil blockForClick:^(id sender) {
             
             if (self.contentType == TypeCard) {
-                APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@&orderStatu=%d",kYearCardOrderController,self.contentType,self.orderSn,1]));
+                APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@&orderStatu=%d",kYearCardOrderController,self.orderSn,1]));
             }else{
                 APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@&orderStatu=%d",kOrderDetailController,self.contentType,self.orderSn,0]));
             }
