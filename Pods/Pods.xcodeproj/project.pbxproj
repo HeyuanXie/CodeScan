@@ -887,7 +887,6 @@
 		90A3DE18D078E06F715610623E866FCD /* UIActionSheet+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIActionSheet+RACSignalSupport.h"; path = "ReactiveCocoa/UIActionSheet+RACSignalSupport.h"; sourceTree = "<group>"; };
 		91216C9FC8EE2977794EF0D596875989 /* RACBlockTrampoline.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACBlockTrampoline.m; path = ReactiveCocoa/RACBlockTrampoline.m; sourceTree = "<group>"; };
 		91E058D9EA9D4353A3D3293D2DE02653 /* MKAnnotationView+RACSignalSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MKAnnotationView+RACSignalSupport.m"; path = "ReactiveCocoa/MKAnnotationView+RACSignalSupport.m"; sourceTree = "<group>"; };
-		92263B7F791C0EC9934F9E5A9A25B68F /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMMobClick.framework; path = "umsdk_IOS_analyics_no-idfa_v4.1.1/UMMobClick.framework"; sourceTree = "<group>"; };
 		92497632B4F6DD701D549EAA38662187 /* A2DynamicDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = A2DynamicDelegate.h; path = BlocksKit/DynamicDelegate/A2DynamicDelegate.h; sourceTree = "<group>"; };
 		9344D9553AE13AFA738A657136197D4F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
 		936A8303AA25DFB77E48F30F73877460 /* RACSubscriber+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACSubscriber+Private.h"; path = "ReactiveCocoa/RACSubscriber+Private.h"; sourceTree = "<group>"; };
@@ -1078,6 +1077,7 @@
 		E74E2CA638C03E990FD9094BFABE3FC9 /* MJRefresh-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MJRefresh-dummy.m"; sourceTree = "<group>"; };
 		E7BDA84552064DAFE46BC636347BF9A9 /* IQUIScrollView+Additions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "IQUIScrollView+Additions.m"; path = "IQKeyBoardManager/Categories/IQUIScrollView+Additions.m"; sourceTree = "<group>"; };
 		E91BB77D8FE7D057B310F9769737474C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		E9FDDDE42334409AAD5C519AFAF36F5E /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UMMobClick.framework; path = "umsdk_IOS_analyics_no-idfa_v4.2.5/UMMobClick.framework"; sourceTree = "<group>"; };
 		EAF1862279BBA7A583135D870505337F /* RACTuple.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACTuple.h; path = ReactiveCocoa/RACTuple.h; sourceTree = "<group>"; };
 		EBD3FFF53CE6138D962E90A8E3186D9A /* MFMailComposeViewController+BlocksKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "MFMailComposeViewController+BlocksKit.m"; path = "BlocksKit/MessageUI/MFMailComposeViewController+BlocksKit.m"; sourceTree = "<group>"; };
 		EBDB406699B32A9AE669C38483A6C3F4 /* RACSubject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACSubject.m; path = ReactiveCocoa/RACSubject.m; sourceTree = "<group>"; };
@@ -1503,6 +1503,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4515D8D444C09C1D0F1F821EE47A43C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E9FDDDE42334409AAD5C519AFAF36F5E /* UMMobClick.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4A17C91F4494E11038DBC347716F173C /* Serialization */ = {
 			isa = PBXGroup;
 			children = (
@@ -1905,7 +1913,7 @@
 		9DB27D6D069D3E1948E8E389B436105E /* UMengAnalytics-NO-IDFA */ = {
 			isa = PBXGroup;
 			children = (
-				D78D946BC989BA1024EDBD33D26F21A8 /* Frameworks */,
+				4515D8D444C09C1D0F1F821EE47A43C4 /* Frameworks */,
 			);
 			path = "UMengAnalytics-NO-IDFA";
 			sourceTree = "<group>";
@@ -2052,14 +2060,6 @@
 				2687F00F53BFC133D7D9D398821A3D03 /* UITextView+RACSignalSupport.m */,
 			);
 			name = UI;
-			sourceTree = "<group>";
-		};
-		D78D946BC989BA1024EDBD33D26F21A8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				92263B7F791C0EC9934F9E5A9A25B68F /* UMMobClick.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D8C2ADBED1BFAA1806EB060B4E795E40 /* AFNetworking */ = {
