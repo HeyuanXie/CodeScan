@@ -145,12 +145,12 @@
     for (int i = 0; i<self.goodList.count; i++) {
         DeriveModel* model = self.goodList[i];
         DetailDervieView* view = (DetailDervieView*)[[NSBundle mainBundle] loadNibNamed:@"TheaterUseView" owner:self options:nil][0];
-        view.frame = CGRectMake(106*i+10, 0, 106, 138);
+        view.frame = CGRectMake((90+10)*i+10, 0, 90, 138);
         [view.imgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:ImageNamed(@"elephant")];
         view.titleLbl.text = model.goodName;
         view.priceLbl.text = model.shopPrice;
         [view bk_whenTapped:^{
-            APPROUTE(([NSString stringWithFormat:@"%@?id=%ld",kDeriveDetailController,model.goodId.integerValue]));
+            APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&sourceUrl=%@",kDeriveDetailController,model.goodId.integerValue,model.sourceUrl]));
         }];
         [scrollView addSubview:view];
     }

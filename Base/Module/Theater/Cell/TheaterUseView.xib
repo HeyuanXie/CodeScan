@@ -14,14 +14,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DetailDervieView">
-            <rect key="frame" x="0.0" y="0.0" width="106" height="138"/>
+            <rect key="frame" x="0.0" y="0.0" width="90" height="138"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IMB-hF-ckK">
-                    <rect key="frame" x="0.0" y="0.0" width="106" height="95"/>
+                    <rect key="frame" x="3" y="12" width="84" height="82"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1520飞币" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vK2-96-15N">
-                    <rect key="frame" x="0.0" y="117" width="106" height="15"/>
+                    <rect key="frame" x="0.0" y="117" width="90" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="ViE-ya-pSB"/>
                     </constraints>
@@ -30,7 +30,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="周边礼品" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-hd-1GX">
-                    <rect key="frame" x="0.0" y="97" width="106" height="15"/>
+                    <rect key="frame" x="0.0" y="100" width="90" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="dAU-6Q-Y9G"/>
                     </constraints>
@@ -42,15 +42,15 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Ik4-hd-1GX" secondAttribute="trailing" id="53R-Tt-p59"/>
-                <constraint firstItem="IMB-hF-ckK" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="95:138" id="RXE-ym-OmL"/>
-                <constraint firstItem="vK2-96-15N" firstAttribute="top" secondItem="Ik4-hd-1GX" secondAttribute="bottom" constant="5" id="Umr-r5-mI4"/>
+                <constraint firstItem="IMB-hF-ckK" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="82:138" id="RXE-ym-OmL"/>
+                <constraint firstItem="vK2-96-15N" firstAttribute="top" secondItem="Ik4-hd-1GX" secondAttribute="bottom" constant="2" id="Umr-r5-mI4"/>
                 <constraint firstItem="Ik4-hd-1GX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XN2-y6-hNc"/>
                 <constraint firstAttribute="bottom" secondItem="vK2-96-15N" secondAttribute="bottom" constant="6" id="a7g-K8-MkM"/>
-                <constraint firstItem="IMB-hF-ckK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="d0Z-9I-Rkl"/>
+                <constraint firstItem="IMB-hF-ckK" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="3" id="d0Z-9I-Rkl"/>
                 <constraint firstItem="vK2-96-15N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fjh-kg-Xhm"/>
                 <constraint firstAttribute="trailing" secondItem="vK2-96-15N" secondAttribute="trailing" id="gLS-3M-IqS"/>
-                <constraint firstItem="IMB-hF-ckK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="r5g-Ry-Oj1"/>
-                <constraint firstAttribute="trailing" secondItem="IMB-hF-ckK" secondAttribute="trailing" id="rfz-Dg-zWP"/>
+                <constraint firstItem="IMB-hF-ckK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="r5g-Ry-Oj1"/>
+                <constraint firstAttribute="trailing" secondItem="IMB-hF-ckK" secondAttribute="trailing" constant="3" id="rfz-Dg-zWP"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

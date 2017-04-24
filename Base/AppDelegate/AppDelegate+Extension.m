@@ -35,10 +35,11 @@ NS_ENUM(NSUInteger, TabType) {
 
 -(void)verifyLogin {
 
-    if ([Global userAuth]) {
-        [APIHELPER fetchUserInfo:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+    if (kPassword && kAccount) {
+        [APIHELPER login:kAccount password:kPassword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             if (isSuccess) {
-                APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
+                [Global setUserAuth:responseObject[@"data"][@"auth"]];
+                APIHELPER.userInfo = [UserInfoModel yy_modelWithJSON:responseObject[@"data"]];
             }
         }];
     }

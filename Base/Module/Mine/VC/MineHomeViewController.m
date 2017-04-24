@@ -125,30 +125,35 @@
     }
     FunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:[FunctionCell identify]];
     [HYTool configTableViewCellDefault:cell];
+    cell.accessoryType = UITableViewCellAccessoryNone;
     cell.contentView.backgroundColor = [UIColor hyViewBackgroundColor];
 
-    if (indexPath.row != ((NSArray*)self.infos[indexPath.section]).count-1) {
-        [cell addLine:NO leftOffSet:42+zoom(30) rightOffSet:-12];
-    }
-    //设置圆角
-    if (indexPath.row == 0) {
-        UIView* view = cell.backView;
-        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
-        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-        maskLayer.frame = view.bounds;
-        maskLayer.path = maskPath.CGPath;
-        view.layer.mask = maskLayer;
-    }
-    if (indexPath.row == ((NSArray*)self.infos[indexPath.section]).count-1) {
-        UIView* view = cell.backView;
-        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
-        CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-        maskLayer.frame = view.bounds;
-        maskLayer.path = maskPath.CGPath;
-        view.layer.mask = maskLayer;
-    }
     if (indexPath.section == 2) {
         [HYTool configViewLayer:cell.backView size:5];
+    }else{
+        if (indexPath.row != ((NSArray*)self.infos[indexPath.section]).count-1) {
+            [cell addLine:NO leftOffSet:42+zoom(30) rightOffSet:-12];
+        }
+        //设置圆角
+        if (indexPath.row == 0) {
+            UIView* view = cell.backView;
+            view.bounds = CGRectMake(0, 0, kScreen_Width-24, zoom(48));
+            UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(5, 5)];
+            CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+            maskLayer.frame = view.bounds;
+            maskLayer.path = maskPath.CGPath;
+            view.layer.mask = maskLayer;
+        }
+        if (indexPath.row == ((NSArray*)self.infos[indexPath.section]).count-1) {
+            UIView* view = cell.backView;
+            view.bounds = CGRectMake(0, 0, kScreen_Width-24, zoom(48));
+            UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(5, 5)];
+            CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+            maskLayer.frame = view.bounds;
+            maskLayer.path = maskPath.CGPath;
+            view.layer.mask = maskLayer;
+        }
+
     }
     if (!(indexPath.row == 0 && indexPath.section == 1)) {
         cell.blueView.hidden = YES;

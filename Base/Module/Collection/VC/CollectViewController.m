@@ -158,7 +158,7 @@ typedef enum : NSUInteger {
             DeriveModel* rightModel = [DeriveModel yy_modelWithDictionary:(self.dataArray.count%2!=0 && self.dataArray.count/2==indexPath.section) ? nil : self.dataArray[indexPath.section*2+1]];
             [cell configListCellWithLeft:leftModel right:rightModel isCollect:YES];
             [cell setItemClick:^(DeriveModel* model) {
-                APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&isFav=%@",kDeriveDetailController,model.goodId.integerValue,@(YES)]));
+                APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&isFav=%@&sourceUrl=%@",kDeriveDetailController,model.goodId.integerValue,@(YES),model.sourceUrl]));
             }];
             [cell setExchangeClick:^(DeriveModel* model) {
                 //取消收藏

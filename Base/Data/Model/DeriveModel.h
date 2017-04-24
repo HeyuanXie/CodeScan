@@ -15,5 +15,6 @@
 @property (nonatomic, copy) NSString *img;
 @property (nonatomic, copy) NSString *goodName;
 @property (nonatomic, strong) NSNumber *storeCount;
+@property (nonatomic, strong) NSString *sourceUrl;
 
 @end

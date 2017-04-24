@@ -122,10 +122,10 @@ typedef enum : NSUInteger {
     
     switch (self.contentType) {
         case ContentTypeTheater:
-            APPROUTE(([NSString stringWithFormat:@"%@?id=%d",kTheaterDetailViewController,0]));
+            APPROUTE(([NSString stringWithFormat:@"%@?id=%ld",kTheaterDetailViewController,[model[@"play_id"] integerValue]]));
             break;
         case ContentTypeDerive:
-            APPROUTE(([NSString stringWithFormat:@"%@?id=%d",kDeriveDetailController,0]));
+            APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&sourceUrl=%@",kDeriveDetailController,[model[@"goods_id"] integerValue],model[@"source_url"]]));
             break;
         default:
         {
