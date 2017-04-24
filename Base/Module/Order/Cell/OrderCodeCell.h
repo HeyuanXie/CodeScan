@@ -11,6 +11,6 @@
 @interface OrderCodeCell : UITableViewCell
 
 +(NSString*)identify;
--(void)configCodeCell:(id)model;
+-(void)configCodeCell:(id)model isDerive:(BOOL)isDerive;
 
 @end

@@ -75,7 +75,8 @@
     DeriveListCell* cell = [tableView dequeueReusableCellWithIdentifier:[DeriveListCell identify]];
     [HYTool configTableViewCellDefault:cell];
     [cell setItemClick:^(DeriveModel* model) {
-        APPROUTE(([NSString stringWithFormat:@"%@?id=%ld",kDeriveDetailController,model.goodId.integerValue]));
+        NSString* sourceUrl = model.sourceUrl;
+        APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&sourceUrl=%@",kDeriveDetailController,model.goodId.integerValue,sourceUrl]));
     }];
     [cell setExchangeClick:^(DeriveModel* model) {
         if (model.storeCount.integerValue == 0) {

@@ -17,7 +17,9 @@
              @"goodId":@"goods_id",
              @"img":@"thumb_img",
              @"goodName":@"goods_name",
-             @"storeCount":@"store_count"
+             @"storeCount":@"store_count",
+             @"sourceUrl":@"source_url"
+
              };
 }
 @end

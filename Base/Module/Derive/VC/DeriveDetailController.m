@@ -37,9 +37,16 @@
     }
     if (self.schemaArgu[@"id"]) {
         self.productId = [[self.schemaArgu objectForKey:@"id"] integerValue];
+        self.url = [NSString stringWithFormat:@"http://xfx.zhimadi.cn/goods?goods_id=%ld",self.productId];
+        if ([Global userAuth]) {
+            self.url = [self.url stringByAppendingString:[NSString stringWithFormat:@"&uid=%@",APIHELPER.userInfo.userID]];
+        }
     }
-
-    [self webViewInit];
+//    if (self.schemaArgu[@"sourceUrl"]) {
+//        self.url = [self.schemaArgu objectForKey:@"sourceUrl"];
+//    }
+    
+    [self loadWebView];
     // Do any additional setup after loading the view.
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,18 +61,22 @@
 }
 
 
-#pragma mark - private methods
+#pragma mark - override methods
 -(void)webViewInit {
+    [super webViewInit];
     
+    [self.webView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(-44, 0, -90, 0)];
+    [self.view sendSubviewToBack:self.webView];
 }
 
+#pragma mark - private methods
 -(void)fetchData {
     [self showLoadingAnimation];
     [APIHELPER deriveDetail:self.productId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [self hideLoadingAnimation];
         if (isSuccess) {
             self.data = responseObject[@"data"];
-            self.isEnough = self.data[@"is_enough_price"];
+            self.isEnough = [self.data[@"is_enough_price"] boolValue];
             self.isFav = [self.data[@"is_fav"] boolValue];
             [self configNavigation];
             [self subviewStyle];

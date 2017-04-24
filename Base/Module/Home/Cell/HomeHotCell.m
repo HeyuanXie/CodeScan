@@ -16,6 +16,9 @@
 }
 
 -(void)configHotCell:(NSArray*)modelArr {
+    if (modelArr == nil || modelArr.count == 0) {
+        return;
+    }
     int i = 0;
     for (UIView* subview in self.hotSubviews) {
         DeriveModel* derive = modelArr[i];
@@ -33,7 +36,7 @@
         jifenLbl.attributedText = attrStr;
         
         [subview bk_whenTapped:^{
-            APPROUTE(([NSString stringWithFormat:@"%@?id=%ld",kDeriveDetailController,derive.goodId.integerValue]));
+            APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&sourceUrl=%@",kDeriveDetailController,derive.goodId.integerValue,derive.sourceUrl]));
         }];
         i++;
     }

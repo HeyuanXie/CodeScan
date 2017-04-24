@@ -7,6 +7,7 @@
 //
 
 #import "OrderCodeCell.h"
+#import "ZXingWrapper.h"
 
 @interface OrderCodeCell ()
 
@@ -27,9 +28,23 @@
     return NSStringFromClass([self class]);
 }
 
--(void)configCodeCell:(id)model {
+-(void)configCodeCell:(id)model isDerive:(BOOL)isDerive {
+    
+    if (!model) {
+        return;
+    }
 
-    [self.codeImgV sd_setImageWithURL:[NSURL URLWithString:@"https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1490001149&di=1336a528fd7efc7386a985dd3c81bf23&src=http://pic1.fangketong.net/app_attach/201507/30/20150730_110_37862_0.jpg"] placeholderImage:nil];
+    if (isDerive) {
+        NSString* qrCode = model[@"exchange_barcode"][0][@"qrcode"];
+        NSString* password = model[@"exchange_barcode"][0][@"code"];
+        self.codeImgV.image = [ZXingWrapper createCodeWithString:qrCode size:CGSizeMake(140, 140) CodeFomart:kBarcodeFormatQRCode];
+        self.passwordLbl.text = [NSString stringWithFormat:@"消费密码: %@",password];
+    }else{
+        NSString* qrCode = model[@"qrcode"];
+        NSString* password = model[@"sncode"];
+        self.codeImgV.image = [ZXingWrapper createCodeWithString:qrCode size:CGSizeMake(400, 400) CodeFomart:kBarcodeFormatQRCode];
+         self.passwordLbl.text = [NSString stringWithFormat:@"消费密码: %@",password];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

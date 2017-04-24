@@ -150,8 +150,8 @@
         self.rightBtn.hidden = NO;
         [self.rightBtn setTitle:@"再次兑换" forState:(UIControlStateNormal)];
         self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-            
-            APPROUTE(([NSString stringWithFormat:@"%@?id=%ld",kDeriveDetailController,[model[@"goods_id"] integerValue]]));
+            //TODO:model[@"source_url"]没有
+            APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&sourceUrl=%@",kDeriveDetailController,[model[@"goods_id"] integerValue],model[@"source_url"]]));
             return [RACSignal empty];
         }];
     }else{

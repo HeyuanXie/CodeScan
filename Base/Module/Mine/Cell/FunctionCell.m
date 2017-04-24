@@ -19,7 +19,7 @@
     self.titleLbl.text = model[@"title"];
     [self setDetailBlock:^{
         //TODO:
-        NSLog(@"%@",model[@"title"]);
+        DLog(@"%@",model[@"title"]);
     }];
 }
 

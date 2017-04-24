@@ -6,8 +6,8 @@
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 
-#import "BaseTableViewController.h"
+#import "WKWebViewController.h"
 
-@interface DeriveDetailController : BaseTableViewController
+@interface DeriveDetailController : WKWebViewController
 
 @end

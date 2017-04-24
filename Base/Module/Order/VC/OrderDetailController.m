@@ -18,6 +18,7 @@
 #import "NSString+Extension.h"
 #import "HYPayEngine.h"
 #import "HYAlertView.h"
+#import "ZXingWrapper.h"
 
 @interface OrderDetailController ()
 
@@ -398,7 +399,7 @@
 -(UITableViewCell*)codeCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
     OrderCodeCell*cell = [tableView dequeueReusableCellWithIdentifier:[OrderCodeCell identify]];
     
-    [cell configCodeCell:self.data];
+    [cell configCodeCell:self.data isDerive:self.contentType == TypeDerive ? YES : NO];
     [cell addLine:NO leftOffSet:0 rightOffSet:0];
     return cell;
 }

@@ -73,6 +73,7 @@
     [super awakeFromNib];
     // Initialization code
     self.statuLbl.backgroundColor = [self.statuLbl.backgroundColor colorWithAlphaComponent:0.5];
+    self.backImgV.bounds = CGRectMake(0, 0, kScreen_Width, 263);
     [self.backImgV setBlurEffectStyle:UIBlurEffectStyleLight];
 }
 
