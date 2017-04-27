@@ -31,7 +31,7 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-3-17日起,只要分享给好友并让其注册成功, 赠送抽奖机会一次。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhC-ZW-7N3">
                         <rect key="frame" x="110" y="35" width="260" height="41"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.57647058819999997" green="0.57647058819999997" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -66,7 +66,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="140" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="查看全部" image="下个页面箭头_灰">
+                                <state key="normal" title="查看全部" image="蓝色箭头">
                                     <color key="titleColor" red="0.58823529409999997" green="0.74509803919999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -88,7 +88,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="18" id="75K-Zp-662"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -160,8 +160,8 @@
     </objects>
     <resources>
         <image name="yazi.png" width="96" height="133"/>
-        <image name="下个页面箭头_灰" width="17" height="17"/>
         <image name="点赞" width="12" height="12"/>
+        <image name="蓝色箭头" width="12" height="12"/>
         <image name="评论" width="12" height="12"/>
     </resources>
 </document>

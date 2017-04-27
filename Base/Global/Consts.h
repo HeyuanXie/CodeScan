@@ -134,13 +134,13 @@ alpha:a]
 #define kBACK(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 #define kMAIN(block) dispatch_async(dispatch_get_main_queue(),block)
 
-
 //MARK:-其他
 #define kNotificationCenter [NSNotificationCenter defaultCenter]
 #define kApplication [UIApplication sharedApplication]
 #define kAppDelegate ((AppDelegate*)([UIApplication sharedApplication].delegate))
 
 #define ImageNamed(fp) [UIImage imageNamed:fp]
+#define IS_FIRSTLAUNCH @"is_firstLaunch"
 
 //#define kSaveObject
 #define kUserDefaults [NSUserDefaults standardUserDefaults]

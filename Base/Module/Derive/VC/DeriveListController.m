@@ -263,7 +263,7 @@
     APPROUTE(kPointManageController);
 }
 -(void)mineRecord:(UIButton*)btn {
-    APPROUTE(kDeriveRecordController);
+    APPROUTE(([NSString stringWithFormat:@"%@?typeId=1",kOrderHomeController]));
 }
 
 

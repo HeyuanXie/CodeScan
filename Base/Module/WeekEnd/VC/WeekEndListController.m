@@ -75,7 +75,7 @@
     
     ArticleModel* article = self.dataArray[indexPath.row];
     NSInteger articleId = self.type == 0 ? article.seekId.integerValue : article.articleId.integerValue;
-    APPROUTE(([NSString stringWithFormat:@"%@?url=%@&isFav=%@&articleId=%ld&type=%ld",kWeekEndDetailController,article.sourceUrl,@(article.isFav.boolValue),articleId,article.articleType.integerValue+2]));
+    APPROUTE(([NSString stringWithFormat:@"%@?url=%@&isFav=%@&articleId=%ld&type=%ld&title=%@&summary=%@&img=%@",kWeekEndDetailController,article.sourceUrl,@(article.isFav.boolValue),articleId,article.articleType.integerValue+2,article.title,article.summary,article.img]));
 }
 #pragma mark - private methods
 -(NSMutableArray *)dataArray {

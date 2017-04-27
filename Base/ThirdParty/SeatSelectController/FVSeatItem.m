@@ -12,7 +12,7 @@
 
 - (NSString *)description
 {
-    NSArray *properties = @[@"seatId",@"seatName",@"price",@"col",@"row",@"seatStatus",@"coordinateX",@"coordinateY"];
+    NSArray *properties = @[@"seatId",@"seatName",@"realPrice",@"marketPrice",@"cardPrice",@"col",@"row",@"seatStatus",@"coordinateX",@"coordinateY"];
     NSDictionary *propertiesDict = [self dictionaryWithValuesForKeys:properties];
     return [NSString stringWithFormat:@"<%@: %p> %@",self.class, self, propertiesDict];
 }

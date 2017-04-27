@@ -25,8 +25,8 @@
 @property(strong,nonatomic)NSDictionary* data;  //订单详情数据
 @property(strong,nonatomic)NSMutableArray* ticketArr;   //订单票数组
 @property(assign,nonatomic)ContentType contentType;//订单类型,0:theater、1:derive、2:card
-@property(assign,nonatomic)NSInteger orderStatu;    //已支付、待支付、待评价、退款等(0123,123,1234)
 @property(assign,nonatomic)NSString* orderId;    //订单Id
+@property(assign,nonatomic)NSInteger orderStatu;    //待支付、待使用、、待评价、退款、支付超时等(23456)
 
 @property(strong,nonatomic)NSArray* maps;//手机安装的地图的数组
 @end
@@ -41,9 +41,6 @@
     }
     if (self.schemaArgu[@"orderId"]) {
         self.orderId = [self.schemaArgu objectForKey:@"orderId"];
-    }
-    if (self.schemaArgu[@"orderStatu"]) {
-        self.orderStatu = [[self.schemaArgu objectForKey:@"orderStatu"] integerValue];
     }
     
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
@@ -125,7 +122,7 @@
     if (section == 2) {
         switch (self.contentType) {
             case TypeTheater:
-                return self.orderStatu == 0 ? 2 : 1;
+                return (self.orderStatu == 2 || self.orderStatu == 6) ? 1 : 2;
                 break;
             case TypeDerive:
                 return 1;
@@ -156,7 +153,7 @@
         }
             
         case 2:
-            if (self.contentType == TypeTheater && self.orderStatu == 1) {
+            if (self.contentType == TypeTheater && (self.orderStatu == 2 || self.orderStatu == 6)) {
                 return [self waitPayTicketsCellForTableView:tableView indexPath:indexPath];
             }else{
                 if (indexPath.row == 0) {
@@ -186,7 +183,7 @@
     NSArray* height = @[@[@(128),@(40)],@[@(48),@(48)],@[@(116)],@[@(48),@(142)]];
     
     if (indexPath.section == 2) {
-        if (self.contentType == TypeTheater && self.orderStatu == 1) {
+        if (self.contentType == TypeTheater && (self.orderStatu == 2 || self.orderStatu == 6)) {
             return 48;
         }else{
             if (indexPath.row == 0) {
@@ -293,24 +290,34 @@
     NSString* deadLine = [HYTool dateStringWithString:self.data[@"expire_time"] inputFormat:nil outputFormat:@"yyyy-MM-dd"];
     if (self.contentType == TypeTheater) {
         switch (self.orderStatu) {
-            case 0:{
-                lbl.text = [NSString stringWithFormat:@"有效期至: %@",deadLine];
-                lbl.textColor = [UIColor hyBlackTextColor];
-                break;
+            case 1:{    //全部
+//                lbl.text = @"订单状态: 待支付";
+//                lbl.attributedText = [lbl.text attributedStringWithString:@"待支付" andWithColor:[UIColor hyRedColor]];
+//                break;
             }
-            case 1:{
+            case 2:{
                 lbl.text = @"订单状态: 待支付";
                 lbl.attributedText = [lbl.text attributedStringWithString:@"待支付" andWithColor:[UIColor hyRedColor]];
                 break;
             }
-            case 2:{
+            case 3:{
+                lbl.text = [NSString stringWithFormat:@"有效期至: %@",deadLine];
+                lbl.textColor = [UIColor hyBlackTextColor];
+                break;
+            }
+            case 4:{
                 lbl.text = @"订单状态: 待评价";
                 lbl.attributedText = [lbl.text attributedStringWithString:@"待评价" andWithColor:[UIColor hyRedColor]];
                 break;
             }
-            case 3:{
+            case 5:{
                 lbl.text = @"订单状态: 已退款";
                 lbl.attributedText = [lbl.text attributedStringWithString:@"已退款" andWithColor:[UIColor hyRedColor]];
+                break;
+            }
+            case 6:{
+                lbl.text = @"订单状态: 支付超时";
+                lbl.attributedText = [lbl.text attributedStringWithString:@"支付超时" andWithColor:[UIColor hyRedColor]];
                 break;
             }
             default:
@@ -498,6 +505,7 @@
             if (isSuccess) {
                 self.data = responseObject[@"data"];
                 [self.ticketArr addObjectsFromArray:responseObject[@"data"][@"detail"]];
+                [self judgeOrderStatu];
                 [self.tableView reloadData];
             }else{
                 [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
@@ -507,12 +515,13 @@
         [APIHELPER orderDetailDerive:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             if (isSuccess) {
                 self.data = responseObject[@"data"];
+                [self judgeOrderStatu];
                 [self.tableView reloadData];
             }else{
                 [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
             }
         }];
-    }else if (self.contentType == TypeCard) {
+    } else if (self.contentType == TypeCard) {
         [APIHELPER orderDetailCard:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             if (isSuccess) {
                 self.data = responseObject[@"data"];
@@ -524,8 +533,38 @@
     }
 }
 
+-(void)judgeOrderStatu {
+    
+    if (self.contentType == TypeTheater) {
+        NSInteger payStatu = [self.data[@"pay_status"] integerValue];
+        NSInteger statu = [self.data[@"order_status"] integerValue];
+        if (payStatu == 0) {
+            self.orderStatu = statu == 5 ? 6 : 2;
+            return;
+        }
+        if (payStatu == 3) {
+            self.orderStatu = 5;
+            return;
+        }
+        if (payStatu == 1) {
+            if (statu == 0) {
+                self.orderStatu = 3;
+                return;
+            }
+            if (statu == 4) {
+                self.orderStatu = 4;
+                return;
+            }
+        }
+    } else {
+        self.orderStatu = [self.data[@"order_status"] integerValue];
+    }
+
+}
+
+
 -(void)subviewStyle {
-    if (self.contentType == TypeTheater && self.orderStatu == 1) {
+    if (self.contentType == TypeTheater && (self.orderStatu == 2 || self.orderStatu == 6)) {
         [self.tableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(30, 0, 72, 0)];
     }else{
         [self.tableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
@@ -534,7 +573,7 @@
 
 
 #pragma mark - registNotification
-//MARK:- 支付成功收到回调
+//支付成功收到回调
 - (void)registNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccessNotification object:nil];
 }

@@ -8,16 +8,20 @@
 
 #import "WeekEndDetailController.h"
 #import "UIViewController+Extension.h"
+#import "ShareSDKTools.h"
 
 @interface WeekEndDetailController ()
 
-@property (strong, nonatomic) NSString* collectImg; //navigationBar收藏按钮图片
+@property (strong, nonatomic) NSString* shareTitle;
+@property (strong, nonatomic) NSString* summary;
+@property (strong, nonatomic) NSString* img;
 
 @property (assign, nonatomic) BOOL isFav;
 @property (assign, nonatomic) NSInteger articleId;
 @property (assign, nonatomic) NSInteger type;   //2:资讯; 3:周末
 @property (weak, nonatomic) IBOutlet UITextField *commentTf;
 @property (weak, nonatomic) IBOutlet UIButton *commentBtn;
+
 
 @end
 
@@ -34,6 +38,15 @@
     }
     if (self.schemaArgu[@"type"]) {
         self.type = [[self.schemaArgu objectForKey:@"type"] integerValue];
+    }
+    if (self.schemaArgu[@"title"]) {
+        self.shareTitle = [self.schemaArgu objectForKey:@"title"];
+    }
+    if (self.schemaArgu[@"summary"]) {
+        self.summary = [self.schemaArgu objectForKey:@"summary"];
+    }
+    if (self.schemaArgu[@"img"]) {
+        self.img = [self.schemaArgu objectForKey:@"img"];
     }
     if (self.type == 2) {
         self.url = [NSString stringWithFormat:@"http://xfx.zhimadi.cn/seek?seek_id=%ld",self.articleId];
@@ -56,7 +69,7 @@
     
     [self.webView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(-44, 0, -50, 0)];
     self.webView.scrollView.maximumZoomScale = 1.0;
-//    [self.view sendSubviewToBack:self.webView];
+    [self.view sendSubviewToBack:self.webView];
 }
 
 //MARK: - private methods
@@ -90,6 +103,13 @@
         }
     } secondBlock:^{
         //TODO:分享
+        @strongify(self);
+//        ArticleModel* article = [[ArticleModel alloc] init];
+//        article.title = self.shareTitle;
+//        article.summary = self.summary;
+//        article.img = self.img;
+//        article.sourceUrl = self.url;
+        [ShareSDKTools shareShowActionSheet:self.shareTitle summary:self.summary url:self.url imgUrl:self.img view:self.view];
     }];
 
     [HYTool configViewLayer:self.commentTf withColor:RGB(238, 238, 238, 1.0)];

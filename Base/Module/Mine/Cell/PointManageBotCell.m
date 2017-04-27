@@ -11,9 +11,7 @@
 @interface PointManageBotCell ()
 
 @property (weak, nonatomic) IBOutlet UIView *firstView;
-
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
-@property (weak, nonatomic) IBOutlet UILabel *finishLbl;
 @property (weak, nonatomic) IBOutlet UILabel *numLbl;
 
 @end

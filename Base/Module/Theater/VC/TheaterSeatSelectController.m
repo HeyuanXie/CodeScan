@@ -34,13 +34,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-    if (self.schemaArgu[@"hall_id"]) {
-        self.hallId = [[self.schemaArgu objectForKey:@"hall_id"] integerValue];
-    }
-    if (self.schemaArgu[@"time_id"]) {
-        self.timeId = [[self.schemaArgu objectForKey:@"time_id"] integerValue];
-    }
+//    if (self.schemaArgu[@"hall_id"]) {
+//        self.hallId = [[self.schemaArgu objectForKey:@"hall_id"] integerValue];
+//    }
+//    if (self.schemaArgu[@"time_id"]) {
+//        self.timeId = [[self.schemaArgu objectForKey:@"time_id"] integerValue];
+//    }
     
     [self subviewStyle];
     [self reloadSeatScrollView];
@@ -166,7 +165,7 @@
             [self reloadSeatScrollView];
         }];
         [self.seatScroll addSubview:seatView];
-        total = total + seatInfo.price;
+        total = total + seatInfo.realPrice;
     }
     self.seatScroll.contentSize = CGSizeMake(12+(104+7)*self.selectArray.count, 0);
     
@@ -182,6 +181,7 @@
 
 //MARK: - 选座相关
 -(void)configSeatsPicker {
+    [_seatsPicker removeFromSuperview];
     _seatsPicker = nil;
     _seatsPicker = ({
         FVSeatsPicker* picker = [FVSeatsPicker new];
@@ -207,7 +207,9 @@
                 FVSeatItem* seatsInfo = [FVSeatItem new];
                 seatsInfo.seatId = [dict intValueForKey:@"ps_id"];
                 seatsInfo.seatName = [dict stringForKey:@"seat_name"];
-                seatsInfo.price = [dict intValueForKey:@"market_price"];
+                seatsInfo.realPrice = [dict[@"real_price"] floatValue];
+                seatsInfo.marketPrice = [dict[@"market_price"] floatValue];
+                seatsInfo.cardPrice = [dict[@"card_price"] floatValue];
                 seatsInfo.col = [dict intValueForKey:@"seat_y"];
                 seatsInfo.row = [dict intValueForKey:@"seat_x"];
                 seatsInfo.seatStatus = [dict intValueForKey:@"status"];
@@ -229,9 +231,7 @@
 
 - (void)fillDataToSeatsSelector
 {
-        _seatsPicker.rowCount = _seatMaxX;
-    //TODO:临时写死
-//    _seatsPicker.rowCount = 10;
+    _seatsPicker.rowCount = _seatMaxX;
     _seatsPicker.colCount = _seatMaxY;
     _seatsPicker.seats = _seatsInfo;
     [_seatsPicker reloadData];

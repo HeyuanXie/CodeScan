@@ -134,6 +134,12 @@
 
 
 #pragma mark - 设置导航栏透明
+
+/**
+ 设置导航栏透明
+
+ @param superView navigationBar
+ */
 - (void)hideBackView:(UIView *) superView{
     NSString* backString = SYSTEM_VERSION_FLOAT >= 10.0 ? @"_UIBarBackground" : @"_UINavigationBarBackground";
     if ([superView isKindOfClass:NSClassFromString(backString)]) {
@@ -154,6 +160,11 @@
     }
 }
 
+/**
+ 设置导航栏不透明
+
+ @param superView navigationBar
+ */
 - (void)showBackView:(UIView*)superView {
     NSString* backString = SYSTEM_VERSION_FLOAT >= 10.0 ? @"_UIBarBackground" : @"_UINavigationBarBackground";
     if ([superView isKindOfClass:NSClassFromString(backString)]) {

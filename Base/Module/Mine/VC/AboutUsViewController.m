@@ -33,7 +33,7 @@
 #pragma mark - private methods
 -(void)subviewStyle {
     
-    self.logoImgV.image = ImageNamed(@"elephant");
+    self.logoImgV.image = ImageNamed(@"小飞象logo");
     [HYTool configViewLayer:self.logoImgV size:8];
     
     self.nameLbl.text = [NSString stringWithFormat:@"小飞象王国 %@",APP_VERSION];

@@ -9,6 +9,11 @@
 #import "BindPhoneChangeController.h"
 #import "HYCountDown.h"
 
+typedef enum : NSUInteger {
+    TypeBind,
+    TypeForget,
+} ContentType;
+
 @interface BindPhoneChangeController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneTf;
@@ -18,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *bindBtn;
 @property (strong, nonatomic) HYCountDown* countDown;
 
+@property (assign, nonatomic) ContentType contentType;
+
 @end
 
 @implementation BindPhoneChangeController
@@ -25,6 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (self.schemaArgu[@"contentType"]) {
+        self.contentType = [[self.schemaArgu objectForKey:@"contentType"] integerValue];
+    }
     [self subviewStyle];
     [self subviewBind];
 }
@@ -51,6 +61,11 @@
     
     self.phoneTf.keyboardType = UIKeyboardTypeNumberPad;
     self.codeTf.keyboardType = UIKeyboardTypeNumberPad;
+    
+    if (self.contentType == TypeForget) {
+        [self.bindBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        self.title = @"找回密码";
+    }
 }
 
 -(void)subviewBind {
@@ -80,7 +95,7 @@
         }
     };
     
-    [APIHELPER fetchCode:self.phoneTf.text type:@"bind" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+    [APIHELPER fetchCode:self.phoneTf.text type:self.contentType==TypeForget ? @"safe" : @"bind" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [self hideLoadingAnimation];
         fetchCode(isSuccess,error.userInfo[NSLocalizedDescriptionKey]);
     }];
@@ -96,16 +111,30 @@
         [self showMessage:@"请输入验证码"];
         return;
     }
-    [APIHELPER bindPhone:self.phoneTf.text code:self.codeTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-        if (isSuccess) {
-            [self showMessage:@"修改绑定成功"];
-            APIHELPER.userInfo.phone = self.phoneTf.text;
-            UIViewController* vc = self.navigationController.viewControllers[2];
-            [self.navigationController popToViewController:vc animated:YES];
-        }else{
-            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
-        }
-    }];
+    
+    if (self.contentType == TypeForget) {
+        //找回密码检验验证码
+        [APIHELPER checkCode:self.phoneTf.text code:self.codeTf.text type:@"safe" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            if (isSuccess) {
+                APPROUTE(([NSString stringWithFormat:@"%@?contentType=1&phone=%@",kChangePasswordController,self.phoneTf.text]));
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+        }];
+    }else{
+        //修改绑定手机
+        [APIHELPER bindPhone:self.phoneTf.text code:self.codeTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            if (isSuccess) {
+                [self showMessage:@"修改绑定成功"];
+                APIHELPER.userInfo.phone = self.phoneTf.text;
+                UIViewController* vc = self.navigationController.viewControllers[2];
+                [self.navigationController popToViewController:vc animated:YES];
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+        }];
+    }
+
 }
 
 

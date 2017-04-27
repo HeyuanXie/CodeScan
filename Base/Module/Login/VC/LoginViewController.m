@@ -126,7 +126,7 @@
 }
 
 - (void)forgot{
-    
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=1",kBindPhoneChangeController]));
 }
 
 @end

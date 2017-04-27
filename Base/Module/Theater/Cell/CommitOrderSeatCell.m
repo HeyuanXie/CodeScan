@@ -7,6 +7,7 @@
 //
 
 #import "CommitOrderSeatCell.h"
+#import "FVSeatItem.h"
 
 @interface CommitOrderSeatCell ()
 
@@ -31,22 +32,33 @@
     
     FVSeatItem* seatInfo = (FVSeatItem*)model;
     self.seatLbl.text = seatInfo.seatName;
-    self.pirceLbl.text = [NSString stringWithFormat:@"%.2d",seatInfo.price];
+    self.pirceLbl.text = [NSString stringWithFormat:@"%.2f",seatInfo.realPrice];
 }
 
--(void)configVipCell:(id)model {
+-(void)configVipCell:(id)model row:(NSInteger)row cardIndexs:(NSArray*)cardIndexs {
     
-    self.originalPriceView.hidden = YES;
+    FVSeatItem* seat = (FVSeatItem*)model;
     self.selelctBtn.selected = NO;
+    self.selelctBtn.hidden = NO;
+    self.originalPriceView.hidden = YES;
+    self.pirceLbl.text = [NSString stringWithFormat:@"%.2f",seat.realPrice];
     [self.selelctBtn setImage:ImageNamed(@"未选择") forState:UIControlStateNormal];
     [self.selelctBtn setImage:ImageNamed(@"已选择") forState:UIControlStateSelected];
     self.pirceLblLeading.constant = kScreen_Width/2;
-    self.originalPriceLbl.text = @"¥180";
-    self.selelctBtn.hidden = NO;
+    self.seatLbl.text = seat.seatName;
     
-    FVSeatItem* seatInfo = (FVSeatItem*)model;
-    self.seatLbl.text = seatInfo.seatName;
-    self.pirceLbl.text = [NSString stringWithFormat:@"%.2f",(CGFloat)(seatInfo.price)];
+    for (NSNumber* index in cardIndexs) {
+        if ([index integerValue] == row) {
+            self.selelctBtn.selected = YES;
+            self.originalPriceView.hidden = NO;
+            self.pirceLbl.text = [NSString stringWithFormat:@"%.2f",seat.cardPrice];
+            self.originalPriceLbl.text = [NSString stringWithFormat:@"%.2f",seat.realPrice];
+            break;  //要加上break
+        }else{
+            self.originalPriceView.hidden = YES;
+            self.originalPriceLbl.text = [NSString stringWithFormat:@"%.2f",seat.realPrice];
+        }
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -20,6 +20,7 @@
 
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
+#import "ArticleModel.h"
 @implementation ShareSDKTools
 
 
@@ -73,16 +74,14 @@
 
 }
 
-
-/*
-+ (void)shareShowActionSheet:(ArticleListModel *)model view:(UIView *)view{
++ (void)shareShowActionSheet:(ArticleModel *)model view:(UIView *)view{
     UIImageView *imageView = [[UIImageView alloc] init];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:APIHELPER.config[@"icon_url"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [imageView sd_setImageWithURL:[NSURL URLWithString:model.img] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         [shareParams SSDKSetupShareParamsByText:model.summary
                                          images:@[image]
-                                            url:[NSURL URLWithString:model.detailURL]
+                                            url:[NSURL URLWithString:model.sourceUrl]
                                           title:model.title
                                            type:SSDKContentTypeAuto];
         
@@ -113,9 +112,9 @@
     
 }
 
-+ (void)shareShowActionSheet:(NSString *)title summary:(NSString *)summary url:(NSString *)urlString view:(UIView *)view{
++ (void)shareShowActionSheet:(NSString *)title summary:(NSString *)summary url:(NSString *)urlString imgUrl:(NSString*)imgUrl view:(UIView *)view{
     UIImageView *imageView = [[UIImageView alloc] init];
-    [imageView sd_setImageWithURL:[NSURL URLWithString:APIHELPER.config[@"icon_url"]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [imageView sd_setImageWithURL:[NSURL URLWithString:imgUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         [shareParams SSDKSetupShareParamsByText:summary
@@ -149,7 +148,7 @@
         [sheet.directSharePlatforms addObject:@(SSDKPlatformTypeSinaWeibo)];
     }];
     
-}*/
+}
 
 + (BOOL)isWXAppInstalled{
     return [WXApi isWXAppInstalled];

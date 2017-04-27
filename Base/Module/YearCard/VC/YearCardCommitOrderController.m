@@ -222,6 +222,7 @@
     NSInteger payType = self.selectIndex == 1 ? 2 : 1;
     [param safe_setValue:@([self.data[@"card_id"] integerValue]) forKey:@"card_id"];
     [param safe_setValue:@(payType) forKey:@"pay_type"];
+    
     [param safe_setValue:@"" forKey:@"coupon_sn"];
 
     [APIHELPER requestCardPayInfoWithParam:param complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {

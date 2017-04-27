@@ -23,6 +23,6 @@
 +(NSString*)identify;
 
 -(void)configNotVipCell:(id)model;
--(void)configVipCell:(id)model;
+-(void)configVipCell:(id)model row:(NSInteger)row cardIndexs:(NSArray*)cardIndexs;
 
 @end

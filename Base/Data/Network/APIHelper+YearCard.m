@@ -23,4 +23,14 @@
     [APIHELPER postWithURL:@"card/bind" param:param complete:complete];
 }
 
+-(void)cardUseRecord:(NSInteger)start
+               limit:(NSInteger)limit
+            complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:@(start) forKey:@"start"];
+    [param safe_setValue:@(limit) forKey:@"limit"];
+    [APIHELPER getWithURL:@"card/cardUseList" param:param complete:complete];
+}
+
 @end

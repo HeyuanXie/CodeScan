@@ -10,6 +10,10 @@
 
 @interface HomeDescCell : UITableViewCell
 
+@property(nonatomic,copy)void (^unFoldBtnClick)();
+@property(nonatomic,assign)BOOL isFold;
+
+
 +(NSString*)identify;
 -(void)configDescCell:(id)model;
 

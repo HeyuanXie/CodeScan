@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,35 +21,18 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVH-q1-uyK">
                         <rect key="frame" x="12" y="0.0" width="351" height="46.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="下个页面箭头_灰" translatesAutoresizingMaskIntoConstraints="NO" id="tL1-Gx-mdR">
-                                <rect key="frame" x="328" y="16" width="15" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="15" id="RJe-w4-6Om"/>
-                                    <constraint firstAttribute="width" secondItem="tL1-Gx-mdR" secondAttribute="height" multiplier="1:1" id="THs-ri-5Kx"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+200" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnW-ob-omo">
-                                <rect key="frame" x="273" y="13" width="45" height="21"/>
+                                <rect key="frame" x="279" y="13" width="60" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="MVT-r3-Xni"/>
-                                    <constraint firstAttribute="width" constant="45" id="fYc-1w-dSE"/>
+                                    <constraint firstAttribute="width" constant="60" id="fYc-1w-dSE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.94901960780000005" green="0.70196078429999997" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已完成" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z0K-Vv-xeS">
-                                <rect key="frame" x="214" y="13" width="51" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="HKa-eW-8Un"/>
-                                    <constraint firstAttribute="width" constant="51" id="odc-JA-xJ7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发布影评" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCy-Oa-Y9y">
-                                <rect key="frame" x="12" y="13" width="192" height="21"/>
+                                <rect key="frame" x="12" y="13" width="255" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="UlC-5t-n2U"/>
                                 </constraints>
@@ -105,18 +87,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wnW-ob-omo" firstAttribute="centerY" secondItem="FVH-q1-uyK" secondAttribute="centerY" id="3H2-XO-KMA"/>
-                            <constraint firstItem="z0K-Vv-xeS" firstAttribute="centerY" secondItem="wnW-ob-omo" secondAttribute="centerY" id="4g7-1P-w41"/>
+                            <constraint firstAttribute="trailing" secondItem="wnW-ob-omo" secondAttribute="trailing" constant="12" id="4aP-GV-JCK"/>
                             <constraint firstAttribute="bottom" secondItem="G6x-a3-LJf" secondAttribute="bottom" id="4ji-0d-P8f"/>
-                            <constraint firstItem="z0K-Vv-xeS" firstAttribute="leading" secondItem="MCy-Oa-Y9y" secondAttribute="trailing" constant="10" id="OXB-oR-AfK"/>
-                            <constraint firstItem="wnW-ob-omo" firstAttribute="leading" secondItem="z0K-Vv-xeS" secondAttribute="trailing" constant="8" id="Wfy-WA-v0h"/>
+                            <constraint firstItem="MCy-Oa-Y9y" firstAttribute="centerY" secondItem="FVH-q1-uyK" secondAttribute="centerY" id="7TM-D5-F9e"/>
                             <constraint firstItem="MCy-Oa-Y9y" firstAttribute="leading" secondItem="FVH-q1-uyK" secondAttribute="leading" constant="12" id="dJi-b3-dKU"/>
                             <constraint firstItem="G6x-a3-LJf" firstAttribute="top" secondItem="FVH-q1-uyK" secondAttribute="top" id="f5F-2S-cJQ"/>
-                            <constraint firstItem="tL1-Gx-mdR" firstAttribute="leading" secondItem="wnW-ob-omo" secondAttribute="trailing" constant="10" id="fcF-gK-NWH"/>
                             <constraint firstAttribute="trailing" secondItem="G6x-a3-LJf" secondAttribute="trailing" id="igY-Ht-GJD"/>
-                            <constraint firstItem="tL1-Gx-mdR" firstAttribute="centerY" secondItem="FVH-q1-uyK" secondAttribute="centerY" id="j9N-KQ-5K6"/>
                             <constraint firstItem="G6x-a3-LJf" firstAttribute="leading" secondItem="FVH-q1-uyK" secondAttribute="leading" id="mTi-oV-gwp"/>
-                            <constraint firstAttribute="trailing" secondItem="tL1-Gx-mdR" secondAttribute="trailing" constant="8" id="opj-y5-cKw"/>
-                            <constraint firstItem="MCy-Oa-Y9y" firstAttribute="centerY" secondItem="z0K-Vv-xeS" secondAttribute="centerY" id="yJl-o9-K2N"/>
+                            <constraint firstItem="wnW-ob-omo" firstAttribute="leading" secondItem="MCy-Oa-Y9y" secondAttribute="trailing" constant="12" id="zoG-Kf-FYZ"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -130,7 +108,6 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="backView" destination="FVH-q1-uyK" id="Nak-Kp-oL5"/>
-                <outlet property="finishLbl" destination="z0K-Vv-xeS" id="XtQ-hc-ffk"/>
                 <outlet property="firstView" destination="G6x-a3-LJf" id="OvW-aY-gmk"/>
                 <outlet property="numLbl" destination="wnW-ob-omo" id="V3q-cy-z8U"/>
                 <outlet property="titleLbl" destination="MCy-Oa-Y9y" id="9gF-Qf-eA8"/>
@@ -139,7 +116,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="下个页面箭头_灰" width="17" height="17"/>
         <image name="积分任务图标" width="22" height="22"/>
     </resources>
 </document>

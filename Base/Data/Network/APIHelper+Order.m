@@ -16,6 +16,7 @@
     [param safe_setValue:@(start) forKey:@"start"];
     [param safe_setValue:@(limit) forKey:@"limit"];
     [param safe_setValue:@(statu) forKey:@"status"];
+    [param safe_setValue:keyword forKey:@"key_word"];
     [APIHELPER getWithURL:@"theatre_order/orderList" param:param complete:complete];
 }
 - (void)orderDetailTheater:(NSString*)orderSn complete:(ApiRequestCompleteBlock)complete {
@@ -30,12 +31,13 @@
     
 }
 
-- (void)orderListDerive:(NSInteger)start limit:(NSInteger)limit statu:(NSInteger)statu complete:(ApiRequestCompleteBlock)complete {
+- (void)orderListDerive:(NSInteger)start limit:(NSInteger)limit statu:(NSInteger)statu keyword:(NSString*) keyword complete:(ApiRequestCompleteBlock)complete {
     
     NSMutableDictionary* param = [NSMutableDictionary dictionary];
     [param safe_setValue:@(start) forKey:@"start"];
     [param safe_setValue:@(limit) forKey:@"limit"];
     [param safe_setValue:@(statu) forKey:@"status"];
+    [param safe_setValue:keyword forKey:@"key_word"];
     [APIHELPER getWithURL:@"goods_order/readlist" param:param complete:complete];
 }
 
@@ -44,12 +46,13 @@
     [APIHELPER getWithURL:@"goods_order/read" param:@{@"order_id":orderSn} complete:complete];
 }
 
-- (void)orderListCard:(NSInteger)start limit:(NSInteger)limit statu:(NSInteger)statu complete:(ApiRequestCompleteBlock)complete {
+- (void)orderListCard:(NSInteger)start limit:(NSInteger)limit statu:(NSInteger)statu keyword:(NSString*) keyword complete:(ApiRequestCompleteBlock)complete {
     
     NSMutableDictionary* param = [NSMutableDictionary dictionary];
     [param safe_setValue:@(start) forKey:@"start"];
     [param safe_setValue:@(limit) forKey:@"limit"];
     [param safe_setValue:@(statu) forKey:@"status"];
+    [param safe_setValue:keyword forKey:@"key_word"];
     [APIHELPER getWithURL:@"card/orderList" param:param complete:complete];
 }
 - (void)orderDetailCard:(NSString*)orderSn complete:(ApiRequestCompleteBlock)complete {

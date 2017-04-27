@@ -629,10 +629,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SyC-Ex-FYC">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukl-i0-yWZ">
-                                        <rect key="frame" x="290" y="9" width="73" height="32"/>
+                                        <rect key="frame" x="290" y="14" width="73" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="73" id="0IJ-uy-kdK"/>
                                             <constraint firstAttribute="height" constant="32" id="SQu-jn-ALC"/>
@@ -642,7 +642,7 @@
                                         </state>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="说点什么吧..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ncx-AR-Ro4">
-                                        <rect key="frame" x="12" y="9" width="266" height="32"/>
+                                        <rect key="frame" x="12" y="14" width="266" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="j2z-Un-nTn"/>
                                         </constraints>
@@ -655,7 +655,7 @@
                                 <constraints>
                                     <constraint firstItem="Ncx-AR-Ro4" firstAttribute="leading" secondItem="SyC-Ex-FYC" secondAttribute="leading" constant="12" id="GVd-KL-64a"/>
                                     <constraint firstItem="Ncx-AR-Ro4" firstAttribute="centerY" secondItem="SyC-Ex-FYC" secondAttribute="centerY" id="KBe-RW-6tI"/>
-                                    <constraint firstAttribute="height" constant="50" id="M9r-BQ-zEq"/>
+                                    <constraint firstAttribute="height" constant="60" id="M9r-BQ-zEq"/>
                                     <constraint firstItem="ukl-i0-yWZ" firstAttribute="centerY" secondItem="SyC-Ex-FYC" secondAttribute="centerY" id="ejI-JR-au2"/>
                                     <constraint firstItem="ukl-i0-yWZ" firstAttribute="leading" secondItem="Ncx-AR-Ro4" secondAttribute="trailing" constant="12" id="toH-7M-ISz"/>
                                     <constraint firstAttribute="trailing" secondItem="ukl-i0-yWZ" secondAttribute="trailing" constant="12" id="xZg-fh-Zbf"/>
@@ -1472,7 +1472,7 @@
                                 <color key="textColor" red="0.68235294120000001" green="0.68235294120000001" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="可电话咨询07692222222" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcg-WT-wKj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="可电话咨询 0769-22465888" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcg-WT-wKj">
                                 <rect key="frame" x="0.0" y="217" width="375" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -1964,7 +1964,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ryi-Dr-BY9" id="nbg-EH-GRj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1992,7 +1992,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iwj-Xo-5q0" id="3CH-P3-keF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -2474,6 +2474,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="payBtn" destination="CJc-ME-prX" id="V3u-sy-e4n"/>
                         <outlet property="timeLbl" destination="7v9-AW-bek" id="Kvk-TL-a1d"/>
                         <outlet property="totalLbl" destination="Hfb-2x-zWq" id="dbg-5e-ccQ"/>
                     </connections>

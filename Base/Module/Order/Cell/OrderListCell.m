@@ -36,7 +36,8 @@
 
 -(void)configTheaterCell:(id)model orderStatu:(NSInteger)orderStatu {
     
-    NSInteger payStatus = [model[@"pay_status"] integerValue];
+    NSInteger payStatus = [model[@"pay_status"] integerValue];  //0:未支付，3:已退款
+    NSInteger orderStatus = [model[@"order_status"] integerValue];  //待使用(0)、已使用(1)、待评价(4)、已过期(关闭)(5)
     NSInteger leftTime = [model[@"time_left"] integerValue];
     
     self.typeImgV.image = ImageNamed(@"订单类型_话剧");
@@ -53,21 +54,75 @@
     self.lbl4.text = [NSString stringWithFormat:@"总价: ¥%@",theater.payableAmount];
     
     switch (orderStatu) {
-        case 0:
+        case 1://全部
         {
-            self.statuLbl.text = @"已付款";
-            self.leftBtn.hidden = YES;
-            self.rightBtn.hidden = NO;
-            [self.rightBtn setTitle:@"退款" forState:UIControlStateNormal];
-            [self.rightBtn setBlueStyle];
-            self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                //TODO:退款
-                APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[model[@"order_id"] integerValue],0]));
-                return [RACSignal empty];
-            }];
+            if (payStatus == 0) {
+                self.statuLbl.text = @"待付款";
+                self.leftBtn.hidden = YES;
+                self.rightBtn.hidden = NO;
+                [self.rightBtn setTitle:@"去支付" forState:UIControlStateNormal];
+                [self.rightBtn setRedStyle];
+                self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                    if (self.payContinueBlock) {
+                        self.payContinueBlock(model);
+                    }
+                    return [RACSignal empty];
+                }];
+                
+                if (leftTime==0) {
+                    self.statuLbl.text = @"支付超时";
+                    self.leftBtn.hidden = YES;
+                    self.rightBtn.hidden = NO;
+                    [self.rightBtn setTitle:@"已取消" forState:UIControlStateNormal];
+                    [self.rightBtn setGrayStyle];
+                }
+                return;
+            }
+            if (payStatus == 3) {
+                self.statuLbl.text = @"退款成功";
+                self.leftBtn.hidden = YES;
+                self.rightBtn.hidden = YES;
+                self.lbl4.text = [NSString stringWithFormat:@"退款金额: ¥%@",theater.payableAmount];
+                return;
+            }
+            if (orderStatus == 0) {
+                self.statuLbl.text = @"待使用";
+                self.leftBtn.hidden = YES;
+                self.rightBtn.hidden = NO;
+                [self.rightBtn setTitle:@"退款" forState:UIControlStateNormal];
+                [self.rightBtn setBlueStyle];
+                self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                    //TODO:退款
+                    APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[model[@"order_id"] integerValue],0]));
+                    return [RACSignal empty];
+                }];
+                if ([model[@"is_print"] integerValue] == 1) {
+                    [self.rightBtn setGrayStyle];
+                    [self.rightBtn bk_whenTapped:^{
+                        if (self.noRefundBlock) {
+                            self.noRefundBlock();
+                        }
+                    }];
+                }
+                return;
+            }
+            if (orderStatus == 4) {
+                self.statuLbl.text = @"待评价";
+                self.leftBtn.hidden = YES;
+                self.rightBtn.hidden = NO;
+                [self.rightBtn setTitle:@"去评价" forState:(UIControlStateNormal)];
+                self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                    
+                    if (self.commentBlock) {
+                        self.commentBlock(model);
+                    }
+                    return [RACSignal empty];
+                }];
+                return;
+            }
             break;
         }
-        case 1:
+        case 2:
         {
             self.statuLbl.text = @"待付款";
             self.leftBtn.hidden = YES;
@@ -90,22 +145,49 @@
             }
             break;
         }
-        case 2:
-        {
-            self.statuLbl.text = @"待评价";
-            break;
-        }
         case 3:
         {
-            self.statuLbl.text = @"已退款";
+            self.statuLbl.text = @"待使用";
             self.leftBtn.hidden = YES;
-            self.rightBtn.hidden = YES;
-            self.lbl4.text = [NSString stringWithFormat:@"退款金额: ¥%@",theater.payableAmount];
+            self.rightBtn.hidden = NO;
+            [self.rightBtn setTitle:@"退款" forState:UIControlStateNormal];
+            [self.rightBtn setBlueStyle];
+            self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                //TODO:退款
+                APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[model[@"order_id"] integerValue],0]));
+                return [RACSignal empty];
+            }];
+            if ([model[@"is_print"] integerValue] == 1) {
+                [self.rightBtn setGrayStyle];
+                [self.rightBtn bk_whenTapped:^{
+                    if (self.noRefundBlock) {
+                        self.noRefundBlock();
+                    }
+                }];
+            }
+            break;
+        }
+        case 4:
+        {
+            self.statuLbl.text = @"待评价";
+            self.leftBtn.hidden = YES;
+            self.rightBtn.hidden = NO;
+            [self.rightBtn setTitle:@"去评价" forState:(UIControlStateNormal)];
+            self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                
+                if (self.commentBlock) {
+                    self.commentBlock(model);
+                }
+                return [RACSignal empty];
+            }];
             break;
         }
         case 5:
         {
-            self.statuLbl.text = @"已过期";
+            self.statuLbl.text = @"退款成功";
+            self.leftBtn.hidden = YES;
+            self.rightBtn.hidden = YES;
+            self.lbl4.text = [NSString stringWithFormat:@"退款金额: ¥%@",theater.payableAmount];
             break;
         }
     }
@@ -163,6 +245,7 @@
 -(void)configYearCardCell:(id)model orderStatu:(NSInteger)orderStatu {
 
     NSInteger leftTime = [model[@"time_left"] integerValue];
+    NSInteger payStatus = [model[@"pay_status"] integerValue];
     BOOL isBind = [model[@"is_bind"] boolValue];
 
     self.typeImgV.image = ImageNamed(@"订单类型_年卡");
@@ -170,6 +253,7 @@
     self.lbl4.hidden = YES;
 
     self.titleLbl.text = @"飞象卡1+1家庭年票";
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:model[@"thumb"]] placeholderImage:nil];
     self.orderNumLbl.text = leftTime == 0 ? [NSString stringWithFormat:@"订单号: %@",model[@"order_sn"]] : nil;
     self.lbl1.text = [NSString stringWithFormat:@"卡号: %@",model[@"card_sn"]];
     self.lbl2.text = [NSString stringWithFormat:@"数量: %@张",model[@"count"]];
@@ -195,12 +279,105 @@
         }
     }
     
-    switch (orderStatu-1) {
-        case 0:
+    switch (orderStatu) {
+        case 1://全部
+        {
+            if (payStatus == 0) {
+                self.statuLbl.text = @"待付款";
+                self.leftBtn.hidden = YES;
+                self.rightBtn.hidden = NO;
+                [self.rightBtn setTitle:@"去支付" forState:UIControlStateNormal];
+                [self.rightBtn setRedStyle];
+                self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                    if (self.payContinueBlock) {
+                        self.payContinueBlock(model);
+                    }
+                    return [RACSignal empty];
+                }];
+                
+                if (leftTime==0) {
+                    self.statuLbl.text = @"支付超时";
+                    self.leftBtn.hidden = YES;
+                    self.rightBtn.hidden = NO;
+                    [self.rightBtn setTitle:@"已取消" forState:UIControlStateNormal];
+                    [self.rightBtn setGrayStyle];
+                }
+                return;
+            }
+            if (payStatus == 3) {
+                self.statuLbl.text = @"退款成功";
+                self.leftBtn.hidden = YES;
+                self.rightBtn.hidden = YES;
+                self.lbl1.text = [NSString stringWithFormat:@"数量: %@张",model[@"count"]];
+                self.lbl2.text = [NSString stringWithFormat:@"退款金额: ¥%@",model[@"payable_amount"]];
+                self.lbl3.text = @"";
+                return;
+            }
+            if (isBind) {
+                self.statuLbl.text = @"已使用";
+                self.leftBtn.hidden = YES;
+                self.rightBtn.hidden = YES;
+                return;
+            }else{
+                [self.leftBtn setBlueStyle];
+                [self.rightBtn setBlueStyle];
+                self.statuLbl.text = @"待使用";
+                if (isBind) {
+                    self.leftBtn.hidden = YES;
+                    self.rightBtn.hidden = YES;
+                    [self.rightBtn setTitle:@"退款" forState:UIControlStateNormal];
+                    self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                        //TODO:退款
+                        APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[model[@"order_id"] integerValue],1]));
+                        return [RACSignal empty];
+                    }];
+                }else{
+                    self.leftBtn.hidden = NO;
+                    [self.leftBtn setTitle:@"退款" forState:UIControlStateNormal];
+                    self.leftBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                        //TODO:退款
+                        APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[model[@"order_id"] integerValue],1]));
+                        return [RACSignal empty];
+                    }];
+                    self.rightBtn.hidden = NO;
+                    [self.rightBtn setTitle:@"立即绑定" forState:UIControlStateNormal];
+                    self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                        APPROUTE(([NSString stringWithFormat:@"%@?cardNum=%@&cardPassword=%@",kYearCardBindController,model[@"card_sn"],model[@"card_password"]]));
+                        return [RACSignal empty];
+                    }];
+                }
+                return;
+            }
+            break;
+        }
+        case 2:
+        {
+            self.statuLbl.text = @"待付款";
+            self.leftBtn.hidden = YES;
+            self.rightBtn.hidden = NO;
+            [self.rightBtn setTitle:@"去支付" forState:UIControlStateNormal];
+            [self.rightBtn setRedStyle];
+            self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+                if (self.payContinueBlock) {
+                    self.payContinueBlock(model);
+                }
+                return [RACSignal empty];
+            }];
+            
+            if (leftTime==0) {
+                self.statuLbl.text = @"支付超时";
+                self.leftBtn.hidden = YES;
+                self.rightBtn.hidden = NO;
+                [self.rightBtn setTitle:@"已取消" forState:UIControlStateNormal];
+                [self.rightBtn setGrayStyle];
+            }
+            break;
+        }
+        case 3:
         {
             [self.leftBtn setBlueStyle];
             [self.rightBtn setBlueStyle];
-            self.statuLbl.text = @"已付款";
+            self.statuLbl.text = @"待使用";
             if (isBind) {
                 self.leftBtn.hidden = YES;
                 self.rightBtn.hidden = YES;
@@ -227,54 +404,21 @@
             }
             break;
         }
-        case 1:
-        {
-            self.statuLbl.text = @"待付款";
-            self.leftBtn.hidden = YES;
-            self.rightBtn.hidden = NO;
-            [self.rightBtn setTitle:@"去支付" forState:UIControlStateNormal];
-            [self.rightBtn setRedStyle];
-            self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                if (self.payContinueBlock) {
-                    self.payContinueBlock(model);
-                }
-                return [RACSignal empty];
-            }];
-            
-            if (leftTime==0) {
-                self.statuLbl.text = @"支付超时";
-                self.leftBtn.hidden = YES;
-                self.rightBtn.hidden = NO;
-                [self.rightBtn setTitle:@"已取消" forState:UIControlStateNormal];
-                [self.rightBtn setGrayStyle];
-            }
-            break;
-        }
-        case 2:
+        case 4:
         {
             self.statuLbl.text = @"已使用";
             self.leftBtn.hidden = YES;
             self.rightBtn.hidden = YES;
-
             break;
         }
-        case 3:
+        case 5:
         {
-            self.statuLbl.text = @"已退款";
+            self.statuLbl.text = @"退款成功";
             self.leftBtn.hidden = YES;
             self.rightBtn.hidden = YES;
             self.lbl1.text = [NSString stringWithFormat:@"数量: %@张",model[@"count"]];
             self.lbl2.text = [NSString stringWithFormat:@"退款金额: ¥%@",model[@"payable_amount"]];
             self.lbl3.text = @"";
-            break;
-        }
-        case 5:
-        {
-            self.statuLbl.text = @"已过期";
-            self.leftBtn.hidden = YES;
-            [self.rightBtn setGrayStyle];
-            [self.rightBtn setTitle:@"已取消" forState:UIControlStateNormal];
-            self.rightBtn.userInteractionEnabled = YES;
             break;
         }
     }

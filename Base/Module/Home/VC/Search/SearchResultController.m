@@ -132,7 +132,7 @@ typedef enum : NSUInteger {
             NSInteger articleId = [self.dataArray[indexPath.section][@"article_id"] integerValue];
             NSInteger type = [self.dataArray[indexPath.section][@"article_type"] integerValue]+1;
             BOOL isFav = [self.dataArray[indexPath.section][@"is_fav"] boolValue];
-            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(isFav),articleId,type,model[@"source_url"]]));
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@&title=%@&summary=%@&img=%@",kWeekEndDetailController,@(isFav),articleId,type,model[@"source_url"],model[@"title"],model[@"summary"],model[@"img"]]));
             break;
         }
     }

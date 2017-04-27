@@ -238,6 +238,24 @@
             </objects>
             <point key="canvasLocation" x="3006" y="167"/>
         </scene>
+        <!--订单详情-->
+        <scene sceneID="Nm9-KE-adV">
+            <objects>
+                <viewController storyboardIdentifier="OrderRefundDetailController" title="订单详情" id="xcJ-z3-ZQP" customClass="OrderRefundDetailController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zC0-IQ-bLr"/>
+                        <viewControllerLayoutGuide type="bottom" id="uYf-Oy-Rou"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hcv-2P-UDo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="etn-zB-L1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3642" y="167"/>
+        </scene>
     </scenes>
     <resources>
         <image name="smile02" width="80" height="80"/>

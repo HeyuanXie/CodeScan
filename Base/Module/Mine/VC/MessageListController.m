@@ -155,10 +155,10 @@
         MessageModel* message = self.dataArray[indexPath.section];
         if (message.orderType == 2) {
             //年卡订单详情与其他订单详情页是分开的
-            APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@&orderStatu=%d",kYearCardOrderController,[NSString stringWithFormat:@"%ld",message.orderId],0]));
+            APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@",kYearCardOrderController,[NSString stringWithFormat:@"%ld",message.orderId]]));
         }else{
             NSInteger contentType = message.orderType == 1 ? 0 : 1;
-            APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@&orderStatu=%d",kOrderDetailController,contentType,[NSString stringWithFormat:@"%ld",message.orderId],1]));
+            APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@",kOrderDetailController,contentType,[NSString stringWithFormat:@"%ld",message.orderId]]));
         }
     }
 }

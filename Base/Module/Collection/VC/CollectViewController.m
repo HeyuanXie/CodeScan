@@ -220,7 +220,7 @@ typedef enum : NSUInteger {
             //资讯
             NSInteger articleId = [model[@"seek_id"] integerValue];
             NSInteger type = [model[@"type"] integerValue];
-            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(YES),articleId,type,model[@"source_url"]]));
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@&title=%@&summary=%@&img=%@",kWeekEndDetailController,@(YES),articleId,type,model[@"source_url"],model[@"title"],model[@"summary"],model[@"img"]]));
             break;
         }
         default:
@@ -228,7 +228,7 @@ typedef enum : NSUInteger {
             //周末去哪儿
             NSInteger articleId = [model[@"article_id"] integerValue];
             NSInteger type = [model[@"type"] integerValue];
-            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(YES),articleId,type,model[@"source_url"]]));
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@&title=%@&summary=%@&img=%@",kWeekEndDetailController,@(YES),articleId,type,model[@"source_url"],model[@"title"],model[@"summary"],model[@"img"]]));
             break;
         }
     }

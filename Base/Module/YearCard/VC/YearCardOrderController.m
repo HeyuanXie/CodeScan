@@ -23,7 +23,7 @@
 @property(nonatomic,assign)BOOL canSee;
 
 @property(nonatomic,strong)NSString* orderId;
-@property(nonatomic,assign)NSInteger orderStatu;    //1.2.3.4
+@property(nonatomic,assign)NSInteger orderStatu;    //2、3、4、5
 @property(nonatomic,strong)NSDictionary* data;
 
 @end
@@ -35,9 +35,6 @@
     
     if (self.schemaArgu[@"orderId"]) {
         self.orderId = [self.schemaArgu objectForKey:@"orderId"];
-    }
-    if (self.schemaArgu[@"orderStatu"]) {
-        self.orderStatu = [[self.schemaArgu objectForKey:@"orderStatu"] integerValue];
     }
     
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
@@ -102,20 +99,16 @@
 
 #pragma mark - talbeView dataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (self.orderStatu == 2 || self.orderStatu == 4) {
-        return 3;
-    }else{
-        return 4;
-    }
+    return self.orderStatu == 2 ? 3 : 4;    //代付款没有卡号、密码
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.orderStatu == 2 || self.orderStatu == 4) {
+    if (self.orderStatu == 2) {
         return 2;
     }
     return section == 1 ? 4 : 2;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.orderStatu == 2 || self.orderStatu == 4) {
+    if (self.orderStatu == 2) {
         //待付款、已退款(只有3个section)
         switch (indexPath.section) {
             case 0:
@@ -215,13 +208,15 @@
                     UIButton* btn = [cell.contentView viewWithTag:1000];
                     UILabel* lbl = [cell.contentView viewWithTag:1001];
                     //TODO:根据订单状态设置是否隐藏btn，和lbl的文字
-                    if (self.orderStatu == 1) {
-                        lbl.text = @"待使用";
-                        btn.hidden = NO;
+                    if (self.orderStatu == 1) { //从全部订单跳转过来的，另外判断
+      
                     }else if (self.orderStatu == 2) {
                         lbl.text = @"待支付";
                         btn.hidden = YES;
                     }else if (self.orderStatu == 3) {
+                        lbl.text = @"待使用";
+                        btn.hidden = NO;
+                    }else if (self.orderStatu == 4) {
                         lbl.text = @"已使用";
                         btn.hidden = YES;
                     }else{
@@ -260,7 +255,7 @@
                         int i = 0;
                         for (NSString* title in @[@"转增",@"立即绑定"]) {
                             UIButton* btn = [HYTool getButtonWithFrame:CGRectMake(i*(width+0.5), 0, width, 48) title:title titleSize:15 titleColor:[UIColor hyBlueTextColor] backgroundColor:nil blockForClick:^(id sender) {
-                                if (self.orderStatu == 3) {
+                                if (self.orderStatu == 4) {
                                     [self showMessage:@"此卡已使用,无法转增或再次绑定!"];
                                     return ;
                                 }
@@ -346,7 +341,7 @@
     NSArray* height1 = @[@[@(128),@(40)],@[@(48),@(48),@(48),@(50)],@[@(48),@(124)],@[@(48),@(142)]];
     NSArray* height2 = @[@[@(128),@(40)],@[@(48),@(124)],@[@(48),@(142)]];
 
-    if (self.orderStatu == 2 || self.orderStatu == 4) {
+    if (self.orderStatu == 2) {
         return [height2[indexPath.section][indexPath.row] floatValue];
     }
     return [height1[indexPath.section][indexPath.row] floatValue];
@@ -365,12 +360,38 @@
     [APIHELPER orderDetailCard:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
             self.data = responseObject[@"data"];
+            [self judgeOrderStatu];
             [self.tableView reloadData];
         }else{
             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
         }
     }];
 }
+
+-(void)judgeOrderStatu {
+    
+    NSInteger payStatu = [self.data[@"pay_status"] integerValue];
+    NSInteger isBind = [self.data[@"is_bind"] integerValue];
+    if (payStatu == 0) {
+        self.orderStatu = 2;
+        return;
+    }
+    if (payStatu == 3) {
+        self.orderStatu = 5;
+        return;
+    }
+    if (payStatu == 1) {
+        if (isBind == 0) {
+            self.orderStatu = 3;
+            return;
+        }
+        if (isBind == 1) {
+            self.orderStatu = 4;
+            return;
+        }
+    }
+}
+
 
 -(void)subviewStyle {
     if (self.orderStatu == 2) {

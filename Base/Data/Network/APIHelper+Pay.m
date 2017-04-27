@@ -36,4 +36,13 @@
     
     [APIHELPER getWithURL:@"card/pay" param:@{@"order_id":orderId} complete:complete];
 }
+
+-(void)getPointWithOutTradeNo:(NSString *)out_trade_no prepayId:(NSString *)prepayId complete:(ApiRequestCompleteBlock)complete {
+    
+    NSMutableDictionary* param = [NSMutableDictionary dictionary];
+    [param safe_setValue:out_trade_no forKey:@"out_trade_no"];
+    [param safe_setValue:prepayId forKey:@"prepayId"];
+    [APIHELPER getWithURL:@"pay/detail" param:param complete:complete];
+}
+
 @end

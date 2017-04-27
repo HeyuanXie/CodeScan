@@ -45,11 +45,11 @@
     self.backItemHidden = YES;
     self.haveTableFooter = YES;
     self.types = @[@"演出",@"商品",@"年卡"];
-    self.status = @[@"已付款",@"待付款",@"待评价",@"退款"];
+    self.status = @[@"全部",@"待付款",@"待使用",@"待评价",@"退款"];
     if (self.schemaArgu[@"typeId"]) {
         self.typeId = [[self.schemaArgu objectForKey:@"typeId"] integerValue];
     }
-    self.statuId = self.typeId == 0 ? 0 : 1;
+    self.statuId = 1;
     
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(90, 0, 0, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[OrderListCell identify] bundle:nil] forCellReuseIdentifier:[OrderListCell identify]];
@@ -183,6 +183,9 @@
         vc.type = type;
         [self.navigationController pushViewController:vc animated:YES];
     }];
+    [cell setNoRefundBlock:^{
+        [self showMessage:@"已出票,无法退款"];
+    }];
     return cell;
 }
 
@@ -195,18 +198,72 @@
     
     NSDictionary* model = self.dataArray[indexPath.row];
     NSString* orderId = model[@"order_id"];
-    //TODO:进入订单详情，传递type参数,传递订单Id参数
-    if (self.typeId == 2) {
-        APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@&orderStatu=%ld",kYearCardOrderController,orderId,self.statuId]));
+    //TODO:进入订单详情，传递type参数,传递订单Id、statuId参数
+    if (self.statuId == 1 && self.typeId == 0) {
+        //从剧场订单——>全部——>详情
+        NSInteger deliveryStatuId = 0;
+        NSInteger orderStatus = [model[@"order_status"] integerValue];
+        NSInteger payStatus = [model[@"pay_status"] integerValue];
+        if (payStatus == 0) {
+            //未支付
+            deliveryStatuId = 2;
+        }else if (payStatus == 3) {
+            //已退款
+            APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@&contentType=%ld",kOrderRefundDetailController,orderId,self.typeId]));
+            return;
+        }else{
+            if (orderStatus == 0) {
+                //待使用
+                deliveryStatuId = 3;
+            }
+            if (orderStatus == 4) {
+                //待评价
+                deliveryStatuId = 4;
+            }
+        }
+        APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@",kOrderDetailController,self.typeId,orderId]));
         return;
     }
-    APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@&orderStatu=%ld",kOrderDetailController,self.typeId,orderId,self.statuId]));
+    if (self.statuId == 5) {    //退款状态
+        APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@&contentType=%ld",kOrderRefundDetailController,orderId,self.typeId]));
+        return;
+    }
+    if (self.typeId == 2) {     //年卡订单
+        if (self.statuId == 1) {
+            //年卡订单——>全部——>详情
+            NSInteger deliveryStatuId = 0;
+            NSInteger isBind = [model[@"is_bind"] integerValue];
+            NSInteger payStatus = [model[@"pay_status"] integerValue];
+            if (payStatus == 0) {
+                //未支付
+                deliveryStatuId = 2;
+            }else if (payStatus == 3) {
+                //已退款
+                APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@&contentType=%ld",kOrderRefundDetailController,orderId,self.typeId]));
+                return;
+            }else{
+                if (isBind == 0) {
+                    //待使用
+                    deliveryStatuId = 3;
+                }else{
+                    //已使用
+                    deliveryStatuId = 4;
+                }
+            }
+            APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@",kYearCardOrderController,orderId]));
+            return;
+        }
+        //年卡订单(非全部)——>详情
+        APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@",kYearCardOrderController,orderId]));
+        return;
+    }
+    //剧场订单(非全部) + 衍生品订单 ——>详情
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@",kOrderDetailController,self.typeId,orderId]));
 }
 
 #pragma mark - textField delegate
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-    //TODO:根据关键字fetchData
+    self.keyword = textField.text;
     [self fetchData];
     return YES;
 }
@@ -255,7 +312,7 @@
         case 0:
         {
             //演出
-            [APIHELPER orderListTheater:0 limit:4 statu:self.statuId keyword:(NSString*)self.keyword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [APIHELPER orderListTheater:0 limit:4 statu:self.statuId keyword:self.keyword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 [self hideLoadingAnimation];
                 if (isSuccess) {
                     [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
@@ -285,7 +342,7 @@
         case 1:
         {
             //商品
-            [APIHELPER orderListDerive:0 limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [APIHELPER orderListDerive:0 limit:4 statu:self.statuId keyword:self.keyword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 [self hideLoadingAnimation];
                 if (isSuccess) {
                     [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
@@ -306,7 +363,7 @@
         case 2:
         {
             //年卡
-            [APIHELPER orderListCard:0 limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            [APIHELPER orderListCard:0 limit:4 statu:self.statuId keyword:self.keyword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 [self hideLoadingAnimation];
                 if (isSuccess) {
                     [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
@@ -379,7 +436,7 @@
             case 1:
             {
                 //商品
-                [APIHELPER orderListDerive:0 limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [APIHELPER orderListDerive:0 limit:4 statu:self.statuId keyword:self.keyword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                     [self hideLoadingAnimation];
                     if (isSuccess) {
                         [self.dataArray removeAllObjects];
@@ -402,7 +459,7 @@
             case 2:
             {
                 //年卡
-                [APIHELPER orderListCard:0 limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [APIHELPER orderListCard:0 limit:4 statu:self.statuId keyword:self.keyword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                     [self hideLoadingAnimation];
                     if (isSuccess) {
                         [self.dataArray removeAllObjects];
@@ -477,7 +534,7 @@
             case 1:
             {
                 //商品
-                [APIHELPER orderListDerive:self.dataArray.count limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [APIHELPER orderListDerive:self.dataArray.count limit:4 statu:self.statuId keyword:self.keyword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                     [self hideLoadingAnimation];
                     if (isSuccess) {
                         [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
@@ -499,7 +556,7 @@
             case 2:
             {
                 //年卡
-                [APIHELPER orderListCard:self.dataArray.count limit:4 statu:self.statuId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+                [APIHELPER orderListCard:self.dataArray.count limit:4 statu:self.statuId keyword:self.keyword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                     [self hideLoadingAnimation];
                     if (isSuccess) {
                         [self.dataArray addObjectsFromArray:responseObject[@"data"][@"list"]];
@@ -548,11 +605,7 @@
     
     CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, kScreen_Width, 42) menuTitles:_status textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBarTintColor] isLineAdaptText:YES];
     [btns setFinished:^(NSInteger index) {
-        if (self.typeId == 0) {
-            self.statuId = index;
-        }else{
-            self.statuId = index+1;
-        }
+        self.statuId = index+1;
         [self fetchData];
     }];
     [_topView addSubview:btns];
@@ -616,16 +669,17 @@
     [self.filterVC setSelectIndex:^(NSInteger row) {
         @strongify(self);
         self.typeId = row;
+        self.keyword = @"";
         [self selectClass:row];
         [self hiddenFilterClassify];
         
         if (row == 0) {
-            self.status = @[@"已付款",@"待付款",@"待评价",@"退款"];
+            self.status = @[@"全部",@"待付款",@"待使用",@"待评价",@"退款"];
         }else if (row == 1) {
             self.status = @[@"待领取",@"待评价",@"已完成"];
             [self.totalLastTime removeAllObjects];
         }else{
-            self.status = @[@"已付款",@"待付款",@"已使用",@"退款"];
+            self.status = @[@"全部",@"待付款",@"待使用",@"已使用",@"退款"];
         }
         [self subviewStyle];
     }];
@@ -647,7 +701,7 @@
 - (void)selectClass:(NSInteger)row{
     [self.filterBtn setTitle:_types[row] forState:UIControlStateNormal];
     //选择订单类型，设置默认订单状态
-    self.statuId = self.typeId == 0 ? 0 : 1;
+    self.statuId = 1;
     [self fetchData];
 }
 

@@ -49,6 +49,7 @@ extern NSString* const kDeriveExchangeSuccessController;
 extern NSString* const kOrderDetailController;
 extern NSString* const kOrderCodeController;
 extern NSString* const kOrderRefundController;
+extern NSString* const kOrderRefundDetailController;
 extern NSString* const kOrderRefundSuccessController;
 
 

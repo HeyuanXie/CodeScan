@@ -12,13 +12,16 @@
 #import "CommitOrderSeatCell.h"
 #import "HYAlertView.h"
 #import "HYPayEngine.h"
+#import "UIButton+HYButtons.h"
 
 @interface TheaterCommitOrderController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *totalLbl;
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
+@property (weak, nonatomic) IBOutlet UIButton *payBtn;
 
 @property (strong, nonatomic) NSString* orderSn;
+
 @property (strong, nonatomic) NSMutableArray* payMethods;  //支付方法array
 @property (assign, nonatomic) NSInteger selectIndex;    //选中的支付方法 1：微信，2：支付宝
 
@@ -26,7 +29,11 @@
 @property (strong, nonatomic) CouponModel* selectCoupon;  //选中的优惠券
 @property (strong, nonatomic) id selectCard;    //选中的年卡
 
-@property (strong, nonatomic) NSMutableArray* cardIndexArray;   //记录选择了哪些座位使用年卡
+@property (strong, nonatomic) NSMutableArray* cardIndexArray;   //记录选择了哪些座位使用年卡,存储的是NSNumber类型
+
+@property (assign, nonatomic) CGFloat originalTotal;    //原始总金额
+@property (assign, nonatomic) CGFloat total;    //总金额
+@property (assign, nonatomic) CGFloat apply;    //补差价
 
 @property (assign, nonatomic) BOOL isPaySuccessd;   //退出时判断是否重写backAction
 
@@ -45,7 +52,7 @@
         [dict safe_setValue:seat.seatName forKey:@"seat_name"];
         NSInteger isUseCard = 0;
         for (NSNumber* index in self.cardIndexArray) {
-            if (i == index.integerValue) {
+            if (i+1 == index.integerValue) {
                 isUseCard = 1;
             }
         }
@@ -55,6 +62,9 @@
     }
     
     NSInteger payType = self.selectIndex == 1 ? 2 : 1;
+    if (self.total == 0) {
+        payType = 0;
+    }
     NSString* coupon_sn = self.selectCoupon.couponSn;
     NSString* card_sn = self.selectCard[@"card_sn"];
     
@@ -68,6 +78,10 @@
     [APIHELPER requestTheaterPayInfoWithParam:param complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
             self.orderSn = responseObject[@"data"][@"order_id"];
+            if (payType == 0) {
+                APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@",kTheaterCommitOrderSuccessController,_orderSn]));
+                return ;
+            }
             if ([responseObject[@"data"][@"pay_type"] integerValue] == 1) {
                 [HYPayEngine alipayWithOrderStr:responseObject[@"data"][@"pay_data"] withFinishBlock:^(BOOL success, NSString *payMessage) {
                     //这里的支付结果回调只有网页支付会掉，支付宝app支付会在appDelegate中回调
@@ -104,6 +118,14 @@
     
     self.selectIndex = 1;
     
+    for (FVSeatItem* seat in self.selectArray) {
+        self.total += seat.realPrice;
+    }
+    self.originalTotal = self.total;
+    self.totalLbl.text = [NSString stringWithFormat:@"%.2f",self.total];
+    self.apply = 0.00;
+    [self addObserver:self forKeyPath:@"total" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:@"totalChanged"];
+    
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(30, 0, 61, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     [self.tableView registerNib:[UINib nibWithNibName:[CommitOrderTopCell identify] bundle:nil] forCellReuseIdentifier:[CommitOrderTopCell identify]];
@@ -114,7 +136,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:YES];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self removeObserver:self forKeyPath:@"total" context:@"totalChanged"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -151,100 +175,12 @@
             return [self seatCellForTableView:tableView indexPath:indexPath];
         }
         case 1:
-        {
-            static NSString* cellId = @"couponCell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-            if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
-                [HYTool configTableViewCellDefault:cell];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.contentView.backgroundColor = [UIColor whiteColor];
-                
-                cell.textLabel.textColor = [UIColor hyBlackTextColor];
-                cell.textLabel.font = [UIFont systemFontOfSize:15];
-                
-                cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
-                cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-                
-                cell.textLabel.text = @"优惠券";
-            }
-            if (self.coupons.count == 0) {
-                cell.detailTextLabel.text = @"无可用优惠券";
-            }else{
-                cell.detailTextLabel.text = self.selectCoupon == nil ? @"选择优惠券" : [NSString stringWithFormat:@"%@元代金券",[[self.selectCoupon.couponAmount componentsSeparatedByString:@"."] firstObject]];
-            }
-            return cell;
-        }
+            return [self couponCellForTableView:tableView indexPath:indexPath];
         case 2:
-        {
-            static NSString* cellId = @"yearCardCell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-            if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
-                [HYTool configTableViewCellDefault:cell];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.contentView.backgroundColor = [UIColor whiteColor];
-                
-                cell.textLabel.textColor = [UIColor hyBlackTextColor];
-                cell.textLabel.font = [UIFont systemFontOfSize:15];
-                
-                cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
-                cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
-                
-                cell.textLabel.text = @"飞象卡会员";
-                cell.imageView.image = ImageNamed(@"支付方式_年卡");
-            }
-            if (self.yearCards.count == 0) {
-                cell.detailTextLabel.text = @"无可用年卡";
-            }else{
-                cell.detailTextLabel.text = self.selectCard == nil ? @"选择年卡" : self.selectCard[@"card_name"];
-            }
-            return cell;
-        }
+            return [self yearCardCellForTableView:tableView indexPath:indexPath];
         default:
-        {
-            static NSString* cellId = @"payCell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-            if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-                [HYTool configTableViewCellDefault:cell];
-                cell.contentView.backgroundColor = [UIColor whiteColor];
-                cell.textLabel.font = [UIFont systemFontOfSize:15];
-                
-                UIButton* selectBtn = [HYTool getButtonWithFrame:CGRectZero title:nil titleSize:0 titleColor:nil backgroundColor:[UIColor clearColor] blockForClick:nil];
-                [selectBtn setImage:ImageNamed(@"已选择") forState:UIControlStateSelected];
-                [selectBtn setImage:ImageNamed(@"未选择") forState:UIControlStateNormal];
-                selectBtn.tag = 1000;// + indexPath.row;
-                [cell.contentView addSubview:selectBtn];
-                [selectBtn autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 0, 0) excludingEdge:ALEdgeLeft];
-                [selectBtn autoSetDimension:ALDimensionWidth toSize:48];
-            }
-            UIButton* selectBtn = [cell.contentView viewWithTag:1000];//+indexPath.row];
-            selectBtn.selected = indexPath.row == self.selectIndex;
-            selectBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                self.selectIndex = indexPath.row;
-                [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:3] withRowAnimation:UITableViewRowAnimationNone];
-                return [RACSignal empty];
-            }];
-            if (indexPath.row == 0) {
-                selectBtn.hidden = YES;
-                cell.imageView.hidden = YES;
-                cell.imageView.image = nil;
-                cell.textLabel.text = @"支付方式";
-                cell.textLabel.font = [UIFont systemFontOfSize:16];
-                cell.textLabel.textColor = [UIColor blackColor];
-            }else{
-                selectBtn.hidden = NO;
-                cell.imageView.hidden = NO;
-                cell.imageView.image = ImageNamed(self.payMethods[indexPath.row][@"image"]);
-                cell.textLabel.text = self.payMethods[indexPath.row][@"title"];
-                cell.textLabel.textColor = [UIColor hyBlackTextColor];
-                cell.textLabel.font = [UIFont systemFontOfSize:15];
-            }
-            return cell;
-        }
+            return [self payCellForTableView:tableView indexPath:indexPath];
     }
-    return [UITableViewCell new];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -314,7 +250,7 @@
         cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
     }
     cell.textLabel.text = [NSString stringWithFormat:@"数量: %ld张",self.selectArray.count];
-    cell.detailTextLabel.text = @"(需补差价¥0) 合计¥130";
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"(需补差价¥%.2f) 合计¥%.2f",self.apply,self.total];
     return cell;
 }
 -(UITableViewCell*)seatCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
@@ -328,32 +264,144 @@
         [cell configNotVipCell:model];
     }else{
         
-        [cell configVipCell:model];
-        
-        for (NSNumber* row in self.cardIndexArray) {
-            if ([row integerValue] == indexPath.row) {
-                cell.selelctBtn.selected = YES;
-                cell.originalPriceView.hidden = NO;
-            }
-        }
+        [cell configVipCell:model row:indexPath.row cardIndexs:self.cardIndexArray];
         [cell.selelctBtn bk_whenTapped:^{
             
             if (!cell.selelctBtn.selected) {
-                if (([self.selectCard[@"title"] isEqualToString:@"飞象卡(1大1小)"] && self.cardIndexArray.count==2) || ([self.selectCard[@"title"] isEqualToString:@"飞象卡(2大1小)"] && self.cardIndexArray.count==3))
+                if ((/*[self.selectCard[@"title"] isEqualToString:@"飞象卡(1大1小)"] && */self.cardIndexArray.count==2) || ([self.selectCard[@"title"] isEqualToString:@"飞象卡(2大1小)"] && self.cardIndexArray.count==3))
                 {
                     [self showMessage:@"此年卡可选择座位已达上限"];
                     return ;
                 }else{
                     cell.selelctBtn.selected = !cell.selelctBtn.selected;
                     [self.cardIndexArray addObject:@(indexPath.row)];
-                    [self.tableView reloadData];
+                    if (![self canUseCoupon]) {
+                        HYAlertView* alert = [HYAlertView sharedInstance];
+                        [alert showAlertView:@"提示" message:@"使用年卡购票后,所选优惠券将由于不满足条件无法使用,是否继续?" subBottonTitle:@"确定" cancelButtonTitle:@"取消" handler:^(AlertViewClickBottonType bottonType) {
+                            switch (bottonType) {
+                                case AlertViewClickBottonTypeSubBotton:
+                                {
+                                    self.selectCoupon = nil;
+                                    self.couponController.couponIndex = 1000;
+                                    [self caculateTotal];
+                                    [self.tableView reloadData];
+                                    break;
+                                }
+                                default:
+                                {
+                                    [self.cardIndexArray removeObject:@(indexPath.row)];
+                                    [self.tableView reloadData];
+                                    break;
+                                }
+                            }
+                        }];
+                    }else{
+                        [self caculateTotal];
+                        [self.tableView reloadData];
+                    }
                 }
             }else{
                 cell.selelctBtn.selected = !cell.selelctBtn.selected;
                 [self.cardIndexArray removeObject:@(indexPath.row)];
+                [self caculateTotal];
                 [self.tableView reloadData];
             }
         }];
+    }
+    return cell;
+}
+
+-(UITableViewCell*)couponCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
+    static NSString* cellId = @"couponCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+        [HYTool configTableViewCellDefault:cell];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        
+        cell.textLabel.textColor = [UIColor hyBlackTextColor];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        
+        cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
+        
+        cell.textLabel.text = @"优惠券";
+    }
+    if (self.coupons.count == 0) {
+        cell.detailTextLabel.text = @"无可用优惠券";
+    }else{
+        cell.detailTextLabel.text = self.selectCoupon == nil ? @"选择优惠券" : [NSString stringWithFormat:@"%@元代金券",[[self.selectCoupon.couponAmount componentsSeparatedByString:@"."] firstObject]];
+    }
+    return cell;
+}
+
+-(UITableViewCell*)yearCardCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
+    
+    static NSString* cellId = @"yearCardCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+        [HYTool configTableViewCellDefault:cell];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        
+        cell.textLabel.textColor = [UIColor hyBlackTextColor];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        
+        cell.detailTextLabel.textColor = [UIColor hyGrayTextColor];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:15];
+        
+        cell.textLabel.text = @"飞象卡会员";
+        cell.imageView.image = ImageNamed(@"支付方式_年卡");
+    }
+    if (self.yearCards.count == 0) {
+        cell.detailTextLabel.text = @"无可用年卡";
+    }else{
+        cell.detailTextLabel.text = self.selectCard == nil ? @"选择年卡" : self.selectCard[@"card_name"];
+    }
+    return cell;
+}
+
+-(UITableViewCell*)payCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
+    
+    static NSString* cellId = @"payCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+        [HYTool configTableViewCellDefault:cell];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
+        
+        UIButton* selectBtn = [HYTool getButtonWithFrame:CGRectZero title:nil titleSize:0 titleColor:nil backgroundColor:[UIColor clearColor] blockForClick:nil];
+        [selectBtn setImage:ImageNamed(@"已选择") forState:UIControlStateSelected];
+        [selectBtn setImage:ImageNamed(@"未选择") forState:UIControlStateNormal];
+        selectBtn.tag = 1000;// + indexPath.row;
+        [cell.contentView addSubview:selectBtn];
+        [selectBtn autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, 0, 0) excludingEdge:ALEdgeLeft];
+        [selectBtn autoSetDimension:ALDimensionWidth toSize:48];
+    }
+    UIButton* selectBtn = [cell.contentView viewWithTag:1000];//+indexPath.row];
+    selectBtn.selected = indexPath.row == self.selectIndex;
+    selectBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        self.selectIndex = indexPath.row;
+        [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:3] withRowAnimation:UITableViewRowAnimationNone];
+        return [RACSignal empty];
+    }];
+    if (indexPath.row == 0) {
+        selectBtn.hidden = YES;
+        cell.imageView.hidden = YES;
+        cell.imageView.image = nil;
+        cell.textLabel.text = @"支付方式";
+        cell.textLabel.font = [UIFont systemFontOfSize:16];
+        cell.textLabel.textColor = [UIColor blackColor];
+    }else{
+        selectBtn.hidden = NO;
+        cell.imageView.hidden = NO;
+        cell.imageView.image = ImageNamed(self.payMethods[indexPath.row][@"image"]);
+        cell.textLabel.text = self.payMethods[indexPath.row][@"title"];
+        cell.textLabel.textColor = [UIColor hyBlackTextColor];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
     }
     return cell;
 }
@@ -391,14 +439,22 @@
         @weakify(self);
         [self.couponController setSelectFinish:^(NSInteger index) {
             @strongify(self);
-            self.couponController.couponIndex = index;
-            [self hideSelectCouponController];
-            //TODO:选择优惠券、刷新table
+            //TODO:选择优惠券、刷新table、重新计算金额
             if (self.selectCoupon == self.coupons[index]) {
                 self.selectCoupon = nil;
+                self.couponController.couponIndex = 1000;
             }else{
+                //如果不满足年卡使用条件
+                CouponModel* coupon = self.coupons[index];
+                if ([coupon.usedAmount floatValue] > self.total) {
+                    [self showMessage:@"消费金额不足,无法使用"];
+                    return ;
+                }
                 self.selectCoupon = self.coupons[index];
+                self.couponController.couponIndex = index;
             }
+            [self hideSelectCouponController];
+            [self caculateTotal];   //重新计算金额
             [self.tableView reloadData];
         }];
     }else{
@@ -407,14 +463,17 @@
         @weakify(self);
         [self.couponController setSelectFinish:^(NSInteger index) {
             @strongify(self);
-            self.couponController.cardIndex = index;
-            [self hideSelectCouponController];
             //TODO:选择年卡、刷新table
             if (self.selectCard == self.yearCards[index]) {
                 self.selectCard = nil;
+                [self.cardIndexArray removeAllObjects];
+                self.couponController.cardIndex = 1000;
             }else{
                 self.selectCard = self.yearCards[index];
+                self.couponController.cardIndex = index;
             }
+            [self hideSelectCouponController];
+            [self caculateTotal];   //重新计算金额
             [self.tableView reloadData];
         }];
     }
@@ -472,7 +531,7 @@
                 
                 NSLog(@"计时结束");
                 self.timeLbl.text = @"超过支付时间，无法支付";
-                
+                [self.payBtn setGrayStyle];
             });
             
         }else {
@@ -493,6 +552,43 @@
     });
     
     dispatch_resume(_timer);
+}
+
+//MARK:先选择优惠券，选择年卡后，判断已经选择的优惠券是否满足使用条件
+-(BOOL)canUseCoupon {
+    if (self.selectCoupon == nil) {
+        return YES;
+    }
+    CGFloat total = 0.00;
+    CGFloat apply = 0.00;
+    for (int i=0; i<self.selectArray.count; i++) {
+        FVSeatItem* seat = self.selectArray[i];
+        if ([self.cardIndexArray containsObject:@(i+1)]) {
+            total += seat.cardPrice;
+            apply += seat.cardPrice;
+        }else{
+            total += seat.realPrice;
+        }
+    }
+    total = total+apply;
+    return total > [self.selectCoupon.usedAmount floatValue];
+}
+
+-(void)caculateTotal {
+    CGFloat total = 0.00;
+    CGFloat apply = 0.00;
+    for (int i=0; i<self.selectArray.count; i++) {
+        FVSeatItem* seat = self.selectArray[i];
+        if ([self.cardIndexArray containsObject:@(i+1)]) {
+            total += seat.cardPrice;
+            apply += seat.cardPrice;
+        }else{
+            total += seat.realPrice;
+        }
+    }
+    self.total = total+apply-[self.selectCoupon.couponAmount floatValue];
+    self.apply = apply;
+//    self.totalLbl.text = [NSString stringWithFormat:@"%.2f",self.total];
 }
 
 #pragma mark - override methods
@@ -525,14 +621,26 @@
     }];
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (context == @"totalChanged") {
+        CGFloat total = [change[@"new"] floatValue];
+        self.totalLbl.text = [NSString stringWithFormat:@"%.2f",total];
+    }else{
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+
+#pragma mark - regist notification
 -(void)registNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(paySuccess) name:kPaySuccessNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cancelPay) name:kPayCancelNotification object:nil];
 }
 -(void)paySuccess {
     
-    APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@",kTheaterCommitOrderSuccessController,self.orderSn]));
     self.isPaySuccessd = YES;
+    //TODO:跳到下单成功页面，传递point和order_sn
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@",kTheaterCommitOrderSuccessController,self.orderSn]));
 }
 
 -(void)cancelPay {

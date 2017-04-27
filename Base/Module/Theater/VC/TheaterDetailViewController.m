@@ -73,9 +73,9 @@
         }
     }
     if (scrollView.contentOffset.y >= 64) {
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        [self showBackView:self.navigationController.navigationBar];
     }else{
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        [self hideBackView:self.navigationController.navigationBar];
     }
 }
 
@@ -148,13 +148,13 @@
         view.frame = CGRectMake((90+10)*i+10, 0, 90, 138);
         [view.imgView sd_setImageWithURL:[NSURL URLWithString:model.img] placeholderImage:ImageNamed(@"elephant")];
         view.titleLbl.text = model.goodName;
-        view.priceLbl.text = model.shopPrice;
+        view.priceLbl.text = [NSString stringWithFormat:@"%@积分",model.shopPrice];
         [view bk_whenTapped:^{
             APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&sourceUrl=%@",kDeriveDetailController,model.goodId.integerValue,model.sourceUrl]));
         }];
         [scrollView addSubview:view];
     }
-    scrollView.contentSize = CGSizeMake(10+106*self.goodList.count, 0);
+    scrollView.contentSize = CGSizeMake((90+10)*self.goodList.count+10, 0);
     return cell;
 }
 
@@ -196,12 +196,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         [HYTool configTableViewCellDefault:cell];
         CGFloat width = (kScreen_Width-40)/3;
+        CGFloat zoom = [RecentHotView showDetailSize].height / [RecentHotView showDetailSize].width;
         for (int i = 0; i<3; i++) {
             RecentHotView* view = [[NSBundle mainBundle] loadNibNamed:@"HomeUseView" owner:self options:nil][0];
             [cell.contentView addSubview:view];
             [view autoPinEdgeToSuperviewEdge:ALEdgeTop];
             [view autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10+(width+10)*i];
-            [view autoSetDimensionsToSize:[RecentHotView showDetailSize]];
+            [view autoSetDimensionsToSize:CGSizeMake(width, zoom*width)];
             view.tag = 1000 + i;
             TheaterModel* model = self.commendList[i];
             [view configRecentView:model];
@@ -254,7 +255,10 @@
                 [cell addLine:NO leftOffSet:0 rightOffSet:0];
             }];
         default:
-            return 222;
+        {
+            CGFloat zoom = [RecentHotView showDetailSize].height / [RecentHotView showDetailSize].width;
+            return (kScreen_Width-40)/3*zoom + 40;
+        }
     }
 }
 

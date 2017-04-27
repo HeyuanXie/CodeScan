@@ -95,6 +95,15 @@
 
 - (void)seatsPicker:(FVSeatsPicker* )picker didSelectSeat:(FVSeatItem *)seatInfo
 {
+    TheaterSeatSelectController* vc = (TheaterSeatSelectController*)VIEWCONTROLLER(kTheaterSeatSelectController);
+    vc.desc = self.descLbl.text;
+    vc.title = self.title;
+    vc.timeId = self.timeId;
+    vc.hallId = self.hallId;
+    vc.seatMaxX = self.seatMaxX;
+    vc.seatMaxY = self.seatMaxY;
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
     DLog(@"%s---%@",__func__,seatInfo);
 }
 - (void)seatsPicker:(FVSeatsPicker* )picker didDeselectSeat:(FVSeatItem *)seatInfo
@@ -131,7 +140,9 @@
                 FVSeatItem* seatsInfo = [FVSeatItem new];
                 seatsInfo.seatId = [dict intValueForKey:@"ps_id"];
                 seatsInfo.seatName = [dict stringForKey:@"seat_name"];
-                seatsInfo.price = [dict intValueForKey:@"market_price"];
+                seatsInfo.realPrice = [dict[@"real_price"] floatValue];
+                seatsInfo.marketPrice = [dict[@"market_price"] floatValue];
+                seatsInfo.cardPrice = [dict[@"card_price"] floatValue];
                 seatsInfo.col = [dict intValueForKey:@"seat_y"];
                 seatsInfo.row = [dict intValueForKey:@"seat_x"];
                 seatsInfo.seatStatus = [dict intValueForKey:@"status"];
@@ -171,35 +182,21 @@
         FVSeatsPicker* picker = [FVSeatsPicker new];
         picker.seatsDelegate = self;
         picker.cellSize = CGSizeMake(25, 25);
-        picker.zoomScale = 0.5;
+        picker.minimumZoomScale = 0.4;
+        picker.maximumZoomScale = 1.5;
         // 你可以在这里设置图片，同时你也可以不设置FVSeatsPicker内部会自动设置默认的图片，如果设置新的图片将会采用最新设置的图片
         [picker setImage:[UIImage imageNamed:@"座位状态_可选"] forState:UIControlStateNormal];
         [picker setImage:[UIImage imageNamed:@"座位状态_不可选"] forState:UIControlStateDisabled];
-        [picker setImage:[UIImage imageNamed:@"座位状态_已选"] forState:UIControlStateSelected];
+        [picker setImage:[UIImage imageNamed:@"座位状态_可选"] forState:UIControlStateSelected];
         [self.seatSelectV addSubview:picker];
         picker;
     });
     [_seatsPicker autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
-    UIButton* btn = [HYTool getButtonWithFrame:CGRectZero title:@"" titleSize:0 titleColor:nil backgroundColor:nil blockForClick:^(id sender) {
-        TheaterSeatSelectController* vc = (TheaterSeatSelectController*)VIEWCONTROLLER(kTheaterSeatSelectController);
-        vc.desc = self.descLbl.text;
-        vc.title = self.title;
-        vc.timeId = self.timeId;
-        vc.hallId = self.hallId;
-        vc.seatMaxX = self.seatMaxX;
-        vc.seatMaxY = self.seatMaxY;
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }];
-    [self.seatSelectV addSubview:btn];
-    [btn autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
 }
 
 - (void)fillDataToSeatsSelector
 {
     _seatsPicker.rowCount = _seatMaxX;
-//    //TODO:临时写死
-//    _seatsPicker.rowCount = 10;
     _seatsPicker.colCount = _seatMaxY;
     _seatsPicker.seats = self.seatList;
     [_seatsPicker reloadData];

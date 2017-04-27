@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *rightBtn;
 
 @property(nonatomic,copy)void (^payContinueBlock)(id model);
-@property(nonatomic,copy)void (^refundBlock)(id model);
+@property(nonatomic,copy)void (^noRefundBlock)();   //不能退款的回调
 @property(nonatomic,copy)void (^commentBlock)(id model);
 
 +(NSString*)identify;

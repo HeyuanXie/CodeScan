@@ -24,6 +24,7 @@
 
 #import "UITableViewCell+HYCell.h"
 #import "UIViewController+Extension.h"
+#import "DHGuidePageHUD.h"
 
 @interface HomeViewController ()<UITextFieldDelegate>
 
@@ -58,6 +59,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.backItemHidden = YES;
     self.navigationBarBlue = NO;
     self.tabBarController.tabBar.hidden = NO;
@@ -82,6 +84,7 @@
 //                  @{@"section":@(4),@"title":@"精选视频"},
                   @{@"section":@(5),@"title":@"热门衍生品"}];
     
+    [self setGuidePage];
     [self effectInit];
     [self fetchData];
 }
@@ -188,7 +191,7 @@
         }
     }];
     if (!_banner) {
-        _banner = [[HYScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 120)];
+        _banner = [[HYScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 120*kScale_height)];
         _banner.pageControl.pageIndicatorTintColor = [UIColor hyViewBackgroundColor];
         _banner.pageControl.currentPageIndicatorTintColor = [UIColor hyBarTintColor];
     }
@@ -197,7 +200,6 @@
         [images addObject:slide[@"ad_img"]];
     }
     _banner.dataArray = images;
-//    _banner.dataArray = @[@"http://pic6.huitu.com/res/20130116/84481_20130116142820494200_1.jpg",@"http://pic55.nipic.com/file/20141208/19462408_171130083000_2.jpg",@"http://pic48.nipic.com/file/20140916/2531170_224158439000_2.jpg"];
     @weakify(self);
     _banner.clickAction = ^(NSInteger index,NSArray* dataArray){
         @strongify(self);
@@ -315,7 +317,8 @@
     NSInteger section = [self.info[indexPath.section][@"section"] integerValue];
     switch (section) {
         case 0:
-            return 210;
+//            return 210;
+            return 90+120*kScale_height;
         case 1:
             return 230;
         case 2:
@@ -327,7 +330,8 @@
 //            return 390;
             return indexPath.row == self.weekEnds.count-1 ? 158 : 120;
         case 5:
-            return 320;
+//            return 320;
+            return 40+280*kScreen_Height/667;
         default:
             return 0;
     }
@@ -352,7 +356,7 @@
             NSInteger articleId = model.seekId.integerValue;
             NSInteger type = model.articleType.integerValue+2;
             BOOL isFav = model.isFav.boolValue;
-            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(isFav),articleId,type,model.sourceUrl]));
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@&title=%@&summary=%@&img=%@",kWeekEndDetailController,@(isFav),articleId,type,model.sourceUrl,model.title,model.summary,model.img]));
             break;
         }
         case 4:
@@ -362,7 +366,7 @@
             NSInteger articleId = model.articleId.integerValue;
             NSInteger type = model.articleType.integerValue+2;
             BOOL isFav = model.isFav.boolValue;
-            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@",kWeekEndDetailController,@(isFav),articleId,type,model.sourceUrl]));
+            APPROUTE(([NSString stringWithFormat:@"%@?isFav=%@&articleId=%ld&type=%ld&url=%@&title=%@&summary=%@&img=%@",kWeekEndDetailController,@(isFav),articleId,type,model.sourceUrl,model.title,model.summary,model.img]));
             break;
         }
         case 5:
@@ -528,6 +532,47 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.addressNVC.view.alpha = CGFLOAT_MIN;
     }];
+}
+
+
+#pragma mark - 引导页设置
+ - (void)setGuidePage {
+    // 设置APP引导页
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:IS_FIRSTLAUNCH]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:IS_FIRSTLAUNCH];
+        // 静态引导页
+        [self setStaticGuidePage];
+        
+        // 动态引导页
+        // [self setDynamicGuidePage];
+        
+        // 视频引导页
+        // [self setVideoGuidePage];
+    }
+}
+
+#pragma mark - 设置APP静态图片引导页
+- (void)setStaticGuidePage {
+    NSArray *imageNameArray = @[@"小飞象01",@"小飞象02",@"小飞象03",@"小飞象04"];
+    DHGuidePageHUD *guidePage = [[DHGuidePageHUD alloc] dh_initWithFrame:[[UIScreen mainScreen] bounds] imageNameArray:imageNameArray buttonIsHidden:NO];
+    guidePage.slideInto = NO;
+    [[[UIApplication sharedApplication] keyWindow] addSubview:guidePage];
+//    [self.navigationController.view addSubview:guidePage];
+}
+
+#pragma mark - 设置APP动态图片引导页
+- (void)setDynamicGuidePage {
+    NSArray *imageNameArray = @[@"guideImage6.gif",@"guideImage7.gif",@"guideImage8.gif"];
+    DHGuidePageHUD *guidePage = [[DHGuidePageHUD alloc] dh_initWithFrame:self.view.frame imageNameArray:imageNameArray buttonIsHidden:YES];
+    guidePage.slideInto = YES;
+    [self.navigationController.view addSubview:guidePage];
+}
+
+#pragma mark - 设置APP视频引导页
+- (void)setVideoGuidePage {
+    NSURL *videoURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"guideMovie1" ofType:@"mov"]];
+    DHGuidePageHUD *guidePage = [[DHGuidePageHUD alloc] dh_initWithFrame:self.view.bounds videoURL:videoURL];
+    [self.navigationController.view addSubview:guidePage];
 }
 
 @end

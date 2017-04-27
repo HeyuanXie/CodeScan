@@ -19,7 +19,12 @@ typedef enum : NSUInteger {
 @interface TheaterCommitOrderSuccessController ()
 
 @property(nonatomic,assign)ContentType contentType;
-@property(nonatomic,copy)NSString* orderSn; //订单Id
+@property(nonatomic,strong)NSString* orderSn; //订单Id
+@property(nonatomic,strong)NSString* point; //获得的积分
+@property(nonatomic,assign)NSInteger payType;   //支付方式 1:微信支付, 2:支付宝支付
+
+@property(nonatomic,strong)NSString* out_trade_no;  //支付宝成功返回
+@property(nonatomic,strong)NSString* prepayId;      //微信支付成功返回
 
 @end
 
@@ -34,10 +39,19 @@ typedef enum : NSUInteger {
     if (self.schemaArgu[@"order_sn"]) {
         self.orderSn = [self.schemaArgu objectForKey:@"order_sn"];
     }
-    
+//    if (self.schemaArgu[@"payType"]) {
+//        self.payType = [[self.schemaArgu objectForKey:@"payType"] integerValue];
+//    }
+//    if (self.schemaArgu[@"out_trade_no"]) {
+//        self.out_trade_no = [self.schemaArgu objectForKey:@"out_trade_no"];
+//    }
+//    if (kGetObjectFromUserDefaults(@"prepayId")) {
+//        self.prepayId = kGetObjectFromUserDefaults(@"prepayId");
+//    }
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsZero];
     
     [self subviewStyle];
+    [self fetchData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,9 +77,9 @@ typedef enum : NSUInteger {
         UIButton* btn = [HYTool getButtonWithFrame:CGRectMake(0, 1, zoom(108), 30) title:@"查看订单详情" titleSize:15 titleColor:RGB(63,165,243,1.0) backgroundColor:nil blockForClick:^(id sender) {
             
             if (self.contentType == TypeCard) {
-                APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@&orderStatu=%d",kYearCardOrderController,self.orderSn,1]));
+                APPROUTE(([NSString stringWithFormat:@"%@?orderId=%@",kYearCardOrderController,self.orderSn]));
             }else{
-                APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@&orderStatu=%d",kOrderDetailController,self.contentType,self.orderSn,0]));
+                APPROUTE(([NSString stringWithFormat:@"%@?contentType=%ld&orderId=%@",kOrderDetailController,self.contentType,self.orderSn]));
             }
         }];
         btn.center = CGPointMake(kScreen_Width/2, 16);
@@ -106,8 +120,31 @@ typedef enum : NSUInteger {
             break;
     }
     UIView* headView = LOADNIB(@"TheaterUseView", index);
+    if ([headView viewWithTag:1000]) {
+        UILabel* pointLbl = [headView viewWithTag:1000];
+        pointLbl.text = [NSString stringWithFormat:@"获得积分: %@",self.point];
+    }
     self.tableView.tableHeaderView = headView;
-//    [self.tableView reloadData];
+}
+
+-(void)fetchData {
+    if (self.contentType == TypeDerive) {
+        return;
+    }
+    [APIHELPER getPointWithOutTradeNo:self.out_trade_no prepayId:self.prepayId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            self.point = responseObject[@"data"][@"score"];
+            [self.tableView reloadData];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
+}
+
+-(void)backAction {
+    NSInteger count = self.navigationController.viewControllers.count;
+    UIViewController *vc = self.navigationController.viewControllers[count-3];
+    [self.navigationController popToViewController:vc animated:YES];
 }
 
 @end

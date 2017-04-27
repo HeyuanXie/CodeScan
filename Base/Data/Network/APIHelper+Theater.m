@@ -163,6 +163,7 @@
     [param safe_setValue:@(orderId) forKey:@"order_id"];
     [param safe_setValue:@(score) forKey:@"score"];
     [param safe_setValue:images forKey:@"show_img"];
+    [param safe_setValue:content forKey:@"content"];
     [APIHELPER postWithURL:@"theatre_comment/comment" param:param complete:complete];
 }
 

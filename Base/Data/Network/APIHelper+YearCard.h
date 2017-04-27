@@ -16,4 +16,8 @@
            password:(NSString*)password
            complete:(ApiRequestCompleteBlock)complete;
 
+-(void)cardUseRecord:(NSInteger)start
+               limit:(NSInteger)limit
+            complete:(ApiRequestCompleteBlock)complete;
+
 @end

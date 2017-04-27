@@ -24,7 +24,7 @@
     
     FVSeatItem* item = (FVSeatItem*)model;
     self.seatLbl.text = item.seatName;
-    self.priceLbl.text = [NSString stringWithFormat:@"%d",item.price];
+    self.priceLbl.text = [NSString stringWithFormat:@"%.2f",item.realPrice];
     [self.deleteBtn bk_whenTapped:^{
         if (self.deleteClick) {
             self.deleteClick();

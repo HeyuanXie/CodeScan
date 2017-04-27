@@ -17,7 +17,6 @@ NSString *const kJLRoutePatternKey = @"JLRoutePattern";
 NSString *const kJLRouteURLKey = @"JLRouteURL";
 NSString *const kJLRouteNamespaceKey = @"JLRouteNamespace";
 NSString *const kJLRouteWildcardComponentsKey = @"JLRouteWildcardComponents";
-
 NSString *const kJLRoutesGlobalNamespaceKey = @"JLRoutesGlobalNamespace";
 
 
@@ -31,10 +30,79 @@ static BOOL shouldDecodePlusSymbols = YES;
 @property (nonatomic, strong) NSMutableArray *routes;
 @property (nonatomic, strong) NSString *namespaceKey;
 
++ (void)verboseLogWithFormat:(NSString *)format, ...;
++ (BOOL)routeURL:(NSURL *)URL withController:(JLRoutes *)routesController parameters:(NSDictionary *)parameters;
+- (BOOL)isGlobalRoutesController;
+
 @end
 
 
-#pragma mark -
+@interface NSString (JLRoutes)
+
+- (NSString *)JLRoutes_URLDecodedString;
+- (NSDictionary *)JLRoutes_URLParameterDictionary;
+
+@end
+
+
+@implementation NSString (JLRoutes)
+
+- (NSString *)JLRoutes_URLDecodedString {
+    NSString *input = shouldDecodePlusSymbols ? [self stringByReplacingOccurrencesOfString:@"+" withString:@" " options:NSLiteralSearch range:NSMakeRange(0, self.length)] : self;
+    return [input stringByRemovingPercentEncoding];
+}
+
+- (NSDictionary *)JLRoutes_URLParameterDictionary {
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+
+    if (self.length && [self rangeOfString:@"="].location != NSNotFound) {
+        NSArray *keyValuePairs = [self componentsSeparatedByString:@"&"];
+        for (NSString *keyValuePair in keyValuePairs) {
+            NSArray *pair = [keyValuePair componentsSeparatedByString:@"="];
+            // don't assume we actually got a real key=value pair. start by assuming we only got @[key] before checking count
+            NSString *paramValue = pair.count == 2 ? pair[1] : @"";
+            // CFURLCreateStringByReplacingPercentEscapesUsingEncoding may return NULL
+            parameters[pair[0]] = [paramValue JLRoutes_URLDecodedString] ?: @"";
+        }
+    }
+
+    return parameters;
+}
+
+@end
+
+@interface NSURL (JLRoutes)
+
+- (NSArray *)JLRoutes_fragmentPathComponents;
+- (NSString *)JLRoutes_fragmentQuery;
+
+@end
+
+
+@implementation NSURL (JLRoutes)
+
+- (NSArray *)JLRoutes_fragmentPathComponents {
+    NSString *fragment = self.fragment;
+    if (!fragment) {
+        return nil;
+    }
+
+    NSURL *URL = [[NSURL alloc] initWithString:fragment];
+    return URL.pathComponents;
+}
+
+- (NSString *)JLRoutes_fragmentQuery {
+    NSString *fragment = self.fragment;
+    if (!fragment) {
+        return nil;
+    }
+
+    NSURL *URL = [[NSURL alloc] initWithString:fragment];
+    return URL.query;
+}
+
+@end
+
 
 @interface _JLRoute : NSObject
 
@@ -51,453 +119,10 @@ static BOOL shouldDecodePlusSymbols = YES;
 @end
 
 
-#pragma mark -
-
-@interface NSString (JLRoutes)
-
-- (NSString *)JLRoutes_URLDecodedString;
-- (NSDictionary *)JLRoutes_URLParameterDictionary;
-
-@end
-
-@interface NSURL (JLRoutes)
-
-- (NSArray *)JLRoutes_fragmentPathComponents;
-- (NSString *)JLRoutes_fragmentQuery;
-
-@end
-
-@interface NSArray (Combinations)
-
-- (NSArray<NSArray *> *)JLRoutes_allOrderedCombinations;
-
-@end
-
-
-#pragma mark -
-
-@implementation JLRoutes
-
-- (instancetype)init
-{
-    if ((self = [super init])) {
-        self.routes = [NSMutableArray array];
-    }
-    return self;
-}
-
-- (NSString *)description
-{
-    return [self.routes description];
-}
-
-+ (NSString *)allRoutes
-{
-    NSMutableString *descriptionString = [NSMutableString stringWithString:@"\n"];
-    
-    for (NSString *routesNamespace in routeControllersMap) {
-        JLRoutes *routesController = routeControllersMap[routesNamespace];
-        [descriptionString appendFormat:@"\"%@\":\n%@\n\n", routesController.namespaceKey, routesController.routes];
-    }
-    
-    return descriptionString;
-}
-
-
-#pragma mark - Routing Schemes
-
-+ (instancetype)globalRoutes
-{
-    return [self routesForScheme:kJLRoutesGlobalNamespaceKey];
-}
-
-+ (instancetype)routesForScheme:(NSString *)scheme
-{
-    JLRoutes *routesController = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        routeControllersMap = [[NSMutableDictionary alloc] init];
-    });
-    
-    if (!routeControllersMap[scheme]) {
-        routesController = [[self alloc] init];
-        routesController.namespaceKey = scheme;
-        routeControllersMap[scheme] = routesController;
-    }
-    
-    routesController = routeControllersMap[scheme];
-    
-    return routesController;
-}
-
-+ (void)unregisterRouteScheme:(NSString *)scheme
-{
-    [routeControllersMap removeObjectForKey:scheme];
-}
-
-+ (void)unregisterAllRouteSchemes
-{
-    [routeControllersMap removeAllObjects];
-}
-
-
-#pragma mark - Registering Routes
-
-- (void)addRoute:(NSString *)routePattern handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock
-{
-    [self addRoute:routePattern priority:0 handler:handlerBlock];
-}
-
-- (void)addRoutes:(NSArray<NSString *> *)routePatterns handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock
-{
-    for (NSString *routePattern in routePatterns) {
-        [self addRoute:routePattern handler:handlerBlock];
-    }
-}
-
-- (void)addRoute:(NSString *)routePattern priority:(NSUInteger)priority handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock
-{
-    NSArray <NSString *> *optionalRoutePatterns = [self _optionalRoutesForPattern:routePattern];
-    
-    if (optionalRoutePatterns.count > 0) {
-        // there are optional params, parse and add them
-        for (NSString *route in optionalRoutePatterns) {
-            [self _verboseLog:@"Automatically created optional route: %@", route];
-            [self _registerRoute:route priority:priority handler:handlerBlock];
-        }
-        return;
-    }
-    
-    [self _registerRoute:routePattern priority:priority handler:handlerBlock];
-}
-
-- (void)removeRoute:(NSString *)routePattern
-{
-    if (![routePattern hasPrefix:@"/"]) {
-        routePattern = [NSString stringWithFormat:@"/%@", routePattern];
-    }
-    
-    NSInteger routeIndex = NSNotFound;
-    NSInteger index = 0;
-    
-    for (_JLRoute *route in self.routes) {
-        if ([route.pattern isEqualToString:routePattern]) {
-            routeIndex = index;
-            break;
-        }
-        index++;
-    }
-    
-    if (routeIndex != NSNotFound) {
-        [self.routes removeObjectAtIndex:(NSUInteger)routeIndex];
-    }
-}
-
-- (void)removeAllRoutes
-{
-    [self.routes removeAllObjects];
-}
-
-- (void)setObject:(id)handlerBlock forKeyedSubscript:(NSString *)routePatten
-{
-    [self addRoute:routePatten handler:handlerBlock];
-}
-
-
-#pragma mark - Routing URLs
-
-+ (BOOL)canRouteURL:(NSURL *)URL
-{
-    return [[self _routesControllerForURL:URL] canRouteURL:URL];
-}
-
-- (BOOL)canRouteURL:(NSURL *)URL
-{
-    return [self _routeURL:URL withParameters:nil executeRouteBlock:NO];
-}
-
-+ (BOOL)routeURL:(NSURL *)URL
-{
-    return [[self _routesControllerForURL:URL] routeURL:URL];
-}
-
-- (BOOL)routeURL:(NSURL *)URL
-{
-    return [self _routeURL:URL withParameters:nil executeRouteBlock:YES];
-}
-
-+ (BOOL)routeURL:(NSURL *)URL withParameters:(NSDictionary *)parameters
-{
-    return [[self _routesControllerForURL:URL] routeURL:URL withParameters:parameters];
-}
-
-- (BOOL)routeURL:(NSURL *)URL withParameters:(NSDictionary *)parameters
-{
-    return [self _routeURL:URL withParameters:parameters executeRouteBlock:YES];
-}
-
-
-#pragma mark - Private
-
-+ (instancetype)_routesControllerForURL:(NSURL *)URL
-{
-    if (URL == nil) {
-        return nil;
-    }
-    
-    return routeControllersMap[URL.scheme] ?: [JLRoutes globalRoutes];
-}
-
-- (void)_registerRoute:(NSString *)routePattern priority:(NSUInteger)priority handler:(BOOL (^)(NSDictionary *parameters))handlerBlock
-{
-    _JLRoute *route = [[_JLRoute alloc] init];
-    route.pattern = routePattern;
-    route.priority = priority;
-    route.block = [handlerBlock copy];
-    route.parentRoutesController = self;
-    
-    if (!route.block) {
-        route.block = [^BOOL (NSDictionary *params) {
-            return YES;
-        } copy];
-    }
-    
-    if (priority == 0 || self.routes.count == 0) {
-        [self.routes addObject:route];
-    } else {
-        NSArray *existingRoutes = self.routes;
-        NSUInteger index = 0;
-        BOOL addedRoute = NO;
-        
-        // search through existing routes looking for a lower priority route than this one
-        for (_JLRoute *existingRoute in existingRoutes) {
-            if (existingRoute.priority < priority) {
-                // if found, add the route after it
-                [self.routes insertObject:route atIndex:index];
-                addedRoute = YES;
-                break;
-            }
-            index++;
-        }
-        
-        // if we weren't able to find a lower priority route, this is the new lowest priority route (or same priority as self.routes.lastObject) and should just be added
-        if (!addedRoute)
-            [self.routes addObject:route];
-    }
-}
-
-- (BOOL)_routeURL:(NSURL *)URL withParameters:(NSDictionary *)parameters executeRouteBlock:(BOOL)executeRouteBlock
-{
-    if (!URL) {
-        return NO;
-    }
-    
-    [self _verboseLog:@"Trying to route URL %@", URL];
-    
-    BOOL didRoute = NO;
-    NSDictionary *queryParameters = [URL.query JLRoutes_URLParameterDictionary];
-    [self _verboseLog:@"Parsed query parameters: %@", queryParameters];
-    
-    NSDictionary *fragmentParameters = [URL.fragment JLRoutes_URLParameterDictionary];
-    [self _verboseLog:@"Parsed fragment parameters: %@", fragmentParameters];
-    
-    NSDictionary *fragmentQueryParameters = [URL.JLRoutes_fragmentQuery JLRoutes_URLParameterDictionary];
-    [self _verboseLog:@"Parsed fragment query parameters: %@", fragmentParameters];
-    
-    // break the URL down into path components and filter out any leading/trailing slashes from it
-    NSPredicate *filterSlashesPredicate = [NSPredicate predicateWithFormat:@"NOT SELF like '/'"];
-    NSArray *pathComponents = [(URL.pathComponents ?: @[]) filteredArrayUsingPredicate:filterSlashesPredicate];
-    NSArray *fragmentComponents = [(URL.JLRoutes_fragmentPathComponents ?: @[]) filteredArrayUsingPredicate:filterSlashesPredicate];
-    
-    if ([URL.host rangeOfString:@"."].location == NSNotFound && ![URL.host isEqualToString:@"localhost"]) {
-        // For backward compatibility, handle scheme://path/to/resource as if path was part of the path
-        pathComponents = [@[URL.host] arrayByAddingObjectsFromArray:pathComponents];
-    }
-    
-    [self _verboseLog:@"URL path components: %@", pathComponents];
-    [self _verboseLog:@"URL fragment components: %@", fragmentComponents];
-    
-    for (_JLRoute *route in self.routes) {
-        NSDictionary *matchParameters = [route parametersForURL:URL pathComponents:pathComponents fragmentComponents:fragmentComponents];
-        if (matchParameters) {
-            [self _verboseLog:@"Successfully matched %@", route];
-            if (!executeRouteBlock) {
-                return YES;
-            }
-            
-            // add the URL parameters
-            NSMutableDictionary *finalParameters = [NSMutableDictionary dictionary];
-            
-            // in increasing order of precedence: query, fragment, route, builtin
-            [finalParameters addEntriesFromDictionary:queryParameters];
-            if (route.matchFragmentComponents) {
-                [finalParameters addEntriesFromDictionary:fragmentQueryParameters];
-            } else {
-                [finalParameters addEntriesFromDictionary:fragmentParameters];
-            }
-            [finalParameters addEntriesFromDictionary:matchParameters];
-            [finalParameters addEntriesFromDictionary:parameters];
-            finalParameters[kJLRoutePatternKey] = route.pattern;
-            finalParameters[kJLRouteURLKey] = URL;
-            __strong __typeof(route.parentRoutesController) strongParentRoutesController = route.parentRoutesController;
-            finalParameters[kJLRouteNamespaceKey] = strongParentRoutesController.namespaceKey ?: [NSNull null];
-            
-            [self _verboseLog:@"Final parameters are %@", finalParameters];
-            didRoute = route.block(finalParameters);
-            if (didRoute) {
-                break;
-            }
-        }
-    }
-    
-    if (!didRoute) {
-        [self _verboseLog:@"Could not find a matching route, returning NO"];
-    }
-    
-    // if we couldn't find a match and this routes controller specifies to fallback and its also not the global routes controller, then...
-    if (!didRoute && self.shouldFallbackToGlobalRoutes && ![self _isGlobalRoutesController]) {
-        [self _verboseLog:@"Falling back to global routes..."];
-        didRoute = [[JLRoutes globalRoutes] _routeURL:URL withParameters:parameters executeRouteBlock:executeRouteBlock];
-    }
-    
-    // if, after everything, we did not route anything and we have an unmatched URL handler, then call it
-    if (!didRoute && executeRouteBlock && self.unmatchedURLHandler) {
-        self.unmatchedURLHandler(self, URL, parameters);
-    }
-    
-    return didRoute;
-}
-
-- (NSArray <NSString *> *)_optionalRoutesForPattern:(NSString *)routePattern
-{
-    /* this method exists to take a route pattern that is known to contain optional params, such as:
-     
-     /path/:thing/(/a)(/b)(/c)
-     
-     and create the following paths:
-     
-     /path/:thing/a/b/c
-     /path/:thing/a/b
-     /path/:thing/a/c
-     /path/:thing/b/a
-     /path/:thing/a
-     /path/:thing/b
-     /path/:thing/c
-     */
-    
-    if ([routePattern rangeOfString:@"("].location == NSNotFound) {
-        return nil;
-    }
-    
-    NSString *baseRoute = nil;
-    NSArray *components = [self _optionalComponentsForPattern:routePattern baseRoute:&baseRoute];
-    NSArray *routes = [self _routesForOptionalComponents:components baseRoute:baseRoute];
-    
-    return routes;
-}
-
-- (NSArray <NSString *> *)_optionalComponentsForPattern:(NSString *)routePattern baseRoute:(NSString **)outBaseRoute;
-{
-    if (routePattern.length == 0) {
-        return nil;
-    }
-    
-    NSMutableArray *optionalComponents = [NSMutableArray array];
-    
-    NSScanner *scanner = [NSScanner scannerWithString:routePattern];
-    NSString *nonOptionalRouteSubpath = nil;
-    
-    BOOL parsedBaseRoute = NO;
-    BOOL parseError = NO;
-    
-    // first, we need to parse the string and find the array of optional params.
-    // aka, take (/a)(/b)(/c) and turn it into ["/a", "/b", "/c"]
-    while ([scanner scanUpToString:@"(" intoString:&nonOptionalRouteSubpath]) {
-        if ([scanner isAtEnd]) {
-            break;
-        }
-        
-        if (nonOptionalRouteSubpath.length > 0 && outBaseRoute != NULL && !parsedBaseRoute) {
-            // the first 'non optional subpath' is always the base route
-            *outBaseRoute = nonOptionalRouteSubpath;
-            parsedBaseRoute = YES;
-        }
-        
-        scanner.scanLocation = scanner.scanLocation + 1;
-        
-        NSString *component = nil;
-        if (![scanner scanUpToString:@")" intoString:&component]) {
-            parseError = YES;
-            break;
-        }
-        
-        [optionalComponents addObject:component];
-    }
-    
-    if (parseError) {
-        NSLog(@"[JLRoutes]: Parse error, unsupported route: %@", routePattern);
-        return nil;
-    }
-    
-    return [optionalComponents copy];
-}
-
-- (NSArray <NSString *> *)_routesForOptionalComponents:(NSArray <NSString *> *)optionalComponents baseRoute:(NSString *)baseRoute
-{
-    if (optionalComponents.count == 0 || baseRoute.length == 0) {
-        return nil;
-    }
-    
-    NSMutableArray *routes = [NSMutableArray array];
-    
-    // generate all possible combinations of the components that could exist (taking order into account)
-    // aka, "/path/:thing/(/a)(/b)(/c)" should never generate a route for "/path/:thing/(/b)(/a)"
-    NSArray *combinations = [optionalComponents JLRoutes_allOrderedCombinations];
-    
-    // generate the actual final route path strings
-    for (NSArray *components in combinations) {
-        NSString *path = [components componentsJoinedByString:@""];
-        [routes addObject:[baseRoute stringByAppendingString:path]];
-    }
-    
-    // sort them so that the longest routes are first (since they are the most selective)
-    [routes sortUsingSelector:@selector(length)];
-    
-    return [routes copy];
-}
-
-- (BOOL)_isGlobalRoutesController
-{
-    return [self.namespaceKey isEqualToString:kJLRoutesGlobalNamespaceKey];
-}
-
-- (void)_verboseLog:(NSString *)format, ...
-{
-    if (!verboseLoggingEnabled || format.length == 0) {
-        return;
-    }
-    
-    va_list argsList;
-    va_start(argsList, format);
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wformat-nonliteral"
-    NSString *formattedLogMessage = [[NSString alloc] initWithFormat:format arguments:argsList];
-#pragma clang diagnostic pop
-    
-    va_end(argsList);
-    NSLog(@"[JLRoutes]: %@", formattedLogMessage);
-}
-
-@end
-
-
-#pragma mark -
-
 @implementation _JLRoute
 
-- (NSDictionary *)parametersForURL:(NSURL *)URL pathComponents:(NSArray *)pathComponents fragmentComponents:(NSArray *)fragmentComponents
-{
+- (NSDictionary *)parametersForURL:(NSURL *)URL pathComponents:(NSArray *)pathComponents fragmentComponents:(NSArray *)fragmentComponents {
+
     if (!self.patternPathComponents) {
         NSString *fragmentIdentifier = @"#";
         NSRange range = [self.pattern rangeOfString:fragmentIdentifier];
@@ -520,14 +145,14 @@ static BOOL shouldDecodePlusSymbols = YES;
 
     NSMutableDictionary *routeParameters = [NSMutableDictionary dictionary];
 
-    NSDictionary *pathParameters = [self _parametersForURL:URL patternComponents:self.patternPathComponents components:pathComponents];
+    NSDictionary *pathParameters = [self parametersForURL:URL patternComponents:self.patternPathComponents components:pathComponents];
     if (!pathParameters) {
         return nil;
     }
 
     NSDictionary *fragmentParameters;
     if (self.matchFragmentComponents) {
-        fragmentParameters = [self _parametersForURL:URL patternComponents:self.patternFragmentComponents components:fragmentComponents];
+        fragmentParameters = [self parametersForURL:URL patternComponents:self.patternFragmentComponents components:fragmentComponents];
         if (!fragmentParameters) {
             return nil;
         }
@@ -541,8 +166,7 @@ static BOOL shouldDecodePlusSymbols = YES;
     return routeParameters;
 }
 
-- (NSDictionary *)_parametersForURL:(NSURL *)URL patternComponents:(NSArray *)patternComponents components:(NSArray *)components
-{
+- (NSDictionary *)parametersForURL:(NSURL *)URL patternComponents:(NSArray *)patternComponents components:(NSArray *)components {
     NSDictionary *routeParameters = nil;
 
     // do a quick component count check to quickly eliminate incorrect patterns
@@ -569,7 +193,8 @@ static BOOL shouldDecodePlusSymbols = YES;
                 NSString *urlDecodedVariableValue = [variableValue JLRoutes_URLDecodedString];
                 if ([variableName length] > 0 && [urlDecodedVariableValue length] > 0) {
                     variables[variableName] = urlDecodedVariableValue;
-                } else {
+                }
+                else {
                     NSMutableArray * newComponents = [NSMutableArray arrayWithArray:components];
                     [newComponents addObject:@""];
                     components = newComponents;
@@ -595,148 +220,382 @@ static BOOL shouldDecodePlusSymbols = YES;
     return routeParameters;
 }
 
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"<JLRoute %p> - %@ (priority: %@)", self, self.pattern, @(self.priority)];
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"JLRoute %@ (%@)", self.pattern, @(self.priority)];
 }
+
 
 @end
 
 
-#pragma mark - Categories
+@implementation JLRoutes
 
-@implementation NSString (JLRoutes)
-
-- (NSString *)JLRoutes_URLDecodedString
-{
-    NSString *input = shouldDecodePlusSymbols ? [self stringByReplacingOccurrencesOfString:@"+" withString:@" " options:NSLiteralSearch range:NSMakeRange(0, self.length)] : self;
-    return [input stringByRemovingPercentEncoding];
-}
-
-- (NSDictionary *)JLRoutes_URLParameterDictionary
-{
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    
-    if (self.length && [self rangeOfString:@"="].location != NSNotFound) {
-        NSArray *keyValuePairs = [self componentsSeparatedByString:@"&"];
-        for (NSString *keyValuePair in keyValuePairs) {
-            NSArray *pair = [keyValuePair componentsSeparatedByString:@"="];
-            // don't assume we actually got a real key=value pair. start by assuming we only got @[key] before checking count
-            NSString *paramValue = pair.count == 2 ? pair[1] : @"";
-            // CFURLCreateStringByReplacingPercentEscapesUsingEncoding may return NULL
-            parameters[pair[0]] = [paramValue JLRoutes_URLDecodedString] ?: @"";
-        }
+- (id)init {
+    if ((self = [super init])) {
+        self.routes = [NSMutableArray array];
     }
-    
-    return parameters;
+    return self;
 }
 
-@end
-
-@implementation NSURL (JLRoutes)
-
-- (NSArray *)JLRoutes_fragmentPathComponents
-{
-    NSString *fragment = self.fragment;
-    if (!fragment) {
-        return nil;
-    }
-    
-    NSURL *URL = [[NSURL alloc] initWithString:fragment];
-    return URL.pathComponents;
-}
-
-- (NSString *)JLRoutes_fragmentQuery
-{
-    NSString *fragment = self.fragment;
-    if (!fragment) {
-        return nil;
-    }
-    
-    NSURL *URL = [[NSURL alloc] initWithString:fragment];
-    return URL.query;
-}
-
-@end
-
-@implementation NSArray (JLRoutes)
-
-- (NSArray<NSArray *> *)JLRoutes_allOrderedCombinations
-{
-    NSInteger length = self.count;
-    if (length == 0) {
-        return [NSArray arrayWithObject:[NSArray array]];
-    }
-    
-    id lastObject = [self lastObject];
-    NSArray *subarray = [self subarrayWithRange:NSMakeRange(0, length - 1)];
-    NSArray *subarrayCombinations = [subarray JLRoutes_allOrderedCombinations];
-    NSMutableArray *combinations = [NSMutableArray arrayWithArray:subarrayCombinations];
-    
-    for (NSArray *subarrayCombos in subarrayCombinations) {
-        [combinations addObject:[subarrayCombos arrayByAddingObject:lastObject]];
-    }
-    
-    return [NSArray arrayWithArray:combinations];
-}
-
-@end
-
-
-#pragma mark - Global Options
-
-@implementation JLRoutes (GlobalOptions)
-
-+ (void)setVerboseLoggingEnabled:(BOOL)loggingEnabled
-{
-    verboseLoggingEnabled = loggingEnabled;
-}
-
-+ (void)setShouldDecodePlusSymbols:(BOOL)shouldDecode
-{
++ (void)setShouldDecodePlusSymbols:(BOOL)shouldDecode {
     shouldDecodePlusSymbols = shouldDecode;
 }
 
-@end
++ (BOOL)shouldDecodePlusSymbols {
+    return shouldDecodePlusSymbols;
+}
+
+#pragma mark -
+#pragma mark Routing API
+
++ (instancetype)globalRoutes {
+    return [self routesForScheme:kJLRoutesGlobalNamespaceKey];
+}
 
 
-#pragma mark - Deprecated
++ (instancetype)routesForScheme:(NSString *)scheme {
+    JLRoutes *routesController = nil;
 
-@implementation JLRoutes (Deprecated)
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        routeControllersMap = [[NSMutableDictionary alloc] init];
+    });
 
-+ (void)addRoute:(NSString *)routePattern handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock
-{
+    if (!routeControllersMap[scheme]) {
+        routesController = [[self alloc] init];
+        routesController.namespaceKey = scheme;
+        routeControllersMap[scheme] = routesController;
+    }
+
+    routesController = routeControllersMap[scheme];
+
+    return routesController;
+}
+
+
++ (void)addRoute:(NSString *)routePattern handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock {
     [[self globalRoutes] addRoute:routePattern handler:handlerBlock];
 }
 
-+ (void)addRoute:(NSString *)routePattern priority:(NSUInteger)priority handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock
-{
++ (void)addRoutes:(NSArray<NSString *> *)routePatterns handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock {
+    for (NSString *routePattern in routePatterns) {
+        [self addRoute:routePattern handler:handlerBlock];
+    }
+}
+
++ (void)addRoute:(NSString *)routePattern priority:(NSUInteger)priority handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock {
     [[self globalRoutes] addRoute:routePattern priority:priority handler:handlerBlock];
 }
 
-+ (void)addRoutes:(NSArray<NSString *> *)routePatterns handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock
-{
-    [[self globalRoutes] addRoutes:routePatterns handler:handlerBlock];
+- (void)addRoute:(NSString *)routePattern handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock {
+    [self addRoute:routePattern priority:0 handler:handlerBlock];
 }
 
-+ (void)removeRoute:(NSString *)routePattern
-{
-    [[self globalRoutes] removeRoute:routePattern];
+- (void)addRoutes:(NSArray<NSString *> *)routePatterns handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock {
+    for (NSString *routePattern in routePatterns) {
+        [self addRoute:routePattern handler:handlerBlock];
+    }
 }
 
-+ (void)removeAllRoutes
-{
-    [[self globalRoutes] removeAllRoutes];
+- (void)addRoute:(NSString *)routePattern priority:(NSUInteger)priority handler:(BOOL (^)(NSDictionary<NSString *, id> *parameters))handlerBlock {
+    // if there's a pair of parenthesis, process optionals, trim the parenthesis, put it on trimmedRoute
+    NSString *trimmedRoute = routePattern;
+
+    // repeat until no parenthesis pair is found
+    while ([trimmedRoute rangeOfString:@")" options:NSBackwardsSearch].location > [trimmedRoute rangeOfString:@"(" options:NSBackwardsSearch].location) {
+
+        //Build route with the optionals
+        NSString *patternWithOptionals = [trimmedRoute stringByReplacingOccurrencesOfString:@"(" withString:@""];
+        patternWithOptionals = [patternWithOptionals stringByReplacingOccurrencesOfString:@")" withString:@""];
+        [self registerRoute:patternWithOptionals priority:priority handler:handlerBlock];
+
+        //Build route without optionals
+        NSRange rangeOfLastParentheses = [trimmedRoute rangeOfString:@"(" options:NSBackwardsSearch];
+        NSRange rangeToRemove = NSMakeRange(rangeOfLastParentheses.location, trimmedRoute.length - rangeOfLastParentheses.location);
+        NSString *patternWithLastOptionalRemoved = [trimmedRoute stringByReplacingCharactersInRange:rangeToRemove withString:@""];
+        //Remove any parenthesis for other optionals that might still be in the route
+        NSString *patternWithoutOptionals = [patternWithLastOptionalRemoved stringByReplacingOccurrencesOfString:@"(" withString:@""];
+        patternWithoutOptionals = [patternWithoutOptionals stringByReplacingOccurrencesOfString:@")" withString:@""];
+        [self registerRoute:patternWithoutOptionals priority:priority handler:handlerBlock];
+
+        trimmedRoute = patternWithLastOptionalRemoved;
+    }
+
+    //Only register original route if trimmedRoute haven't been modified.
+    if (trimmedRoute == routePattern) {
+        [self registerRoute:routePattern priority:priority handler:handlerBlock];
+    }
 }
 
-+ (BOOL)canRouteURL:(NSURL *)URL withParameters:(NSDictionary *)parameters
-{
-    return [[self globalRoutes] canRouteURL:URL];
+- (void)registerRoute:(NSString *)routePattern priority:(NSUInteger)priority handler:(BOOL (^)(NSDictionary *parameters))handlerBlock {
+    _JLRoute *route = [[_JLRoute alloc] init];
+    route.pattern = routePattern;
+    route.priority = priority;
+    route.block = [handlerBlock copy];
+    route.parentRoutesController = self;
+
+    if (!route.block) {
+        route.block = [^BOOL (NSDictionary *params) {
+            return YES;
+        } copy];
+    }
+
+    if (priority == 0 || self.routes.count == 0) {
+        [self.routes addObject:route];
+    } else {
+        NSArray *existingRoutes = self.routes;
+        NSUInteger index = 0;
+        BOOL addedRoute = NO;
+
+        // search through existing routes looking for a lower priority route than this one
+        for (_JLRoute *existingRoute in existingRoutes) {
+            if (existingRoute.priority < priority) {
+                // if found, add the route after it
+                [self.routes insertObject:route atIndex:index];
+                addedRoute = YES;
+                break;
+            }
+            index++;
+        }
+
+        // if we weren't able to find a lower priority route, this is the new lowest priority route (or same priority as self.routes.lastObject) and should just be added
+        if (!addedRoute)
+            [self.routes addObject:route];
+    }
 }
 
-- (BOOL)canRouteURL:(NSURL *)URL withParameters:(NSDictionary *)parameters
-{
-    return [self canRouteURL:URL];
+
++ (void)removeRoute:(NSString *)routePattern {
+    [[JLRoutes globalRoutes] removeRoute:routePattern];
+}
+
+
+- (void)removeRoute:(NSString *)routePattern {
+    if (![routePattern hasPrefix:@"/"]) {
+        routePattern = [NSString stringWithFormat:@"/%@", routePattern];
+    }
+
+    NSInteger routeIndex = NSNotFound;
+    NSInteger index = 0;
+
+    for (_JLRoute *route in self.routes) {
+        if ([route.pattern isEqualToString:routePattern]) {
+            routeIndex = index;
+            break;
+        }
+        index++;
+    }
+
+    if (routeIndex != NSNotFound) {
+        [self.routes removeObjectAtIndex:(NSUInteger)routeIndex];
+    }
+}
+
+
++ (void)removeAllRoutes {
+    [[JLRoutes globalRoutes] removeAllRoutes];
+}
+
+
+- (void)removeAllRoutes {
+    [self.routes removeAllObjects];
+}
+
+
++ (void)unregisterRouteScheme:(NSString *)scheme {
+    [routeControllersMap removeObjectForKey:scheme];
+}
+
+
++ (BOOL)routeURL:(NSURL *)URL {
+    return [self routeURL:URL withParameters:nil executeRouteBlock:YES];
+}
+
++ (BOOL)routeURL:(NSURL *)URL withParameters:(NSDictionary *)parameters {
+    return [self routeURL:URL withParameters:parameters executeRouteBlock:YES];
+}
+
+
++ (BOOL)canRouteURL:(NSURL *)URL {
+    return [self routeURL:URL withParameters:nil executeRouteBlock:NO];
+}
+
++ (BOOL)canRouteURL:(NSURL *)URL withParameters:(NSDictionary *)parameters {
+    return [self routeURL:URL withParameters:parameters executeRouteBlock:NO];
+}
+
++ (BOOL)routeURL:(NSURL *)URL withParameters:(NSDictionary *)parameters executeRouteBlock:(BOOL)execute {
+    if (!URL) {
+        return NO;
+    }
+
+    // figure out which routes controller to use based on the scheme
+    JLRoutes *routesController = routeControllersMap[[URL scheme]] ?: [self globalRoutes];
+
+    return [self routeURL:URL withController:routesController parameters:parameters executeBlock:execute];
+}
+
+- (BOOL)routeURL:(NSURL *)URL {
+    return [[self class] routeURL:URL withController:self];
+}
+
+- (BOOL)routeURL:(NSURL *)URL withParameters:(NSDictionary *)parameters {
+    return [[self class] routeURL:URL withController:self parameters:parameters];
+}
+
+- (BOOL)canRouteURL:(NSURL *)URL {
+    return [[self class] routeURL:URL withController:self parameters:nil executeBlock:NO];
+}
+
+- (BOOL)canRouteURL:(NSURL *)URL withParameters:(NSDictionary *)parameters {
+    return [[self class] routeURL:URL withController:self parameters:parameters executeBlock:NO];
+}
+
+#pragma mark -
+#pragma mark Debugging Aids
+
+- (NSString *)description {
+    return [self.routes description];
+}
+
+
++ (NSString *)description {
+    NSMutableString *descriptionString = [NSMutableString stringWithString:@"\n"];
+
+    for (NSString *routesNamespace in routeControllersMap) {
+        JLRoutes *routesController = routeControllersMap[routesNamespace];
+        [descriptionString appendFormat:@"\"%@\":\n%@\n\n", routesController.namespaceKey, routesController.routes];
+    }
+
+    return descriptionString;
+}
+
+
++ (void)setVerboseLoggingEnabled:(BOOL)loggingEnabled {
+    verboseLoggingEnabled = loggingEnabled;
+}
+
+
++ (BOOL)isVerboseLoggingEnabled {
+    return verboseLoggingEnabled;
+}
+
+
+#pragma mark -
+#pragma mark Internal API
+
++ (BOOL)routeURL:(NSURL *)URL withController:(JLRoutes *)routesController {
+    return [self routeURL:URL withController:routesController parameters:nil executeBlock:YES];
+}
+
++ (BOOL)routeURL:(NSURL *)URL withController:(JLRoutes *)routesController parameters:(NSDictionary *)parameters {
+    return [self routeURL:URL withController:routesController parameters:parameters executeBlock:YES];
+}
+
++ (BOOL)routeURL:(NSURL *)URL withController:(JLRoutes *)routesController parameters:(NSDictionary *)parameters executeBlock:(BOOL)executeBlock {
+    [self verboseLogWithFormat:@"Trying to route URL %@", URL];
+    BOOL didRoute = NO;
+    NSArray *routes = routesController.routes;
+    NSDictionary *queryParameters = [URL.query JLRoutes_URLParameterDictionary];
+    [self verboseLogWithFormat:@"Parsed query parameters: %@", queryParameters];
+
+    NSDictionary *fragmentParameters = [URL.fragment JLRoutes_URLParameterDictionary];
+    [self verboseLogWithFormat:@"Parsed fragment parameters: %@", fragmentParameters];
+
+    NSDictionary *fragmentQueryParameters = [URL.JLRoutes_fragmentQuery JLRoutes_URLParameterDictionary];
+    [self verboseLogWithFormat:@"Parsed fragment query parameters: %@", fragmentParameters];
+
+    // break the URL down into path components and filter out any leading/trailing slashes from it
+    NSPredicate *filterSlashesPredicate = [NSPredicate predicateWithFormat:@"NOT SELF like '/'"];
+    NSArray *pathComponents = [(URL.pathComponents ?: @[]) filteredArrayUsingPredicate:filterSlashesPredicate];
+    NSArray *fragmentComponents = [(URL.JLRoutes_fragmentPathComponents ?: @[]) filteredArrayUsingPredicate:filterSlashesPredicate];
+
+    if ([URL.host rangeOfString:@"."].location == NSNotFound && ![URL.host isEqualToString:@"localhost"]) {
+        // For backward compatibility, handle scheme://path/to/resource as if path was part of the path
+        pathComponents = [@[URL.host] arrayByAddingObjectsFromArray:pathComponents];
+    }
+
+    [self verboseLogWithFormat:@"URL path components: %@", pathComponents];
+
+    [self verboseLogWithFormat:@"URL fragment components: %@", fragmentComponents];
+
+    for (_JLRoute *route in routes) {
+        NSDictionary *matchParameters = [route parametersForURL:URL pathComponents:pathComponents fragmentComponents:fragmentComponents];
+        if (matchParameters) {
+            [self verboseLogWithFormat:@"Successfully matched %@", route];
+            if (!executeBlock) {
+                return YES;
+            }
+
+            // add the URL parameters
+            NSMutableDictionary *finalParameters = [NSMutableDictionary dictionary];
+
+            // in increasing order of precedence: query, fragment, route, builtin
+            [finalParameters addEntriesFromDictionary:queryParameters];
+            if (route.matchFragmentComponents) {
+                [finalParameters addEntriesFromDictionary:fragmentQueryParameters];
+            } else {
+                [finalParameters addEntriesFromDictionary:fragmentParameters];
+            }
+            [finalParameters addEntriesFromDictionary:matchParameters];
+            [finalParameters addEntriesFromDictionary:parameters];
+            finalParameters[kJLRoutePatternKey] = route.pattern;
+            finalParameters[kJLRouteURLKey] = URL;
+            __strong __typeof(route.parentRoutesController) strongParentRoutesController = route.parentRoutesController;
+            finalParameters[kJLRouteNamespaceKey] = strongParentRoutesController.namespaceKey ?: [NSNull null];
+
+            [self verboseLogWithFormat:@"Final parameters are %@", finalParameters];
+            didRoute = route.block(finalParameters);
+            if (didRoute) {
+                break;
+            }
+        }
+    }
+
+    if (!didRoute) {
+        [self verboseLogWithFormat:@"Could not find a matching route, returning NO"];
+    }
+
+    // if we couldn't find a match and this routes controller specifies to fallback and its also not the global routes controller, then...
+    if (!didRoute && routesController.shouldFallbackToGlobalRoutes && ![routesController isGlobalRoutesController]) {
+        [self verboseLogWithFormat:@"Falling back to global routes..."];
+        didRoute = [self routeURL:URL withController:[self globalRoutes] parameters:parameters executeBlock:executeBlock];
+    }
+
+    // if, after everything, we did not route anything and we have an unmatched URL handler, then call it
+    if (!didRoute && routesController.unmatchedURLHandler) {
+        routesController.unmatchedURLHandler(routesController, URL, parameters);
+    }
+
+    return didRoute;
+}
+
+
+- (BOOL)isGlobalRoutesController {
+    return [self.namespaceKey isEqualToString:kJLRoutesGlobalNamespaceKey];
+}
+
+
++ (void)verboseLogWithFormat:(NSString *)format, ... {
+    if (verboseLoggingEnabled && format) {
+        va_list argsList;
+        va_start(argsList, format);
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-nonliteral"
+        NSString *formattedLogMessage = [[NSString alloc] initWithFormat:format arguments:argsList];
+#pragma clang diagnostic pop
+        
+        va_end(argsList);
+        NSLog(@"[JLRoutes]: %@", formattedLogMessage);
+    }
+}
+
+#pragma mark -
+#pragma mark Subscripting
+
+- (void)setObject:(id)handlerBlock forKeyedSubscript:(NSString *)routePatten {
+    [self addRoute:routePatten handler:handlerBlock];
 }
 
 @end

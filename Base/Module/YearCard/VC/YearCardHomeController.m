@@ -16,6 +16,7 @@
 @interface YearCardHomeController ()
 
 @property (nonatomic, strong)NSDictionary* data;
+@property (nonatomic, assign)BOOL isFold;
 
 @end
 
@@ -23,6 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.isFold = YES;  //默认为折叠
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 90, 0)];
     [self.tableView registerNib:[UINib nibWithNibName:[HomeTopCell identify] bundle:nil] forCellReuseIdentifier:[HomeTopCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[HomeSecondCell identify] bundle:nil] forCellReuseIdentifier:[HomeSecondCell identify]];
@@ -65,6 +68,11 @@
         {
             HomeDescCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeDescCell identify]];
             [HYTool configTableViewCellDefault:cell];
+            [cell setUnFoldBtnClick:^{
+                self.isFold = !self.isFold;
+                [self.tableView reloadData];
+            }];
+            cell.isFold = self.isFold;
             [cell configDescCell:self.data];
             return cell;
         }
@@ -81,11 +89,29 @@
         case 0:
             return 304;
         case 1:
-            return 76;
+            return 110;
         default:
-            return [tableView fd_heightForCellWithIdentifier:[HomeDescCell identify] cacheByIndexPath:indexPath configuration:^(HomeDescCell* cell) {
-                [cell configDescCell:self.data];
-            }];
+            if (!self.isFold) {
+                return [tableView fd_heightForCellWithIdentifier:[HomeDescCell identify] cacheByIndexPath:indexPath configuration:^(HomeDescCell* cell) {
+                    [HYTool configTableViewCellDefault:cell];
+                    [cell setUnFoldBtnClick:^{
+                        self.isFold = !self.isFold;
+                        [self.tableView reloadData];
+                    }];
+                    cell.isFold = self.isFold;
+                    [cell configDescCell:self.data];
+                }];
+            }else{
+                return [tableView fd_heightForCellWithIdentifier:[HomeDescCell identify] configuration:^(HomeDescCell* cell) {
+                    [HYTool configTableViewCellDefault:cell];
+                    [cell setUnFoldBtnClick:^{
+                        self.isFold = !self.isFold;
+                        [self.tableView reloadData];
+                    }];
+                    cell.isFold = self.isFold;
+                    [cell configDescCell:self.data];
+                }];
+            }
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -95,7 +121,9 @@
 
 #pragma mark - private methods
 -(void)fetchData {
+    [self showLoadingAnimation];
     [APIHELPER fetchYearCardInfoComplete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
         if (isSuccess) {
             self.data = responseObject[@"data"];
             [self.tableView reloadData];

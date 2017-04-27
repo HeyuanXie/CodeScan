@@ -53,10 +53,14 @@
     
     if (self.contentType == TypeCoupon) {
         [cell configCouponCell:self.dataArray[indexPath.row]];
-        cell.selectImgV.hidden = !(self.couponIndex == indexPath.row);
+        NSString* imgName = self.couponIndex == indexPath.row ? @"已选择" : @"未选择";
+        cell.selectImgV.image = ImageNamed(imgName);
+//        cell.selectImgV.hidden = !(self.couponIndex == indexPath.row);
     }else{
         [cell configYearCardCell:self.dataArray[indexPath.row]];
-        cell.selectImgV.hidden = !(self.cardIndex == indexPath.row);
+        NSString* imgName = self.cardIndex == indexPath.row ? @"已选择" : @"未选择";
+        cell.selectImgV.image = ImageNamed(imgName);
+//        cell.selectImgV.hidden = !(self.cardIndex == indexPath.row);
     }
     
     return cell;
@@ -78,7 +82,7 @@
 -(void)subviewStyle {
     UIView* headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 48)];
     headView.backgroundColor = [UIColor whiteColor];
-    UILabel* lbl = [HYTool getLabelWithFrame:CGRectMake(12, 0, kScreen_Width-24, 48) text:self.contentType == TypeCoupon ? @"可用优惠券" : @"可用年卡" fontSize:15 textColor:[UIColor hyBlackTextColor] textAlignment:NSTextAlignmentLeft];
+    UILabel* lbl = [HYTool getLabelWithFrame:CGRectMake(12, 0, kScreen_Width-24, 48) text:self.contentType == TypeCoupon ? @"可用优惠券(点击已选优惠券则放弃使用优惠券)" : @"可用年卡(点击已选年卡则放弃使用年卡)" fontSize:15 textColor:[UIColor hyBlackTextColor] textAlignment:NSTextAlignmentLeft];
     [headView addSubview:lbl];
     [headView addSubview:[HYTool getLineWithFrame:CGRectMake(0, 47.5, kScreen_Width, 0.5) lineColor:[UIColor hySeparatorColor]]];
     self.tableView.tableHeaderView = headView;

@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <ShareSDK/ShareSDK.h>
-@class ArticleListModel;
+@class ArticleModel;
 
 @interface ShareSDKTools : NSObject
+
 
 /**
  *  分享链接
@@ -24,6 +25,9 @@
  */
 + (void)shareUrl:(NSString *)url image:(UIImage *)image title:(NSString *)title content:(NSString *)content shareType:(NSInteger)shareType callback:(void(^)(BOOL isSuccessed))callback;
 
++ (void)shareShowActionSheet:(ArticleModel *)model view:(UIView *)view;
+
++ (void)shareShowActionSheet:(NSString *)title summary:(NSString *)summary url:(NSString *)urlString imgUrl:(NSString*)imgUrl view:(UIView *)view;
 
 + (BOOL)isWXAppInstalled;
 
@@ -31,7 +35,4 @@
 
 + (BOOL)isWeiboAppInstalled;
 
-+ (void)shareShowActionSheet:(ArticleListModel *)model view:(UIView *)view;
-
-+ (void)shareShowActionSheet:(NSString *)title summary:(NSString *)summary url:(NSString *)urlString view:(UIView *)view;
 @end

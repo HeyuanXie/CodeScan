@@ -32,6 +32,7 @@
     [self verifyLogin];
     [self configUIAppearance];
     [self configIQKeyBoardManager];
+    [self configShareSDK];
     [self configPaySDK];
     
     return YES;

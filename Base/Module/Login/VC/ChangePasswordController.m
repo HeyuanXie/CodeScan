@@ -8,6 +8,11 @@
 
 #import "ChangePasswordController.h"
 
+typedef enum : NSUInteger {
+    TypeReset,  //修改密码
+    TypeForget, //找回密码
+} ContentType;
+
 @interface ChangePasswordController ()<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *firstTf;
@@ -19,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *otherBtn;
 
 @property (assign, nonatomic) BOOL canSee;
+@property (assign, nonatomic) ContentType contentType;
+@property (strong, nonatomic) NSString *phone;  //typeForget用
 
 @end
 
@@ -27,6 +34,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    if (self.schemaArgu[@"contentType"]) {
+        self.contentType = [[self.schemaArgu objectForKey:@"contentType"] integerValue];
+    }
+    if (self.schemaArgu[@"phone"]) {
+        self.phone = [self.schemaArgu objectForKey:@"phone"];
+    }
     [self subviewStyle];
     [self subviewBind];
 }
@@ -59,6 +72,9 @@
     [self.secondTf addTarget:self action:@selector(textFieldDidChanged:) forControlEvents:UIControlEventEditingChanged];
     
     [self.imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.xfx.zhimadi.cn/captcha/%@.html",[Global IDFV]]] placeholderImage:nil];
+    if (self.contentType==TypeForget) {
+        self.title = @"找回密码";
+    }
 }
 
 -(void)textFieldDidChanged:(UITextField*)textField {
@@ -102,16 +118,30 @@
         [self showMessage:@"请输入图中文字"];
         return;
     }
-    //TODO:修改密码
-    [APIHELPER changePassword:self.firstTf.text captcha:self.secondTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-        if (isSuccess) {
-            [self showMessage:@"修改密码成功"];
-            [APIHELPER logout];
-            [self.navigationController popToRootViewControllerAnimated:YES];
-        }else{
-            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
-        }
-    }];
+    
+    if (self.contentType == TypeForget) {
+        //忘记密码重置
+        [APIHELPER resetPW:self.phone code:self.secondTf.text password:self.firstTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            if (isSuccess) {
+                [self showMessage:@"重置密码成功"];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+        }];
+    }else{
+        //修改密码
+        [APIHELPER changePassword:self.firstTf.text captcha:self.secondTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+            if (isSuccess) {
+                [self showMessage:@"修改密码成功"];
+                [APIHELPER logout];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }else{
+                [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+            }
+        }];
+    }
+
 }
 
 @end

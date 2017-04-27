@@ -45,6 +45,7 @@ NSString* const kDeriveExchangeSuccessController = @"DeriveExchangeSuccessContro
 NSString* const kOrderDetailController = @"OrderDetailController";
 NSString* const kOrderCodeController = @"OrderCodeController";
 NSString* const kOrderRefundController = @"OrderRefundController";
+NSString* const kOrderRefundDetailController = @"OrderRefundDetailController";
 NSString* const kOrderRefundSuccessController = @"OrderRefundSuccessController";
 
 NSString* const kSkillListViewController = @"SkillListViewController";
@@ -157,6 +158,7 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kOrderDetailController,@"sb":@"Order",@"method":@"push"},
                         @{@"cls":kOrderCodeController,@"sb":@"Order",@"method":@"push"},
                         @{@"cls":kOrderRefundController,@"sb":@"Order",@"method":@"push"},
+                        @{@"cls":kOrderRefundDetailController,@"sb":@"Order",@"method":@"push"},
                         @{@"cls":kOrderRefundSuccessController,@"sb":@"Order",@"method":@"push"},
                         
                         @{@"cls":kSkillListViewController,@"sb":@"Main",@"method":@"push"},

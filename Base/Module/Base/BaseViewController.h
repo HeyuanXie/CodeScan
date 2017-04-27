@@ -25,4 +25,8 @@
 
 - (BOOL)checkUserLogined;
 
+#pragma mark - 设置导航栏透明
+- (void)hideBackView:(UIView *) superView;
+- (void)showBackView:(UIView*)superView;
+
 @end

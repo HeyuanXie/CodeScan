@@ -12,6 +12,7 @@
 @interface HomeDescCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *descLbl;
+@property (weak, nonatomic) IBOutlet UIButton *foldBtn;
 
 @end
 
@@ -29,8 +30,21 @@
 -(void)configDescCell:(id)model {
     
     if (model) {
-        self.descLbl.text = [NSString stringWithHtmlString:model[@"card_content"]];
+        NSString * htmlString = model[@"card_content"];
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        self.descLbl.attributedText = attrStr;
     }
+    
+    [self.foldBtn bk_whenTapped:^{
+        if (self.unFoldBtnClick) {
+            self.unFoldBtnClick();
+        }
+    }];
+    
+    NSString* imgName = self.isFold ? @"三角形_黑色下" : @"三角形_黑色上";
+    [self.foldBtn setImage:ImageNamed(imgName) forState:UIControlStateNormal];
+    self.descLbl.numberOfLines = self.isFold ? 6 : 0;
+    self.descLbl.lineBreakMode = NSLineBreakByTruncatingTail;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

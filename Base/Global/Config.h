@@ -40,9 +40,9 @@
 #define kQQ_APPID @"1106100126"
 #define kQQ_KEY @"vuFTzubcAGyOGWPu"
 
-#define kSINA_APPID @""
-#define kSINA_KEY @""
-#define kSINA_REDIRECTURL @""
+#define kSINA_APPID @"2864077449"
+#define kSINA_KEY @"897a8b982fa52ddceee6721542d13af4"
+#define kSINA_REDIRECTURL @"http://admin.vipxfx.com"
 
 #define kShareSDK_APPID @"1cf7407db19ac"
 #define kShareSDK_KEY @"9ac05636db4a300fe0cf9ba5c38f10da"

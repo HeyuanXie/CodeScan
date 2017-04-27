@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>小飞象</string>
+	<string>小飞象王国</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -38,6 +38,36 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>wx443d437fb523c7a6</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>qq</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>QQ41EDBF9E</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>sina</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wb2864077449</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>sinasso</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>sinaweibosso.2864077449</string>
 			</array>
 		</dict>
 	</array>
@@ -111,8 +141,6 @@
 	<string>需要您的同意才能访问麦克风</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>需要您的同意才能访问媒体资料库</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

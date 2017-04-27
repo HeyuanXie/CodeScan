@@ -39,6 +39,15 @@
     [APIHELPER postWithURL:@"auth/login" param:param complete:complete];
 }
 
+
+/**
+ 忘记密码重置密码
+
+ @param phone <#phone description#>
+ @param code <#code description#>
+ @param pw <#pw description#>
+ @param complete <#complete description#>
+ */
 - (void)resetPW:(NSString *)phone
            code:(NSString *)code
        password:(NSString *)pw
@@ -46,8 +55,8 @@
     
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     [param safe_setValue:phone forKey:@"phone"];
-    [param safe_setValue:pw forKey:@"password"];
-    [param safe_setValue:code forKey:@"code"];
+    [param safe_setValue:pw forKey:@"new_password"];
+    [param safe_setValue:code forKey:@"captcha"];
     
     [APIHELPER postWithURL:@"auth/resetPassword" param:param complete:complete];
 }
