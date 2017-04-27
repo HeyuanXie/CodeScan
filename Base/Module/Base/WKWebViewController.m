@@ -22,6 +22,9 @@
     // Do any additional setup after loading the view.
     
     [self webViewInit];
+    if (self.autoLoad) {
+        [self loadWebView];
+    }
 }
 
 -(void)viewWillDisappear:(BOOL)animated {

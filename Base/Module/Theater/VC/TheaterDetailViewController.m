@@ -16,6 +16,7 @@
 #import "DeriveModel.h"
 #import "UIViewController+Extension.h"
 #import "UITableViewCell+HYCell.h"
+#import "ShareSDKTools.h"
 
 @interface TheaterDetailViewController ()
 
@@ -356,7 +357,12 @@
         }
     } secondBlock:^{
         //TODO:分享
-        
+        @strongify(self);
+        if (self.playInfo == nil) {
+            [self showMessage:@"剧场详情加载失败,无法分享!"];
+            return ;
+        }
+        [ShareSDKTools shareShowActionSheet:self.playInfo.playName summary:self.playInfo.desc url:@"" imgUrl:self.playInfo.picurl view:self.view];
     }];
 }
 

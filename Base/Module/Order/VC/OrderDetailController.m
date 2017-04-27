@@ -26,7 +26,7 @@
 @property(strong,nonatomic)NSMutableArray* ticketArr;   //订单票数组
 @property(assign,nonatomic)ContentType contentType;//订单类型,0:theater、1:derive、2:card
 @property(assign,nonatomic)NSString* orderId;    //订单Id
-@property(assign,nonatomic)NSInteger orderStatu;    //待支付、待使用、、待评价、退款、支付超时等(23456)
+@property(assign,nonatomic)NSInteger orderStatu;    //待支付、待使用、、待评价、退款、支付超时、已评价等(234567)
 
 @property(strong,nonatomic)NSArray* maps;//手机安装的地图的数组
 @end
@@ -50,7 +50,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:[OrderCodeCell identify] bundle:nil] forCellReuseIdentifier:[OrderCodeCell identify]];
     [self.tableView registerNib:[UINib nibWithNibName:[OrderDetailCell identify] bundle:nil] forCellReuseIdentifier:[OrderDetailCell identify]];
 
-    [self subviewStyle];
+//    [self subviewStyle];
     [self fetchData];
     [self registNotification];
 }
@@ -108,17 +108,7 @@
     return 4;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (section == 1) {
-//        switch (self.contentType) {
-//            case TypeTheater:
-//                return self.orderStatu == 0 ? 2 : 1;
-//                break;
-//            case TypeDerive:
-//                return self.orderStatu == 1 ? 2 : 1;
-//            default:
-//                break;
-//        }
-//    }
+
     if (section == 2) {
         switch (self.contentType) {
             case TypeTheater:
@@ -223,15 +213,6 @@
         [self geocoderClick:address];
         return;
     }
-//    if (indexPath.section == 2) {
-//        OrderCodeController* vc = (OrderCodeController*)VIEWCONTROLLER(kOrderCodeController);
-//        vc.data = self.data;
-//        vc.code = self.codeArray[indexPath.row];
-//        vc.contentType = self.contentType;
-//        vc.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:vc animated:YES];
-//        return;
-//    }
 }
 #pragma mark - private methods
 -(UITableViewCell*)headCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
@@ -318,6 +299,11 @@
             case 6:{
                 lbl.text = @"订单状态: 支付超时";
                 lbl.attributedText = [lbl.text attributedStringWithString:@"支付超时" andWithColor:[UIColor hyRedColor]];
+                break;
+            }
+            case 7:{
+                lbl.text = @"订单状态: 已评价";
+                lbl.attributedText = [lbl.text attributedStringWithString:@"已评价" andWithColor:[UIColor hyRedColor]];
                 break;
             }
             default:
@@ -506,6 +492,7 @@
                 self.data = responseObject[@"data"];
                 [self.ticketArr addObjectsFromArray:responseObject[@"data"][@"detail"]];
                 [self judgeOrderStatu];
+                [self subviewStyle];
                 [self.tableView reloadData];
             }else{
                 [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
@@ -551,8 +538,12 @@
                 self.orderStatu = 3;
                 return;
             }
-            if (statu == 4) {
+            if (statu == 1) {
                 self.orderStatu = 4;
+                return;
+            }
+            if (statu == 4) {
+                self.orderStatu = 7;
                 return;
             }
         }
@@ -564,10 +555,8 @@
 
 
 -(void)subviewStyle {
-    if (self.contentType == TypeTheater && (self.orderStatu == 2 || self.orderStatu == 6)) {
+    if (self.orderStatu == 2 || self.orderStatu == 6) {
         [self.tableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(30, 0, 72, 0)];
-    }else{
-        [self.tableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsZero];
     }
 }
 

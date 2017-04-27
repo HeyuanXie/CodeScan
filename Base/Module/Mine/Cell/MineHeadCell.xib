@@ -23,7 +23,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradualBackground.png" translatesAutoresizingMaskIntoConstraints="NO" id="drV-N3-Om3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="184.5"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lLu-Hz-A2D">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="小飞象logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="lLu-Hz-A2D">
                         <rect key="frame" x="32" y="85.5" width="67" height="67"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="lLu-Hz-A2D" secondAttribute="height" multiplier="1:1" id="17o-FJ-U4X"/>
@@ -72,5 +72,6 @@
     <resources>
         <image name="gradualBackground.png" width="750" height="1334"/>
         <image name="下个页面箭头_白" width="17" height="17"/>
+        <image name="小飞象logo.png" width="1024" height="1024"/>
     </resources>
 </document>

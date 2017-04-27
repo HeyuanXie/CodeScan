@@ -18,6 +18,6 @@
 -(void)requestCardContinuePayInfoWithOrderId:(NSString*)orderId
                                        complete:(ApiRequestCompleteBlock)complete;
 
--(void)getPointWithOutTradeNo:(NSString*)out_trade_no prepayId:(NSString*)prepayId complete:(ApiRequestCompleteBlock)complete;
+-(void)getPointWithPayId:(NSString*)payId payType:(NSInteger)payType complete:(ApiRequestCompleteBlock)complete;
 
 @end

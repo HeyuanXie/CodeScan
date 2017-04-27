@@ -70,7 +70,7 @@
             [HYTool configTableViewCellDefault:cell];
             [cell setUnFoldBtnClick:^{
                 self.isFold = !self.isFold;
-                [self.tableView reloadData];
+                [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
             }];
             cell.isFold = self.isFold;
             [cell configDescCell:self.data];
@@ -96,7 +96,7 @@
                     [HYTool configTableViewCellDefault:cell];
                     [cell setUnFoldBtnClick:^{
                         self.isFold = !self.isFold;
-                        [self.tableView reloadData];
+                        [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
                     }];
                     cell.isFold = self.isFold;
                     [cell configDescCell:self.data];
@@ -106,7 +106,7 @@
                     [HYTool configTableViewCellDefault:cell];
                     [cell setUnFoldBtnClick:^{
                         self.isFold = !self.isFold;
-                        [self.tableView reloadData];
+                        [self.tableView reloadSections:[[NSIndexSet alloc] initWithIndex:2] withRowAnimation:UITableViewRowAnimationNone];
                     }];
                     cell.isFold = self.isFold;
                     [cell configDescCell:self.data];

@@ -98,7 +98,7 @@
                         if (isSuccess) {
                             NSDictionary* param = responseObject[@"data"];
                             //剧场下单成功和衍生品兑换成功公用一个VC
-                            [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&order_sn=%@&",kTheaterCommitOrderSuccessController,responseObject[@"data"][@"order_sn"]] withParam:param];
+                            [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&order_sn=%@&",kTheaterCommitOrderSuccessController,responseObject[@"data"][@"order_id"]] withParam:param];
                         }else{
                             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
                         }

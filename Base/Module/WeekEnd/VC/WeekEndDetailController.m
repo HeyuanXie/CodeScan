@@ -104,11 +104,6 @@
     } secondBlock:^{
         //TODO:分享
         @strongify(self);
-//        ArticleModel* article = [[ArticleModel alloc] init];
-//        article.title = self.shareTitle;
-//        article.summary = self.summary;
-//        article.img = self.img;
-//        article.sourceUrl = self.url;
         [ShareSDKTools shareShowActionSheet:self.shareTitle summary:self.summary url:self.url imgUrl:self.img view:self.view];
     }];
 

@@ -21,10 +21,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *payBtn;
 
 @property (strong, nonatomic) NSString* orderSn;
+@property (strong, nonatomic) NSString *payId;  //付款Id,用于theaterCommitOrderSuccessController页面请求获得的积分
 
 @property (strong, nonatomic) NSMutableArray* payMethods;  //支付方法array
-@property (assign, nonatomic) NSInteger selectIndex;    //选中的支付方法 1：微信，2：支付宝
+/**
+ 选中的支付方法 1：微信，2：支付宝
 
+ */
+@property (assign, nonatomic) NSInteger selectIndex;
 @property (strong, nonatomic) SelectCouponController* couponController;
 @property (strong, nonatomic) CouponModel* selectCoupon;  //选中的优惠券
 @property (strong, nonatomic) id selectCard;    //选中的年卡
@@ -42,6 +46,7 @@
 @implementation TheaterCommitOrderController
 
 
+//MARK:提交订单
 - (IBAction)commit:(id)sender {
     
     NSMutableArray* seats = [NSMutableArray array];
@@ -74,12 +79,12 @@
     [param safe_setValue:coupon_sn forKey:@"coupon_sn"];
     [param safe_setValue:card_sn forKey:@"card_sn"];
     [param safe_setValue:@(self.timeId) forKey:@"time_id"];
-    //TODO:提交选座订单
     [APIHELPER requestTheaterPayInfoWithParam:param complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
             self.orderSn = responseObject[@"data"][@"order_id"];
+            self.payId = responseObject[@"data"][@"pay_id"];
             if (payType == 0) {
-                APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@",kTheaterCommitOrderSuccessController,_orderSn]));
+                APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@&payId=%@",kTheaterCommitOrderSuccessController,_orderSn,_payId]));
                 return ;
             }
             if ([responseObject[@"data"][@"pay_type"] integerValue] == 1) {
@@ -433,6 +438,13 @@
 }
 
 -(void)showSelectCouponControllerSection:(NSInteger)section {
+    
+    /*选择优惠券后，要做:
+     1:记录self.selectCoupon(如果反选,赋值nil)
+     2:改变self.couponController.couponIndex(如果反选,赋值1000)
+     3:刷新tableView
+     4:改变self.total(KVO自动改变self.totalLbl.text)
+     */
     if (section == 1) {
         self.couponController.contentType = TypeCoupon;
         self.couponController.dataArray = [NSMutableArray arrayWithArray:self.coupons];
@@ -640,7 +652,7 @@
     
     self.isPaySuccessd = YES;
     //TODO:跳到下单成功页面，传递point和order_sn
-    APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@",kTheaterCommitOrderSuccessController,self.orderSn]));
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@&payId=%@&payType=%ld",kTheaterCommitOrderSuccessController,self.orderSn,self.payId,self.selectIndex]));
 }
 
 -(void)cancelPay {

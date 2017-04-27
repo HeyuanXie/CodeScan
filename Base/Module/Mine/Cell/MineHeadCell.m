@@ -25,7 +25,7 @@
     
     if (![Global userAuth]) {
         self.nameLbl.text = @"未登陆";
-        self.headImgV.image = ImageNamed(@"elephant");
+        self.headImgV.image = ImageNamed(@"小飞象logo");
     }else{
         [self.headImgV sd_setImageWithURL:[NSURL URLWithString:APIHELPER.userInfo.faceUrl] placeholderImage:ImageNamed(@"")];
         self.nameLbl.text = [APIHELPER userInfo].nickName;

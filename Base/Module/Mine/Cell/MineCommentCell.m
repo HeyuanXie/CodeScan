@@ -55,6 +55,7 @@
         imgV.image = ImageNamed(@"星星02");
     }
     
+    self.commentLbl.text = model[@"content"];
     [self.imgV sd_setImageWithURL:[NSURL URLWithString:model[@"picurl"]] placeholderImage:ImageNamed(@"elephant")];
     self.titleLbl.text = [[model[@"play_name"] stringByReplacingOccurrencesOfString:@"《" withString:@""] stringByReplacingOccurrencesOfString:@"》" withString:@""];
     self.typeLbl.text = [NSString stringWithFormat:@"%@ / %@分钟",model[@"sub_title"],model[@"pctime"]];

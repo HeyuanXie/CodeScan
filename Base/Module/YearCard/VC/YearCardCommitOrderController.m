@@ -20,7 +20,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalLbl;
 
 @property (strong, nonatomic) NSString* orderSn;
+@property (strong, nonatomic) NSString *payId;  //付款Id,用于theaterCommitOrderSuccessController页面请求获得的积分
+
 @property (strong, nonatomic) NSMutableArray* payMethods;
+
+/**
+ 选择的支付方式, 1:微信； 2:支付宝；
+ */
 @property (assign, nonatomic) NSInteger selectIndex;    //记录选择的支付方式
 
 @property (strong, nonatomic) SelectCouponController * couponController;
@@ -222,12 +228,14 @@
     NSInteger payType = self.selectIndex == 1 ? 2 : 1;
     [param safe_setValue:@([self.data[@"card_id"] integerValue]) forKey:@"card_id"];
     [param safe_setValue:@(payType) forKey:@"pay_type"];
-    
-    [param safe_setValue:@"" forKey:@"coupon_sn"];
+    if (self.selectCoupon) {
+        [param safe_setValue:self.selectCoupon.couponSn forKey:@"coupon_sn"];
+    }
 
     [APIHELPER requestCardPayInfoWithParam:param complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
             self.orderSn = responseObject[@"data"][@"order_id"];
+            self.payId = responseObject[@"data"][@"pay_id"];
             if ([responseObject[@"data"][@"pay_type"] integerValue] == 1) {
                 [HYPayEngine alipayWithOrderStr:responseObject[@"data"][@"pay_data"] withFinishBlock:^(BOOL success, NSString *payMessage) {
                     //这里的支付结果回调只有网页支付会掉，支付宝app支付会在appDelegate中回调
@@ -279,6 +287,7 @@
         if (isSuccess) {
             [self.coupons removeAllObjects];
             [self.coupons addObjectsFromArray:[NSArray yy_modelArrayWithClass:[CouponModel class] array:responseObject[@"data"][@"list"]]];
+            [self.tableView  reloadData];
         }
     }];
 }
@@ -300,16 +309,33 @@
 
 -(void)showSelectCouponController {
     
+    /*选择优惠券后，要做:
+     1:记录self.selectCoupon(如果反选,赋值nil)
+     2:改变self.couponController.couponIndex(如果反选,赋值1000)
+     3:刷新tableView
+     4:改变self.totalLbl.text
+     */
     self.couponController.contentType = TypeCoupon;
     self.couponController.dataArray = [NSMutableArray arrayWithArray:self.coupons];
     @weakify(self);
     [self.couponController setSelectFinish:^(NSInteger index) {
         @strongify(self);
-        self.couponController.couponIndex = index;
+        if (self.selectCoupon == self.coupons[index]) {
+            self.totalLbl.text = [NSString stringWithFormat:@"%.2f",[self.data[@"price"] floatValue]];
+            self.selectCoupon = nil;
+            self.couponController.couponIndex = 1000;
+        }else{
+            //如果不满足年卡使用条件
+            CouponModel* coupon = self.coupons[index];
+            if ([coupon.usedAmount floatValue] > [self.data[@"price"] floatValue]) {
+                [self showMessage:@"消费金额不足,无法使用"];
+                return ;
+            }
+            self.selectCoupon = self.coupons[index];
+            self.couponController.couponIndex = index;
+            self.totalLbl.text = [NSString stringWithFormat:@"%.2f",[self.data[@"price"] floatValue] - [coupon.couponAmount floatValue]];
+        }
         [self hideSelectCouponController];
-        //TODO:选择优惠券、刷新table; 更新self.totalLbl.text
-        self.selectCoupon = self.coupons[index];
-//        self.totalLbl.text = ...
         [self.tableView reloadData];
     }];
     
@@ -323,11 +349,12 @@
     
     [self addChildViewController:self.couponController];
     CGFloat height = 48+120*self.coupons.count;
+    CGFloat reactHeight = MIN(height, kScreen_Height*2/3);
     self.couponController.view.frame = CGRectMake(0, self.view.bounds.size.height, kScreen_Width, height);
     [self.view addSubview:self.couponController.view];
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.couponController.view.frame = CGRectMake(0, self.view.bounds.size.height-height, kScreen_Width, height);
+        self.couponController.view.frame = CGRectMake(0, self.view.bounds.size.height-reactHeight, kScreen_Width, height);
     }];
 }
 
@@ -351,7 +378,7 @@
 }
 -(void)paySuccess {
     
-    APPROUTE(([NSString stringWithFormat:@"%@?contentType=2&order_sn=%@",kTheaterCommitOrderSuccessController,self.orderSn]));
+    APPROUTE(([NSString stringWithFormat:@"%@?contentType=2&order_sn=%@&payId=%@&payType=%ld",kTheaterCommitOrderSuccessController,self.orderSn,self.payId,self.selectIndex]));
 }
 -(void)cancelPay {
     

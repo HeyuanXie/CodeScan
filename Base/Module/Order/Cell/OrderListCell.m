@@ -106,10 +106,11 @@
                 }
                 return;
             }
-            if (orderStatus == 4) {
+            if (orderStatus == 1) {
                 self.statuLbl.text = @"待评价";
                 self.leftBtn.hidden = YES;
                 self.rightBtn.hidden = NO;
+                [self.rightBtn setBlueStyle];
                 [self.rightBtn setTitle:@"去评价" forState:(UIControlStateNormal)];
                 self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
                     
@@ -118,6 +119,12 @@
                     }
                     return [RACSignal empty];
                 }];
+                return;
+            }
+            if (orderStatus == 4) {
+                self.statuLbl.text = @"已评价";
+                self.leftBtn.hidden = YES;
+                self.rightBtn.hidden = YES;
                 return;
             }
             break;

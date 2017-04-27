@@ -9,6 +9,8 @@
 #import "DeriveDetailController.h"
 #import "UIViewController+Extension.h"
 #import "HYAlertView.h"
+#import "ShareSDKTools.h"
+#import "NSString+HYUtilities.h"
 
 @interface DeriveDetailController ()
 @property (weak, nonatomic) IBOutlet UIImageView *botImgV;
@@ -130,7 +132,12 @@
         }
     } secondBlock:^{
         //TODO:分享
-        
+        @strongify(self);
+        if (self.data == nil) {
+            [self showMessage:@"商品详情加载失败,无法分享!"];
+            return ;
+        }
+        [ShareSDKTools shareShowActionSheet:self.data[@"goods_name"] summary:[NSString stringWithHtmlString:self.data[@"content"]] url:self.url imgUrl:self.data[@"thumb_img"] view:self.view];
     }];
 }
 
@@ -161,7 +168,7 @@
                     if (isSuccess) {
                         NSDictionary* param = responseObject[@"data"];
                         //剧场下单成功和衍生品兑换成功公用一个VC
-                        [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&order_sn=%@&",kTheaterCommitOrderSuccessController,responseObject[@"data"][@"order_sn"]] withParam:param];
+                        [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@?contentType=1&order_sn=%@&",kTheaterCommitOrderSuccessController,responseObject[@"data"][@"order_id"]] withParam:param];
                     }else{
                         [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
                     }
@@ -176,6 +183,7 @@
 }
 -(void)gain {
     //TODO:赚积分
+    APPROUTE(kPointManageController);
 }
 
 

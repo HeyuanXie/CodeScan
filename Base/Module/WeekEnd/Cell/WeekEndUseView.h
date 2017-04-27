@@ -11,5 +11,6 @@
 @interface WeekEndUseView : UIView
 
 @property (weak, nonatomic) IBOutlet UIView *botView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *height;
 
 @end

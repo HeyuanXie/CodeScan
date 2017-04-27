@@ -134,7 +134,9 @@
 
 -(void)fetchData {
     
+    [self showLoadingAnimation];
     [APIHELPER theaterSeatDetail:self.hallId timeId:self.timeId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [self hideLoadingAnimation];
         if (isSuccess) {
             for (NSDictionary* dict in responseObject[@"data"][@"seat_list"]) {
                 FVSeatItem* seatsInfo = [FVSeatItem new];
@@ -178,6 +180,8 @@
 }
 
 -(void)configSeatsPicker {
+    [_seatsPicker removeFromSuperview];
+    _seatsPicker = nil;
     _seatsPicker = ({
         FVSeatsPicker* picker = [FVSeatsPicker new];
         picker.seatsDelegate = self;

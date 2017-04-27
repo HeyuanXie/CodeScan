@@ -107,6 +107,7 @@
 #pragma mark - tableView delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.type == 0) {
+
         BOOL isFold = [[self.foldArr objectAtIndex:indexPath.section] boolValue];
         if (isFold) {
             return [tableView fd_heightForCellWithIdentifier:[MessageSystemCell identify] cacheByIndexPath:indexPath configuration:^(MessageSystemCell* cell) {

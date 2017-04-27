@@ -79,29 +79,37 @@
     return _dataArray.count;
 }
 
-- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view1
 {
     //create new view if no view is available for recycling
-    if (view == nil)
-    {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.imageViewSize.width, self.imageViewSize.height)];
-        imageView.contentMode = self.imageViewType;
-        
-        NSString *str = _dataArray[index];
-        
-        if ([str hasPrefix:@"http"]) {
-            
-            [imageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:nil];
-            
-        }else{
-            
-            imageView.image = [UIImage imageNamed:str];
-        }
-        
-        view = imageView;
-    }
+//    if (view == nil)
+//    {
+//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.imageViewSize.width, self.imageViewSize.height)];
+//        imageView.contentMode = self.imageViewType;
+//        
+//        NSString *str = _dataArray[index];
+//        
+//        if ([str hasPrefix:@"http"]) {
+//            
+//            [imageView sd_setImageWithURL:[NSURL URLWithString:str] placeholderImage:nil];
+//            
+//        }else{
+//            
+//            imageView.image = [UIImage imageNamed:str];
+//        }
+//        
+//        view = imageView;
+//    }
+//    
+//    
+//    return view;
     
-    
+    //create new view if no view is available for recycling
+    UIImageView *view;
+    NSString* imageName = _dataArray[index];
+    view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.imageViewSize.width, self.imageViewSize.height)];
+    [view sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:nil];
+    view.contentMode = self.imageViewType;
     return view;
 }
 

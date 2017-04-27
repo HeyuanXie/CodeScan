@@ -11,6 +11,7 @@
 #import "HYAddressController.h"
 #import "BaseNavigationController.h"
 #import "WeekEndDetailController.h"
+#import "WKWebViewController.h"
 
 #import "HYScrollView.h"
 #import "HYSearchBar.h"
@@ -203,7 +204,12 @@
     @weakify(self);
     _banner.clickAction = ^(NSInteger index,NSArray* dataArray){
         @strongify(self);
-        //TODO:
+        //TODO:点击banner
+        NSDictionary* slide = self.banners[index];
+        WKWebViewController* webVC = [[WKWebViewController alloc] init];
+        webVC.url = slide[@"ad_link"];
+        webVC.autoLoad = YES;
+        [self.navigationController pushViewController:webVC animated:YES];
     };
     [cell.topView addSubview:_banner.rollView];
     return cell;
@@ -440,7 +446,7 @@
     HYSearchBar* searchBar = [HYSearchBar searchBarWithFrame:CGRectMake(0, 0, kScreen_Width-110, 30) placeholder:@"小鬼当家"];
     [HYTool configViewLayer:searchBar size:15];
     self.navigationItem.titleView = searchBar;
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 210, 30)];
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 30)];
     view.backgroundColor = [UIColor clearColor];
     [view bk_whenTapped:^{
         APPROUTE(kSearchGuideController);
@@ -551,7 +557,7 @@
     }
 }
 
-#pragma mark - 设置APP静态图片引导页
+//MARK:设置APP静态图片引导页
 - (void)setStaticGuidePage {
     NSArray *imageNameArray = @[@"小飞象01",@"小飞象02",@"小飞象03",@"小飞象04"];
     DHGuidePageHUD *guidePage = [[DHGuidePageHUD alloc] dh_initWithFrame:[[UIScreen mainScreen] bounds] imageNameArray:imageNameArray buttonIsHidden:NO];
@@ -560,7 +566,7 @@
 //    [self.navigationController.view addSubview:guidePage];
 }
 
-#pragma mark - 设置APP动态图片引导页
+//MARK:设置APP动态图片引导页
 - (void)setDynamicGuidePage {
     NSArray *imageNameArray = @[@"guideImage6.gif",@"guideImage7.gif",@"guideImage8.gif"];
     DHGuidePageHUD *guidePage = [[DHGuidePageHUD alloc] dh_initWithFrame:self.view.frame imageNameArray:imageNameArray buttonIsHidden:YES];
@@ -568,7 +574,7 @@
     [self.navigationController.view addSubview:guidePage];
 }
 
-#pragma mark - 设置APP视频引导页
+//MARK:设置APP视频引导页
 - (void)setVideoGuidePage {
     NSURL *videoURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"guideMovie1" ofType:@"mov"]];
     DHGuidePageHUD *guidePage = [[DHGuidePageHUD alloc] dh_initWithFrame:self.view.bounds videoURL:videoURL];

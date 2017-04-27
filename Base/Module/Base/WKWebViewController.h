@@ -14,6 +14,11 @@
 @property(nonatomic,copy)NSString* url;
 @property(nonatomic,strong)WKWebView* webView;
 
+/**
+ viewDidLoad时，是否自动加载
+ */
+@property(nonatomic,assign)BOOL autoLoad;
+
 -(void)webViewInit;
 -(void)loadWebView;
 

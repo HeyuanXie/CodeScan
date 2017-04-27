@@ -20,11 +20,11 @@ typedef enum : NSUInteger {
 
 @property(nonatomic,assign)ContentType contentType;
 @property(nonatomic,strong)NSString* orderSn; //订单Id
+@property(nonatomic,strong)NSString* payId;     //用于请求获得的积分
 @property(nonatomic,strong)NSString* point; //获得的积分
 @property(nonatomic,assign)NSInteger payType;   //支付方式 1:微信支付, 2:支付宝支付
 
-@property(nonatomic,strong)NSString* out_trade_no;  //支付宝成功返回
-@property(nonatomic,strong)NSString* prepayId;      //微信支付成功返回
+@property(nonatomic,strong)UIView* tableHeadView;
 
 @end
 
@@ -39,15 +39,12 @@ typedef enum : NSUInteger {
     if (self.schemaArgu[@"order_sn"]) {
         self.orderSn = [self.schemaArgu objectForKey:@"order_sn"];
     }
-//    if (self.schemaArgu[@"payType"]) {
-//        self.payType = [[self.schemaArgu objectForKey:@"payType"] integerValue];
-//    }
-//    if (self.schemaArgu[@"out_trade_no"]) {
-//        self.out_trade_no = [self.schemaArgu objectForKey:@"out_trade_no"];
-//    }
-//    if (kGetObjectFromUserDefaults(@"prepayId")) {
-//        self.prepayId = kGetObjectFromUserDefaults(@"prepayId");
-//    }
+    if (self.schemaArgu[@"payId"]) {
+        self.payId = [self.schemaArgu objectForKey:@"payId"];
+    }
+    if (self.schemaArgu[@"payType"]) {
+        self.payType = [[self.schemaArgu objectForKey:@"payType"] integerValue];
+    }
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsZero];
     
     [self subviewStyle];
@@ -119,22 +116,21 @@ typedef enum : NSUInteger {
         default:
             break;
     }
-    UIView* headView = LOADNIB(@"TheaterUseView", index);
-    if ([headView viewWithTag:1000]) {
-        UILabel* pointLbl = [headView viewWithTag:1000];
-        pointLbl.text = [NSString stringWithFormat:@"获得积分: %@",self.point];
-    }
-    self.tableView.tableHeaderView = headView;
+    self.tableHeadView = LOADNIB(@"TheaterUseView", index);
+    self.tableView.tableHeaderView = self.tableHeadView;
 }
 
 -(void)fetchData {
     if (self.contentType == TypeDerive) {
         return;
     }
-    [APIHELPER getPointWithOutTradeNo:self.out_trade_no prepayId:self.prepayId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+    [APIHELPER getPointWithPayId:self.payId payType:self.payType complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
             self.point = responseObject[@"data"][@"score"];
-            [self.tableView reloadData];
+            if ([self.tableHeadView viewWithTag:1000]) {
+                UILabel* pointLbl = [self.tableHeadView viewWithTag:1000];
+                pointLbl.text = [NSString stringWithFormat:@"获得积分: %@",self.point];
+            }
         }else{
             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
         }

@@ -18,7 +18,8 @@
 @property(nonatomic,strong)NSMutableArray* dataArray;
 @property(nonatomic,assign)NSInteger type;  //类型，1为小飞象资讯、2为周末去哪儿
 
-@property(nonatomic,strong)NSMutableArray* countries;   //镇区
+@property(nonatomic,strong)NSArray* countries;   //镇区names
+@property(nonatomic,strong)NSArray* areaIds;            //镇区Ids
 @property(nonatomic,assign)NSInteger areaId;
 @property(nonatomic,assign)NSInteger cateId;
 @property(nonatomic,strong)NSString* selectCountry;
@@ -35,7 +36,12 @@
         self.type = [[self.schemaArgu objectForKey:@"type"] integerValue];
     }
     
-    self.countries = [@[@"东城区",@"南城区",@"莞城区",@"石碣镇",@"大岭山镇",@"厚街镇",@"虎门镇",@"常平镇",@"松山湖"] mutableCopy];
+    self.areaId = 291700;
+    self.selectCountry = @"东莞市";
+    [self.rightBtn setTitle:@"东莞市" forState:UIControlStateNormal];
+    
+    self.countries = @[@"东莞市",@"莞城区",@"南城区",@"东城区",@"万江区",@"松山区",@"石碣区",@"石龙区",@"茶山区",@"石排区",@"企石区",@"横沥区",@"桥头区",@"谢岗区",@"东坑区",@"常平区",@"寮步区",@"大朗区",@"黄江区",@"清溪区",@"塘厦区",@"凤岗区",@"长安区",@"虎门区",@"厚街区",@"沙田区",@"道滘区",@"洪梅区",@"麻涌区",@"中堂区",@"高埗区",@"樟木头区",@"大岭山区",@"望牛墩区"];
+    self.areaIds = @[@(291700),@(291701),@(291702),@(291703),@(291704),@(291733),@(291705),@(291706),@(291707),@(291708),@(291709),@(291710),@(291711),@(291712),@(291713),@(291714),@(291715),@(291716),@(291717),@(291718),@(291719),@(291720),@(291721),@(291722),@(291723),@(291724),@(291725),@(291726),@(291727),@(291728),@(291729),@(291730),@(291731),@(291732)];
     
     [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(0, 0, 0, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -256,7 +262,7 @@
         [UIView animateWithDuration:0.2 animations:^{
             topView.Line.frame = CGRectMake(22+2*width, 98, width-20, 2);
         }];
-        self.cateId = 3;
+        self.cateId = 2;
         [self fetchData];
     }];
     
@@ -269,6 +275,12 @@
 -(void)showAddressView {
     
     WeekEndUseView* view = LOADNIB(@"WeekEndUseView", 0);
+    if (IS_IPHONE_5s) {
+        view.height.constant = 350;
+    }
+    if (IS_IPHONE_Plus) {
+        view.height.constant = 250;
+    }
     view.frame = CGRectMake(0, -140, kScreen_Width, kScreen_Height+140);
     view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
     [view bk_whenTapped:^{
@@ -280,11 +292,14 @@
     CGFloat x = 0;CGFloat y = 10;
     for (int i=0; i<self.countries.count; i++) {
         NSString* country = self.countries[i];
+        NSInteger areId = [self.areaIds[i] integerValue];
         CGFloat width = [country sizeWithFont:[UIFont systemFontOfSize:16] maxWidth:CGFLOAT_MAX].width;
         UIButton* btn = [HYTool getButtonWithFrame:CGRectMake(x, y, width+20, 38) title:country titleSize:16 titleColor:[UIColor hyBlackTextColor] backgroundColor:nil blockForClick:^(id sender) {
             self.selectCountry = country;
+            self.areaId = areId;
             [self.rightBtn setTitle:country forState:UIControlStateNormal];
             [self hideAddressView];
+            [self fetchData];
         }];
         if ([country isEqualToString:self.selectCountry]) {
             [btn setTitleColor:[UIColor hyBlueTextColor] forState:UIControlStateNormal];
@@ -292,7 +307,7 @@
         [view.botView addSubview:btn];
         x = x + width+20;
         if (x >= kScreen_Width) {
-            btn.frame = CGRectMake(0, 10+38, width+20, 38);
+            btn.frame = CGRectMake(0, y+38, width+20, 38);
             x = width+20;
             y = y+38;
         }
