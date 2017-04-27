@@ -362,7 +362,7 @@
             [self showMessage:@"剧场详情加载失败,无法分享!"];
             return ;
         }
-        [ShareSDKTools shareShowActionSheet:self.playInfo.playName summary:self.playInfo.desc url:@"" imgUrl:self.playInfo.picurl view:self.view];
+        [ShareSDKTools shareShowActionSheet:self.playInfo.playName summary:self.playInfo.desc url:self.playInfo.sourceUrl imgUrl:self.playInfo.picurl view:self.view];
     }];
 }
 

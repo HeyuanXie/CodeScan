@@ -199,6 +199,7 @@
 		845BDF9A1E28D2C00064ACAE /* BaseUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BDF991E28D2C00064ACAE /* BaseUITests.m */; };
 		845BDFAA1E28D8920064ACAE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 845BDFA91E28D8920064ACAE /* AppDelegate.m */; };
 		845BDFB21E28D8D30064ACAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 845BDFAD1E28D8D30064ACAE /* Assets.xcassets */; };
+		846CA2051EB1E4080023B4D2 /* CouponRulesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846CA2041EB1E4080023B4D2 /* CouponRulesController.m */; };
 		846CC0171EA9E3730017336D /* LBXZXCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 846CBE291EA9E3730017336D /* LBXZXCapture.m */; };
 		846CC0181EA9E3730017336D /* ZXAztecDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 846CBE2F1EA9E3730017336D /* ZXAztecDecoder.m */; };
 		846CC0191EA9E3730017336D /* ZXAztecDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 846CBE321EA9E3730017336D /* ZXAztecDetector.m */; };
@@ -927,6 +928,8 @@
 		845BDFB31E28DA470064ACAE /* MyPCH.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPCH.pch; sourceTree = "<group>"; };
 		846CA2011EB183CE0023B4D2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		846CA2021EB183CE0023B4D2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		846CA2031EB1E4080023B4D2 /* CouponRulesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponRulesController.h; sourceTree = "<group>"; };
+		846CA2041EB1E4080023B4D2 /* CouponRulesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponRulesController.m; sourceTree = "<group>"; };
 		846CBE281EA9E3730017336D /* LBXZXCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXZXCapture.h; sourceTree = "<group>"; };
 		846CBE291EA9E3730017336D /* LBXZXCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXZXCapture.m; sourceTree = "<group>"; };
 		846CBE2A1EA9E3730017336D /* LBXZXCaptureDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXZXCaptureDelegate.h; sourceTree = "<group>"; };
@@ -2027,6 +2030,8 @@
 				841D4AFE1E7A72F7002C49C0 /* PointDescController.m */,
 				841D4ACF1E7A1E0E002C49C0 /* MineCouponController.h */,
 				841D4AD01E7A1E0E002C49C0 /* MineCouponController.m */,
+				846CA2031EB1E4080023B4D2 /* CouponRulesController.h */,
+				846CA2041EB1E4080023B4D2 /* CouponRulesController.m */,
 				841D4AD21E7A1E1A002C49C0 /* MineCommentController.h */,
 				841D4AD31E7A1E1A002C49C0 /* MineCommentController.m */,
 			);
@@ -4501,6 +4506,7 @@
 				84924E7B1E2C7806005F05C3 /* BaseViewController.m in Sources */,
 				846CC0CF1EA9E3740017336D /* ZXPDF417BarcodeMatrix.m in Sources */,
 				846CC0791EA9E3730017336D /* ZXDataMatrixEncoderContext.m in Sources */,
+				846CA2051EB1E4080023B4D2 /* CouponRulesController.m in Sources */,
 				846CC0811EA9E3730017336D /* ZXDataMatrixWriter.m in Sources */,
 				846CC05D1EA9E3730017336D /* ZXHybridBinarizer.m in Sources */,
 				846CC0551EA9E3730017336D /* ZXBoolArray.m in Sources */,

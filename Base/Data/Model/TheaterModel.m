@@ -26,7 +26,8 @@
              @"hallId":@"hall_id",
              @"theaterId":@"theatre_id",
              @"theaterName":@"theatre_name",
-             @"payableAmount":@"payable_amount"
+             @"payableAmount":@"payable_amount",
+             @"sourceUrl":@"source_url"
              };
 }
 

@@ -267,7 +267,7 @@ typedef enum : NSUInteger {
     UIView* topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 42)];
     topView.backgroundColor = [UIColor whiteColor];
     
-    NSArray* titles = @[@"全部",@"晒图",@"最新"];
+    NSArray* titles = @[@"全部",@"晒图"];
     CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, kScreen_Width, 42) menuTitles:titles textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBlueTextColor] isLineAdaptText:YES];
     [topView addSubview:btns];
     NSArray* styles = @[@(CommentAll),@(CommentImage),@(CommentNew)];
