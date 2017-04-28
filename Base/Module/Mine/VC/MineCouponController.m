@@ -154,8 +154,8 @@
 
 #pragma mark - IBActions
 - (IBAction)useRules:(id)sender {
-    //TODO:使用规则
-    
+    //使用规则
+    APPROUTE(kCouponRulesController);
 }
 
 

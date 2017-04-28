@@ -27,6 +27,7 @@
 #import "APIHelper+Article.h"
 #import "APIHelper+YearCard.h"
 #import "APIHelper+Order.h"
+#import "APIHelper+CheckUpdate.h"
 
 //None-Pods
 #import "NSObject+Routes.h"

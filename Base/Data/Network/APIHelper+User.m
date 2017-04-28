@@ -8,6 +8,7 @@
 
 #import "APIHelper+User.h"
 #import "NSString+HYUtilities.h"
+#import "JPUSHService.h"
 
 @implementation APIHelper (User)
 
@@ -115,6 +116,7 @@
     //退出登陆，清空UserAuth和userInfo
     [Global setUserAuth:nil];
     self.userInfo = nil;
+    [JPUSHService setAlias:@"" callbackSelector:nil object:nil];
     kCleanPassword;
 }
 

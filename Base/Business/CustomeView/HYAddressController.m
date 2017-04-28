@@ -320,10 +320,10 @@
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     if ([error code]==kCLErrorDenied) {
-        NSLog(@"访问被拒绝");
+        DLog(@"访问被拒绝");
     }
     if ([error code]==kCLErrorLocationUnknown) {
-        NSLog(@"无法获取位置信息");
+        DLog(@"无法获取位置信息");
     }
 }
 

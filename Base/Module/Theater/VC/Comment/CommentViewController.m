@@ -194,7 +194,7 @@
 }
 
 -(void)commentDerive {
-    [APIHELPER deriveComment:[self.data[@"goods_id"] integerValue] orderSn:self.data[@"order_sn"] score:self.score comment:self.textView.text images:self.imageUrls complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+    [APIHELPER deriveComment:[self.data[@"goods_id"] integerValue] orderSn:self.data[@"order_id"] score:self.score comment:self.textView.text images:self.imageUrls complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
             [self showMessage:@"评价成功"];
             [self.navigationController popViewControllerAnimated:YES];

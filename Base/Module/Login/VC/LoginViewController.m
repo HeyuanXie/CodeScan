@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "UIViewController+Extension.h"
 #import "NSString+HYUtilities.h"
+#import "JPUSHService.h"
 
 @interface LoginViewController ()
 
@@ -113,6 +114,8 @@
             [Global setUserAuth:responseObject[@"data"][@"auth"]];
             APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
             kSaveAccountAndPassword(self.accountTf.text, self.passwordTf.text)
+            NSString* pushAccount = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"push_account"]];
+            [JPUSHService setAlias:pushAccount callbackSelector:nil object:nil];
             [self.navigationController popViewControllerAnimated:YES];
         }else{
             [MBProgressHUD hy_showMessage:error.userInfo[NSLocalizedDescriptionKey] inView:self.view];

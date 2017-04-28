@@ -40,7 +40,7 @@
     
     NSMutableDictionary* param = [NSMutableDictionary dictionary];
     [param safe_setValue:@(goodId) forKey:@"goods_id"];
-    [param safe_setValue:orderSn forKey:@"order_sn"];
+    [param safe_setValue:orderSn forKey:@"order_id"];
     [param safe_setValue:@(score) forKey:@"comment_score"];
     [param safe_setValue:comment forKey:@"content"];
     [param safe_setValue:imageUrls forKey:@"show_img"];

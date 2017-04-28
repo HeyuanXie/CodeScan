@@ -46,18 +46,18 @@
                     break;
                 case AFNetworkReachabilityStatusUnknown:
                 {
-                    NSLog(@"网络有问题了");
+                    DLog(@"网络有问题了");
                     [kNotificationCenter postNotificationName:kNetNotReachabilityNotification object:nil];
                 }
                     break;
                 case AFNetworkReachabilityStatusReachableViaWiFi:
                 {
-                    NSLog(@"wifi");
+                    DLog(@"wifi");
                 }
                     break;
                 case AFNetworkReachabilityStatusReachableViaWWAN:
                 {
-                    NSLog(@"2G 3G");
+                    DLog(@"2G 3G");
                 }
                     break;
                 default:
@@ -87,7 +87,7 @@
 #if 1
         NSString *queryLog = [[NSString alloc] initWithData:task.originalRequest.HTTPBody encoding:NSUTF8StringEncoding];
         NSString *urlLog = [task.originalRequest.URL.absoluteString stringByAppendingString: [NSString stringWithFormat:task.originalRequest.URL.query ? @"&%@" : @"?%@", queryLog]];
-        NSLog(@"http request success ---  GET---:\n%@\n", urlLog);
+        DLog(@"http request success ---  GET---:\n%@\n", urlLog);
 #endif
 #endif
         
@@ -109,7 +109,7 @@
 #if 1
         NSString *queryLog = [[NSString alloc] initWithData:task.originalRequest.HTTPBody encoding:NSUTF8StringEncoding];
         NSString *urlLog = [task.originalRequest.URL.absoluteString stringByAppendingString: [NSString stringWithFormat:task.originalRequest.URL.query ? @"&%@" : @"?%@", queryLog]];
-        NSLog(@"http request failure ---  GET---:\n%@\n", urlLog);
+        DLog(@"http request failure ---  GET---:\n%@\n", urlLog);
 #endif
 #endif
         if(complete){
@@ -138,7 +138,7 @@
 #if 1
         NSString *queryLog = [[NSString alloc] initWithData:task.originalRequest.HTTPBody encoding:NSUTF8StringEncoding];
         NSString *urlLog = [task.originalRequest.URL.absoluteString stringByAppendingString: [NSString stringWithFormat:task.originalRequest.URL.query ? @"&%@" : @"?%@", queryLog]];
-        NSLog(@"http request success ---  POST---:\n%@\n", urlLog);
+        DLog(@"http request success ---  POST---:\n%@\n", urlLog);
 #endif
 #endif
         NSDictionary *responseDict = responseObject;
@@ -159,7 +159,7 @@
 #if 1
         NSString *queryLog = [[NSString alloc] initWithData:task.originalRequest.HTTPBody encoding:NSUTF8StringEncoding];
         NSString *urlLog = [task.originalRequest.URL.absoluteString stringByAppendingString: [NSString stringWithFormat:task.originalRequest.URL.query ? @"&%@" : @"?%@", queryLog]];
-        NSLog(@"http request failure ---  POST---:\n%@\n", urlLog);
+        DLog(@"http request failure ---  POST---:\n%@\n", urlLog);
 #endif
 #endif
         if (complete) {
@@ -199,7 +199,7 @@
 #if 1
                   NSString *queryLog = [[NSString alloc] initWithData:task.originalRequest.HTTPBody encoding:NSUTF8StringEncoding];
                   NSString *urlLog = [task.originalRequest.URL.absoluteString stringByAppendingString: [NSString stringWithFormat:task.originalRequest.URL.query ? @"&%@" : @"?%@", queryLog]];
-                  NSLog(@"http request failure ---  UPLOAD---:\n%@\n", urlLog);
+                  DLog(@"http request failure ---  UPLOAD---:\n%@\n", urlLog);
 #endif
 #endif
                   

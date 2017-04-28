@@ -56,9 +56,11 @@
     }
     
     self.commentLbl.text = model[@"content"];
+    self.timeLbl.text = model[@"create_time"];
     [self.imgV sd_setImageWithURL:[NSURL URLWithString:model[@"picurl"]] placeholderImage:ImageNamed(@"elephant")];
     self.titleLbl.text = [[model[@"play_name"] stringByReplacingOccurrencesOfString:@"《" withString:@""] stringByReplacingOccurrencesOfString:@"》" withString:@""];
     self.typeLbl.text = [NSString stringWithFormat:@"%@ / %@分钟",model[@"sub_title"],model[@"pctime"]];
+    
     
     NSArray* images = model[@"show_img"];
     if (images.count==0) {

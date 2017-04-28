@@ -261,7 +261,7 @@
                                 }
                                 if (i == 0) {
                                     //TODO:转增
-                                    NSLog(@"转增");
+                                    DLog(@"转增");
                                 }else{
                                     APPROUTE(([NSString stringWithFormat:@"%@?cardNum=%@&cardPassword=%@",kYearCardBindController,self.data[@"card_sn"],self.data[@"card_password"]]));
                                 }

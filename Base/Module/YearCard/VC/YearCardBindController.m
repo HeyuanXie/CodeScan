@@ -61,8 +61,9 @@
 
     [APIHELPER bindYearCard:num password:password complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
-            NSDate* date = [HYTool dateAfterMonths:[NSDate date] gapMonth:12];
-            NSString* deadline = [HYTool dateStringWithDate:date format:@"yyyy-MM-dd"];
+//            NSDate* date = [HYTool dateAfterMonths:[NSDate date] gapMonth:12];
+//            NSString* deadline = [HYTool dateStringWithDate:date format:@"yyyy-MM-dd"];
+            NSString* deadline = responseObject[@"data"];
             APPROUTE(([NSString stringWithFormat:@"%@?deadline=%@",kYearCardBindSuccessController,deadline]));
         }else{
             [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];

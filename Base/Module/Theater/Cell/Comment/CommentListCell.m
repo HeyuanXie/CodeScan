@@ -54,11 +54,11 @@
     self.botScroll.contentSize = CGSizeMake(8+(106+8)*imgs.count, 0);
     
     NSInteger score = type == 0 ? model.score.integerValue : model.commentScore.integerValue;
-    for (int i=0; i<score/2; i++) {
+    for (int i=0; i<score; i++) {
         UIButton* btn = (UIButton*)[self.scoreV viewWithTag:1000+i];
         [btn setImage:ImageNamed(@"星星01") forState:UIControlStateNormal];
     }
-    for (int i=(int)score/2; i<5; i++) {
+    for (int i=(int)score; i<5; i++) {
         UIButton* btn = (UIButton*)[self.scoreV viewWithTag:1000+i];
         [btn setImage:ImageNamed(@"星星02") forState:UIControlStateNormal];
     }

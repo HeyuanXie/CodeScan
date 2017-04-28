@@ -40,6 +40,7 @@
 - (void)dataInit{
     self.settings = @[
                         @[@{@"title":@"个人资料",@"router":kUserInfoViewController,@"needLogin":@(NO)},@{@"title":@"账户安全",@"router":kAccountSecurityController,@"needLogin":@(NO)}],
+                        @[@{@"title":@"消息推送设置",@"router":kMessageSetController,@"needLogin":@(NO)}],
                         @[@{@"title":@"清理缓存"}, @{@"title":@"意见反馈",@"router":kFeedbackController},@{@"title":@"关于我们",@"router":kAboutUsViewController,@"needLogin":@(NO)}],
                         @[@{@"title":@"退出登陆"}]
                     ];
@@ -65,7 +66,7 @@
     cell.textLabel.textColor = cell.detailTextLabel.textColor = [UIColor hyBlackTextColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    if (indexPath.section == 1 && indexPath.row == 0) {
+    if (indexPath.section == 2 && indexPath.row == 0) {
         long long cacheSize = [Global cacheSize];
         if (cacheSize > 0) {
             long long compareSizeM = 1024*1024; //比较数：MB
@@ -81,7 +82,7 @@
             cell.detailTextLabel.text = @"0KB";
         }
     }
-    if (indexPath.section == 2) {
+    if (indexPath.section == 3) {
         cell.textLabel.text = @"";
         cell.detailTextLabel.text = @"";
         for (UIView* subView in cell.contentView.subviews) {
@@ -119,7 +120,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (indexPath.section == 1 && indexPath.row == 0) {
+    if (indexPath.section == 2 && indexPath.row == 0) {
         if ([Global cacheSize] > 0) {
             [UIAlertView bk_showAlertViewWithTitle:@"确定消除缓存？" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 if (buttonIndex == 1) {
@@ -130,12 +131,6 @@
         }
         return;
     }
-//    if (indexPath.section == 1 && indexPath.row == 2) {
-//        WebViewController *webvc = [[WebViewController alloc] init];
-//        webvc.url = APIHELPER.config[@"aboutus_url"];
-//        [self.navigationController pushViewController:webvc animated:YES];
-//        return;
-//    }
     
     NSDictionary* info = self.settings[indexPath.section][indexPath.row];
     if ([info[@"needLogin"] boolValue] && ![Global userAuth]) {

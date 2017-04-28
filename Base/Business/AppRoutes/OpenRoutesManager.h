@@ -72,6 +72,8 @@ extern NSString* const kWeekEndDetailController;
 extern NSString* const kSettingViewController;
 extern NSString* const kMessageHomeController;
 extern NSString* const kMessageListController;
+extern NSString* const kMessageSetController;
+
 extern NSString* const kUserInfoViewController;
 extern NSString* const kFeedbackController;
 extern NSString* const kAboutUsViewController;
@@ -87,6 +89,8 @@ extern NSString* const kPointDetailController;
 extern NSString* const kPointDescController;
 //extern NSString* const kPointRecordController;    在Derive中定义了
 extern NSString* const kMineCouponController;
+extern NSString* const kCouponRulesController;
+
 extern NSString* const kMineCommentController;
 //extern NSString* const kMineSupportController;    在Skill中定义了
 

@@ -541,7 +541,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                NSLog(@"计时结束");
+                DLog(@"计时结束");
                 self.timeLbl.text = @"超过支付时间，无法支付";
                 [self.payBtn setGrayStyle];
             });

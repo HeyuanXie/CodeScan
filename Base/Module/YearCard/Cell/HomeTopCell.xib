@@ -208,10 +208,10 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="飞象卡字样" translatesAutoresizingMaskIntoConstraints="NO" id="aDe-ti-Uvu">
-                        <rect key="frame" x="145" y="38" width="85" height="26"/>
+                        <rect key="frame" x="93" y="38" width="189" height="26"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="26" id="2FD-NT-6Ea"/>
-                            <constraint firstAttribute="width" constant="85" id="mM3-IA-McX"/>
+                            <constraint firstAttribute="width" constant="189" id="mM3-IA-McX"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1+1家庭年票" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Chp-ry-053">
@@ -257,6 +257,6 @@
         <image name="年卡权益02" width="60" height="60"/>
         <image name="年卡权益03" width="60" height="60"/>
         <image name="年卡背景" width="310" height="180"/>
-        <image name="飞象卡字样" width="79" height="24"/>
+        <image name="飞象卡字样" width="186" height="24"/>
     </resources>
 </document>

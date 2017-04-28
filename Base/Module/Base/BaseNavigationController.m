@@ -38,7 +38,7 @@
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     if (!viewController){
-        NSLog(@"坑位配置为0 Application tried to push a nil view controller on target <BaseNavigationController: >.");
+        DLog(@"坑位配置为0 Application tried to push a nil view controller on target <BaseNavigationController: >.");
         return;
     }
     if (self.viewControllers.count > 0) {

@@ -48,6 +48,9 @@
     self.status = @[@"全部",@"待付款",@"待使用",@"待评价",@"退款"];
     if (self.schemaArgu[@"typeId"]) {
         self.typeId = [[self.schemaArgu objectForKey:@"typeId"] integerValue];
+        if (self.typeId == 1) {
+            self.status = @[@"待领取",@"待评价",@"已完成"];
+        }
     }
     self.statuId = 1;
     

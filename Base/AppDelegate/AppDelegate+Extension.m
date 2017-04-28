@@ -24,12 +24,16 @@
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
 
+#import "JPUSHService.h"
+
+
 NS_ENUM(NSUInteger, TabType) {
     TabTypeHome = 0,
     TabTypeSecond,
     TabTypeThird,
     TabTypeForth,
 };
+
 
 @implementation AppDelegate (Extension)
 
@@ -40,6 +44,8 @@ NS_ENUM(NSUInteger, TabType) {
             if (isSuccess) {
                 [Global setUserAuth:responseObject[@"data"][@"auth"]];
                 APIHELPER.userInfo = [UserInfoModel yy_modelWithJSON:responseObject[@"data"]];
+                NSString* pushAccount = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"push_account"]];
+                [JPUSHService setAlias:pushAccount callbackSelector:nil object:nil];
             }
         }];
     }

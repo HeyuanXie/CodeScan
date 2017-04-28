@@ -67,6 +67,7 @@ NSString* const kWeekEndDetailController = @"WeekEndDetailController";
 NSString* const kSettingViewController = @"SettingViewController";
 NSString* const kMessageHomeController = @"MessageHomeController";
 NSString* const kMessageListController = @"MessageListController";
+NSString* const kMessageSetController = @"MessageSetController";
 NSString* const kUserInfoViewController = @"UserInfoViewController";
 NSString* const kFeedbackController = @"FeedbackController";
 NSString* const kAboutUsViewController = @"AboutUsViewController";
@@ -80,6 +81,7 @@ NSString* const kPointManageController = @"PointManageController";
 NSString* const kPointDetailController = @"PointDetailController";
 NSString* const kPointDescController = @"PointDescController";
 NSString* const kMineCouponController = @"MineCouponController";
+NSString* const kCouponRulesController = @"CouponRulesController";
 NSString* const kMineCommentController = @"MineCommentController";
 
 
@@ -180,6 +182,7 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kUserInfoViewController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMessageHomeController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMessageListController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kMessageSetController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kFeedbackController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kAboutUsViewController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kAccountSecurityController,@"sb":@"Mine",@"method":@"push"},
@@ -191,6 +194,7 @@ NSString* const kAddressController = @"HYAddressController";
                         @{@"cls":kPointDetailController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kPointDescController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMineCouponController,@"sb":@"Mine",@"method":@"push"},
+                        @{@"cls":kCouponRulesController,@"sb":@"Mine",@"method":@"push"},
                         @{@"cls":kMineCommentController,@"sb":@"Mine",@"method":@"push"},
 
                         @{@"cls":kRegistViewController,@"sb":@"Login",@"method":@"push"},

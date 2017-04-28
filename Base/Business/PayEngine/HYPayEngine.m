@@ -51,7 +51,7 @@ static NSString *const payApi = @"mobile_securitypay_pay";
         else{
             alipayCallback(NO,resultDic[@"memo"]);
         }
-        NSLog(@"%@",resultDic);
+        DLog(@"%@",resultDic);
     }];
 }
 
