@@ -63,7 +63,7 @@
 
 #pragma mark - IBActions
 - (IBAction)payNow:(id)sender {
-    //TODO:年卡继续支付
+    //年卡继续支付
     [APIHELPER requestCardContinuePayInfoWithOrderId:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
             NSInteger payType = [responseObject[@"data"][@"pay_type"] integerValue];
@@ -207,7 +207,7 @@
                     }
                     UIButton* btn = [cell.contentView viewWithTag:1000];
                     UILabel* lbl = [cell.contentView viewWithTag:1001];
-                    //TODO:根据订单状态设置是否隐藏btn，和lbl的文字
+                    //根据订单状态设置是否隐藏btn，和lbl的文字
                     if (self.orderStatu == 1) { //从全部订单跳转过来的，另外判断
       
                     }else if (self.orderStatu == 2) {
@@ -260,7 +260,7 @@
                                     return ;
                                 }
                                 if (i == 0) {
-                                    //TODO:转增
+                                    //转增
                                     DLog(@"转增");
                                 }else{
                                     APPROUTE(([NSString stringWithFormat:@"%@?cardNum=%@&cardPassword=%@",kYearCardBindController,self.data[@"card_sn"],self.data[@"card_password"]]));

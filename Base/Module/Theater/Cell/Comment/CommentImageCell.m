@@ -28,7 +28,7 @@
     return NSStringFromClass([self class]);
 }
 
-//TODO:configCell
+//configCell
 -(void)configTheaterCell:(id)model {
     
     [self.imgV sd_setImageWithURL:[NSURL URLWithString:model[@"picurl"]] placeholderImage:ImageNamed(@"elephant")];

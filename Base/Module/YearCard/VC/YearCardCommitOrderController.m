@@ -207,7 +207,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        //TODO:进入优惠券列表
+        //进入优惠券列表
         if (self.coupons.count == 0) {
             return;
         }

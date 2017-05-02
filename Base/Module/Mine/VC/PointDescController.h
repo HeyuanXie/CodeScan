@@ -6,8 +6,8 @@
 //  Copyright © 2017年 XHY. All rights reserved.
 //
 //积分说明
-#import "WebViewController.h"
+#import "BaseViewController.h"
 
-@interface PointDescController : WebViewController
+@interface PointDescController : BaseViewController
 
 @end

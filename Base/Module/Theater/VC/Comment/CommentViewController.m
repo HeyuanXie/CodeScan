@@ -171,7 +171,7 @@
 }
 
 - (IBAction)submit:(id)sender {
-    //TODO:提交评论
+    //提交评论
     if ([self.textView.text isEmpty] && self.score != 5) {
         [self showMessage:@"请输入评论"];
         return;

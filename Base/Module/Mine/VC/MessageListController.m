@@ -152,7 +152,6 @@
         return;
     }
     if (indexPath.row == 1) {
-        //TODO:传递orderStatu
         MessageModel* message = self.dataArray[indexPath.section];
         if (message.orderType == 2) {
             //年卡订单详情与其他订单详情页是分开的

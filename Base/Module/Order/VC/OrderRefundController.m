@@ -136,7 +136,7 @@ typedef enum : NSUInteger {
     self.tableView.tableFooterView = footView;
     
     [self.commitBtn bk_whenTapped:^{
-        //TODO:提交退款申请
+        //提交退款申请
         if (self.contentType == TypeTheater) {
             [APIHELPER theaterRefundWithOrderId:self.orderId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {

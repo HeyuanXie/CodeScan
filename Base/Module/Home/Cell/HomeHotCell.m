@@ -10,7 +10,7 @@
 #import "NSString+json.h"
 
 @implementation HomeHotCell
-//TODO:设置积分字体、
+
 +(NSString *)identify {
     return NSStringFromClass([self class]);
 }

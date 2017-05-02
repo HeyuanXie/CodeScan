@@ -69,7 +69,7 @@
         return;
     }
     [self showLoadingAnimation];
-    //TODO:注册
+    //注册
     [APIHELPER regist:self.phoneTf.text password:self.passwordTf.text code:self.codeTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [self hideLoadingAnimation];
         if (isSuccess) {
@@ -112,7 +112,7 @@
     [HYTool configViewLayer:self.loginBtn withColor:[UIColor whiteColor]];
     [HYTool configViewLayer:self.loginBtn size:20];
     
-//    self.otherLoginView.hidden = YES;
+    self.otherLoginView.hidden = YES;
     self.loginViewTop.constant = zoom(84);
 }
 

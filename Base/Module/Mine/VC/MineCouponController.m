@@ -53,8 +53,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //TODO:使用优惠券
-    
+    //使用优惠券
     CouponModel* coupon = self.dataArray[indexPath.row];
     switch (coupon.orderType.integerValue) {
         case 1:{

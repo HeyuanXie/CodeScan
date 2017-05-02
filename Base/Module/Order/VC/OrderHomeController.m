@@ -201,7 +201,7 @@
     
     NSDictionary* model = self.dataArray[indexPath.row];
     NSString* orderId = model[@"order_id"];
-    //TODO:进入订单详情，传递type参数,传递订单Id、statuId参数
+    //进入订单详情，传递type参数,传递订单Id
     if (self.statuId == 1 && self.typeId == 0) {
         //从剧场订单——>全部——>详情
         NSInteger deliveryStatuId = 0;

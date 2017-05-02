@@ -56,11 +56,11 @@
     self.supportBtn.hidden = isCollect;
     self.commentBtn.hidden = isCollect;
     [self.supportBtn bk_whenTapped:^{
-        //TODO:点赞
+        //点赞
         
     }];
     [self.commentBtn bk_whenTapped:^{
-        //TODO:评论
+        //评论
         
     }];
     

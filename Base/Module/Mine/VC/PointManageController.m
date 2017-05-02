@@ -105,7 +105,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //TODO:
+    //点击botCell无跳转
 }
 #pragma mark - private methods
 -(NSMutableArray *)dataArray {

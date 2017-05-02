@@ -79,7 +79,7 @@
     @weakify(self);
     [self addDoubleNavigationItemsWithImages:images firstBlock:^{
         @strongify(self);
-        //TODO:收藏 & 取消收藏
+        //收藏 & 取消收藏
         if (self.isFav) {
             [APIHELPER cancelCollect:self.articleId type:self.type complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
@@ -102,7 +102,7 @@
             }];
         }
     } secondBlock:^{
-        //TODO:分享
+        //分享
         @strongify(self);
         [ShareSDKTools shareShowActionSheet:self.shareTitle summary:self.summary url:self.url imgUrl:self.img view:self.view];
     }];

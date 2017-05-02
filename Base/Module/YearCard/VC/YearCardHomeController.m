@@ -88,8 +88,10 @@
     switch (indexPath.section) {
         case 0:
             return 304;
+            break;
         case 1:
             return 110;
+            break;
         default:
             if (!self.isFold) {
                 return [tableView fd_heightForCellWithIdentifier:[HomeDescCell identify] cacheByIndexPath:indexPath configuration:^(HomeDescCell* cell) {
@@ -112,6 +114,7 @@
                     [cell configDescCell:self.data];
                 }];
             }
+            break;
     }
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

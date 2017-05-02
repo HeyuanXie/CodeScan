@@ -108,7 +108,7 @@
     [self addDoubleNavigationItemsWithImages:images firstBlock:^{
         @strongify(self);
         if (!self.isFav) {
-            //TODO:收藏
+            //收藏
             [APIHELPER collect:self.productId type:4 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"收藏成功"];
@@ -119,7 +119,7 @@
                 }
             }];
         }else{
-            //TODO:取消收藏
+            //取消收藏
             [APIHELPER cancelCollect:self.productId type:4 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"取消收藏成功"];
@@ -131,7 +131,7 @@
             }];
         }
     } secondBlock:^{
-        //TODO:分享
+        //分享
         @strongify(self);
         if (self.data == nil) {
             [self showMessage:@"商品详情加载失败,无法分享!"];
@@ -182,7 +182,7 @@
     }];
 }
 -(void)gain {
-    //TODO:赚积分
+    //赚取更多积分
     APPROUTE(kPointManageController);
 }
 

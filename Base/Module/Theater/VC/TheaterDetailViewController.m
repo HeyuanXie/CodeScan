@@ -56,6 +56,17 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    UIScrollView* scrollView = self.tableView;
+    if (scrollView.contentOffset.y >= 64) {
+        [self showBackView:self.navigationController.navigationBar];
+    }else{
+        [self hideBackView:self.navigationController.navigationBar];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -333,7 +344,7 @@
     [self addDoubleNavigationItemsWithImages:images firstBlock:^{
         @strongify(self);
         if (!self.isFav) {
-            //TODO:收藏
+            //收藏
             [APIHELPER collect:self.Id type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"收藏成功"];
@@ -344,7 +355,7 @@
                 }
             }];
         }else{
-            //TODO:取消收藏
+            //取消收藏
             [APIHELPER cancelCollect:self.Id type:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                 if (isSuccess) {
                     [self showMessage:@"取消收藏成功"];
@@ -356,7 +367,7 @@
             }];
         }
     } secondBlock:^{
-        //TODO:分享
+        //分享
         @strongify(self);
         if (self.playInfo == nil) {
             [self showMessage:@"剧场详情加载失败,无法分享!"];

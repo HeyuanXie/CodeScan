@@ -65,7 +65,7 @@
             //TODO:跳到选座,传递场次数据参数
             [ROUTER routeByStoryboardID:kTheaterSeatPreviewController withParam:[theater yy_modelToJSONObject]];
         }];
-        //TODO:configTicketView
+        //configTicketView
         [self.ticketScroll addSubview:ticketView];
         [ticketView autoSetDimensionsToSize:CGSizeMake(80, 70)];
         [ticketView autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10+90*i];

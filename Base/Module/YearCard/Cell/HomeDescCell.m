@@ -33,6 +33,7 @@
         NSString * htmlString = model[@"card_content"];
         NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[htmlString dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
         self.descLbl.attributedText = attrStr;
+        self.descLbl.font = [UIFont systemFontOfSize:14];
     }
     
     [self.foldBtn bk_whenTapped:^{

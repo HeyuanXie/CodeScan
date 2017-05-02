@@ -102,9 +102,7 @@ typedef enum : NSUInteger {
 }
 
 -(void)otherImage {
-    //TODO:另一张
-//    [[SDImageCache sharedImageCache] removeImageForKey:@"http://api.xfx.zhimadi.cn/captcha.html"];
-//    [self.imgV sd_setImageWithURL:[NSURL URLWithString:@"http://api.xfx.zhimadi.cn/captcha.html"] placeholderImage:nil];
+    //另一张
     [self.imgV sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://api.xfx.zhimadi.cn/captcha/%@.html",[Global IDFV]]] placeholderImage:nil options:SDWebImageRefreshCached];
 
 }

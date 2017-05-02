@@ -248,7 +248,6 @@ typedef enum : NSUInteger {
     CGFloat width = [self.titles[0] sizeWithFont:[UIFont systemFontOfSize:15] maxWidth:CGFLOAT_MAX].width;
     CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, MAX(width*self.titles.count, kScreen_Width) , 42) menuTitles:self.titles textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBlueTextColor] isLineAdaptText:YES];
     [btns setFinished:^(NSInteger index) {
-        //TODO:
         self.contentType = index+1;
         [self fetchData];
     }];

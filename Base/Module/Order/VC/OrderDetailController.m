@@ -26,7 +26,7 @@
 @property(strong,nonatomic)NSMutableArray* ticketArr;   //订单票数组
 @property(assign,nonatomic)ContentType contentType;//订单类型,0:theater、1:derive、2:card
 @property(assign,nonatomic)NSString* orderId;    //订单Id
-@property(assign,nonatomic)NSInteger orderStatu;    //待支付、待使用、、待评价、退款、支付超时、已评价等(234567)
+@property(assign,nonatomic)NSInteger orderStatu;    //待支付、待使用、待评价、退款、支付超时、已评价等(234567)
 
 @property(strong,nonatomic)NSArray* maps;//手机安装的地图的数组
 @end
@@ -195,7 +195,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 1 && indexPath.row == 1) {
-        //TODO:打开地图
+        //打开地图
         NSString* address = @"";
         switch (self.contentType) {
             case 0:
@@ -335,7 +335,7 @@
         if ([self.data[@"order_status"] integerValue] == 2) {
             [btn setTitle:@"去评价" forState:UIControlStateNormal];
             [btn bk_whenTapped:^{
-                //TODO:评价
+                //评价
                 CommentViewController* vc = (CommentViewController*)VIEWCONTROLLER(kCommentViewController);
                 vc.data = self.data;
                 vc.type = CommentTypeDerive;
@@ -346,7 +346,7 @@
         }
     }else{
         [btn bk_whenTapped:^{
-            //TODO:退款
+            //退款
             APPROUTE(kOrderRefundController);
         }];
     }
@@ -525,8 +525,9 @@
     if (self.contentType == TypeTheater) {
         NSInteger payStatu = [self.data[@"pay_status"] integerValue];
         NSInteger statu = [self.data[@"order_status"] integerValue];
+        NSInteger timeLeft = [self.data[@"time_left"] integerValue];
         if (payStatu == 0) {
-            self.orderStatu = statu == 5 ? 6 : 2;
+            self.orderStatu = timeLeft == 0 ? 6 : 2;
             return;
         }
         if (payStatu == 3) {
@@ -555,7 +556,7 @@
 
 
 -(void)subviewStyle {
-    if (self.orderStatu == 2 || self.orderStatu == 6) {
+    if (self.orderStatu == 2/* || self.orderStatu == 6*/) {
         [self.tableView autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(30, 0, 72, 0)];
     }
 }

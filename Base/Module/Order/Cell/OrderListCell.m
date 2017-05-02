@@ -92,7 +92,7 @@
                 [self.rightBtn setTitle:@"退款" forState:UIControlStateNormal];
                 [self.rightBtn setBlueStyle];
                 self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                    //TODO:退款
+                    //退款
                     APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[model[@"order_id"] integerValue],0]));
                     return [RACSignal empty];
                 }];
@@ -160,7 +160,7 @@
             [self.rightBtn setTitle:@"退款" forState:UIControlStateNormal];
             [self.rightBtn setBlueStyle];
             self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                //TODO:退款
+                //退款
                 APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[model[@"order_id"] integerValue],0]));
                 return [RACSignal empty];
             }];
@@ -198,8 +198,6 @@
             break;
         }
     }
-    //TODO:跳到评价页面，传递model和commentType
-    
 }
 
 -(void)configDeriveCell:(id)model orderStatu:(NSInteger)orderStatu {
@@ -239,7 +237,6 @@
         self.rightBtn.hidden = NO;
         [self.rightBtn setTitle:@"再次兑换" forState:(UIControlStateNormal)];
         self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-            //TODO:model[@"source_url"]没有
             APPROUTE(([NSString stringWithFormat:@"%@?id=%ld&sourceUrl=%@",kDeriveDetailController,[model[@"goods_id"] integerValue],model[@"source_url"]]));
             return [RACSignal empty];
         }];
@@ -334,7 +331,7 @@
                     self.rightBtn.hidden = YES;
                     [self.rightBtn setTitle:@"退款" forState:UIControlStateNormal];
                     self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                        //TODO:退款
+                        //退款
                         APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[model[@"order_id"] integerValue],1]));
                         return [RACSignal empty];
                     }];
@@ -342,7 +339,7 @@
                     self.leftBtn.hidden = NO;
                     [self.leftBtn setTitle:@"退款" forState:UIControlStateNormal];
                     self.leftBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                        //TODO:退款
+                        //退款
                         APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[model[@"order_id"] integerValue],1]));
                         return [RACSignal empty];
                     }];
@@ -390,7 +387,7 @@
                 self.rightBtn.hidden = YES;
                 [self.rightBtn setTitle:@"退款" forState:UIControlStateNormal];
                 self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                    //TODO:退款
+                    //退款
                     APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[model[@"order_id"] integerValue],1]));
                     return [RACSignal empty];
                 }];
@@ -398,7 +395,7 @@
                 self.leftBtn.hidden = NO;
                 [self.leftBtn setTitle:@"退款" forState:UIControlStateNormal];
                 self.leftBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                    //TODO:退款
+                    //退款
                     APPROUTE(([NSString stringWithFormat:@"%@?orderId=%ld&contentType=%d",kOrderRefundController,[model[@"order_id"] integerValue],1]));
                     return [RACSignal empty];
                 }];

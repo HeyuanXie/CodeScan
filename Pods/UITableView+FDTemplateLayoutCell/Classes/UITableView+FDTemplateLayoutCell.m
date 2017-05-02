@@ -22,6 +22,7 @@
 
 #import "UITableView+FDTemplateLayoutCell.h"
 #import <objc/runtime.h>
+#import "PureLayout.h"
 
 @implementation UITableView (FDTemplateLayoutCell)
 
@@ -86,6 +87,7 @@
         // If not using auto layout, you have to override "-sizeThatFits:" to provide a fitting size by yourself.
         // This is the same method used in iOS8 self-sizing cell's implementation.
         // Note: fitting height should not include separator view.
+        
         SEL selector = @selector(sizeThatFits:);
         BOOL inherited = ![templateLayoutCell isMemberOfClass:UITableViewCell.class];
         BOOL overrided = [templateLayoutCell.class instanceMethodForSelector:selector] != [UITableViewCell instanceMethodForSelector:selector];
@@ -96,7 +98,21 @@
     } else {
         // Add a hard width constraint to make dynamic content views (like labels) expand vertically instead
         // of growing horizontally, in a flow-layout manner.
+        
         if (contentViewWidth > 0) {
+        
+            CGFloat systemVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
+//            if (systemVersion > 10.2) {
+//                [templateLayoutCell layoutIfNeeded];
+//            }
+            if (systemVersion > 10.2) {
+//                [templateLayoutCell.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+//                    make.left.mas_equalTo(0).priorityLow();
+//                    make.right.mas_equalTo(0).priorityLow();
+//                }];
+                [templateLayoutCell.contentView autoPinEdgeToSuperviewEdge:ALEdgeLeft];
+                [templateLayoutCell.contentView autoPinEdgeToSuperviewEdge:ALEdgeRight];
+            }
             NSLayoutConstraint *widthFenceConstraint = [NSLayoutConstraint constraintWithItem:templateLayoutCell.contentView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:contentViewWidth];
             [templateLayoutCell.contentView addConstraint:widthFenceConstraint];
             // Auto layout engine does its math

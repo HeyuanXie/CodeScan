@@ -171,7 +171,6 @@
     HomeImageCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeImageCell identify]];
     [cell setBotSubviewClick:^(NSInteger index) {
         switch (index) {
-                //TODO:
             case 0:
                 APPROUTE(kTheaterListViewController);
                 break;
@@ -204,7 +203,7 @@
     @weakify(self);
     _banner.clickAction = ^(NSInteger index,NSArray* dataArray){
         @strongify(self);
-        //TODO:点击banner
+        //点击banner
         NSDictionary* slide = self.banners[index];
         WKWebViewController* webVC = [[WKWebViewController alloc] init];
         webVC.url = slide[@"ad_link"];
@@ -274,7 +273,6 @@
     HomeHotCell* cell = [tableView dequeueReusableCellWithIdentifier:[HomeHotCell identify]];
     [HYTool configTableViewCellDefault:cell];
     cell.contentView.backgroundColor = [UIColor whiteColor];
-    //TODO:configCell
     [cell configHotCell:self.hots];
     return cell;
 }
@@ -310,7 +308,6 @@
         cell.allViewHeight.constant = 0;
         cell.allView.hidden = YES;
     }
-    //TODO:configCell
     ArticleModel* week = self.weekEnds[indexPath.row];
     [cell configWeekEndCell:week isCollect:NO];
     [cell.allBtn bk_whenTapped:^{

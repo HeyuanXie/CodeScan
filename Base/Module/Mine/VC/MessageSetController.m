@@ -36,7 +36,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-//TODO:跳到系统设置
+//跳到系统设置,设置是否接受推送消息
 - (IBAction)messageSet:(id)sender {
     
     NSURL * url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];

@@ -39,7 +39,6 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YearCardRecordCell* cell = [tableView dequeueReusableCellWithIdentifier:[YearCardRecordCell identify]];
     [HYTool configTableViewCellDefault:cell];
-    //TODO:
     NSDictionary* model = self.dataArray[indexPath.row];
     [cell configYearCardRecordCell:model];
     return cell;
@@ -51,7 +50,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //TODO:跳到订单详情,传递statuId和orderId
+    //跳到订单详情,传递content_type和orderId
     NSDictionary* model = self.dataArray[indexPath.row];
     APPROUTE(([NSString stringWithFormat:@"%@?contentType=%@&orderId=%@",kOrderDetailController,[NSString stringWithFormat:@"%d",0],model[@"order_id"]]));
     

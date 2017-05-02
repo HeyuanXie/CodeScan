@@ -93,7 +93,7 @@
         [alert showAlertViewWithMessage:[NSString stringWithFormat:@"是否用%ld积分兑换该商品?",model.shopPrice.integerValue] subBottonTitle:@"确定" cancelButtonTitle:@"取消" handler:^(AlertViewClickBottonType bottonType) {
             switch (bottonType) {
                 case AlertViewClickBottonTypeSubBotton: {
-                    //TODO:兑换
+                    //兑换
                     [APIHELPER deriveExchange:model.goodId.integerValue buyNum:1 complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
                         if (isSuccess) {
                             NSDictionary* param = responseObject[@"data"];

@@ -58,7 +58,6 @@
         RefundDetailCell* cell = [tableView dequeueReusableCellWithIdentifier:[RefundDetailCell identify]];
         [HYTool configTableViewCellDefault:cell];
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        //TODO:configCell
         [cell configRefundDetailCell:self.data];
         return cell;
     }
@@ -112,7 +111,7 @@
 
 #pragma mark - private methods
 -(void)fetchData {
-    //TODO:获取退款状态订单详情
+    //获取退款状态订单详情
     if (self.contentType == TypeTheater) {
         [APIHELPER theaterRefundInfoWithOrderId:self.orderId.integerValue complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             if (isSuccess) {

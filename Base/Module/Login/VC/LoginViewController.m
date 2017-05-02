@@ -75,7 +75,7 @@
     if (kAccount) {
         self.accountTf.text = kAccount;
     }
-//    self.otherLoginView.hidden = YES;
+    self.otherLoginView.hidden = YES;
 }
 
 - (void)subviewBind {

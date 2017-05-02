@@ -93,7 +93,7 @@
         [self showMessage:@"请输入验证码"];
         return;
     }
-    //TODO:绑定
+    //绑定手机
     [APIHELPER bindPhone:self.firstTf.text code:self.secondTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         if (isSuccess) {
             [self showMessage:@"绑定成功"];

@@ -231,7 +231,7 @@
 #pragma mark - cell for tableview 
 -(UITableViewCell*)topCellForTableView:(UITableView*)tableView indexPath:(NSIndexPath*)indexPath {
     CommitOrderTopCell* cell = [tableView dequeueReusableCellWithIdentifier:[CommitOrderTopCell identify]];
-    //TODO:configNotVip or Vip
+    //configNotVip or Vip
     
     if (self.selectCard == nil) {
         [cell configNotVipCell:nil];
@@ -263,7 +263,7 @@
     [HYTool configTableViewCellDefault:cell];
     cell.contentView.backgroundColor = [UIColor whiteColor];
     
-    //TODO:configVip or NotVip
+    //configVip or NotVip
     id model = self.selectArray[indexPath.row-1];
     if (self.selectCard == nil) {
         [cell configNotVipCell:model];
@@ -451,7 +451,7 @@
         @weakify(self);
         [self.couponController setSelectFinish:^(NSInteger index) {
             @strongify(self);
-            //TODO:选择优惠券、刷新table、重新计算金额
+            //选择优惠券、刷新table、重新计算金额
             if (self.selectCoupon == self.coupons[index]) {
                 self.selectCoupon = nil;
                 self.couponController.couponIndex = 1000;
@@ -475,7 +475,7 @@
         @weakify(self);
         [self.couponController setSelectFinish:^(NSInteger index) {
             @strongify(self);
-            //TODO:选择年卡、刷新table
+            //选择年卡、刷新table
             if (self.selectCard == self.yearCards[index]) {
                 self.selectCard = nil;
                 [self.cardIndexArray removeAllObjects];
@@ -651,7 +651,7 @@
 -(void)paySuccess {
     
     self.isPaySuccessd = YES;
-    //TODO:跳到下单成功页面，传递point和order_sn
+    //跳到下单成功页面，order_sn、content_type、payId和pay_type
     APPROUTE(([NSString stringWithFormat:@"%@?contentType=0&order_sn=%@&payId=%@&payType=%ld",kTheaterCommitOrderSuccessController,self.orderSn,self.payId,self.selectIndex]));
 }
 

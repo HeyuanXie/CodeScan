@@ -17,16 +17,7 @@
 -(void)configFunctionCell:(id)model {
     self.imgV.image = ImageNamed(model[@"image"]);
     self.titleLbl.text = model[@"title"];
-    [self setDetailBlock:^{
-        //TODO:
-        DLog(@"%@",model[@"title"]);
-    }];
-}
-
-- (IBAction)detailAction:(id)sender {
-    if (self.detailBlock) {
-        self.detailBlock();
-    }
+    
 }
 
 - (void)awakeFromNib {
