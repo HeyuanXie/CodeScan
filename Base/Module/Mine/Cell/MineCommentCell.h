@@ -10,8 +10,9 @@
 
 @interface MineCommentCell : UITableViewCell
 
+@property(nonatomic,copy)void (^imageClick)(NSInteger index);
 @property(nonatomic,weak)IBOutlet UIView *botLine;
-
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 +(NSString*)identify;
 

@@ -10,11 +10,31 @@
 
 @interface BaseViewController : UIViewController
 @property (nonatomic, assign) BOOL needLogEvent;
+
+/**
+ 是否隐藏返回按钮
+ */
 @property (nonatomic, assign) BOOL backItemHidden;
+
+/**
+ 是否隐藏导航栏
+ */
 @property (nonatomic, assign) BOOL navigationBarHidden;
-@property (nonatomic, assign) BOOL navigationBarTransparent;      //导航栏是否透明
-@property (nonatomic, assign) BOOL navigationLineHidden;    //是否隐藏导航栏线条
-@property (nonatomic, assign) BOOL navigationBarBlue;     //导航栏是否为蓝色
+
+/**
+ 导航栏是否透明
+ */
+@property (nonatomic, assign) BOOL navigationBarTransparent;      
+
+/**
+ 导航栏横线是否隐藏
+ */
+@property (nonatomic, assign) BOOL navigationLineHidden;
+
+/**
+ 导航栏是否为蓝色
+ */
+@property (nonatomic, assign) BOOL navigationBarBlue;
 
 //返回方法
 - (void)backAction;

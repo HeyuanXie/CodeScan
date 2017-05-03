@@ -7,6 +7,7 @@
 //
 
 #import "CommentListController.h"
+#import "SDPhotoBrowser.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "CommentListCell.h"
 #import "CustomJumpBtns.h"
@@ -78,6 +79,16 @@ typedef enum : NSUInteger {
     
     CommentModel* model = self.dataArray[indexPath.section];
     [cell configListCell:model type:self.contentType];
+    @weakify(cell);
+    [cell setImgClick:^(NSInteger index) {
+        @strongify(cell);
+        SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+        browser.currentImageIndex = index;
+        browser.currentImage = ((UIImageView*)(cell.botScroll.subviews[index])).image;
+        browser.sourceImagesContainerView = cell.botScroll;
+        browser.images = model.showImg;
+        [browser show];
+    }];
     return cell;
 }
 
@@ -87,6 +98,16 @@ typedef enum : NSUInteger {
         
         CommentModel* model = self.dataArray[indexPath.section];
         [cell configListCell:model type:self.contentType];
+        @weakify(cell);
+        [cell setImgClick:^(NSInteger index) {
+            @strongify(cell);
+            SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+            browser.currentImageIndex = index;
+            browser.currentImage = ((UIImageView*)(cell.botScroll.subviews[index])).image;
+            browser.sourceImagesContainerView = cell.botScroll;
+            browser.images = model.showImg;
+            [browser show];
+        }];
     }];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *unfoldBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *unfoldBtnHeight;
 @property (nonatomic,copy)void (^unfoldBtnClick)();
+@property(nonatomic,copy)void (^playBtnClick)();
+
 @property (nonatomic,assign)BOOL isFold;
 
 

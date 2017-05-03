@@ -13,7 +13,15 @@
 @property(nonatomic,strong)UIWebView* webView;
 @property(nonatomic,copy)NSString* url;
 
+
+/**
+ webview UI-init
+ */
 - (void)webViewStyle;
+
+/**
+ webview Data-load
+ */
 - (void)loadWebView;
 
 @end

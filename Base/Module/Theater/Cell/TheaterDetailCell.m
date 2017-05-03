@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgV;
 @property (weak, nonatomic) IBOutlet UIImageView *backImgV;
+@property (weak, nonatomic) IBOutlet UIButton *playBtn;
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UIView *scoreView;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLbl;
@@ -39,6 +40,11 @@
     [self.unfoldBtn bk_whenTapped:^{
         if (self.unfoldBtnClick) {
             self.unfoldBtnClick();
+        }
+    }];
+    [self.playBtn bk_whenTapped:^{
+        if (self.playBtnClick) {
+            self.playBtnClick();
         }
     }];
     

@@ -11,9 +11,13 @@
 
 @interface CommentListCell : UITableViewCell
 
+@property(nonatomic,copy)void (^imgClick)(NSInteger index);
+
+@property (weak, nonatomic) IBOutlet UIScrollView *botScroll;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollBottom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLineVHeight;
+
 +(NSString*)identify;
 -(void)configListCell:(CommentModel*)model type:(NSInteger)type;
 

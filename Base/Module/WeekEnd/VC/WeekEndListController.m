@@ -221,10 +221,10 @@
     
     self.title = self.type == 0 ? @"小飞象资讯" : @"周末去哪儿";
     
-    self.rightBtn = [HYTool getButtonWithFrame:CGRectMake(0, 0, 110, 36) title:@"镇区" titleSize:17 titleColor:[UIColor whiteColor] backgroundColor:nil blockForClick:nil];
+    self.rightBtn = [HYTool getButtonWithFrame:CGRectMake(0, 0, 110, 36) title:@"东莞市" titleSize:17 titleColor:[UIColor whiteColor] backgroundColor:nil blockForClick:nil];
     [self.rightBtn setImage:ImageNamed(@"arrow_down") forState:UIControlStateNormal];
-    self.rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 20);
-    self.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 95, 0, 0);
+    self.rightBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 15);
+    self.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(0, 90, 0, 0);
     self.rightBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
         if ([self.view viewWithTag:1000]) {

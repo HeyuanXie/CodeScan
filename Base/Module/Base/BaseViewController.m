@@ -84,7 +84,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - navLine
+#pragma mark - navLine(导航栏横线)
 -(UIView *)navLine {
     if (self.navigationController) {
         UIView *backgroundView = [self.navigationController.navigationBar subviews].firstObject;
@@ -133,7 +133,7 @@
 }
 
 
-#pragma mark - 设置导航栏透明
+#pragma mark - 导航栏透明相关
 
 /**
  设置导航栏透明
@@ -185,6 +185,8 @@
     }
 }
 
+
+#pragma mark - 验证是否登陆
 -(BOOL)checkUserLogined {
     
     if ([Global userAuth]==nil) {

@@ -7,6 +7,8 @@
 //
 
 #import "TheaterDetailViewController.h"
+#import "HYPlayer.h"
+#import "SDPhotoBrowser.h"
 #import "TheaterDetailCell.h"
 #import "CommentListCell.h"
 #import "DetailDervieView.h"
@@ -72,7 +74,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - scrollView delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView == self.tableView)
@@ -133,6 +134,11 @@
     [cell setUnfoldBtnClick:^{
         self.isFold = !self.isFold;
         [self.tableView reloadData];
+    }];
+    [cell setPlayBtnClick:^{
+        //TODO:播放视频
+        HYPlayer* player = [[HYPlayer alloc] initWithUrlStr:@"http://vr.tudou.com/v2proxy/v2.m3u8?it=170010302&st=2"];
+        [self presentViewController:player animated:YES completion:nil];
     }];
     cell.isFold = self.isFold;
     NSString* imgName = self.isFold ? @"三角形_黑色下" : @"三角形_黑色上";
@@ -196,6 +202,16 @@
     
     CommentModel* model = [CommentModel yy_modelWithDictionary:self.commentList[indexPath.row]];
     [cell configListCell:model type:0];
+    @weakify(cell);
+    [cell setImgClick:^(NSInteger index) {
+        @strongify(cell);
+        SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+        browser.currentImageIndex = index;
+        browser.currentImage = ((UIImageView*)(cell.botScroll.subviews[index])).image;
+        browser.sourceImagesContainerView = cell.botScroll;
+        browser.images = model.showImg;
+        [browser show];
+    }];
     cell.topLineVHeight.constant = 0.5;
     [cell addLine:NO leftOffSet:0 rightOffSet:0];
     return cell;

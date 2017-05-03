@@ -16,7 +16,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *scoreV;
 @property (weak, nonatomic) IBOutlet UILabel *commentLbl;
-@property (weak, nonatomic) IBOutlet UIScrollView *botScroll;
 
 @end
 
@@ -32,6 +31,9 @@
 }
 
 -(void)configListCell:(CommentModel*)model type:(NSInteger)type {
+    for (UIView* subview in self.botScroll.subviews) {
+        [subview removeFromSuperview];
+    }
     
     if (model.showImg.count == 0) {
         self.scrollHeight.constant = 0;
@@ -50,6 +52,12 @@
         UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(8+(106+8)*i, 0, 106, 106)];
         [imgV sd_setImageWithURL:[NSURL URLWithString:imgs[i]] placeholderImage:ImageNamed(@"yazi")];
         [self.botScroll addSubview:imgV];
+        imgV.userInteractionEnabled = YES;
+        [imgV bk_whenTapped:^{
+            if (self.imgClick) {
+                self.imgClick(i);
+            }
+        }];
     }
     self.botScroll.contentSize = CGSizeMake(8+(106+8)*imgs.count, 0);
     

@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="397"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="396"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="397"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yazi.png" translatesAutoresizingMaskIntoConstraints="NO" id="bgM-pc-Fpu">
@@ -148,16 +148,26 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vK4-Vx-8Qn">
+                                <rect key="frame" x="59" y="90" width="27" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="27" id="Lzd-tY-xtE"/>
+                                    <constraint firstAttribute="width" secondItem="vK4-Vx-8Qn" secondAttribute="height" multiplier="1:1" id="dAw-1g-E1X"/>
+                                </constraints>
+                                <state key="normal" image="play"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5IS-aS-ajq" firstAttribute="leading" secondItem="tCf-tv-38q" secondAttribute="trailing" constant="10" id="05g-Ym-uy2"/>
+                            <constraint firstItem="zdm-wW-0Yq" firstAttribute="leading" secondItem="vK4-Vx-8Qn" secondAttribute="trailing" constant="15" id="13P-OI-vxy"/>
                             <constraint firstAttribute="bottom" secondItem="tCf-tv-38q" secondAttribute="bottom" id="6Yh-u3-4yq"/>
                             <constraint firstItem="Pqp-Jo-TY0" firstAttribute="width" secondItem="mXl-gZ-G6L" secondAttribute="width" multiplier="95:351" id="7Lp-mz-HfM"/>
                             <constraint firstItem="h5J-VZ-Uqc" firstAttribute="height" secondItem="Ygy-4p-Sf9" secondAttribute="height" id="BqS-Op-qkf"/>
                             <constraint firstItem="iYd-81-Q7P" firstAttribute="leading" secondItem="Pqp-Jo-TY0" secondAttribute="trailing" constant="8" id="C2c-Ka-OWZ"/>
                             <constraint firstItem="Pqp-Jo-TY0" firstAttribute="leading" secondItem="tCf-tv-38q" secondAttribute="trailing" constant="10" id="DLS-Vj-CiU"/>
                             <constraint firstItem="h5J-VZ-Uqc" firstAttribute="top" secondItem="Ygy-4p-Sf9" secondAttribute="bottom" constant="29" id="Dex-qX-CBg"/>
+                            <constraint firstAttribute="bottom" secondItem="vK4-Vx-8Qn" secondAttribute="bottom" constant="5" id="Dzj-FY-8Be"/>
                             <constraint firstAttribute="trailing" secondItem="Ygy-4p-Sf9" secondAttribute="trailing" id="KAA-h3-4uO"/>
                             <constraint firstAttribute="height" constant="122" id="KPD-Bj-tHi"/>
                             <constraint firstAttribute="bottom" secondItem="Kgp-qM-bTS" secondAttribute="bottom" id="KiM-fA-VmQ"/>
@@ -251,6 +261,7 @@
                 <outlet property="dateLbl" destination="zdm-wW-0Yq" id="keb-f5-5C8"/>
                 <outlet property="descriptionLbl" destination="Ts1-Ld-4jE" id="WcL-sT-GnB"/>
                 <outlet property="imgV" destination="tCf-tv-38q" id="2f8-GL-337"/>
+                <outlet property="playBtn" destination="vK4-Vx-8Qn" id="PZG-JU-obt"/>
                 <outlet property="scoreLbl" destination="iYd-81-Q7P" id="PDg-qE-SKd"/>
                 <outlet property="scoreView" destination="Pqp-Jo-TY0" id="vep-pb-oR7"/>
                 <outlet property="statuLbl" destination="Kgp-qM-bTS" id="tOM-ax-t1j"/>
@@ -264,6 +275,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="play" width="34" height="34"/>
         <image name="yazi.png" width="96" height="133"/>
         <image name="三角形_黑色下" width="12" height="12"/>
         <image name="星星02" width="18" height="18"/>

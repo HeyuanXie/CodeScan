@@ -21,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *typeLbl;
 
 @property (weak, nonatomic) IBOutlet UIView *scoreView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -44,6 +43,9 @@
 }
 
 -(void)configTheaterCell:(id)model {
+    for (UIView* subview in self.scrollView.subviews) {
+        [subview removeFromSuperview];
+    }
     
     NSInteger score = [model[@"score"] integerValue];
     for (int i=0; i<score; i++) {
@@ -71,6 +73,12 @@
         self.scrollView.hidden = NO;
         for (int i=0; i<images.count; i++) {
             UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(8+(104+8)*i, 0, 104, 104)];
+            imgV.userInteractionEnabled = YES;
+            [imgV bk_whenTapped:^{
+                if (self.imageClick) {
+                    self.imageClick(i);
+                }
+            }];
             [imgV sd_setImageWithURL:[NSURL URLWithString:images[i]] placeholderImage:ImageNamed(@"yazi")];
             [self.scrollView addSubview:imgV];
         }
@@ -79,6 +87,9 @@
 }
 
 -(void)configDeriveCell:(id)model {
+    for (UIView* subview in self.scrollView.subviews) {
+        [subview removeFromSuperview];
+    }
     
     NSInteger score = [model[@"comment_score"] integerValue];
     for (int i=0; i<score; i++) {
@@ -108,6 +119,12 @@
         self.scrollView.hidden = NO;
         for (int i=0; i<images.count; i++) {
             UIImageView* imgV = [[UIImageView alloc] initWithFrame:CGRectMake(8+(104+8)*i, 0, 104, 104)];
+            imgV.userInteractionEnabled = YES;
+            [imgV bk_whenTapped:^{
+                if (self.imageClick) {
+                    self.imageClick(i);
+                }
+            }];
             [imgV sd_setImageWithURL:[NSURL URLWithString:images[i]] placeholderImage:ImageNamed(@"yazi")];
             [self.scrollView addSubview:imgV];
         }

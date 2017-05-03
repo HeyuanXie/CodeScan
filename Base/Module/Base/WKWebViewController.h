@@ -15,11 +15,19 @@
 @property(nonatomic,strong)WKWebView* webView;
 
 /**
- viewDidLoad时，是否自动加载
+ 是否自动加载(YES:无需调用loadWebView自动加载数据)
  */
 @property(nonatomic,assign)BOOL autoLoad;
 
+
+/**
+ webview UI-init
+ */
 -(void)webViewInit;
+
+/**
+ webview Data-load
+ */
 -(void)loadWebView;
 
 @end

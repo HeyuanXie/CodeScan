@@ -8,6 +8,7 @@
 
 #import "MineCommentController.h"
 #import "JYSlideSegmentController.h"
+#import "SDPhotoBrowser.h"
 #import "MineCommentCell.h"
 #import <UITableView+FDTemplateLayoutCell.h>
 #import "UITableViewCell+HYCell.h"
@@ -56,6 +57,16 @@ typedef enum : NSUInteger {
     }else{
         [cell configDeriveCell:model];
     }
+    @weakify(cell);
+    [cell setImageClick:^(NSInteger index) {
+        @strongify(cell);
+        SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+        browser.currentImageIndex = index;
+        browser.currentImage = ((UIImageView*)(cell.scrollView.subviews[index])).image;
+        browser.sourceImagesContainerView = cell.scrollView;
+        browser.images = model[@"show_img"];
+        [browser show];
+    }];
     return cell;
 }
 
@@ -69,6 +80,16 @@ typedef enum : NSUInteger {
         }else{
             [cell configDeriveCell:model];
         }
+        @weakify(cell);
+        [cell setImageClick:^(NSInteger index) {
+            @strongify(cell);
+            SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+            browser.currentImageIndex = index;
+            browser.currentImage = ((UIImageView*)(cell.scrollView.subviews[index])).image;
+            browser.sourceImagesContainerView = cell.scrollView;
+            browser.images = model[@"show_img"];
+            [browser show];
+        }];
     }];
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

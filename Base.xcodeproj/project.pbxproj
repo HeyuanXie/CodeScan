@@ -443,6 +443,9 @@
 		8472F7431E6D585E000AE550 /* TheaterDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8472F7411E6D585E000AE550 /* TheaterDetailCell.m */; };
 		8472F7441E6D585E000AE550 /* TheaterDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8472F7421E6D585E000AE550 /* TheaterDetailCell.xib */; };
 		8479A4B91E9F23AE006C6D7E /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8479A4B81E9F23AE006C6D7E /* AboutUsViewController.m */; };
+		84838A7D1EB985DF00609D9C /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84838A771EB985DF00609D9C /* SDBrowserImageView.m */; };
+		84838A7E1EB985DF00609D9C /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 84838A791EB985DF00609D9C /* SDPhotoBrowser.m */; };
+		84838A7F1EB985DF00609D9C /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84838A7C1EB985DF00609D9C /* SDWaitingView.m */; };
 		848A8FC11E836B7100B45D0C /* SearchGuideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848A8FBE1E836B7100B45D0C /* SearchGuideController.m */; };
 		848A8FC21E836B7100B45D0C /* SearchResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848A8FC01E836B7100B45D0C /* SearchResultController.m */; };
 		848A8FCB1E8372C700B45D0C /* SearchGuideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 848A8FC91E8372C700B45D0C /* SearchGuideCell.m */; };
@@ -566,6 +569,7 @@
 		84E74C011E71574400016A99 /* YearCardCommitOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74C001E71574400016A99 /* YearCardCommitOrderController.m */; };
 		84E74C071E71595700016A99 /* YearCardBindSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74C061E71595700016A99 /* YearCardBindSuccessController.m */; };
 		84E74C0A1E715DC800016A99 /* YearCardBindController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E74C091E715DC800016A99 /* YearCardBindController.m */; };
+		84E77EC21EB9CC1500D46024 /* HYPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E77EC11EB9CC1500D46024 /* HYPlayer.m */; };
 		84ECF01B1E2F57DD00F5DA7E /* UITableViewCell+HYCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ECF01A1E2F57DD00F5DA7E /* UITableViewCell+HYCell.m */; };
 		84ECF01F1E2F595B00F5DA7E /* HYTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ECF01E1E2F595B00F5DA7E /* HYTool.m */; };
 		84EF70771E4AC18D0098A606 /* HYScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84EF70761E4AC18D0098A606 /* HYScrollView.m */; };
@@ -1434,6 +1438,13 @@
 		8472F7421E6D585E000AE550 /* TheaterDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TheaterDetailCell.xib; sourceTree = "<group>"; };
 		8479A4B71E9F23AE006C6D7E /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		8479A4B81E9F23AE006C6D7E /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		84838A761EB985DF00609D9C /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
+		84838A771EB985DF00609D9C /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
+		84838A781EB985DF00609D9C /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
+		84838A791EB985DF00609D9C /* SDPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotoBrowser.m; sourceTree = "<group>"; };
+		84838A7A1EB985DF00609D9C /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		84838A7B1EB985DF00609D9C /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
+		84838A7C1EB985DF00609D9C /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
 		848A8FBD1E836B7100B45D0C /* SearchGuideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchGuideController.h; sourceTree = "<group>"; };
 		848A8FBE1E836B7100B45D0C /* SearchGuideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchGuideController.m; sourceTree = "<group>"; };
 		848A8FBF1E836B7100B45D0C /* SearchResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultController.h; sourceTree = "<group>"; };
@@ -1661,6 +1672,8 @@
 		84E74C061E71595700016A99 /* YearCardBindSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearCardBindSuccessController.m; sourceTree = "<group>"; };
 		84E74C081E715DC800016A99 /* YearCardBindController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearCardBindController.h; sourceTree = "<group>"; };
 		84E74C091E715DC800016A99 /* YearCardBindController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearCardBindController.m; sourceTree = "<group>"; };
+		84E77EC01EB9CC1500D46024 /* HYPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYPlayer.h; sourceTree = "<group>"; };
+		84E77EC11EB9CC1500D46024 /* HYPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYPlayer.m; sourceTree = "<group>"; };
 		84ECF0191E2F57DD00F5DA7E /* UITableViewCell+HYCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+HYCell.h"; sourceTree = "<group>"; };
 		84ECF01A1E2F57DD00F5DA7E /* UITableViewCell+HYCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+HYCell.m"; sourceTree = "<group>"; };
 		84ECF01D1E2F595B00F5DA7E /* HYTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYTool.h; sourceTree = "<group>"; };
@@ -2227,6 +2240,7 @@
 		845BDFB11E28D8D30064ACAE /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				84838A751EB985DF00609D9C /* SDPhotoBrowser */,
 				846CA2071EB1E8330023B4D2 /* JPush */,
 				846CBE271EA9E3730017336D /* LBXZXing */,
 				84FDFB631E9E2A3700D9F56F /* AlipaySDK */,
@@ -3197,6 +3211,20 @@
 			path = VC;
 			sourceTree = "<group>";
 		};
+		84838A751EB985DF00609D9C /* SDPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				84838A761EB985DF00609D9C /* SDBrowserImageView.h */,
+				84838A771EB985DF00609D9C /* SDBrowserImageView.m */,
+				84838A781EB985DF00609D9C /* SDPhotoBrowser.h */,
+				84838A791EB985DF00609D9C /* SDPhotoBrowser.m */,
+				84838A7A1EB985DF00609D9C /* SDPhotoBrowserConfig.h */,
+				84838A7B1EB985DF00609D9C /* SDWaitingView.h */,
+				84838A7C1EB985DF00609D9C /* SDWaitingView.m */,
+			);
+			path = SDPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		848A8FBB1E836B3D00B45D0C /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -3744,6 +3772,8 @@
 				842A56F61E793ABD00D489CA /* DatePickerController.m */,
 				848A8FCD1E839FDC00B45D0C /* FTPopOverMenu.h */,
 				848A8FCE1E839FDC00B45D0C /* FTPopOverMenu.m */,
+				84E77EC01EB9CC1500D46024 /* HYPlayer.h */,
+				84E77EC11EB9CC1500D46024 /* HYPlayer.m */,
 			);
 			path = CustomeView;
 			sourceTree = "<group>";
@@ -4157,6 +4187,7 @@
 				846CC0761EA9E3730017336D /* ZXDataMatrixC40Encoder.m in Sources */,
 				846CC0BE1EA9E3740017336D /* ZXUPCEReader.m in Sources */,
 				841D4AF81E7A618F002C49C0 /* MyApplyCell.m in Sources */,
+				84838A7E1EB985DF00609D9C /* SDPhotoBrowser.m in Sources */,
 				846CC0901EA9E3730017336D /* ZXAI01decoder.m in Sources */,
 				84E5EE7B1E2DCADB0062A2BE /* ShareSDKTools.m in Sources */,
 				846CC08C1EA9E3730017336D /* ZXAI01393xDecoder.m in Sources */,
@@ -4202,6 +4233,7 @@
 				843142F71E6953140007740A /* ThemeCell.m in Sources */,
 				846CC07C1EA9E3730017336D /* ZXDataMatrixSymbolInfo.m in Sources */,
 				843142F31E694DE70007740A /* RecentHotView.m in Sources */,
+				84838A7F1EB985DF00609D9C /* SDWaitingView.m in Sources */,
 				8472F7331E6D40F8000AE550 /* TheaterListViewController.m in Sources */,
 				846CC0B11EA9E3740017336D /* ZXITFReader.m in Sources */,
 				846CC0EB1EA9E3740017336D /* ZXQRCodeMaskUtil.m in Sources */,
@@ -4318,6 +4350,7 @@
 				846CC01E1EA9E3730017336D /* ZXAztecSimpleToken.m in Sources */,
 				846CC0D21EA9E3740017336D /* ZXPDF417ErrorCorrection.m in Sources */,
 				84F691111E2C55CC0048B6DF /* NSError+HYError.m in Sources */,
+				84E77EC21EB9CC1500D46024 /* HYPlayer.m in Sources */,
 				846CC0CB1EA9E3740017336D /* ZXPDF417ScanningDecoder.m in Sources */,
 				84924ECC1E2C9A25005F05C3 /* UINavigationItem+HYNavigationItems.m in Sources */,
 				84F6913E1E2C6B7E0048B6DF /* NSObject+Routes.m in Sources */,
@@ -4460,6 +4493,7 @@
 				846CC04F1EA9E3730017336D /* ZXGenericGFPoly.m in Sources */,
 				84E74C011E71574400016A99 /* YearCardCommitOrderController.m in Sources */,
 				846CC0871EA9E3730017336D /* ZXGenericMultipleBarcodeReader.m in Sources */,
+				84838A7D1EB985DF00609D9C /* SDBrowserImageView.m in Sources */,
 				846CC0B61EA9E3740017336D /* ZXOneDReader.m in Sources */,
 				841D4B061E7A7475002C49C0 /* PointManageTopCell.m in Sources */,
 				846E13401E94F53C00C7C015 /* TheaterSessionModel.m in Sources */,
