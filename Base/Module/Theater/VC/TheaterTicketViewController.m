@@ -11,6 +11,7 @@
 #import "TheaterTicketCell.h"
 #import "TheaterSessionModel.h"
 #import "NSString+Extension.h"
+#import "UITableViewCell+HYCell.h"
 
 @interface TheaterTicketViewController ()
 
@@ -32,10 +33,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLbl;
 @property (weak, nonatomic) IBOutlet UILabel *dateLbl;
 @property (weak, nonatomic) IBOutlet UILabel *statuLbl;
-@property (weak, nonatomic) IBOutlet UIView *btnsView;
 
-@property (strong, nonatomic) UIScrollView *scroll;
-@property (strong, nonatomic) NSString* selectDate;
 @property (strong, nonatomic) NSMutableArray* dataArray;
 
 @end
@@ -71,8 +69,6 @@
         self.statu = [[self.schemaArgu objectForKey:@"statu"] integerValue];
     }
     
-    //TODO:测试场次
-    self.selectDate = @"2017-06-01";
     self.navigationBarTransparent = YES;
     [self subviewStyle];
     [self fetchData];
@@ -91,13 +87,20 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 203;
+    return 96;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TheaterTicketCell* cell = [tableView dequeueReusableCellWithIdentifier:[TheaterTicketCell identify]];
     [HYTool configTableViewCellDefault:cell];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
     TheaterSessionModel* model = self.dataArray[indexPath.row];
     [cell configTicketCell:model];
+    [cell setTicketBtnClick:^{
+        NSMutableDictionary* param = [[model yy_modelToJSONObject] mutableCopy];
+        [param setValue:self.name forKey:@"play_name"];
+        [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@",kTheaterSeatPreviewController] withParam:param];
+    }];
+    [cell addLine:NO leftOffSet:0 rightOffSet:0];
     return cell;
 }
 
@@ -127,33 +130,10 @@
         imgV.image = ImageNamed(@"星星02");
     }
     
-    _scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreen_Width, 45)];
-    _scroll.showsVerticalScrollIndicator = NO;
-    _scroll.showsHorizontalScrollIndicator = NO;
-    [self.btnsView addSubview:_scroll];
-    
-    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(223, 0, 10, 0)];
+    [self baseSetupTableView:UITableViewStylePlain InSets:UIEdgeInsetsMake(178, 0, 10, 0)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:[TheaterTicketCell identify] bundle:nil] forCellReuseIdentifier:[TheaterTicketCell identify]];
 
-    self.selectDate = [HYTool dateStringWithFormatter:@"yyyy-MM-dd"];
-    NSString* dateStr = [HYTool dateStringWithFormatter:@"MM月dd日"];
-    NSString* weekStr = [HYTool weekString];
-    NSMutableArray* titles = [NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%@%@",dateStr,weekStr], nil];
-    for (int i=1; i<7; i++) {
-        NSDate* date = [NSDate dateWithTimeIntervalSinceNow:i*24*60*60];
-        NSString* weekStr = [HYTool weekStirngWithDate:date];
-        NSString* dateStr = [HYTool dateStringWithDate:date format:@"MM月dd日"];
-        [titles addObject:[NSString stringWithFormat:@"%@%@",dateStr,weekStr]];
-    }
-    CustomJumpBtns* btns = [CustomJumpBtns customBtnsWithFrame:CGRectMake(0, 0, MAX(115*7, kScreen_Width), 45) menuTitles:titles textColorForNormal:[UIColor hyBlackTextColor] textColorForSelect:[UIColor hyBlueTextColor] isLineAdaptText:NO];
-    [btns setFinished:^(NSInteger index) {
-        NSDate* date = [NSDate dateWithTimeIntervalSinceNow:index*24*60*60];
-        self.selectDate = [HYTool dateStringWithDate:date format:@"yyyy-MM-dd"];
-        [self fetchData];
-    }];
-    [_scroll addSubview:btns];
-    _scroll.contentSize = CGSizeMake(titles.count*115, 0);
 }
 
 - (NSMutableArray *)dataArray {
@@ -167,7 +147,7 @@
 
     self.tableView.tableFooterView = nil;
     [self showLoadingAnimation];
-    [APIHELPER theaterSession:0 limit:4 playId:self.playId date:@"2017-06-01" complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+    [APIHELPER theaterSession:0 limit:4 playId:self.playId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [self hideLoadingAnimation];
         if (isSuccess) {
             [self.dataArray removeAllObjects];
@@ -192,7 +172,7 @@
     [self addHeaderRefresh:^{
         @strongify(self);
         [self showLoadingAnimation];
-        [APIHELPER theaterSession:0 limit:4 playId:self.playId date:self.selectDate complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [APIHELPER theaterSession:0 limit:4 playId:self.playId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             [self hideLoadingAnimation];
             
             if (isSuccess) {
@@ -219,7 +199,7 @@
     [self addFooterRefresh:^{
         @strongify(self);
         [self showLoadingAnimation];
-        [APIHELPER theaterSession:0 limit:4 playId:self.playId date:self.selectDate complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        [APIHELPER theaterSession:0 limit:4 playId:self.playId complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             [self hideLoadingAnimation];
             
             if (isSuccess) {

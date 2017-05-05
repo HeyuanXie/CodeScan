@@ -10,18 +10,16 @@
 
 @implementation TheaterSessionModel
 
-+ (nullable NSDictionary<NSString *, id> *)modelContainerPropertyGenericClass {
-    
-    return @{
-             @"children":[TheaterModel class],
-             };
-}
-
 + (nullable NSDictionary<NSString *, id> *)modelCustomPropertyMapper {
     
     return @{
              @"theaterName":@"theatre_name",
              @"theaterId":@"theatre_id",
+             @"price":@"pricel",
+             @"timeId":@"time_id",
+             @"hallId":@"hall_id",
+             @"playDate":@"play_date",
+             @"playTime":@"play_time"
              };
 }
 

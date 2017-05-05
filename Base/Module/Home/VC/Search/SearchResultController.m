@@ -264,6 +264,7 @@ typedef enum : NSUInteger {
     textField.returnKeyType = UIReturnKeySearch;
     self.textField = textField;
     self.textField.delegate = self;
+    self.textField.text = self.word;
     self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.textField.tintColor = RGB(0, 122, 255, 1);
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searhView];

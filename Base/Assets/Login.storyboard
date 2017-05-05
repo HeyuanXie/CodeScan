@@ -201,8 +201,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8wt-5g-hcn">
                                         <rect key="frame" x="0.0" y="41" width="275" height="50"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgs-Dv-f9t">
-                                                <rect key="frame" x="13.5" y="-2" width="52" height="52"/>
+                                            <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgs-Dv-f9t">
+                                                <rect key="frame" x="13" y="-2" width="52" height="52"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" tag="10086" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="第三方图标_QQ" translatesAutoresizingMaskIntoConstraints="NO" id="h3r-nO-nvT">
                                                         <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
@@ -220,27 +220,8 @@
                                                     <constraint firstAttribute="width" secondItem="mgs-Dv-f9t" secondAttribute="height" multiplier="1:1" id="oRH-It-ci2"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72o-8u-auP">
-                                                <rect key="frame" x="209.5" y="-2" width="52" height="52"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" tag="10086" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="第三方图标_weibo" translatesAutoresizingMaskIntoConstraints="NO" id="xSj-8F-XXy">
-                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="52" id="11M-ev-5b7"/>
-                                                            <constraint firstAttribute="width" secondItem="xSj-8F-XXy" secondAttribute="height" multiplier="1:1" id="9mV-fx-xS9"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="xSj-8F-XXy" firstAttribute="top" secondItem="72o-8u-auP" secondAttribute="top" id="25G-aZ-nZh"/>
-                                                    <constraint firstAttribute="trailing" secondItem="xSj-8F-XXy" secondAttribute="trailing" id="gNx-QW-Kaw"/>
-                                                    <constraint firstAttribute="width" constant="52" id="o7w-o1-rON"/>
-                                                    <constraint firstAttribute="width" secondItem="72o-8u-auP" secondAttribute="height" multiplier="1:1" id="oel-SA-I1D"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8Y-hm-4Oa">
-                                                <rect key="frame" x="111.5" y="-2" width="52" height="52"/>
+                                            <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8Y-hm-4Oa">
+                                                <rect key="frame" x="111" y="-2" width="52" height="52"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" tag="10086" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="第三方图标_wechat" translatesAutoresizingMaskIntoConstraints="NO" id="hhW-Gm-XBw">
                                                         <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
@@ -256,6 +237,25 @@
                                                     <constraint firstAttribute="width" constant="52" id="8Fy-my-3Gb"/>
                                                     <constraint firstItem="hhW-Gm-XBw" firstAttribute="top" secondItem="O8Y-hm-4Oa" secondAttribute="top" id="J7Q-uf-rp0"/>
                                                     <constraint firstItem="hhW-Gm-XBw" firstAttribute="leading" secondItem="O8Y-hm-4Oa" secondAttribute="leading" id="S1S-cv-gwQ"/>
+                                                </constraints>
+                                            </view>
+                                            <view tag="102" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="72o-8u-auP">
+                                                <rect key="frame" x="209" y="-2" width="52" height="52"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" tag="10086" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="第三方图标_weibo" translatesAutoresizingMaskIntoConstraints="NO" id="xSj-8F-XXy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="52" height="52"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="52" id="11M-ev-5b7"/>
+                                                            <constraint firstAttribute="width" secondItem="xSj-8F-XXy" secondAttribute="height" multiplier="1:1" id="9mV-fx-xS9"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="xSj-8F-XXy" firstAttribute="top" secondItem="72o-8u-auP" secondAttribute="top" id="25G-aZ-nZh"/>
+                                                    <constraint firstAttribute="trailing" secondItem="xSj-8F-XXy" secondAttribute="trailing" id="gNx-QW-Kaw"/>
+                                                    <constraint firstAttribute="width" constant="52" id="o7w-o1-rON"/>
+                                                    <constraint firstAttribute="width" secondItem="72o-8u-auP" secondAttribute="height" multiplier="1:1" id="oel-SA-I1D"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -308,10 +308,10 @@
                         <outlet property="otherLoginView" destination="LeU-bJ-69c" id="eJp-Fr-dJX"/>
                         <outlet property="passwordTf" destination="JIU-0i-1Ka" id="ONh-Sx-abL"/>
                         <outlet property="passwordView" destination="tIC-SM-KJ4" id="jNe-Sw-FBl"/>
-                        <outlet property="qqLoginView" destination="O8Y-hm-4Oa" id="x10-DZ-QEU"/>
+                        <outlet property="qqLoginView" destination="mgs-Dv-f9t" id="0Qj-9e-BSP"/>
                         <outlet property="registBtn" destination="xbi-mC-PSd" id="qDo-MO-Arq"/>
-                        <outlet property="weiboLoginView" destination="72o-8u-auP" id="uiN-Pm-eNz"/>
-                        <outlet property="weixinLoginView" destination="mgs-Dv-f9t" id="DvC-LG-IrK"/>
+                        <outlet property="weiboLoginView" destination="72o-8u-auP" id="KCf-Vb-WLw"/>
+                        <outlet property="weixinLoginView" destination="O8Y-hm-4Oa" id="aFh-yg-EWz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8od-71-oAn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -677,9 +677,9 @@
                         <outlet property="passwordView" destination="fJN-vt-9hl" id="ZKI-8q-jyO"/>
                         <outlet property="phoneTf" destination="U6M-o5-KVX" id="aPb-2u-A69"/>
                         <outlet property="phoneView" destination="CGc-Ll-iN4" id="In9-Pd-SUK"/>
-                        <outlet property="qqView" destination="AOo-aA-9EH" id="j7O-M0-XXZ"/>
-                        <outlet property="weiboView" destination="lky-1f-yoX" id="kdX-tC-YAh"/>
-                        <outlet property="weixinView" destination="mtb-Zk-kcV" id="XSW-2J-5pe"/>
+                        <outlet property="qqView" destination="mtb-Zk-kcV" id="cIp-3T-9aN"/>
+                        <outlet property="weiboView" destination="lNv-FE-Q8J" id="B1B-9j-TwW"/>
+                        <outlet property="weixinView" destination="flQ-dX-KQa" id="ols-WV-j5f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ny-kE-g5J" userLabel="First Responder" sceneMemberID="firstResponder"/>

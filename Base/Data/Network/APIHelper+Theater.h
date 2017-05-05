@@ -25,7 +25,6 @@
 -(void)theaterSession:(NSInteger)start
                 limit:(NSInteger)limit
                playId:(NSInteger)playId
-                 date:(NSString*)date
              complete:(ApiRequestCompleteBlock)complete;
 
 -(void)theaterSeatDetail:(NSInteger)hallId

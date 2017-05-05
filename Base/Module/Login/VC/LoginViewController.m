@@ -10,6 +10,7 @@
 #import "UIViewController+Extension.h"
 #import "NSString+HYUtilities.h"
 #import "JPUSHService.h"
+#import "ShareSDKThirdLoginHelper.h"
 
 @interface LoginViewController ()
 
@@ -90,6 +91,12 @@
         [self.eyeBtn setImage:ImageNamed(image) forState:UIControlStateNormal];
         self.passwordTf.secureTextEntry = !self.eyeBtn.selected;
     }];
+    for (UIView* loginView in @[self.qqLoginView,self.weixinLoginView,self.weiboLoginView]) {
+        [loginView bk_whenTapped:^{
+            ShareSDKThirdLoginHelper* helper = [ShareSDKThirdLoginHelper shareThirdLoginHelper];
+            [helper loginWithIndex:loginView.tag-100];
+        }];
+    }
 }
 
 

@@ -77,7 +77,7 @@
                         y = y + 26+12;
                     }
                     UIButton* btn = [HYTool getButtonWithFrame:CGRectMake(x+(x+width)*(i%3), y, width, 26) title:self.interested[i] titleSize:14 titleColor:[UIColor hyBlackTextColor] backgroundColor:nil blockForClick:^(id sender) {
-                        
+                        APPROUTE(([NSString stringWithFormat:@"%@?word=%@&type=%ld",kSearchResultController,self.interested[i],self.contentType]));
                     }];
                     [HYTool configViewLayer:btn withColor:[UIColor hySeparatorColor]];
                     [HYTool configViewLayerRound:btn];
@@ -179,8 +179,15 @@
 
 -(void)fetchData {
     
-    self.interested = [@[@"辣鸡好辣",@"阿斯蒂芬",@"阿斯蒂芬",@"围绕发啊啊"] mutableCopy];
-    [self.tableView reloadData];
+    [APIHELPER hotSearchComplete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
+        if (isSuccess) {
+            [self.interested removeAllObjects];
+            [self.interested addObjectsFromArray:responseObject[@"data"]];
+            [self.tableView reloadData];
+        }else{
+            [self showMessage:error.userInfo[NSLocalizedDescriptionKey]];
+        }
+    }];
 }
 
 -(void)subviewStyle {

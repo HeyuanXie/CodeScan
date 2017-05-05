@@ -19,4 +19,6 @@
              type:(NSString*)type
          complete:(ApiRequestCompleteBlock)complete;
 
+-(void)hotSearchComplete:(ApiRequestCompleteBlock)complete;
+
 @end

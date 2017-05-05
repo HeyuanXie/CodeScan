@@ -96,6 +96,7 @@
 		84235B741E6EA18100A81A6B /* FilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B731E6EA18100A81A6B /* FilterTableViewController.m */; };
 		84235B791E6EBB7400A81A6B /* TheaterUseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84235B781E6EBB7400A81A6B /* TheaterUseView.xib */; };
 		84235B7C1E6EBBE500A81A6B /* DetailDervieView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84235B7B1E6EBBE500A81A6B /* DetailDervieView.m */; };
+		8426CA161EBC2A4C00720E41 /* ShareSDKThirdLoginHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8426CA151EBC2A4C00720E41 /* ShareSDKThirdLoginHelper.m */; };
 		8427C3CE1E9DB836007A7D06 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8427C3CD1E9DB836007A7D06 /* CommentModel.m */; };
 		842A56E31E78E59900D489CA /* SkillDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56E21E78E59900D489CA /* SkillDetailHeadView.m */; };
 		842A56E61E792D9700D489CA /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842A56E51E792D9700D489CA /* SettingViewController.m */; };
@@ -771,6 +772,8 @@
 		84235B781E6EBB7400A81A6B /* TheaterUseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TheaterUseView.xib; sourceTree = "<group>"; };
 		84235B7A1E6EBBE500A81A6B /* DetailDervieView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDervieView.h; sourceTree = "<group>"; };
 		84235B7B1E6EBBE500A81A6B /* DetailDervieView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDervieView.m; sourceTree = "<group>"; };
+		8426CA141EBC2A4C00720E41 /* ShareSDKThirdLoginHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareSDKThirdLoginHelper.h; sourceTree = "<group>"; };
+		8426CA151EBC2A4C00720E41 /* ShareSDKThirdLoginHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareSDKThirdLoginHelper.m; sourceTree = "<group>"; };
 		8427C3CC1E9DB836007A7D06 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
 		8427C3CD1E9DB836007A7D06 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		842A56E11E78E59900D489CA /* SkillDetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkillDetailHeadView.h; sourceTree = "<group>"; };
@@ -3419,6 +3422,8 @@
 				84E5EE3B1E2DCADA0062A2BE /* ShareSDK.framework */,
 				84E5EE3C1E2DCADA0062A2BE /* ShareSDKTools.h */,
 				84E5EE3D1E2DCADA0062A2BE /* ShareSDKTools.m */,
+				8426CA141EBC2A4C00720E41 /* ShareSDKThirdLoginHelper.h */,
+				8426CA151EBC2A4C00720E41 /* ShareSDKThirdLoginHelper.m */,
 				84E5EE3E1E2DCADA0062A2BE /* Support */,
 			);
 			path = ShareSDK;
@@ -4576,6 +4581,7 @@
 				84924EAE1E2C7D91005F05C3 /* UIImageView+HYImageView.m in Sources */,
 				84924ECF1E2C9A3C005F05C3 /* UIStoryboard+HYStoryboards.m in Sources */,
 				846CC05C1EA9E3730017336D /* ZXGridSampler.m in Sources */,
+				8426CA161EBC2A4C00720E41 /* ShareSDKThirdLoginHelper.m in Sources */,
 				84EF707E1E4AEB3F0098A606 /* HYCacheURLProtocol.m in Sources */,
 				841C010E1E72A9330082ECDA /* OrderCodeController.m in Sources */,
 				842D6BAF1E824D49004A1271 /* CommentListCell.m in Sources */,

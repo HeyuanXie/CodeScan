@@ -56,7 +56,7 @@
         self.language = [self.schemaArgu objectForKey:@"language"];
     }
     if (self.schemaArgu[@"play_time"]) {
-        self.playTime = [self.schemaArgu objectForKey:@"play_time"];
+        self.playTime = [HYTool dateStringWithString:[self.schemaArgu objectForKey:@"play_time"] inputFormat:nil outputFormat:@"HH:mm"];
     }
     if (self.schemaArgu[@"hall_id"]) {
         self.hallId = [[self.schemaArgu objectForKey:@"hall_id"] integerValue];
@@ -66,7 +66,7 @@
     }
 
     self.title = self.theatreName;
-    self.descLbl.text = [NSString stringWithFormat:@"%@ | %@ %@ %@",_playName,_playDate,_playTime,_language];
+    self.descLbl.text = [NSString stringWithFormat:@"%@ | %@ %@",_playName,_playDate,_playTime];
     
     [self configSeatsPicker];
     [self fetchData];

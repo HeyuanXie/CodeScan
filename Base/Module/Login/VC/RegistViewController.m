@@ -28,8 +28,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *otherLoginView;
 @property (weak, nonatomic) IBOutlet UIView *weixinView;
-@property (weak, nonatomic) IBOutlet UIImageView *qqView;
-@property (weak, nonatomic) IBOutlet UIImageView *weiboView;
+@property (weak, nonatomic) IBOutlet UIView *qqView;
+@property (weak, nonatomic) IBOutlet UIView *weiboView;
 
 @property (strong, nonatomic) HYCountDown* countDown;
 

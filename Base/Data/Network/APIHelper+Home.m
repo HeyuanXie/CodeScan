@@ -31,4 +31,10 @@
     [APIHELPER getWithURL:@"index/search" param:param complete:complete];
 }
 
+//获取热门搜索
+-(void)hotSearchComplete:(ApiRequestCompleteBlock)complete {
+    
+    [APIHELPER getWithURL:@"index/hotsearch" param:nil complete:complete];
+}
+
 @end

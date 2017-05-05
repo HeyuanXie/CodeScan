@@ -10,6 +10,8 @@
 
 @interface TheaterTicketCell : UITableViewCell
 
+@property(nonatomic,copy)void (^ticketBtnClick)();
+
 +(NSString*)identify;
 -(void)configTicketCell:(id)model;
 

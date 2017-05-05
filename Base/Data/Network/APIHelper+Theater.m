@@ -71,20 +71,18 @@
  @param start <#start description#>
  @param limit <#limit description#>
  @param playId <#playId description#>
- @param date <#date description#>
  @param complete <#complete description#>
  */
 -(void)theaterSession:(NSInteger)start
                 limit:(NSInteger)limit
                playId:(NSInteger)playId
-                 date:(NSString *)date
              complete:(ApiRequestCompleteBlock)complete {
     
     NSMutableDictionary* param = [NSMutableDictionary dictionary];
     [param safe_setValue:@(start) forKey:@"start"];
     [param safe_setValue:@(limit) forKey:@"limit"];
     [param safe_setValue:@(playId) forKey:@"play_id"];
-    [param safe_setValue:date forKey:@"play_date"];
+    [param safe_setValue:@"2000-00-00" forKey:@"play_date"];
     [APIHELPER getWithURL:@"movie/playTime" param:param complete:complete];
 }
 

@@ -310,33 +310,22 @@
                                     <constraint firstAttribute="bottom" secondItem="HO7-ul-f8J" secondAttribute="bottom" id="vtj-Yf-e7c"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVG-Sr-cVX" userLabel="btnsView">
-                                <rect key="frame" x="0.0" y="166" width="375" height="45"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="xpK-Ta-w63"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="fVG-Sr-cVX" firstAttribute="top" secondItem="5Fu-wN-oYf" secondAttribute="bottom" id="Azd-EG-Uqy"/>
                             <constraint firstItem="k4w-TO-DUN" firstAttribute="leading" secondItem="bEy-gx-jGO" secondAttribute="leading" id="CTD-eD-EC9"/>
                             <constraint firstItem="lTh-gW-GaB" firstAttribute="top" secondItem="bEy-gx-jGO" secondAttribute="top" constant="18" id="EuN-hu-Ri7"/>
                             <constraint firstAttribute="trailing" secondItem="lTh-gW-GaB" secondAttribute="trailing" constant="12" id="I4q-x4-vcN"/>
                             <constraint firstItem="5Fu-wN-oYf" firstAttribute="top" secondItem="bEy-gx-jGO" secondAttribute="top" constant="-64" id="KSk-5f-gkg"/>
                             <constraint firstItem="k4w-TO-DUN" firstAttribute="top" secondItem="bEy-gx-jGO" secondAttribute="top" constant="-64" id="Nmh-6E-1Pi"/>
-                            <constraint firstItem="fVG-Sr-cVX" firstAttribute="leading" secondItem="bEy-gx-jGO" secondAttribute="leading" id="Osu-lv-RaA"/>
                             <constraint firstAttribute="trailing" secondItem="5Fu-wN-oYf" secondAttribute="trailing" id="Q3B-Dl-F9X"/>
                             <constraint firstItem="5Fu-wN-oYf" firstAttribute="leading" secondItem="bEy-gx-jGO" secondAttribute="leading" id="Rs8-ot-yhE"/>
-                            <constraint firstAttribute="trailing" secondItem="fVG-Sr-cVX" secondAttribute="trailing" id="XK3-ST-xeS"/>
                             <constraint firstAttribute="trailing" secondItem="k4w-TO-DUN" secondAttribute="trailing" id="gOj-Pe-nP7"/>
                             <constraint firstItem="lTh-gW-GaB" firstAttribute="leading" secondItem="bEy-gx-jGO" secondAttribute="leading" constant="12" id="wbH-Wj-7Jw"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backImgV" destination="k4w-TO-DUN" id="O8O-0d-vfa"/>
-                        <outlet property="btnsView" destination="fVG-Sr-cVX" id="XYk-Ut-HH6"/>
                         <outlet property="dateLbl" destination="bdf-pl-5NX" id="Pdn-zg-06V"/>
                         <outlet property="imgV" destination="HO7-ul-f8J" id="6aV-ya-hMI"/>
                         <outlet property="scoreLbl" destination="slH-jI-RYv" id="yOe-1a-Wvf"/>
@@ -1964,7 +1953,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ryi-Dr-BY9" id="nbg-EH-GRj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1992,7 +1981,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iwj-Xo-5q0" id="3CH-P3-keF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

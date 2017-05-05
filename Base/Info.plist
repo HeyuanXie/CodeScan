@@ -70,6 +70,16 @@
 				<string>sinaweibosso.2864077449</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>qqLogin</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tencent1106100126</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>2</string>

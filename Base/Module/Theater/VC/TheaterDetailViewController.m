@@ -225,7 +225,7 @@
         [HYTool configTableViewCellDefault:cell];
         CGFloat width = (kScreen_Width-40)/3;
         CGFloat zoom = [RecentHotView showDetailSize].height / [RecentHotView showDetailSize].width;
-        for (int i = 0; i<3; i++) {
+        for (int i = 0; i<self.commendList.count; i++) {
             RecentHotView* view = [[NSBundle mainBundle] loadNibNamed:@"HomeUseView" owner:self options:nil][0];
             [cell.contentView addSubview:view];
             [view autoPinEdgeToSuperviewEdge:ALEdgeTop];

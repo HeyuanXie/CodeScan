@@ -157,7 +157,7 @@
                             <constraint firstItem="HVk-Io-8nF" firstAttribute="top" secondItem="D35-lx-kd9" secondAttribute="top" id="olI-jD-WQI"/>
                         </constraints>
                     </view>
-                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gxv-Ri-vrO">
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gxv-Ri-vrO">
                         <rect key="frame" x="12" y="155.5" width="351" height="104"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="104" id="rwu-rG-SsC"/>

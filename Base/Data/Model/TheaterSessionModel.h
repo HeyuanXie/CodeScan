@@ -17,6 +17,9 @@
 @property (nonatomic, strong) NSNumber *theaterId;
 @property (nonatomic, copy) NSString *price;
 @property (nonatomic, copy) NSString *address;
-@property (nonatomic, strong)NSArray * children;
+@property (nonatomic, strong) NSNumber *timeId;
+@property (nonatomic, strong) NSNumber *hallId;
+@property (nonatomic, copy) NSString *playDate;
+@property (nonatomic, copy) NSString *playTime;
 
 @end
