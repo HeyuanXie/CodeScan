@@ -22,9 +22,11 @@
 
 @property (strong,nonatomic) NSString* theatreName;
 @property (strong,nonatomic) NSString* playName;
+@property (strong,nonatomic) NSString* playImg;
 @property (strong,nonatomic) NSString* playDate;
 @property (strong,nonatomic) NSString* language;
 @property (strong,nonatomic) NSString* playTime;
+@property (strong,nonatomic) NSString* addrss;
 
 @property (assign, nonatomic) NSInteger hallId;
 @property (assign, nonatomic) NSInteger timeId;
@@ -44,6 +46,9 @@
     if (self.schemaArgu[@"play_name"]) {
         self.playName = [[[self.schemaArgu objectForKey:@"play_name"] stringByReplacingOccurrencesOfString:@"《" withString:@""] stringByReplacingOccurrencesOfString:@"》" withString:@""];
     }
+    if (self.schemaArgu[@"picurl"]) {
+        self.playImg = [self.schemaArgu objectForKey:@"picurl"];
+    }
     if (self.schemaArgu[@"play_date"]) {
         self.playDate = [self.schemaArgu objectForKey:@"play_date"];
         if ([self.playDate isEqualToString:[HYTool dateStringWithFormatter:@"yyyy-MM-dd"]]) {
@@ -56,7 +61,10 @@
         self.language = [self.schemaArgu objectForKey:@"language"];
     }
     if (self.schemaArgu[@"play_time"]) {
-        self.playTime = [HYTool dateStringWithString:[self.schemaArgu objectForKey:@"play_time"] inputFormat:nil outputFormat:@"HH:mm"];
+        self.playTime = [self.schemaArgu objectForKey:@"play_time"];
+    }
+    if (self.schemaArgu[@"address"]) {
+        self.addrss = [self.schemaArgu objectForKey:@"address"];
     }
     if (self.schemaArgu[@"hall_id"]) {
         self.hallId = [[self.schemaArgu objectForKey:@"hall_id"] integerValue];
@@ -66,7 +74,7 @@
     }
 
     self.title = self.theatreName;
-    self.descLbl.text = [NSString stringWithFormat:@"%@ | %@ %@",_playName,_playDate,_playTime];
+    self.descLbl.text = [NSString stringWithFormat:@"%@ | %@ %@",_playName,_playDate,[HYTool dateStringWithString:self.playTime inputFormat:nil outputFormat:@"HH:mm"]];
     
     [self configSeatsPicker];
     [self fetchData];
@@ -97,6 +105,10 @@
 {
     TheaterSeatSelectController* vc = (TheaterSeatSelectController*)VIEWCONTROLLER(kTheaterSeatSelectController);
     vc.desc = self.descLbl.text;
+    vc.playName = self.playName;
+    vc.playTime = self.playTime;
+    vc.address = self.addrss;
+    vc.playImg = self.playImg;
     vc.title = self.title;
     vc.timeId = self.timeId;
     vc.hallId = self.hallId;
@@ -142,12 +154,14 @@
                 FVSeatItem* seatsInfo = [FVSeatItem new];
                 seatsInfo.seatId = [dict intValueForKey:@"ps_id"];
                 seatsInfo.seatName = [dict stringForKey:@"seat_name"];
+                seatsInfo.seatColor = [dict stringForKey:@"seat_color"];
                 seatsInfo.realPrice = [dict[@"real_price"] floatValue];
                 seatsInfo.marketPrice = [dict[@"market_price"] floatValue];
                 seatsInfo.cardPrice = [dict[@"card_price"] floatValue];
                 seatsInfo.col = [dict intValueForKey:@"seat_y"];
                 seatsInfo.row = [dict intValueForKey:@"seat_x"];
-                seatsInfo.seatStatus = [dict intValueForKey:@"status"];
+//                seatsInfo.seatStatus = [dict intValueForKey:@"status"];
+                seatsInfo.seatStatus = 0;   //预览图都为可用
                 seatsInfo.coordinateX = [dict intValueForKey:@"seat_sort"];
                 seatsInfo.coordinateY = [dict intValueForKey:@"seat_x"];
                 [self.seatList addObject:seatsInfo];

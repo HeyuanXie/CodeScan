@@ -28,7 +28,8 @@
     TheaterModel* theater = (TheaterModel*)model;
     [self.imgV sd_setImageWithURL:[NSURL URLWithString:theater.picurl] placeholderImage:ImageNamed(@"elephant")];
     NSString* playName = [[theater.playName stringByReplacingOccurrencesOfString:@"《" withString:@""] stringByReplacingOccurrencesOfString:@"》" withString:@""];
-    self.desLbl.text = [NSString stringWithFormat:@"%@ %@——%@",theater.sydate,theater.subTitle,playName];
+    self.desLbl.text = playName;
+//    self.desLbl.text = [NSString stringWithFormat:@"%@ %@——%@",theater.sydate,theater.subTitle,playName];
 }
 
 /*

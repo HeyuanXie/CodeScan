@@ -44,7 +44,7 @@
     self.pirceLbl.text = [NSString stringWithFormat:@"%.2f",seat.realPrice];
     [self.selelctBtn setImage:ImageNamed(@"未选择") forState:UIControlStateNormal];
     [self.selelctBtn setImage:ImageNamed(@"已选择") forState:UIControlStateSelected];
-    self.pirceLblLeading.constant = kScreen_Width/2;
+    self.pirceLblLeading.constant = kScreen_Width/2-5;
     self.seatLbl.text = seat.seatName;
     
     for (NSNumber* index in cardIndexs) {

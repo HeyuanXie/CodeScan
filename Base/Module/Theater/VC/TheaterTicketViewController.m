@@ -98,6 +98,7 @@
     [cell setTicketBtnClick:^{
         NSMutableDictionary* param = [[model yy_modelToJSONObject] mutableCopy];
         [param setValue:self.name forKey:@"play_name"];
+        [param setValue:self.picUrl forKey:@"picurl"];
         [ROUTER routeByStoryboardID:[NSString stringWithFormat:@"%@",kTheaterSeatPreviewController] withParam:param];
     }];
     [cell addLine:NO leftOffSet:0 rightOffSet:0];

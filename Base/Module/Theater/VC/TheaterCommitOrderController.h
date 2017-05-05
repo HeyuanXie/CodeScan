@@ -16,4 +16,9 @@
 @property (assign, nonatomic) NSInteger timeId; //剧场time_id
 @property (assign, nonatomic) int timeLeft;   //订单支付剩余时间
 
+@property (strong, nonatomic) NSString* playName;
+@property (strong, nonatomic) NSString* playImg;
+@property (strong, nonatomic) NSString* playTime;
+@property (strong, nonatomic) NSString* address;
+
 @end

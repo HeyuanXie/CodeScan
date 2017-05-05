@@ -34,13 +34,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    if (self.schemaArgu[@"hall_id"]) {
-//        self.hallId = [[self.schemaArgu objectForKey:@"hall_id"] integerValue];
-//    }
-//    if (self.schemaArgu[@"time_id"]) {
-//        self.timeId = [[self.schemaArgu objectForKey:@"time_id"] integerValue];
-//    }
-    
     [self subviewStyle];
     [self reloadSeatScrollView];
     [self configSeatsPicker];
@@ -82,6 +75,11 @@
             NSArray* yearCards = responseObject[@"data"][@"card_list"][@"list"];
             
             TheaterCommitOrderController* vc = (TheaterCommitOrderController*)VIEWCONTROLLER(kTheaterCommitOrderController);
+            
+            vc.playName = self.playName;
+            vc.playImg = self.playImg;
+            vc.playTime = self.playTime;
+            vc.address = self.address;
             vc.selectArray = self.selectArray;
             vc.coupons = coupons;
             vc.yearCards = yearCards;

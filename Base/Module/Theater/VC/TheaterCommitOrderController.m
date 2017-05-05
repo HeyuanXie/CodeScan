@@ -8,8 +8,10 @@
 
 #import "TheaterCommitOrderController.h"
 #import "SelectCouponController.h"
+
 #import "CommitOrderTopCell.h"
 #import "CommitOrderSeatCell.h"
+#import "TheaterModel.h"
 #import "HYAlertView.h"
 #import "HYPayEngine.h"
 #import "UIButton+HYButtons.h"
@@ -223,6 +225,12 @@
         default:
         {
             //选择优惠券或年卡
+            if (self.coupons.count == 0 && indexPath.section == 1) {
+                return;
+            }
+            if (self.yearCards.count == 0 && indexPath.section == 2) {
+                return;
+            }
             [self showSelectCouponControllerSection:indexPath.section];
         }
     }
@@ -233,10 +241,15 @@
     CommitOrderTopCell* cell = [tableView dequeueReusableCellWithIdentifier:[CommitOrderTopCell identify]];
     //configNotVip or Vip
     
+    TheaterModel *model = [[TheaterModel alloc] init];
+    model.playName = self.playName;
+    model.picurl = self.playImg;
+    model.playTime = [HYTool dateStringWithString:self.playTime inputFormat:nil outputFormat:@"yyyy-MM-dd HH:mm"];
+    model.address = self.address;
     if (self.selectCard == nil) {
-        [cell configNotVipCell:nil];
+        [cell configNotVipCell:model];
     }else{
-        [cell configVipCell:nil];
+        [cell configVipCell:model];
     }
     return cell;
 }
@@ -598,9 +611,8 @@
             total += seat.realPrice;
         }
     }
-    self.total = total+apply-[self.selectCoupon.couponAmount floatValue];
+    self.total = total-[self.selectCoupon.couponAmount floatValue];
     self.apply = apply;
-//    self.totalLbl.text = [NSString stringWithFormat:@"%.2f",self.total];
 }
 
 #pragma mark - override methods

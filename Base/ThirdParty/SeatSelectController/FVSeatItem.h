@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, FVSeatState)
 
 @property(nonatomic, assign) int seatId;
 @property(nonatomic, strong) NSString *seatName;
+@property(nonatomic, strong) NSString *seatColor;
 @property(nonatomic, assign) float realPrice;
 @property(nonatomic, assign) float marketPrice;
 @property(nonatomic, assign) float cardPrice;

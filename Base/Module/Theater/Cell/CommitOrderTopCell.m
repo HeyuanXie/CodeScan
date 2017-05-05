@@ -7,6 +7,7 @@
 //
 
 #import "CommitOrderTopCell.h"
+#import "TheaterModel.h"
 
 @interface CommitOrderTopCell ()
 
@@ -42,14 +43,17 @@
  */
 -(void)configNotVipCell:(id)model {
     
+    TheaterModel* theater = (TheaterModel*)model;
+    [self.imgV sd_setImageWithURL:[NSURL URLWithString:theater.picurl]];
+    self.titleLbl.text = theater.playName;
+    self.timeLbl.text = theater.playTime;
+    self.addressLbl.text = theater.address;
     self.tagLbl1.hidden = YES;
     self.tagBtn1.hidden = YES;
     self.tagLbl2.text = @"价格";
     [self.tagBtn2 bk_whenTapped:^{
         //TODO:价格
     }];
-    
-    
 }
 
 

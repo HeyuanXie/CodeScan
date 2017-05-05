@@ -154,6 +154,7 @@ static const char kSeatInfo;
         for (NSNumber* state in _imageDict)
         {
             [button setImage:_imageDict[state] forState:state.unsignedIntegerValue];
+            [button setBackgroundColor:[UIColor colorWithString:info.seatColor]];
         }
         
         button.enabled = info.seatStatus == FVSeatsStateAvailable;

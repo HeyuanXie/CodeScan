@@ -23,7 +23,7 @@
 -(void)configSeatView:(id)model {
     
     FVSeatItem* item = (FVSeatItem*)model;
-    self.seatLbl.text = item.seatName;
+    self.seatLbl.text = [item.seatName stringByReplacingOccurrencesOfString:@"第" withString:@""];
     self.priceLbl.text = [NSString stringWithFormat:@"%.2f",item.realPrice];
     [self.deleteBtn bk_whenTapped:^{
         if (self.deleteClick) {
