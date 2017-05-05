@@ -230,6 +230,9 @@
         [scroll autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(0, 0, -1, 0)];
     }
     UIScrollView* scroll = (UIScrollView*)[cell.contentView viewWithTag:1000];
+    for (UIView* subview in scroll.subviews) {
+        [subview removeFromSuperview];
+    }
     for (int i=0; i<self.recents.count; i++) {
         RecentHotView* hotView = LOADNIB(@"HomeUseView", 0);
         [scroll addSubview:hotView];
@@ -323,7 +326,8 @@
 //            return 210;
             return 90+120*kScale_height;
         case 1:
-            return 230;
+//            return 230;
+            return self.recents.count == 0 ? 0 : 230;
         case 2:
             return 125;
         case 3:
@@ -490,7 +494,9 @@
         @weakify(self);
         [addressC setSelectAddress:^(NSString *areaName, NSString *areaID) {
             @strongify(self);
-            [self.leftBtn setTitle:areaName forState:UIControlStateNormal];
+            self.city = [[areaName stringByReplacingOccurrencesOfString:@"全省" withString:@""] stringByReplacingOccurrencesOfString:@"全市" withString:@""];
+            [self.leftBtn setTitle:self.city forState:UIControlStateNormal];
+            [self fetchData];
             [self hiddenFilterAddress];
         }];
         [addressC setFilterDismiss:^{
