@@ -29,6 +29,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    [HYTool configViewLayer:self.imgV];
 }
 
 +(NSString *)identify {

@@ -22,9 +22,6 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="年卡背景" translatesAutoresizingMaskIntoConstraints="NO" id="d8T-vi-W0d">
                         <rect key="frame" x="30" y="12" width="315" height="152"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qw9-Hb-iT5">
                         <rect key="frame" x="12" y="154" width="351" height="149.5"/>

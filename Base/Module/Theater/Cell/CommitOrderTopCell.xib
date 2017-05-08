@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="185"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="184.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="185"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="座位" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edH-g3-IBz">
@@ -35,10 +35,6 @@
                             <constraint firstAttribute="width" constant="96" id="JfI-ae-1LE"/>
                             <constraint firstAttribute="height" constant="132" id="jVY-bs-eQM"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                            <userDefinedRuntimeAttribute type="string" keyPath="keyPath" value="5"/>
-                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="价格" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0b-gf-6N9">
                         <rect key="frame" x="301" y="152" width="40" height="30"/>
@@ -51,7 +47,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5s-sK-sdz">
-                        <rect key="frame" x="343" y="157.5" width="20" height="20"/>
+                        <rect key="frame" x="343" y="157" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="1gG-K5-dEr"/>
                             <constraint firstAttribute="width" secondItem="N5s-sK-sdz" secondAttribute="height" multiplier="1:1" id="apf-Br-hf8"/>
@@ -86,7 +82,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="价格" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ou5-Bt-77h">
-                        <rect key="frame" x="167.5" y="152" width="40" height="30"/>
+                        <rect key="frame" x="168" y="152" width="40" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="Q3E-Vm-Uaa"/>
                             <constraint firstAttribute="width" constant="40" id="bCq-Ne-6ic"/>
@@ -96,7 +92,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOy-R1-Fxe">
-                        <rect key="frame" x="209.5" y="157" width="20" height="20"/>
+                        <rect key="frame" x="210" y="157" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="Syd-C5-Sol"/>
                             <constraint firstAttribute="width" secondItem="cOy-R1-Fxe" secondAttribute="height" multiplier="1:1" id="wzr-lG-fks"/>
