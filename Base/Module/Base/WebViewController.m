@@ -48,7 +48,6 @@
         NSMutableURLRequest* urlReq = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20];
         [urlReq setValue:@"1" forHTTPHeaderField:@"App-id"];
         [urlReq setValue:API_VERSION forHTTPHeaderField:@"Version"];
-        [urlReq setValue:[Global IDFV] forHTTPHeaderField:@"Client-id"];
         if ([Global userAuth]) {
             [urlReq setValue:[Global userAuth] forHTTPHeaderField:@"Auth"];
         }

@@ -10,21 +10,11 @@
 #import "UIStoryboard+HYStoryboard.h"
 #import "BaseNavigationController.h"
 #import "BaseViewController.h"
+#import "CodeScanController.h"
 #import "UIImage+HYImages.h"
 #import <IQKeyboardManager.h>
-#import <ShareSDK/ShareSDK.h>
-#import <ShareSDKConnector/ShareSDKConnector.h>
-//腾讯开放平台（对应QQ和QQ空间）SDK头文件
-#import <TencentOpenAPI/TencentOAuth.h>
-#import <TencentOpenAPI/QQApiInterface.h>
 
-//微信SDK头文件
-#import "WXApi.h"
-
-//新浪微博SDK头文件
-#import "WeiboSDK.h"
-
-#import "JPUSHService.h"
+#import "LoginViewController.h"
 
 
 NS_ENUM(NSUInteger, TabType) {
@@ -43,17 +33,12 @@ NS_ENUM(NSUInteger, TabType) {
         [APIHELPER login:kAccount password:kPassword complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
             if (isSuccess) {
                 [Global setUserAuth:responseObject[@"data"][@"auth"]];
-                APIHELPER.userInfo = [UserInfoModel yy_modelWithJSON:responseObject[@"data"]];
-                NSString* pushAccount = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"push_account"]];
-                [JPUSHService setAlias:pushAccount callbackSelector:nil object:nil];
+                CodeScanController* vc = (CodeScanController*)VIEWCONTROLLER(kCodeScanController);
+                UINavigationController* nvc = (UINavigationController*)kApplication.keyWindow.rootViewController;
+                [nvc pushViewController:vc animated:YES];
             }
         }];
     }
-    [APIHELPER fetchConfiguration:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
-        if (isSuccess) {
-            APIHELPER.config = responseObject[@"data"];
-        }
-    }];
     
     [self configTabbar];
     [self.window makeKeyAndVisible];
@@ -61,31 +46,10 @@ NS_ENUM(NSUInteger, TabType) {
 }
 
 -(void)configTabbar {
-    UIViewController* main = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:@"HomeViewController"];
-    main.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:[ImageNamed(@"tab_home02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_home01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
-    UIViewController* collect = [[UIStoryboard collectStoryboard] instantiateViewControllerWithIdentifier:@"CollectViewController"];
-    collect.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"收藏" image:[ImageNamed(@"tab_collect02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_collect01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    
-    UIViewController* order = [[UIStoryboard orderStoryboard] instantiateViewControllerWithIdentifier:@"OrderHomeController"];
-    order.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"订单" image:[ImageNamed(@"tab_order02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_order01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    
-    UIViewController* mine = [[UIStoryboard mineStoryboard] instantiateViewControllerWithIdentifier:@"MineHomeViewController"];
-    mine.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[ImageNamed(@"tab_my02") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[ImageNamed(@"tab_my01") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-    
-    UITabBarController* tabController = [[UITabBarController alloc] init];
-    tabController.tabBar.backgroundColor = [UIColor clearColor];
-    NSMutableArray* vcs = [NSMutableArray arrayWithCapacity:4];
-    vcs[TabTypeHome] = [[BaseNavigationController alloc] initWithRootViewController:main];
-    vcs[TabTypeSecond] = [[BaseNavigationController alloc] initWithRootViewController:collect];
-    vcs[TabTypeThird] = [[BaseNavigationController alloc] initWithRootViewController:order];
-    vcs[TabTypeForth] = [[BaseNavigationController alloc] initWithRootViewController:mine];
-    tabController.viewControllers = vcs;
-    
-    for (BaseNavigationController* navC in vcs) {
-        navC.delegate = self;
-    }
-    self.window.rootViewController = tabController;
+    LoginViewController* loginVC = (LoginViewController*)VIEWCONTROLLER(kLoginViewController);
+    BaseNavigationController* root = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
+    self.window.rootViewController = root;
 }
 
 -(void)configUIAppearance {
@@ -133,62 +97,5 @@ NS_ENUM(NSUInteger, TabType) {
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
 }
 
-
-- (void)configShareSDK{
-    [ShareSDK registerApp:kShareSDK_APPID
-          activePlatforms:@[
-                            @(SSDKPlatformTypeSinaWeibo),
-                            @(SSDKPlatformSubTypeWechatSession),
-                            @(SSDKPlatformSubTypeWechatTimeline),
-                            @(SSDKPlatformTypeQQ)]
-                 onImport:^(SSDKPlatformType platformType)
-     {
-         switch (platformType)
-         {
-             case SSDKPlatformTypeWechat:
-                 [ShareSDKConnector connectWeChat:[WXApi class]];
-                 break;
-             case SSDKPlatformTypeQQ:
-                 [ShareSDKConnector connectQQ:[QQApiInterface class] tencentOAuthClass:[TencentOAuth class]];
-                 break;
-             case SSDKPlatformTypeSinaWeibo:
-                 [ShareSDKConnector connectWeibo:[WeiboSDK class]];
-                 break;
-             default:
-                 break;
-         }
-     }
-          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo)
-     {
-         
-         switch (platformType)
-         {
-             case SSDKPlatformTypeSinaWeibo:
-                 //设置新浪微博应用信息,其中authType设置为使用SSO＋Web形式授权
-                 [appInfo SSDKSetupSinaWeiboByAppKey:kSINA_APPID
-                                           appSecret:kSINA_KEY
-                                         redirectUri:kSINA_REDIRECTURL
-                                            authType:SSDKAuthTypeBoth];
-                 break;
-             case SSDKPlatformTypeWechat:
-                 [appInfo SSDKSetupWeChatByAppId:kWX_APPID
-                                       appSecret:kWX_KEY];
-                 break;
-             case SSDKPlatformTypeQQ:
-                 [appInfo SSDKSetupQQByAppId:kQQ_APPID
-                                      appKey:kQQ_KEY
-                                    authType:SSDKAuthTypeBoth];
-                 break;
-             default:
-                 break;
-         }
-     }];
-}
-
-
--(void)configPaySDK {
-    
-    [WXApi registerApp:kWX_APPID withDescription:@"demo"];
-}
 
 @end

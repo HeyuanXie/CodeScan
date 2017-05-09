@@ -14,8 +14,6 @@
 
 + (void)clearCacheWithCompletionHandler:(void(^)())completionHandler;
 
-+ (NSString*)IDFV;
-
 + (NSString*)userAuth;
 + (void)setUserAuth:(NSString *)auth;
 

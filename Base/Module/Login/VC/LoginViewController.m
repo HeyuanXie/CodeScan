@@ -7,10 +7,9 @@
 //
 
 #import "LoginViewController.h"
+#import "CodeScanController.h"
 #import "UIViewController+Extension.h"
 #import "NSString+HYUtilities.h"
-#import "JPUSHService.h"
-#import "ShareSDKThirdLoginHelper.h"
 
 @interface LoginViewController ()
 
@@ -22,16 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *eyeBtn;
 @property (weak, nonatomic) IBOutlet UIView *eyeView;
 
-@property (weak, nonatomic) IBOutlet UIButton *forgotBtn;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
-@property (weak, nonatomic) IBOutlet UIButton *registBtn;
-
-@property (weak, nonatomic) IBOutlet UIView *otherLoginView;
-@property (weak, nonatomic) IBOutlet UIView *weixinLoginView;
-@property (weak, nonatomic) IBOutlet UIView *qqLoginView;
-@property (weak, nonatomic) IBOutlet UIView *weiboLoginView;
-
-
 
 @end
 
@@ -40,9 +30,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.schemaArgu[@"phone"]) {
-        self.accountTf.text = [self.schemaArgu objectForKey:@"phone"];
-    }
+    self.navigationLineHidden = YES;
+    self.backItemHidden = YES;
     [self subviewStyle];
     [self subviewBind];
     // Do any additional setup after loading the view.
@@ -55,8 +44,9 @@
 
 
 - (void)subviewStyle {
+    
     self.title = @"登陆";
-    self.navigationLineHidden = YES;
+    [self.navigationController.navigationBar setBackgroundImage:ImageNamed(@"gradualBackground") forBarMetrics:UIBarMetricsDefault];
     [self addBackgroundImageWithFrame:self.view.bounds];
 
     for (UIView* view in @[self.accountView,self.passwordView]) {
@@ -66,24 +56,21 @@
         [line autoSetDimension:ALDimensionHeight toSize:0.5];
     }
     
-    self.accountTf.keyboardType = UIKeyboardTypeNumberPad;
     self.passwordTf.secureTextEntry = YES;
     
     [HYTool configViewLayer:self.loginBtn size:20];
-    [HYTool configViewLayer:self.registBtn withColor:[UIColor whiteColor]];
-    [HYTool configViewLayer:self.registBtn size:20];
     
     if (kAccount) {
         self.accountTf.text = kAccount;
     }
-    self.otherLoginView.hidden = YES;
+    if (kPassword) {
+        self.passwordTf.text = kPassword;
+    }
 }
 
 - (void)subviewBind {
     
     [self.loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
-    [self.registBtn addTarget:self action:@selector(regist) forControlEvents:UIControlEventTouchUpInside];
-    [self.forgotBtn addTarget:self action:@selector(forgot) forControlEvents:UIControlEventTouchUpInside];
     
     [self.eyeView bk_whenTapped:^{
         self.eyeBtn.selected = !self.eyeBtn.selected;
@@ -91,22 +78,12 @@
         [self.eyeBtn setImage:ImageNamed(image) forState:UIControlStateNormal];
         self.passwordTf.secureTextEntry = !self.eyeBtn.selected;
     }];
-    for (UIView* loginView in @[self.qqLoginView,self.weixinLoginView,self.weiboLoginView]) {
-        [loginView bk_whenTapped:^{
-            ShareSDKThirdLoginHelper* helper = [ShareSDKThirdLoginHelper shareThirdLoginHelper];
-            [helper loginWithIndex:loginView.tag-100];
-        }];
-    }
 }
 
 
 - (void)login{
     if ([self.accountTf.text isEmpty]) {
         [MBProgressHUD hy_showMessage:@"请输入手机号" inView:self.view];
-        return;
-    }
-    if (![self.accountTf.text validateWithValidateType:ValidateTypeForMobile]) {
-        [MBProgressHUD hy_showMessage:@"请输入正确的手机号" inView:self.view];
         return;
     }
     if ([self.passwordTf.text isEmpty]) {
@@ -119,24 +96,14 @@
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (isSuccess) {
             [Global setUserAuth:responseObject[@"data"][@"auth"]];
-            APIHELPER.userInfo = [UserInfoModel yy_modelWithDictionary:responseObject[@"data"]];
             kSaveAccountAndPassword(self.accountTf.text, self.passwordTf.text)
-            NSString* pushAccount = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"push_account"]];
-            [JPUSHService setAlias:pushAccount callbackSelector:nil object:nil];
-            [self.navigationController popViewControllerAnimated:YES];
+            CodeScanController* vc = (CodeScanController*)VIEWCONTROLLER(kCodeScanController);
+            [self.navigationController pushViewController:vc animated:YES];
         }else{
             [MBProgressHUD hy_showMessage:error.userInfo[NSLocalizedDescriptionKey] inView:self.view];
         }
     }];
 
-}
-
-- (void)regist{
-    APPROUTE(kRegistViewController);
-}
-
-- (void)forgot{
-    APPROUTE(([NSString stringWithFormat:@"%@?contentType=1",kBindPhoneChangeController]));
 }
 
 @end

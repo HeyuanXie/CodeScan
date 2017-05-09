@@ -18,8 +18,4 @@
 
 - (void)configIQKeyBoardManager;
 
-- (void)configPaySDK;
-
-- (void)configShareSDK;
-
 @end

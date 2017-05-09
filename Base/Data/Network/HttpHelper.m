@@ -72,7 +72,6 @@
 -(NSURLSessionDataTask *)getWithURL:(NSString *)relativeurl param:(NSDictionary *)parameters complete:(ApiRequestCompleteBlock)complete {
     [self.requestSerializer setValue:@"1" forHTTPHeaderField:@"App-id"];
     [self.requestSerializer setValue:API_VERSION forHTTPHeaderField:@"Version"];
-    [self.requestSerializer setValue:[Global IDFV] forHTTPHeaderField:@"Client-id"];
     if ([Global userAuth]) {
         [self.requestSerializer setValue:[Global userAuth] forHTTPHeaderField:@"auth"];
     }else{
@@ -122,7 +121,6 @@
     
     [self.requestSerializer setValue:@"1" forHTTPHeaderField:@"App-id"];
     [self.requestSerializer setValue:API_VERSION forHTTPHeaderField:@"Version"];
-    [self.requestSerializer setValue:[Global IDFV] forHTTPHeaderField:@"Client-id"];
     if ([Global userAuth]) {
         [self.requestSerializer setValue:[Global userAuth] forHTTPHeaderField:@"auth"];
     }else{

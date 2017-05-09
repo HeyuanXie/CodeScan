@@ -28,7 +28,7 @@
     self.navigationItem.rightBarButtonItem = message;
 }
 - (void)message {
-    APPROUTE(kMessageHomeController);
+    //TODO:进入消息页面
 }
 
 - (void)addDoubleNavigationItemsWithImages:(NSArray *)imageNames firstBlock:(void (^)())block1 secondBlock:(void (^)())block2 {

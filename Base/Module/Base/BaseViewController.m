@@ -9,7 +9,6 @@
 #import "BaseViewController.h"
 #import "MBProgressHUD+hyHUD.h"
 #import "LoginViewController.h"
-#import "RegistViewController.h"
 #import "HYAlertView.h"
 
 @interface BaseViewController ()
@@ -53,9 +52,6 @@
         [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [leftButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         [leftButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-        if ([self isKindOfClass:[LoginViewController class]] || [self isKindOfClass:[RegistViewController class]]) {
-            [leftButton setImage:ImageNamed(@"登陆页关闭") forState:UIControlStateNormal];
-        }
         self.navigationItem.leftBarButtonItems = @[[[UIBarButtonItem alloc] initWithCustomView:leftButton]];
     }
     if (self.navigationBarTransparent) {

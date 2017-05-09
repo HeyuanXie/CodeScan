@@ -7,7 +7,6 @@
 //
 
 #import "Global.h"
-#import "LTKeyChain.h"
 
 @implementation Global
 
@@ -29,22 +28,6 @@
     SDWebImageManager * manager = [SDWebImageManager sharedManager];
     [manager.imageCache clearMemory];
     [manager.imageCache clearDiskOnCompletion:completionHandler];
-}
-
-#define kUDIDKeyChain   @"identifierVendorKeyChainKey"
-+ (NSString *)IDFV
-{
-    //ios 7 禁用网卡地址,所以改为UDID ＋ keychain
-    NSString *passWord =  [LTKeyChain load:kUDIDKeyChain];
-    
-    if (passWord && ![passWord isEqualToString:@"(null)"] && ![passWord isEqualToString:@"-1"]) {
-        return passWord;
-    }
-    else{
-        NSString *identifierVendor = [[UIDevice currentDevice] identifierForVendor].UUIDString;
-        [LTKeyChain save:kUDIDKeyChain data:identifierVendor];
-        return identifierVendor;
-    }
 }
 
 +(NSString *)userAuth {
