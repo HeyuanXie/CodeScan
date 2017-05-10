@@ -17,6 +17,7 @@ extern NSString* const kScanResultController;
 
 
 
+
 #define APPROUTE(storyboardID) [[OpenRoutesManager shareInstance] routeByStoryboardID:(storyboardID)];
 #define VIEWCONTROLLER(storyboardID) [[OpenRoutesManager shareInstance] viewControllerForStoryboardID:storyboardID];
 #define ROUTER ([OpenRoutesManager shareInstance])

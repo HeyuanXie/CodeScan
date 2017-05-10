@@ -13,6 +13,7 @@ NSString* const kCodeScanController = @"CodeScanController";
 NSString* const kCodeInputController = @"CodeInputController";
 NSString* const kScanResultController = @"ScanResultController";
 
+
 @implementation OpenRoutesManager
 
 - (instancetype)init
@@ -40,7 +41,7 @@ NSString* const kScanResultController = @"ScanResultController";
                         @{@"cls":kLoginViewController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kCodeScanController,@"sb":@"Login",@"method":@"push"},
                         @{@"cls":kCodeInputController,@"sb":@"Login",@"method":@"push"},
-                        @{@"cls":kScanResultController,@"sb":@"Login",@"method":@"push"}
+                        @{@"cls":kScanResultController,@"sb":@"Login",@"method":@"push"},
                         ];
     return routes;
 }

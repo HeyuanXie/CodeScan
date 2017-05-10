@@ -81,7 +81,7 @@
     //震动提醒
      //[LBXScanWrapper systemVibrate];
     //声音提醒
-    //[LBXScanWrapper systemSound];
+//    [LBXScanWrapper systemSound];
     
     
     [self handleResult:(NSString*)strResult];
@@ -110,55 +110,82 @@
 #pragma mark - private methods
 - (void)captureInit {
     
+    //设置扫码区域参数
+    LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
+    
+    style.centerUpOffset = 44;
+    style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_Inner;
+    style.photoframeLineW = 2;
+    style.photoframeAngleW = 18;
+    style.photoframeAngleH = 18;
+    style.isNeedShowRetangle = YES;
+    style.anmiationStyle = LBXScanViewAnimationStyle_LineMove;
+    style.colorAngle = [UIColor colorWithRed:0./255 green:200./255. blue:20./255. alpha:1.0];
+    
+    //qq里面的线条图片
+    UIImage *imgLine = [UIImage imageNamed:@"qrcode_Scan_weixin_Line"];
+    style.animationImage = imgLine;
+    
     self.style = [[LBXScanViewStyle alloc] init];
     _style.centerUpOffset = self.view.frame.size.height/2-163*kScale_height-(kScreen_Width-zoom(265))/2;
     _style.notRecoginitonArea = RGB(40, 40, 40, 1.0);
-    _style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_Inner;
     _style.isNeedShowRetangle = NO;
     _style.photoframeAngleH = 12;
     _style.photoframeAngleW = 12;
     _style.photoframeLineW = 2;
     _style.anmiationStyle = LBXScanViewAnimationStyle_LineMove;
     _style.colorAngle = [UIColor whiteColor];
-    UIImage* image = [UIImage imageNamed:@"CodeScan.bundle/scan_redLine"];
+    UIImage* image = [UIImage imageNamed:@"qrcode_Scan_weixin_Line"];
     _style.animationImage = image;
     //绘制扫描区域
     if (!_qRScanView)
     {
         CGRect rect = self.view.frame;
         rect.origin = CGPointMake(0, 0);
-        self.qRScanView = [[LBXScanView alloc]initWithFrame:rect style:_style];
+        self.qRScanView = [[LBXScanView alloc]initWithFrame:rect style:style];
         [self.view addSubview:_qRScanView];
     }
     [_qRScanView startDeviceReadyingWithText:@"相机启动中"];
     
-    [NSTimer bk_performBlock:^{
-        [self startScan];
-    } afterDelay:2];
+    [self startScan];
 }
 
 - (void)startScan {
     
     [_qRScanView stopDeviceReadying];
     UIView *videoView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
-    videoView.backgroundColor = [UIColor clearColor];
+    videoView.backgroundColor = RGB(40, 40, 40, 1.0); //[UIColor clearColor];
     [self.view insertSubview:videoView atIndex:0];
     __weak __typeof(self) weakSelf = self;
     
-    self.zxingObj = [[ZXingWrapper alloc]initWithPreView:videoView block:^(ZXBarcodeFormat barcodeFormat, NSString *str, UIImage *scanImg) {
-        
-        LBXScanResult *result = [[LBXScanResult alloc]init];
-        result.strScanned = str;
-        result.imgScanned = scanImg;
-        result.strBarCodeType = AVMetadataObjectTypeQRCode;
-        
-        [weakSelf scanResultWithArray:@[result]];
-        
-    }];
+    if (!_zxingObj) {
+        self.zxingObj = [[ZXingWrapper alloc]initWithPreView:videoView block:^(ZXBarcodeFormat barcodeFormat, NSString *str, UIImage *scanImg) {
+            
+            LBXScanResult *result = [[LBXScanResult alloc]init];
+            result.strScanned = str;
+            result.imgScanned = scanImg;
+            result.strBarCodeType = AVMetadataObjectTypeQRCode;
+            
+            [weakSelf scanResultWithArray:@[result]];
+            
+        }];
+    }
     
-    CGRect cropRect = [LBXScanView getZXingScanRectWithPreView:videoView style:_style];
+    LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
+    style.centerUpOffset = 44;
+    style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_Inner;
+    style.photoframeLineW = 3;
+    style.photoframeAngleW = 18;
+    style.photoframeAngleH = 18;
+    style.isNeedShowRetangle = NO;
+    
+    style.anmiationStyle = LBXScanViewAnimationStyle_LineMove;
+    
+    //qq里面的线条图片
+    UIImage *imgLine = [UIImage imageNamed:@"qrcode_Scan_weixin_Line"];
+    style.animationImage = imgLine;
+    CGRect cropRect = [LBXScanView getZXingScanRectWithPreView:videoView style:style];
     [_zxingObj setScanRect:cropRect];
-    [_zxingObj start];
 }
 
 - (void)stopScan {

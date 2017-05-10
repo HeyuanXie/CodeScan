@@ -95,6 +95,7 @@
     [APIHELPER login:self.accountTf.text password:self.passwordTf.text complete:^(BOOL isSuccess, NSDictionary *responseObject, NSError *error) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         if (isSuccess) {
+            
             [Global setUserAuth:responseObject[@"data"][@"auth"]];
             kSaveAccountAndPassword(self.accountTf.text, self.passwordTf.text)
             CodeScanController* vc = (CodeScanController*)VIEWCONTROLLER(kCodeScanController);
