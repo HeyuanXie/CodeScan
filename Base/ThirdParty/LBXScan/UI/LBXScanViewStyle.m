@@ -21,7 +21,7 @@
         _colorRetangleLine = [UIColor whiteColor];
         
         _centerUpOffset = 44;
-        _xScanRetangleOffset = (kScreen_Width-zoom(265))/2;
+        _xScanRetangleOffset = 60;
         
         _anmiationStyle = LBXScanViewAnimationStyle_LineMove;
         _photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_Outer;
