@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "CodeScanController.h"
+#import "LBXScanViewController.h"
 #import "UIViewController+Extension.h"
 #import "NSString+HYUtilities.h"
 
@@ -48,7 +49,7 @@
     self.title = @"登陆";
     [self.navigationController.navigationBar setBackgroundImage:ImageNamed(@"gradualBackground") forBarMetrics:UIBarMetricsDefault];
     [self addBackgroundImageWithFrame:self.view.bounds];
-
+    
     for (UIView* view in @[self.accountView,self.passwordView]) {
         UIView *line = [HYTool getLineWithFrame:CGRectZero lineColor:[UIColor whiteColor]];
         [view addSubview:line];
@@ -100,6 +101,22 @@
             kSaveAccountAndPassword(self.accountTf.text, self.passwordTf.text)
             CodeScanController* vc = (CodeScanController*)VIEWCONTROLLER(kCodeScanController);
             [self.navigationController pushViewController:vc animated:YES];
+            
+//            LBXScanViewStyle* style = [LBXScanViewStyle new];
+//            style.centerUpOffset = self.view.frame.size.height/2-163*kScale_height-(kScreen_Width-zoom(265))/2;
+//            style.notRecoginitonArea = RGB(40, 40, 40, 1.0);
+//            style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_On;
+//            style.isNeedShowRetangle = NO;
+//            style.photoframeAngleH = 16;
+//            style.photoframeAngleW = 16;
+//            style.photoframeLineW = 3;
+//            style.anmiationStyle = LBXScanViewAnimationStyle_LineMove;
+//            style.colorAngle = [UIColor whiteColor];
+//            UIImage* image = [UIImage imageNamed:@"扫码效果"];
+//            style.animationImage = image;
+//            LBXScanViewController* vc = [LBXScanViewController new];
+//            vc.style = style;
+//            [self.navigationController pushViewController:vc animated:YES];
         }else{
             [MBProgressHUD hy_showMessage:error.userInfo[NSLocalizedDescriptionKey] inView:self.view];
         }

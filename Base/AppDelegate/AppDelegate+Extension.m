@@ -48,6 +48,7 @@ NS_ENUM(NSUInteger, TabType) {
 -(void)configTabbar {
     
     LoginViewController* loginVC = (LoginViewController*)VIEWCONTROLLER(kLoginViewController);
+    loginVC.navigationLineHidden = YES;
     BaseNavigationController* root = [[BaseNavigationController alloc] initWithRootViewController:loginVC];
     self.window.rootViewController = root;
 }

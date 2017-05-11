@@ -29,6 +29,8 @@
     }
     
     self.view.backgroundColor = [UIColor blackColor];
+    
+    [self subviewStyle];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -37,8 +39,7 @@
     
     [self drawScanView];
     
-    //不延时，可能会导致界面黑屏并卡住一会
-    [self performSelector:@selector(startScan) withObject:nil afterDelay:0.2];
+    [self startScan];
 }
 
 //绘制扫描区域
@@ -179,6 +180,12 @@
         [self hideResultView];
     }]];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark - private methods
+- (void)subviewStyle {
+    
+    
 }
 
 //MARK: - 扫描得到结果
